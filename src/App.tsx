@@ -1077,13 +1077,13 @@ export default function App() {
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                     </span>
-                    <p className="text-[10px] font-black text-medieval-gold uppercase tracking-widest">Sistema em Tempo Real (Supabase)</p>
+                    <p className="text-[10px] font-black text-medieval-gold uppercase tracking-widest">V3.0 - Sistema em Tempo Real</p>
                   </div>
                 </header>
 
                 <div className="medieval-border rounded-lg overflow-hidden bg-black h-[800px] relative">
                   <iframe 
-                    src="/lobby.html?v=2.0" 
+                    src="/lobby.html?v=3.0" 
                     className="w-full h-full border-none"
                     title="Lobby de Quests"
                   />
