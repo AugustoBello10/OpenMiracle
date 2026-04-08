@@ -11,6 +11,7 @@ import {
   TrendingUp, AlertTriangle, Book, Sparkles, Briefcase, 
   ChevronRight, Menu, X, Map, Youtube, Fish, FlaskConical, Utensils, Sprout, Scissors, Users 
 } from 'lucide-react';
+import { calculateTrainingTime, Vocation, SkillType, TRAINING_WEAPONS_DATA, TrainingWeapon, calculateBlessCosts } from './lib/formulas';
 
 // --- Dados do Banco de Dados Embutido ---
 const CRAFT_ITEMS = [
@@ -355,10 +356,431 @@ const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
 
 type Tab = 'home' | 'calculadoras' | 'profissoes' | 'mapa' | 'eventos' | 'wiki';
 
+// --- Componente Calculadora de Skills ---
+function SkillCalculator({ 
+  vocation, setVocation, 
+  skillType, setSkillType, 
+  currentSkill, setCurrentSkill, 
+  targetSkill, setTargetSkill, 
+  skillPercentage, setSkillPercentage
+}: any) {
+  const [weaponType, setWeaponType] = useState<'normal' | 'training'>('normal');
+  const [selectedTrainingWeapon, setSelectedTrainingWeapon] = useState<string>('Normal');
+  const [weaponReduction, setWeaponReduction] = useState<number>(0);
+  const [equipReductions, setEquipReductions] = useState<number[]>([0, 0, 0]);
+
+  const weaponCategory = useMemo(() => {
+    if (skillType === 'Magic Level') return 'Magic';
+    if (skillType === 'Shielding') return 'Shielding';
+    return 'Melee/Distance';
+  }, [skillType]);
+
+  const trainingWeapon = useMemo(() => {
+    return TRAINING_WEAPONS_DATA[weaponCategory].find(w => w.name === selectedTrainingWeapon) || TRAINING_WEAPONS_DATA[weaponCategory][4];
+  }, [weaponCategory, selectedTrainingWeapon]);
+
+  const reductions = useMemo(() => {
+    const reds: number[] = [];
+    if (weaponType === 'training') {
+      if (trainingWeapon.reduction > 0) reds.push(trainingWeapon.reduction);
+    } else {
+      if (weaponReduction > 0) reds.push(weaponReduction);
+    }
+    equipReductions.forEach(r => {
+      if (r > 0) reds.push(r);
+    });
+    return reds;
+  }, [weaponType, trainingWeapon, weaponReduction, equipReductions]);
+
+  const result = useMemo(() => {
+    return calculateTrainingTime(vocation, skillType, currentSkill, targetSkill, skillPercentage, reductions);
+  }, [vocation, skillType, currentSkill, targetSkill, skillPercentage, reductions]);
+
+  const weaponsNeeded = useMemo(() => {
+    if (weaponType !== 'training' || trainingWeapon.charges <= 0) return 0;
+    return Math.ceil(result.points / trainingWeapon.charges);
+  }, [result.points, trainingWeapon.charges, weaponType]);
+
+  const formatTime = (seconds: number) => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    
+    let str = "";
+    if (hours > 0) str += `${hours}h `;
+    if (minutes > 0) str += `${minutes}m `;
+    str += `${remainingSeconds}s`;
+    return str;
+  };
+
+  const handleEquipReductionChange = (index: number, value: number) => {
+    const newReds = [...equipReductions];
+    newReds[index] = value;
+    setEquipReductions(newReds);
+  };
+
+  return (
+    <div className="space-y-8">
+      <header className="text-center mb-12">
+        <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
+          Calculadora de Skills
+        </h1>
+        <p className="text-medieval-gold/80 font-mono text-sm">
+          Estime o tempo e recursos necessários para atingir seus objetivos
+        </p>
+      </header>
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="lg:col-span-7 space-y-6">
+          <div className="medieval-card bg-medieval-card p-6 sm:p-8 medieval-border rounded-lg">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* Vocação */}
+              <div className="flex flex-col gap-2">
+                <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
+                  Vocação
+                </label>
+                <select
+                  value={vocation}
+                  onChange={(e) => setVocation(e.target.value as Vocation)}
+                  className="medieval-input cursor-pointer appearance-none"
+                >
+                  <option value="Knight">Knight</option>
+                  <option value="Paladin">Paladin</option>
+                  <option value="Sorcerer">Sorcerer</option>
+                  <option value="Druid">Druid</option>
+                </select>
+              </div>
+
+              {/* Tipo de Skill */}
+              <div className="flex flex-col gap-2">
+                <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
+                  Tipo de Skill
+                </label>
+                <select
+                  value={skillType}
+                  onChange={(e) => setSkillType(e.target.value as SkillType)}
+                  className="medieval-input cursor-pointer appearance-none"
+                >
+                  <option value="Melee">Melee (Sword/Axe/Club)</option>
+                  <option value="Distance">Distance</option>
+                  <option value="Shielding">Shielding</option>
+                  <option value="Magic Level">Magic Level</option>
+                </select>
+              </div>
+
+              {/* Skill Atual */}
+              <div className="flex flex-col gap-2">
+                <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
+                  Skill Atual
+                </label>
+                <input
+                  type="number"
+                  value={currentSkill}
+                  onChange={(e) => setCurrentSkill(Number(e.target.value))}
+                  className="medieval-input"
+                />
+              </div>
+
+              {/* Skill Alvo */}
+              <div className="flex flex-col gap-2">
+                <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
+                  Skill Alvo
+                </label>
+                <input
+                  type="number"
+                  value={targetSkill}
+                  onChange={(e) => setTargetSkill(Number(e.target.value))}
+                  className="medieval-input"
+                />
+              </div>
+
+              {/* % Restante */}
+              <div className="flex flex-col gap-2">
+                <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
+                  % Restante para o Próximo
+                </label>
+                <input
+                  type="number"
+                  value={skillPercentage}
+                  onChange={(e) => setSkillPercentage(Number(e.target.value))}
+                  className="medieval-input"
+                />
+              </div>
+
+              {/* Tipo de Arma */}
+              <div className="flex flex-col gap-2">
+                <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
+                  Modo de Treino
+                </label>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    onClick={() => setWeaponType('normal')}
+                    className={`text-[10px] font-bold py-2 px-3 border rounded transition-all ${
+                      weaponType === 'normal' 
+                        ? 'bg-medieval-gold text-black border-medieval-gold' 
+                        : 'bg-black/40 text-medieval-gold/60 border-medieval-gold/20 hover:border-medieval-gold/40'
+                    }`}
+                  >
+                    ARMA NORMAL
+                  </button>
+                  <button
+                    onClick={() => setWeaponType('training')}
+                    className={`text-[10px] font-bold py-2 px-3 border rounded transition-all ${
+                      weaponType === 'training' 
+                        ? 'bg-medieval-gold text-black border-medieval-gold' 
+                        : 'bg-black/40 text-medieval-gold/60 border-medieval-gold/20 hover:border-medieval-gold/40'
+                    }`}
+                  >
+                    ARMA TREINO
+                  </button>
+                </div>
+              </div>
+
+              {/* Slot Arma */}
+              <div className="flex flex-col gap-2 sm:col-span-2">
+                <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
+                  {weaponType === 'training' ? 'Selecionar Arma de Treino' : 'Redução de atack interval da arma'}
+                </label>
+                {weaponType === 'training' ? (
+                  <select
+                    value={selectedTrainingWeapon}
+                    onChange={(e) => setSelectedTrainingWeapon(e.target.value)}
+                    className="medieval-input cursor-pointer appearance-none"
+                  >
+                    {TRAINING_WEAPONS_DATA[weaponCategory].map(w => (
+                      <option key={w.name} value={w.name}>
+                        {w.name} {w.reduction > 0 ? `(-${w.reduction}%)` : ''}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  <select
+                    value={weaponReduction}
+                    onChange={(e) => setWeaponReduction(Number(e.target.value))}
+                    className="medieval-input cursor-pointer appearance-none"
+                  >
+                    <option value="0">Nenhum Atributo</option>
+                    <option value="1">-1% atack interval</option>
+                    <option value="2">-2% atack interval</option>
+                    <option value="3">-3% atack interval</option>
+                    <option value="4">-4% atack interval</option>
+                    <option value="5">-5% atack interval</option>
+                    <option value="6">-6% atack interval</option>
+                    <option value="7">-7% atack interval</option>
+                    <option value="8">-8% atack interval</option>
+                    <option value="9">-9% atack interval</option>
+                  </select>
+                )}
+              </div>
+
+              {/* Slots de Equipamento */}
+              <div className="sm:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {equipReductions.map((red, idx) => (
+                  <div key={idx} className="flex flex-col gap-2">
+                    <label className="text-medieval-gold/60 font-bold uppercase text-[9px] tracking-widest">
+                      Equipamento Extra {idx + 1}
+                    </label>
+                    <select
+                      value={red}
+                      onChange={(e) => handleEquipReductionChange(idx, Number(e.target.value))}
+                      className="medieval-input text-sm cursor-pointer appearance-none"
+                    >
+                      <option value="0">Nenhum</option>
+                      <option value="1">-1% atack interval</option>
+                      <option value="2">-2% atack interval</option>
+                      <option value="3">-3% atack interval</option>
+                      <option value="4">-4% atack interval</option>
+                      <option value="5">-5% atack interval</option>
+                      <option value="6">-6% atack interval</option>
+                      <option value="7">-7% atack interval</option>
+                      <option value="8">-8% atack interval</option>
+                      <option value="9">-9% atack interval</option>
+                    </select>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="sm:col-span-2">
+                <p className="text-[9px] text-medieval-gold/40 italic text-center">
+                  * Reduções são multiplicativas para evitar que o intervalo chegue a 0ms.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-8 pt-8 border-t border-medieval-gold/20">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="text-center p-4 bg-black/40 rounded border border-medieval-gold/10">
+                  <p className="text-medieval-gold/60 uppercase text-[9px] font-black tracking-widest mb-1">Total de Hits/Mana</p>
+                  <div className="text-2xl font-black text-medieval-gold">{result.points.toLocaleString()}</div>
+                </div>
+                <div className="text-center p-4 bg-medieval-gold/5 rounded border border-medieval-gold/30">
+                  <p className="text-medieval-gold uppercase text-[9px] font-black tracking-widest mb-1">Tempo Estimado</p>
+                  <div className="text-2xl font-black text-medieval-gold">{formatTime(result.seconds)}</div>
+                </div>
+                <div className="text-center p-4 bg-black/40 rounded border border-medieval-gold/10">
+                  <p className="text-medieval-gold/60 uppercase text-[9px] font-black tracking-widest mb-1">Armas Necessárias</p>
+                  <div className="text-2xl font-black text-medieval-gold">
+                    {weaponsNeeded > 0 ? `${weaponsNeeded}x` : 'N/A'}
+                  </div>
+                </div>
+              </div>
+              
+              <div className="mt-4 text-center">
+                <p className="text-[10px] text-medieval-gold/40 font-mono">
+                  Intervalo Final: <span className="text-medieval-gold">{(result.interval / 1000).toFixed(3)}s</span> ({result.interval.toFixed(0)}ms)
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="lg:col-span-5 space-y-6">
+          <div className="medieval-border rounded-lg bg-medieval-card p-6 space-y-4">
+            <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest flex items-center gap-2">
+              <Info className="w-4 h-4" /> Informações de Treino
+            </h3>
+            <div className="space-y-4 text-xs text-medieval-text/70 leading-relaxed font-mono">
+              <p>• <span className="text-medieval-gold">Melee:</span> Requer 1 hit de sangue a cada 30 segundos para progressão constante.</p>
+              <p>• <span className="text-medieval-gold">Distance:</span> Cada hit conta para a progressão.</p>
+              <p>• <span className="text-medieval-gold">Shielding:</span> Progride ao bloquear até 2 monstros simultaneamente. (Cálculo otimizado para 2 monstros).</p>
+              <p>• <span className="text-medieval-gold">Attack Interval:</span> Reduções de intervalo permitem hits mais rápidos, acelerando o treino.</p>
+              <p>• <span className="text-medieval-gold">Armas de Treino:</span> Cada arma possui uma quantidade finita de cargas (hits/mana).</p>
+            </div>
+          </div>
+          
+          <div className="p-4 bg-medieval-gold/10 border border-medieval-gold/20 rounded-lg">
+            <p className="text-[10px] text-medieval-gold/60 italic uppercase tracking-tighter text-center leading-relaxed">
+              Fórmulas baseadas no guia clássico de Tibia 7.4 por <a href="https://tibiantis.online/?page=viewtopic&id=109" target="_blank" rel="noopener noreferrer" className="text-medieval-gold underline hover:text-white transition-colors">Dratini</a> e mecânicas exclusivas do Miracle.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// --- Componente Calculadora de Bless ---
+function BlessCalculator() {
+  const [level, setLevel] = useState<number>(100);
+  
+  const costs = useMemo(() => calculateBlessCosts(level), [level]);
+
+  const formatK = (value: number) => {
+    if (value >= 1000) {
+      return `${(value / 1000).toLocaleString()}k`;
+    }
+    return `${value.toLocaleString()}gps`;
+  };
+
+  return (
+    <div className="space-y-8">
+      <header className="text-center mb-12">
+        <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
+          Custo de Bless & Morte
+        </h1>
+        <p className="text-medieval-gold/80 font-mono text-sm">
+          Calcule o investimento necessário para proteger sua jornada
+        </p>
+      </header>
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="lg:col-span-7 space-y-6">
+          <div className="medieval-card bg-medieval-card p-6 sm:p-8 medieval-border rounded-lg">
+            <div className="space-y-6">
+              <div className="flex flex-col gap-2">
+                <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest flex items-center gap-2">
+                  <TrendingUp className="w-4 h-4" /> Seu Level Atual
+                </label>
+                <input
+                  type="number"
+                  min="1"
+                  value={level}
+                  onChange={(e) => setLevel(Number(e.target.value))}
+                  className="medieval-input text-2xl font-bold"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                <div className="p-4 bg-black/40 rounded border border-medieval-gold/10">
+                  <p className="text-medieval-gold/60 uppercase text-[10px] font-black tracking-widest mb-1">5 Blesses Padrão</p>
+                  <p className="text-xs text-medieval-text/50 mb-2 italic">Carlin, Ab, Kaz, Thais, Edron</p>
+                  <div className="text-xl font-black text-medieval-gold">
+                    {costs.standardTotal.toLocaleString()} gps <span className="text-sm text-medieval-gold/60">({formatK(costs.standardTotal)})</span>
+                  </div>
+                </div>
+                <div className="p-4 bg-black/40 rounded border border-medieval-gold/10">
+                  <p className="text-medieval-gold/60 uppercase text-[10px] font-black tracking-widest mb-1">Bless Tome (6ª)</p>
+                  <p className="text-xs text-medieval-text/50 mb-2 italic">Vendido pelo NPC Eremo</p>
+                  <div className="text-xl font-black text-medieval-gold">
+                    {costs.blessTomePrice.toLocaleString()} gps <span className="text-sm text-medieval-gold/60">({formatK(costs.blessTomePrice)})</span>
+                  </div>
+                </div>
+                <div className="p-4 bg-black/40 rounded border border-medieval-gold/10">
+                  <p className="text-medieval-gold/60 uppercase text-[10px] font-black tracking-widest mb-1">Arcane Guardian (7ª)</p>
+                  <p className="text-xs text-medieval-text/50 mb-2 italic">Proteção de Atributos</p>
+                  <div className="text-xl font-black text-medieval-gold">
+                    {costs.arcaneGuardianPrice.toLocaleString()} gps <span className="text-sm text-medieval-gold/60">({formatK(costs.arcaneGuardianPrice)})</span>
+                  </div>
+                </div>
+                <div className="p-4 bg-black/40 rounded border border-medieval-gold/10">
+                  <p className="text-medieval-gold/60 uppercase text-[10px] font-black tracking-widest mb-1">Amulet of Loss (AOL)</p>
+                  <p className="text-xs text-medieval-text/50 mb-2 italic">Proteção de Itens</p>
+                  <div className="text-xl font-black text-medieval-gold">
+                    {costs.aolPrice.toLocaleString()} gps <span className="text-sm text-medieval-gold/60">({formatK(costs.aolPrice)})</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 pt-8 border-t border-medieval-gold/20 space-y-4">
+                <div className="flex justify-between items-center p-4 bg-medieval-gold/5 rounded border border-medieval-gold/20">
+                  <span className="text-medieval-gold font-black uppercase text-xs tracking-widest">Total em Blesses</span>
+                  <div className="text-right">
+                    <div className="text-2xl font-black text-medieval-gold">{costs.totalBlesses.toLocaleString()} gps</div>
+                    <div className="text-sm font-mono text-medieval-gold/60">{formatK(costs.totalBlesses)}</div>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center p-6 bg-medieval-gold/10 rounded border border-medieval-gold/40">
+                  <span className="text-medieval-gold font-black uppercase text-sm tracking-widest">Custo Total da Morte (Bless + AOL)</span>
+                  <div className="text-right">
+                    <div className="text-4xl font-black text-medieval-gold">{costs.grandTotal.toLocaleString()} gps</div>
+                    <div className="text-lg font-mono text-medieval-gold/80">{formatK(costs.grandTotal)}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="lg:col-span-5 space-y-6">
+          <div className="medieval-border rounded-lg bg-medieval-card p-6 space-y-4">
+            <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest flex items-center gap-2">
+              <Info className="w-4 h-4" /> Regras de Proteção
+            </h3>
+            <div className="space-y-4 text-xs text-medieval-text/70 leading-relaxed font-mono">
+              <p>• <span className="text-medieval-gold">Blesses Padrão:</span> 10k fixo até o lvl 100. Após isso, +100gp por level cada.</p>
+              <p>• <span className="text-medieval-gold">Bless Tome:</span> Custo fixo de 25k no NPC Eremo.</p>
+              <p>• <span className="text-medieval-gold">Arcane Guardian:</span> Protege seus atributos. Custo: 200gp x Level.</p>
+              <p>• <span className="text-medieval-gold">Amulet of Loss:</span> Protege seus itens. Custo fixo de 50k.</p>
+              <p>• <span className="text-medieval-gold">Redução de XP:</span> Cada uma das 5 blesses padrão reduz a perda em 0.8%.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>('home');
-  const [calcSubTab, setCalcSubTab] = useState<'crafting' | 'atributos'>('crafting');
+  const [calcSubTab, setCalcSubTab] = useState<'crafting' | 'atributos' | 'skills' | 'bless'>('crafting');
   const [skill, setSkill] = useState<number>(10);
+
+  // Estados para Calculadora de Skills
+  const [vocation, setVocation] = useState<Vocation>('Knight');
+  const [skillType, setSkillType] = useState<SkillType>('Melee');
+  const [currentSkill, setCurrentSkill] = useState<number>(10);
+  const [targetSkill, setTargetSkill] = useState<number>(80);
+  const [skillPercentage, setSkillPercentage] = useState<number>(100);
   const [selectedItemName, setSelectedItemName] = useState<string>(CRAFT_ITEMS[0].items[0].name);
   const [chance, setChance] = useState<number>(10);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -533,28 +955,42 @@ export default function App() {
                     </p>
                     <div className="grid grid-cols-1 gap-3 pt-4">
                       <button 
-                        onClick={() => {
-                          setActiveTab('calculadoras');
-                          setCalcSubTab('crafting');
-                        }}
+                        onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('crafting'); }}
                         className="flex items-center justify-between p-4 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold hover:bg-medieval-gold/5 transition-all group"
                       >
                         <div className="flex items-center gap-3">
                           <Hammer className="text-medieval-gold w-5 h-5" />
-                          <span className="font-bold uppercase tracking-wider text-xs">Calculadora de Crafting</span>
+                          <span className="font-bold uppercase tracking-wider text-xs">Crafting</span>
                         </div>
                         <ChevronRight className="text-medieval-gold w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </button>
                       <button 
-                        onClick={() => {
-                          setActiveTab('calculadoras');
-                          setCalcSubTab('atributos');
-                        }}
+                        onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('skills'); }}
+                        className="flex items-center justify-between p-4 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold hover:bg-medieval-gold/5 transition-all group"
+                      >
+                        <div className="flex items-center gap-3">
+                          <Zap className="text-medieval-gold w-5 h-5" />
+                          <span className="font-bold uppercase tracking-wider text-xs">Skills</span>
+                        </div>
+                        <ChevronRight className="text-medieval-gold w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </button>
+                      <button 
+                        onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('bless'); }}
+                        className="flex items-center justify-between p-4 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold hover:bg-medieval-gold/5 transition-all group"
+                      >
+                        <div className="flex items-center gap-3">
+                          <TrendingUp className="text-medieval-gold w-5 h-5" />
+                          <span className="font-bold uppercase tracking-wider text-xs">Bless & Morte</span>
+                        </div>
+                        <ChevronRight className="text-medieval-gold w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </button>
+                      <button 
+                        onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('atributos'); }}
                         className="flex items-center justify-between p-4 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold hover:bg-medieval-gold/5 transition-all group"
                       >
                         <div className="flex items-center gap-3">
                           <Sparkles className="text-medieval-gold w-5 h-5" />
-                          <span className="font-bold uppercase tracking-wider text-xs">Chance de Atributos</span>
+                          <span className="font-bold uppercase tracking-wider text-xs">Atributos</span>
                         </div>
                         <ChevronRight className="text-medieval-gold w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </button>
@@ -674,6 +1110,18 @@ export default function App() {
                     </div>
                   </button>
                   <button
+                    onClick={() => setCalcSubTab('skills')}
+                    className={`px-6 py-3 rounded-sm font-black uppercase tracking-widest text-xs transition-all ${
+                      calcSubTab === 'skills'
+                        ? 'bg-medieval-gold text-black shadow-[0_4px_0_#8b7326]'
+                        : 'bg-medieval-card text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <Zap className="w-4 h-4" /> Skills
+                    </div>
+                  </button>
+                  <button
                     onClick={() => setCalcSubTab('atributos')}
                     className={`px-6 py-3 rounded-sm font-black uppercase tracking-widest text-xs transition-all ${
                       calcSubTab === 'atributos'
@@ -683,6 +1131,18 @@ export default function App() {
                   >
                     <div className="flex items-center gap-2">
                       <Sparkles className="w-4 h-4" /> Atributos
+                    </div>
+                  </button>
+                  <button
+                    onClick={() => setCalcSubTab('bless')}
+                    className={`px-6 py-3 rounded-sm font-black uppercase tracking-widest text-xs transition-all ${
+                      calcSubTab === 'bless'
+                        ? 'bg-medieval-gold text-black shadow-[0_4px_0_#8b7326]'
+                        : 'bg-medieval-card text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <TrendingUp className="w-4 h-4" /> Bless
                     </div>
                   </button>
                 </div>
@@ -780,7 +1240,7 @@ export default function App() {
                           <a href="https://www.twitch.tv/obellao_" target="_blank" rel="noopener noreferrer" className="medieval-button flex items-center justify-center gap-3">
                             <Twitch className="w-6 h-6" /> Twitch
                           </a>
-                          <a href="https://discord.gg/nacCypRkqQ" target="_blank" rel="noopener noreferrer" className="bg-[#5865F2] text-white font-bold py-3 px-6 rounded-sm flex items-center justify-center gap-3">
+                          <a href="https://discord.gg/nacCypRkqQ" target="_blank" rel="noopener noreferrer" className="bg-[#5865F2] text-white font-bold py-3 px-6 rounded-sm flex items-center justify-center gap-3 hover:bg-[#4752C4] transition-colors">
                             <MessageSquare className="w-6 h-6" /> Discord
                           </a>
                         </div>
@@ -828,6 +1288,16 @@ export default function App() {
                       </div>
                     </section>
                   </div>
+                ) : calcSubTab === 'skills' ? (
+                  <SkillCalculator 
+                    vocation={vocation} setVocation={setVocation}
+                    skillType={skillType} setSkillType={setSkillType}
+                    currentSkill={currentSkill} setCurrentSkill={setCurrentSkill}
+                    targetSkill={targetSkill} setTargetSkill={setTargetSkill}
+                    skillPercentage={skillPercentage} setSkillPercentage={setSkillPercentage}
+                  />
+                ) : calcSubTab === 'bless' ? (
+                  <BlessCalculator />
                 ) : (
                   <div className="space-y-8">
                     <header className="text-center mb-12">
