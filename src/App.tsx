@@ -1083,7 +1083,7 @@ export default function App() {
 
                 <div className="medieval-border rounded-lg overflow-hidden bg-black h-[800px] relative">
                   <iframe 
-                    src="/lobby.html" 
+                    src="/lobby.html?v=2.0" 
                     className="w-full h-full border-none"
                     title="Lobby de Quests"
                   />
