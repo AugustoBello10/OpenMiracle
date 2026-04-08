@@ -7,6 +7,7 @@ CREATE TABLE eventos (
   data_hora TIMESTAMPTZ, -- Pode ser NULL para "Pedidos de Ajuda"
   vagas INTEGER NOT NULL DEFAULT 4,
   tipo TEXT NOT NULL DEFAULT 'agendado' CHECK (tipo IN ('agendado', 'pedido')),
+  conselho_supply TEXT,
   criado_em TIMESTAMPTZ DEFAULT NOW()
 );
 
