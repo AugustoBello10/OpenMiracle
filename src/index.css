@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  --color-medieval-gold: #d4af37;
+  --color-medieval-dark: #1a1a1a;
+  --color-medieval-card: #262626;
+  --color-medieval-text: #e0e0e0;
+  --color-medieval-red: #8b0000;
+}
+
+@layer base {
+  body {
+    @apply bg-[#0f0f0f] text-medieval-text;
+    background-image: radial-gradient(circle at center, #1a1a1a 0%, #0f0f0f 100%);
+  }
+}
+
+@layer components {
+  .medieval-border {
+    @apply border-2 border-medieval-gold/30 shadow-[0_0_15px_rgba(212,175,55,0.1)];
+  }
+
+  .medieval-card {
+    @apply relative overflow-hidden;
+  }
+
+  .medieval-card::before {
+    content: "";
+    @apply absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-medieval-gold/50 to-transparent;
+  }
+
+  .medieval-input {
+    @apply w-full bg-black/40 border border-medieval-gold/30 rounded px-4 py-3 text-medieval-gold focus:outline-none focus:border-medieval-gold transition-colors;
+  }
+
+  .medieval-button {
+    @apply bg-medieval-gold text-black font-black py-3 px-6 rounded-sm transition-all duration-300 uppercase tracking-widest hover:bg-medieval-gold/80 active:scale-95 shadow-[0_4px_0_#8b7326];
+  }
+}
+

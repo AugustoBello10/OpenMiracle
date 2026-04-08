@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miracle 7.4 - Mapa Interativo</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        /* Medieval Theme for Map UI */
+        :root {
+            --medieval-gold: #c5a059;
+            --medieval-dark: #1a1a1a;
+            --medieval-card: #242424;
+            --medieval-text: #e0d7c6;
+        }
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            height: 100%; 
+            background: #000; 
+            font-family: 'Inter', system-ui, -apple-system, sans-serif; 
+            color: var(--medieval-text); 
+            overflow: hidden;
+        }
+        #map { 
+            height: 100vh; 
+            width: 100%; 
+            background: #000; 
+        }
+        
+        /* UI Controls Overlay */
+        .map-ui {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--medieval-card);
+            border: 2px solid var(--medieval-gold);
+            padding: 15px;
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+            width: 220px;
+            backdrop-filter: blur(5px);
+        }
+        .ui-title {
+            color: var(--medieval-gold);
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+            padding-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .floor-control { margin-bottom: 24px; }
+        .floor-selector {
+            width: 100%;
+            background: #111;
+            color: var(--medieval-gold);
+            border: 1px solid var(--medieval-gold);
+            padding: 8px;
+            outline: none;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+        .filter-group { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 10px; 
+        }
+        .filter-item { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            font-size: 12px; 
+            cursor: pointer; 
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.2s;
+        }
+        .filter-item:hover {
+            color: var(--medieval-gold);
+        }
+        .filter-item input { 
+            accent-color: var(--medieval-gold); 
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+        
+        /* Custom Leaflet Overrides */
+        .leaflet-container {
+            background: #000 !important;
+        }
+        .leaflet-popup-content-wrapper {
+            background: var(--medieval-card) !important;
+            color: var(--medieval-text) !important;
+            border: 1px solid var(--medieval-gold) !important;
+            border-radius: 2px !important;
+            font-family: inherit;
+        }
+        .leaflet-popup-tip { 
+            background: var(--medieval-gold) !important; 
+        }
+        .leaflet-control-zoom-in, .leaflet-control-zoom-out {
+            background-color: var(--medieval-card) !important;
+            color: var(--medieval-gold) !important;
+            border: 1px solid var(--medieval-gold) !important;
+        }
+
+        /* Back Button */
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: var(--medieval-card);
+            border: 2px solid var(--medieval-gold);
+            color: var(--medieval-gold);
+            padding: 10px 15px;
+            text-decoration: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .back-btn:hover {
+            background: var(--medieval-gold);
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="/" class="back-btn">← Voltar para Wiki</a>
+
+    <div id="map"></div>    <div class="map-ui">
+        <div class="floor-control">
+            <div class="ui-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="7 15 12 10 17 15"></polyline></svg>
+                Andar (Z-Axis)
+            </div>
+            <select id="floorSelect" class="floor-selector">
+                <!-- Floors generated via JS -->
+            </select>
+        </div>
+
+        <div class="filter-control">
+            <div class="ui-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                Filtros de Pontos
+            </div>
+            <div id="filters" class="filter-group">
+                <label class="filter-item"><input type="checkbox" value="mining" checked> Mineração</label>
+                <label class="filter-item"><input type="checkbox" value="food" checked> Comida/Plantas</label>
+                <label class="filter-item"><input type="checkbox" value="hunt" checked> Hunts/Entradas</label>
+                <label class="filter-item"><input type="checkbox" value="depot" checked> Depots/Cidades</label>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. CONFIGURAÇÕES DO MAPA (SISTEMA DE COORDENADAS SIMPLES)
+        const map = L.map('map', {
+            crs: L.CRS.Simple,
+            minZoom: -3,
+            maxZoom: 3,
+            zoomControl: false,
+            attributionControl: false
+        });
+
+        // 2. DEFINIÇÃO DOS LIMITES (BOUNDS)
+        // Ajuste estes valores para bater com as coordenadas do seu servidor
+        const minX = 30000;
+        const maxX = 34000;
+        const minY = 30000;
+        const maxY = 34000;
+        const bounds = [[minY, minX], [maxY, maxX]];
+
+        let currentFloor = 0; // Superfície agora é 0
+        let mapLayer = null;
+        let markerLayer = L.layerGroup().addTo(map);
+
+        // 3. DEFINIÇÃO DE ÍCONES CUSTOMIZADOS
+        const icons = {
+            mining: L.icon({
+                iconUrl: 'https://cdn-icons-png.flaticon.com/512/2382/2382533.png',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12],
+                popupAnchor: [0, -10]
+            }),
+            food: L.icon({
+                iconUrl: 'https://cdn-icons-png.flaticon.com/512/2909/2909808.png',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12],
+                popupAnchor: [0, -10]
+            }),
+            hunt: L.icon({
+                iconUrl: 'https://cdn-icons-png.flaticon.com/512/3039/3039430.png',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12],
+                popupAnchor: [0, -10]
+            }),
+            depot: L.icon({
+                iconUrl: 'https://cdn-icons-png.flaticon.com/512/1063/1063376.png',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12],
+                popupAnchor: [0, -10]
+            })
+        };
+
+        // 4. BANCO DE DADOS DE PONTOS
+        const markersDB = [
+            { name: 'Mina de Ferro', type: 'mining', x: 32000, y: 31000, z: 0 },
+            { name: 'Blueberry Bush', type: 'food', x: 32100, y: 31100, z: 0 },
+            { name: 'Entrada Subsolo', type: 'hunt', x: 32050, y: 31050, z: -1 },
+            { name: 'Depot Principal', type: 'depot', x: 32300, y: 31200, z: 0 }
+        ];
+
+        // 5. FERRAMENTA DE COORDENADAS
+        map.on('click', function(e) {
+            const x = Math.round(e.latlng.lng);
+            const y = Math.round(e.latlng.lat);
+            console.log(`Coordenada clicada: { x: ${x}, y: ${y}, z: ${currentFloor} }`);
+            
+            L.popup()
+                .setLatLng(e.latlng)
+                .setContent(`<strong>Coordenadas:</strong><br>X: ${x}<br>Y: ${y}<br>Z: ${currentFloor}`)
+                .openOn(map);
+        });
+
+        // 6. LÓGICA DE TROCA DE ANDAR
+        function loadFloor(z) {
+            currentFloor = z;
+            if (mapLayer) map.removeLayer(mapLayer);
+            
+            // Carrega a imagem correspondente (ex: map_0.png, map_1.png, map_-1.png)
+            mapLayer = L.imageOverlay(`assets/map_${z}.png`, bounds).addTo(map);
+            
+            if (!map.getCenter().lat) map.fitBounds(bounds);
+            updateMarkers();
+        }
+
+        // 7. LÓGICA DE FILTROS E MARCADORES
+        function updateMarkers() {
+            markerLayer.clearLayers();
+            const activeFilters = Array.from(document.querySelectorAll('#filters input:checked')).map(i => i.value);
+
+            markersDB.forEach(m => {
+                if (m.z === currentFloor && activeFilters.includes(m.type)) {
+                    const marker = L.marker([m.y, m.x], { icon: icons[m.type] || null }).addTo(markerLayer);
+                    marker.bindPopup(`
+                        <div style="text-align: center">
+                            <strong style="color: #c5a059; text-transform: uppercase; font-size: 14px;">${m.name}</strong><br>
+                            <div style="margin-top: 5px; font-family: monospace; font-size: 11px; color: #888;">
+                                X: ${m.x} | Y: ${m.y} | Z: ${m.z}
+                            </div>
+                        </div>
+                    `);
+                }
+            });
+        }
+
+        // 8. INICIALIZAÇÃO DA INTERFACE
+        const floorSelect = document.getElementById('floorSelect');
+        // Gerar andares de +7 até -8 (exemplo de range comum)
+        for (let i = 7; i >= -8; i--) {
+            const opt = document.createElement('option');
+            opt.value = i;
+            let label = `Andar ${i}`;
+            if (i > 0) label += ' (Céu/Montanha)';
+            if (i === 0) label += ' (Superfície)';
+            if (i < 0) label += ' (Subsolo)';
+            
+            opt.textContent = label;
+            if (i === 0) opt.selected = true;
+            floorSelect.appendChild(opt);
+        }
+
+        // Eventos
+        floorSelect.onchange = (e) => loadFloor(parseInt(e.target.value));
+        document.querySelectorAll('#filters input').forEach(i => i.onchange = updateMarkers);
+
+        // Iniciar na Superfície (0)
+        loadFloor(0);
+
+        // Controle de Zoom
+        L.control.zoom({ position: 'bottomright' }).addTo(map);
+    </script>
+</body>
+</html>
