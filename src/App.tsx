@@ -9,10 +9,13 @@ import {
   Hammer, Sword, Gem, Pickaxe, Wand2, Zap, Twitch, 
   MessageSquare, ExternalLink, Info, Table as TableIcon, 
   TrendingUp, AlertTriangle, Book, Sparkles, Briefcase, 
-  ChevronRight, Menu, X, Map, Youtube, Fish, FlaskConical, Utensils, Sprout, Scissors, Users 
+  ChevronRight, Menu, X, Map, Youtube, Fish, FlaskConical, Utensils, Sprout, Scissors, Users,
+  History, Plus, Minus, Check, RefreshCw, Clock, Calendar
 } from 'lucide-react';
 import { calculateTrainingTime, Vocation, SkillType, TRAINING_WEAPONS_DATA, TrainingWeapon, calculateBlessCosts } from './lib/formulas';
 import { Language, translations } from './lib/translations';
+import { PROJECT_PATCH_NOTES, SERVER_PATCH_NOTES } from './data/patchNotes';
+import { LIBRARY_DATA, LibraryEntry } from './data/library';
 
 // --- Dados do Banco de Dados Embutido ---
 const CRAFT_ITEMS = [
@@ -775,6 +778,11 @@ function BlessCalculator({ t }: { t: any }) {
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>('home');
   const [calcSubTab, setCalcSubTab] = useState<'crafting' | 'atributos' | 'skills' | 'bless'>('crafting');
+  const [wikiSubTab, setWikiSubTab] = useState<'server' | 'project'>('server');
+  const [wikiMainTab, setWikiMainTab] = useState<'updates' | 'library'>('updates');
+  const [selectedBookId, setSelectedBookId] = useState<string>(LIBRARY_DATA[0]?.id || '');
+  const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
+  const [selectedPatchVersion, setSelectedPatchVersion] = useState(SERVER_PATCH_NOTES[0].version);
   const [language, setLanguage] = useState<Language>('pt');
   const [skill, setSkill] = useState<number>(10);
 
@@ -1670,10 +1678,388 @@ export default function App() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
-                className="text-center py-20"
+                className="space-y-8"
               >
-                <Book className="w-16 h-16 text-medieval-gold/20 mx-auto mb-4" />
-                <h2 className="text-medieval-gold/40 uppercase font-black tracking-widest">{t('wikiGeneralSoon')}</h2>
+                {/* Wiki Main Navigation */}
+                <div className="flex justify-center gap-4 mb-12">
+                  <button
+                    onClick={() => setWikiMainTab('updates')}
+                    className={`px-8 py-3 rounded-sm font-black uppercase text-sm tracking-[0.2em] transition-all border-b-2 ${
+                      wikiMainTab === 'updates'
+                        ? 'text-medieval-gold border-medieval-gold bg-medieval-gold/5'
+                        : 'text-medieval-gold/40 border-transparent hover:text-medieval-gold/60'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <History className="w-4 h-4" /> {t('updates')}
+                    </div>
+                  </button>
+                  <button
+                    onClick={() => setWikiMainTab('library')}
+                    className={`px-8 py-3 rounded-sm font-black uppercase text-sm tracking-[0.2em] transition-all border-b-2 ${
+                      wikiMainTab === 'library'
+                        ? 'text-medieval-gold border-medieval-gold bg-medieval-gold/5'
+                        : 'text-medieval-gold/40 border-transparent hover:text-medieval-gold/60'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <Book className="w-4 h-4" /> {t('library')}
+                    </div>
+                  </button>
+                </div>
+
+                {wikiMainTab === 'updates' ? (
+                  <div className="space-y-8">
+                    <header className="text-center mb-12">
+                      <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
+                        {t('patchNotes')}
+                      </h1>
+                      <p className="text-medieval-gold/80 font-mono text-sm">
+                        {t('patchNotesSubtitle')}
+                      </p>
+                    </header>
+
+                    {/* Wiki Sub-Tabs */}
+                    <div className="flex justify-center gap-4 mb-8">
+                      <button
+                        onClick={() => {
+                          setWikiSubTab('server');
+                          setSelectedPatchVersion(SERVER_PATCH_NOTES[0].version);
+                        }}
+                        className={`px-6 py-2 rounded-sm font-black uppercase text-xs tracking-widest transition-all border ${
+                          wikiSubTab === 'server'
+                            ? 'bg-medieval-gold text-black border-medieval-gold shadow-medieval-gold'
+                            : 'bg-black/40 text-medieval-gold/60 border-medieval-gold/20 hover:border-medieval-gold/40'
+                        }`}
+                      >
+                        {t('serverUpdates')}
+                      </button>
+                      <button
+                        onClick={() => {
+                          setWikiSubTab('project');
+                          setSelectedPatchVersion(PROJECT_PATCH_NOTES[0].version);
+                        }}
+                        className={`px-6 py-2 rounded-sm font-black uppercase text-xs tracking-widest transition-all border ${
+                          wikiSubTab === 'project'
+                            ? 'bg-medieval-gold text-black border-medieval-gold shadow-medieval-gold'
+                            : 'bg-black/40 text-medieval-gold/60 border-medieval-gold/20 hover:border-medieval-gold/40'
+                        }`}
+                      >
+                        {t('projectUpdates')}
+                      </button>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                      {/* Sidebar - Version List */}
+                      <div className="lg:col-span-4 space-y-4">
+                        <div className="medieval-card bg-medieval-card p-4 medieval-border rounded-lg">
+                          <h3 className="text-medieval-gold font-black uppercase text-xs tracking-widest mb-4 flex items-center gap-2">
+                            <History className="w-4 h-4" /> Histórico de Versões
+                          </h3>
+                          <div className="space-y-2">
+                            {(wikiSubTab === 'server' ? SERVER_PATCH_NOTES : PROJECT_PATCH_NOTES).map((patch) => (
+                              <button
+                                key={patch.version}
+                                onClick={() => setSelectedPatchVersion(patch.version)}
+                                className={`w-full text-left p-3 rounded border transition-all flex items-center justify-between group ${
+                                  selectedPatchVersion === patch.version
+                                    ? 'bg-medieval-gold/20 border-medieval-gold text-medieval-gold'
+                                    : 'bg-black/40 border-medieval-gold/10 text-medieval-gold/60 hover:border-medieval-gold/30'
+                                }`}
+                              >
+                                <div className="flex flex-col">
+                                  <span className="font-black text-sm">v{patch.version}</span>
+                                  <span className="text-[10px] opacity-60 font-mono">{patch.date}</span>
+                                </div>
+                                {selectedPatchVersion === patch.version && <ChevronRight className="w-4 h-4" />}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="medieval-card bg-medieval-gold/5 p-6 medieval-border rounded-lg border-dashed">
+                          <div className="flex items-center gap-3 mb-3">
+                            <MessageSquare className="w-5 h-5 text-medieval-gold" />
+                            <h4 className="text-medieval-gold font-bold text-sm uppercase">{t('social')}</h4>
+                          </div>
+                          <p className="text-xs text-medieval-text/70 mb-4 leading-relaxed">
+                            {t('helpImprove')}
+                          </p>
+                          <a 
+                            href="https://discord.gg/nacCypRkqQ" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="medieval-button w-full text-center py-2 text-xs"
+                          >
+                            Discord
+                          </a>
+                        </div>
+                      </div>
+
+                      {/* Main Content - Patch Details */}
+                      <div className="lg:col-span-8">
+                        <AnimatePresence mode="wait">
+                          {(wikiSubTab === 'server' ? SERVER_PATCH_NOTES : PROJECT_PATCH_NOTES)
+                            .filter(p => p.version === selectedPatchVersion).map((patch) => (
+                            <motion.div
+                              key={patch.version}
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -10 }}
+                              className="medieval-card bg-medieval-card p-6 sm:p-8 medieval-border rounded-lg space-y-8"
+                            >
+                              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-medieval-gold/20 pb-6">
+                                <div>
+                                  <div className="flex items-center gap-3 mb-1">
+                                    <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-tighter">
+                                      {patch.title[language]}
+                                    </h2>
+                                    {patch.version === (wikiSubTab === 'server' ? SERVER_PATCH_NOTES : PROJECT_PATCH_NOTES)[0].version && (
+                                      <span className="px-2 py-0.5 bg-green-500/20 border border-green-500/40 text-green-400 text-[10px] font-black uppercase rounded">
+                                        {t('latestVersion')}
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div className="flex items-center gap-4 text-medieval-gold/60 font-mono text-xs">
+                                    <span className="flex items-center gap-1.5">
+                                      <Calendar className="w-3 h-3" /> {patch.date}
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div className="grid grid-cols-1 gap-8">
+                                {patch.changes.added?.[language] && patch.changes.added[language].length > 0 && (
+                                  <div className="space-y-3">
+                                    <h4 className="text-green-400 font-black text-xs uppercase tracking-widest flex items-center gap-2">
+                                      <Plus className="w-4 h-4" /> {t('added')}
+                                    </h4>
+                                    <ul className="space-y-2">
+                                      {patch.changes.added[language].map((item, i) => (
+                                        <li key={i} className="flex items-start gap-3 text-sm text-medieval-text/80 leading-relaxed group">
+                                          <Check className="w-4 h-4 text-green-500/40 mt-0.5 shrink-0 group-hover:text-green-500 transition-colors" />
+                                          <span>{item}</span>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                )}
+
+                                {patch.changes.changed?.[language] && patch.changes.changed[language].length > 0 && (
+                                  <div className="space-y-3">
+                                    <h4 className="text-medieval-gold font-black text-xs uppercase tracking-widest flex items-center gap-2">
+                                      <RefreshCw className="w-4 h-4" /> {t('changed')}
+                                    </h4>
+                                    <ul className="space-y-2">
+                                      {patch.changes.changed[language].map((item, i) => (
+                                        <li key={i} className="flex items-start gap-3 text-sm text-medieval-text/80 leading-relaxed group">
+                                          <div className="w-1.5 h-1.5 rounded-full bg-medieval-gold/40 mt-2 shrink-0 group-hover:bg-medieval-gold transition-colors" />
+                                          <span>{item}</span>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                )}
+
+                                {patch.changes.fixed?.[language] && patch.changes.fixed[language].length > 0 && (
+                                  <div className="space-y-3">
+                                    <h4 className="text-blue-400 font-black text-xs uppercase tracking-widest flex items-center gap-2">
+                                      <Zap className="w-4 h-4" /> {t('fixed')}
+                                    </h4>
+                                    <ul className="space-y-2">
+                                      {patch.changes.fixed[language].map((item, i) => (
+                                        <li key={i} className="flex items-start gap-3 text-sm text-medieval-text/80 leading-relaxed group">
+                                          <div className="w-1.5 h-1.5 rounded-full bg-blue-500/40 mt-2 shrink-0 group-hover:bg-blue-500 transition-colors" />
+                                          <span>{item}</span>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                )}
+
+                                {patch.changes.removed?.[language] && patch.changes.removed[language].length > 0 && (
+                                  <div className="space-y-3">
+                                    <h4 className="text-medieval-red font-black text-xs uppercase tracking-widest flex items-center gap-2">
+                                      <Minus className="w-4 h-4" /> {t('removed')}
+                                    </h4>
+                                    <ul className="space-y-2">
+                                      {patch.changes.removed[language].map((item, i) => (
+                                        <li key={i} className="flex items-start gap-3 text-sm text-medieval-text/80 leading-relaxed group">
+                                          <X className="w-4 h-4 text-medieval-red/40 mt-0.5 shrink-0 group-hover:text-medieval-red transition-colors" />
+                                          <span className="line-through opacity-60">{item}</span>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                )}
+                              </div>
+                            </motion.div>
+                          ))}
+                        </AnimatePresence>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-8">
+                    <header className="text-center mb-12">
+                      <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
+                        {t('library')}
+                      </h1>
+                      <p className="text-medieval-gold/80 font-mono text-sm italic">
+                        "Mysteriando: Desvendando os segredos de Miracle 7.4"
+                      </p>
+                    </header>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                      {/* Sidebar - Book List */}
+                      <div className="lg:col-span-4 space-y-4">
+                        <div className="medieval-card bg-medieval-card p-4 medieval-border rounded-lg">
+                          <h3 className="text-medieval-gold font-black uppercase text-xs tracking-widest mb-4 flex items-center gap-2">
+                            <Book className="w-4 h-4" /> Documentos Encontrados
+                          </h3>
+                          <div className="space-y-2 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
+                            {LIBRARY_DATA.map((doc) => (
+                              <button
+                                key={doc.id}
+                                onClick={() => {
+                                  setSelectedBookId(doc.id);
+                                  setActiveGalleryIndex(0);
+                                }}
+                                className={`w-full text-left p-3 rounded border transition-all flex items-center gap-3 group ${
+                                  selectedBookId === doc.id
+                                    ? 'bg-medieval-gold/20 border-medieval-gold text-medieval-gold'
+                                    : 'bg-black/40 border-medieval-gold/10 text-medieval-gold/60 hover:border-medieval-gold/30'
+                                }`}
+                              >
+                                <img 
+                                  src={doc.spriteImage} 
+                                  alt={doc.type} 
+                                  className="w-6 h-6 object-contain"
+                                  referrerPolicy="no-referrer"
+                                />
+                                <div className="flex flex-col min-w-0">
+                                  <span className="font-black text-sm truncate">{doc.title[language]}</span>
+                                  <span className="text-[10px] opacity-60 font-mono truncate">{doc.region[language]}</span>
+                                </div>
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Main Content - Book Details */}
+                      <div className="lg:col-span-8">
+                        <AnimatePresence mode="wait">
+                          {LIBRARY_DATA.filter(b => b.id === selectedBookId).map((book) => (
+                            <motion.div
+                              key={book.id}
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -10 }}
+                              className="space-y-6"
+                            >
+                              {/* Header Info */}
+                              <div className="medieval-card bg-medieval-card p-6 medieval-border rounded-lg">
+                                <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center">
+                                  <div className="w-20 h-20 bg-black/40 rounded-lg border border-medieval-gold/20 flex items-center justify-center shrink-0">
+                                    <img 
+                                      src={book.spriteImage} 
+                                      alt={book.title[language]} 
+                                      className="w-12 h-12 object-contain"
+                                      referrerPolicy="no-referrer"
+                                    />
+                                  </div>
+                                  <div className="space-y-2">
+                                    <h2 className="text-2xl font-black text-medieval-gold uppercase tracking-tight">
+                                      {book.title[language]}
+                                    </h2>
+                                    <div className="flex flex-wrap gap-4 text-[10px] uppercase tracking-widest font-mono text-medieval-gold/60">
+                                      <span className="flex items-center gap-1.5">
+                                        <Map className="w-3 h-3" /> {book.region[language]}
+                                      </span>
+                                      <span className="flex items-center gap-1.5">
+                                        <Info className="w-3 h-3" /> {t(book.type)}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Location & Map */}
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="medieval-card bg-medieval-card p-6 medieval-border rounded-lg space-y-4">
+                                  <h4 className="text-medieval-gold font-black text-xs uppercase tracking-widest flex items-center gap-2">
+                                    <Map className="w-4 h-4" /> {t('location')}
+                                  </h4>
+                                  <p className="text-sm text-medieval-text/80 font-mono bg-black/20 p-3 rounded border border-medieval-gold/10">
+                                    {book.location[language]}
+                                  </p>
+                                  
+                                  {book.gallery && book.gallery.length > 0 ? (
+                                    <div className="space-y-3">
+                                      <div className="aspect-square bg-black/40 rounded border border-medieval-gold/20 overflow-hidden relative group">
+                                        <AnimatePresence mode="wait">
+                                          <motion.img 
+                                            key={book.gallery[activeGalleryIndex].url}
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            exit={{ opacity: 0 }}
+                                            src={book.gallery[activeGalleryIndex].url} 
+                                            alt={book.gallery[activeGalleryIndex].label[language]} 
+                                            className="w-full h-full object-cover"
+                                            referrerPolicy="no-referrer"
+                                          />
+                                        </AnimatePresence>
+                                        <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-2 text-[10px] text-medieval-gold font-mono uppercase text-center border-t border-medieval-gold/20">
+                                          {book.gallery[activeGalleryIndex].label[language]}
+                                        </div>
+                                      </div>
+                                      
+                                      {/* Gallery Nav */}
+                                      <div className="flex gap-2 overflow-x-auto pb-2 custom-scrollbar">
+                                        {book.gallery.map((img, idx) => (
+                                          <button
+                                            key={idx}
+                                            onClick={() => setActiveGalleryIndex(idx)}
+                                            className={`w-12 h-12 rounded border shrink-0 transition-all overflow-hidden ${
+                                              activeGalleryIndex === idx 
+                                                ? 'border-medieval-gold scale-110' 
+                                                : 'border-medieval-gold/10 opacity-40 hover:opacity-100'
+                                            }`}
+                                          >
+                                            <img src={img.url} alt="" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                                          </button>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  ) : (
+                                    <div className="aspect-video bg-black/40 rounded border border-medieval-gold/10 flex flex-col items-center justify-center text-medieval-gold/20">
+                                      <Map className="w-8 h-8 mb-2" />
+                                      <span className="text-[10px] uppercase tracking-widest">Mapa em breve</span>
+                                    </div>
+                                  )}
+                                </div>
+
+                                <div className="medieval-card bg-medieval-card p-6 medieval-border rounded-lg space-y-4">
+                                  <h4 className="text-medieval-gold font-black text-xs uppercase tracking-widest flex items-center gap-2">
+                                    <Book className="w-4 h-4" /> {t('transcription')}
+                                  </h4>
+                                  <div className="relative p-6 sm:p-10 bg-[#f4e4bc] text-[#2c1810] rounded shadow-inner min-h-[300px] font-serif leading-relaxed italic text-lg overflow-hidden">
+                                    {/* Parchment texture effect */}
+                                    <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/paper-fibers.png')]" />
+                                    <div className="relative z-10 whitespace-pre-wrap space-y-4">
+                                      {book.content[language]}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </motion.div>
+                          ))}
+                        </AnimatePresence>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </motion.div>
             )}
           </AnimatePresence>
