@@ -305,6 +305,11 @@
             display: none;
             z-index: 3000;
         }
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(0.98); }
+            100% { opacity: 1; transform: scale(1); }
+        }
     </style>
 </head>
 <body>
@@ -542,7 +547,7 @@
 
                 return `
                     <div class="event-card ${isRequest ? 'is-request' : ''}">
-                        <button class="btn-admin" onclick="openAdminModal('${event.id}')">Admin</button>
+                        <button class="btn-admin" onclick="openAdminModal('${event.id}')">⚙️ ADMIN PANEL</button>
                         <div class="event-header">
                             <h3 class="event-title">${event.nome}</h3>
                             <div class="event-info">${isRequest ? 'PEDIDO DE AJUDA' : dateStr}</div>
