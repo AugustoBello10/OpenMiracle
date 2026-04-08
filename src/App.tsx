@@ -429,7 +429,7 @@ export default function App() {
           >
             <Hammer className="text-medieval-gold w-6 h-6" />
             <span className="text-medieval-gold font-black uppercase tracking-tighter text-lg hidden sm:inline">
-              Miracle 7.4 Wiki
+              Miracle Wiki Tools
             </span>
           </button>
 
@@ -511,7 +511,7 @@ export default function App() {
                     transition={{ delay: 0.2 }}
                   >
                     <h1 className="text-5xl sm:text-7xl font-black text-medieval-gold uppercase tracking-tighter leading-none">
-                      Bem-vindo ao <br /> Miracle 7.4 Wiki
+                      Bem-vindo ao <br /> Miracle Wiki Tools
                     </h1>
                     <p className="text-medieval-gold/60 font-mono text-lg mt-4 max-w-2xl mx-auto">
                       O guia definitivo para mestres artesãos e aventureiros. Ferramentas, dados e conhecimento em um só lugar.
@@ -519,58 +519,115 @@ export default function App() {
                   </motion.div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
                   {/* Card Calculadoras */}
-                  <div className="medieval-card bg-medieval-card p-8 medieval-border rounded-lg space-y-6">
+                  <div className="medieval-card bg-medieval-card p-8 medieval-border rounded-lg space-y-6 flex flex-col">
                     <div className="flex items-center gap-4">
                       <div className="p-3 bg-medieval-gold/10 rounded-lg">
                         <Hammer className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-2xl font-black text-medieval-gold uppercase">Ferramentas & Calculadoras</h2>
+                      <h2 className="text-xl font-black text-medieval-gold uppercase">Ferramentas & Calculadoras</h2>
                     </div>
-                    <p className="text-medieval-text/70 text-sm leading-relaxed">
+                    <p className="text-medieval-text/70 text-sm leading-relaxed flex-1">
                       Acesse nossas ferramentas de precisão para otimizar seus recursos e garantir o sucesso em suas empreitadas.
                     </p>
-                      <div className="grid grid-cols-1 gap-3 pt-4">
-                        <button 
-                          onClick={() => {
-                            setActiveTab('calculadoras');
-                            setCalcSubTab('crafting');
-                          }}
-                          className="flex items-center justify-between p-4 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold hover:bg-medieval-gold/5 transition-all group"
-                        >
-                          <div className="flex items-center gap-3">
-                            <Hammer className="text-medieval-gold w-5 h-5" />
-                            <span className="font-bold uppercase tracking-wider text-sm">Calculadora de Crafting</span>
-                          </div>
-                          <ChevronRight className="text-medieval-gold w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                        <button 
-                          onClick={() => {
-                            setActiveTab('calculadoras');
-                            setCalcSubTab('atributos');
-                          }}
-                          className="flex items-center justify-between p-4 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold hover:bg-medieval-gold/5 transition-all group"
-                        >
-                          <div className="flex items-center gap-3">
-                            <Sparkles className="text-medieval-gold w-5 h-5" />
-                            <span className="font-bold uppercase tracking-wider text-sm">Chance de Atributos</span>
-                          </div>
-                          <ChevronRight className="text-medieval-gold w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                      </div>
+                    <div className="grid grid-cols-1 gap-3 pt-4">
+                      <button 
+                        onClick={() => {
+                          setActiveTab('calculadoras');
+                          setCalcSubTab('crafting');
+                        }}
+                        className="flex items-center justify-between p-4 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold hover:bg-medieval-gold/5 transition-all group"
+                      >
+                        <div className="flex items-center gap-3">
+                          <Hammer className="text-medieval-gold w-5 h-5" />
+                          <span className="font-bold uppercase tracking-wider text-xs">Calculadora de Crafting</span>
+                        </div>
+                        <ChevronRight className="text-medieval-gold w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </button>
+                      <button 
+                        onClick={() => {
+                          setActiveTab('calculadoras');
+                          setCalcSubTab('atributos');
+                        }}
+                        className="flex items-center justify-between p-4 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold hover:bg-medieval-gold/5 transition-all group"
+                      >
+                        <div className="flex items-center gap-3">
+                          <Sparkles className="text-medieval-gold w-5 h-5" />
+                          <span className="font-bold uppercase tracking-wider text-xs">Chance de Atributos</span>
+                        </div>
+                        <ChevronRight className="text-medieval-gold w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </button>
+                    </div>
                   </div>
 
-                  {/* Card Twitch/Discord */}
+                  {/* Card Profissões */}
+                  <div className="medieval-card bg-medieval-card p-8 medieval-border rounded-lg space-y-6 flex flex-col">
+                    <div className="flex items-center gap-4">
+                      <div className="p-3 bg-medieval-gold/10 rounded-lg">
+                        <Briefcase className="text-medieval-gold w-8 h-8" />
+                      </div>
+                      <h2 className="text-xl font-black text-medieval-gold uppercase">Profissões</h2>
+                    </div>
+                    <p className="text-medieval-text/70 text-sm leading-relaxed flex-1">
+                      Explore todas as profissões disponíveis, seus requisitos, drops exclusivos e caminhos de progressão.
+                    </p>
+                    <button 
+                      onClick={() => setActiveTab('profissoes')}
+                      className="medieval-button w-full flex items-center justify-center gap-3"
+                    >
+                      <Briefcase className="w-5 h-5" /> Ver Profissões
+                    </button>
+                  </div>
+
+                  {/* Card Mapa */}
+                  <div className="medieval-card bg-medieval-card p-8 medieval-border rounded-lg space-y-6 flex flex-col">
+                    <div className="flex items-center gap-4">
+                      <div className="p-3 bg-medieval-gold/10 rounded-lg">
+                        <Map className="text-medieval-gold w-8 h-8" />
+                      </div>
+                      <h2 className="text-xl font-black text-medieval-gold uppercase">Mapa Interativo</h2>
+                    </div>
+                    <p className="text-medieval-text/70 text-sm leading-relaxed flex-1">
+                      Navegue pelo mundo do Miracle 7.4 com nosso mapa detalhado. Encontre NPCs, monstros e locais de interesse.
+                    </p>
+                    <button 
+                      onClick={() => setActiveTab('mapa')}
+                      className="medieval-button w-full flex items-center justify-center gap-3"
+                    >
+                      <Map className="w-5 h-5" /> Abrir Mapa
+                    </button>
+                  </div>
+
+                  {/* Card Eventos */}
+                  <div className="medieval-card bg-medieval-card p-8 medieval-border rounded-lg space-y-6 flex flex-col">
+                    <div className="flex items-center gap-4">
+                      <div className="p-3 bg-medieval-gold/10 rounded-lg">
+                        <Users className="text-medieval-gold w-8 h-8" />
+                      </div>
+                      <h2 className="text-xl font-black text-medieval-gold uppercase">Lobby de Eventos</h2>
+                    </div>
+                    <p className="text-medieval-text/70 text-sm leading-relaxed flex-1">
+                      Participe de quests agendadas ou peça ajuda para outros jogadores em tempo real.
+                    </p>
+                    <button 
+                      onClick={() => setActiveTab('eventos')}
+                      className="medieval-button w-full flex items-center justify-center gap-3"
+                    >
+                      <Users className="w-5 h-5" /> Acessar Lobby
+                    </button>
+                  </div>
+
+                  {/* Card Comunidade */}
                   <div className="medieval-card bg-medieval-card p-8 medieval-border rounded-lg space-y-6 flex flex-col">
                     <div className="flex items-center gap-4">
                       <div className="p-3 bg-medieval-gold/10 rounded-lg">
                         <Twitch className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-2xl font-black text-medieval-gold uppercase">Comunidade</h2>
+                      <h2 className="text-xl font-black text-medieval-gold uppercase">Comunidade</h2>
                     </div>
                     <p className="text-medieval-text/70 text-sm leading-relaxed flex-1">
-                      Fique por dentro das novidades, participe de sorteios e tire suas dúvidas diretamente com o criador e outros jogadores.
+                      Fique por dentro das novidades, participe de sorteios e tire suas dúvidas diretamente com o criador.
                     </p>
                     <div className="grid grid-cols-1 gap-3 pt-4">
                       <a href="https://www.twitch.tv/obellao_" target="_blank" rel="noopener noreferrer" className="medieval-button flex items-center justify-center gap-3">
