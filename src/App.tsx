@@ -12,6 +12,7 @@ import {
   ChevronRight, Menu, X, Map, Youtube, Fish, FlaskConical, Utensils, Sprout, Scissors, Users 
 } from 'lucide-react';
 import { calculateTrainingTime, Vocation, SkillType, TRAINING_WEAPONS_DATA, TrainingWeapon, calculateBlessCosts } from './lib/formulas';
+import { Language, translations } from './lib/translations';
 
 // --- Dados do Banco de Dados Embutido ---
 const CRAFT_ITEMS = [
@@ -362,7 +363,8 @@ function SkillCalculator({
   skillType, setSkillType, 
   currentSkill, setCurrentSkill, 
   targetSkill, setTargetSkill, 
-  skillPercentage, setSkillPercentage
+  skillPercentage, setSkillPercentage,
+  t
 }: any) {
   const [weaponType, setWeaponType] = useState<'normal' | 'training'>('normal');
   const [selectedTrainingWeapon, setSelectedTrainingWeapon] = useState<string>('Normal');
@@ -423,10 +425,10 @@ function SkillCalculator({
     <div className="space-y-8">
       <header className="text-center mb-12">
         <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
-          Calculadora de Skills
+          {t('skills')}
         </h1>
         <p className="text-medieval-gold/80 font-mono text-sm">
-          Estime o tempo e recursos necessários para atingir seus objetivos
+          {t('heroSubtitle')}
         </p>
       </header>
 
@@ -437,7 +439,7 @@ function SkillCalculator({
               {/* Vocação */}
               <div className="flex flex-col gap-2">
                 <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                  Vocação
+                  {t('vocation')}
                 </label>
                 <select
                   value={vocation}
@@ -454,7 +456,7 @@ function SkillCalculator({
               {/* Tipo de Skill */}
               <div className="flex flex-col gap-2">
                 <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                  Tipo de Skill
+                  {t('skillType')}
                 </label>
                 <select
                   value={skillType}
@@ -471,7 +473,7 @@ function SkillCalculator({
               {/* Skill Atual */}
               <div className="flex flex-col gap-2">
                 <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                  Skill Atual
+                  {t('currentSkill')}
                 </label>
                 <input
                   type="number"
@@ -484,7 +486,7 @@ function SkillCalculator({
               {/* Skill Alvo */}
               <div className="flex flex-col gap-2">
                 <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                  Skill Alvo
+                  {t('targetSkill')}
                 </label>
                 <input
                   type="number"
@@ -497,7 +499,7 @@ function SkillCalculator({
               {/* % Restante */}
               <div className="flex flex-col gap-2">
                 <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                  % Restante para o Próximo
+                  {t('remainingPercent')}
                 </label>
                 <input
                   type="number"
@@ -510,7 +512,7 @@ function SkillCalculator({
               {/* Tipo de Arma */}
               <div className="flex flex-col gap-2">
                 <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                  Modo de Treino
+                  {t('trainingMode')}
                 </label>
                 <div className="grid grid-cols-2 gap-2">
                   <button
@@ -521,7 +523,7 @@ function SkillCalculator({
                         : 'bg-black/40 text-medieval-gold/60 border-medieval-gold/20 hover:border-medieval-gold/40'
                     }`}
                   >
-                    ARMA NORMAL
+                    {t('normalWeapon').toUpperCase()}
                   </button>
                   <button
                     onClick={() => setWeaponType('training')}
@@ -531,7 +533,7 @@ function SkillCalculator({
                         : 'bg-black/40 text-medieval-gold/60 border-medieval-gold/20 hover:border-medieval-gold/40'
                     }`}
                   >
-                    ARMA TREINO
+                    {t('trainingWeapon').toUpperCase()}
                   </button>
                 </div>
               </div>
@@ -539,7 +541,7 @@ function SkillCalculator({
               {/* Slot Arma */}
               <div className="flex flex-col gap-2 sm:col-span-2">
                 <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                  {weaponType === 'training' ? 'Selecionar Arma de Treino' : 'Redução de atack interval da arma'}
+                  {weaponType === 'training' ? t('trainingWeaponSelect') : t('weaponReduction')}
                 </label>
                 {weaponType === 'training' ? (
                   <select
@@ -578,14 +580,14 @@ function SkillCalculator({
                 {equipReductions.map((red, idx) => (
                   <div key={idx} className="flex flex-col gap-2">
                     <label className="text-medieval-gold/60 font-bold uppercase text-[9px] tracking-widest">
-                      Equipamento Extra {idx + 1}
+                      {t('extraEquip')} {idx + 1}
                     </label>
                     <select
                       value={red}
                       onChange={(e) => handleEquipReductionChange(idx, Number(e.target.value))}
                       className="medieval-input text-sm cursor-pointer appearance-none"
                     >
-                      <option value="0">Nenhum</option>
+                      <option value="0">{t('none')}</option>
                       <option value="1">-1% atack interval</option>
                       <option value="2">-2% atack interval</option>
                       <option value="3">-3% atack interval</option>
@@ -610,15 +612,15 @@ function SkillCalculator({
             <div className="mt-8 pt-8 border-t border-medieval-gold/20">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="text-center p-4 bg-black/40 rounded border border-medieval-gold/10">
-                  <p className="text-medieval-gold/60 uppercase text-[9px] font-black tracking-widest mb-1">Total de Hits/Mana</p>
+                  <p className="text-medieval-gold/60 uppercase text-[9px] font-black tracking-widest mb-1">{t('totalHits')}</p>
                   <div className="text-2xl font-black text-medieval-gold">{result.points.toLocaleString()}</div>
                 </div>
                 <div className="text-center p-4 bg-medieval-gold/5 rounded border border-medieval-gold/30">
-                  <p className="text-medieval-gold uppercase text-[9px] font-black tracking-widest mb-1">Tempo Estimado</p>
+                  <p className="text-medieval-gold uppercase text-[9px] font-black tracking-widest mb-1">{t('estimatedTime')}</p>
                   <div className="text-2xl font-black text-medieval-gold">{formatTime(result.seconds)}</div>
                 </div>
                 <div className="text-center p-4 bg-black/40 rounded border border-medieval-gold/10">
-                  <p className="text-medieval-gold/60 uppercase text-[9px] font-black tracking-widest mb-1">Armas Necessárias</p>
+                  <p className="text-medieval-gold/60 uppercase text-[9px] font-black tracking-widest mb-1">{t('neededWeapons')}</p>
                   <div className="text-2xl font-black text-medieval-gold">
                     {weaponsNeeded > 0 ? `${weaponsNeeded}x` : 'N/A'}
                   </div>
@@ -627,7 +629,7 @@ function SkillCalculator({
               
               <div className="mt-4 text-center">
                 <p className="text-[10px] text-medieval-gold/40 font-mono">
-                  Intervalo Final: <span className="text-medieval-gold">{(result.interval / 1000).toFixed(3)}s</span> ({result.interval.toFixed(0)}ms)
+                  {t('finalInterval')}: <span className="text-medieval-gold">{(result.interval / 1000).toFixed(3)}s</span> ({result.interval.toFixed(0)}ms)
                 </p>
               </div>
             </div>
@@ -637,14 +639,14 @@ function SkillCalculator({
         <div className="lg:col-span-5 space-y-6">
           <div className="medieval-border rounded-lg bg-medieval-card p-6 space-y-4">
             <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest flex items-center gap-2">
-              <Info className="w-4 h-4" /> Informações de Treino
+              <Info className="w-4 h-4" /> {t('trainingInfo')}
             </h3>
             <div className="space-y-4 text-xs text-medieval-text/70 leading-relaxed font-mono">
-              <p>• <span className="text-medieval-gold">Melee:</span> Requer 1 hit de sangue a cada 30 segundos para progressão constante.</p>
-              <p>• <span className="text-medieval-gold">Distance:</span> Cada hit conta para a progressão.</p>
-              <p>• <span className="text-medieval-gold">Shielding:</span> Progride ao bloquear até 2 monstros simultaneamente. (Cálculo otimizado para 2 monstros).</p>
-              <p>• <span className="text-medieval-gold">Attack Interval:</span> Reduções de intervalo permitem hits mais rápidos, acelerando o treino.</p>
-              <p>• <span className="text-medieval-gold">Armas de Treino:</span> Cada arma possui uma quantidade finita de cargas (hits/mana).</p>
+              <p>• <span className="text-medieval-gold">{t('meleeInfo').split(':')[0]}:</span> {t('meleeInfo').split(':')[1]}</p>
+              <p>• <span className="text-medieval-gold">{t('distanceInfo').split(':')[0]}:</span> {t('distanceInfo').split(':')[1]}</p>
+              <p>• <span className="text-medieval-gold">{t('shieldingInfo').split(':')[0]}:</span> {t('shieldingInfo').split(':')[1]}</p>
+              <p>• <span className="text-medieval-gold">{t('atkIntervalInfo').split(':')[0]}:</span> {t('atkIntervalInfo').split(':')[1]}</p>
+              <p>• <span className="text-medieval-gold">{t('trainingWeaponInfo').split(':')[0]}:</span> {t('trainingWeaponInfo').split(':')[1]}</p>
             </div>
           </div>
           
@@ -660,7 +662,7 @@ function SkillCalculator({
 }
 
 // --- Componente Calculadora de Bless ---
-function BlessCalculator() {
+function BlessCalculator({ t }: { t: any }) {
   const [level, setLevel] = useState<number>(100);
   
   const costs = useMemo(() => calculateBlessCosts(level), [level]);
@@ -676,10 +678,10 @@ function BlessCalculator() {
     <div className="space-y-8">
       <header className="text-center mb-12">
         <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
-          Custo de Bless & Morte
+          {t('blessDeath')}
         </h1>
         <p className="text-medieval-gold/80 font-mono text-sm">
-          Calcule o investimento necessário para proteger sua jornada
+          {t('heroSubtitle')}
         </p>
       </header>
 
@@ -689,7 +691,7 @@ function BlessCalculator() {
             <div className="space-y-6">
               <div className="flex flex-col gap-2">
                 <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4" /> Seu Level Atual
+                  <TrendingUp className="w-4 h-4" /> {t('characterLevel')}
                 </label>
                 <input
                   type="number"
@@ -702,29 +704,29 @@ function BlessCalculator() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
                 <div className="p-4 bg-black/40 rounded border border-medieval-gold/10">
-                  <p className="text-medieval-gold/60 uppercase text-[10px] font-black tracking-widest mb-1">5 Blesses Padrão</p>
-                  <p className="text-xs text-medieval-text/50 mb-2 italic">Carlin, Ab, Kaz, Thais, Edron</p>
+                  <p className="text-medieval-gold/60 uppercase text-[10px] font-black tracking-widest mb-1">{t('standardBless')}</p>
+                  <p className="text-xs text-medieval-text/50 mb-2 italic">{t('standardBlessList')}</p>
                   <div className="text-xl font-black text-medieval-gold">
                     {costs.standardTotal.toLocaleString()} gps <span className="text-sm text-medieval-gold/60">({formatK(costs.standardTotal)})</span>
                   </div>
                 </div>
                 <div className="p-4 bg-black/40 rounded border border-medieval-gold/10">
-                  <p className="text-medieval-gold/60 uppercase text-[10px] font-black tracking-widest mb-1">Bless Tome (6ª)</p>
-                  <p className="text-xs text-medieval-text/50 mb-2 italic">Vendido pelo NPC Eremo</p>
+                  <p className="text-medieval-gold/60 uppercase text-[10px] font-black tracking-widest mb-1">{t('tomeBless')}</p>
+                  <p className="text-xs text-medieval-text/50 mb-2 italic">{t('tomeBlessDesc')}</p>
                   <div className="text-xl font-black text-medieval-gold">
                     {costs.blessTomePrice.toLocaleString()} gps <span className="text-sm text-medieval-gold/60">({formatK(costs.blessTomePrice)})</span>
                   </div>
                 </div>
                 <div className="p-4 bg-black/40 rounded border border-medieval-gold/10">
-                  <p className="text-medieval-gold/60 uppercase text-[10px] font-black tracking-widest mb-1">Arcane Guardian (7ª)</p>
-                  <p className="text-xs text-medieval-text/50 mb-2 italic">Proteção de Atributos</p>
+                  <p className="text-medieval-gold/60 uppercase text-[10px] font-black tracking-widest mb-1">{t('arcaneBless')}</p>
+                  <p className="text-xs text-medieval-text/50 mb-2 italic">{t('arcaneBlessDesc')}</p>
                   <div className="text-xl font-black text-medieval-gold">
                     {costs.arcaneGuardianPrice.toLocaleString()} gps <span className="text-sm text-medieval-gold/60">({formatK(costs.arcaneGuardianPrice)})</span>
                   </div>
                 </div>
                 <div className="p-4 bg-black/40 rounded border border-medieval-gold/10">
-                  <p className="text-medieval-gold/60 uppercase text-[10px] font-black tracking-widest mb-1">Amulet of Loss (AOL)</p>
-                  <p className="text-xs text-medieval-text/50 mb-2 italic">Proteção de Itens</p>
+                  <p className="text-medieval-gold/60 uppercase text-[10px] font-black tracking-widest mb-1">{t('aolCost')}</p>
+                  <p className="text-xs text-medieval-text/50 mb-2 italic">{t('aolDesc')}</p>
                   <div className="text-xl font-black text-medieval-gold">
                     {costs.aolPrice.toLocaleString()} gps <span className="text-sm text-medieval-gold/60">({formatK(costs.aolPrice)})</span>
                   </div>
@@ -733,14 +735,14 @@ function BlessCalculator() {
 
               <div className="mt-8 pt-8 border-t border-medieval-gold/20 space-y-4">
                 <div className="flex justify-between items-center p-4 bg-medieval-gold/5 rounded border border-medieval-gold/20">
-                  <span className="text-medieval-gold font-black uppercase text-xs tracking-widest">Total em Blesses</span>
+                  <span className="text-medieval-gold font-black uppercase text-xs tracking-widest">{t('totalInBless')}</span>
                   <div className="text-right">
                     <div className="text-2xl font-black text-medieval-gold">{costs.totalBlesses.toLocaleString()} gps</div>
                     <div className="text-sm font-mono text-medieval-gold/60">{formatK(costs.totalBlesses)}</div>
                   </div>
                 </div>
                 <div className="flex justify-between items-center p-6 bg-medieval-gold/10 rounded border border-medieval-gold/40">
-                  <span className="text-medieval-gold font-black uppercase text-sm tracking-widest">Custo Total da Morte (Bless + AOL)</span>
+                  <span className="text-medieval-gold font-black uppercase text-sm tracking-widest">{t('totalDeathCost')}</span>
                   <div className="text-right">
                     <div className="text-4xl font-black text-medieval-gold">{costs.grandTotal.toLocaleString()} gps</div>
                     <div className="text-lg font-mono text-medieval-gold/80">{formatK(costs.grandTotal)}</div>
@@ -754,12 +756,12 @@ function BlessCalculator() {
         <div className="lg:col-span-5 space-y-6">
           <div className="medieval-border rounded-lg bg-medieval-card p-6 space-y-4">
             <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest flex items-center gap-2">
-              <Info className="w-4 h-4" /> Regras de Proteção
+              <Info className="w-4 h-4" /> {t('blessDetails')}
             </h3>
             <div className="space-y-4 text-xs text-medieval-text/70 leading-relaxed font-mono">
-              <p>• <span className="text-medieval-gold">Blesses Padrão:</span> 10k fixo até o lvl 100. Após isso, +100gp por level cada.</p>
-              <p>• <span className="text-medieval-gold">Bless Tome:</span> Custo fixo de 25k no NPC Eremo.</p>
-              <p>• <span className="text-medieval-gold">Arcane Guardian:</span> Protege seus atributos. Custo: 200gp x Level.</p>
+              <p>• <span className="text-medieval-gold">{t('standardBless')}:</span> 10k fixo até o lvl 100. Após isso, +100gp por level cada.</p>
+              <p>• <span className="text-medieval-gold">{t('tomeBless')}:</span> Custo fixo de 25k no NPC Eremo.</p>
+              <p>• <span className="text-medieval-gold">{t('arcaneBless')}:</span> Protege seus atributos. Custo: 200gp x Level.</p>
               <p>• <span className="text-medieval-gold">Amulet of Loss:</span> Protege seus itens. Custo fixo de 50k.</p>
               <p>• <span className="text-medieval-gold">Redução de XP:</span> Cada uma das 5 blesses padrão reduz a perda em 0.8%.</p>
             </div>
@@ -773,7 +775,10 @@ function BlessCalculator() {
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>('home');
   const [calcSubTab, setCalcSubTab] = useState<'crafting' | 'atributos' | 'skills' | 'bless'>('crafting');
+  const [language, setLanguage] = useState<Language>('pt');
   const [skill, setSkill] = useState<number>(10);
+
+  const t = (key: keyof typeof translations['pt']) => translations[language][key] || key;
 
   // Estados para Calculadora de Skills
   const [vocation, setVocation] = useState<Vocation>('Knight');
@@ -832,12 +837,12 @@ export default function App() {
   }, [attrCategory, attrItemName]);
 
   const tabs = [
-    { id: 'home', label: 'Início', icon: <Book className="w-4 h-4" /> },
-    { id: 'calculadoras', label: 'Calculadoras', icon: <Hammer className="w-4 h-4" /> },
-    { id: 'profissoes', label: 'Profissões', icon: <Briefcase className="w-4 h-4" /> },
-    { id: 'mapa', label: 'Mapa', icon: <Map className="w-4 h-4" /> },
-    { id: 'eventos', label: 'Eventos', icon: <Users className="w-4 h-4" /> },
-    { id: 'wiki', label: 'Wiki Geral', icon: <Book className="w-4 h-4" /> },
+    { id: 'home', label: t('home'), icon: <Book className="w-4 h-4" /> },
+    { id: 'calculadoras', label: t('calculators'), icon: <Hammer className="w-4 h-4" /> },
+    { id: 'profissoes', label: t('professions'), icon: <Briefcase className="w-4 h-4" /> },
+    { id: 'mapa', label: t('map'), icon: <Map className="w-4 h-4" /> },
+    { id: 'eventos', label: t('events'), icon: <Users className="w-4 h-4" /> },
+    { id: 'wiki', label: t('wiki'), icon: <Book className="w-4 h-4" /> },
   ];
 
   return (
@@ -871,15 +876,47 @@ export default function App() {
                 {tab.label}
               </button>
             ))}
+            
+            {/* Language Switcher Desktop */}
+            <div className="ml-4 flex items-center gap-2 border-l border-medieval-gold/20 pl-4">
+              <button 
+                onClick={() => setLanguage('pt')}
+                className={`text-[10px] font-bold px-2 py-1 rounded transition-colors ${language === 'pt' ? 'bg-medieval-gold text-black' : 'text-medieval-gold/40 hover:text-medieval-gold'}`}
+              >
+                PT
+              </button>
+              <button 
+                onClick={() => setLanguage('en')}
+                className={`text-[10px] font-bold px-2 py-1 rounded transition-colors ${language === 'en' ? 'bg-medieval-gold text-black' : 'text-medieval-gold/40 hover:text-medieval-gold'}`}
+              >
+                EN
+              </button>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
-          <button 
-            className="md:hidden text-medieval-gold p-2"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X /> : <Menu />}
-          </button>
+          <div className="flex items-center gap-2 md:hidden">
+            <div className="flex items-center gap-1 mr-2">
+              <button 
+                onClick={() => setLanguage('pt')}
+                className={`text-[10px] font-bold px-2 py-1 rounded ${language === 'pt' ? 'bg-medieval-gold text-black' : 'text-medieval-gold/40'}`}
+              >
+                PT
+              </button>
+              <button 
+                onClick={() => setLanguage('en')}
+                className={`text-[10px] font-bold px-2 py-1 rounded ${language === 'en' ? 'bg-medieval-gold text-black' : 'text-medieval-gold/40'}`}
+              >
+                EN
+              </button>
+            </div>
+            <button 
+              className="text-medieval-gold p-2"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X /> : <Menu />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
@@ -933,10 +970,10 @@ export default function App() {
                     transition={{ delay: 0.2 }}
                   >
                     <h1 className="text-5xl sm:text-7xl font-black text-medieval-gold uppercase tracking-tighter leading-none">
-                      Bem-vindo ao <br /> Miracle Wiki Tools
+                      {t('welcome')} <br /> Miracle Wiki Tools
                     </h1>
                     <p className="text-medieval-gold/60 font-mono text-lg mt-4 max-w-2xl mx-auto">
-                      O guia definitivo para mestres artesãos e aventureiros. Ferramentas, dados e conhecimento em um só lugar.
+                      {t('heroSubtitle')}
                     </p>
                   </motion.div>
                 </div>
@@ -948,10 +985,10 @@ export default function App() {
                       <div className="p-3 bg-medieval-gold/10 rounded-lg">
                         <Hammer className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-xl font-black text-medieval-gold uppercase">Ferramentas & Calculadoras</h2>
+                      <h2 className="text-xl font-black text-medieval-gold uppercase">{t('toolsTitle')}</h2>
                     </div>
                     <p className="text-medieval-text/70 text-sm leading-relaxed flex-1">
-                      Acesse nossas ferramentas de precisão para otimizar seus recursos e garantir o sucesso em suas empreitadas.
+                      {t('toolsDesc')}
                     </p>
                     <div className="grid grid-cols-1 gap-3 pt-4">
                       <button 
@@ -960,7 +997,7 @@ export default function App() {
                       >
                         <div className="flex items-center gap-3">
                           <Hammer className="text-medieval-gold w-5 h-5" />
-                          <span className="font-bold uppercase tracking-wider text-xs">Crafting</span>
+                          <span className="font-bold uppercase tracking-wider text-xs">{t('crafting')}</span>
                         </div>
                         <ChevronRight className="text-medieval-gold w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </button>
@@ -970,7 +1007,7 @@ export default function App() {
                       >
                         <div className="flex items-center gap-3">
                           <Zap className="text-medieval-gold w-5 h-5" />
-                          <span className="font-bold uppercase tracking-wider text-xs">Skills</span>
+                          <span className="font-bold uppercase tracking-wider text-xs">{t('skills')}</span>
                         </div>
                         <ChevronRight className="text-medieval-gold w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </button>
@@ -980,7 +1017,7 @@ export default function App() {
                       >
                         <div className="flex items-center gap-3">
                           <TrendingUp className="text-medieval-gold w-5 h-5" />
-                          <span className="font-bold uppercase tracking-wider text-xs">Bless & Morte</span>
+                          <span className="font-bold uppercase tracking-wider text-xs">{t('blessDeath')}</span>
                         </div>
                         <ChevronRight className="text-medieval-gold w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </button>
@@ -990,7 +1027,7 @@ export default function App() {
                       >
                         <div className="flex items-center gap-3">
                           <Sparkles className="text-medieval-gold w-5 h-5" />
-                          <span className="font-bold uppercase tracking-wider text-xs">Atributos</span>
+                          <span className="font-bold uppercase tracking-wider text-xs">{t('attributes')}</span>
                         </div>
                         <ChevronRight className="text-medieval-gold w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </button>
@@ -1003,16 +1040,16 @@ export default function App() {
                       <div className="p-3 bg-medieval-gold/10 rounded-lg">
                         <Briefcase className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-xl font-black text-medieval-gold uppercase">Profissões</h2>
+                      <h2 className="text-xl font-black text-medieval-gold uppercase">{t('professionsTitle')}</h2>
                     </div>
                     <p className="text-medieval-text/70 text-sm leading-relaxed flex-1">
-                      Explore todas as profissões disponíveis, seus requisitos, drops exclusivos e caminhos de progressão.
+                      {t('professionsDesc')}
                     </p>
                     <button 
                       onClick={() => setActiveTab('profissoes')}
                       className="medieval-button w-full flex items-center justify-center gap-3"
                     >
-                      <Briefcase className="w-5 h-5" /> Ver Profissões
+                      <Briefcase className="w-5 h-5" /> {t('viewProfessions')}
                     </button>
                   </div>
 
@@ -1022,16 +1059,16 @@ export default function App() {
                       <div className="p-3 bg-medieval-gold/10 rounded-lg">
                         <Map className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-xl font-black text-medieval-gold uppercase">Mapa Interativo</h2>
+                      <h2 className="text-xl font-black text-medieval-gold uppercase">{t('mapTitle')}</h2>
                     </div>
                     <p className="text-medieval-text/70 text-sm leading-relaxed flex-1">
-                      Navegue pelo mundo do Miracle 7.4 com nosso mapa detalhado. Encontre NPCs, monstros e locais de interesse.
+                      {t('mapDesc')}
                     </p>
                     <button 
                       onClick={() => setActiveTab('mapa')}
                       className="medieval-button w-full flex items-center justify-center gap-3"
                     >
-                      <Map className="w-5 h-5" /> Abrir Mapa
+                      <Map className="w-5 h-5" /> {t('openMap')}
                     </button>
                   </div>
 
@@ -1041,16 +1078,16 @@ export default function App() {
                       <div className="p-3 bg-medieval-gold/10 rounded-lg">
                         <Users className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-xl font-black text-medieval-gold uppercase">Lobby de Eventos</h2>
+                      <h2 className="text-xl font-black text-medieval-gold uppercase">{t('eventsTitle')}</h2>
                     </div>
                     <p className="text-medieval-text/70 text-sm leading-relaxed flex-1">
-                      Participe de quests agendadas ou peça ajuda para outros jogadores em tempo real.
+                      {t('eventsDesc')}
                     </p>
                     <button 
                       onClick={() => setActiveTab('eventos')}
                       className="medieval-button w-full flex items-center justify-center gap-3"
                     >
-                      <Users className="w-5 h-5" /> Acessar Lobby
+                      <Users className="w-5 h-5" /> {t('accessLobby')}
                     </button>
                   </div>
 
@@ -1060,17 +1097,17 @@ export default function App() {
                       <div className="p-3 bg-medieval-gold/10 rounded-lg">
                         <Twitch className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-xl font-black text-medieval-gold uppercase">Comunidade</h2>
+                      <h2 className="text-xl font-black text-medieval-gold uppercase">{t('community')}</h2>
                     </div>
                     <p className="text-medieval-text/70 text-sm leading-relaxed flex-1">
-                      Fique por dentro das novidades, participe de sorteios e tire suas dúvidas diretamente com o criador.
+                      {t('footerDesc')}
                     </p>
                     <div className="grid grid-cols-1 gap-3 pt-4">
                       <a href="https://www.twitch.tv/obellao_" target="_blank" rel="noopener noreferrer" className="medieval-button flex items-center justify-center gap-3">
-                        <Twitch className="w-5 h-5" /> Twitch do obellao_
+                        <Twitch className="w-5 h-5" /> {t('twitchChannel')}
                       </a>
                       <a href="https://discord.gg/nacCypRkqQ" target="_blank" rel="noopener noreferrer" className="bg-[#5865F2] text-white font-bold py-3 px-6 rounded-sm flex items-center justify-center gap-3 hover:bg-[#4752C4] transition-colors">
-                        <MessageSquare className="w-5 h-5" /> Nosso Discord
+                        <MessageSquare className="w-5 h-5" /> {t('ourDiscord')}
                       </a>
                     </div>
                   </div>
@@ -1079,9 +1116,9 @@ export default function App() {
                 {/* Seção de Destaque Wiki */}
                 <div className="medieval-border rounded-lg bg-black/40 p-8 text-center space-y-4">
                   <Book className="w-12 h-12 text-medieval-gold/40 mx-auto" />
-                  <h3 className="text-xl font-black text-medieval-gold uppercase tracking-widest">Em breve: Wiki de Profissões</h3>
+                  <h3 className="text-xl font-black text-medieval-gold uppercase tracking-widest">{t('wikiSoon')}</h3>
                   <p className="text-medieval-text/50 text-sm max-w-xl mx-auto">
-                    Estamos catalogando todas as profissões, drops e segredos do Miracle 7.4. Fique atento às atualizações!
+                    {t('wikiSoonDesc')}
                   </p>
                 </div>
               </motion.div>
@@ -1106,7 +1143,7 @@ export default function App() {
                     }`}
                   >
                     <div className="flex items-center gap-2">
-                      <Hammer className="w-4 h-4" /> Crafting
+                      <Hammer className="w-4 h-4" /> {t('crafting')}
                     </div>
                   </button>
                   <button
@@ -1118,7 +1155,7 @@ export default function App() {
                     }`}
                   >
                     <div className="flex items-center gap-2">
-                      <Zap className="w-4 h-4" /> Skills
+                      <Zap className="w-4 h-4" /> {t('skills')}
                     </div>
                   </button>
                   <button
@@ -1130,7 +1167,7 @@ export default function App() {
                     }`}
                   >
                     <div className="flex items-center gap-2">
-                      <Sparkles className="w-4 h-4" /> Atributos
+                      <Sparkles className="w-4 h-4" /> {t('attributes')}
                     </div>
                   </button>
                   <button
@@ -1142,7 +1179,7 @@ export default function App() {
                     }`}
                   >
                     <div className="flex items-center gap-2">
-                      <TrendingUp className="w-4 h-4" /> Bless
+                      <TrendingUp className="w-4 h-4" /> {t('blessDeath')}
                     </div>
                   </button>
                 </div>
@@ -1152,7 +1189,7 @@ export default function App() {
                     {/* Cabeçalho Crafting */}
                     <header className="text-center mb-12">
                       <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
-                        Sistema de Crafting
+                        {t('crafting')}
                       </h1>
                       <p className="text-medieval-gold/80 font-mono text-sm">
                         Cálculos de chance e guia de materiais
@@ -1211,7 +1248,7 @@ export default function App() {
 
                             <div className="pt-6 border-t border-medieval-gold/20">
                               <div className="text-center space-y-2">
-                                <p className="text-medieval-gold/60 uppercase text-xs font-bold tracking-[0.2em]">Chance de Sucesso</p>
+                                <p className="text-medieval-gold/60 uppercase text-xs font-bold tracking-[0.2em]">{t('successChance')}</p>
                                 <div className={`text-6xl sm:text-7xl font-black ${chance >= 70 ? 'text-green-500' : chance >= 40 ? 'text-medieval-gold' : 'text-medieval-red'}`}>
                                   {chance}%
                                 </div>
@@ -1251,18 +1288,18 @@ export default function App() {
                     <section className="space-y-6">
                       <div className="flex items-center gap-3">
                         <TableIcon className="text-medieval-gold w-6 h-6" />
-                        <h2 className="text-2xl font-black text-medieval-gold uppercase tracking-tight">Guia de Quebra de Itens</h2>
+                        <h2 className="text-2xl font-black text-medieval-gold uppercase tracking-tight">{t('breakingGuide')}</h2>
                       </div>
                       <div className="medieval-border rounded-lg overflow-hidden bg-medieval-card overflow-x-auto">
                         <table className="w-full text-left border-collapse">
                           <thead>
                             <tr className="bg-black/60 text-medieval-gold uppercase text-xs tracking-widest border-b border-medieval-gold/30">
-                              <th className="p-4 font-black">Item</th>
-                              <th className="p-4 text-center">Máx</th>
-                              <th className="p-4 text-center">Mín</th>
-                              <th className="p-4">Média Mat.</th>
-                              <th className="p-4">Média Prática</th>
-                              <th className="p-4">Veredito</th>
+                              <th className="p-4 font-black">{t('item')}</th>
+                              <th className="p-4 text-center">{t('max')}</th>
+                              <th className="p-4 text-center">{t('min')}</th>
+                              <th className="p-4">{t('mathAvg')}</th>
+                              <th className="p-4">{t('practicalAvg')}</th>
+                              <th className="p-4">{t('verdict')}</th>
                             </tr>
                           </thead>
                           <tbody className="text-sm">
@@ -1278,7 +1315,15 @@ export default function App() {
                                     row.verdict.includes('QUEBRAR') ? 'text-green-400 border-green-500/30' :
                                     row.verdict.includes('UPAR') ? 'text-blue-400 border-blue-500/30' : 'text-medieval-red border-medieval-red/30'
                                   } border bg-black/40`}>
-                                    {row.verdict}
+                                    {
+                                      row.verdict === "Vender NPC ou UPAR SKILL" ? t('sellNpcOrUpgrade') :
+                                      row.verdict === "Vender NPC" ? t('sellNpc') :
+                                      row.verdict === "QUEBRAR PARA MATERIAL" ? t('breakForMaterial') :
+                                      row.verdict === "UPAR SKILL" ? t('upgradeSkill') :
+                                      row.verdict === "Vender NPC OU COLETAR MAT RAPIDO" ? t('sellNpcOrCollectFast') :
+                                      row.verdict === "QUEBRAR" ? t('break') :
+                                      row.verdict
+                                    }
                                   </span>
                                 </td>
                               </tr>
@@ -1295,17 +1340,18 @@ export default function App() {
                     currentSkill={currentSkill} setCurrentSkill={setCurrentSkill}
                     targetSkill={targetSkill} setTargetSkill={setTargetSkill}
                     skillPercentage={skillPercentage} setSkillPercentage={setSkillPercentage}
+                    t={t}
                   />
                 ) : calcSubTab === 'bless' ? (
-                  <BlessCalculator />
+                  <BlessCalculator t={t} />
                 ) : (
                   <div className="space-y-8">
                     <header className="text-center mb-12">
                       <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
-                        Calculadora de Atributos
+                        {t('attributes')}
                       </h1>
                       <p className="text-medieval-gold/80 font-mono text-sm">
-                        Chance de encantar itens com Mystic Rune & Orbs
+                        {t('attributeSubtitle')}
                       </p>
                     </header>
 
@@ -1316,7 +1362,7 @@ export default function App() {
                             {/* Seleção de Categoria */}
                             <div className="flex flex-col gap-2">
                               <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest flex items-center gap-2">
-                                <TableIcon className="w-4 h-4" /> Categoria
+                                <TableIcon className="w-4 h-4" /> {t('category')}
                               </label>
                               <select
                                 value={attrCategory}
@@ -1335,7 +1381,7 @@ export default function App() {
                             {/* Seleção de Item */}
                             <div className="flex flex-col gap-2">
                               <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest flex items-center gap-2">
-                                <Sword className="w-4 h-4" /> Equipamento
+                                <Sword className="w-4 h-4" /> {t('equipment')}
                               </label>
                               <select
                                 value={attrItemName}
@@ -1353,7 +1399,7 @@ export default function App() {
                             {/* Atributos Permitidos */}
                             <div className="bg-black/40 p-4 rounded border border-medieval-gold/20">
                               <p className="text-xs uppercase text-medieval-gold/60 font-bold tracking-tighter mb-3 flex items-center gap-2">
-                                <Info className="w-4 h-4" /> Atributos Permitidos:
+                                <Info className="w-4 h-4" /> {t('allowedAttributes')}:
                               </p>
                               <div className="flex flex-wrap gap-2">
                                 {ATTRIBUTE_DATA[attrCategory]?.find(i => i.name === attrItemName)?.attributes.map(attr => (
@@ -1398,13 +1444,13 @@ export default function App() {
 
                         <div className="medieval-border rounded-lg bg-medieval-card p-6 space-y-4">
                           <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest flex items-center gap-2">
-                            <TrendingUp className="w-4 h-4" /> Entenda a Fórmula
+                            <TrendingUp className="w-4 h-4" /> {t('understandFormula')}
                           </h3>
                           <div className="space-y-3 text-xs text-medieval-text/70 leading-relaxed font-mono">
-                            <p>1. A <span className="text-medieval-gold">Classe</span> do item define quantos níveis de cada atributo ele pode receber.</p>
-                            <p>2. Somamos as chances de todos os níveis permitidos para este item.</p>
-                            <p>3. Dividimos pelo total de níveis lidos.</p>
-                            <p>4. <span className="text-medieval-gold">Grand Orb</span> aplica um bônus multiplicador de 1.5x no resultado final.</p>
+                            <p>1. {t('formulaStep1')}</p>
+                            <p>2. {t('formulaStep2')}</p>
+                            <p>3. {t('formulaStep3')}</p>
+                            <p>4. {t('formulaStep4')}</p>
                           </div>
                         </div>
 
@@ -1431,15 +1477,15 @@ export default function App() {
               >
                 <header className="text-center mb-8">
                   <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
-                    Mapa Interativo
+                    {t('mapTitle')}
                   </h1>
                   <p className="text-medieval-gold/80 font-mono text-sm mb-4">
-                    Explore o mundo de Miracle 7.4 em tempo real
+                    {t('mapSubtitle')}
                   </p>
                   <div className="inline-flex items-center gap-3 px-4 py-2 bg-medieval-gold/10 border border-medieval-gold/30 rounded-full">
                     <AlertTriangle className="w-4 h-4 text-medieval-gold animate-pulse" />
                     <span className="text-[10px] uppercase font-black tracking-widest text-medieval-gold">
-                      Projeto em Construção • Estudos em Andamento • Ajuda é bem-vinda
+                      {t('underConstruction')}
                     </span>
                   </div>
                 </header>
@@ -1448,7 +1494,7 @@ export default function App() {
                   <iframe 
                     src="/mapa.html" 
                     className="w-full h-full border-none"
-                    title="Mapa Interativo Miracle 7.4"
+                    title={t('mapTitle')}
                   />
                 </div>
 
@@ -1459,7 +1505,7 @@ export default function App() {
                     rel="noopener noreferrer"
                     className="medieval-button inline-flex items-center gap-3"
                   >
-                    <ExternalLink className="w-5 h-5" /> Abrir Mapa em Tela Cheia
+                    <ExternalLink className="w-5 h-5" /> {t('fullScreenMap')}
                   </a>
                 </div>
               </motion.div>
@@ -1475,10 +1521,10 @@ export default function App() {
               >
                 <header className="text-center mb-12">
                   <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
-                    Guia de Profissões
+                    {t('professionsTitle')}
                   </h1>
                   <p className="text-medieval-gold/80 font-mono text-sm">
-                    Aprenda as artes e ofícios do Miracle 7.4
+                    {t('professionsSubtitle')}
                   </p>
                 </header>
 
@@ -1489,10 +1535,10 @@ export default function App() {
                       <div className="p-3 bg-medieval-gold/10 rounded-lg">
                         <Hammer className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-2xl font-black text-medieval-gold uppercase">Crafting</h2>
+                      <h2 className="text-2xl font-black text-medieval-gold uppercase">{t('crafting')}</h2>
                     </div>
                     <p className="text-medieval-text/70 text-sm leading-relaxed flex-1">
-                      A arte de criar equipamentos, ferramentas e itens valiosos. Essencial para qualquer aventureiro que busca independência.
+                      {t('craftingDesc')}
                     </p>
                     <div className="pt-4">
                       <a 
@@ -1501,7 +1547,7 @@ export default function App() {
                         rel="noopener noreferrer" 
                         className="bg-[#FF0000] text-white font-bold py-3 px-6 rounded-sm flex items-center justify-center gap-3 hover:bg-[#CC0000] transition-colors w-full"
                       >
-                        <Youtube className="w-5 h-5" /> Tutorial de Crafting
+                        <Youtube className="w-5 h-5" /> {t('craftingTutorial')}
                       </a>
                     </div>
                   </div>
@@ -1512,10 +1558,10 @@ export default function App() {
                       <div className="p-3 bg-medieval-gold/10 rounded-lg">
                         <Pickaxe className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-2xl font-black text-medieval-gold uppercase">Mineração</h2>
+                      <h2 className="text-2xl font-black text-medieval-gold uppercase">{t('miner')}</h2>
                     </div>
                     <p className="text-medieval-text/70 text-sm leading-relaxed">
-                      Em breve: Guia completo sobre extração de minérios e gemas.
+                      {t('miningDesc')}
                     </p>
                   </div>
 
@@ -1525,10 +1571,10 @@ export default function App() {
                       <div className="p-3 bg-medieval-gold/10 rounded-lg">
                         <Sprout className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-2xl font-black text-medieval-gold uppercase">Farming</h2>
+                      <h2 className="text-2xl font-black text-medieval-gold uppercase">{t('farmer')}</h2>
                     </div>
                     <p className="text-medieval-text/70 text-sm leading-relaxed">
-                      Em breve: Guia sobre cultivo e colheita de recursos.
+                      {t('farmingDesc')}
                     </p>
                   </div>
 
@@ -1538,10 +1584,10 @@ export default function App() {
                       <div className="p-3 bg-medieval-gold/10 rounded-lg">
                         <Utensils className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-2xl font-black text-medieval-gold uppercase">Cooking</h2>
+                      <h2 className="text-2xl font-black text-medieval-gold uppercase">{t('cook')}</h2>
                     </div>
                     <p className="text-medieval-text/70 text-sm leading-relaxed">
-                      Em breve: Receitas e benefícios das comidas preparadas.
+                      {t('cookingDesc')}
                     </p>
                   </div>
 
@@ -1554,7 +1600,7 @@ export default function App() {
                       <h2 className="text-2xl font-black text-medieval-gold uppercase">Skinning</h2>
                     </div>
                     <p className="text-medieval-text/70 text-sm leading-relaxed">
-                      Em breve: Como extrair couros e materiais de criaturas.
+                      {t('skinningDesc')}
                     </p>
                   </div>
 
@@ -1564,10 +1610,10 @@ export default function App() {
                       <div className="p-3 bg-medieval-gold/10 rounded-lg">
                         <Fish className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-2xl font-black text-medieval-gold uppercase">Fishing</h2>
+                      <h2 className="text-2xl font-black text-medieval-gold uppercase">{t('fisherman')}</h2>
                     </div>
                     <p className="text-medieval-text/70 text-sm leading-relaxed">
-                      Em breve: Guia de pesca e tesouros subaquáticos.
+                      {t('fishingDesc')}
                     </p>
                   </div>
 
@@ -1577,10 +1623,10 @@ export default function App() {
                       <div className="p-3 bg-medieval-gold/10 rounded-lg">
                         <FlaskConical className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-2xl font-black text-medieval-gold uppercase">Alchemy</h2>
+                      <h2 className="text-2xl font-black text-medieval-gold uppercase">{t('alchemist')}</h2>
                     </div>
                     <p className="text-medieval-text/70 text-sm leading-relaxed">
-                      Em breve: Criação de poções e elixires mágicos.
+                      {t('alchemyDesc')}
                     </p>
                   </div>
                 </div>
@@ -1597,14 +1643,14 @@ export default function App() {
               >
                 <header className="text-center mb-8">
                   <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
-                    Lobby de Quests & Eventos
+                    {t('eventsLobbyTitle')}
                   </h1>
                   <div className="inline-flex items-center gap-2 px-4 py-1 bg-medieval-gold/10 border border-medieval-gold/30 rounded-full">
                     <span className="relative flex h-2 w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                     </span>
-                    <p className="text-[10px] font-black text-medieval-gold uppercase tracking-widest">V3.2 - Sistema em Tempo Real</p>
+                    <p className="text-[10px] font-black text-medieval-gold uppercase tracking-widest">V3.2 - {t('realTimeSystem')}</p>
                   </div>
                 </header>
 
@@ -1627,7 +1673,7 @@ export default function App() {
                 className="text-center py-20"
               >
                 <Book className="w-16 h-16 text-medieval-gold/20 mx-auto mb-4" />
-                <h2 className="text-medieval-gold/40 uppercase font-black tracking-widest">Wiki Geral em breve</h2>
+                <h2 className="text-medieval-gold/40 uppercase font-black tracking-widest">{t('wikiGeneralSoon')}</h2>
               </motion.div>
             )}
           </AnimatePresence>
@@ -1639,8 +1685,8 @@ export default function App() {
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-widest font-mono text-medieval-gold/40">
           <p>© 2024 Miracle 7.4 Wiki Project</p>
           <div className="flex gap-6">
-            <span>Criado por obellao_</span>
-            <span>Desenvolvido com IA</span>
+            <span>{t('createdBy')}</span>
+            <span>{t('developedWithIA')}</span>
           </div>
         </div>
       </footer>
