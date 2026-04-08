@@ -595,6 +595,13 @@
             const event = events.find(e => e.id === eventId);
             if (!event) return;
 
+            const modalTitle = document.querySelector('#adminModal .modal-title');
+            if (event.tipo === 'agendado') {
+                modalTitle.innerText = 'Editar Quest Agendada';
+            } else {
+                modalTitle.innerText = 'Agendar Pedido de Ajuda';
+            }
+
             document.getElementById('adminEventId').value = eventId;
             document.getElementById('adminVagas').value = event.vagas;
             document.getElementById('adminSupply').value = event.conselho_supply || '';
