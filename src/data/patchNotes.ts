@@ -14,7 +14,7 @@ export interface PatchNote {
 export const PROJECT_PATCH_NOTES: PatchNote[] = [
   {
     version: "1.1.0",
-    date: "2024-04-08",
+    date: "2026-04-08",
     title: { pt: "Projeto Wiki v1.1.0", en: "Wiki Project v1.1.0" },
     changes: {
       added: {
@@ -43,7 +43,7 @@ export const PROJECT_PATCH_NOTES: PatchNote[] = [
   },
   {
     version: "1.0.0",
-    date: "2024-04-01",
+    date: "2026-04-01",
     title: { pt: "Lançamento v1.0.0", en: "Launch v1.0.0" },
     changes: {
       added: {
@@ -67,7 +67,7 @@ export const PROJECT_PATCH_NOTES: PatchNote[] = [
 export const SERVER_PATCH_NOTES: PatchNote[] = [
   {
     version: "06/04",
-    date: "2024-04-06",
+    date: "2026-04-06",
     title: { pt: "Update 06/04", en: "Update 06/04" },
     changes: {
       added: {
@@ -126,7 +126,7 @@ export const SERVER_PATCH_NOTES: PatchNote[] = [
   },
   {
     version: "26/03",
-    date: "2024-03-26",
+    date: "2026-03-26",
     title: { pt: "Patch Notes 26/03", en: "Patch Notes 26/03" },
     changes: {
       added: {
@@ -165,7 +165,7 @@ export const SERVER_PATCH_NOTES: PatchNote[] = [
   },
   {
     version: "25/03",
-    date: "2024-03-25",
+    date: "2026-03-25",
     title: { pt: "Update 25/03", en: "Update 25/03" },
     changes: {
       added: {
