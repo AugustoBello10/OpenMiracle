@@ -174,6 +174,8 @@ export const translations = {
     changed: "Alterado",
     compareWithPrevious: "Comparar com anterior",
     latestVersion: "Última Versão",
+    downloadMinimap: "Minimap do obellao_",
+    minimapDownloadDesc: "Baixe o meu arquivo pessoal de minimap com marcações e áreas exploradas.",
     
     // Footer & Misc
     wikiGeneralSoon: "Wiki Geral em breve",
@@ -356,6 +358,8 @@ export const translations = {
     changed: "Changed",
     compareWithPrevious: "Compare with previous",
     latestVersion: "Latest Version",
+    downloadMinimap: "obellao_'s Minimap",
+    minimapDownloadDesc: "Download my personal minimap file with marks and explored areas.",
     
     // Footer & Misc
     wikiGeneralSoon: "General Wiki coming soon",

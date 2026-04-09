@@ -10,7 +10,7 @@ import {
   MessageSquare, ExternalLink, Info, Table as TableIcon, 
   TrendingUp, AlertTriangle, Book, Sparkles, Briefcase, 
   ChevronRight, Menu, X, Map, Youtube, Fish, FlaskConical, Utensils, Sprout, Scissors, Users,
-  History, Plus, Minus, Check, RefreshCw, Clock, Calendar
+  History, Plus, Minus, Check, RefreshCw, Clock, Calendar, Download
 } from 'lucide-react';
 import { calculateTrainingTime, Vocation, SkillType, TRAINING_WEAPONS_DATA, TrainingWeapon, calculateBlessCosts } from './lib/formulas';
 import { Language, translations } from './lib/translations';
@@ -1483,18 +1483,42 @@ export default function App() {
                 exit={{ opacity: 0, x: -20 }}
                 className="space-y-8"
               >
-                <header className="text-center mb-8">
-                  <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
-                    {t('mapTitle')}
-                  </h1>
-                  <p className="text-medieval-gold/80 font-mono text-sm mb-4">
-                    {t('mapSubtitle')}
-                  </p>
-                  <div className="inline-flex items-center gap-3 px-4 py-2 bg-medieval-gold/10 border border-medieval-gold/30 rounded-full">
-                    <AlertTriangle className="w-4 h-4 text-medieval-gold animate-pulse" />
-                    <span className="text-[10px] uppercase font-black tracking-widest text-medieval-gold">
-                      {t('underConstruction')}
-                    </span>
+                <header className="relative flex flex-col md:flex-row md:items-start justify-between gap-6 mb-8">
+                  <div className="flex-1 text-center md:text-left">
+                    <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
+                      {t('mapTitle')}
+                    </h1>
+                    <p className="text-medieval-gold/80 font-mono text-sm mb-4">
+                      {t('mapSubtitle')}
+                    </p>
+                    <div className="inline-flex items-center gap-3 px-4 py-2 bg-medieval-gold/10 border border-medieval-gold/30 rounded-full">
+                      <AlertTriangle className="w-4 h-4 text-medieval-gold animate-pulse" />
+                      <span className="text-[10px] uppercase font-black tracking-widest text-medieval-gold">
+                        {t('underConstruction')}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="medieval-card bg-medieval-gold/5 p-3 medieval-border rounded-lg flex items-center gap-3 shrink-0 max-w-xs mx-auto md:mx-0">
+                    <div className="p-2 bg-medieval-gold/10 rounded-full">
+                      <Download className="w-4 h-4 text-medieval-gold" />
+                    </div>
+                    <div className="text-left">
+                      <h4 className="text-medieval-gold font-bold text-[10px] uppercase tracking-widest mb-0.5">
+                        {t('downloadMinimap')}
+                      </h4>
+                      <p className="text-[9px] text-medieval-text/60 mb-1 leading-tight">
+                        {t('minimapDownloadDesc')}
+                      </p>
+                      <a 
+                        href="https://drive.google.com/u/0/uc?id=1Nf7CHYGN39nRhGhq8x8X49rCbKyBzdZE&export=download" 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[9px] font-black text-medieval-gold hover:underline uppercase tracking-tighter"
+                      >
+                        Download (.zip)
+                      </a>
+                    </div>
                   </div>
                 </header>
 
