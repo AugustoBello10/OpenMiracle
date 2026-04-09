@@ -16,6 +16,9 @@ import { calculateTrainingTime, Vocation, SkillType, TRAINING_WEAPONS_DATA, Trai
 import { Language, translations } from './lib/translations';
 import { PROJECT_PATCH_NOTES, SERVER_PATCH_NOTES } from './data/patchNotes';
 import { LIBRARY_DATA, LibraryEntry } from './data/library';
+import { AlchemyCalculator } from './components/AlchemyCalculator';
+import { FarmingCalculator } from './components/FarmingCalculator';
+import { CraftingCalculator } from './components/CraftingCalculator';
 
 // --- Dados do Banco de Dados Embutido ---
 const CRAFT_ITEMS = [
@@ -777,7 +780,8 @@ function BlessCalculator({ t }: { t: any }) {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>('home');
-  const [calcSubTab, setCalcSubTab] = useState<'crafting' | 'atributos' | 'skills' | 'bless'>('crafting');
+  const [calcSubTab, setCalcSubTab] = useState<'skills' | 'bless' | 'atributos' | 'professions'>('skills');
+  const [profSubTab, setProfSubTab] = useState<'crafting' | 'alchemy' | 'farming'>('crafting');
   const [wikiSubTab, setWikiSubTab] = useState<'server' | 'project'>('server');
   const [wikiMainTab, setWikiMainTab] = useState<'updates' | 'library'>('updates');
   const [selectedBookId, setSelectedBookId] = useState<string>(LIBRARY_DATA[0]?.id || '');
@@ -785,6 +789,10 @@ export default function App() {
   const [selectedPatchVersion, setSelectedPatchVersion] = useState(SERVER_PATCH_NOTES[0].version);
   const [language, setLanguage] = useState<Language>('pt');
   const [skill, setSkill] = useState<number>(10);
+  const [homeProfMenuOpen, setHomeProfMenuOpen] = useState(false);
+  const [homeSkillsMenuOpen, setHomeSkillsMenuOpen] = useState(false);
+  const [homeBlessMenuOpen, setHomeBlessMenuOpen] = useState(false);
+  const [homeAttrMenuOpen, setHomeAttrMenuOpen] = useState(false);
 
   const t = (key: keyof typeof translations['pt']) => translations[language][key] || key;
 
@@ -999,46 +1007,171 @@ export default function App() {
                       {t('toolsDesc')}
                     </p>
                     <div className="grid grid-cols-1 gap-3 pt-4">
-                      <button 
-                        onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('crafting'); }}
-                        className="flex items-center justify-between p-4 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold hover:bg-medieval-gold/5 transition-all group"
-                      >
-                        <div className="flex items-center gap-3">
-                          <Hammer className="text-medieval-gold w-5 h-5" />
-                          <span className="font-bold uppercase tracking-wider text-xs">{t('crafting')}</span>
-                        </div>
-                        <ChevronRight className="text-medieval-gold w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      </button>
-                      <button 
-                        onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('skills'); }}
-                        className="flex items-center justify-between p-4 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold hover:bg-medieval-gold/5 transition-all group"
-                      >
-                        <div className="flex items-center gap-3">
-                          <Zap className="text-medieval-gold w-5 h-5" />
-                          <span className="font-bold uppercase tracking-wider text-xs">{t('skills')}</span>
-                        </div>
-                        <ChevronRight className="text-medieval-gold w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      </button>
-                      <button 
-                        onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('bless'); }}
-                        className="flex items-center justify-between p-4 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold hover:bg-medieval-gold/5 transition-all group"
-                      >
-                        <div className="flex items-center gap-3">
-                          <TrendingUp className="text-medieval-gold w-5 h-5" />
-                          <span className="font-bold uppercase tracking-wider text-xs">{t('blessDeath')}</span>
-                        </div>
-                        <ChevronRight className="text-medieval-gold w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      </button>
-                      <button 
-                        onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('atributos'); }}
-                        className="flex items-center justify-between p-4 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold hover:bg-medieval-gold/5 transition-all group"
-                      >
-                        <div className="flex items-center gap-3">
-                          <Sparkles className="text-medieval-gold w-5 h-5" />
-                          <span className="font-bold uppercase tracking-wider text-xs">{t('attributes')}</span>
-                        </div>
-                        <ChevronRight className="text-medieval-gold w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      </button>
+                      {/* Skills */}
+                      <div className="space-y-2">
+                        <button 
+                          onClick={() => setHomeSkillsMenuOpen(!homeSkillsMenuOpen)}
+                          className={`flex items-center justify-between w-full p-4 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold hover:bg-medieval-gold/5 transition-all group ${homeSkillsMenuOpen ? 'border-medieval-gold bg-medieval-gold/5' : ''}`}
+                        >
+                          <div className="flex items-center gap-3">
+                            <Zap className="text-medieval-gold w-5 h-5" />
+                            <span className="font-bold uppercase tracking-wider text-xs">{t('skills')}</span>
+                          </div>
+                          <ChevronRight className={`text-medieval-gold w-4 h-4 transition-transform ${homeSkillsMenuOpen ? 'rotate-90' : 'group-hover:translate-x-1'}`} />
+                        </button>
+                        <AnimatePresence>
+                          {homeSkillsMenuOpen && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              className="overflow-hidden space-y-2 pl-4"
+                            >
+                              <button 
+                                onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('skills'); setSkillType('Melee'); }}
+                                className="flex items-center justify-between w-full p-3 bg-black/20 border border-medieval-gold/10 rounded hover:border-medieval-gold/40 hover:bg-medieval-gold/5 transition-all group"
+                              >
+                                <span className="font-bold uppercase tracking-wider text-[10px] text-medieval-text/80">Melee</span>
+                                <ChevronRight className="text-medieval-gold/40 w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                              </button>
+                              <button 
+                                onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('skills'); setSkillType('Distance'); }}
+                                className="flex items-center justify-between w-full p-3 bg-black/20 border border-medieval-gold/10 rounded hover:border-medieval-gold/40 hover:bg-medieval-gold/5 transition-all group"
+                              >
+                                <span className="font-bold uppercase tracking-wider text-[10px] text-medieval-text/80">Distance</span>
+                                <ChevronRight className="text-medieval-gold/40 w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                              </button>
+                              <button 
+                                onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('skills'); setSkillType('Magic Level'); }}
+                                className="flex items-center justify-between w-full p-3 bg-black/20 border border-medieval-gold/10 rounded hover:border-medieval-gold/40 hover:bg-medieval-gold/5 transition-all group"
+                              >
+                                <span className="font-bold uppercase tracking-wider text-[10px] text-medieval-text/80">Magic Level</span>
+                                <ChevronRight className="text-medieval-gold/40 w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                              </button>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+
+                      {/* Bless */}
+                      <div className="space-y-2">
+                        <button 
+                          onClick={() => setHomeBlessMenuOpen(!homeBlessMenuOpen)}
+                          className={`flex items-center justify-between w-full p-4 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold hover:bg-medieval-gold/5 transition-all group ${homeBlessMenuOpen ? 'border-medieval-gold bg-medieval-gold/5' : ''}`}
+                        >
+                          <div className="flex items-center gap-3">
+                            <TrendingUp className="text-medieval-gold w-5 h-5" />
+                            <span className="font-bold uppercase tracking-wider text-xs">{t('blessDeath')}</span>
+                          </div>
+                          <ChevronRight className={`text-medieval-gold w-4 h-4 transition-transform ${homeBlessMenuOpen ? 'rotate-90' : 'group-hover:translate-x-1'}`} />
+                        </button>
+                        <AnimatePresence>
+                          {homeBlessMenuOpen && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              className="overflow-hidden space-y-2 pl-4"
+                            >
+                              <button 
+                                onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('bless'); }}
+                                className="flex items-center justify-between w-full p-3 bg-black/20 border border-medieval-gold/10 rounded hover:border-medieval-gold/40 hover:bg-medieval-gold/5 transition-all group"
+                              >
+                                <span className="font-bold uppercase tracking-wider text-[10px] text-medieval-text/80">{t('blessDeath')}</span>
+                                <ChevronRight className="text-medieval-gold/40 w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                              </button>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+
+                      {/* Attributes */}
+                      <div className="space-y-2">
+                        <button 
+                          onClick={() => setHomeAttrMenuOpen(!homeAttrMenuOpen)}
+                          className={`flex items-center justify-between w-full p-4 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold hover:bg-medieval-gold/5 transition-all group ${homeAttrMenuOpen ? 'border-medieval-gold bg-medieval-gold/5' : ''}`}
+                        >
+                          <div className="flex items-center gap-3">
+                            <Sparkles className="text-medieval-gold w-5 h-5" />
+                            <span className="font-bold uppercase tracking-wider text-xs">{t('attributes')}</span>
+                          </div>
+                          <ChevronRight className={`text-medieval-gold w-4 h-4 transition-transform ${homeAttrMenuOpen ? 'rotate-90' : 'group-hover:translate-x-1'}`} />
+                        </button>
+                        <AnimatePresence>
+                          {homeAttrMenuOpen && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              className="overflow-hidden space-y-2 pl-4"
+                            >
+                              <button 
+                                onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('atributos'); }}
+                                className="flex items-center justify-between w-full p-3 bg-black/20 border border-medieval-gold/10 rounded hover:border-medieval-gold/40 hover:bg-medieval-gold/5 transition-all group"
+                              >
+                                <span className="font-bold uppercase tracking-wider text-[10px] text-medieval-text/80">{t('attributes')}</span>
+                                <ChevronRight className="text-medieval-gold/40 w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                              </button>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+
+                      {/* Professions */}
+                      <div className="space-y-2">
+                        <button 
+                          onClick={() => setHomeProfMenuOpen(!homeProfMenuOpen)}
+                          className={`flex items-center justify-between w-full p-4 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold hover:bg-medieval-gold/5 transition-all group ${homeProfMenuOpen ? 'border-medieval-gold bg-medieval-gold/5' : ''}`}
+                        >
+                          <div className="flex items-center gap-3">
+                            <Briefcase className="text-medieval-gold w-5 h-5" />
+                            <span className="font-bold uppercase tracking-wider text-xs">{t('professions')}</span>
+                          </div>
+                          <ChevronRight className={`text-medieval-gold w-4 h-4 transition-transform ${homeProfMenuOpen ? 'rotate-90' : 'group-hover:translate-x-1'}`} />
+                        </button>
+                        
+                        <AnimatePresence>
+                          {homeProfMenuOpen && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              className="overflow-hidden space-y-2 pl-4"
+                            >
+                              <button 
+                                onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('crafting'); }}
+                                className="flex items-center justify-between w-full p-3 bg-black/20 border border-medieval-gold/10 rounded hover:border-medieval-gold/40 hover:bg-medieval-gold/5 transition-all group"
+                              >
+                                <div className="flex items-center gap-3">
+                                  <Hammer className="text-medieval-gold/60 w-4 h-4" />
+                                  <span className="font-bold uppercase tracking-wider text-[10px] text-medieval-text/80">{t('crafting')}</span>
+                                </div>
+                                <ChevronRight className="text-medieval-gold/40 w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                              </button>
+                              <button 
+                                onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('alchemy'); }}
+                                className="flex items-center justify-between w-full p-3 bg-black/20 border border-medieval-gold/10 rounded hover:border-medieval-gold/40 hover:bg-medieval-gold/5 transition-all group"
+                              >
+                                <div className="flex items-center gap-3">
+                                  <FlaskConical className="text-medieval-gold/60 w-4 h-4" />
+                                  <span className="font-bold uppercase tracking-wider text-[10px] text-medieval-text/80">{t('alchemy')}</span>
+                                </div>
+                                <ChevronRight className="text-medieval-gold/40 w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                              </button>
+                              <button 
+                                onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('farming'); }}
+                                className="flex items-center justify-between w-full p-3 bg-black/20 border border-medieval-gold/10 rounded hover:border-medieval-gold/40 hover:bg-medieval-gold/5 transition-all group"
+                              >
+                                <div className="flex items-center gap-3">
+                                  <Sprout className="text-medieval-gold/60 w-4 h-4" />
+                                  <span className="font-bold uppercase tracking-wider text-[10px] text-medieval-text/80">{t('farming')}</span>
+                                </div>
+                                <ChevronRight className="text-medieval-gold/40 w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                              </button>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
                     </div>
                   </div>
 
@@ -1141,19 +1274,7 @@ export default function App() {
                 className="space-y-12"
               >
                 {/* Sub-navegação Calculadoras */}
-                <div className="flex justify-center gap-4 mb-8">
-                  <button
-                    onClick={() => setCalcSubTab('crafting')}
-                    className={`px-6 py-3 rounded-sm font-black uppercase tracking-widest text-xs transition-all ${
-                      calcSubTab === 'crafting'
-                        ? 'bg-medieval-gold text-black shadow-[0_4px_0_#8b7326]'
-                        : 'bg-medieval-card text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50'
-                    }`}
-                  >
-                    <div className="flex items-center gap-2">
-                      <Hammer className="w-4 h-4" /> {t('crafting')}
-                    </div>
-                  </button>
+                <div className="flex flex-wrap justify-center gap-4 mb-8">
                   <button
                     onClick={() => setCalcSubTab('skills')}
                     className={`px-6 py-3 rounded-sm font-black uppercase tracking-widest text-xs transition-all ${
@@ -1164,6 +1285,18 @@ export default function App() {
                   >
                     <div className="flex items-center gap-2">
                       <Zap className="w-4 h-4" /> {t('skills')}
+                    </div>
+                  </button>
+                  <button
+                    onClick={() => setCalcSubTab('bless')}
+                    className={`px-6 py-3 rounded-sm font-black uppercase tracking-widest text-xs transition-all ${
+                      calcSubTab === 'bless'
+                        ? 'bg-medieval-gold text-black shadow-[0_4px_0_#8b7326]'
+                        : 'bg-medieval-card text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <TrendingUp className="w-4 h-4" /> {t('blessDeath')}
                     </div>
                   </button>
                   <button
@@ -1179,167 +1312,67 @@ export default function App() {
                     </div>
                   </button>
                   <button
-                    onClick={() => setCalcSubTab('bless')}
+                    onClick={() => setCalcSubTab('professions')}
                     className={`px-6 py-3 rounded-sm font-black uppercase tracking-widest text-xs transition-all ${
-                      calcSubTab === 'bless'
+                      calcSubTab === 'professions'
                         ? 'bg-medieval-gold text-black shadow-[0_4px_0_#8b7326]'
                         : 'bg-medieval-card text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50'
                     }`}
                   >
                     <div className="flex items-center gap-2">
-                      <TrendingUp className="w-4 h-4" /> {t('blessDeath')}
+                      <Briefcase className="w-4 h-4" /> {t('professions')}
                     </div>
                   </button>
                 </div>
 
-                {calcSubTab === 'crafting' ? (
-                  <div className="space-y-12">
-                    {/* Cabeçalho Crafting */}
-                    <header className="text-center mb-12">
-                      <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
-                        {t('crafting')}
-                      </h1>
-                      <p className="text-medieval-gold/80 font-mono text-sm">
-                        Cálculos de chance e guia de materiais
-                      </p>
-                    </header>
-
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                      {/* Calculadora */}
-                      <div className="lg:col-span-7 space-y-6">
-                        <div className="medieval-card bg-medieval-card p-6 sm:p-8 medieval-border rounded-lg">
-                          <div className="space-y-6">
-                            <div className="flex flex-col gap-2">
-                              <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest flex items-center gap-2">
-                                <Zap className="w-4 h-4" /> Sua Skill Atual
-                              </label>
-                              <input
-                                type="number"
-                                min="10"
-                                max="200"
-                                value={skill}
-                                onChange={(e) => setSkill(Number(e.target.value))}
-                                className="medieval-input text-2xl font-bold"
-                              />
-                            </div>
-
-                            <div className="flex flex-col gap-2">
-                              <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest flex items-center gap-2">
-                                <Hammer className="w-4 h-4" /> Item a ser Craftado
-                              </label>
-                              <select
-                                value={selectedItemName}
-                                onChange={(e) => setSelectedItemName(e.target.value)}
-                                className="medieval-input cursor-pointer appearance-none"
-                              >
-                                {CRAFT_ITEMS.map((category) => (
-                                  <optgroup key={category.category} label={category.category} className="bg-medieval-dark text-medieval-gold">
-                                    {category.items.map((item) => (
-                                      <option key={item.name} value={item.name}>
-                                        {item.name} (Mult: {item.multiplier})
-                                      </option>
-                                    ))}
-                                  </optgroup>
-                                ))}
-                              </select>
-                            </div>
-
-                            {selectedItem.req && (
-                              <div className="bg-black/40 p-4 rounded border border-medieval-gold/20 flex items-start gap-3">
-                                <Info className="w-5 h-5 text-medieval-gold shrink-0 mt-0.5" />
-                                <div>
-                                  <p className="text-xs uppercase text-medieval-gold/60 font-bold tracking-tighter">Requisitos:</p>
-                                  <p className="text-sm text-medieval-text italic">{selectedItem.req}</p>
-                                </div>
-                              </div>
-                            )}
-
-                            <div className="pt-6 border-t border-medieval-gold/20">
-                              <div className="text-center space-y-2">
-                                <p className="text-medieval-gold/60 uppercase text-xs font-bold tracking-[0.2em]">{t('successChance')}</p>
-                                <div className={`text-6xl sm:text-7xl font-black ${chance >= 70 ? 'text-green-500' : chance >= 40 ? 'text-medieval-gold' : 'text-medieval-red'}`}>
-                                  {chance}%
-                                </div>
-                                <div className="w-full h-3 bg-black/50 rounded-full overflow-hidden border border-medieval-gold/30 mt-4">
-                                  <motion.div 
-                                    initial={{ width: 0 }}
-                                    animate={{ width: `${chance}%` }}
-                                    className={`h-full ${chance >= 70 ? 'bg-green-500' : chance >= 40 ? 'bg-medieval-gold' : 'bg-medieval-red'}`}
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                {calcSubTab === 'professions' ? (
+                  <div className="space-y-8">
+                    <div className="flex flex-wrap justify-center gap-3">
+                      <button
+                        onClick={() => setProfSubTab('crafting')}
+                        className={`px-4 py-2 rounded-sm font-bold uppercase text-[10px] tracking-widest transition-all ${
+                          profSubTab === 'crafting'
+                            ? 'bg-medieval-gold/20 text-medieval-gold border border-medieval-gold'
+                            : 'bg-black/40 text-medieval-gold/40 border border-medieval-gold/10 hover:border-medieval-gold/30'
+                        }`}
+                      >
+                        <div className="flex items-center gap-2">
+                          <Hammer className="w-3 h-3" /> {t('crafting')}
                         </div>
-                      </div>
-
-                      {/* Twitch/Social */}
-                      <div className="lg:col-span-5 space-y-6">
-                        <div className="medieval-border rounded-lg overflow-hidden bg-black aspect-video">
-                          <iframe
-                            src={`https://player.twitch.tv/?channel=obellao_&parent=${window.location.hostname}`}
-                            height="100%" width="100%" allowFullScreen title="Twitch Player"
-                          />
+                      </button>
+                      <button
+                        onClick={() => setProfSubTab('alchemy')}
+                        className={`px-4 py-2 rounded-sm font-bold uppercase text-[10px] tracking-widest transition-all ${
+                          profSubTab === 'alchemy'
+                            ? 'bg-medieval-gold/20 text-medieval-gold border border-medieval-gold'
+                            : 'bg-black/40 text-medieval-gold/40 border border-medieval-gold/10 hover:border-medieval-gold/30'
+                        }`}
+                      >
+                        <div className="flex items-center gap-2">
+                          <FlaskConical className="w-3 h-3" /> {t('alchemy')}
                         </div>
-                        <div className="grid grid-cols-1 gap-4">
-                          <a href="https://www.twitch.tv/obellao_" target="_blank" rel="noopener noreferrer" className="medieval-button flex items-center justify-center gap-3">
-                            <Twitch className="w-6 h-6" /> Twitch
-                          </a>
-                          <a href="https://discord.gg/nacCypRkqQ" target="_blank" rel="noopener noreferrer" className="bg-[#5865F2] text-white font-bold py-3 px-6 rounded-sm flex items-center justify-center gap-3 hover:bg-[#4752C4] transition-colors">
-                            <MessageSquare className="w-6 h-6" /> Discord
-                          </a>
+                      </button>
+                      <button
+                        onClick={() => setProfSubTab('farming')}
+                        className={`px-4 py-2 rounded-sm font-bold uppercase text-[10px] tracking-widest transition-all ${
+                          profSubTab === 'farming'
+                            ? 'bg-medieval-gold/20 text-medieval-gold border border-medieval-gold'
+                            : 'bg-black/40 text-medieval-gold/40 border border-medieval-gold/10 hover:border-medieval-gold/30'
+                        }`}
+                      >
+                        <div className="flex items-center gap-2">
+                          <Sprout className="w-3 h-3" /> {t('farming')}
                         </div>
-                      </div>
+                      </button>
                     </div>
 
-                    {/* Tabela de Quebra */}
-                    <section className="space-y-6">
-                      <div className="flex items-center gap-3">
-                        <TableIcon className="text-medieval-gold w-6 h-6" />
-                        <h2 className="text-2xl font-black text-medieval-gold uppercase tracking-tight">{t('breakingGuide')}</h2>
-                      </div>
-                      <div className="medieval-border rounded-lg overflow-hidden bg-medieval-card overflow-x-auto">
-                        <table className="w-full text-left border-collapse">
-                          <thead>
-                            <tr className="bg-black/60 text-medieval-gold uppercase text-xs tracking-widest border-b border-medieval-gold/30">
-                              <th className="p-4 font-black">{t('item')}</th>
-                              <th className="p-4 text-center">{t('max')}</th>
-                              <th className="p-4 text-center">{t('min')}</th>
-                              <th className="p-4">{t('mathAvg')}</th>
-                              <th className="p-4">{t('practicalAvg')}</th>
-                              <th className="p-4">{t('verdict')}</th>
-                            </tr>
-                          </thead>
-                          <tbody className="text-sm">
-                            {BREAKING_DATA.map((row, idx) => (
-                              <tr key={idx} className={`border-b border-medieval-gold/10 hover:bg-white/5 ${idx % 2 === 0 ? 'bg-black/20' : ''}`}>
-                                <td className="p-4 font-bold text-medieval-gold">{row.item}</td>
-                                <td className="p-4 text-center">{row.max}</td>
-                                <td className="p-4 text-center">{row.min}</td>
-                                <td className="p-4">{row.mathAvg}</td>
-                                <td className="p-4 font-mono">{row.practicalAvg}</td>
-                                <td className="p-4">
-                                  <span className={`px-2 py-1 rounded-sm text-[10px] font-black uppercase ${
-                                    row.verdict.includes('QUEBRAR') ? 'text-green-400 border-green-500/30' :
-                                    row.verdict.includes('UPAR') ? 'text-blue-400 border-blue-500/30' : 'text-medieval-red border-medieval-red/30'
-                                  } border bg-black/40`}>
-                                    {
-                                      row.verdict === "Vender NPC ou UPAR SKILL" ? t('sellNpcOrUpgrade') :
-                                      row.verdict === "Vender NPC" ? t('sellNpc') :
-                                      row.verdict === "QUEBRAR PARA MATERIAL" ? t('breakForMaterial') :
-                                      row.verdict === "UPAR SKILL" ? t('upgradeSkill') :
-                                      row.verdict === "Vender NPC OU COLETAR MAT RAPIDO" ? t('sellNpcOrCollectFast') :
-                                      row.verdict === "QUEBRAR" ? t('break') :
-                                      row.verdict
-                                    }
-                                  </span>
-                                </td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
+                    {profSubTab === 'crafting' ? (
+                      <CraftingCalculator t={t} CRAFT_ITEMS={CRAFT_ITEMS} BREAKING_DATA={BREAKING_DATA} />
+                    ) : profSubTab === 'alchemy' ? (
+                      <AlchemyCalculator t={t} />
+                    ) : (
+                      <FarmingCalculator t={t} />
+                    )}
                   </div>
                 ) : calcSubTab === 'skills' ? (
                   <SkillCalculator 
