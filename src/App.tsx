@@ -19,6 +19,7 @@ import { LIBRARY_DATA, LibraryEntry } from './data/library';
 import { AlchemyCalculator } from './components/AlchemyCalculator';
 import { FarmingCalculator } from './components/FarmingCalculator';
 import { CraftingCalculator } from './components/CraftingCalculator';
+import { MiningCalculator } from './components/MiningCalculator';
 
 // --- Dados do Banco de Dados Embutido ---
 const CRAFT_ITEMS = [
@@ -864,7 +865,7 @@ function BlessCalculator({ t }: { t: any }) {
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>('home');
   const [calcSubTab, setCalcSubTab] = useState<'skills' | 'bless' | 'atributos' | 'professions'>('skills');
-  const [profSubTab, setProfSubTab] = useState<'crafting' | 'alchemy' | 'farming'>('crafting');
+  const [profSubTab, setProfSubTab] = useState<'crafting' | 'alchemy' | 'farming' | 'mining'>('crafting');
   const [wikiSubTab, setWikiSubTab] = useState<'server' | 'project'>('server');
   const [wikiMainTab, setWikiMainTab] = useState<'updates' | 'library'>('library');
   const [selectedBookId, setSelectedBookId] = useState<string>(LIBRARY_DATA[0]?.id || '');
@@ -1251,6 +1252,16 @@ export default function App() {
                                 </div>
                                 <ChevronRight className="text-medieval-gold/40 w-3 h-3 group-hover:translate-x-1 transition-transform" />
                               </button>
+                              <button 
+                                onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('mining'); }}
+                                className="flex items-center justify-between w-full p-3 bg-black/20 border border-medieval-gold/10 rounded hover:border-medieval-gold/40 hover:bg-medieval-gold/5 transition-all group"
+                              >
+                                <div className="flex items-center gap-3">
+                                  <Pickaxe className="text-medieval-gold/60 w-4 h-4" />
+                                  <span className="font-bold uppercase tracking-wider text-[10px] text-medieval-text/80">{t('mining')}</span>
+                                </div>
+                                <ChevronRight className="text-medieval-gold/40 w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                              </button>
                             </motion.div>
                           )}
                         </AnimatePresence>
@@ -1457,14 +1468,28 @@ export default function App() {
                           <Sprout className="w-3 h-3" /> {t('farming')}
                         </div>
                       </button>
+                      <button
+                        onClick={() => setProfSubTab('mining')}
+                        className={`px-4 py-2 rounded-sm font-bold uppercase text-[10px] tracking-widest transition-all ${
+                          profSubTab === 'mining'
+                            ? 'bg-medieval-gold/20 text-medieval-gold border border-medieval-gold'
+                            : 'bg-black/40 text-medieval-gold/40 border border-medieval-gold/10 hover:border-medieval-gold/30'
+                        }`}
+                      >
+                        <div className="flex items-center gap-2">
+                          <Pickaxe className="w-3 h-3" /> {t('mining')}
+                        </div>
+                      </button>
                     </div>
 
                     {profSubTab === 'crafting' ? (
                       <CraftingCalculator t={t} CRAFT_ITEMS={CRAFT_ITEMS} BREAKING_DATA={BREAKING_DATA} />
                     ) : profSubTab === 'alchemy' ? (
                       <AlchemyCalculator t={t} />
-                    ) : (
+                    ) : profSubTab === 'farming' ? (
                       <FarmingCalculator t={t} />
+                    ) : (
+                      <MiningCalculator t={t} />
                     )}
                   </div>
                 ) : calcSubTab === 'skills' ? (
@@ -1719,10 +1744,10 @@ export default function App() {
                       <div className="p-3 bg-medieval-gold/10 rounded-lg">
                         <Pickaxe className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-2xl font-black text-medieval-gold uppercase">{t('miner')}</h2>
+                      <h2 className="text-2xl font-black text-medieval-gold uppercase">{t('mining')}</h2>
                     </div>
                     <p className="text-medieval-text/70 text-sm leading-relaxed">
-                      {t('miningDesc')}
+                      {t('miningGuideSoon')}
                     </p>
                   </div>
 
