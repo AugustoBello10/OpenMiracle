@@ -26,75 +26,123 @@ const CRAFT_ITEMS = [
     category: "giantGemsRelics",
     icon: <Gem className="w-5 h-5" />,
     items: [
-      { name: "Giant Ruby", multiplier: 2, req: "10 Small Rubys" },
-      { name: "Giant Emerald", multiplier: 2, req: "10 Small Emeralds" },
-      { name: "Giant Sapphire", multiplier: 2, req: "10 Small Sapphires" },
-      { name: "Giant Amethyst", multiplier: 2, req: "10 Small Amethysts" },
+      { name: "Giant Ruby", multiplier: 2, req: "10 Small Rubys", materials: [{ name: "Small Ruby", amount: 10 }] },
+      { name: "Giant Emerald", multiplier: 2, req: "10 Small Emeralds", materials: [{ name: "Small Emerald", amount: 10 }] },
+      { name: "Giant Sapphire", multiplier: 2, req: "10 Small Sapphires", materials: [{ name: "Small Sapphire", amount: 10 }] },
+      { name: "Giant Amethyst", multiplier: 2, req: "10 Small Amethysts", materials: [{ name: "Small Amethyst", amount: 10 }] },
     ]
   },
   {
     category: "toolsPicks",
     icon: <Pickaxe className="w-5 h-5" />,
     items: [
-      { name: "Modified Pick", multiplier: 2, req: "1 Pick + 5 Steels" },
-      { name: "Advanced Pick", multiplier: 1.5, req: "1 Pick + 10 Steels" },
-      { name: "Enhanced Pick", multiplier: 1, req: "1 Pick + 20 Steels" },
-      { name: "Diamon Knife", multiplier: 1, req: "10 small diamonds + 5 Hell Steels + 1 Combat Knife" },
+      { name: "Modified Pick", multiplier: 2, req: "1 Pick + 5 Steels", materials: [{ name: "Pick", amount: 1 }, { name: "Steel", amount: 5 }] },
+      { name: "Advanced Pick", multiplier: 1.5, req: "1 Pick + 10 Steels", materials: [{ name: "Pick", amount: 1 }, { name: "Steel", amount: 10 }] },
+      { name: "Enhanced Pick", multiplier: 1, req: "1 Pick + 20 Steels", materials: [{ name: "Pick", amount: 1 }, { name: "Steel", amount: 20 }] },
+      { name: "Diamon Knife", multiplier: 1, req: "10 small diamonds + 5 Hell Steels + 1 Combat Knife", materials: [{ name: "Small Diamond", amount: 10 }, { name: "Hell Steel", amount: 5 }, { name: "Combat Knife", amount: 1 }] },
     ]
   },
   {
     category: "rods",
     icon: <Wand2 className="w-5 h-5" />,
     items: [
-      { name: "Reinforced Rod", multiplier: 2, req: "1 fishing rod + 5 steels" },
-      { name: "Engineered Rod", multiplier: 1.5, req: "1 fishing rod + 10 steels + 1 draconian steel" },
-      { name: "Volcanic Rod", multiplier: 1, req: "1 fishing rod + 20 steels + 10 glimmering soils + 5 draconian steels + 3 hell steels" },
-      { name: "Golden Rod", multiplier: 0.5, req: "1 fishing rod + 40 steels + 10 draconian steels + 3 gold ingot + 3 hell steels" },
+      { name: "Reinforced Rod", multiplier: 2, req: "1 fishing rod + 5 steels", materials: [{ name: "Fishing Rod", amount: 1 }, { name: "Steel", amount: 5 }] },
+      { name: "Engineered Rod", multiplier: 1.5, req: "1 fishing rod + 10 steels + 1 draconian steel", materials: [{ name: "Fishing Rod", amount: 1 }, { name: "Steel", amount: 10 }, { name: "Draconian Steel", amount: 1 }] },
+      { name: "Volcanic Rod", multiplier: 1, req: "1 fishing rod + 20 steels + 10 glimmering soils + 5 draconian steels + 3 hell steels", materials: [{ name: "Fishing Rod", amount: 1 }, { name: "Steel", amount: 20 }, { name: "Glimmering Soil", amount: 10 }, { name: "Draconian Steel", amount: 5 }, { name: "Hell Steel", amount: 3 }] },
+      { name: "Golden Rod", multiplier: 0.5, req: "1 fishing rod + 40 steels + 10 draconian steels + 3 gold ingot + 3 hell steels", materials: [{ name: "Fishing Rod", amount: 1 }, { name: "Steel", amount: 40 }, { name: "Draconian Steel", amount: 10 }, { name: "Gold Ingot", amount: 3 }, { name: "Hell Steel", amount: 3 }] },
     ]
   },
   {
     category: "mysticRunes",
     icon: <Zap className="w-5 h-5" />,
     items: [
-      { name: "Ember Rune", multiplier: 1, req: "5 Ember Fragments + 3 Pulverized Ores + 1 Onyx" },
-      { name: "Protector Rune", multiplier: 1, req: "5 Protector Fragments + 3 Pulverized Ores + 1 Onyx" },
-      { name: "Obsidian Rune", multiplier: 1, req: "5 Protector Fragments + 3 Pulverized Ores + 1 Onyx" },
-      { name: "Astral Rune", multiplier: 1, req: "5 Astral Fragments + 3 Pulverized Ores + 1 Onyx" },
-      { name: "Aegis Rune", multiplier: 1, req: "5 Aegis Fragments + 3 Pulverized Ores + 1 Onyx" },
-      { name: "Molten Rune", multiplier: 1, req: "5 Molten Fragments + 3 Pulverized Ores + 1 Onyx" },
+      { name: "Ember Rune", multiplier: 1, req: "5 Ember Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Ember Fragment", amount: 5 }, { name: "Pulverized Ore", amount: 3 }, { name: "Onyx", amount: 1 }] },
+      { name: "Protector Rune", multiplier: 1, req: "5 Protector Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Protector Fragment", amount: 5 }, { name: "Pulverized Ore", amount: 3 }, { name: "Onyx", amount: 1 }] },
+      { name: "Obsidian Rune", multiplier: 1, req: "5 Protector Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Protector Fragment", amount: 5 }, { name: "Pulverized Ore", amount: 3 }, { name: "Onyx", amount: 1 }] },
+      { name: "Astral Rune", multiplier: 1, req: "5 Astral Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Astral Fragment", amount: 5 }, { name: "Pulverized Ore", amount: 3 }, { name: "Onyx", amount: 1 }] },
+      { name: "Aegis Rune", multiplier: 1, req: "5 Aegis Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Aegis Fragment", amount: 5 }, { name: "Pulverized Ore", amount: 3 }, { name: "Onyx", amount: 1 }] },
+      { name: "Molten Rune", multiplier: 1, req: "5 Molten Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Molten Fragment", amount: 5 }, { name: "Pulverized Ore", amount: 3 }, { name: "Onyx", amount: 1 }] },
     ]
   },
   {
     category: "ammunition",
     icon: <Sword className="w-5 h-5" />,
     items: [
-      { name: "10x Steel Bolts", multiplier: 1.2, req: "10 bolt + 1 steel + 1x Natural Soil" },
+      { name: "10x Steel Bolts", multiplier: 1.2, req: "10 bolt + 1 steel + 1x Natural Soil", materials: [{ name: "Bolt", amount: 10 }, { name: "Steel", amount: 1 }, { name: "Natural Soil", amount: 1 }] },
     ]
   },
   {
     category: "others",
     icon: <Sword className="w-5 h-5" />,
     items: [
-      { name: "Fiery Stone", multiplier: 0.5, req: "5 Glimmering Soils" },
+      { name: "Fiery Stone", multiplier: 0.5, req: "5 Glimmering Soils", materials: [{ name: "Glimmering Soil", amount: 5 }] },
     ]
   }
 ];
 
 const BREAKING_DATA = [
-  { item: "Short Sword", max: 1, min: 0, mathAvg: "0.5 Steels", practicalAvg: "0.27 Steels", verdict: "Vender NPC ou UPAR SKILL" },
-  { item: "Sword", max: 2, min: 0, mathAvg: "1 Steel", practicalAvg: "1.00 Steel", verdict: "Vender NPC" },
-  { item: "Plate Shield", max: 3, min: 0, mathAvg: "1.5 Steels", practicalAvg: "1.52 Steels", verdict: "Vender NPC" },
-  { item: "Dwarven Shield", max: 8, min: 0, mathAvg: "4 Steels", practicalAvg: "4.35 Steels", verdict: "QUEBRAR PARA MATERIAL" },
-  { item: "Studded Armor", max: 1, min: 0, mathAvg: "1 Steel", practicalAvg: "0.47 Steels", verdict: "UPAR SKILL" },
-  { item: "Chain Armor", max: 5, min: 0, mathAvg: "2.5 Steels", practicalAvg: "2.60 Steels", verdict: "Vender NPC OU COLETAR MAT RAPIDO" },
-  { item: "Mace", max: 2, min: 0, mathAvg: "1 Steel", practicalAvg: "1.10 Steels", verdict: "Vender NPC" },
-  { item: "Longsword", max: 4, min: 0, mathAvg: "2 Steels", practicalAvg: "1.85 Steels", verdict: "Vender NPC" },
-  { item: "Chain Helmet", max: 1, min: 0, mathAvg: "0.5 Steel", practicalAvg: "0.50 Steels", verdict: "UPAR SKILL" },
-  { item: "Steel Shield", max: 6, min: 0, mathAvg: "3 Steels", practicalAvg: "2.90 Steels", verdict: "Vender NPC OU COLETAR MAT RAPIDO" },
-  { item: "Scale Armor", max: 8, min: 0, mathAvg: "4 Steels", practicalAvg: "3.57 Steels", verdict: "QUEBRAR" },
-  { item: "Wooden Shield", max: 1, min: 0, mathAvg: "0.5 Steels", practicalAvg: "0.30 Steels", verdict: "UPAR SKILL" },
-  { item: "Hand Axe", max: 1, min: 0, mathAvg: "0.5 Steels", practicalAvg: "0.30 Steels", verdict: "UPAR SKILL" },
-  { item: "Axe", max: 1, min: 0, mathAvg: "0.5 Steels", practicalAvg: "0.32 Steels", verdict: "UPAR SKILL" },
+  {
+    category: "swords",
+    items: [
+      { item: "Short Sword", max: 1, min: 0, mathAvg: "0.5 Steels", practicalAvg: "0.27 Steels", verdict: "Vender NPC ou UPAR SKILL", minSkill: 10 },
+      { item: "Sword", max: 2, min: 0, mathAvg: "1 Steel", practicalAvg: "1.00 Steel", verdict: "Vender NPC", minSkill: 10 },
+      { item: "Longsword", max: 4, min: 0, mathAvg: "2 Steels", practicalAvg: "1.85 Steels", verdict: "Vender NPC", minSkill: 10 },
+    ]
+  },
+  {
+    category: "axes",
+    items: [
+      { item: "Hand Axe", max: 1, min: 0, mathAvg: "0.5 Steels", practicalAvg: "0.30 Steels", verdict: "UPAR SKILL", minSkill: 10 },
+      { item: "Axe", max: 1, min: 0, mathAvg: "0.5 Steels", practicalAvg: "0.32 Steels", verdict: "UPAR SKILL", minSkill: 10 },
+      { item: "Hatchet", max: 2, min: 0, mathAvg: "1 Steel", practicalAvg: "-", verdict: "Em testes", minSkill: 10 },
+      { item: "Golden Sickle", max: "2 Steels, 1 Hell", min: 0, mathAvg: "-", practicalAvg: "-", verdict: "Em testes", minSkill: 10 },
+      { item: "Battle Axe", max: 8, min: 0, mathAvg: "4 Steels", practicalAvg: "-", verdict: "Em testes", minSkill: 10 },
+      { item: "Orcish Axe", max: "2 Steels, 3 Drac", min: 0, mathAvg: "-", practicalAvg: "-", verdict: "Em testes", minSkill: 20 },
+      { item: "Barbarian Axe", max: "2 Steels, 3 Drac", min: 0, mathAvg: "-", practicalAvg: "-", verdict: "Em testes", minSkill: 20 },
+      { item: "Obsidian Lance", max: "4 Steels, 7 Drac", min: 0, mathAvg: "-", practicalAvg: "-", verdict: "Em testes", minSkill: 20 },
+      { item: "Double Axe", max: "12 Steels, 2 Drac", min: 0, mathAvg: "-", practicalAvg: "-", verdict: "Em testes", minSkill: 20 },
+      { item: "Daramanian Waraxe", max: "12 Steels, 8 Drac", min: 0, mathAvg: "-", practicalAvg: "-", verdict: "Em testes", minSkill: 20 },
+      { item: "Halberd", max: "7 Steels, 5 Drac", min: 0, mathAvg: "-", practicalAvg: "-", verdict: "Em testes", minSkill: 20 },
+      { item: "Naginata", max: "10 Steels, 12 Drac", min: 0, mathAvg: "-", practicalAvg: "-", verdict: "Em testes", minSkill: 20 },
+      { item: "Dwarven Axe", max: "5 Steels, 4 Drac, 6 Hell", min: 0, mathAvg: "-", practicalAvg: "-", verdict: "Em testes", minSkill: 30 },
+      { item: "Knight Axe", max: "8 Drac, 12 Hell", min: 0, mathAvg: "-", practicalAvg: "-", verdict: "Em testes", minSkill: 30 },
+      { item: "Fire Axe", max: "30 Drac, 50 Hell", min: 0, mathAvg: "-", practicalAvg: "-", verdict: "Em testes", minSkill: 30 },
+      { item: "Twin Axe", max: "100 Drac, 80 Hell", min: 0, mathAvg: "-", practicalAvg: "-", verdict: "Em testes", minSkill: 30 },
+      { item: "Guardian Halberd", max: "30 Drac, 40 Hell", min: 0, mathAvg: "-", practicalAvg: "-", verdict: "Em testes", minSkill: 30 },
+      { item: "Dragon Lance", max: "40 Drac, 50 Hell", min: 0, mathAvg: "-", practicalAvg: "-", verdict: "Em testes", minSkill: 30 },
+      { item: "Ravager Axe", max: "100 Drac, 90 Hell", min: 0, mathAvg: "-", practicalAvg: "-", verdict: "Em testes", minSkill: 30 },
+      { item: "Stonecutter Axe", max: "150 Drac, 150 Hell", min: 0, mathAvg: "-", practicalAvg: "-", verdict: "Em testes", minSkill: 30 },
+    ]
+  },
+  {
+    category: "clubs",
+    items: [
+      { item: "Mace", max: 2, min: 0, mathAvg: "1 Steel", practicalAvg: "1.10 Steels", verdict: "Vender NPC", minSkill: 10 },
+    ]
+  },
+  {
+    category: "shields",
+    items: [
+      { item: "Plate Shield", max: 3, min: 0, mathAvg: "1.5 Steels", practicalAvg: "1.52 Steels", verdict: "Vender NPC", minSkill: 10 },
+      { item: "Dwarven Shield", max: 8, min: 0, mathAvg: "4 Steels", practicalAvg: "4.35 Steels", verdict: "QUEBRAR PARA MATERIAL", minSkill: 20 },
+      { item: "Steel Shield", max: 6, min: 0, mathAvg: "3 Steels", practicalAvg: "2.90 Steels", verdict: "Vender NPC OU COLETAR MAT RAPIDO", minSkill: 20 },
+      { item: "Wooden Shield", max: 1, min: 0, mathAvg: "0.5 Steels", practicalAvg: "0.30 Steels", verdict: "UPAR SKILL", minSkill: 10 },
+    ]
+  },
+  {
+    category: "armors",
+    items: [
+      { item: "Studded Armor", max: 1, min: 0, mathAvg: "1 Steel", practicalAvg: "0.47 Steels", verdict: "UPAR SKILL", minSkill: 10 },
+      { item: "Chain Armor", max: 5, min: 0, mathAvg: "2.5 Steels", practicalAvg: "2.60 Steels", verdict: "Vender NPC OU COLETAR MAT RAPIDO", minSkill: 10 },
+      { item: "Scale Armor", max: 8, min: 0, mathAvg: "4 Steels", practicalAvg: "3.57 Steels", verdict: "QUEBRAR", minSkill: 10 },
+    ]
+  },
+  {
+    category: "helmets",
+    items: [
+      { item: "Chain Helmet", max: 1, min: 0, mathAvg: "0.5 Steel", practicalAvg: "0.50 Steels", verdict: "UPAR SKILL", minSkill: 10 },
+    ]
+  }
 ];
 
 const ATTRIBUTE_CHANCES: Record<string, number[]> = {
@@ -482,169 +530,183 @@ function SkillCalculator({
                 </select>
               </div>
 
-              {/* Skill Atual */}
-              <div className="flex flex-col gap-2">
-                <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                  {t('currentSkill')}
-                </label>
-                <input
-                  type="number"
-                  value={currentSkill}
-                  onChange={(e) => setCurrentSkill(Number(e.target.value))}
-                  className="medieval-input"
-                />
-              </div>
-
-              {/* Skill Alvo */}
-              <div className="flex flex-col gap-2">
-                <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                  {t('targetSkill')}
-                </label>
-                <input
-                  type="number"
-                  value={targetSkill}
-                  onChange={(e) => setTargetSkill(Number(e.target.value))}
-                  className="medieval-input"
-                />
-              </div>
-
-              {/* % Restante */}
-              <div className="flex flex-col gap-2">
-                <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                  {t('remainingPercent')}
-                </label>
-                <input
-                  type="number"
-                  value={skillPercentage}
-                  onChange={(e) => setSkillPercentage(Number(e.target.value))}
-                  className="medieval-input"
-                />
-              </div>
-
-              {/* Tipo de Arma */}
-              <div className="flex flex-col gap-2">
-                <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                  {t('trainingMode')}
-                </label>
-                <div className="grid grid-cols-2 gap-2">
-                  <button
-                    onClick={() => setWeaponType('normal')}
-                    className={`text-[10px] font-bold py-2 px-3 border rounded transition-all ${
-                      weaponType === 'normal' 
-                        ? 'bg-medieval-gold text-black border-medieval-gold' 
-                        : 'bg-black/40 text-medieval-gold/60 border-medieval-gold/20 hover:border-medieval-gold/40'
-                    }`}
-                  >
-                    {t('normalWeapon').toUpperCase()}
-                  </button>
-                  <button
-                    onClick={() => setWeaponType('training')}
-                    className={`text-[10px] font-bold py-2 px-3 border rounded transition-all ${
-                      weaponType === 'training' 
-                        ? 'bg-medieval-gold text-black border-medieval-gold' 
-                        : 'bg-black/40 text-medieval-gold/60 border-medieval-gold/20 hover:border-medieval-gold/40'
-                    }`}
-                  >
-                    {t('trainingWeapon').toUpperCase()}
-                  </button>
+              {skillType === 'Magic Level' ? (
+                <div className="sm:col-span-2 py-12 flex flex-col items-center justify-center text-center space-y-4 border-t border-medieval-gold/10 mt-4">
+                  <Hammer className="w-12 h-12 text-medieval-gold animate-bounce" />
+                  <h2 className="text-xl font-black text-medieval-gold uppercase tracking-widest">{t('underConstructionCalc')}</h2>
+                  <p className="text-medieval-text/60 max-w-md italic text-xs">
+                    Estamos trabalhando nas fórmulas para o Magic Level. Em breve estará disponível!
+                  </p>
                 </div>
-              </div>
-
-              {/* Slot Arma */}
-              <div className="flex flex-col gap-2 sm:col-span-2">
-                <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                  {weaponType === 'training' ? t('trainingWeaponSelect') : t('weaponReduction')}
-                </label>
-                {weaponType === 'training' ? (
-                  <select
-                    value={selectedTrainingWeapon}
-                    onChange={(e) => setSelectedTrainingWeapon(e.target.value)}
-                    className="medieval-input cursor-pointer appearance-none"
-                  >
-                    {TRAINING_WEAPONS_DATA[weaponCategory].map(w => (
-                      <option key={w.name} value={w.name}>
-                        {w.name} {w.reduction > 0 ? `(-${w.reduction}%)` : ''}
-                      </option>
-                    ))}
-                  </select>
-                ) : (
-                  <select
-                    value={weaponReduction}
-                    onChange={(e) => setWeaponReduction(Number(e.target.value))}
-                    className="medieval-input cursor-pointer appearance-none"
-                  >
-                    <option value="0">Nenhum Atributo</option>
-                    <option value="1">-1% atack interval</option>
-                    <option value="2">-2% atack interval</option>
-                    <option value="3">-3% atack interval</option>
-                    <option value="4">-4% atack interval</option>
-                    <option value="5">-5% atack interval</option>
-                    <option value="6">-6% atack interval</option>
-                    <option value="7">-7% atack interval</option>
-                    <option value="8">-8% atack interval</option>
-                    <option value="9">-9% atack interval</option>
-                  </select>
-                )}
-              </div>
-
-              {/* Slots de Equipamento */}
-              <div className="sm:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {equipReductions.map((red, idx) => (
-                  <div key={idx} className="flex flex-col gap-2">
-                    <label className="text-medieval-gold/60 font-bold uppercase text-[9px] tracking-widest">
-                      {t('extraEquip')} {idx + 1}
+              ) : (
+                <>
+                  {/* Skill Atual */}
+                  <div className="flex flex-col gap-2">
+                    <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
+                      {t('currentSkill')}
                     </label>
-                    <select
-                      value={red}
-                      onChange={(e) => handleEquipReductionChange(idx, Number(e.target.value))}
-                      className="medieval-input text-sm cursor-pointer appearance-none"
-                    >
-                      <option value="0">{t('none')}</option>
-                      <option value="1">-1% atack interval</option>
-                      <option value="2">-2% atack interval</option>
-                      <option value="3">-3% atack interval</option>
-                      <option value="4">-4% atack interval</option>
-                      <option value="5">-5% atack interval</option>
-                      <option value="6">-6% atack interval</option>
-                      <option value="7">-7% atack interval</option>
-                      <option value="8">-8% atack interval</option>
-                      <option value="9">-9% atack interval</option>
-                    </select>
+                    <input
+                      type="number"
+                      value={currentSkill}
+                      onChange={(e) => setCurrentSkill(Number(e.target.value))}
+                      className="medieval-input"
+                    />
                   </div>
-                ))}
-              </div>
-              
-              <div className="sm:col-span-2">
-                <p className="text-[9px] text-medieval-gold/40 italic text-center">
-                  * Reduções são multiplicativas para evitar que o intervalo chegue a 0ms.
-                </p>
-              </div>
+
+                  {/* Skill Alvo */}
+                  <div className="flex flex-col gap-2">
+                    <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
+                      {t('targetSkill')}
+                    </label>
+                    <input
+                      type="number"
+                      value={targetSkill}
+                      onChange={(e) => setTargetSkill(Number(e.target.value))}
+                      className="medieval-input"
+                    />
+                  </div>
+
+                  {/* % Restante */}
+                  <div className="flex flex-col gap-2">
+                    <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
+                      {t('remainingPercent')}
+                    </label>
+                    <input
+                      type="number"
+                      value={skillPercentage}
+                      onChange={(e) => setSkillPercentage(Number(e.target.value))}
+                      className="medieval-input"
+                    />
+                  </div>
+
+                  {/* Tipo de Arma */}
+                  <div className="flex flex-col gap-2">
+                    <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
+                      {t('trainingMode')}
+                    </label>
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        onClick={() => setWeaponType('normal')}
+                        className={`text-[10px] font-bold py-2 px-3 border rounded transition-all ${
+                          weaponType === 'normal' 
+                            ? 'bg-medieval-gold text-black border-medieval-gold' 
+                            : 'bg-black/40 text-medieval-gold/60 border-medieval-gold/20 hover:border-medieval-gold/40'
+                        }`}
+                      >
+                        {t('normalWeapon').toUpperCase()}
+                      </button>
+                      <button
+                        onClick={() => setWeaponType('training')}
+                        className={`text-[10px] font-bold py-2 px-3 border rounded transition-all ${
+                          weaponType === 'training' 
+                            ? 'bg-medieval-gold text-black border-medieval-gold' 
+                            : 'bg-black/40 text-medieval-gold/60 border-medieval-gold/20 hover:border-medieval-gold/40'
+                        }`}
+                      >
+                        {t('trainingWeapon').toUpperCase()}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Slot Arma */}
+                  <div className="flex flex-col gap-2 sm:col-span-2">
+                    <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
+                      {weaponType === 'training' ? t('trainingWeaponSelect') : t('weaponReduction')}
+                    </label>
+                    {weaponType === 'training' ? (
+                      <select
+                        value={selectedTrainingWeapon}
+                        onChange={(e) => setSelectedTrainingWeapon(e.target.value)}
+                        className="medieval-input cursor-pointer appearance-none"
+                      >
+                        {TRAINING_WEAPONS_DATA[weaponCategory].map(w => (
+                          <option key={w.name} value={w.name}>
+                            {w.name} {w.reduction > 0 ? `(-${w.reduction}%)` : ''}
+                          </option>
+                        ))}
+                      </select>
+                    ) : (
+                      <select
+                        value={weaponReduction}
+                        onChange={(e) => setWeaponReduction(Number(e.target.value))}
+                        className="medieval-input cursor-pointer appearance-none"
+                      >
+                        <option value="0">Nenhum Atributo</option>
+                        <option value="1">-1% atack interval</option>
+                        <option value="2">-2% atack interval</option>
+                        <option value="3">-3% atack interval</option>
+                        <option value="4">-4% atack interval</option>
+                        <option value="5">-5% atack interval</option>
+                        <option value="6">-6% atack interval</option>
+                        <option value="7">-7% atack interval</option>
+                        <option value="8">-8% atack interval</option>
+                        <option value="9">-9% atack interval</option>
+                      </select>
+                    )}
+                  </div>
+
+                  {/* Slots de Equipamento */}
+                  <div className="sm:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    {equipReductions.map((red, idx) => (
+                      <div key={idx} className="flex flex-col gap-2">
+                        <label className="text-medieval-gold/60 font-bold uppercase text-[9px] tracking-widest">
+                          {t('extraEquip')} {idx + 1}
+                        </label>
+                        <select
+                          value={red}
+                          onChange={(e) => handleEquipReductionChange(idx, Number(e.target.value))}
+                          className="medieval-input text-sm cursor-pointer appearance-none"
+                        >
+                          <option value="0">{t('none')}</option>
+                          <option value="1">-1% atack interval</option>
+                          <option value="2">-2% atack interval</option>
+                          <option value="3">-3% atack interval</option>
+                          <option value="4">-4% atack interval</option>
+                          <option value="5">-5% atack interval</option>
+                          <option value="6">-6% atack interval</option>
+                          <option value="7">-7% atack interval</option>
+                          <option value="8">-8% atack interval</option>
+                          <option value="9">-9% atack interval</option>
+                        </select>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <div className="sm:col-span-2">
+                    <p className="text-[9px] text-medieval-gold/40 italic text-center">
+                      * Reduções são multiplicativas para evitar que o intervalo chegue a 0ms.
+                    </p>
+                  </div>
+                </>
+              )}
             </div>
 
-            <div className="mt-8 pt-8 border-t border-medieval-gold/20">
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="text-center p-4 bg-black/40 rounded border border-medieval-gold/10">
-                  <p className="text-medieval-gold/60 uppercase text-[9px] font-black tracking-widest mb-1">{t('totalHits')}</p>
-                  <div className="text-2xl font-black text-medieval-gold">{result.points.toLocaleString()}</div>
-                </div>
-                <div className="text-center p-4 bg-medieval-gold/5 rounded border border-medieval-gold/30">
-                  <p className="text-medieval-gold uppercase text-[9px] font-black tracking-widest mb-1">{t('estimatedTime')}</p>
-                  <div className="text-2xl font-black text-medieval-gold">{formatTime(result.seconds)}</div>
-                </div>
-                <div className="text-center p-4 bg-black/40 rounded border border-medieval-gold/10">
-                  <p className="text-medieval-gold/60 uppercase text-[9px] font-black tracking-widest mb-1">{t('neededWeapons')}</p>
-                  <div className="text-2xl font-black text-medieval-gold">
-                    {weaponsNeeded > 0 ? `${weaponsNeeded}x` : 'N/A'}
+            {skillType !== 'Magic Level' && (
+              <div className="mt-8 pt-8 border-t border-medieval-gold/20">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div className="text-center p-4 bg-black/40 rounded border border-medieval-gold/10">
+                    <p className="text-medieval-gold/60 uppercase text-[9px] font-black tracking-widest mb-1">{t('totalHits')}</p>
+                    <div className="text-2xl font-black text-medieval-gold">{result.points.toLocaleString()}</div>
+                  </div>
+                  <div className="text-center p-4 bg-medieval-gold/5 rounded border border-medieval-gold/30">
+                    <p className="text-medieval-gold uppercase text-[9px] font-black tracking-widest mb-1">{t('estimatedTime')}</p>
+                    <div className="text-2xl font-black text-medieval-gold">{formatTime(result.seconds)}</div>
+                  </div>
+                  <div className="text-center p-4 bg-black/40 rounded border border-medieval-gold/10">
+                    <p className="text-medieval-gold/60 uppercase text-[9px] font-black tracking-widest mb-1">{t('neededWeapons')}</p>
+                    <div className="text-2xl font-black text-medieval-gold">
+                      {weaponsNeeded > 0 ? `${weaponsNeeded}x` : 'N/A'}
+                    </div>
                   </div>
                 </div>
+                
+                <div className="mt-4 text-center">
+                  <p className="text-[10px] text-medieval-gold/40 font-mono">
+                    {t('finalInterval')}: <span className="text-medieval-gold">{(result.interval / 1000).toFixed(3)}s</span> ({result.interval.toFixed(0)}ms)
+                  </p>
+                </div>
               </div>
-              
-              <div className="mt-4 text-center">
-                <p className="text-[10px] text-medieval-gold/40 font-mono">
-                  {t('finalInterval')}: <span className="text-medieval-gold">{(result.interval / 1000).toFixed(3)}s</span> ({result.interval.toFixed(0)}ms)
-                </p>
-              </div>
-            </div>
+            )}
           </div>
         </div>
 
@@ -789,7 +851,7 @@ export default function App() {
   const [calcSubTab, setCalcSubTab] = useState<'skills' | 'bless' | 'atributos' | 'professions'>('skills');
   const [profSubTab, setProfSubTab] = useState<'crafting' | 'alchemy' | 'farming'>('crafting');
   const [wikiSubTab, setWikiSubTab] = useState<'server' | 'project'>('server');
-  const [wikiMainTab, setWikiMainTab] = useState<'updates' | 'library'>('updates');
+  const [wikiMainTab, setWikiMainTab] = useState<'updates' | 'library'>('library');
   const [selectedBookId, setSelectedBookId] = useState<string>(LIBRARY_DATA[0]?.id || '');
   const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
   const [selectedPatchVersion, setSelectedPatchVersion] = useState(SERVER_PATCH_NOTES[0].version);
@@ -1256,6 +1318,16 @@ export default function App() {
                       <a href="https://discord.gg/nacCypRkqQ" target="_blank" rel="noopener noreferrer" className="bg-[#5865F2] text-white font-bold py-3 px-6 rounded-sm flex items-center justify-center gap-3 hover:bg-[#4752C4] transition-colors">
                         <MessageSquare className="w-5 h-5" /> {t('ourDiscord')}
                       </a>
+                    </div>
+                  </div>
+
+                  {/* Twitch Camera Card */}
+                  <div className="medieval-card bg-medieval-card p-4 medieval-border rounded-lg flex flex-col overflow-hidden">
+                    <div className="medieval-border rounded-sm overflow-hidden bg-black aspect-video h-full">
+                      <iframe
+                        src={`https://player.twitch.tv/?channel=obellao_&parent=${window.location.hostname}`}
+                        height="100%" width="100%" allowFullScreen title="Twitch Player"
+                      />
                     </div>
                   </div>
                 </div>
