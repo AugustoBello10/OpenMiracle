@@ -98,6 +98,8 @@ export const translations = {
     // Professions Guide Section
     professionsSubtitle: "Aprenda as artes e ofícios do Miracle 7.4",
     craftingDesc: "A arte de criar equipamentos, ferramentas e itens valiosos. Essencial para qualquer aventureiro que busca independência.",
+    craftingSubtitle: "Cálculos de chance e guia de materiais",
+    requirements: "Requisitos",
     craftingTutorial: "Tutorial de Crafting",
     miningDesc: "Em breve: Guia completo sobre extração de minérios e gemas.",
     farmingDesc: "Em breve: Guia sobre cultivo e colheita de recursos.",
@@ -229,6 +231,15 @@ export const translations = {
     latestVersion: "Última Versão",
     downloadMinimap: "Minimap do obellao_",
     minimapDownloadDesc: "Baixe o meu arquivo pessoal de minimap com marcações e áreas exploradas.",
+    minimapUpdated: "Atualizado em: 09/04/2026",
+    
+    // Crafting Categories
+    giantGemsRelics: "Gemas Gigantes (Relíquias)",
+    toolsPicks: "Ferramentas & Picks",
+    rods: "Rods",
+    mysticRunes: "Mystic Runes",
+    ammunition: "Munições",
+    others: "Outros",
     
     // Footer & Misc
     wikiGeneralSoon: "Wiki Geral em breve",
@@ -335,6 +346,8 @@ export const translations = {
     // Professions Guide Section
     professionsSubtitle: "Learn the arts and crafts of Miracle 7.4",
     craftingDesc: "The art of creating equipment, tools, and valuable items. Essential for any adventurer seeking independence.",
+    craftingSubtitle: "Chance calculations and materials guide",
+    requirements: "Requirements",
     craftingTutorial: "Crafting Tutorial",
     miningDesc: "Coming soon: Complete guide on ore and gem extraction.",
     farmingDesc: "Coming soon: Guide on resource cultivation and harvesting.",
@@ -466,6 +479,15 @@ export const translations = {
     latestVersion: "Latest Version",
     downloadMinimap: "obellao_'s Minimap",
     minimapDownloadDesc: "Download my personal minimap file with marks and explored areas.",
+    minimapUpdated: "Updated on: 04/09/2026",
+    
+    // Crafting Categories
+    giantGemsRelics: "Giant Gems (Relics)",
+    toolsPicks: "Tools & Picks",
+    rods: "Rods",
+    mysticRunes: "Mystic Runes",
+    ammunition: "Ammunition",
+    others: "Others",
     
     // Footer & Misc
     wikiGeneralSoon: "General Wiki coming soon",

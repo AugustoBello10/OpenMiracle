@@ -23,7 +23,7 @@ import { CraftingCalculator } from './components/CraftingCalculator';
 // --- Dados do Banco de Dados Embutido ---
 const CRAFT_ITEMS = [
   {
-    category: "Gemas Gigantes",
+    category: "giantGemsRelics",
     icon: <Gem className="w-5 h-5" />,
     items: [
       { name: "Giant Ruby", multiplier: 2, req: "10 Small Rubys" },
@@ -33,7 +33,7 @@ const CRAFT_ITEMS = [
     ]
   },
   {
-    category: "Ferramentas & Picks",
+    category: "toolsPicks",
     icon: <Pickaxe className="w-5 h-5" />,
     items: [
       { name: "Modified Pick", multiplier: 2, req: "1 Pick + 5 Steels" },
@@ -43,7 +43,7 @@ const CRAFT_ITEMS = [
     ]
   },
   {
-    category: "Rods",
+    category: "rods",
     icon: <Wand2 className="w-5 h-5" />,
     items: [
       { name: "Reinforced Rod", multiplier: 2, req: "1 fishing rod + 5 steels" },
@@ -53,7 +53,7 @@ const CRAFT_ITEMS = [
     ]
   },
   {
-    category: "Runas de Crafting",
+    category: "mysticRunes",
     icon: <Zap className="w-5 h-5" />,
     items: [
       { name: "Ember Rune", multiplier: 1, req: "5 Ember Fragments + 3 Pulverized Ores + 1 Onyx" },
@@ -65,11 +65,17 @@ const CRAFT_ITEMS = [
     ]
   },
   {
-    category: "Outros",
+    category: "ammunition",
+    icon: <Sword className="w-5 h-5" />,
+    items: [
+      { name: "10x Steel Bolts", multiplier: 1.2, req: "10 bolt + 1 steel + 1x Natural Soil" },
+    ]
+  },
+  {
+    category: "others",
     icon: <Sword className="w-5 h-5" />,
     items: [
       { name: "Fiery Stone", multiplier: 0.5, req: "5 Glimmering Soils" },
-      { name: "10x Steel Bolts", multiplier: 1.2, req: "10 bolt + 1 steel + 1x Natural Soil" },
     ]
   }
 ];
@@ -1542,6 +1548,9 @@ export default function App() {
                       </h4>
                       <p className="text-[9px] text-medieval-text/60 mb-1 leading-tight">
                         {t('minimapDownloadDesc')}
+                      </p>
+                      <p className="text-[8px] text-medieval-gold/50 mb-1 font-mono">
+                        {t('minimapUpdated')}
                       </p>
                       <a 
                         href="https://drive.google.com/u/0/uc?id=1Nf7CHYGN39nRhGhq8x8X49rCbKyBzdZE&export=download" 

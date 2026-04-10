@@ -1,6 +1,6 @@
 
 import React, { useState, useMemo } from 'react';
-import { Hammer, Gem, Sword, Info, AlertTriangle, Table as TableIcon, Twitch, MessageSquare } from 'lucide-react';
+import { Hammer, Gem, Sword, Info, AlertTriangle, Table as TableIcon, Twitch, MessageSquare, Zap } from 'lucide-react';
 import { motion } from 'motion/react';
 
 interface CraftingCalculatorProps {
@@ -34,7 +34,7 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
           {t('crafting')}
         </h1>
         <p className="text-medieval-gold/80 font-mono text-sm">
-          Cálculos de chance e guia de materiais
+          {t('craftingSubtitle')}
         </p>
       </header>
 
@@ -45,7 +45,7 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
             <div className="space-y-6">
               <div className="flex flex-col gap-2">
                 <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest flex items-center gap-2">
-                  <Zap className="w-4 h-4" /> Sua Skill Atual
+                  <Zap className="w-4 h-4" /> {t('currentSkill')}
                 </label>
                 <input
                   type="number"
@@ -71,7 +71,7 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
                   className="medieval-input cursor-pointer appearance-none"
                 >
                   {CRAFT_ITEMS.map(cat => (
-                    <option key={cat.category} value={cat.category}>{cat.category}</option>
+                    <option key={cat.category} value={cat.category}>{t(cat.category as any)}</option>
                   ))}
                 </select>
               </div>
@@ -95,7 +95,7 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
                 <div className="bg-black/40 p-4 rounded border border-medieval-gold/20 flex items-start gap-3">
                   <Info className="w-5 h-5 text-medieval-gold shrink-0 mt-0.5" />
                   <div>
-                    <p className="text-xs uppercase text-medieval-gold/60 font-bold tracking-tighter">Requisitos:</p>
+                    <p className="text-xs uppercase text-medieval-gold/60 font-bold tracking-tighter">{t('requirements')}:</p>
                     <p className="text-sm text-medieval-text italic">{selectedItem.req}</p>
                   </div>
                 </div>
@@ -190,5 +190,3 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
     </div>
   );
 };
-
-import { Zap } from 'lucide-react';
