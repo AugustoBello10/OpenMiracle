@@ -475,6 +475,16 @@ function SkillCalculator({
     return str;
   };
 
+  const formatDaysTime = (seconds: number) => {
+    const d = Math.floor(seconds / 86400);
+    const h = Math.floor((seconds % 86400) / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    
+    if (d === 0) return null;
+    
+    return `${d} ${t('days')}, ${h} ${t('hours')} ${t('and')} ${m} ${t('minutes')}`;
+  };
+
   const handleEquipReductionChange = (index: number, value: number) => {
     const newReds = [...equipReductions];
     newReds[index] = value;
@@ -508,7 +518,7 @@ function SkillCalculator({
                 >
                   <option value="Knight">Knight</option>
                   <option value="Paladin">Paladin</option>
-                  <option value="Sorcerer">Sorcerer</option>
+                  <option value="Sorcerer">Sorcerer / Rookstayer</option>
                   <option value="Druid">Druid</option>
                 </select>
               </div>
@@ -691,6 +701,11 @@ function SkillCalculator({
                   <div className="text-center p-4 bg-medieval-gold/5 rounded border border-medieval-gold/30">
                     <p className="text-medieval-gold uppercase text-[9px] font-black tracking-widest mb-1">{t('estimatedTime')}</p>
                     <div className="text-2xl font-black text-medieval-gold">{formatTime(result.seconds)}</div>
+                    {formatDaysTime(result.seconds) && (
+                      <div className="text-[10px] font-bold text-medieval-gold/60 mt-1">
+                        {formatDaysTime(result.seconds)}
+                      </div>
+                    )}
                   </div>
                   <div className="text-center p-4 bg-black/40 rounded border border-medieval-gold/10">
                     <p className="text-medieval-gold/60 uppercase text-[9px] font-black tracking-widest mb-1">{t('neededWeapons')}</p>
