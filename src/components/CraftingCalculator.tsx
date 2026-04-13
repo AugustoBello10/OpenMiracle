@@ -33,8 +33,8 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
 
   const chance = useMemo(() => {
     if (!selectedItem) return 0;
-    // Formula: (skill * multiplier)
-    const baseChance = skill * selectedItem.multiplier;
+    // Formula original restaurada: 10 + (skill - 10) * multiplier
+    const baseChance = 10 + (skill - 10) * selectedItem.multiplier;
     return Math.min(100, Math.max(0, parseFloat(baseChance.toFixed(1))));
   }, [skill, selectedItem]);
 

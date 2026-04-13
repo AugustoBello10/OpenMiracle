@@ -13,6 +13,35 @@ export interface PatchNote {
 
 export const PROJECT_PATCH_NOTES: PatchNote[] = [
   {
+    version: "1.2.1",
+    date: "2026-04-13",
+    title: { pt: "Projeto Wiki v1.2.1", en: "Wiki Project v1.2.1" },
+    changes: {
+      added: {
+        pt: [
+          "Campo de Preço Unitário na Calculadora de Mineração.",
+          "Visualização de Buffs (Sucesso e Multiplicador) nas picaretas."
+        ],
+        en: [
+          "Unit Price field in Mining Calculator.",
+          "Buff visualization (Success and Multiplier) on pickaxes."
+        ]
+      },
+      changed: {
+        pt: [
+          "Calculadora de Mineração desativada temporariamente aguardando novas fórmulas oficiais (GM Kanohn).",
+          "Novo visual de resultados na Calculadora de Mineração.",
+          "Correção das receitas de crafting das picaretas (Advanced e Enhanced)."
+        ],
+        en: [
+          "Mining Calculator temporarily disabled awaiting new official formulas (GM Kanohn).",
+          "New results visual in Mining Calculator.",
+          "Corrected pickaxe crafting recipes (Advanced and Enhanced)."
+        ]
+      }
+    }
+  },
+  {
     version: "1.2.0",
     date: "2026-04-13",
     title: { pt: "Projeto Wiki v1.2.0", en: "Wiki Project v1.2.0" },
@@ -137,7 +166,7 @@ export const SERVER_PATCH_NOTES: PatchNote[] = [
           "Picks superiores agora requerem profissão de minerador para quebrar pedras.",
           "Picks normais agora mineram apenas Lava Holes e Ice Lava Holes.",
           "Rework nos bônus e multiplicadores das picaretas (Modified, Advanced, Enhanced).",
-          "Receitas de picaretas agora exigem Draconian Steels.",
+          "Receitas de picaretas atualizadas (Advanced e Enhanced agora exigem Draconian Steels).",
           "Steel Bolt: Rate aumentado para 2.0 e removido custo de Natural Soil.",
           "Ajustes massivos na tabela de Breaking (Soldier Helmet, Scale Armor, etc).",
           "Level mínimo para área final da Khazdrakar Quest: 80 -> 100.",

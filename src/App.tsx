@@ -41,9 +41,9 @@ const CRAFT_ITEMS = [
     category: "toolsPicks",
     icon: <Pickaxe className="w-5 h-5" />,
     items: [
-      { name: "Modified Pick", multiplier: 2, req: "5 Draconian Steels + 20 Steels", materials: [{ name: "Draconian Steel", amount: 5 }, { name: "Steel", amount: 20 }] },
-      { name: "Advanced Pick", multiplier: 1.5, req: "1 Draconian Steel + 10 Steels", materials: [{ name: "Draconian Steel", amount: 1 }, { name: "Steel", amount: 10 }] },
-      { name: "Enhanced Pick", multiplier: 1, req: "1 Pick + 20 Steels", materials: [{ name: "Pick", amount: 1 }, { name: "Steel", amount: 20 }] },
+      { name: "Modified Pick", multiplier: 2, req: "1 Pick + 5 Steels", materials: [{ name: "Pick", amount: 1 }, { name: "Steel", amount: 5 }] },
+      { name: "Advanced Pick", multiplier: 1.5, req: "1 Pick + 1 Draconian Steel + 10 Steels", materials: [{ name: "Pick", amount: 1 }, { name: "Draconian Steel", amount: 1 }, { name: "Steel", amount: 10 }] },
+      { name: "Enhanced Pick", multiplier: 1, req: "1 Pick + 5 Draconian Steels + 20 Steels", materials: [{ name: "Pick", amount: 1 }, { name: "Draconian Steel", amount: 5 }, { name: "Steel", amount: 20 }] },
       { name: "Diamon Knife", multiplier: 1, req: "10 small diamonds + 5 Hell Steels + 1 Combat Knife", materials: [{ name: "Small Diamond", amount: 10 }, { name: "Hell Steel", amount: 5 }, { name: "Combat Knife", amount: 1 }] },
     ]
   },
