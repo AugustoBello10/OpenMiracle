@@ -7,9 +7,9 @@ interface MiningCalculatorProps {
 
 const PICKS = [
   { name: 'Pick', minSkill: 10, breakChance: 0, mineBonus: 0, collectBonus: 0 },
-  { name: 'Modified Pick', minSkill: 20, breakChance: 1, mineBonus: 2, collectBonus: 25 },
-  { name: 'Advanced Pick', minSkill: 30, breakChance: 2, mineBonus: 4, collectBonus: 50 },
-  { name: 'Enhanced Pick', minSkill: 40, breakChance: 3, mineBonus: 6, collectBonus: 100 },
+  { name: 'Modified Pick', minSkill: 20, breakChance: 1, mineBonus: 2.5, collectBonus: 50 },
+  { name: 'Advanced Pick', minSkill: 30, breakChance: 2, mineBonus: 5, collectBonus: 100 },
+  { name: 'Enhanced Pick', minSkill: 40, breakChance: 3, mineBonus: 7.5, collectBonus: 150 },
 ];
 
 export function MiningCalculator({ t }: MiningCalculatorProps) {
@@ -184,6 +184,7 @@ export function MiningCalculator({ t }: MiningCalculatorProps) {
               <p>• <span className="text-medieval-gold">{t('spotInfo').split(':')[0]}:</span> {t('spotInfo').split(':')[1]}</p>
               <p>• <span className="text-medieval-gold">{t('collectInfo').split(':')[0]}:</span> {t('collectInfo').split(':')[1]}</p>
               <p>• <span className="text-medieval-gold">{t('durabilityInfo').split(':')[0]}:</span> {t('durabilityInfo').split(':')[1]}</p>
+              <p>• <span className="text-medieval-gold">Restrição:</span> Picaretas normais podem minerar apenas Lava Holes e Ice Lava Holes.</p>
             </div>
           </div>
 

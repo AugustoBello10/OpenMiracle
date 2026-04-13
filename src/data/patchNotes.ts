@@ -13,6 +13,37 @@ export interface PatchNote {
 
 export const PROJECT_PATCH_NOTES: PatchNote[] = [
   {
+    version: "1.2.0",
+    date: "2026-04-13",
+    title: { pt: "Projeto Wiki v1.2.0", en: "Wiki Project v1.2.0" },
+    changes: {
+      added: {
+        pt: [
+          "Atualização completa com o Patch do Servidor de 13/04.",
+          "Novas relíquias adicionadas ao Crafting.",
+          "Novos itens adicionados à Tabela de Breaking.",
+          "Calculadora de Mineração atualizada com novos bônus de picaretas."
+        ],
+        en: [
+          "Full update with Server Patch from 04/13.",
+          "New relics added to Crafting.",
+          "New items added to Breaking Table.",
+          "Mining Calculator updated with new pickaxe bonuses."
+        ]
+      },
+      changed: {
+        pt: [
+          "Receitas de Crafting e taxas de Breaking sincronizadas com o servidor.",
+          "Melhoria na clareza de termos em todas as calculadoras."
+        ],
+        en: [
+          "Crafting recipes and Breaking rates synchronized with the server.",
+          "Improved term clarity across all calculators."
+        ]
+      }
+    }
+  },
+  {
     version: "1.1.0",
     date: "2026-04-08",
     title: { pt: "Projeto Wiki v1.1.0", en: "Wiki Project v1.1.0" },
@@ -65,6 +96,67 @@ export const PROJECT_PATCH_NOTES: PatchNote[] = [
 ];
 
 export const SERVER_PATCH_NOTES: PatchNote[] = [
+  {
+    version: "13/04",
+    date: "2026-04-13",
+    title: { pt: "Update 13/04", en: "Update 13/04" },
+    changes: {
+      added: {
+        pt: [
+          "Novas relíquias no Crafting: Spiritualist, Marksman, Sage e Guardian Gems.",
+          "Yellow Shrine Stone adicionada à Mineração.",
+          "Novos itens para Breaking: Scythe e Dark Shield.",
+          "Great Axe adicionado como loot raro em Dwarf Tyrant e Khazdrak.",
+          "Novas recompensas na Khazdrakar Quest (Eye of Aurum, Horned Helmet, etc)."
+        ],
+        en: [
+          "New relics in Crafting: Spiritualist, Marksman, Sage, and Guardian Gems.",
+          "Yellow Shrine Stone added to Mining.",
+          "New items for Breaking: Scythe and Dark Shield.",
+          "Great Axe added as rare loot from Dwarf Tyrant and Khazdrak.",
+          "New rewards in Khazdrakar Quest (Eye of Aurum, Horned Helmet, etc)."
+        ]
+      },
+      fixed: {
+        pt: [
+          "Altura das janelas de containers após relogin.",
+          "Botão de lock no Bestiary Tracker.",
+          "Atributo de destruição do Eye of Aurum.",
+          "Uso do Lost Redemption Scroll."
+        ],
+        en: [
+          "Container window height after relogin.",
+          "Lock button on Bestiary Tracker window.",
+          "Eye of Aurum destruction attribute.",
+          "Lost Redemption Scroll usage."
+        ]
+      },
+      changed: {
+        pt: [
+          "Removido exiva na VIP List.",
+          "Picks superiores agora requerem profissão de minerador para quebrar pedras.",
+          "Picks normais agora mineram apenas Lava Holes e Ice Lava Holes.",
+          "Rework nos bônus e multiplicadores das picaretas (Modified, Advanced, Enhanced).",
+          "Receitas de picaretas agora exigem Draconian Steels.",
+          "Steel Bolt: Rate aumentado para 2.0 e removido custo de Natural Soil.",
+          "Ajustes massivos na tabela de Breaking (Soldier Helmet, Scale Armor, etc).",
+          "Level mínimo para área final da Khazdrakar Quest: 80 -> 100.",
+          "Loot de Khazdrak aumentado em 150%."
+        ],
+        en: [
+          "Removed exiva on VIP List.",
+          "Superior picks now require mining profession to break mines.",
+          "Normal picks can now only mine Lava Holes and Ice Lava Holes.",
+          "Reworked pickaxe bonuses and multipliers (Modified, Advanced, Enhanced).",
+          "Pickaxe recipes now require Draconian Steels.",
+          "Steel Bolt: Rate increased to 2.0 and removed Natural Soil cost.",
+          "Massive adjustments to Breaking table (Soldier Helmet, Scale Armor, etc).",
+          "Minimum level for Khazdrakar Quest final area: 80 -> 100.",
+          "Khazdrak loot increased by 150%."
+        ]
+      }
+    }
+  },
   {
     version: "06/04",
     date: "2026-04-06",

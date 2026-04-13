@@ -31,14 +31,18 @@ const CRAFT_ITEMS = [
       { name: "Giant Emerald", multiplier: 2, req: "10 Small Emeralds", materials: [{ name: "Small Emerald", amount: 10 }] },
       { name: "Giant Sapphire", multiplier: 2, req: "10 Small Sapphires", materials: [{ name: "Small Sapphire", amount: 10 }] },
       { name: "Giant Amethyst", multiplier: 2, req: "10 Small Amethysts", materials: [{ name: "Small Amethyst", amount: 10 }] },
+      { name: "Spiritualist Gem", multiplier: 2, req: "10 Small Spiritualist Gems", materials: [{ name: "Small Spiritualist Gem", amount: 10 }] },
+      { name: "Marksman Gem", multiplier: 2, req: "10 Small Marksman Gems", materials: [{ name: "Small Marksman Gem", amount: 10 }] },
+      { name: "Sage Gem", multiplier: 2, req: "10 Small Sage Gems", materials: [{ name: "Small Sage Gem", amount: 10 }] },
+      { name: "Guardian Gem", multiplier: 2, req: "10 Small Guardian Gems", materials: [{ name: "Small Guardian Gem", amount: 10 }] },
     ]
   },
   {
     category: "toolsPicks",
     icon: <Pickaxe className="w-5 h-5" />,
     items: [
-      { name: "Modified Pick", multiplier: 2, req: "1 Pick + 5 Steels", materials: [{ name: "Pick", amount: 1 }, { name: "Steel", amount: 5 }] },
-      { name: "Advanced Pick", multiplier: 1.5, req: "1 Pick + 10 Steels", materials: [{ name: "Pick", amount: 1 }, { name: "Steel", amount: 10 }] },
+      { name: "Modified Pick", multiplier: 2, req: "5 Draconian Steels + 20 Steels", materials: [{ name: "Draconian Steel", amount: 5 }, { name: "Steel", amount: 20 }] },
+      { name: "Advanced Pick", multiplier: 1.5, req: "1 Draconian Steel + 10 Steels", materials: [{ name: "Draconian Steel", amount: 1 }, { name: "Steel", amount: 10 }] },
       { name: "Enhanced Pick", multiplier: 1, req: "1 Pick + 20 Steels", materials: [{ name: "Pick", amount: 1 }, { name: "Steel", amount: 20 }] },
       { name: "Diamon Knife", multiplier: 1, req: "10 small diamonds + 5 Hell Steels + 1 Combat Knife", materials: [{ name: "Small Diamond", amount: 10 }, { name: "Hell Steel", amount: 5 }, { name: "Combat Knife", amount: 1 }] },
     ]
@@ -69,7 +73,7 @@ const CRAFT_ITEMS = [
     category: "ammunition",
     icon: <Sword className="w-5 h-5" />,
     items: [
-      { name: "10x Steel Bolts", multiplier: 1.2, req: "10 bolt + 1 steel + 1x Natural Soil", materials: [{ name: "Bolt", amount: 10 }, { name: "Steel", amount: 1 }, { name: "Natural Soil", amount: 1 }] },
+      { name: "10x Steel Bolts", multiplier: 2, req: "10 bolt + 1 steel", materials: [{ name: "Bolt", amount: 10 }, { name: "Steel", amount: 1 }] },
     ]
   },
   {
@@ -93,8 +97,8 @@ const BREAKING_DATA = [
   {
     category: "axes",
     items: [
-      { item: "Hand Axe", max: 1, min: 0, mathAvg: "0.5 Steels", practicalAvg: "0.30 Steels", verdict: "UPAR SKILL", minSkill: 10 },
-      { item: "Axe", max: 1, min: 0, mathAvg: "0.5 Steels", practicalAvg: "0.32 Steels", verdict: "UPAR SKILL", minSkill: 10 },
+      { item: "Hand Axe", max: 1, min: 0, mathAvg: "0.33 Steels", practicalAvg: "33% chance", verdict: "UPAR SKILL", minSkill: 10 },
+      { item: "Axe", max: 1, min: 0, mathAvg: "0.58 Steels", practicalAvg: "58% chance", verdict: "UPAR SKILL", minSkill: 10 },
       { item: "Hatchet", max: 2, min: 0, mathAvg: "1 Steel", practicalAvg: "-", verdict: "Em testes", minSkill: 10 },
       { item: "Golden Sickle", max: "2 Steels, 1 Hell", min: 0, mathAvg: "-", practicalAvg: "-", verdict: "Em testes", minSkill: 10 },
       { item: "Battle Axe", max: 8, min: 0, mathAvg: "4 Steels", practicalAvg: "-", verdict: "Em testes", minSkill: 10 },
@@ -127,7 +131,9 @@ const BREAKING_DATA = [
       { item: "Plate Shield", max: 3, min: 0, mathAvg: "1.5 Steels", practicalAvg: "1.52 Steels", verdict: "Vender NPC", minSkill: 10 },
       { item: "Dwarven Shield", max: 8, min: 0, mathAvg: "4 Steels", practicalAvg: "4.35 Steels", verdict: "QUEBRAR PARA MATERIAL", minSkill: 20 },
       { item: "Steel Shield", max: 6, min: 0, mathAvg: "3 Steels", practicalAvg: "2.90 Steels", verdict: "Vender NPC OU COLETAR MAT RAPIDO", minSkill: 20 },
-      { item: "Wooden Shield", max: 1, min: 0, mathAvg: "0.5 Steels", practicalAvg: "0.30 Steels", verdict: "UPAR SKILL", minSkill: 10 },
+      { item: "Wooden Shield", max: 1, min: 0, mathAvg: "0.41 Steels", practicalAvg: "41% chance", verdict: "UPAR SKILL", minSkill: 10 },
+      { item: "Cooper Shield", max: 1, min: 0, mathAvg: "0.83 Steels", practicalAvg: "83% chance", verdict: "Vender NPC", minSkill: 10 },
+      { item: "Dark Shield", max: 5, min: 5, mathAvg: "5 Steels", practicalAvg: "5.00 Steels", verdict: "QUEBRAR", minSkill: 20 },
     ]
   },
   {
@@ -135,13 +141,22 @@ const BREAKING_DATA = [
     items: [
       { item: "Studded Armor", max: 1, min: 0, mathAvg: "1 Steel", practicalAvg: "0.47 Steels", verdict: "UPAR SKILL", minSkill: 10 },
       { item: "Chain Armor", max: 5, min: 0, mathAvg: "2.5 Steels", practicalAvg: "2.60 Steels", verdict: "Vender NPC OU COLETAR MAT RAPIDO", minSkill: 10 },
-      { item: "Scale Armor", max: 8, min: 0, mathAvg: "4 Steels", practicalAvg: "3.57 Steels", verdict: "QUEBRAR", minSkill: 10 },
+      { item: "Scale Armor", max: 6, min: 6, mathAvg: "6 Steels", practicalAvg: "6.00 Steels", verdict: "QUEBRAR", minSkill: 10 },
+      { item: "Chain Legs", max: 2, min: 2, mathAvg: "2 Steels", practicalAvg: "2.00 Steels", verdict: "QUEBRAR", minSkill: 10 },
     ]
   },
   {
     category: "helmets",
     items: [
       { item: "Chain Helmet", max: 1, min: 0, mathAvg: "0.5 Steel", practicalAvg: "0.50 Steels", verdict: "UPAR SKILL", minSkill: 10 },
+      { item: "Soldier Helmet", max: 1, min: 1, mathAvg: "1 Steel", practicalAvg: "1.00 Steel", verdict: "QUEBRAR", minSkill: 10 },
+      { item: "Studded Helmet", max: 1, min: 0, mathAvg: "0.16 Steels", practicalAvg: "16% chance", verdict: "UPAR SKILL", minSkill: 10 },
+      { item: "Legion Helmet", max: 1, min: 0, mathAvg: "0.66 Steels", practicalAvg: "66% chance", verdict: "QUEBRAR", minSkill: 10 },
+      { item: "Scythe", max: 1, min: 1, mathAvg: "1 Steel", practicalAvg: "1.00 Steel", verdict: "QUEBRAR", minSkill: 10 },
+      { item: "Knife", max: 1, min: 0, mathAvg: "0.083 Steels", practicalAvg: "8.3% chance", verdict: "UPAR SKILL", minSkill: 10 },
+      { item: "Combat Knife", max: 1, min: 0, mathAvg: "0.083 Steels", practicalAvg: "8.3% chance", verdict: "UPAR SKILL", minSkill: 10 },
+      { item: "Dagger", max: 1, min: 0, mathAvg: "0.16 Steels", practicalAvg: "16% chance", verdict: "UPAR SKILL", minSkill: 10 },
+      { item: "Machete", max: 1, min: 0, mathAvg: "0.5 Steels", practicalAvg: "50% chance", verdict: "QUEBRAR", minSkill: 10 },
     ]
   }
 ];
