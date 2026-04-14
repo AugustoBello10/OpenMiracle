@@ -998,8 +998,103 @@ export default function App() {
   const [homeSkillsMenuOpen, setHomeSkillsMenuOpen] = useState(false);
   const [homeBlessMenuOpen, setHomeBlessMenuOpen] = useState(false);
   const [homeAttrMenuOpen, setHomeAttrMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState<{ id: string; label: string; type: string; action: () => void }[]>([]);
 
   const t = (key: keyof typeof translations['pt']) => translations[language][key] || key;
+
+  // Global Search Logic
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    if (!query.trim()) {
+      setSearchResults([]);
+      return;
+    }
+
+    const normalize = (str: string) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    const q = normalize(query);
+
+    const results: { id: string; label: string; type: string; action: () => void }[] = [];
+
+    // Search in Items
+    HELMETS_DATA.forEach(item => {
+      if (normalize(item.name).includes(q)) {
+        results.push({
+          id: `item-${item.name}`,
+          label: item.name,
+          type: 'Item / Wiki',
+          action: () => {
+            setActiveTab('wiki');
+            setWikiMainTab('items');
+            setItemsSubTab('helmets');
+            setSearchQuery('');
+            setSearchResults([]);
+          }
+        });
+        // Also suggest attribute calculator for helmets
+        results.push({
+          id: `attr-${item.name}`,
+          label: `${item.name} (Atributos)`,
+          type: 'Calculadora',
+          action: () => {
+            setActiveTab('calculadoras');
+            setCalcSubTab('atributos');
+            setAttrCategory('Helmets');
+            setAttrItemName(item.name);
+            setSearchQuery('');
+            setSearchResults([]);
+          }
+        });
+      }
+    });
+
+    // Search in Library
+    LIBRARY_DATA.forEach(book => {
+      if (normalize(book.title[language]).includes(q)) {
+        results.push({
+          id: `book-${book.id}`,
+          label: book.title[language],
+          type: 'Biblioteca',
+          action: () => {
+            setActiveTab('wiki');
+            setWikiMainTab('library');
+            setSelectedRegion(book.region[language]);
+            setSelectedBookId(book.id);
+            setSearchQuery('');
+            setSearchResults([]);
+          }
+        });
+      }
+    });
+
+    // Search in Tools/Keywords
+    const keywords = [
+      { keys: ['pick', 'mining', 'mineracao', 'craft'], tab: 'profissoes', sub: 'mining', label: 'Mineração' },
+      { keys: ['pick', 'crafting', 'forja'], tab: 'profissoes', sub: 'crafting', label: 'Crafting' },
+      { keys: ['alchemy', 'alquimia', 'potion', 'pocao'], tab: 'profissoes', sub: 'alchemy', label: 'Alquimia' },
+      { keys: ['bless', 'morte', 'death'], tab: 'calculadoras', sub: 'bless', label: 'Calculadora de Bless' },
+      { keys: ['skill', 'treino', 'training'], tab: 'calculadoras', sub: 'skills', label: 'Calculadora de Skills' },
+    ];
+
+    keywords.forEach(kw => {
+      if (kw.keys.some(k => normalize(k).includes(q))) {
+        results.push({
+          id: `tool-${kw.label}-${kw.sub}`,
+          label: kw.label,
+          type: 'Ferramenta',
+          action: () => {
+            setActiveTab(kw.tab as Tab);
+            if (kw.tab === 'profissoes') setProfSubTab(kw.sub as any);
+            if (kw.tab === 'calculadoras') setCalcSubTab(kw.sub as any);
+            setSearchQuery('');
+            setSearchResults([]);
+          }
+        });
+      }
+    });
+
+    setSearchResults(results.slice(0, 8));
+  };
 
   // Estados para Calculadora de Skills
   const [vocation, setVocation] = useState<Vocation>('Knight');
@@ -1289,9 +1384,39 @@ export default function App() {
                     </div>
                     <input 
                       type="text" 
+                      value={searchQuery}
+                      onChange={(e) => handleSearch(e.target.value)}
                       placeholder={t('databaseSearch')}
                       className="w-full bg-black/40 border border-medieval-gold/20 rounded-full py-4 pl-12 pr-6 text-medieval-gold placeholder:text-medieval-gold/20 focus:outline-none focus:border-medieval-gold/50 focus:bg-black/60 transition-all text-sm font-bold tracking-wider"
                     />
+                    
+                    {/* Search Results Dropdown */}
+                    <AnimatePresence>
+                      {searchResults.length > 0 && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          className="absolute top-full left-0 right-0 mt-2 bg-medieval-dark border border-medieval-gold/30 rounded-lg shadow-2xl overflow-hidden z-50"
+                        >
+                          <div className="max-h-[300px] overflow-y-auto custom-scrollbar">
+                            {searchResults.map((result) => (
+                              <button
+                                key={result.id}
+                                onClick={result.action}
+                                className="w-full px-6 py-3 text-left hover:bg-medieval-gold/10 flex items-center justify-between group transition-colors border-b border-medieval-gold/5 last:border-0"
+                              >
+                                <div className="flex flex-col">
+                                  <span className="text-medieval-gold font-bold text-sm">{result.label}</span>
+                                  <span className="text-[10px] text-medieval-gold/40 uppercase tracking-widest">{result.type}</span>
+                                </div>
+                                <ChevronRight className="w-4 h-4 text-medieval-gold/20 group-hover:text-medieval-gold group-hover:translate-x-1 transition-all" />
+                              </button>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 </div>
 
@@ -1437,7 +1562,10 @@ export default function App() {
                         <History className="text-medieval-gold w-6 h-6" />
                         <h3 className="text-2xl font-black text-medieval-gold uppercase tracking-tight">{t('latestUpdates')}</h3>
                       </div>
-                      <button className="text-[10px] font-bold uppercase tracking-widest text-medieval-gold/60 hover:text-medieval-gold transition-colors">
+                      <button 
+                        onClick={() => { setActiveTab('wiki'); setWikiMainTab('updates'); }}
+                        className="text-[10px] font-bold uppercase tracking-widest text-medieval-gold/60 hover:text-medieval-gold transition-colors"
+                      >
                         {t('viewAll')}
                       </button>
                     </div>
@@ -1450,13 +1578,22 @@ export default function App() {
                           {PROJECT_PATCH_NOTES.slice(0, 3).map((note, idx) => {
                             const firstChange = note.changes.added?.[language][0] || note.changes.changed?.[language][0] || note.changes.fixed?.[language][0];
                             return (
-                              <div key={idx} className="p-4 bg-black/20 border border-medieval-gold/10 rounded-sm hover:border-medieval-gold/30 transition-colors">
+                              <button 
+                                key={idx} 
+                                onClick={() => {
+                                  setActiveTab('wiki');
+                                  setWikiMainTab('updates');
+                                  setWikiSubTab('project');
+                                  setSelectedPatchVersion(note.version);
+                                }}
+                                className="w-full text-left p-4 bg-black/20 border border-medieval-gold/10 rounded-sm hover:border-medieval-gold/30 transition-colors group"
+                              >
                                 <div className="flex justify-between items-start mb-1">
-                                  <span className="text-medieval-gold font-bold text-[10px]">{note.version}</span>
+                                  <span className="text-medieval-gold font-bold text-[10px] group-hover:text-medieval-gold transition-colors">{note.version}</span>
                                   <span className="text-[9px] text-medieval-gold/40 font-mono">{note.date}</span>
                                 </div>
                                 <p className="text-xs text-medieval-text/80 line-clamp-2">{firstChange}</p>
-                              </div>
+                              </button>
                             );
                           })}
                         </div>
@@ -1469,13 +1606,22 @@ export default function App() {
                           {SERVER_PATCH_NOTES.slice(0, 3).map((note, idx) => {
                             const firstChange = note.changes.added?.[language][0] || note.changes.changed?.[language][0] || note.changes.fixed?.[language][0];
                             return (
-                              <div key={idx} className="p-4 bg-black/20 border border-medieval-gold/10 rounded-sm hover:border-medieval-gold/30 transition-colors">
+                              <button 
+                                key={idx} 
+                                onClick={() => {
+                                  setActiveTab('wiki');
+                                  setWikiMainTab('updates');
+                                  setWikiSubTab('server');
+                                  setSelectedPatchVersion(note.version);
+                                }}
+                                className="w-full text-left p-4 bg-black/20 border border-medieval-gold/10 rounded-sm hover:border-medieval-gold/30 transition-colors group"
+                              >
                                 <div className="flex justify-between items-start mb-1">
-                                  <span className="text-medieval-gold font-bold text-[10px]">{note.version}</span>
+                                  <span className="text-medieval-gold font-bold text-[10px] group-hover:text-medieval-gold transition-colors">{note.version}</span>
                                   <span className="text-[9px] text-medieval-gold/40 font-mono">{note.date}</span>
                                 </div>
                                 <p className="text-xs text-medieval-text/80 line-clamp-2">{firstChange}</p>
-                              </div>
+                              </button>
                             );
                           })}
                         </div>

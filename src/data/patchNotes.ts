@@ -13,6 +13,102 @@ export interface PatchNote {
 
 export const PROJECT_PATCH_NOTES: PatchNote[] = [
   {
+    version: "1.4.0",
+    date: "2026-04-14",
+    title: { pt: "Projeto Wiki v1.4.0 - Search & Database", en: "Wiki Project v1.4.0 - Search & Database" },
+    changes: {
+      added: {
+        pt: [
+          "Sistema de Pesquisa Global com suporte a busca sem acentos e sugestões inteligentes.",
+          "Integração total da Wiki de Itens com o sistema de busca.",
+          "Redirecionamento inteligente: pesquisar palavras-chave (ex: 'pick') sugere ferramentas relacionadas.",
+          "Navegação direta para versões específicas de Patch Notes a partir da Home."
+        ],
+        en: [
+          "Global Search System with support for accent-insensitive search and smart suggestions.",
+          "Full integration of Item Wiki with the search system.",
+          "Smart redirection: searching keywords (e.g., 'pick') suggests related tools.",
+          "Direct navigation to specific Patch Notes versions from the Home page."
+        ]
+      },
+      changed: {
+        pt: [
+          "Polimento visual na seção de Wiki para melhor legibilidade.",
+          "Otimização do seletor de atributos na calculadora."
+        ],
+        en: [
+          "Visual polish in the Wiki section for better readability.",
+          "Optimization of the attribute selector in the calculator."
+        ]
+      }
+    }
+  },
+  {
+    version: "1.3.3",
+    date: "2026-04-14",
+    title: { pt: "Projeto Wiki v1.3.3 - UX Refinement", en: "Wiki Project v1.3.3 - UX Refinement" },
+    changes: {
+      added: {
+        pt: [
+          "Suporte a scroll do mouse (roda) nos menus estilo Tambor.",
+          "Efeito de profundidade 3D aprimorado nos seletores."
+        ],
+        en: [
+          "Mouse wheel support in Drum-style menus.",
+          "Enhanced 3D depth effect in selectors."
+        ]
+      },
+      fixed: {
+        pt: [
+          "Correção de links quebrados na seção de Últimas Atualizações.",
+          "Ajuste de responsividade em telas ultra-wide."
+        ],
+        en: [
+          "Fixed broken links in the Latest Updates section.",
+          "Responsiveness adjustment on ultra-wide screens."
+        ]
+      }
+    }
+  },
+  {
+    version: "1.3.2",
+    date: "2026-04-14",
+    title: { pt: "Projeto Wiki v1.3.2 - Horizontal Layout", en: "Wiki Project v1.3.2 - Horizontal Layout" },
+    changes: {
+      changed: {
+        pt: [
+          "Refatoração do Menu Tambor da Biblioteca para layout horizontal.",
+          "Liberação de espaço horizontal para o conteúdo dos livros e mapas.",
+          "Melhoria na organização visual da Livraria."
+        ],
+        en: [
+          "Refactoring of the Library Drum Menu to a horizontal layout.",
+          "Freeing up horizontal space for book content and maps.",
+          "Improved visual organization of the Library."
+        ]
+      }
+    }
+  },
+  {
+    version: "1.3.1",
+    date: "2026-04-14",
+    title: { pt: "Projeto Wiki v1.3.1 - Library & Wiki", en: "Wiki Project v1.3.1 - Library & Wiki" },
+    changes: {
+      added: {
+        pt: [
+          "Novo sistema de navegação 'Drum Menu' (Tambor de Revólver) na Biblioteca.",
+          "Wiki de Itens: Adicionado banco de dados de Capacetes (Helmets).",
+          "Galeria de imagens e mapas para locais de livros na Biblioteca."
+        ],
+        en: [
+          "New 'Drum Menu' navigation system in the Library.",
+          "Item Wiki: Added Helmets database.",
+          "Image gallery and maps for book locations in the Library."
+        ]
+      }
+    }
+  },
+  {
     version: "1.3.0",
     date: "2026-04-14",
     title: { pt: "Projeto Wiki v1.3.0 - Hub Update", en: "Wiki Project v1.3.0 - Hub Update" },
