@@ -8,24 +8,27 @@ interface AlchemyCalculatorProps {
 }
 
 export const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({ t }) => {
-  const [alchemySkill, setAlchemySkill] = useState<number>(10);
-  const [decayMinutes, setDecayMinutes] = useState<number>(0);
+  const [alchemySkill, setAlchemySkill] = useState<number | string>(10);
+  const [decayMinutes, setDecayMinutes] = useState<number | string>(0);
   const [isAlchemist, setIsAlchemist] = useState<boolean>(false);
 
+  const skillNum = Number(alchemySkill) || 0;
+  const decayNum = Number(decayMinutes) || 0;
+
   // Gold Conversion
-  const goldSuccessChance = Math.min(100, 10 + (0.2 * alchemySkill));
+  const goldSuccessChance = Math.min(100, 10 + (0.2 * skillNum));
 
   // Crystals
   const getCrystalChance = (baseChance: number) => {
-    return Math.min(100, baseChance + (0.75 * alchemySkill));
+    return Math.min(100, baseChance + (0.75 * skillNum));
   };
 
   // Runes
   const getRuneChance = (baseChance: number) => {
-    const skillBonus = 0.2 * alchemySkill;
+    const skillBonus = 0.2 * skillNum;
     const totalBase = baseChance + skillBonus;
     // Decay: loses 20% of its TOTAL chance per minute
-    const decayFactor = Math.max(0, 1 - (0.2 * decayMinutes));
+    const decayFactor = Math.max(0, 1 - (0.2 * decayNum));
     return Math.min(100, totalBase * decayFactor);
   };
 
@@ -51,7 +54,7 @@ export const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({ t }) => {
               <input
                 type="number"
                 value={alchemySkill}
-                onChange={(e) => setAlchemySkill(Math.max(10, parseInt(e.target.value) || 10))}
+                onChange={(e) => setAlchemySkill(e.target.value)}
                 className="medieval-input"
                 min="10"
                 max="200"

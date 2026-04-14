@@ -8,20 +8,25 @@ interface FarmingCalculatorProps {
 }
 
 export const FarmingCalculator: React.FC<FarmingCalculatorProps> = ({ t }) => {
-  const [farmingSkill, setFarmingSkill] = useState<number>(10);
-  const [miracleCoinPrice, setMiracleCoinPrice] = useState<number>(5000);
+  const [farmingSkill, setFarmingSkill] = useState<number | string>(10);
+  const [miracleCoinPrice, setMiracleCoinPrice] = useState<number | string>(5000);
   const [selectedTreeName, setSelectedTreeName] = useState<string>(FARMING_TREES[0].name);
-  const [fruitPrice, setFruitPrice] = useState<number>(50);
-  const [treeQuantity, setTreeQuantity] = useState<number>(1);
+  const [fruitPrice, setFruitPrice] = useState<number | string>(50);
+  const [treeQuantity, setTreeQuantity] = useState<number | string>(1);
+
+  const skillNum = Number(farmingSkill) || 0;
+  const coinPriceNum = Number(miracleCoinPrice) || 0;
+  const fruitPriceNum = Number(fruitPrice) || 0;
+  const quantityNum = Number(treeQuantity) || 0;
 
   const selectedTree = useMemo(() => 
     FARMING_TREES.find(tree => tree.name === selectedTreeName) || FARMING_TREES[0]
   , [selectedTreeName]);
 
   const currentYield = useMemo(() => {
-    const yieldData = [...selectedTree.yields].reverse().find(y => farmingSkill >= y.level) || selectedTree.yields[0];
+    const yieldData = [...selectedTree.yields].reverse().find(y => skillNum >= y.level) || selectedTree.yields[0];
     return yieldData;
-  }, [selectedTree, farmingSkill]);
+  }, [selectedTree, skillNum]);
 
   const stats = useMemo(() => {
     const avgYield = (currentYield.min + currentYield.max) / 2;
@@ -34,31 +39,31 @@ export const FarmingCalculator: React.FC<FarmingCalculatorProps> = ({ t }) => {
     let totalPointsNeeded = 0;
 
     if (selectedTree.cost.type === 'point') {
-      totalPointsNeeded = selectedTree.cost.value * treeQuantity;
+      totalPointsNeeded = selectedTree.cost.value * quantityNum;
       // 1 Coin = 10 Points, cannot buy fractions
       totalCoinsNeeded = Math.ceil(totalPointsNeeded / 10);
-      totalTreeCostGp = totalCoinsNeeded * miracleCoinPrice;
+      totalTreeCostGp = totalCoinsNeeded * coinPriceNum;
     } else {
-      totalTreeCostGp = selectedTree.cost.value * treeQuantity;
+      totalTreeCostGp = selectedTree.cost.value * quantityNum;
     }
       
-    const totalTotalYield = totalYieldPerTree * treeQuantity;
-    const totalTotalRevenue = totalTotalYield * fruitPrice;
+    const totalTotalYield = totalYieldPerTree * quantityNum;
+    const totalTotalRevenue = totalTotalYield * fruitPriceNum;
     const totalProfit = totalTotalRevenue - totalTreeCostGp;
     const roi = totalTreeCostGp > 0 ? (totalProfit / totalTreeCostGp) * 100 : 0;
 
     // BP Metrics
-    const bpPrice = fruitPrice * 2000;
+    const bpPrice = fruitPriceNum * 2000;
     const totalBps = totalTotalYield / 2000;
 
     // Break-even (calculated per tree basis but considering the coin rounding if applicable)
     // If points, we use the effective cost per tree considering the total coins bought
-    const effectiveCostPerTree = totalTreeCostGp / treeQuantity;
-    const fruitsToPayOneTree = fruitPrice > 0 ? effectiveCostPerTree / fruitPrice : 0;
+    const effectiveCostPerTree = totalTreeCostGp / quantityNum;
+    const fruitsToPayOneTree = fruitPriceNum > 0 ? effectiveCostPerTree / fruitPriceNum : 0;
     const harvestsToPay = avgYield > 0 ? fruitsToPayOneTree / avgYield : 0;
 
     // Watering bonus: Farming * 1min * Multiplier
-    const extraMinutesPerWatering = farmingSkill * 1 * selectedTree.multiplier;
+    const extraMinutesPerWatering = skillNum * 1 * selectedTree.multiplier;
     
     return {
       avgYield,
@@ -77,7 +82,7 @@ export const FarmingCalculator: React.FC<FarmingCalculatorProps> = ({ t }) => {
       totalCoinsNeeded,
       totalPointsNeeded
     };
-  }, [selectedTree, currentYield, farmingSkill, miracleCoinPrice, fruitPrice, treeQuantity]);
+  }, [selectedTree, currentYield, skillNum, coinPriceNum, fruitPriceNum, quantityNum]);
 
   return (
     <div className="space-y-8">
@@ -101,7 +106,7 @@ export const FarmingCalculator: React.FC<FarmingCalculatorProps> = ({ t }) => {
               <input
                 type="number"
                 value={farmingSkill}
-                onChange={(e) => setFarmingSkill(Math.max(1, parseInt(e.target.value) || 1))}
+                onChange={(e) => setFarmingSkill(e.target.value)}
                 className="medieval-input"
                 min="1"
                 max="200"
@@ -115,7 +120,7 @@ export const FarmingCalculator: React.FC<FarmingCalculatorProps> = ({ t }) => {
               <input
                 type="number"
                 value={treeQuantity}
-                onChange={(e) => setTreeQuantity(Math.max(1, parseInt(e.target.value) || 1))}
+                onChange={(e) => setTreeQuantity(e.target.value)}
                 className="medieval-input"
                 min="1"
               />
@@ -128,7 +133,7 @@ export const FarmingCalculator: React.FC<FarmingCalculatorProps> = ({ t }) => {
               <input
                 type="number"
                 value={miracleCoinPrice}
-                onChange={(e) => setMiracleCoinPrice(Math.max(0, parseInt(e.target.value) || 0))}
+                onChange={(e) => setMiracleCoinPrice(e.target.value)}
                 className="medieval-input"
               />
             </div>
@@ -141,7 +146,7 @@ export const FarmingCalculator: React.FC<FarmingCalculatorProps> = ({ t }) => {
                 type="number"
                 step="0.01"
                 value={fruitPrice}
-                onChange={(e) => setFruitPrice(Math.max(0, parseFloat(e.target.value) || 0))}
+                onChange={(e) => setFruitPrice(e.target.value)}
                 className="medieval-input"
               />
             </div>

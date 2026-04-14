@@ -10,9 +10,9 @@ interface CraftingCalculatorProps {
 }
 
 export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT_ITEMS, BREAKING_DATA }) => {
-  const [skill, setSkill] = useState<number>(10);
-  const [quantity, setQuantity] = useState<number>(1);
-  const [materialPrices, setMaterialPrices] = useState<Record<string, number>>({});
+  const [skill, setSkill] = useState<number | string>(10);
+  const [quantity, setQuantity] = useState<number | string>(1);
+  const [materialPrices, setMaterialPrices] = useState<Record<string, number | string>>({});
   const [selectedCategory, setSelectedCategory] = useState<string>(CRAFT_ITEMS[0].category);
   const [selectedItemName, setSelectedItemName] = useState<string>(CRAFT_ITEMS[0].items[0].name);
   const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({
@@ -33,21 +33,23 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
 
   const chance = useMemo(() => {
     if (!selectedItem) return 0;
+    const skillNum = Number(skill) || 0;
     // Formula original restaurada: 10 + (skill - 10) * multiplier
-    const baseChance = 10 + (skill - 10) * selectedItem.multiplier;
+    const baseChance = 10 + (skillNum - 10) * selectedItem.multiplier;
     return Math.min(100, Math.max(0, parseFloat(baseChance.toFixed(1))));
   }, [skill, selectedItem]);
 
   const materialsCalculation = useMemo(() => {
     if (!selectedItem || !selectedItem.materials) return null;
     
+    const quantityNum = Number(quantity) || 0;
     const successRate = chance / 100;
-    const expectedAttempts = successRate > 0 ? Math.ceil(quantity / successRate) : 0;
+    const expectedAttempts = successRate > 0 ? Math.ceil(quantityNum / successRate) : 0;
 
     let totalCost = 0;
     const materials = selectedItem.materials.map((mat: any) => {
       const totalNeeded = mat.amount * expectedAttempts;
-      const unitPrice = materialPrices[mat.name] || 0;
+      const unitPrice = Number(materialPrices[mat.name]) || 0;
       totalCost += totalNeeded * unitPrice;
       
       return {
@@ -64,7 +66,7 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
     };
   }, [selectedItem, quantity, chance, materialPrices]);
 
-  const handlePriceChange = (name: string, price: number) => {
+  const handlePriceChange = (name: string, price: string) => {
     setMaterialPrices(prev => ({
       ...prev,
       [name]: price
@@ -98,7 +100,7 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
                     min="10"
                     max="200"
                     value={skill}
-                    onChange={(e) => setSkill(Number(e.target.value))}
+                    onChange={(e) => setSkill(e.target.value)}
                     className="medieval-input text-xl font-bold"
                   />
                 </div>
@@ -111,7 +113,7 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
                     type="number"
                     min="1"
                     value={quantity}
-                    onChange={(e) => setQuantity(Math.max(1, Number(e.target.value)))}
+                    onChange={(e) => setQuantity(e.target.value)}
                     className="medieval-input text-xl font-bold"
                   />
                 </div>
@@ -186,7 +188,7 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
                               min="0"
                               placeholder="0"
                               value={materialPrices[mat.name] || ''}
-                              onChange={(e) => handlePriceChange(mat.name, Number(e.target.value))}
+                              onChange={(e) => handlePriceChange(mat.name, e.target.value)}
                               className="bg-black/40 border border-medieval-gold/20 rounded px-2 py-1 text-xs text-medieval-gold w-24 focus:border-medieval-gold outline-none transition-colors"
                             />
                           </div>

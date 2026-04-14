@@ -6,62 +6,71 @@ interface MiningCalculatorProps {
 }
 
 const PICKS = [
-  { name: 'Pick', minSkill: 10, breakChance: 0, mineBonus: 0, dropMultiplier: 1 },
-  { name: 'Modified Pick', minSkill: 20, breakChance: 1, mineBonus: 2.5, dropMultiplier: 1.5 },
-  { name: 'Advanced Pick', minSkill: 30, breakChance: 2, mineBonus: 5, dropMultiplier: 2 },
-  { name: 'Enhanced Pick', minSkill: 40, breakChance: 3, mineBonus: 7.5, dropMultiplier: 2.5 },
+  { name: 'Pick', minSkill: 10, mineBonus: 0, dropMultiplier: 1.0, fragility: 0.5 },
+  { name: 'Modified Pick', minSkill: 20, mineBonus: 2.5, dropMultiplier: 1.5, fragility: 1.0 },
+  { name: 'Advanced Pick', minSkill: 30, mineBonus: 5.0, dropMultiplier: 2.0, fragility: 2.0 },
+  { name: 'Enhanced Pick', minSkill: 40, mineBonus: 7.5, dropMultiplier: 2.5, fragility: 3.0 },
 ];
 
 export function MiningCalculator({ t }: MiningCalculatorProps) {
-  const [skill, setSkill] = useState<number>(10);
+  const [skill, setSkill] = useState<number | string>(10);
   const [selectedPickName, setSelectedPickName] = useState<string>(PICKS[0].name);
-  const [targetMinerals, setTargetMinerals] = useState<number>(100);
-  const [targetFragments, setTargetFragments] = useState<number>(10);
-  const [pickPrice, setPickPrice] = useState<number>(0);
+  const [rareProportion, setRareProportion] = useState<number>(15);
+  const [pickPrice, setPickPrice] = useState<number | string>(0);
 
-  // Calculadora desativada temporariamente por estar desatualizada
-  const isOutdated = true;
+  // Calculadora reativada com as novas fórmulas
+  const isOutdated = false;
 
   const selectedPick = useMemo(() => {
     return PICKS.find(p => p.name === selectedPickName) || PICKS[0];
   }, [selectedPickName]);
 
   const stats = useMemo(() => {
-    // ... (keeping logic for when it's re-enabled)
-    // Chance de quebrar o spot (Sucesso na mineração)
-    const skillBonusSpot = Math.min(40, (skill - 10) * 0.597);
-    const baseSpotChance = 10 + skillBonusSpot;
-    const finalSpotChance = (baseSpotChance + selectedPick.mineBonus) / 100;
+    const skillNum = Number(skill) || 0;
+    const priceNum = Number(pickPrice) || 0;
 
-    const baseMineralChance = (2 + (0.2 * skill)) / 100;
-    const finalMineralChance = baseMineralChance * selectedPick.dropMultiplier;
+    // Clamping skill between 10 and 77
+    const clampedSkill = Math.min(77, Math.max(10, skillNum));
 
-    const baseFragmentChance = (0.5 + (0.1 * skill)) / 100;
-    const finalFragmentChance = baseFragmentChance * selectedPick.dropMultiplier;
+    // Passo A: Chance de Quebra da Mina (MBC)
+    // Fórmula: 10 + ((Skill - 10) * 0.597) + Bônus de Quebra da Picareta
+    const mbc = Math.min(100, 10 + ((clampedSkill - 10) * 0.597) + selectedPick.mineBonus);
 
-    const probMineralPerClick = finalSpotChance * finalMineralChance;
-    const probFragmentPerClick = finalSpotChance * finalFragmentChance;
+    // Passo B: Chance de Quebra da Picareta (PBC)
+    // Fórmula: (Fator de Fragilidade da Picareta / 100) * Chance de Quebra da Mina (MBC)
+    const pbc = (selectedPick.fragility / 100) * mbc;
 
-    const clicksForMinerals = targetMinerals > 0 ? targetMinerals / probMineralPerClick : 0;
-    const clicksForFragments = targetFragments > 0 ? targetFragments / probFragmentPerClick : 0;
-    const totalClicks = Math.max(clicksForMinerals, clicksForFragments);
+    // Passo C: Estimativa de Usos
+    // Fórmula: 100 / Chance de Quebra da Picareta (PBC)
+    const estimatedUses = pbc > 0 ? 100 / pbc : Infinity;
 
-    const pickBreakProb = selectedPick.breakChance / 100;
-    const expectedPicks = totalClicks * pickBreakProb;
-    const totalPicksCount = Math.ceil(expectedPicks);
-    const totalCost = totalPicksCount * pickPrice;
+    // Passo D: Chance Global de Drop (OAC)
+    // Fórmula: ((Skill - 10) * 0.2) * Multiplicador de Drop da Picareta
+    const oac = Math.min(100, ((clampedSkill - 10) * 0.2) * selectedPick.dropMultiplier);
+
+    // Passo E: Rendimento Total Médio (Yield)
+    // Fórmula: Usos Estimados * (Chance de Quebra da Mina / 100) * (Chance Global de Drop / 100)
+    const totalYield = estimatedUses * (mbc / 100) * (oac / 100);
+
+    // Passo F: Simulação Comum vs. Raro
+    const raresExpected = totalYield * (rareProportion / 100);
+    const commonsExpected = totalYield - raresExpected;
+
+    const totalCost = priceNum; // Custo por picareta
 
     return {
-      spotChance: finalSpotChance * 100,
-      mineralChance: finalMineralChance * 100,
-      fragmentChance: finalFragmentChance * 100,
-      totalClicks: Math.ceil(totalClicks),
-      expectedPicks: totalPicksCount,
-      pickBreakChance: selectedPick.breakChance,
+      mbc,
+      pbc,
+      estimatedUses,
+      oac,
+      totalYield,
+      raresExpected,
+      commonsExpected,
       totalCost,
-      dropMultiplier: selectedPick.dropMultiplier
+      dropMultiplier: selectedPick.dropMultiplier,
+      fragility: selectedPick.fragility
     };
-  }, [skill, selectedPick, targetMinerals, targetFragments, pickPrice]);
+  }, [skill, selectedPick, rareProportion, pickPrice]);
 
   return (
     <div className="space-y-8">
@@ -113,7 +122,7 @@ export function MiningCalculator({ t }: MiningCalculatorProps) {
                   type="number"
                   min="10"
                   value={skill}
-                  onChange={(e) => setSkill(Number(e.target.value))}
+                  onChange={(e) => setSkill(e.target.value)}
                   className="medieval-input"
                 />
               </div>
@@ -137,68 +146,66 @@ export function MiningCalculator({ t }: MiningCalculatorProps) {
                 {/* Buffs da Picareta */}
                 <div className="flex flex-wrap gap-2 mt-1">
                   <span className="text-[9px] px-2 py-0.5 bg-medieval-gold/10 border border-medieval-gold/20 text-medieval-gold rounded font-bold uppercase">
-                    +{selectedPick.mineBonus}% Sucesso
+                    +{selectedPick.mineBonus}% MBC Bonus
                   </span>
                   <span className="text-[9px] px-2 py-0.5 bg-medieval-gold/10 border border-medieval-gold/20 text-medieval-gold rounded font-bold uppercase">
-                    {stats.dropMultiplier}x Drop Multiplier
+                    {stats.dropMultiplier}x Drop Mult.
+                  </span>
+                  <span className="text-[9px] px-2 py-0.5 bg-medieval-gold/10 border border-medieval-gold/20 text-medieval-gold rounded font-bold uppercase">
+                    {stats.fragility}% Fragility
                   </span>
                 </div>
               </div>
 
-              {/* Minerais Desejados */}
-              <div className="flex flex-col gap-2">
-                <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                  {t('targetMinerals')}
-                </label>
+              {/* Proporção de Raros */}
+              <div className="flex flex-col gap-2 sm:col-span-2">
+                <div className="flex justify-between items-center">
+                  <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
+                    {t('rareProportion')}
+                  </label>
+                  <span className="text-medieval-gold font-mono text-xs font-bold">{rareProportion}%</span>
+                </div>
                 <input
-                  type="number"
+                  type="range"
                   min="0"
-                  value={targetMinerals}
-                  onChange={(e) => setTargetMinerals(Number(e.target.value))}
-                  className="medieval-input"
+                  max="100"
+                  step="1"
+                  value={rareProportion}
+                  onChange={(e) => setRareProportion(Number(e.target.value))}
+                  className="w-full h-2 bg-black/40 rounded-lg appearance-none cursor-pointer accent-medieval-gold"
                 />
-              </div>
-
-              {/* Fragmentos Desejados */}
-              <div className="flex flex-col gap-2">
-                <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                  {t('targetFragments')}
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  value={targetFragments}
-                  onChange={(e) => setTargetFragments(Number(e.target.value))}
-                  className="medieval-input"
-                />
+                <div className="flex justify-between text-[8px] text-medieval-gold/40 uppercase font-bold">
+                  <span>{t('common')}</span>
+                  <span>{t('rare')}</span>
+                </div>
               </div>
             </div>
 
             {/* Resultados de Probabilidade */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 pt-8 border-t border-medieval-gold/20">
               <div className="text-center p-4 bg-black/40 rounded border border-medieval-gold/10">
-                <p className="text-medieval-gold/60 uppercase text-[9px] font-black tracking-widest mb-1">{t('spotBreakChance')}</p>
-                <div className="text-xl font-black text-medieval-gold">{stats.spotChance.toFixed(2)}%</div>
+                <p className="text-medieval-gold/60 uppercase text-[9px] font-black tracking-widest mb-1">{t('mineBreakChance')}</p>
+                <div className="text-xl font-black text-medieval-gold">{stats.mbc.toFixed(2)}%</div>
               </div>
               <div className="text-center p-4 bg-black/40 rounded border border-medieval-gold/10">
-                <p className="text-medieval-gold/60 uppercase text-[9px] font-black tracking-widest mb-1">{t('mineralChance')}</p>
-                <div className="text-xl font-black text-medieval-gold">{stats.mineralChance.toFixed(2)}%</div>
+                <p className="text-medieval-gold/60 uppercase text-[9px] font-black tracking-widest mb-1">{t('pickBreakChance')}</p>
+                <div className="text-xl font-black text-medieval-gold">{stats.pbc.toFixed(4)}%</div>
               </div>
               <div className="text-center p-4 bg-black/40 rounded border border-medieval-gold/10">
-                <p className="text-medieval-gold/60 uppercase text-[9px] font-black tracking-widest mb-1">{t('fragmentChance')}</p>
-                <div className="text-xl font-black text-medieval-gold">{stats.fragmentChance.toFixed(2)}%</div>
+                <p className="text-medieval-gold/60 uppercase text-[9px] font-black tracking-widest mb-1">{t('globalDropChance')}</p>
+                <div className="text-xl font-black text-medieval-gold">{stats.oac.toFixed(2)}%</div>
               </div>
             </div>
 
             {/* Novo Visual de Resultados Estilo Imagem */}
             <div className="mt-8 pt-8 border-t border-medieval-gold/20 space-y-6">
               <div className="flex justify-between items-center">
-                <h3 className="text-medieval-gold font-black uppercase text-xs tracking-widest">{t('estimatedClicks')}</h3>
-                <span className="text-medieval-gold font-black text-2xl">{stats.totalClicks.toLocaleString()}</span>
+                <h3 className="text-medieval-gold font-black uppercase text-xs tracking-widest">{t('estimatedUsesPerPick')}</h3>
+                <span className="text-medieval-gold font-black text-2xl">{stats.estimatedUses === Infinity ? '∞' : Math.floor(stats.estimatedUses).toLocaleString()}</span>
               </div>
               
               <div className="space-y-4">
-                <h3 className="text-medieval-gold font-black uppercase text-[10px] tracking-widest opacity-60">{t('picksNeeded')}</h3>
+                <h3 className="text-medieval-gold font-black uppercase text-[10px] tracking-widest opacity-60">{t('yieldPerPick')}</h3>
                 
                 <div className="bg-black/40 p-4 rounded border border-medieval-gold/10 flex flex-col sm:flex-row items-center justify-between gap-4">
                   <div className="flex items-center gap-4 flex-1">
@@ -206,9 +213,12 @@ export function MiningCalculator({ t }: MiningCalculatorProps) {
                   </div>
                   
                   <div className="flex items-center gap-6 w-full sm:w-auto justify-between sm:justify-end">
-                    <span className="text-medieval-gold font-black text-xl">
-                      {stats.pickBreakChance > 0 ? `${stats.expectedPicks.toLocaleString()}x` : '∞'}
-                    </span>
+                    <div className="flex flex-col items-end">
+                      <span className="text-medieval-gold font-black text-xl">
+                        {stats.totalYield.toFixed(2)}
+                      </span>
+                      <span className="text-[8px] text-medieval-gold/40 uppercase font-bold">{t('totalItems')}</span>
+                    </div>
                     
                     <div className="h-8 w-px bg-medieval-gold/20 hidden sm:block"></div>
                     
@@ -220,20 +230,32 @@ export function MiningCalculator({ t }: MiningCalculatorProps) {
                         type="number"
                         min="0"
                         value={pickPrice}
-                        onChange={(e) => setPickPrice(Number(e.target.value))}
+                        onChange={(e) => setPickPrice(e.target.value)}
                         className="medieval-input w-24 text-right py-1 px-2 text-sm"
                         placeholder="0"
                       />
                     </div>
                   </div>
                 </div>
+
+                {/* Detalhamento Raro vs Comum */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-black/20 p-3 rounded border border-medieval-gold/5 text-center">
+                    <p className="text-medieval-gold/40 uppercase text-[8px] font-black tracking-widest mb-1">{t('commonsExpected')}</p>
+                    <div className="text-lg font-black text-medieval-text/80">{stats.commonsExpected.toFixed(2)}</div>
+                  </div>
+                  <div className="bg-medieval-gold/5 p-3 rounded border border-medieval-gold/10 text-center">
+                    <p className="text-medieval-gold/60 uppercase text-[8px] font-black tracking-widest mb-1">{t('raresExpected')}</p>
+                    <div className="text-lg font-black text-medieval-gold">{stats.raresExpected.toFixed(2)}</div>
+                  </div>
+                </div>
               </div>
 
               <div className="flex justify-end items-center pt-4 border-t border-medieval-gold/10">
                 <div className="text-right">
-                  <p className="text-medieval-gold/60 uppercase text-[9px] font-black tracking-widest mb-1">{t('totalCost')}</p>
+                  <p className="text-medieval-gold/60 uppercase text-[9px] font-black tracking-widest mb-1">{t('costPerItem')}</p>
                   <div className="text-3xl font-black text-medieval-gold">
-                    {stats.totalCost.toLocaleString()} <span className="text-sm">GP</span>
+                    {stats.totalYield > 0 ? (pickPrice / stats.totalYield).toFixed(2) : '0.00'} <span className="text-sm">GP</span>
                   </div>
                 </div>
               </div>
@@ -247,9 +269,11 @@ export function MiningCalculator({ t }: MiningCalculatorProps) {
               <Info className="w-4 h-4" /> {t('miningInfo')}
             </h3>
             <div className="space-y-4 text-xs text-medieval-text/70 leading-relaxed font-mono">
-              <p>• <span className="text-medieval-gold">{t('spotInfo').split(':')[0]}:</span> {t('spotInfo').split(':')[1]}</p>
-              <p>• <span className="text-medieval-gold">{t('collectInfo').split(':')[0]}:</span> {t('collectInfo').split(':')[1]}</p>
-              <p>• <span className="text-medieval-gold">{t('durabilityInfo').split(':')[0]}:</span> {t('durabilityInfo').split(':')[1]}</p>
+              <p>• <span className="text-medieval-gold">MBC (Mine Break Chance):</span> Chance da pedra sumir após uma batida. Cap de 100%.</p>
+              <p>• <span className="text-medieval-gold">PBC (Pick Break Chance):</span> Taxa de desgaste da picareta, proporcional à MBC e fragilidade.</p>
+              <p>• <span className="text-medieval-gold">OAC (Global Drop Chance):</span> Chance de qualquer item vir para a mochila ao bater.</p>
+              <p>• <span className="text-medieval-gold">Sistema de Prioridade:</span> O servidor faz um único sorteio. Se a chance de um item raro e um comum baterem, o sistema **sempre prioriza o mais raro**. Não é possível ganhar dois itens no mesmo hit.</p>
+              <p>• <span className="text-medieval-gold">Yield:</span> Rendimento total médio de itens por picareta.</p>
               <p>• <span className="text-medieval-gold">Restrição:</span> Picaretas normais podem minerar apenas Lava Holes e Ice Lava Holes.</p>
             </div>
           </div>
