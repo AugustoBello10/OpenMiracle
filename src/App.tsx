@@ -1140,313 +1140,273 @@ export default function App() {
             {activeTab === 'home' && (
               <motion.div
                 key="home"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                className="space-y-12 py-10"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                className="space-y-16 py-10"
               >
-                <div className="text-center space-y-4">
-                  <motion.div
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                  >
+                {/* Hero Section with Search Feel */}
+                <div className="text-center space-y-8 max-w-4xl mx-auto">
+                  <div className="space-y-4">
                     <h1 className="text-5xl sm:text-7xl font-black text-medieval-gold uppercase tracking-tighter leading-none">
-                      {t('welcome')} <br /> Miracle Wiki Tools
+                      {t('welcome')} <br /> Miracle Wiki
                     </h1>
-                    <p className="text-medieval-gold/60 font-mono text-lg mt-4 max-w-2xl mx-auto">
+                    <p className="text-medieval-gold/60 font-mono text-lg max-w-2xl mx-auto">
                       {t('heroSubtitle')}
                     </p>
-                  </motion.div>
+                  </div>
+
+                  {/* Visual Search Bar */}
+                  <div className="relative max-w-xl mx-auto group">
+                    <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                      <Book className="text-medieval-gold/40 w-5 h-5 group-focus-within:text-medieval-gold transition-colors" />
+                    </div>
+                    <input 
+                      type="text" 
+                      placeholder={t('databaseSearch')}
+                      className="w-full bg-black/40 border border-medieval-gold/20 rounded-full py-4 pl-12 pr-6 text-medieval-gold placeholder:text-medieval-gold/20 focus:outline-none focus:border-medieval-gold/50 focus:bg-black/60 transition-all text-sm font-bold tracking-wider"
+                    />
+                  </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
-                  {/* Card Calculadoras */}
-                  <div className="medieval-card bg-medieval-card p-8 medieval-border rounded-lg space-y-6 flex flex-col">
-                    <div className="flex items-center gap-4">
-                      <div className="p-3 bg-medieval-gold/10 rounded-lg">
+                {/* Main Hub Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {/* Calculators Hub */}
+                  <button 
+                    onClick={() => setActiveTab('calculadoras')}
+                    className="medieval-card group p-8 medieval-border rounded-lg bg-medieval-card hover:bg-medieval-gold/5 transition-all text-left flex flex-col gap-4"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="p-3 bg-medieval-gold/10 rounded-lg group-hover:bg-medieval-gold/20 transition-colors">
                         <Hammer className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-xl font-black text-medieval-gold uppercase">{t('toolsTitle')}</h2>
+                      <ChevronRight className="text-medieval-gold/20 group-hover:text-medieval-gold group-hover:translate-x-1 transition-all" />
                     </div>
-                    <p className="text-medieval-text/70 text-sm leading-relaxed flex-1">
-                      {t('toolsDesc')}
-                    </p>
-                    <div className="grid grid-cols-1 gap-3 pt-4">
-                      {/* Skills */}
-                      <div className="space-y-2">
-                        <button 
-                          onClick={() => setHomeSkillsMenuOpen(!homeSkillsMenuOpen)}
-                          className={`flex items-center justify-between w-full p-4 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold hover:bg-medieval-gold/5 transition-all group ${homeSkillsMenuOpen ? 'border-medieval-gold bg-medieval-gold/5' : ''}`}
-                        >
-                          <div className="flex items-center gap-3">
-                            <Zap className="text-medieval-gold w-5 h-5" />
-                            <span className="font-bold uppercase tracking-wider text-xs">{t('skills')}</span>
-                          </div>
-                          <ChevronRight className={`text-medieval-gold w-4 h-4 transition-transform ${homeSkillsMenuOpen ? 'rotate-90' : 'group-hover:translate-x-1'}`} />
-                        </button>
-                        <AnimatePresence>
-                          {homeSkillsMenuOpen && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: 'auto', opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              className="overflow-hidden space-y-2 pl-4"
-                            >
-                              <button 
-                                onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('skills'); setSkillType('Melee'); }}
-                                className="flex items-center justify-between w-full p-3 bg-black/20 border border-medieval-gold/10 rounded hover:border-medieval-gold/40 hover:bg-medieval-gold/5 transition-all group"
-                              >
-                                <span className="font-bold uppercase tracking-wider text-[10px] text-medieval-text/80">Melee</span>
-                                <ChevronRight className="text-medieval-gold/40 w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                              </button>
-                              <button 
-                                onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('skills'); setSkillType('Distance'); }}
-                                className="flex items-center justify-between w-full p-3 bg-black/20 border border-medieval-gold/10 rounded hover:border-medieval-gold/40 hover:bg-medieval-gold/5 transition-all group"
-                              >
-                                <span className="font-bold uppercase tracking-wider text-[10px] text-medieval-text/80">Distance</span>
-                                <ChevronRight className="text-medieval-gold/40 w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                              </button>
-                              <button 
-                                onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('skills'); setSkillType('Magic Level'); }}
-                                className="flex items-center justify-between w-full p-3 bg-black/20 border border-medieval-gold/10 rounded hover:border-medieval-gold/40 hover:bg-medieval-gold/5 transition-all group"
-                              >
-                                <span className="font-bold uppercase tracking-wider text-[10px] text-medieval-text/80">Magic Level</span>
-                                <ChevronRight className="text-medieval-gold/40 w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                              </button>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-
-                      {/* Bless */}
-                      <div className="space-y-2">
-                        <button 
-                          onClick={() => setHomeBlessMenuOpen(!homeBlessMenuOpen)}
-                          className={`flex items-center justify-between w-full p-4 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold hover:bg-medieval-gold/5 transition-all group ${homeBlessMenuOpen ? 'border-medieval-gold bg-medieval-gold/5' : ''}`}
-                        >
-                          <div className="flex items-center gap-3">
-                            <TrendingUp className="text-medieval-gold w-5 h-5" />
-                            <span className="font-bold uppercase tracking-wider text-xs">{t('blessDeath')}</span>
-                          </div>
-                          <ChevronRight className={`text-medieval-gold w-4 h-4 transition-transform ${homeBlessMenuOpen ? 'rotate-90' : 'group-hover:translate-x-1'}`} />
-                        </button>
-                        <AnimatePresence>
-                          {homeBlessMenuOpen && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: 'auto', opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              className="overflow-hidden space-y-2 pl-4"
-                            >
-                              <button 
-                                onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('bless'); }}
-                                className="flex items-center justify-between w-full p-3 bg-black/20 border border-medieval-gold/10 rounded hover:border-medieval-gold/40 hover:bg-medieval-gold/5 transition-all group"
-                              >
-                                <span className="font-bold uppercase tracking-wider text-[10px] text-medieval-text/80">{t('blessDeath')}</span>
-                                <ChevronRight className="text-medieval-gold/40 w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                              </button>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-
-                      {/* Attributes */}
-                      <div className="space-y-2">
-                        <button 
-                          onClick={() => setHomeAttrMenuOpen(!homeAttrMenuOpen)}
-                          className={`flex items-center justify-between w-full p-4 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold hover:bg-medieval-gold/5 transition-all group ${homeAttrMenuOpen ? 'border-medieval-gold bg-medieval-gold/5' : ''}`}
-                        >
-                          <div className="flex items-center gap-3">
-                            <Sparkles className="text-medieval-gold w-5 h-5" />
-                            <span className="font-bold uppercase tracking-wider text-xs">{t('attributes')}</span>
-                          </div>
-                          <ChevronRight className={`text-medieval-gold w-4 h-4 transition-transform ${homeAttrMenuOpen ? 'rotate-90' : 'group-hover:translate-x-1'}`} />
-                        </button>
-                        <AnimatePresence>
-                          {homeAttrMenuOpen && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: 'auto', opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              className="overflow-hidden space-y-2 pl-4"
-                            >
-                              <button 
-                                onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('atributos'); }}
-                                className="flex items-center justify-between w-full p-3 bg-black/20 border border-medieval-gold/10 rounded hover:border-medieval-gold/40 hover:bg-medieval-gold/5 transition-all group"
-                              >
-                                <span className="font-bold uppercase tracking-wider text-[10px] text-medieval-text/80">{t('attributes')}</span>
-                                <ChevronRight className="text-medieval-gold/40 w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                              </button>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-
-                      {/* Professions */}
-                      <div className="space-y-2">
-                        <button 
-                          onClick={() => setHomeProfMenuOpen(!homeProfMenuOpen)}
-                          className={`flex items-center justify-between w-full p-4 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold hover:bg-medieval-gold/5 transition-all group ${homeProfMenuOpen ? 'border-medieval-gold bg-medieval-gold/5' : ''}`}
-                        >
-                          <div className="flex items-center gap-3">
-                            <Briefcase className="text-medieval-gold w-5 h-5" />
-                            <span className="font-bold uppercase tracking-wider text-xs">{t('professions')}</span>
-                          </div>
-                          <ChevronRight className={`text-medieval-gold w-4 h-4 transition-transform ${homeProfMenuOpen ? 'rotate-90' : 'group-hover:translate-x-1'}`} />
-                        </button>
-                        
-                        <AnimatePresence>
-                          {homeProfMenuOpen && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: 'auto', opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              className="overflow-hidden space-y-2 pl-4"
-                            >
-                              <button 
-                                onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('crafting'); }}
-                                className="flex items-center justify-between w-full p-3 bg-black/20 border border-medieval-gold/10 rounded hover:border-medieval-gold/40 hover:bg-medieval-gold/5 transition-all group"
-                              >
-                                <div className="flex items-center gap-3">
-                                  <Hammer className="text-medieval-gold/60 w-4 h-4" />
-                                  <span className="font-bold uppercase tracking-wider text-[10px] text-medieval-text/80">{t('crafting')}</span>
-                                </div>
-                                <ChevronRight className="text-medieval-gold/40 w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                              </button>
-                              <button 
-                                onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('alchemy'); }}
-                                className="flex items-center justify-between w-full p-3 bg-black/20 border border-medieval-gold/10 rounded hover:border-medieval-gold/40 hover:bg-medieval-gold/5 transition-all group"
-                              >
-                                <div className="flex items-center gap-3">
-                                  <FlaskConical className="text-medieval-gold/60 w-4 h-4" />
-                                  <span className="font-bold uppercase tracking-wider text-[10px] text-medieval-text/80">{t('alchemy')}</span>
-                                </div>
-                                <ChevronRight className="text-medieval-gold/40 w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                              </button>
-                              <button 
-                                onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('farming'); }}
-                                className="flex items-center justify-between w-full p-3 bg-black/20 border border-medieval-gold/10 rounded hover:border-medieval-gold/40 hover:bg-medieval-gold/5 transition-all group"
-                              >
-                                <div className="flex items-center gap-3">
-                                  <Sprout className="text-medieval-gold/60 w-4 h-4" />
-                                  <span className="font-bold uppercase tracking-wider text-[10px] text-medieval-text/80">{t('farming')}</span>
-                                </div>
-                                <ChevronRight className="text-medieval-gold/40 w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                              </button>
-                              <button 
-                                onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('mining'); }}
-                                className="flex items-center justify-between w-full p-3 bg-black/20 border border-medieval-gold/10 rounded hover:border-medieval-gold/40 hover:bg-medieval-gold/5 transition-all group"
-                              >
-                                <div className="flex items-center gap-3">
-                                  <Pickaxe className="text-medieval-gold/60 w-4 h-4" />
-                                  <span className="font-bold uppercase tracking-wider text-[10px] text-medieval-text/80">{t('mining')}</span>
-                                </div>
-                                <ChevronRight className="text-medieval-gold/40 w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                              </button>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
+                    <div>
+                      <h2 className="text-2xl font-black text-medieval-gold uppercase tracking-tight">{t('calculators')}</h2>
+                      <p className="text-medieval-text/60 text-sm mt-2 leading-relaxed">
+                        {t('toolsDesc')}
+                      </p>
                     </div>
-                  </div>
+                  </button>
 
-                  {/* Card Profissões */}
-                  <div className="medieval-card bg-medieval-card p-8 medieval-border rounded-lg space-y-6 flex flex-col">
-                    <div className="flex items-center gap-4">
-                      <div className="p-3 bg-medieval-gold/10 rounded-lg">
+                  {/* Professions Hub */}
+                  <button 
+                    onClick={() => setActiveTab('profissoes')}
+                    className="medieval-card group p-8 medieval-border rounded-lg bg-medieval-card hover:bg-medieval-gold/5 transition-all text-left flex flex-col gap-4"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="p-3 bg-medieval-gold/10 rounded-lg group-hover:bg-medieval-gold/20 transition-colors">
                         <Briefcase className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-xl font-black text-medieval-gold uppercase">{t('professionsTitle')}</h2>
+                      <ChevronRight className="text-medieval-gold/20 group-hover:text-medieval-gold group-hover:translate-x-1 transition-all" />
                     </div>
-                    <p className="text-medieval-text/70 text-sm leading-relaxed flex-1">
-                      {t('professionsDesc')}
-                    </p>
-                    <button 
-                      onClick={() => setActiveTab('profissoes')}
-                      className="medieval-button w-full flex items-center justify-center gap-3"
-                    >
-                      <Briefcase className="w-5 h-5" /> {t('viewProfessions')}
-                    </button>
-                  </div>
+                    <div>
+                      <h2 className="text-2xl font-black text-medieval-gold uppercase tracking-tight">{t('professions')}</h2>
+                      <p className="text-medieval-text/60 text-sm mt-2 leading-relaxed">
+                        {t('professionsDesc')}
+                      </p>
+                    </div>
+                  </button>
 
-                  {/* Card Mapa */}
-                  <div className="medieval-card bg-medieval-card p-8 medieval-border rounded-lg space-y-6 flex flex-col">
-                    <div className="flex items-center gap-4">
-                      <div className="p-3 bg-medieval-gold/10 rounded-lg">
+                  {/* Map Hub */}
+                  <button 
+                    onClick={() => setActiveTab('mapa')}
+                    className="medieval-card group p-8 medieval-border rounded-lg bg-medieval-card hover:bg-medieval-gold/5 transition-all text-left flex flex-col gap-4"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="p-3 bg-medieval-gold/10 rounded-lg group-hover:bg-medieval-gold/20 transition-colors">
                         <Map className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-xl font-black text-medieval-gold uppercase">{t('mapTitle')}</h2>
+                      <ChevronRight className="text-medieval-gold/20 group-hover:text-medieval-gold group-hover:translate-x-1 transition-all" />
                     </div>
-                    <p className="text-medieval-text/70 text-sm leading-relaxed flex-1">
-                      {t('mapDesc')}
-                    </p>
-                    <button 
-                      onClick={() => setActiveTab('mapa')}
-                      className="medieval-button w-full flex items-center justify-center gap-3"
-                    >
-                      <Map className="w-5 h-5" /> {t('openMap')}
-                    </button>
-                  </div>
+                    <div>
+                      <h2 className="text-2xl font-black text-medieval-gold uppercase tracking-tight">{t('map')}</h2>
+                      <p className="text-medieval-text/60 text-sm mt-2 leading-relaxed">
+                        {t('mapDesc')}
+                      </p>
+                    </div>
+                  </button>
 
-                  {/* Card Eventos */}
-                  <div className="medieval-card bg-medieval-card p-8 medieval-border rounded-lg space-y-6 flex flex-col">
-                    <div className="flex items-center gap-4">
-                      <div className="p-3 bg-medieval-gold/10 rounded-lg">
+                  {/* Wiki/Library Hub */}
+                  <button 
+                    onClick={() => setActiveTab('wiki')}
+                    className="medieval-card group p-8 medieval-border rounded-lg bg-medieval-card hover:bg-medieval-gold/5 transition-all text-left flex flex-col gap-4"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="p-3 bg-medieval-gold/10 rounded-lg group-hover:bg-medieval-gold/20 transition-colors">
+                        <Book className="text-medieval-gold w-8 h-8" />
+                      </div>
+                      <ChevronRight className="text-medieval-gold/20 group-hover:text-medieval-gold group-hover:translate-x-1 transition-all" />
+                    </div>
+                    <div>
+                      <h2 className="text-2xl font-black text-medieval-gold uppercase tracking-tight">{t('wiki')}</h2>
+                      <p className="text-medieval-text/60 text-sm mt-2 leading-relaxed">
+                        {t('wikiGuidesDesc')}
+                      </p>
+                    </div>
+                  </button>
+
+                  {/* Events Hub */}
+                  <button 
+                    onClick={() => setActiveTab('eventos')}
+                    className="medieval-card group p-8 medieval-border rounded-lg bg-medieval-card hover:bg-medieval-gold/5 transition-all text-left flex flex-col gap-4"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="p-3 bg-medieval-gold/10 rounded-lg group-hover:bg-medieval-gold/20 transition-colors">
                         <Users className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-xl font-black text-medieval-gold uppercase">{t('eventsTitle')}</h2>
+                      <ChevronRight className="text-medieval-gold/20 group-hover:text-medieval-gold group-hover:translate-x-1 transition-all" />
                     </div>
-                    <p className="text-medieval-text/70 text-sm leading-relaxed flex-1">
-                      {t('eventsDesc')}
-                    </p>
-                    <button 
-                      onClick={() => setActiveTab('eventos')}
-                      className="medieval-button w-full flex items-center justify-center gap-3"
-                    >
-                      <Users className="w-5 h-5" /> {t('accessLobby')}
-                    </button>
-                  </div>
+                    <div>
+                      <h2 className="text-2xl font-black text-medieval-gold uppercase tracking-tight">{t('events')}</h2>
+                      <p className="text-medieval-text/60 text-sm mt-2 leading-relaxed">
+                        {t('eventsDesc')}
+                      </p>
+                    </div>
+                  </button>
 
-                  {/* Card Comunidade */}
-                  <div className="medieval-card bg-medieval-card p-8 medieval-border rounded-lg space-y-6 flex flex-col">
+                  {/* Community Hub */}
+                  <div className="medieval-card p-8 medieval-border rounded-lg bg-medieval-card flex flex-col gap-6">
                     <div className="flex items-center gap-4">
                       <div className="p-3 bg-medieval-gold/10 rounded-lg">
-                        <Twitch className="text-medieval-gold w-8 h-8" />
+                        <MessageSquare className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-xl font-black text-medieval-gold uppercase">{t('community')}</h2>
+                      <h2 className="text-2xl font-black text-medieval-gold uppercase tracking-tight">{t('community')}</h2>
                     </div>
-                    <p className="text-medieval-text/70 text-sm leading-relaxed flex-1">
-                      {t('footerDesc')}
-                    </p>
-                    <div className="grid grid-cols-1 gap-3 pt-4">
-                      <a href="https://www.twitch.tv/obellao_" target="_blank" rel="noopener noreferrer" className="medieval-button flex items-center justify-center gap-3">
-                        <Twitch className="w-5 h-5" /> {t('twitchChannel')}
+                    <div className="flex flex-col gap-3">
+                      <a 
+                        href="https://twitch.tv/obellao_" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-between p-3 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold transition-all group"
+                      >
+                        <div className="flex items-center gap-3">
+                          <Twitch className="text-[#9146FF] w-4 h-4" />
+                          <span className="text-[10px] font-bold uppercase tracking-widest">{t('twitchChannel')}</span>
+                        </div>
+                        <ExternalLink className="w-3 h-3 text-medieval-gold/40 group-hover:text-medieval-gold" />
                       </a>
-                      <a href="https://discord.gg/nacCypRkqQ" target="_blank" rel="noopener noreferrer" className="bg-[#5865F2] text-white font-bold py-3 px-6 rounded-sm flex items-center justify-center gap-3 hover:bg-[#4752C4] transition-colors">
-                        <MessageSquare className="w-5 h-5" /> {t('ourDiscord')}
+                      <a 
+                        href="https://discord.gg/miracle74" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-between p-3 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold transition-all group"
+                      >
+                        <div className="flex items-center gap-3">
+                          <MessageSquare className="text-[#5865F2] w-4 h-4" />
+                          <span className="text-[10px] font-bold uppercase tracking-widest">{t('ourDiscord')}</span>
+                        </div>
+                        <ExternalLink className="w-3 h-3 text-medieval-gold/40 group-hover:text-medieval-gold" />
                       </a>
-                    </div>
-                  </div>
-
-                  {/* Twitch Camera Card */}
-                  <div className="medieval-card bg-medieval-card p-4 medieval-border rounded-lg flex flex-col overflow-hidden">
-                    <div className="medieval-border rounded-sm overflow-hidden bg-black aspect-video h-full">
-                      <iframe
-                        src={`https://player.twitch.tv/?channel=obellao_&parent=${window.location.hostname}`}
-                        height="100%" width="100%" allowFullScreen title="Twitch Player"
-                      />
                     </div>
                   </div>
                 </div>
 
-                {/* Seção de Destaque Wiki */}
-                <div className="medieval-border rounded-lg bg-black/40 p-8 text-center space-y-4">
-                  <Book className="w-12 h-12 text-medieval-gold/40 mx-auto" />
-                  <h3 className="text-xl font-black text-medieval-gold uppercase tracking-widest">{t('wikiSoon')}</h3>
-                  <p className="text-medieval-text/50 text-sm max-w-xl mx-auto">
-                    {t('wikiSoonDesc')}
-                  </p>
+                {/* Secondary Section: Patch Notes & News */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 pt-8 border-t border-medieval-gold/10">
+                  <div className="lg:col-span-2 space-y-8">
+                    <div className="flex items-center justify-between border-b border-medieval-gold/20 pb-4">
+                      <div className="flex items-center gap-3">
+                        <History className="text-medieval-gold w-6 h-6" />
+                        <h3 className="text-2xl font-black text-medieval-gold uppercase tracking-tight">{t('latestUpdates')}</h3>
+                      </div>
+                      <button className="text-[10px] font-bold uppercase tracking-widest text-medieval-gold/60 hover:text-medieval-gold transition-colors">
+                        {t('viewAll')}
+                      </button>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {/* Project Patch Notes Preview */}
+                      <div className="space-y-4">
+                        <h4 className="text-xs font-black text-medieval-gold/40 uppercase tracking-widest">{t('projectPatchNotes')}</h4>
+                        <div className="space-y-3">
+                          {PROJECT_PATCH_NOTES.slice(0, 3).map((note, idx) => {
+                            const firstChange = note.changes.added?.[language][0] || note.changes.changed?.[language][0] || note.changes.fixed?.[language][0];
+                            return (
+                              <div key={idx} className="p-4 bg-black/20 border border-medieval-gold/10 rounded-sm hover:border-medieval-gold/30 transition-colors">
+                                <div className="flex justify-between items-start mb-1">
+                                  <span className="text-medieval-gold font-bold text-[10px]">{note.version}</span>
+                                  <span className="text-[9px] text-medieval-gold/40 font-mono">{note.date}</span>
+                                </div>
+                                <p className="text-xs text-medieval-text/80 line-clamp-2">{firstChange}</p>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* Server Patch Notes Preview */}
+                      <div className="space-y-4">
+                        <h4 className="text-xs font-black text-medieval-gold/40 uppercase tracking-widest">{t('serverPatchNotes')}</h4>
+                        <div className="space-y-3">
+                          {SERVER_PATCH_NOTES.slice(0, 3).map((note, idx) => {
+                            const firstChange = note.changes.added?.[language][0] || note.changes.changed?.[language][0] || note.changes.fixed?.[language][0];
+                            return (
+                              <div key={idx} className="p-4 bg-black/20 border border-medieval-gold/10 rounded-sm hover:border-medieval-gold/30 transition-colors">
+                                <div className="flex justify-between items-start mb-1">
+                                  <span className="text-medieval-gold font-bold text-[10px]">{note.version}</span>
+                                  <span className="text-[9px] text-medieval-gold/40 font-mono">{note.date}</span>
+                                </div>
+                                <p className="text-xs text-medieval-text/80 line-clamp-2">{firstChange}</p>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Sidebar: Quick Links / Featured */}
+                  <div className="space-y-8">
+                    <div className="border-b border-medieval-gold/20 pb-4">
+                      <div className="flex items-center gap-3">
+                        <Zap className="text-medieval-gold w-5 h-5" />
+                        <h3 className="text-xl font-black text-medieval-gold uppercase tracking-tight">{t('featuredTools')}</h3>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      <button 
+                        onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('skills'); }}
+                        className="w-full p-4 bg-medieval-gold/5 border border-medieval-gold/20 rounded hover:border-medieval-gold transition-all text-left flex items-center gap-4 group"
+                      >
+                        <div className="p-2 bg-medieval-gold/10 rounded">
+                          <TrendingUp className="text-medieval-gold w-4 h-4" />
+                        </div>
+                        <div>
+                          <span className="block text-[10px] font-black uppercase text-medieval-gold tracking-widest">{t('skills')}</span>
+                          <span className="block text-[9px] text-medieval-gold/40 uppercase font-bold">Training Calculator</span>
+                        </div>
+                      </button>
+
+                      <button 
+                        onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('mining'); }}
+                        className="w-full p-4 bg-medieval-gold/5 border border-medieval-gold/20 rounded hover:border-medieval-gold transition-all text-left flex items-center gap-4 group"
+                      >
+                        <div className="p-2 bg-medieval-gold/10 rounded">
+                          <Pickaxe className="text-medieval-gold w-4 h-4" />
+                        </div>
+                        <div>
+                          <span className="block text-[10px] font-black uppercase text-medieval-gold tracking-widest">{t('mining')}</span>
+                          <span className="block text-[9px] text-medieval-gold/40 uppercase font-bold">Profit & Drop Calc</span>
+                        </div>
+                      </button>
+
+                      <button 
+                        onClick={() => setActiveTab('mapa')}
+                        className="w-full p-4 bg-medieval-gold/5 border border-medieval-gold/20 rounded hover:border-medieval-gold transition-all text-left flex items-center gap-4 group"
+                      >
+                        <div className="p-2 bg-medieval-gold/10 rounded">
+                          <Map className="text-medieval-gold w-4 h-4" />
+                        </div>
+                        <div>
+                          <span className="block text-[10px] font-black uppercase text-medieval-gold tracking-widest">{t('map')}</span>
+                          <span className="block text-[9px] text-medieval-gold/40 uppercase font-bold">Interactive World Map</span>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             )}

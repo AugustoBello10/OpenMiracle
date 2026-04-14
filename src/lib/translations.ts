@@ -3,6 +3,17 @@ export type Language = 'pt' | 'en';
 
 export const translations = {
   pt: {
+    viewAll: "Ver Tudo",
+    latestUpdates: "Últimas Atualizações",
+    projectPatchNotes: "Notas do Projeto",
+    serverPatchNotes: "Notas do Servidor",
+    quickLinks: "Links Rápidos",
+    featuredTools: "Ferramentas em Destaque",
+    wikiGuides: "Guias & Wiki",
+    wikiGuidesDesc: "Aprenda as mecânicas avançadas, segredos de bosses e guias de quests.",
+    databaseSearch: "Pesquisar no Banco de Dados...",
+    exploreWorld: "Explore o Mundo",
+    
     // Navigation
     rashidLocation: "Localização do Rashid",
     home: "Início",
@@ -289,11 +300,21 @@ export const translations = {
     createdBy: "Criado por obellao_",
     developedWithIA: "Desenvolvido com IA",
     footerDesc: "O portal definitivo para jogadores de Tibia. Ferramentas, dados e comunidade em um só lugar.",
-    quickLinks: "Links Rápidos",
     social: "Redes Sociais",
     rights: "Todos os direitos reservados."
   },
   en: {
+    viewAll: "View All",
+    latestUpdates: "Latest Updates",
+    projectPatchNotes: "Project Patch Notes",
+    serverPatchNotes: "Server Patch Notes",
+    quickLinks: "Quick Links",
+    featuredTools: "Featured Tools",
+    wikiGuides: "Guides & Wiki",
+    wikiGuidesDesc: "Learn advanced mechanics, boss secrets, and quest guides.",
+    databaseSearch: "Search Database...",
+    exploreWorld: "Explore the World",
+    
     // Navigation
     rashidLocation: "Rashid Location",
     home: "Home",
@@ -580,7 +601,6 @@ export const translations = {
     createdBy: "Created by obellao_",
     developedWithAI: "Developed with AI",
     footerDesc: "The ultimate portal for Tibia players. Tools, data, and community in one place.",
-    quickLinks: "Quick Links",
     social: "Social Media",
     rights: "All rights reserved."
   }

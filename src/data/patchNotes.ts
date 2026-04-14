@@ -13,6 +13,39 @@ export interface PatchNote {
 
 export const PROJECT_PATCH_NOTES: PatchNote[] = [
   {
+    version: "1.3.0",
+    date: "2026-04-14",
+    title: { pt: "Projeto Wiki v1.3.0 - Hub Update", en: "Wiki Project v1.3.0 - Hub Update" },
+    changes: {
+      added: {
+        pt: [
+          "Nova Home Page estilo 'Hub' para melhor navegação entre ferramentas.",
+          "Rastreador de localização do Rashid em tempo real no menu superior.",
+          "Seção de 'Últimas Atualizações' e 'Ferramentas em Destaque' na Home.",
+          "Explicação do sistema de prioridade de loot na Calculadora de Mineração."
+        ],
+        en: [
+          "New 'Hub' style Home Page for better navigation between tools.",
+          "Real-time Rashid location tracker in the top menu.",
+          "'Latest Updates' and 'Featured Tools' sections on Home.",
+          "Loot priority system explanation in the Mining Calculator."
+        ]
+      },
+      changed: {
+        pt: [
+          "Melhoria nos campos numéricos: agora é possível apagar o valor completamente para digitar.",
+          "Redesign visual do topo do site para acomodar informações rápidas.",
+          "Otimização da navegação mobile."
+        ],
+        en: [
+          "Improved numeric fields: it is now possible to clear the value completely to type.",
+          "Visual redesign of the site header to accommodate quick info.",
+          "Mobile navigation optimization."
+        ]
+      }
+    }
+  },
+  {
     version: "1.2.1",
     date: "2026-04-13",
     title: { pt: "Projeto Wiki v1.2.1", en: "Wiki Project v1.2.1" },
