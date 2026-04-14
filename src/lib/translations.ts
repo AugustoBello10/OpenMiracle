@@ -4,6 +4,7 @@ export type Language = 'pt' | 'en';
 export const translations = {
   pt: {
     // Navigation
+    rashidLocation: "Localização do Rashid",
     home: "Início",
     calculators: "Calculadoras",
     professions: "Profissões",
@@ -294,6 +295,7 @@ export const translations = {
   },
   en: {
     // Navigation
+    rashidLocation: "Rashid Location",
     home: "Home",
     calculators: "Calculators",
     professions: "Professions",

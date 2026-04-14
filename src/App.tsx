@@ -904,6 +904,42 @@ export default function App() {
   const [selectedItemName, setSelectedItemName] = useState<string>(CRAFT_ITEMS[0].items[0].name);
   const [chance, setChance] = useState<number>(10);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [rashidCity, setRashidCity] = useState('');
+
+  useEffect(() => {
+    const updateRashid = () => {
+      const now = new Date();
+      // Brasília is UTC-3
+      const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+      const brTime = new Date(utc + (3600000 * -3));
+      
+      const day = brTime.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+      const hours = brTime.getHours();
+      const minutes = brTime.getMinutes();
+      
+      // Server save is at 05:08 AM
+      const isAfterServerSave = (hours > 5) || (hours === 5 && minutes >= 8);
+      
+      // If before server save, it's effectively the previous day
+      let effectiveDay = isAfterServerSave ? day : (day === 0 ? 6 : day - 1);
+      
+      const locations = [
+        "Carlin",      // 0 - Sunday
+        "Thais",       // 1 - Monday
+        "Venore",      // 2 - Tuesday
+        "Ab'Dendriel", // 3 - Wednesday
+        "Ankhramun",   // 4 - Thursday
+        "Darashia",    // 5 - Friday
+        "Edron"        // 6 - Saturday
+      ];
+      
+      setRashidCity(locations[effectiveDay]);
+    };
+
+    updateRashid();
+    const interval = setInterval(updateRashid, 60000); // Update every minute
+    return () => clearInterval(interval);
+  }, []);
 
   // Encontra o item selecionado para pegar o multiplicador e requisitos
   const selectedItem = useMemo(() => {
@@ -963,8 +999,28 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col bg-[#0f0f0f]">
       {/* Navigation Bar */}
-      <nav className="sticky top-0 z-50 bg-medieval-dark/95 backdrop-blur-md border-b border-medieval-gold/30 px-4 py-3">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <nav className="sticky top-0 z-50 bg-medieval-dark/95 backdrop-blur-md border-b border-medieval-gold/30">
+        {/* Rashid Top Bar */}
+        <div className="bg-black/40 border-b border-medieval-gold/5 py-1 hidden md:block">
+          <div className="max-w-7xl mx-auto px-6 flex justify-end items-center">
+            <div className="flex items-center gap-3 group">
+              <div className="relative">
+                <img 
+                  src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1776190181/Rashid_rlsxu1.gif" 
+                  alt="Rashid" 
+                  className="w-14 h-14 object-contain -my-4 drop-shadow-[0_0_8px_rgba(212,175,55,0.3)]"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[9px] text-medieval-gold/40 font-bold uppercase tracking-tighter leading-none mb-1">Rashid is in</span>
+                <span className="text-sm text-medieval-gold font-black uppercase tracking-widest leading-none">{rashidCity}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           <button 
             onClick={() => setActiveTab('home')}
             className="flex items-center gap-3 hover:opacity-80 transition-opacity"
@@ -1011,6 +1067,17 @@ export default function App() {
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 md:hidden">
+            {/* Rashid Location Mobile */}
+            <div className="flex items-center gap-2 px-2 py-1 bg-black/20 border border-medieval-gold/10 rounded-sm">
+              <img 
+                src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1776190181/Rashid_rlsxu1.gif" 
+                alt="Rashid" 
+                className="w-10 h-10 object-contain -my-2"
+                referrerPolicy="no-referrer"
+              />
+              <span className="text-[10px] text-medieval-gold font-black leading-tight uppercase">{rashidCity}</span>
+            </div>
+
             <div className="flex items-center gap-1 mr-2">
               <button 
                 onClick={() => setLanguage('pt')}
