@@ -3,19 +3,20 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, ReactNode } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Hammer, Sword, Gem, Pickaxe, Wand2, Zap, Twitch, 
   MessageSquare, ExternalLink, Info, Table as TableIcon, 
   TrendingUp, AlertTriangle, Book, Sparkles, Briefcase, 
-  ChevronRight, Menu, X, Map, Youtube, Fish, FlaskConical, Utensils, Sprout, Scissors, Users,
+  ChevronRight, ChevronUp, ChevronDown, Menu, X, Map, Youtube, Fish, FlaskConical, Utensils, Sprout, Scissors, Users,
   History, Plus, Minus, Check, RefreshCw, Clock, Calendar, Download
 } from 'lucide-react';
 import { calculateTrainingTime, Vocation, SkillType, TRAINING_WEAPONS_DATA, TrainingWeapon, calculateBlessCosts } from './lib/formulas';
 import { Language, translations } from './lib/translations';
 import { PROJECT_PATCH_NOTES, SERVER_PATCH_NOTES } from './data/patchNotes';
 import { LIBRARY_DATA, LibraryEntry } from './data/library';
+import { HELMETS_DATA, EquipmentItem } from './data/items';
 import { AlchemyCalculator } from './components/AlchemyCalculator';
 import { FarmingCalculator } from './components/FarmingCalculator';
 import { CraftingCalculator } from './components/CraftingCalculator';
@@ -877,13 +878,118 @@ function BlessCalculator({ t }: { t: any }) {
   );
 }
 
+// --- Componentes Auxiliares ---
+
+const DrumMenu = ({ 
+  items, 
+  onSelect, 
+  activeId, 
+  label 
+}: { 
+  items: { id: string; label: string; icon?: ReactNode }[]; 
+  onSelect: (id: string) => void; 
+  activeId: string | null;
+  label: string;
+}) => {
+  const activeIndex = items.findIndex(item => item.id === activeId);
+
+  const handleWheel = (e: any) => {
+    if (e.deltaY > 0 || e.deltaX > 0) {
+      if (activeIndex < items.length - 1) {
+        onSelect(items[activeIndex + 1].id);
+      }
+    } else {
+      if (activeIndex > 0) {
+        onSelect(items[activeIndex - 1].id);
+      }
+    }
+  };
+
+  return (
+    <div className="flex flex-col items-center space-y-2">
+      <h3 className="text-medieval-gold font-black uppercase text-[9px] tracking-[0.4em] opacity-40">{label}</h3>
+      
+      <div className="flex items-center gap-2">
+        <button 
+          onClick={() => activeIndex > 0 && onSelect(items[activeIndex - 1].id)}
+          disabled={activeIndex <= 0}
+          className="p-1 text-medieval-gold/40 hover:text-medieval-gold disabled:opacity-5 transition-colors"
+        >
+          <ChevronUp className="w-4 h-4 -rotate-90" />
+        </button>
+
+        <div 
+          onWheel={handleWheel}
+          className="relative h-16 w-[200px] sm:w-[280px] flex items-center justify-center cursor-ew-resize select-none overflow-hidden" 
+          style={{ perspective: '1000px' }}
+        >
+          <AnimatePresence mode="popLayout">
+            {items.map((item, index) => {
+              const offset = index - (activeIndex === -1 ? 0 : activeIndex);
+              if (Math.abs(offset) > 1) return null;
+
+              return (
+                <motion.button
+                  key={item.id}
+                  onClick={() => onSelect(item.id)}
+                  initial={{ opacity: 0, rotateY: offset * -45, translateZ: -100, x: offset * 100 }}
+                  animate={{ 
+                    opacity: offset === 0 ? 1 : 0.3,
+                    rotateY: offset * 45, 
+                    translateZ: offset === 0 ? 50 : -100, 
+                    x: offset * 120, 
+                    scale: offset === 0 ? 1 : 0.8,
+                    filter: offset === 0 ? 'brightness(1.2)' : 'brightness(0.4) blur(1px)',
+                  }}
+                  exit={{ opacity: 0, scale: 0.5, translateZ: -150 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                  className={`absolute w-full h-10 flex items-center justify-center gap-2 px-4 rounded border transition-colors ${
+                    offset === 0 
+                      ? 'bg-medieval-gold/10 border-medieval-gold text-medieval-gold shadow-[0_0_20px_rgba(212,175,55,0.15)]' 
+                      : 'bg-black/40 border-medieval-gold/10 text-medieval-gold/40 hover:border-medieval-gold/30'
+                  }`}
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  <div style={{ transform: 'translateZ(20px)' }} className="shrink-0 scale-75">
+                    {item.icon}
+                  </div>
+                  <span 
+                    className="uppercase tracking-[0.15em] text-[10px] font-black truncate max-w-[120px]"
+                    style={{ transform: 'translateZ(20px)' }}
+                  >
+                    {item.label}
+                  </span>
+                </motion.button>
+              );
+            })}
+          </AnimatePresence>
+        </div>
+
+        <button 
+          onClick={() => activeIndex < items.length - 1 && onSelect(items[activeIndex + 1].id)}
+          disabled={activeIndex >= items.length - 1 || activeIndex === -1}
+          className="p-1 text-medieval-gold/40 hover:text-medieval-gold disabled:opacity-5 transition-colors"
+        >
+          <ChevronDown className="w-4 h-4 -rotate-90" />
+        </button>
+      </div>
+      
+      <div className="text-[8px] font-mono text-medieval-gold/30 uppercase tracking-widest">
+        {activeIndex + 1} / {items.length}
+      </div>
+    </div>
+  );
+};
+
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>('home');
   const [calcSubTab, setCalcSubTab] = useState<'skills' | 'bless' | 'atributos' | 'professions'>('skills');
   const [profSubTab, setProfSubTab] = useState<'crafting' | 'alchemy' | 'farming' | 'mining'>('crafting');
   const [wikiSubTab, setWikiSubTab] = useState<'server' | 'project'>('server');
-  const [wikiMainTab, setWikiMainTab] = useState<'updates' | 'library'>('library');
+  const [wikiMainTab, setWikiMainTab] = useState<'home' | 'updates' | 'library' | 'items'>('home');
+  const [itemsSubTab, setItemsSubTab] = useState<'helmets' | 'armors' | 'legs' | 'boots' | 'shields' | 'weapons'>('helmets');
   const [selectedBookId, setSelectedBookId] = useState<string>(LIBRARY_DATA[0]?.id || '');
+  const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
   const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
   const [selectedPatchVersion, setSelectedPatchVersion] = useState(SERVER_PATCH_NOTES[0].version);
   const [language, setLanguage] = useState<Language>('pt');
@@ -949,6 +1055,26 @@ export default function App() {
     }
     return CRAFT_ITEMS[0].items[0];
   }, [selectedItemName]);
+
+  const regions = useMemo(() => {
+    const unique = Array.from(new Set(LIBRARY_DATA.map(b => b.region[language])));
+    return unique.map(r => ({ id: r, label: r }));
+  }, [language]);
+
+  const filteredBooks = useMemo(() => {
+    if (!selectedRegion) return [];
+    return LIBRARY_DATA.filter(b => b.region[language] === selectedRegion).map(b => ({
+      id: b.id,
+      label: b.title[language],
+      icon: <img src={b.spriteImage} alt="" className="w-5 h-5 object-contain" referrerPolicy="no-referrer" />
+    }));
+  }, [selectedRegion, language]);
+
+  useEffect(() => {
+    if (wikiMainTab === 'library' && !selectedRegion && regions.length > 0) {
+      setSelectedRegion(regions[0].id);
+    }
+  }, [wikiMainTab, regions, selectedRegion]);
 
   // Lógica Matemática: Chance = 10% + ((Skill - 10) * Multiplicador)
   useEffect(() => {
@@ -1579,23 +1705,37 @@ export default function App() {
                               </select>
                             </div>
 
-                            {/* Seleção de Item */}
-                            <div className="flex flex-col gap-2">
-                              <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest flex items-center gap-2">
-                                <Sword className="w-4 h-4" /> {t('equipment')}
-                              </label>
-                              <select
-                                value={attrItemName}
-                                onChange={(e) => setAttrItemName(e.target.value)}
-                                className="medieval-input cursor-pointer appearance-none"
-                              >
-                                {ATTRIBUTE_DATA[attrCategory]?.map(item => (
-                                  <option key={item.name} value={item.name}>
-                                    {item.name} (Classe {item.class})
-                                  </option>
-                                ))}
-                              </select>
-                            </div>
+                             {/* Seleção de Item */}
+                             <div className="flex flex-col gap-2">
+                               <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest flex items-center gap-2">
+                                 <Sword className="w-4 h-4" /> {t('equipment')}
+                               </label>
+                               <div className="flex gap-4">
+                                 <div className="w-16 h-16 bg-black/60 rounded border border-medieval-gold/30 flex items-center justify-center shrink-0 shadow-inner">
+                                   {attrCategory === 'Helmets' ? (
+                                     <img 
+                                       src={`https://res.cloudinary.com/dc4nkbnkg/image/upload/${HELMETS_DATA.find(h => h.name === attrItemName)?.image}`} 
+                                       alt={attrItemName}
+                                       className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]"
+                                       referrerPolicy="no-referrer"
+                                     />
+                                   ) : (
+                                     <Sword className="w-8 h-8 text-medieval-gold/20" />
+                                   )}
+                                 </div>
+                                 <select
+                                   value={attrItemName}
+                                   onChange={(e) => setAttrItemName(e.target.value)}
+                                   className="medieval-input cursor-pointer appearance-none flex-1"
+                                 >
+                                   {ATTRIBUTE_DATA[attrCategory]?.map(item => (
+                                     <option key={item.name} value={item.name}>
+                                       {item.name} (Classe {item.class})
+                                     </option>
+                                   ))}
+                                 </select>
+                               </div>
+                             </div>
 
                             {/* Atributos Permitidos */}
                             <div className="bg-black/40 p-4 rounded border border-medieval-gold/20">
@@ -1903,15 +2043,27 @@ export default function App() {
                 {/* Wiki Main Navigation */}
                 <div className="flex justify-center gap-4 mb-12">
                   <button
-                    onClick={() => setWikiMainTab('updates')}
+                    onClick={() => setWikiMainTab('home')}
                     className={`px-8 py-3 rounded-sm font-black uppercase text-sm tracking-[0.2em] transition-all border-b-2 ${
-                      wikiMainTab === 'updates'
+                      wikiMainTab === 'home'
                         ? 'text-medieval-gold border-medieval-gold bg-medieval-gold/5'
                         : 'text-medieval-gold/40 border-transparent hover:text-medieval-gold/60'
                     }`}
                   >
                     <div className="flex items-center gap-2">
-                      <History className="w-4 h-4" /> {t('updates')}
+                      <Sparkles className="w-4 h-4" /> {t('home')}
+                    </div>
+                  </button>
+                  <button
+                    onClick={() => setWikiMainTab('items')}
+                    className={`px-8 py-3 rounded-sm font-black uppercase text-sm tracking-[0.2em] transition-all border-b-2 ${
+                      wikiMainTab === 'items'
+                        ? 'text-medieval-gold border-medieval-gold bg-medieval-gold/5'
+                        : 'text-medieval-gold/40 border-transparent hover:text-medieval-gold/60'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <Sword className="w-4 h-4" /> {t('items')}
                     </div>
                   </button>
                   <button
@@ -1926,11 +2078,181 @@ export default function App() {
                       <Book className="w-4 h-4" /> {t('library')}
                     </div>
                   </button>
+                  <button
+                    onClick={() => setWikiMainTab('updates')}
+                    className={`px-8 py-3 rounded-sm font-black uppercase text-sm tracking-[0.2em] transition-all border-b-2 ${
+                      wikiMainTab === 'updates'
+                        ? 'text-medieval-gold border-medieval-gold bg-medieval-gold/5'
+                        : 'text-medieval-gold/40 border-transparent hover:text-medieval-gold/60'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <History className="w-4 h-4" /> {t('updates')}
+                    </div>
+                  </button>
                 </div>
 
-                {wikiMainTab === 'updates' ? (
-                  <div className="space-y-8">
-                    <header className="text-center mb-12">
+                <AnimatePresence mode="wait">
+                  {wikiMainTab === 'home' && (
+                    <motion.div
+                      key="wiki-home"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      className="space-y-12"
+                    >
+                      <header className="text-center">
+                        <h1 className="text-4xl sm:text-5xl font-black text-medieval-gold uppercase tracking-tighter mb-4">
+                          Wiki Miracle 7.4
+                        </h1>
+                        <p className="text-medieval-gold/60 font-mono text-sm max-w-2xl mx-auto italic">
+                          "O conhecimento é a chave para a sobrevivência nas terras de Miracle."
+                        </p>
+                      </header>
+
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {[
+                          { id: 'items', title: t('items'), desc: 'Database completo de equipamentos, armas e itens raros.', icon: <Sword className="w-8 h-8" /> },
+                          { id: 'library', title: t('library'), desc: 'Livros, pergaminhos e documentos históricos encontrados pelo mapa.', icon: <Book className="w-8 h-8" /> },
+                          { id: 'updates', title: t('updates'), desc: 'Acompanhe todas as mudanças e evoluções do servidor e do projeto.', icon: <History className="w-8 h-8" /> },
+                        ].map((card) => (
+                          <button
+                            key={card.id}
+                            onClick={() => setWikiMainTab(card.id as any)}
+                            className="medieval-card bg-medieval-card p-8 medieval-border rounded-lg text-left group hover:border-medieval-gold transition-all relative overflow-hidden"
+                          >
+                            <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                              {card.icon}
+                            </div>
+                            <div className="text-medieval-gold/40 group-hover:text-medieval-gold transition-colors mb-6">
+                              {card.icon}
+                            </div>
+                            <h3 className="text-xl font-black text-medieval-gold uppercase mb-2">{card.title}</h3>
+                            <p className="text-sm text-medieval-text/60 leading-relaxed">{card.desc}</p>
+                            <div className="mt-6 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-medieval-gold/40 group-hover:text-medieval-gold transition-colors">
+                              Explorar <ChevronRight className="w-3 h-3" />
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {wikiMainTab === 'items' && (
+                    <motion.div
+                      key="wiki-items"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      className="space-y-8"
+                    >
+                      <header className="text-center mb-12">
+                        <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
+                          {t('items')}
+                        </h1>
+                        <p className="text-medieval-gold/80 font-mono text-sm">
+                          Enciclopédia de Equipamentos e Tesouros de Miracle 7.4
+                        </p>
+                      </header>
+
+                      {/* Items Sub-Navigation */}
+                      <div className="flex flex-wrap justify-center gap-2 mb-8">
+                        {[
+                          { id: 'helmets', label: t('helmets'), icon: <Gem className="w-4 h-4" /> },
+                          { id: 'armors', label: 'Armors', icon: <Sword className="w-4 h-4" />, disabled: true },
+                          { id: 'legs', label: 'Legs', icon: <Sword className="w-4 h-4" />, disabled: true },
+                          { id: 'boots', label: 'Boots', icon: <Sword className="w-4 h-4" />, disabled: true },
+                          { id: 'shields', label: 'Shields', icon: <Sword className="w-4 h-4" />, disabled: true },
+                          { id: 'weapons', label: 'Weapons', icon: <Sword className="w-4 h-4" />, disabled: true },
+                        ].map((sub) => (
+                          <button
+                            key={sub.id}
+                            disabled={sub.disabled}
+                            onClick={() => setItemsSubTab(sub.id as any)}
+                            className={`px-4 py-2 rounded-sm font-black uppercase text-[10px] tracking-widest transition-all flex items-center gap-2 border ${
+                              itemsSubTab === sub.id
+                                ? 'bg-medieval-gold text-black border-medieval-gold shadow-medieval-gold'
+                                : sub.disabled 
+                                  ? 'opacity-30 cursor-not-allowed border-white/5 text-white/40'
+                                  : 'bg-black/40 text-medieval-gold/60 border-medieval-gold/20 hover:border-medieval-gold/40'
+                            }`}
+                          >
+                            {sub.icon} {sub.label}
+                          </button>
+                        ))}
+                      </div>
+
+                      {itemsSubTab === 'helmets' && (
+                        <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
+                          <div className="overflow-x-auto">
+                            <table className="w-full text-left border-collapse">
+                              <thead>
+                                <tr className="bg-black/60 border-b border-medieval-gold/20">
+                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{t('item')}</th>
+                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('arm')}</th>
+                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('weight')}</th>
+                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('class')}</th>
+                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{t('properties')}</th>
+                                </tr>
+                              </thead>
+                              <tbody className="divide-y divide-medieval-gold/5">
+                                {HELMETS_DATA.map((helmet, idx) => (
+                                  <tr key={idx} className="hover:bg-white/5 transition-colors group">
+                                    <td className="p-4">
+                                      <div className="flex items-center gap-4">
+                                        <div className="w-10 h-10 bg-black/40 rounded border border-medieval-gold/10 flex items-center justify-center group-hover:border-medieval-gold/30 transition-all">
+                                          <img 
+                                            src={`https://res.cloudinary.com/dc4nkbnkg/image/upload/${helmet.image}`} 
+                                            alt={helmet.name} 
+                                            className="w-8 h-8 object-contain"
+                                            referrerPolicy="no-referrer"
+                                          />
+                                        </div>
+                                        <span className="font-bold text-sm text-medieval-text group-hover:text-medieval-gold transition-colors">{helmet.name}</span>
+                                      </div>
+                                    </td>
+                                    <td className="p-4 text-center font-mono text-sm text-medieval-gold">{helmet.armor}</td>
+                                    <td className="p-4 text-center font-mono text-sm text-medieval-text/60">{helmet.weight.toFixed(2)}</td>
+                                    <td className="p-4 text-center">
+                                      <span className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-tighter ${
+                                        helmet.class === 0 ? 'bg-gray-500/20 text-gray-400' :
+                                        helmet.class === 1 ? 'bg-green-500/20 text-green-400' :
+                                        helmet.class === 2 ? 'bg-blue-500/20 text-blue-400' :
+                                        helmet.class === 3 ? 'bg-purple-500/20 text-purple-400' :
+                                        helmet.class === 4 ? 'bg-orange-500/20 text-orange-400' :
+                                        'bg-red-500/20 text-red-400'
+                                      }`}>
+                                        Class {helmet.class}
+                                      </span>
+                                    </td>
+                                    <td className="p-4">
+                                      <div className="flex flex-wrap gap-1">
+                                        {helmet.properties ? helmet.properties.map((p, i) => (
+                                          <span key={i} className="text-[9px] bg-white/5 px-1.5 py-0.5 rounded text-medieval-text/40 uppercase font-mono">
+                                            {p}
+                                          </span>
+                                        )) : <span className="text-[9px] text-white/10 uppercase font-mono">-</span>}
+                                      </div>
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      )}
+                    </motion.div>
+                  )}
+
+                  {wikiMainTab === 'updates' && (
+                    <motion.div
+                      key="wiki-updates"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      className="space-y-8"
+                    >
+                      <header className="text-center mb-12">
                       <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
                         {t('patchNotes')}
                       </h1>
@@ -2118,9 +2440,17 @@ export default function App() {
                         </AnimatePresence>
                       </div>
                     </div>
-                  </div>
-                ) : (
-                  <div className="space-y-8">
+                  </motion.div>
+                )}
+
+                {wikiMainTab === 'library' && (
+                  <motion.div
+                    key="wiki-library"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    className="space-y-8"
+                  >
                     <header className="text-center mb-12">
                       <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
                         {t('library')}
@@ -2130,163 +2460,167 @@ export default function App() {
                       </p>
                     </header>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                      {/* Sidebar - Book List */}
-                      <div className="lg:col-span-4 space-y-4">
-                        <div className="medieval-card bg-medieval-card p-4 medieval-border rounded-lg">
-                          <h3 className="text-medieval-gold font-black uppercase text-xs tracking-widest mb-4 flex items-center gap-2">
-                            <Book className="w-4 h-4" /> Documentos Encontrados
-                          </h3>
-                          <div className="space-y-2 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
-                            {LIBRARY_DATA.map((doc) => (
-                              <button
-                                key={doc.id}
-                                onClick={() => {
-                                  setSelectedBookId(doc.id);
+                    <div className="flex flex-col space-y-8">
+                      {/* Minimalist Horizontal Drum Navigation */}
+                      <div className="medieval-card bg-medieval-card p-4 medieval-border rounded-lg">
+                        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+                          <DrumMenu 
+                            label="1. Região"
+                            items={regions}
+                            activeId={selectedRegion}
+                            onSelect={(id) => {
+                              setSelectedRegion(id);
+                              setSelectedBookId('');
+                            }}
+                          />
+                          
+                          {selectedRegion && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                            >
+                              <DrumMenu 
+                                label="2. Documento"
+                                items={filteredBooks}
+                                activeId={selectedBookId}
+                                onSelect={(id) => {
+                                  setSelectedBookId(id);
                                   setActiveGalleryIndex(0);
                                 }}
-                                className={`w-full text-left p-3 rounded border transition-all flex items-center gap-3 group ${
-                                  selectedBookId === doc.id
-                                    ? 'bg-medieval-gold/20 border-medieval-gold text-medieval-gold'
-                                    : 'bg-black/40 border-medieval-gold/10 text-medieval-gold/60 hover:border-medieval-gold/30'
-                                }`}
-                              >
-                                <img 
-                                  src={doc.spriteImage} 
-                                  alt={doc.type} 
-                                  className="w-6 h-6 object-contain"
-                                  referrerPolicy="no-referrer"
-                                />
-                                <div className="flex flex-col min-w-0">
-                                  <span className="font-black text-sm truncate">{doc.title[language]}</span>
-                                  <span className="text-[10px] opacity-60 font-mono truncate">{doc.region[language]}</span>
-                                </div>
-                              </button>
-                            ))}
-                          </div>
+                              />
+                            </motion.div>
+                          )}
                         </div>
                       </div>
 
-                      {/* Main Content - Book Details */}
-                      <div className="lg:col-span-8">
+                      {/* Main Content - Full Width */}
+                      <div className="w-full">
                         <AnimatePresence mode="wait">
-                          {LIBRARY_DATA.filter(b => b.id === selectedBookId).map((book) => (
-                            <motion.div
-                              key={book.id}
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, y: -10 }}
-                              className="space-y-6"
-                            >
-                              {/* Header Info */}
-                              <div className="medieval-card bg-medieval-card p-6 medieval-border rounded-lg">
-                                <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center">
-                                  <div className="w-20 h-20 bg-black/40 rounded-lg border border-medieval-gold/20 flex items-center justify-center shrink-0">
-                                    <img 
-                                      src={book.spriteImage} 
-                                      alt={book.title[language]} 
-                                      className="w-12 h-12 object-contain"
-                                      referrerPolicy="no-referrer"
-                                    />
-                                  </div>
-                                  <div className="space-y-2">
-                                    <h2 className="text-2xl font-black text-medieval-gold uppercase tracking-tight">
-                                      {book.title[language]}
-                                    </h2>
-                                    <div className="flex flex-wrap gap-4 text-[10px] uppercase tracking-widest font-mono text-medieval-gold/60">
-                                      <span className="flex items-center gap-1.5">
-                                        <Map className="w-3 h-3" /> {book.region[language]}
-                                      </span>
-                                      <span className="flex items-center gap-1.5">
-                                        <Info className="w-3 h-3" /> {t(book.type)}
-                                      </span>
+                          {selectedBookId ? (
+                            LIBRARY_DATA.filter(b => b.id === selectedBookId).map((book) => (
+                              <motion.div
+                                key={book.id}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                className="space-y-6"
+                              >
+                                {/* Header Info */}
+                                <div className="medieval-card bg-medieval-card p-6 medieval-border rounded-lg">
+                                  <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center">
+                                    <div className="w-20 h-20 bg-black/40 rounded-lg border border-medieval-gold/20 flex items-center justify-center shrink-0">
+                                      <img 
+                                        src={book.spriteImage} 
+                                        alt={book.title[language]} 
+                                        className="w-12 h-12 object-contain"
+                                        referrerPolicy="no-referrer"
+                                      />
+                                    </div>
+                                    <div className="space-y-2">
+                                      <h2 className="text-2xl font-black text-medieval-gold uppercase tracking-tight">
+                                        {book.title[language]}
+                                      </h2>
+                                      <div className="flex flex-wrap gap-4 text-[10px] uppercase tracking-widest font-mono text-medieval-gold/60">
+                                        <span className="flex items-center gap-1.5">
+                                          <Map className="w-3 h-3" /> {book.region[language]}
+                                        </span>
+                                        <span className="flex items-center gap-1.5">
+                                          <Info className="w-3 h-3" /> {t(book.type)}
+                                        </span>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
-                              </div>
 
-                              {/* Location & Map */}
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="medieval-card bg-medieval-card p-6 medieval-border rounded-lg space-y-4">
-                                  <h4 className="text-medieval-gold font-black text-xs uppercase tracking-widest flex items-center gap-2">
-                                    <Map className="w-4 h-4" /> {t('location')}
-                                  </h4>
-                                  <p className="text-sm text-medieval-text/80 font-mono bg-black/20 p-3 rounded border border-medieval-gold/10">
-                                    {book.location[language]}
-                                  </p>
-                                  
-                                  {book.gallery && book.gallery.length > 0 ? (
-                                    <div className="space-y-3">
-                                      <div className="aspect-square bg-black/40 rounded border border-medieval-gold/20 overflow-hidden relative group">
-                                        <AnimatePresence mode="wait">
-                                          <motion.img 
-                                            key={book.gallery[activeGalleryIndex].url}
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            exit={{ opacity: 0 }}
-                                            src={book.gallery[activeGalleryIndex].url} 
-                                            alt={book.gallery[activeGalleryIndex].label[language]} 
-                                            className="w-full h-full object-cover"
-                                            referrerPolicy="no-referrer"
-                                          />
-                                        </AnimatePresence>
-                                        <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-2 text-[10px] text-medieval-gold font-mono uppercase text-center border-t border-medieval-gold/20">
-                                          {book.gallery[activeGalleryIndex].label[language]}
-                                        </div>
-                                      </div>
+                                {/* Location & Map & Transcription Layout */}
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                  <div className="space-y-6">
+                                    <div className="medieval-card bg-medieval-card p-6 medieval-border rounded-lg space-y-4">
+                                      <h4 className="text-medieval-gold font-black text-xs uppercase tracking-widest flex items-center gap-2">
+                                        <Map className="w-4 h-4" /> {t('location')}
+                                      </h4>
+                                      <p className="text-sm text-medieval-text/80 font-mono bg-black/20 p-3 rounded border border-medieval-gold/10">
+                                        {book.location[language]}
+                                      </p>
                                       
-                                      {/* Gallery Nav */}
-                                      <div className="flex gap-2 overflow-x-auto pb-2 custom-scrollbar">
-                                        {book.gallery.map((img, idx) => (
-                                          <button
-                                            key={idx}
-                                            onClick={() => setActiveGalleryIndex(idx)}
-                                            className={`w-12 h-12 rounded border shrink-0 transition-all overflow-hidden ${
-                                              activeGalleryIndex === idx 
-                                                ? 'border-medieval-gold scale-110' 
-                                                : 'border-medieval-gold/10 opacity-40 hover:opacity-100'
-                                            }`}
-                                          >
-                                            <img src={img.url} alt="" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-                                          </button>
-                                        ))}
-                                      </div>
+                                      {book.gallery && book.gallery.length > 0 ? (
+                                        <div className="space-y-3">
+                                          <div className="aspect-video bg-black/40 rounded border border-medieval-gold/20 overflow-hidden relative group">
+                                            <AnimatePresence mode="wait">
+                                              <motion.img 
+                                                key={book.gallery[activeGalleryIndex].url}
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: 1 }}
+                                                exit={{ opacity: 0 }}
+                                                src={book.gallery[activeGalleryIndex].url} 
+                                                alt={book.gallery[activeGalleryIndex].label[language]} 
+                                                className="w-full h-full object-cover"
+                                                referrerPolicy="no-referrer"
+                                              />
+                                            </AnimatePresence>
+                                            <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-2 text-[10px] text-medieval-gold font-mono uppercase text-center border-t border-medieval-gold/20">
+                                              {book.gallery[activeGalleryIndex].label[language]}
+                                            </div>
+                                          </div>
+                                          
+                                          {/* Gallery Nav */}
+                                          <div className="flex gap-2 overflow-x-auto pb-2 custom-scrollbar">
+                                            {book.gallery.map((img, idx) => (
+                                              <button
+                                                key={idx}
+                                                onClick={() => setActiveGalleryIndex(idx)}
+                                                className={`w-12 h-12 rounded border shrink-0 transition-all overflow-hidden ${
+                                                  activeGalleryIndex === idx 
+                                                    ? 'border-medieval-gold scale-110' 
+                                                    : 'border-medieval-gold/10 opacity-40 hover:opacity-100'
+                                                }`}
+                                              >
+                                                <img src={img.url} alt="" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                                              </button>
+                                            ))}
+                                          </div>
+                                        </div>
+                                      ) : (
+                                        <div className="aspect-video bg-black/40 rounded border border-medieval-gold/10 flex flex-col items-center justify-center text-medieval-gold/20">
+                                          <Map className="w-8 h-8 mb-2" />
+                                          <span className="text-[10px] uppercase tracking-widest">Mapa em breve</span>
+                                        </div>
+                                      )}
                                     </div>
-                                  ) : (
-                                    <div className="aspect-video bg-black/40 rounded border border-medieval-gold/10 flex flex-col items-center justify-center text-medieval-gold/20">
-                                      <Map className="w-8 h-8 mb-2" />
-                                      <span className="text-[10px] uppercase tracking-widest">Mapa em breve</span>
-                                    </div>
-                                  )}
-                                </div>
+                                  </div>
 
-                                <div className="medieval-card bg-medieval-card p-6 medieval-border rounded-lg space-y-4">
-                                  <h4 className="text-medieval-gold font-black text-xs uppercase tracking-widest flex items-center gap-2">
-                                    <Book className="w-4 h-4" /> {t('transcription')}
-                                  </h4>
-                                  <div className="relative p-6 sm:p-10 bg-[#f4e4bc] text-[#2c1810] rounded shadow-inner min-h-[300px] font-serif leading-relaxed italic text-lg overflow-hidden">
-                                    {/* Parchment texture effect */}
-                                    <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/paper-fibers.png')]" />
-                                    <div className="relative z-10 whitespace-pre-wrap space-y-4">
-                                      {book.content[language]}
+                                  <div className="medieval-card bg-medieval-card p-6 medieval-border rounded-lg space-y-4">
+                                    <h4 className="text-medieval-gold font-black text-xs uppercase tracking-widest flex items-center gap-2">
+                                      <Book className="w-4 h-4" /> {t('transcription')}
+                                    </h4>
+                                    <div className="relative p-6 sm:p-10 bg-[#f4e4bc] text-[#2c1810] rounded shadow-inner min-h-[400px] font-serif leading-relaxed italic text-lg overflow-hidden">
+                                      {/* Parchment texture effect */}
+                                      <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/paper-fibers.png')]" />
+                                      <div className="relative z-10 whitespace-pre-wrap space-y-4">
+                                        {book.content[language]}
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
-                              </div>
-                            </motion.div>
-                          ))}
+                              </motion.div>
+                            ))
+                          ) : (
+                            <div className="h-full flex flex-col items-center justify-center text-medieval-gold/20 space-y-4 py-20">
+                              <Book className="w-16 h-16 opacity-10" />
+                              <p className="uppercase tracking-[0.3em] text-xs">Selecione um documento no tambor acima</p>
+                            </div>
+                          )}
                         </AnimatePresence>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 )}
-              </motion.div>
-            )}
-          </AnimatePresence>
+              </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>
         </div>
       </div>
-
-      {/* Footer */}
       <footer className="bg-black/80 border-t border-medieval-gold/10 py-6 px-4">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-widest font-mono text-medieval-gold/40">
           <p>© 2024 Miracle 7.4 Wiki Project</p>

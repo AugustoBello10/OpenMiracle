@@ -24,6 +24,13 @@ export const translations = {
     map: "Mapa",
     events: "Eventos",
     wiki: "Wiki",
+    items: "Itens",
+    helmets: "Capacetes",
+    arm: "Arm",
+    weight: "Peso",
+    class: "Classe",
+    properties: "Propriedades",
+    attribution: "Atribuição",
     
     // Home Page
     welcome: "Bem-vindo ao",
@@ -187,7 +194,6 @@ export const translations = {
     clubs: "Clubs",
     shields: "Escudos",
     armors: "Armaduras",
-    helmets: "Capacetes",
     break: "QUEBRAR",
     upgrade: "UPAR",
     dontUpgrade: "NÃO UPAR",
@@ -325,6 +331,13 @@ export const translations = {
     map: "Map",
     events: "Events",
     wiki: "Wiki",
+    items: "Items",
+    helmets: "Helmets",
+    arm: "Arm",
+    weight: "Weight",
+    class: "Class",
+    properties: "Properties",
+    attribution: "Attribution",
     
     // Home Page
     welcome: "Welcome to",
@@ -488,7 +501,6 @@ export const translations = {
     clubs: "Clubs",
     shields: "Shields",
     armors: "Armors",
-    helmets: "Helmets",
     break: "BREAK",
     upgrade: "UPGRADE",
     dontUpgrade: "DON'T UPGRADE",
