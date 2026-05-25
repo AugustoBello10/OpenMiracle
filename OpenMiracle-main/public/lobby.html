@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miracle 7.4 - Lobby de Quests</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        :root {
+            --medieval-gold: #c5a059;
+            --medieval-dark: #0f0f0f;
+            --medieval-card: #1a1a1a;
+            --medieval-text: #e0d7c6;
+            --medieval-red: #8b0000;
+            --medieval-blue: #2a4d69;
+        }
+        body {
+            background-color: var(--medieval-dark);
+            color: var(--medieval-text);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .header-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        h1 {
+            color: var(--medieval-gold);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 2rem;
+            margin: 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .section-title {
+            color: var(--medieval-gold);
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            font-weight: 900;
+            margin: 40px 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .btn-new-call {
+            background: transparent;
+            border: 2px solid var(--medieval-gold);
+            color: var(--medieval-gold);
+            padding: 10px 20px;
+            font-weight: 900;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
+        .btn-new-call:hover {
+            background: var(--medieval-gold);
+            color: #000;
+        }
+        
+        /* Grid de Eventos */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        /* Card do Evento */
+        .event-card {
+            background: var(--medieval-card);
+            border: 2px solid var(--medieval-gold);
+            border-radius: 4px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        .event-card.is-request {
+            border-color: var(--medieval-blue);
+        }
+        .event-card:hover {
+            transform: translateY(-5px);
+        }
+        .event-header {
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+        .event-title {
+            color: var(--medieval-gold);
+            font-size: 1.1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin: 0;
+        }
+        .event-info {
+            font-size: 0.8rem;
+            color: rgba(224, 215, 198, 0.6);
+            margin-top: 5px;
+            font-family: monospace;
+        }
+        .event-reqs {
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 8px;
+            font-style: italic;
+        }
+        
+        /* Lista de Inscritos */
+        .participants-list {
+            flex: 1;
+            margin-bottom: 20px;
+            max-height: 150px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+        .participants-list::-webkit-scrollbar {
+            width: 4px;
+        }
+        .participants-list::-webkit-scrollbar-thumb {
+            background: var(--medieval-gold);
+        }
+        .participant-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.85rem;
+        }
+        .participant-name {
+            font-weight: bold;
+            color: var(--medieval-gold);
+        }
+        .participant-meta {
+            font-size: 0.7rem;
+            color: #666;
+        }
+        .vagas-info {
+            text-align: center;
+            font-size: 0.75rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        /* Botões */
+        .btn-join {
+            background: var(--medieval-gold);
+            color: #000;
+            border: none;
+            padding: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: all 0.2s;
+            width: 100%;
+        }
+        .btn-join.is-request {
+            background: var(--medieval-blue);
+            color: #fff;
+        }
+        .btn-join:hover {
+            filter: brightness(1.2);
+            box-shadow: 0 0 15px rgba(197, 160, 89, 0.4);
+        }
+        .btn-join:disabled {
+            background: #333;
+            color: #666;
+            cursor: not-allowed;
+        }
+
+        .btn-admin {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid #333;
+            color: #555;
+            font-size: 10px;
+            padding: 2px 5px;
+            cursor: pointer;
+        }
+        .btn-admin:hover {
+            color: var(--medieval-gold);
+            border-color: var(--medieval-gold);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background: var(--medieval-card);
+            border: 2px solid var(--medieval-gold);
+            padding: 30px;
+            width: 90%;
+            max-width: 450px;
+            border-radius: 4px;
+        }
+        .modal-title {
+            color: var(--medieval-gold);
+            text-transform: uppercase;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--medieval-gold);
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            background: #000;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 10px;
+            box-sizing: border-box;
+            outline: none;
+            font-family: inherit;
+        }
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--medieval-gold);
+        }
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+        .btn-cancel {
+            background: transparent;
+            border: 1px solid #444;
+            color: #888;
+            padding: 10px;
+            flex: 1;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .btn-confirm {
+            background: var(--medieval-gold);
+            color: #000;
+            border: none;
+            padding: 10px;
+            flex: 2;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        /* Status Empty */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: rgba(224, 215, 198, 0.2);
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: 2px;
+            border: 1px dashed rgba(197, 160, 89, 0.1);
+            border-radius: 4px;
+        }
+
+        /* Loading */
+        #loading {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--medieval-gold);
+            color: #000;
+            padding: 5px 15px;
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            border-radius: 20px;
+            display: none;
+            z-index: 3000;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(0.98); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loading">Sincronizando...</div>
+
+    <div class="container">
+        <div class="header-actions">
+            <h1>Lobby de Quests</h1>
+            <button class="btn-new-call" onclick="openCallModal()">Abrir Chamada de Quest</button>
+        </div>
+        
+        <div class="section-title">
+            <span>⚔️ Quests Agendadas</span>
+        </div>
+        <div id="scheduledContainer" class="events-grid">
+            <!-- Eventos agendados aqui -->
+        </div>
+
+        <div class="section-title">
+            <span>📢 Chamadas Abertas (Preciso de Ajuda!)</span>
+        </div>
+        <div id="requestsContainer" class="events-grid">
+            <!-- Pedidos de ajuda aqui -->
+        </div>
+    </div>
+
+    <!-- Modal de Inscrição -->
+    <div id="joinModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-title">Inscrever-se na Quest</div>
+            <form id="joinForm">
+                <input type="hidden" id="joinEventId">
+                <div class="form-group">
+                    <label>Nome do Personagem</label>
+                    <input type="text" id="charName" required placeholder="Ex: Lord'Paulistinha">
+                </div>
+                <div class="form-group">
+                    <label>Level</label>
+                    <input type="number" id="charLevel" required min="1" placeholder="Ex: 100">
+                </div>
+                <div class="form-group">
+                    <label>Vocação</label>
+                    <select id="charVoc" required>
+                        <option value="Elite Knight">Elite Knight</option>
+                        <option value="Elder Druid">Elder Druid</option>
+                        <option value="Master Sorcerer">Master Sorcerer</option>
+                        <option value="Royal Paladin">Royal Paladin</option>
+                        <option value="Knight">Knight</option>
+                        <option value="Druid">Druid</option>
+                        <option value="Sorcerer">Sorcerer</option>
+                        <option value="Paladin">Paladin</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" onclick="closeModals()">Cancelar</button>
+                    <button type="submit" class="btn-confirm">Confirmar Inscrição</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Nova Chamada -->
+    <div id="callModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-title">Abrir Chamada de Quest</div>
+            <form id="callForm">
+                <div class="form-group">
+                    <label>Selecione a Quest</label>
+                    <select id="questSelect" required onchange="updateQuestPreview()">
+                        <option value="">-- Selecione uma Quest --</option>
+                        <option value="Circle Room Quest">Circle Room Quest (Lvl 32)</option>
+                        <option value="Black Knight Quest">Black Knight Quest (Lvl 50)</option>
+                        <option value="Blood Herb Quest">Blood Herb Quest (Lvl 0)</option>
+                        <option value="Naginata Quest">Naginata Quest (Lvl 0)</option>
+                        <option value="Orc Fortress Quest">Orc Fortress Quest (Lvl 40)</option>
+                        <option value="The Desert Dungeon Quest">The Desert Dungeon Quest (Lvl 20)</option>
+                        <option value="Outra">-- Outra Quest --</option>
+                    </select>
+                </div>
+                <div id="customQuestGroup" class="form-group" style="display:none">
+                    <label>Nome da Quest</label>
+                    <input type="text" id="customQuestName" placeholder="Nome da Quest">
+                </div>
+                <div class="form-group">
+                    <label>Informações Adicionais (Recompensas/Requisitos)</label>
+                    <textarea id="questInfo" rows="3" placeholder="Ex: Recompensa Golden Cheese, Lvl 32 necessário"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Vagas Totais</label>
+                    <input type="number" id="questVagas" value="4" min="1">
+                </div>
+                
+                <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(197, 160, 89, 0.2);">
+                    <p style="font-size: 0.7rem; color: var(--medieval-gold); font-weight: 900; text-transform: uppercase; margin-bottom: 15px;">Seus Dados (Criador da Chamada)</p>
+                    <div class="form-group">
+                        <label>Seu Nick</label>
+                        <input type="text" id="callCharName" required placeholder="Seu nome no jogo">
+                    </div>
+                    <div class="form-group">
+                        <label>Seu Level</label>
+                        <input type="number" id="callCharLevel" required min="1" placeholder="Seu level">
+                    </div>
+                    <div class="form-group">
+                        <label>Sua Vocação</label>
+                        <select id="callCharVoc" required>
+                            <option value="Elite Knight">Elite Knight</option>
+                            <option value="Elder Druid">Elder Druid</option>
+                            <option value="Master Sorcerer">Master Sorcerer</option>
+                            <option value="Royal Paladin">Royal Paladin</option>
+                            <option value="Knight">Knight</option>
+                            <option value="Druid">Druid</option>
+                            <option value="Sorcerer">Sorcerer</option>
+                            <option value="Paladin">Paladin</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" onclick="closeModals()">Cancelar</button>
+                    <button type="submit" class="btn-confirm">Abrir Chamada</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Admin (Definir Data) -->
+    <div id="adminModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-title">Painel Admin</div>
+            <form id="adminForm">
+                <input type="hidden" id="adminEventId">
+                <div class="form-group">
+                    <label>Data e Hora (Fuso Brasília)</label>
+                    <input type="datetime-local" id="adminDate">
+                </div>
+                <div class="form-group">
+                    <label>Vagas Totais</label>
+                    <input type="number" id="adminVagas" min="1">
+                </div>
+                <div class="form-group">
+                    <label>Conselho de Supply (Opcional)</label>
+                    <textarea id="adminSupply" placeholder="Ex: Levar 200 GFB e 50 UH" rows="2" style="width: 100%; background: rgba(0,0,0,0.3); border: 1px solid rgba(197, 160, 89, 0.2); color: white; padding: 8px; font-size: 0.8rem; border-radius: 4px;"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Senha de Admin</label>
+                    <input type="password" id="adminPass" required placeholder="Senha para confirmar">
+                </div>
+                <div class="modal-actions" style="flex-direction: column; gap: 10px;">
+                    <button type="submit" class="btn-confirm" style="width: 100%;">Salvar Alterações / Agendar</button>
+                    <div style="display: flex; gap: 10px; width: 100%;">
+                        <button type="button" class="btn-cancel" onclick="deleteEvent()" style="background: var(--medieval-red); color: white; flex: 1;">Excluir / Encerrar</button>
+                        <button type="button" class="btn-cancel" onclick="closeModals()" style="flex: 1;">Voltar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // --- QUEST DATA ---
+        const QUEST_PRESETS = {
+            "Circle Room Quest": "Recompensa: Golden Cheese, Life Ring. Lvl Necessário 32",
+            "Black Knight Quest": "Redemption Scroll, 5 Black Pearls, Lvl Necessário 50",
+            "Blood Herb Quest": "Key 4705 (Cave Rotworms + GS) Lvl Necessário 0",
+            "Naginata Quest": "Hunter's Knife. Lvl Necessário 0",
+            "Orc Fortress Quest": "2 Stone Skin Amulets, Elixir of Souls, 12 Black Pearls. Lvl 40",
+            "The Desert Dungeon Quest": "100 Platinum Coins, Ring Of Healing, Ankh. Lvl 20"
+        };
+
+        // --- CONFIGURAÇÃO SUPABASE ---
+        const SUPABASE_URL = 'https://mcnaefigyakgbspnqguk.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1jbmFlZmlneWFrZ2JzcG5xZ3VrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2MTEyMjQsImV4cCI6MjA5MTE4NzIyNH0.I0J-D0OzMfQeb30XzmLmB9MO9wqvzxewTb_F2j-yfGk';
+        
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        let events = [];
+        let registrations = [];
+
+        // --- INICIALIZAÇÃO ---
+        async function init() {
+            showLoading(true);
+            await fetchInitialData();
+            renderAll();
+            showLoading(false);
+            setupRealtime();
+        }
+
+        async function fetchInitialData() {
+            const { data: evData } = await supabaseClient.from('eventos').select('*').order('criado_em', { ascending: false });
+            events = evData || [];
+            const { data: regData } = await supabaseClient.from('inscricoes').select('*');
+            registrations = regData || [];
+        }
+
+        function setupRealtime() {
+            supabaseClient.channel('lobby-changes').on('postgres_changes', { event: '*', schema: 'public' }, () => refreshData()).subscribe();
+        }
+
+        async function refreshData() {
+            await fetchInitialData();
+            renderAll();
+        }
+
+        // --- RENDERIZAÇÃO ---
+        function renderAll() {
+            const scheduled = events.filter(e => e.tipo === 'agendado');
+            const requests = events.filter(e => e.tipo === 'pedido');
+
+            renderGrid('scheduledContainer', scheduled);
+            renderGrid('requestsContainer', requests);
+        }
+
+        function renderGrid(containerId, data) {
+            const container = document.getElementById(containerId);
+            if (data.length === 0) {
+                container.innerHTML = '<div class="empty-state">Nenhum registro encontrado.</div>';
+                return;
+            }
+
+            container.innerHTML = data.map(event => {
+                const eventRegs = registrations.filter(r => r.evento_id === event.id);
+                const isFull = eventRegs.length >= event.vagas;
+                const isRequest = event.tipo === 'pedido';
+                
+                // Forçar fuso de Brasília (GMT-3) na exibição
+                const dateStr = event.data_hora ? 
+                    new Date(event.data_hora).toLocaleString('pt-BR', { 
+                        timeZone: 'America/Sao_Paulo',
+                        day: '2-digit', 
+                        month: '2-digit', 
+                        hour: '2-digit', 
+                        minute: '2-digit' 
+                    }) + ' (GMT-3)' : 'A DEFINIR';
+
+                return `
+                    <div class="event-card ${isRequest ? 'is-request' : ''}">
+                        <button class="btn-admin" onclick="openAdminModal('${event.id}')">⚙️ ADMIN PANEL</button>
+                        <div class="event-header">
+                            <h3 class="event-title">${event.nome}</h3>
+                            <div class="event-info">${isRequest ? 'PEDIDO DE AJUDA' : dateStr}</div>
+                            <div class="event-reqs">${event.requisitos || ''}</div>
+                        </div>
+                        
+                        ${event.conselho_supply ? `
+                            <div style="margin: 10px 0; padding: 8px; background: rgba(197, 160, 89, 0.1); border-left: 2px solid var(--medieval-gold); font-size: 0.75rem; color: var(--medieval-gold);">
+                                <strong>Conselho de Supply:</strong><br>${event.conselho_supply}
+                            </div>
+                        ` : ''}
+                        
+                        <div class="vagas-info" style="color: ${isFull ? 'var(--medieval-red)' : 'var(--medieval-gold)'}">
+                            ${eventRegs.length} / ${event.vagas} INSCRITOS
+                        </div>
+
+                        <div class="participants-list">
+                            ${eventRegs.map(reg => `
+                                <div class="participant-item">
+                                    <span class="participant-name">${reg.jogador_nome}</span>
+                                    <span class="participant-meta">LVL ${reg.level} - ${reg.vocacao}</span>
+                                </div>
+                            `).join('')}
+                            ${eventRegs.length === 0 ? '<div style="text-align:center; font-size: 0.7rem; opacity: 0.2">Ninguém ainda</div>' : ''}
+                        </div>
+
+                        <button 
+                            class="btn-join ${isRequest ? 'is-request' : ''}" 
+                            onclick="openJoinModal('${event.id}')"
+                            ${isFull ? 'disabled' : ''}
+                        >
+                            ${isFull ? 'LOTADO' : (isRequest ? 'EU TAMBÉM PRECISO' : 'INSCREVER-ME')}
+                        </button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // --- MODAIS ---
+        function openJoinModal(eventId) {
+            document.getElementById('joinEventId').value = eventId;
+            document.getElementById('joinModal').style.display = 'flex';
+        }
+
+        function openCallModal() {
+            document.getElementById('callModal').style.display = 'flex';
+        }
+
+        function openAdminModal(eventId) {
+            const event = events.find(e => e.id === eventId);
+            if (!event) return;
+
+            const modalTitle = document.querySelector('#adminModal .modal-title');
+            if (event.tipo === 'agendado') {
+                modalTitle.innerText = 'Editar Quest Agendada';
+            } else {
+                modalTitle.innerText = 'Agendar Pedido de Ajuda';
+            }
+
+            document.getElementById('adminEventId').value = eventId;
+            document.getElementById('adminVagas').value = event.vagas;
+            document.getElementById('adminSupply').value = event.conselho_supply || '';
+            
+            if (event.data_hora) {
+                // Ajustar para o input datetime-local (YYYY-MM-DDTHH:mm)
+                const date = new Date(event.data_hora);
+                // Compensar o fuso para o input mostrar o tempo "correto"
+                const offset = date.getTimezoneOffset() * 60000;
+                const localISOTime = (new Date(date.getTime() - offset)).toISOString().slice(0, 16);
+                document.getElementById('adminDate').value = localISOTime;
+            } else {
+                document.getElementById('adminDate').value = '';
+            }
+
+            document.getElementById('adminModal').style.display = 'flex';
+        }
+
+        function closeModals() {
+            document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+            document.querySelectorAll('form').forEach(f => f.reset());
+            document.getElementById('customQuestGroup').style.display = 'none';
+        }
+
+        function updateQuestPreview() {
+            const val = document.getElementById('questSelect').value;
+            const info = document.getElementById('questInfo');
+            const custom = document.getElementById('customQuestGroup');
+            
+            if (val === 'Outra') {
+                custom.style.display = 'block';
+                info.value = '';
+            } else {
+                custom.style.display = 'none';
+                info.value = QUEST_PRESETS[val] || '';
+            }
+        }
+
+        // --- SUBMITS ---
+        document.getElementById('joinForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const eventId = document.getElementById('joinEventId').value;
+            const name = document.getElementById('charName').value;
+            const level = parseInt(document.getElementById('charLevel').value);
+            const voc = document.getElementById('charVoc').value;
+
+            showLoading(true);
+            const { error } = await supabaseClient.from('inscricoes').insert([{ evento_id: eventId, jogador_nome: name, level, vocacao: voc }]);
+            if (error) alert('Erro: ' + error.message);
+            else closeModals();
+            showLoading(false);
+        };
+
+        document.getElementById('callForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const questVal = document.getElementById('questSelect').value;
+            const name = questVal === 'Outra' ? document.getElementById('customQuestName').value : questVal;
+            const reqs = document.getElementById('questInfo').value;
+            const vagas = parseInt(document.getElementById('questVagas').value);
+            
+            // Dados do criador
+            const charName = document.getElementById('callCharName').value;
+            const charLevel = parseInt(document.getElementById('callCharLevel').value);
+            const charVoc = document.getElementById('callCharVoc').value;
+
+            showLoading(true);
+            
+            // 1. Criar o evento
+            const { data: eventData, error: eventError } = await supabaseClient
+                .from('eventos')
+                .insert([{ nome: name, requisitos: reqs, vagas, tipo: 'pedido' }])
+                .select();
+
+            if (eventError) {
+                alert('Erro ao criar chamada: ' + eventError.message);
+            } else if (eventData && eventData[0]) {
+                // 2. Inscrever o criador automaticamente
+                const { error: regError } = await supabaseClient
+                    .from('inscricoes')
+                    .insert([{ 
+                        evento_id: eventData[0].id, 
+                        jogador_nome: charName, 
+                        level: charLevel, 
+                        vocacao: charVoc 
+                    }]);
+                
+                if (regError) alert('Chamada criada, mas erro ao te inscrever: ' + regError.message);
+                else closeModals();
+            }
+            
+            showLoading(false);
+        };
+
+        document.getElementById('adminForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const eventId = document.getElementById('adminEventId').value;
+            const dateVal = document.getElementById('adminDate').value;
+            const vagas = parseInt(document.getElementById('adminVagas').value);
+            const supply = document.getElementById('adminSupply').value;
+            const pass = document.getElementById('adminPass').value;
+
+            if (pass !== 'miracle74') {
+                alert('Senha de Admin incorreta!');
+                return;
+            }
+
+            showLoading(true);
+            
+            const updateData = { 
+                vagas: vagas,
+                conselho_supply: supply
+            };
+
+            if (dateVal) {
+                // Assumir que a entrada é Brasília (GMT-3)
+                // Adicionamos -03:00 para o Supabase entender o fuso correto
+                updateData.data_hora = dateVal + ':00-03:00';
+                updateData.tipo = 'agendado';
+            }
+
+            const { error } = await supabaseClient.from('eventos').update(updateData).eq('id', eventId);
+            
+            if (error) alert('Erro: ' + error.message);
+            else closeModals();
+            showLoading(false);
+        };
+
+        async function deleteEvent() {
+            const eventId = document.getElementById('adminEventId').value;
+            const pass = document.getElementById('adminPass').value;
+
+            if (!pass) {
+                alert('Digite a senha de admin para excluir!');
+                return;
+            }
+            if (pass !== 'miracle74') {
+                alert('Senha de Admin incorreta!');
+                return;
+            }
+
+            if (!confirm('Tem certeza que deseja EXCLUIR/ENCERRAR este evento? Esta ação não pode ser desfeita.')) return;
+
+            showLoading(true);
+            const { error } = await supabaseClient.from('eventos').delete().eq('id', eventId);
+            if (error) alert('Erro ao excluir: ' + error.message);
+            else closeModals();
+            showLoading(false);
+        }
+
+        function showLoading(show) {
+            document.getElementById('loading').style.display = show ? 'block' : 'none';
+        }
+
+        init();
+    </script>
+</body>
+</html>

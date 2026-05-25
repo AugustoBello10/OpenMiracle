@@ -13,37 +13,6 @@ export interface PatchNote {
 
 export const PROJECT_PATCH_NOTES: PatchNote[] = [
   {
-    version: "1.5.0",
-    date: "2026-05-25",
-    title: { pt: "Projeto Wiki v1.5.0 - Build Maker & Simulador de Caça", en: "Wiki Project v1.5.0 - Build Maker & Hunting Simulator" },
-    changes: {
-      added: {
-        pt: [
-          "Lançamento do Build Maker totalmente interativo com seleção de itens por slot e cálculo de atributos em tempo real.",
-          "Presets Rápidos de Atributos categorizados por Vocação no Build Maker para agilizar o planejamento.",
-          "Novo painel Simulador de Metas de Caça e Planejador Especial (Antiazar) na Calculadora de Mineração.",
-          "Visualização categorizada do rendimento médio esperado por tipo de item (Solos, Fragmentos, Gemas) por picareta."
-        ],
-        en: [
-          "Launch of the fully interactive Build Maker with slot-by-slot item selection and real-time attribute calculation.",
-          "Quick Vocation-based Attribute Presets in the Build Maker to speed up planning.",
-          "New Hunting Goal Simulator panel and Safe Pickaxe Planner (Bad Luck protection) in the Mining Calculator.",
-          "Categorized visual breakdown of average expected yield by item type (Soils, Fragments, Gems) per pickaxe."
-        ]
-      },
-      changed: {
-        pt: [
-          "Atualização completa das fórmulas de Mineração de acordo com o patch sutil do servidor.",
-          "Layout responsivo aprimorado e polimento de fontes/espaçamento na ferramenta de Mineração."
-        ],
-        en: [
-          "Complete update of Mining formulas according to the server's subtle patch.",
-          "Improved responsive layout and fonts/spacing polish in the Mining tool."
-        ]
-      }
-    }
-  },
-  {
     version: "1.4.0",
     date: "2026-04-14",
     title: { pt: "Projeto Wiki v1.4.0 - Search & Database", en: "Wiki Project v1.4.0 - Search & Database" },
@@ -285,31 +254,6 @@ export const PROJECT_PATCH_NOTES: PatchNote[] = [
 ];
 
 export const SERVER_PATCH_NOTES: PatchNote[] = [
-  {
-    version: "25/05",
-    date: "2026-05-25",
-    title: { pt: "Update 25/05 (Ajuste na Mineração)", en: "Update 05/25 (Mining Balance adjustment)" },
-    changes: {
-      changed: {
-        pt: [
-          "Agora há uma chance de minerar qualquer recurso a cada tentativa de mineração (hit), mesmo sem quebrar a rocha por inteiro.",
-          "Mais farm por picareta (~6.6 para cerca de 16 com 50 skill e Enhanced Pick com taxa 0.2). Menos pedras necessárias para obter recursos.",
-          "Ajuste nos multiplicadores de skill para balanceamento:",
-          "  - Solos e Minérios (Natural Soil, Frozen Ore, Glimmering Soils): mantidos em 0.20.",
-          "  - Todos os tipos de fragmentos de metais: reduzidos de 0.20 para 0.15.",
-          "  - Gemas de valor / Joias (Small Diamond, Sapphire, Ruby, Emerald, Amethyst): reduzidos de 0.20 para 0.08."
-        ],
-        en: [
-          "Now you have a chance to mine anything on every attempt of mining even if it does not break the stone entirely.",
-          "More farm per pickaxe (approx. 6.6 -> 16 items with 50 mining skill and Enhanced Pick with 0.2 skill rate bonus). Less stones needed to acquire resources.",
-          "Reduced some resource skill multipliers to balance this change:",
-          "  - Soils and ores (Natural Soil, Frozen Ore, Glimmering Soils): stays at 0.20.",
-          "  - All kind of metal fragments: reduced from 0.20 to 0.15.",
-          "  - Small Diamond, Sapphire, Ruby, Emerald, Amethyst: reduced from 0.20 to 0.08."
-        ]
-      }
-    }
-  },
   {
     version: "13/04",
     date: "2026-04-13",

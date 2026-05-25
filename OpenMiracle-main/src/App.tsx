@@ -10,14 +10,13 @@ import {
   MessageSquare, ExternalLink, Info, Table as TableIcon, 
   TrendingUp, AlertTriangle, Book, Sparkles, Briefcase, 
   ChevronRight, ChevronUp, ChevronDown, Menu, X, Map, Youtube, Fish, FlaskConical, Utensils, Sprout, Scissors, Users,
-  History, Plus, Minus, Check, RefreshCw, Clock, Calendar, Download, Shield, Circle, Heart, Target, Axe
+  History, Plus, Minus, Check, RefreshCw, Clock, Calendar, Download
 } from 'lucide-react';
 import { calculateTrainingTime, Vocation, SkillType, TRAINING_WEAPONS_DATA, TrainingWeapon, calculateBlessCosts } from './lib/formulas';
 import { Language, translations } from './lib/translations';
 import { PROJECT_PATCH_NOTES, SERVER_PATCH_NOTES } from './data/patchNotes';
 import { LIBRARY_DATA, LibraryEntry } from './data/library';
 import { HELMETS_DATA, EquipmentItem } from './data/items';
-import { ALL_BUILD_ITEMS } from './data/buildItems';
 import { AlchemyCalculator } from './components/AlchemyCalculator';
 import { FarmingCalculator } from './components/FarmingCalculator';
 import { CraftingCalculator } from './components/CraftingCalculator';
@@ -254,22 +253,6 @@ const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
     { "name": "Golden Helmet", "class": 5, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Shielding", "Protect Elements", "Protect Physical"] }
   ],
   "Armors": [
-    { "name": "Spectral Dress", "class": 0, "attributes": [] },
-    { "name": "Ball Gown", "class": 0, "attributes": [] },
-    { "name": "White Dress", "class": 0, "attributes": [] },
-    { "name": "Simple Dress", "class": 0, "attributes": [] },
-    { "name": "Cape", "class": 0, "attributes": [] },
-    { "name": "Green Tunic", "class": 0, "attributes": [] },
-    { "name": "Coat", "class": 0, "attributes": [] },
-    { "name": "Jacket", "class": 0, "attributes": [] },
-    { "name": "Doublet", "class": 0, "attributes": [] },
-    { "name": "Red Tunic", "class": 0, "attributes": [] },
-    { "name": "Pirate Shirt", "class": 0, "attributes": [] },
-    { "name": "Leather Armor", "class": 0, "attributes": [] },
-    { "name": "Studded Armor", "class": 0, "attributes": [] },
-    { "name": "Chain Armor", "class": 0, "attributes": [] },
-    { "name": "Ranger's Cloak", "class": 1, "attributes": [] },
-    { "name": "Native Armor", "class": 0, "attributes": [] },
     { "name": "Brass Armor", "class": 1, "attributes": ["Armor", "Weight", "Max Health"] },
     { "name": "Red Robe", "class": 2, "attributes": ["Max Mana", "Magic Level", "Health Regen", "Protect Fire"] },
     { "name": "Scale Armor", "class": 1, "attributes": ["Armor", "Weight", "Max Health"] },
@@ -282,42 +265,32 @@ const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
     { "name": "Knight Armor", "class": 3, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Sword Fighting", "Shielding", "Protect Physical"] },
     { "name": "Crown Armor", "class": 3, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Shielding", "Protect Physical"] },
     { "name": "Amazon Armor", "class": 3, "attributes": ["Armor", "Speed", "Weight", "Healing", "Max Health", "Distance Fighting", "Protect Energy", "Protect Physical"] },
-    { "name": "Golden Armor", "class": 4, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Shielding", "Protect Energy", "Protect Physical"] },
+    { "name": "Golden Armor", "class": 4, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Shielding", "Protect Elements", "Protect Physical"] },
     { "name": "Spectral Robe", "class": 4, "attributes": ["Speed", "Max Mana", "Mana Regen", "Absorb Mana", "Magic Level", "Protect Physical"] },
-    { "name": "Dragon Scale Mail", "class": 4, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Shielding", "Protect Fire", "Protect Physical"] },
-    { "name": "Frozen Mail", "class": 4, "attributes": [] },
+    { "name": "Dragon Scale Mail", "class": 4, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Protect Fire", "Shielding", "Protect Physical"] },
     { "name": "Demon Armor", "class": 5, "attributes": ["Armor", "Speed", "Weight", "Max Mana", "Axe Fighting", "Mana Regen", "Max Health", "Club Fighting", "Distance Fighting", "Magic Level", "Sword Fighting", "Health Regen", "Protect Fire", "Protect Energy", "Protect Mana Drain"] },
-    { "name": "Magic Plate Armor", "class": 5, "attributes": ["Armor", "Weight", "Healing", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Shielding", "Protect Physical"] },
-    { "name": "Spectral Armor", "class": 5, "attributes": [] },
-    { "name": "Anubis Armor", "class": 5, "attributes": [] },
-    { "name": "Pharaoh Armor", "class": 5, "attributes": [] }
+    { "name": "Magic Plate Armor", "class": 5, "attributes": ["Armor", "Weight", "Healing", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Shielding", "Protect Physical"] }
   ],
   "Legs": [
-    { "name": "Leather Legs", "class": 0, "attributes": [] },
-    { "name": "Studded Legs", "class": 1, "attributes": [] },
-    { "name": "Chain Legs", "class": 0, "attributes": [] },
     { "name": "Elven Legs", "class": 1, "attributes": ["Armor", "Weight", "Max Mana", "Mana Regen", "Magic Level", "Protect Mana Drain"] },
     { "name": "Brass Legs", "class": 1, "attributes": ["Armor", "Weight", "Max Health"] },
     { "name": "Dwarven Legs", "class": 2, "attributes": ["Armor", "Weight", "Max Health", "Protect Fire", "Protect Physical"] },
     { "name": "Plate Legs", "class": 2, "attributes": ["Armor", "Weight", "Max Health", "Protect Physical"] },
     { "name": "Knight Legs", "class": 3, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Sword Fighting", "Protect Physical"] },
     { "name": "Crown Legs", "class": 3, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Protect Physical"] },
-    { "name": "Bast Skirt", "class": 4, "attributes": [] },
     { "name": "Golden Legs", "class": 3, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Protect Energy", "Protect Physical"] },
-    { "name": "Demon Legs", "class": 4, "attributes": ["Armor", "Speed", "Weight", "Max Mana", "Axe Fighting", "Mana Regen", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Magic Level", "Protect Physical"] },
-    { "name": "Frozen Legs", "class": 3, "attributes": [] },
-    { "name": "Dragon Scale Legs", "class": 4, "attributes": [] },
-    { "name": "Spectral Legs", "class": 5, "attributes": [] },
-    { "name": "Anubis Legs", "class": 5, "attributes": [] },
-    { "name": "Pharaoh Legs", "class": 5, "attributes": [] }
+    { "name": "Frozen Legs", "class": 3, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Protect Ice", "Sword Fighting", "Health Regen", "Protect Physical"] },
+    { "name": "Dragon Scale Legs", "class": 4, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Protect Fire", "Protect Physical"] },
+    { "name": "Demon Legs", "class": 3, "attributes": ["Armor", "Speed", "Weight", "Max Mana", "Axe Fighting", "Mana Regen", "Max Health", "Club Fighting", "Distance Fighting", "Magic Level", "Sword Fighting", "Health Regen", "Protect Fire", "Protect Energy", "Protect Mana Drain"] }
   ],
   "Boots": [
-    { "name": "Leather Boots", "class": 1, "attributes": ["Armor", "Speed", "Vibrancy"] },
     { "name": "Boots Of Haste", "class": 2, "attributes": ["Armor", "Dodge", "Speed", "Vibrancy"] },
     { "name": "Bunnyslippers", "class": 2, "attributes": ["Armor", "Mana Regen", "Magic Level", "Protect Ice", "Health Regen"] },
+    { "name": "Leather Boots", "class": 1, "attributes": ["Armor", "Speed", "Vibrancy"] },
     { "name": "Patched Boots", "class": 2, "attributes": ["Armor", "Speed", "Vibrancy"] },
     { "name": "Steel Boots", "class": 3, "attributes": ["Armor", "Vibrancy", "Protect Fire", "Protect Physical"] },
-    { "name": "Frozen Boots", "class": 3, "attributes": ["Armor", "Speed", "Magic Level", "Protect Ice"] }
+    { "name": "Frozen Boots", "class": 3, "attributes": ["Armor", "Vibrancy", "Protect Ice", "Protect Physical"] },
+    { "name": "Golden Boots", "class": 4, "attributes": ["Armor", "Healing", "Vibrancy", "Health Regen", "Protect Energy", "Protect Physical"] }
   ],
   "Shields": [
     { "name": "Wooden Shield", "class": 1, "attributes": ["Weight", "Defense", "Arrow Guard"] },
@@ -354,7 +327,6 @@ const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
     { "name": "Tempest Shield", "class": 4, "attributes": ["Weight", "Defense", "Arrow Guard", "Mitigation", "Shielding", "Protect Energy", "Reflect Energy"] },
     { "name": "Mastermind Shield", "class": 4, "attributes": ["Weight", "Defense", "Axe Fighting", "Club Fighting", "Distance Fighting", "Arrow Guard", "Mitigation", "Sword Fighting", "Shielding", "Protect Physical"] },
     { "name": "Great Shield", "class": 4, "attributes": ["Weight", "Defense", "Axe Fighting", "Club Fighting", "Distance Fighting", "Arrow Guard", "Mitigation", "Sword Fighting", "Protect Fire", "Shielding", "Protect Physical", "Reflect Physical"] },
-    { "name": "Spectral Shield", "class": 4, "attributes": [] },
     { "name": "Blessed Shield", "class": 5, "attributes": ["Weight", "Defense", "Axe Fighting", "Club Fighting", "Distance Fighting", "Arrow Guard", "Mitigation", "Sword Fighting", "Shielding", "Protect Elements", "Protect Physical", "Reflect Elements", "Reflect Physical"] }
   ],
   "Quivers": [
@@ -460,34 +432,7 @@ const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
   ]
 };
 
-import { BuildMakerView } from './components/BuildMakerView';
-
-type Tab = 'home' | 'calculadoras' | 'profissoes' | 'mapa' | 'eventos' | 'wiki' | 'buildmaker';
-
-const VOC_SPELLS: Record<string, { name: string; mana: number }[]> = {
-  Sorcerer: [
-    { name: "Heavy Magic Missile (adori gran)", mana: 70 },
-    { name: "Sudden Death (adori vita vis)", mana: 220 },
-    { name: "Great Fireball (adori gran flam)", mana: 120 }
-  ],
-  Druid: [
-    { name: "Ultimate Healing (adura vita)", mana: 100 },
-    { name: "Intense Healing (adura gran)", mana: 60 },
-    { name: "Envenom (adevo res pox)", mana: 100 },
-    { name: "Heavy Magic Missile (adori gran)", mana: 70 }
-  ],
-  Paladin: [
-    { name: "Heavy Magic Missile (adori gran)", mana: 70 }
-  ],
-  Knight: []
-};
-
-const MANA_REGEN_TIME_PER_MP: Record<string, { normal: number; promoted: number }> = {
-  Sorcerer: { normal: 6, promoted: 4 },
-  Druid: { normal: 6, promoted: 4 },
-  Paladin: { normal: 8, promoted: 6 },
-  Knight: { normal: 12, promoted: 12 } // 12 seconds per mana to match the prints exactly
-};
+type Tab = 'home' | 'calculadoras' | 'profissoes' | 'mapa' | 'eventos' | 'wiki';
 
 // --- Componente Calculadora de Skills ---
 function SkillCalculator({ 
@@ -502,8 +447,6 @@ function SkillCalculator({
   const [selectedTrainingWeapon, setSelectedTrainingWeapon] = useState<string>('Normal');
   const [weaponReduction, setWeaponReduction] = useState<number>(0);
   const [equipReductions, setEquipReductions] = useState<number[]>([0, 0, 0]);
-  const [isPromoted, setIsPromoted] = useState<boolean>(true);
-  const [selectedSpell, setSelectedSpell] = useState<string>('');
 
   const weaponCategory = useMemo(() => {
     if (skillType === 'Magic Level') return 'Magic';
@@ -532,38 +475,6 @@ function SkillCalculator({
     return calculateTrainingTime(vocation, skillType, currentSkill, targetSkill, skillPercentage, reductions);
   }, [vocation, skillType, currentSkill, targetSkill, skillPercentage, reductions]);
 
-  const secondsPerMana = useMemo(() => {
-    const regen = MANA_REGEN_TIME_PER_MP[vocation] || { normal: 6, promoted: 4 };
-    return isPromoted ? regen.promoted : regen.normal;
-  }, [vocation, isPromoted]);
-
-  const foodRegenSeconds = useMemo(() => {
-    return result.points * secondsPerMana;
-  }, [result.points, secondsPerMana]);
-
-  const spellsList = useMemo(() => {
-    return VOC_SPELLS[vocation] || [];
-  }, [vocation]);
-
-  const currentSpellObject = useMemo(() => {
-    return spellsList.find(s => s.name === selectedSpell) || spellsList[0];
-  }, [spellsList, selectedSpell]);
-
-  const spellCost = useMemo(() => {
-    return currentSpellObject ? currentSpellObject.mana : 40;
-  }, [currentSpellObject]);
-
-  const spellCount = useMemo(() => {
-    return Math.floor(result.points / spellCost);
-  }, [result.points, spellCost]);
-
-  useEffect(() => {
-    const list = VOC_SPELLS[vocation] || [];
-    if (list.length > 0) {
-      setSelectedSpell(list[0].name);
-    }
-  }, [vocation]);
-
   const weaponsNeeded = useMemo(() => {
     if (weaponType !== 'training' || trainingWeapon.charges <= 0) return 0;
     return Math.ceil(result.points / trainingWeapon.charges);
@@ -589,21 +500,6 @@ function SkillCalculator({
     if (d === 0) return null;
     
     return `${d} ${t('days')}, ${h} ${t('hours')} ${t('and')} ${m} ${t('minutes')}`;
-  };
-
-  const formatMLTime = (secondsOfRegen: number) => {
-    const days = Math.floor(secondsOfRegen / 86400);
-    const hours = Math.floor((secondsOfRegen % 86400) / 3600);
-    const minutes = Math.floor((secondsOfRegen % 3600) / 60);
-    const secs = Math.floor(secondsOfRegen % 60);
-
-    const parts: string[] = [];
-    if (days > 0) parts.push(`${days} ${days === 1 ? 'dia' : 'dias'}`);
-    if (hours > 0) parts.push(`${hours} ${hours === 1 ? 'hora' : 'horas'}`);
-    if (minutes > 0) parts.push(`${minutes} ${minutes === 1 ? 'minuto' : 'minutos'}`);
-    if (secs > 0 || parts.length === 0) parts.push(`${secs} ${secs === 1 ? 'segundo' : 'segundos'}`);
-
-    return parts.join(', ');
   };
 
   const handleEquipReductionChange = (index: number, value: number) => {
@@ -661,206 +557,108 @@ function SkillCalculator({
                 </select>
               </div>
 
-              {/* Skill Atual */}
-              <div className="flex flex-col gap-2">
-                <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                  {skillType === 'Magic Level' ? "Magic Level Atual" : t('currentSkill')}
-                </label>
-                <input
-                  type="number"
-                  value={currentSkill}
-                  onChange={(e) => {
-                    const val = Number(e.target.value);
-                    setCurrentSkill(val < 1 ? 1 : val);
-                  }}
-                  className="medieval-input"
-                  min="1"
-                  max="150"
-                />
-              </div>
-
-              {/* Skill Alvo */}
-              <div className="flex flex-col gap-2">
-                <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                  {skillType === 'Magic Level' ? "Magic Level Desejado" : t('targetSkill')}
-                </label>
-                <input
-                  type="number"
-                  value={targetSkill}
-                  onChange={(e) => {
-                    const val = Number(e.target.value);
-                    setTargetSkill(val < 1 ? 1 : val);
-                  }}
-                  className="medieval-input"
-                  min="1"
-                  max="150"
-                />
-              </div>
-
-              {/* % Restante */}
-              <div className="flex flex-col gap-2">
-                <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                  {t('remainingPercent')}
-                </label>
-                <input
-                  type="number"
-                  value={skillPercentage}
-                  onChange={(e) => {
-                    const val = Number(e.target.value);
-                    setSkillPercentage(val < 0 ? 0 : val > 100 ? 100 : val);
-                  }}
-                  className="medieval-input"
-                  min="0"
-                  max="150"
-                />
-              </div>
-
-              {/* Promoção (se ML) ou Modo Treino (se outros) */}
               {skillType === 'Magic Level' ? (
-                <div className="flex flex-col gap-2">
-                  <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                    {t('isPromoted')}
-                  </label>
-                  <button
-                    onClick={() => setIsPromoted(!isPromoted)}
-                    className={`flex items-center justify-center gap-2 text-[10px] font-bold py-2 px-3 border rounded transition-all h-[42px] ${
-                      isPromoted 
-                        ? 'bg-medieval-gold text-black border-medieval-gold' 
-                        : 'bg-black/40 text-medieval-gold/60 border-medieval-gold/20 hover:border-medieval-gold/40'
-                    }`}
-                  >
-                    <Check className={`w-3.5 h-3.5 transition-transform ${isPromoted ? 'scale-100' : 'scale-0'}`} />
-                    <span>{isPromoted ? "PROMOTED" : "NOT PROMOTED"}</span>
-                  </button>
+                <div className="sm:col-span-2 py-12 flex flex-col items-center justify-center text-center space-y-4 border-t border-medieval-gold/10 mt-4">
+                  <Hammer className="w-12 h-12 text-medieval-gold animate-bounce" />
+                  <h2 className="text-xl font-black text-medieval-gold uppercase tracking-widest">{t('underConstructionCalc')}</h2>
+                  <p className="text-medieval-text/60 max-w-md italic text-xs">
+                    Estamos trabalhando nas fórmulas para o Magic Level. Em breve estará disponível!
+                  </p>
                 </div>
               ) : (
-                <div className="flex flex-col gap-2">
-                  <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                    {t('trainingMode')}
-                  </label>
-                  <div className="grid grid-cols-2 gap-2">
-                    <button
-                      onClick={() => setWeaponType('normal')}
-                      className={`text-[10px] font-bold py-2 px-3 border rounded transition-all h-[42px] ${
-                        weaponType === 'normal' 
-                          ? 'bg-medieval-gold text-black border-medieval-gold' 
-                          : 'bg-black/40 text-medieval-gold/60 border-medieval-gold/20 hover:border-medieval-gold/40'
-                      }`}
-                    >
-                      {t('normalWeapon').toUpperCase()}
-                    </button>
-                    <button
-                      onClick={() => setWeaponType('training')}
-                      className={`text-[10px] font-bold py-2 px-3 border rounded transition-all h-[42px] ${
-                        weaponType === 'training' 
-                          ? 'bg-medieval-gold text-black border-medieval-gold' 
-                          : 'bg-black/40 text-medieval-gold/60 border-medieval-gold/20 hover:border-medieval-gold/40'
-                      }`}
-                    >
-                      {t('trainingWeapon').toUpperCase()}
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* Runa/Magia (se ML) ou Arma Seleção (se outros) */}
-              {skillType === 'Magic Level' ? (
-                vocation !== 'Knight' ? (
+                <>
+                  {/* Skill Atual */}
                   <div className="flex flex-col gap-2">
                     <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                      Runa / Magia Demonstrativa
+                      {t('currentSkill')}
                     </label>
-                    <select
-                      value={selectedSpell}
-                      onChange={(e) => setSelectedSpell(e.target.value)}
-                      className="medieval-input cursor-pointer appearance-none text-xs"
-                    >
-                      {VOC_SPELLS[vocation]?.map(s => (
-                        <option key={s.name} value={s.name}>
-                          {s.name} ({s.mana} mana)
-                        </option>
-                      ))}
-                    </select>
+                    <input
+                      type="number"
+                      value={currentSkill}
+                      onChange={(e) => setCurrentSkill(Number(e.target.value))}
+                      className="medieval-input"
+                    />
                   </div>
-                ) : (
-                  <div className="flex flex-col gap-2 text-xs">
+
+                  {/* Skill Alvo */}
+                  <div className="flex flex-col gap-2">
                     <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                      Runa / Magia Demonstrativa
+                      {t('targetSkill')}
                     </label>
-                    <div className="medieval-input bg-black/40 border border-medieval-gold/10 text-medieval-gold/50 flex items-center px-3 h-[42px] italic text-[11px]">
-                      Knights não criam runas
+                    <input
+                      type="number"
+                      value={targetSkill}
+                      onChange={(e) => setTargetSkill(Number(e.target.value))}
+                      className="medieval-input"
+                    />
+                  </div>
+
+                  {/* % Restante */}
+                  <div className="flex flex-col gap-2">
+                    <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
+                      {t('remainingPercent')}
+                    </label>
+                    <input
+                      type="number"
+                      value={skillPercentage}
+                      onChange={(e) => setSkillPercentage(Number(e.target.value))}
+                      className="medieval-input"
+                    />
+                  </div>
+
+                  {/* Tipo de Arma */}
+                  <div className="flex flex-col gap-2">
+                    <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
+                      {t('trainingMode')}
+                    </label>
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        onClick={() => setWeaponType('normal')}
+                        className={`text-[10px] font-bold py-2 px-3 border rounded transition-all ${
+                          weaponType === 'normal' 
+                            ? 'bg-medieval-gold text-black border-medieval-gold' 
+                            : 'bg-black/40 text-medieval-gold/60 border-medieval-gold/20 hover:border-medieval-gold/40'
+                        }`}
+                      >
+                        {t('normalWeapon').toUpperCase()}
+                      </button>
+                      <button
+                        onClick={() => setWeaponType('training')}
+                        className={`text-[10px] font-bold py-2 px-3 border rounded transition-all ${
+                          weaponType === 'training' 
+                            ? 'bg-medieval-gold text-black border-medieval-gold' 
+                            : 'bg-black/40 text-medieval-gold/60 border-medieval-gold/20 hover:border-medieval-gold/40'
+                        }`}
+                      >
+                        {t('trainingWeapon').toUpperCase()}
+                      </button>
                     </div>
                   </div>
-                )
-              ) : (
-                <div className="flex flex-col gap-2">
-                  <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                    {weaponType === 'training' ? t('trainingWeaponSelect') : t('weaponReduction')}
-                  </label>
-                  {weaponType === 'training' ? (
-                    <select
-                      value={selectedTrainingWeapon}
-                      onChange={(e) => setSelectedTrainingWeapon(e.target.value)}
-                      className="medieval-input cursor-pointer appearance-none"
-                    >
-                      {TRAINING_WEAPONS_DATA[weaponCategory].map(w => (
-                        <option key={w.name} value={w.name}>
-                          {w.name} {w.reduction > 0 ? `(-${w.reduction}%)` : ''}
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
-                    <select
-                      value={weaponReduction}
-                      onChange={(e) => setWeaponReduction(Number(e.target.value))}
-                      className="medieval-input cursor-pointer appearance-none"
-                    >
-                      <option value="0">Nenhum Atributo</option>
-                      <option value="1">-1% atack interval</option>
-                      <option value="2">-2% atack interval</option>
-                      <option value="3">-3% atack interval</option>
-                      <option value="4">-4% atack interval</option>
-                      <option value="5">-5% atack interval</option>
-                      <option value="6">-6% atack interval</option>
-                      <option value="7">-7% atack interval</option>
-                      <option value="8">-8% atack interval</option>
-                      <option value="9">-9% atack interval</option>
-                    </select>
-                  )}
-                </div>
-              )}
 
-              {/* Arma de Treino para ML ou Equipamentos extras (se Outros) */}
-              {skillType === 'Magic Level' ? (
-                <div className="flex flex-col gap-2 text-xs">
-                  <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                    {t('trainingWeaponSelect')} (Para Dummies)
-                  </label>
-                  <select
-                    value={selectedTrainingWeapon}
-                    onChange={(e) => setSelectedTrainingWeapon(e.target.value)}
-                    className="medieval-input cursor-pointer appearance-none text-xs"
-                  >
-                    {TRAINING_WEAPONS_DATA['Magic'].map(w => (
-                      <option key={w.name} value={w.name}>
-                        {w.name} {w.reduction > 0 ? `(-${w.reduction}%)` : ''}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              ) : (
-                <div className="sm:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  {equipReductions.map((red, idx) => (
-                    <div key={idx} className="flex flex-col gap-2">
-                      <label className="text-medieval-gold/60 font-bold uppercase text-[9px] tracking-widest">
-                        {t('extraEquip')} {idx + 1}
-                      </label>
+                  {/* Slot Arma */}
+                  <div className="flex flex-col gap-2 sm:col-span-2">
+                    <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
+                      {weaponType === 'training' ? t('trainingWeaponSelect') : t('weaponReduction')}
+                    </label>
+                    {weaponType === 'training' ? (
                       <select
-                        value={red}
-                        onChange={(e) => handleEquipReductionChange(idx, Number(e.target.value))}
-                        className="medieval-input text-sm cursor-pointer appearance-none"
+                        value={selectedTrainingWeapon}
+                        onChange={(e) => setSelectedTrainingWeapon(e.target.value)}
+                        className="medieval-input cursor-pointer appearance-none"
                       >
-                        <option value="0">{t('none')}</option>
+                        {TRAINING_WEAPONS_DATA[weaponCategory].map(w => (
+                          <option key={w.name} value={w.name}>
+                            {w.name} {w.reduction > 0 ? `(-${w.reduction}%)` : ''}
+                          </option>
+                        ))}
+                      </select>
+                    ) : (
+                      <select
+                        value={weaponReduction}
+                        onChange={(e) => setWeaponReduction(Number(e.target.value))}
+                        className="medieval-input cursor-pointer appearance-none"
+                      >
+                        <option value="0">Nenhum Atributo</option>
                         <option value="1">-1% atack interval</option>
                         <option value="2">-2% atack interval</option>
                         <option value="3">-3% atack interval</option>
@@ -871,92 +669,46 @@ function SkillCalculator({
                         <option value="8">-8% atack interval</option>
                         <option value="9">-9% atack interval</option>
                       </select>
-                    </div>
-                  ))}
-                </div>
-              )}
+                    )}
+                  </div>
 
-              {skillType !== 'Magic Level' && (
-                <div className="sm:col-span-2">
-                  <p className="text-[9px] text-medieval-gold/40 italic text-center">
-                    * Reduções são multiplicativas para evitar que o intervalo chegue a 0ms.
-                  </p>
-                </div>
+                  {/* Slots de Equipamento */}
+                  <div className="sm:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    {equipReductions.map((red, idx) => (
+                      <div key={idx} className="flex flex-col gap-2">
+                        <label className="text-medieval-gold/60 font-bold uppercase text-[9px] tracking-widest">
+                          {t('extraEquip')} {idx + 1}
+                        </label>
+                        <select
+                          value={red}
+                          onChange={(e) => handleEquipReductionChange(idx, Number(e.target.value))}
+                          className="medieval-input text-sm cursor-pointer appearance-none"
+                        >
+                          <option value="0">{t('none')}</option>
+                          <option value="1">-1% atack interval</option>
+                          <option value="2">-2% atack interval</option>
+                          <option value="3">-3% atack interval</option>
+                          <option value="4">-4% atack interval</option>
+                          <option value="5">-5% atack interval</option>
+                          <option value="6">-6% atack interval</option>
+                          <option value="7">-7% atack interval</option>
+                          <option value="8">-8% atack interval</option>
+                          <option value="9">-9% atack interval</option>
+                        </select>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <div className="sm:col-span-2">
+                    <p className="text-[9px] text-medieval-gold/40 italic text-center">
+                      * Reduções são multiplicativas para evitar que o intervalo chegue a 0ms.
+                    </p>
+                  </div>
+                </>
               )}
             </div>
 
-            {skillType === 'Magic Level' ? (
-              <div className="mt-8 pt-8 border-t border-medieval-gold/20">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="text-center p-4 bg-black/40 rounded border border-medieval-gold/10 flex flex-col justify-center items-center">
-                    <p className="text-medieval-gold/60 uppercase text-[9px] font-black tracking-widest mb-1">
-                      {t('manaNeeded')}
-                    </p>
-                    <div className="text-2xl font-black text-medieval-gold">
-                      {result.points.toLocaleString()} mana
-                    </div>
-                  </div>
-                  <div className="text-center p-4 bg-medieval-gold/5 rounded border border-medieval-gold/30">
-                    <p className="text-medieval-gold uppercase text-[9px] font-black tracking-widest mb-1">
-                      {t('estimatedTime')} (Food Regen)
-                    </p>
-                    <div className="text-base sm:text-lg font-black text-medieval-gold whitespace-pre-line leading-snug">
-                      {formatMLTime(foodRegenSeconds)}
-                    </div>
-                    <div className="text-[10px] font-bold text-medieval-gold/60 mt-1 uppercase">
-                      Regen: 1 MP por {secondsPerMana}s {isPromoted ? '(Promovido)' : '(Regular)'}
-                    </div>
-                  </div>
-                </div>
-
-                {vocation !== 'Knight' && (
-                  <div className="mt-4 p-4 bg-black/20 border border-medieval-gold/10 rounded text-center">
-                    <p className="text-medieval-gold/85 uppercase text-[10px] font-bold tracking-widest mb-2 flex items-center justify-center gap-2">
-                      <Wand2 className="w-3.5 h-3.5 text-medieval-gold" /> {t('runesCreated')}
-                    </p>
-                    <p className="text-sm font-black text-white">
-                      {spellCount.toLocaleString()}x {currentSpellObject?.name || selectedSpell}
-                    </p>
-                    <p className="text-[9px] text-medieval-text/40 mt-1">
-                      (Cada conjuração consome {spellCost} mana)
-                    </p>
-                  </div>
-                )}
-
-                {/* Alternativa do treino com dummies */}
-                <div className="mt-4 p-4 bg-black/45 border border-medieval-gold/10 rounded">
-                  <h4 className="text-medieval-gold font-bold uppercase text-[9px] tracking-widest mb-3 text-center">
-                    Alternativa com Armas de Treino (Active Dummy Training)
-                  </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center">
-                    <div className="p-3 bg-black/20 rounded border border-medieval-gold/5">
-                      <p className="text-medieval-gold/50 text-[9px] font-black">Armas ({selectedTrainingWeapon}) Necessárias</p>
-                      <p className="text-[17px] font-black text-medieval-gold">
-                        {weaponsNeeded > 0 ? `${weaponsNeeded}x` : 'N/A'}
-                      </p>
-                      <p className="text-[9px] text-medieval-text/40 mt-0.5">
-                        Baseado em {trainingWeapon.charges ? trainingWeapon.charges.toLocaleString() : 0} cargas
-                      </p>
-                    </div>
-                    <div className="p-3 bg-black/20 rounded border border-medieval-gold/5">
-                      <p className="text-medieval-gold/50 text-[9px] font-black">Tempo Ativo nos Dummies</p>
-                      <p className="text-[17px] font-black text-medieval-gold">
-                        {formatTime(result.seconds)}
-                      </p>
-                      <p className="text-[9px] text-medieval-text/40 mt-0.5">
-                        Com base no intervalo do dummy
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-6 p-4 bg-black/55 border border-medieval-gold/15 rounded">
-                  <p className="text-[11px] text-medieval-gold/70 leading-relaxed font-mono italic">
-                    {t('disclaimerML')}
-                  </p>
-                </div>
-              </div>
-            ) : (
+            {skillType !== 'Magic Level' && (
               <div className="mt-8 pt-8 border-t border-medieval-gold/20">
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div className="text-center p-4 bg-black/40 rounded border border-medieval-gold/10">
@@ -993,18 +745,6 @@ function SkillCalculator({
         <div className="lg:col-span-5 space-y-6">
           <div className="medieval-border rounded-lg bg-medieval-card p-6 space-y-4">
             <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest flex items-center gap-2">
-              <Wand2 className="w-4 h-4 text-medieval-gold" /> Regras de Magic Level
-            </h3>
-            <div className="space-y-4 text-xs text-medieval-text/70 leading-relaxed font-mono">
-              <p>• <span className="text-medieval-gold">Sorcerer / Druid:</span> Multiplicador de 1.1x. Alto rendimento em magias e runas de ataque/cura.</p>
-              <p>• <span className="text-medieval-gold">Paladin:</span> Multiplicador de 1.4x. Avanço moderado, essencial para marcas de utilidade e cura média.</p>
-              <p>• <span className="text-medieval-gold">Knight:</span> Multiplicador de 3.0x. Avanço lento, utilizado para magias básicas de cura (exura) e utilidades.</p>
-              <p>• <span className="text-medieval-gold">Promoted Status:</span> Melhora drasticamente o tempo de regeneração de mana (comida), acelerando o ganho de Magic Level offline das vocações mágicas de 6s para 4s e paladinos de 8s para 6s.</p>
-            </div>
-          </div>
-
-          <div className="medieval-border rounded-lg bg-medieval-card p-6 space-y-4">
-            <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest flex items-center gap-2">
               <Info className="w-4 h-4" /> {t('trainingInfo')}
             </h3>
             <div className="space-y-4 text-xs text-medieval-text/70 leading-relaxed font-mono">
@@ -1018,7 +758,7 @@ function SkillCalculator({
           
           <div className="p-4 bg-medieval-gold/10 border border-medieval-gold/20 rounded-lg">
             <p className="text-[10px] text-medieval-gold/60 italic uppercase tracking-tighter text-center leading-relaxed">
-              Fórmulas baseadas em tabelas clássicas de Tibia 7.4 e mecânicas exclusivas do Miracle.
+              Fórmulas baseadas no guia clássico de Tibia 7.4 por <a href="https://tibiantis.online/?page=viewtopic&id=109" target="_blank" rel="noopener noreferrer" className="text-medieval-gold underline hover:text-white transition-colors">Dratini</a> e mecânicas exclusivas do Miracle.
             </p>
           </div>
         </div>
@@ -1241,67 +981,13 @@ const DrumMenu = ({
   );
 };
 
-const getItemEffects = (item: any) => {
-  const effects: string[] = [];
-  if (item.bonuses) {
-    Object.entries(item.bonuses).forEach(([key, val]: [string, any]) => {
-      if (key === 'magic') effects.push(`Magic Level +${val}`);
-      else if (key === 'speed') effects.push(`Speed +${val}`);
-      else if (key === 'melee') effects.push(`Melee +${val}`);
-      else if (key === 'sword') effects.push(`Sword +${val}`);
-      else if (key === 'axe') effects.push(`Axe +${val}`);
-      else if (key === 'club') effects.push(`Club +${val}`);
-      else if (key === 'distance') effects.push(`Distance +${val}`);
-      else if (key === 'shielding') effects.push(`Shielding +${val}`);
-      else if (key === 'regen') effects.push(`Regen +${val}/s`);
-      else if (key === 'health-regen') {
-        const s = val > 0 ? (1 / val) : 0;
-        effects.push(`HP Reg. +1/${s.toFixed(1).replace('.0', '')}s`);
-      }
-      else if (key === 'mana-regen') {
-        const s = val > 0 ? (1 / val) : 0;
-        effects.push(`MP Reg. +1/${s.toFixed(1).replace('.0', '')}s`);
-      }
-      else if (key === 'invisibility') effects.push('Invisible');
-      else if (key === 'magic-shield') effects.push('Mana Shield');
-      else if (key === 'healing') effects.push(`Healing +${val}%`);
-      else if (key === 'life-leech-chance') effects.push(`Life Leech ${val}%`);
-      else if (key === 'life-leech-amount') effects.push(`Leech Amt +${val}%`);
-      else if (key === 'mana-leech-chance') effects.push(`Mana Leech ${val}%`);
-      else if (key === 'mana-leech-amount') effects.push(`Leech Amt +${val}%`);
-      else if (key === 'crit-hit-chance') effects.push(`Critical Hit ${val}%`);
-      else if (key === 'crit-hit') effects.push(`Crit Dmg +${val}%`);
-      else if (key === 'crit-spell-chance') effects.push(`Spell Critical ${val}%`);
-      else if (key === 'crit-spell-amount') effects.push(`Spell Crit Dmg +${val}%`);
-      else if (key === 'attack') effects.push(`Attack +${val}`);
-      else if (key === 'dmg-fire') effects.push(`Fire Dmg +${val}%`);
-      else if (key === 'dmg-ice') effects.push(`Ice Dmg +${val}%`);
-      else if (key === 'dmg-poison') effects.push(`Poison Dmg +${val}%`);
-      else if (key === 'momentum') effects.push(`Momentum +${val}%`);
-      else if (key === 'attack-interval') {
-        effects.push(`Attack Interval ${val}%`);
-      }
-      else if (key === 'dodge') effects.push(`Dodge +${val}%`);
-      else if (key === 'destruction') effects.push(`Destruction +${val}%`);
-    });
-  }
-  if (item.protections) {
-    Object.entries(item.protections).forEach(([key, val]: [string, any]) => {
-      const pct = Math.round(val * 100);
-      effects.push(`Protect ${key.charAt(0).toUpperCase() + key.slice(1)} +${pct}%`);
-    });
-  }
-  return effects;
-};
-
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>('home');
   const [calcSubTab, setCalcSubTab] = useState<'skills' | 'bless' | 'atributos' | 'professions'>('skills');
   const [profSubTab, setProfSubTab] = useState<'crafting' | 'alchemy' | 'farming' | 'mining'>('crafting');
   const [wikiSubTab, setWikiSubTab] = useState<'server' | 'project'>('server');
   const [wikiMainTab, setWikiMainTab] = useState<'home' | 'updates' | 'library' | 'items'>('home');
-  const [itemsSubTab, setItemsSubTab] = useState<'helmets' | 'armors' | 'legs' | 'boots' | 'shields' | 'swords' | 'clubs' | 'axes' | 'distance' | 'ammo' | 'rings' | 'amulets' | 'relics'>('helmets');
-  const [distanceFilter, setDistanceFilter] = useState<'all' | 'bow' | 'crossbow' | 'throwing'>('all');
+  const [itemsSubTab, setItemsSubTab] = useState<'helmets' | 'armors' | 'legs' | 'boots' | 'shields' | 'weapons'>('helmets');
   const [selectedBookId, setSelectedBookId] = useState<string>(LIBRARY_DATA[0]?.id || '');
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
   const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
@@ -1316,111 +1002,6 @@ export default function App() {
   const [searchResults, setSearchResults] = useState<{ id: string; label: string; type: string; action: () => void }[]>([]);
 
   const t = (key: keyof typeof translations['pt']) => translations[language][key] || key;
-
-  const armorsList = useMemo(() => {
-    const list = ALL_BUILD_ITEMS.filter(item => item.category === 'armor' || item.subCategory === 'Armors');
-    return [...list].sort((a, b) => {
-      const armA = a.armor ?? 0;
-      const armB = b.armor ?? 0;
-      if (armA !== armB) return armA - armB;
-      return a.name.localeCompare(b.name);
-    });
-  }, []);
-
-  const legsList = useMemo(() => {
-    const list = ALL_BUILD_ITEMS.filter(item => item.category === 'legs' || item.subCategory === 'Legs');
-    return [...list].sort((a, b) => {
-      const armA = a.armor ?? 0;
-      const armB = b.armor ?? 0;
-      if (armA !== armB) return armA - armB;
-      return a.name.localeCompare(b.name);
-    });
-  }, []);
-
-  const bootsList = useMemo(() => {
-    const list = ALL_BUILD_ITEMS.filter(item => item.category === 'feet' || item.subCategory === 'Boots');
-    return [...list].sort((a, b) => {
-      const armA = a.armor ?? 0;
-      const armB = b.armor ?? 0;
-      if (armA !== armB) return armA - armB;
-      return a.name.localeCompare(b.name);
-    });
-  }, []);
-
-  const shieldsList = useMemo(() => {
-    const list = ALL_BUILD_ITEMS.filter(item => item.subCategory === 'Shields');
-    return [...list].sort((a, b) => {
-      const defA = a.defense ?? 0;
-      const defB = b.defense ?? 0;
-      if (defA !== defB) return defA - defB;
-      return a.name.localeCompare(b.name);
-    });
-  }, []);
-
-  const swordsList = useMemo(() => {
-    const list = ALL_BUILD_ITEMS.filter(item => item.subCategory === 'Swords');
-    return [...list].sort((a, b) => {
-      const atkA = a.attack ?? 0;
-      const atkB = b.attack ?? 0;
-      if (atkA !== atkB) return atkA - atkB;
-      return a.name.localeCompare(b.name);
-    });
-  }, []);
-
-  const clubsList = useMemo(() => {
-    const list = ALL_BUILD_ITEMS.filter(item => item.subCategory === 'Clubs');
-    return [...list].sort((a, b) => {
-      const atkA = a.attack ?? 0;
-      const atkB = b.attack ?? 0;
-      if (atkA !== atkB) return atkA - atkB;
-      return a.name.localeCompare(b.name);
-    });
-  }, []);
-
-  const axesList = useMemo(() => {
-    const list = ALL_BUILD_ITEMS.filter(item => item.subCategory === 'Axes');
-    return [...list].sort((a, b) => {
-      const atkA = a.attack ?? 0;
-      const atkB = b.attack ?? 0;
-      if (atkA !== atkB) return atkA - atkB;
-      return a.name.localeCompare(b.name);
-    });
-  }, []);
-
-  const distanceList = useMemo(() => {
-    const list = ALL_BUILD_ITEMS.filter(item => item.subCategory === 'Distance');
-    return [...list].sort((a, b) => {
-      const atkA = a.attack ?? 0;
-      const atkB = b.attack ?? 0;
-      if (atkA !== atkB) return atkA - atkB;
-      return a.name.localeCompare(b.name);
-    });
-  }, []);
-
-  const ammoList = useMemo(() => {
-    const list = ALL_BUILD_ITEMS.filter(item => item.subCategory === 'Ammo' || item.category === 'ammo');
-    return [...list].sort((a, b) => {
-      const atkA = a.attack ?? 0;
-      const atkB = b.attack ?? 0;
-      if (atkA !== atkB) return atkA - atkB;
-      return a.name.localeCompare(b.name);
-    });
-  }, []);
-
-  const ringsList = useMemo(() => {
-    const list = ALL_BUILD_ITEMS.filter(item => item.category === 'ring');
-    return [...list].sort((a, b) => a.name.localeCompare(b.name));
-  }, []);
-
-  const amuletsList = useMemo(() => {
-    const list = ALL_BUILD_ITEMS.filter(item => item.category === 'necklace');
-    return [...list].sort((a, b) => a.name.localeCompare(b.name));
-  }, []);
-
-  const relicsList = useMemo(() => {
-    const list = ALL_BUILD_ITEMS.filter(item => item.category === 'relic');
-    return [...list].sort((a, b) => a.name.localeCompare(b.name));
-  }, []);
 
   // Global Search Logic
   const handleSearch = (query: string) => {
@@ -1629,7 +1210,6 @@ export default function App() {
 
   const tabs = [
     { id: 'home', label: t('home'), icon: <Book className="w-4 h-4" /> },
-    { id: 'buildmaker', label: 'Build Maker', icon: <Hammer className="w-4 h-4" /> },
     { id: 'calculadoras', label: t('calculators'), icon: <Hammer className="w-4 h-4" /> },
     { id: 'profissoes', label: t('professions'), icon: <Briefcase className="w-4 h-4" /> },
     { id: 'mapa', label: t('map'), icon: <Map className="w-4 h-4" /> },
@@ -2103,17 +1683,7 @@ export default function App() {
               </motion.div>
             )}
 
-            {activeTab === 'buildmaker' && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="h-full"
-            >
-              <BuildMakerView language={language} />
-            </motion.div>
-          )}
-
-          {activeTab === 'calculadoras' && (
+            {activeTab === 'calculadoras' && (
               <motion.div
                 key="calculadoras"
                 initial={{ opacity: 0, y: 20 }}
@@ -2735,26 +2305,22 @@ export default function App() {
                       <div className="flex flex-wrap justify-center gap-2 mb-8">
                         {[
                           { id: 'helmets', label: t('helmets'), icon: <Gem className="w-4 h-4" /> },
-                          { id: 'armors', label: language === 'pt' ? 'Armaduras' : 'Armors', icon: <Shield className="w-4 h-4" /> },
-                          { id: 'legs', label: language === 'pt' ? 'Calças' : 'Legs', icon: <Sword className="w-4 h-4" /> },
-                          { id: 'boots', label: language === 'pt' ? 'Botas' : 'Boots', icon: <Sparkles className="w-4 h-4" /> },
-                          { id: 'shields', label: language === 'pt' ? 'Escudos' : 'Shields', icon: <Shield className="w-4 h-4" /> },
-                          { id: 'swords', label: language === 'pt' ? 'Espadas' : 'Swords', icon: <Sword className="w-4 h-4" /> },
-                          { id: 'clubs', label: language === 'pt' ? 'Clavas' : 'Clubs', icon: <Hammer className="w-4 h-4" /> },
-                          { id: 'axes', label: language === 'pt' ? 'Machados' : 'Axes', icon: <Axe className="w-4 h-4" /> },
-                          { id: 'distance', label: language === 'pt' ? 'Distância' : 'Distance', icon: <Target className="w-4 h-4" /> },
-                          { id: 'ammo', label: language === 'pt' ? 'Munições' : 'Ammo', icon: <Zap className="w-4 h-4" /> },
-                          { id: 'rings', label: language === 'pt' ? 'Anéis' : 'Rings', icon: <Circle className="w-4 h-4" /> },
-                          { id: 'amulets', label: language === 'pt' ? 'Amuletos' : 'Amulets', icon: <Heart className="w-4 h-4" /> },
-                          { id: 'relics', label: language === 'pt' ? 'Relíquias' : 'Relics', icon: <Sparkles className="w-4 h-4" /> },
+                          { id: 'armors', label: 'Armors', icon: <Sword className="w-4 h-4" />, disabled: true },
+                          { id: 'legs', label: 'Legs', icon: <Sword className="w-4 h-4" />, disabled: true },
+                          { id: 'boots', label: 'Boots', icon: <Sword className="w-4 h-4" />, disabled: true },
+                          { id: 'shields', label: 'Shields', icon: <Sword className="w-4 h-4" />, disabled: true },
+                          { id: 'weapons', label: 'Weapons', icon: <Sword className="w-4 h-4" />, disabled: true },
                         ].map((sub) => (
                           <button
                             key={sub.id}
+                            disabled={sub.disabled}
                             onClick={() => setItemsSubTab(sub.id as any)}
                             className={`px-4 py-2 rounded-sm font-black uppercase text-[10px] tracking-widest transition-all flex items-center gap-2 border ${
                               itemsSubTab === sub.id
                                 ? 'bg-medieval-gold text-black border-medieval-gold shadow-medieval-gold'
-                                : 'bg-black/40 text-medieval-gold/60 border-medieval-gold/20 hover:border-medieval-gold/40'
+                                : sub.disabled 
+                                  ? 'opacity-30 cursor-not-allowed border-white/5 text-white/40'
+                                  : 'bg-black/40 text-medieval-gold/60 border-medieval-gold/20 hover:border-medieval-gold/40'
                             }`}
                           >
                             {sub.icon} {sub.label}
@@ -2762,7 +2328,6 @@ export default function App() {
                         ))}
                       </div>
 
-                      {/* Helmets Table */}
                       {itemsSubTab === 'helmets' && (
                         <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
                           <div className="overflow-x-auto">
@@ -2777,817 +2342,46 @@ export default function App() {
                                 </tr>
                               </thead>
                               <tbody className="divide-y divide-medieval-gold/5">
-                                {HELMETS_DATA.map((helmet, idx) => {
-                                  const attrs = ATTRIBUTE_DATA["Helmets"]?.find(i => i.name === helmet.name)?.attributes || [];
-                                  return (
-                                    <tr key={idx} className="hover:bg-white/5 transition-colors group">
-                                      <td className="p-4">
-                                        <div className="flex items-center gap-4">
-                                          <div className="w-10 h-10 bg-black/40 rounded border border-medieval-gold/10 flex items-center justify-center group-hover:border-medieval-gold/30 transition-all">
-                                            <img 
-                                              src={`https://res.cloudinary.com/dc4nkbnkg/image/upload/${helmet.image}`} 
-                                              alt={helmet.name} 
-                                              className="w-8 h-8 object-contain"
-                                              referrerPolicy="no-referrer"
-                                            />
-                                          </div>
-                                          <span className="font-bold text-sm text-medieval-text group-hover:text-medieval-gold transition-colors">{helmet.name}</span>
+                                {HELMETS_DATA.map((helmet, idx) => (
+                                  <tr key={idx} className="hover:bg-white/5 transition-colors group">
+                                    <td className="p-4">
+                                      <div className="flex items-center gap-4">
+                                        <div className="w-10 h-10 bg-black/40 rounded border border-medieval-gold/10 flex items-center justify-center group-hover:border-medieval-gold/30 transition-all">
+                                          <img 
+                                            src={`https://res.cloudinary.com/dc4nkbnkg/image/upload/${helmet.image}`} 
+                                            alt={helmet.name} 
+                                            className="w-8 h-8 object-contain"
+                                            referrerPolicy="no-referrer"
+                                          />
                                         </div>
-                                      </td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-gold">{helmet.armor}</td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-text/60">{helmet.weight.toFixed(2)}</td>
-                                      <td className="p-4 text-center">
-                                        <span className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-tighter ${
-                                          helmet.class === 0 ? 'bg-gray-500/20 text-gray-400' :
-                                          helmet.class === 1 ? 'bg-green-500/20 text-green-400' :
-                                          helmet.class === 2 ? 'bg-blue-500/20 text-blue-400' :
-                                          helmet.class === 3 ? 'bg-purple-500/20 text-purple-400' :
-                                          helmet.class === 4 ? 'bg-orange-500/20 text-orange-400' :
-                                          'bg-red-500/20 text-red-400'
-                                        }`}>
-                                          Class {helmet.class}
-                                        </span>
-                                      </td>
-                                      <td className="p-4">
-                                        <div className="flex flex-wrap gap-1">
-                                          {attrs.length > 0 ? attrs.map((p, i) => (
-                                            <span key={i} className="text-[9px] border border-medieval-gold/10 bg-white/5 px-1.5 py-0.5 rounded text-medieval-gold/80 uppercase font-mono">
-                                              {p}
-                                            </span>
-                                          )) : <span className="text-[9px] text-white/10 uppercase font-mono">-</span>}
-                                        </div>
-                                      </td>
-                                    </tr>
-                                  );
-                                })}
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Armors Table */}
-                      {itemsSubTab === 'armors' && (
-                        <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
-                          <div className="overflow-x-auto">
-                            <table className="w-full text-left border-collapse">
-                              <thead>
-                                <tr className="bg-black/60 border-b border-medieval-gold/20">
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{t('item')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('arm')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('weight')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('class')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{t('properties')}</th>
-                                </tr>
-                              </thead>
-                              <tbody className="divide-y divide-medieval-gold/5">
-                                {armorsList.map((item, idx) => {
-                                  const attrs = ATTRIBUTE_DATA["Armors"]?.find(i => i.name === item.name)?.attributes || [];
-                                  return (
-                                    <tr key={idx} className="hover:bg-white/5 transition-colors group">
-                                      <td className="p-4">
-                                        <div className="flex items-center gap-4">
-                                          <div className="w-10 h-10 bg-black/40 rounded border border-medieval-gold/10 flex items-center justify-center group-hover:border-medieval-gold/30 transition-all">
-                                            {item.img ? (
-                                              <img src={item.img} alt={item.name} className="w-8 h-8 object-contain" referrerPolicy="no-referrer" />
-                                            ) : (
-                                              <Shield className="w-5 h-5 text-medieval-gold/40 group-hover:text-medieval-gold/80 transition-colors" />
-                                            )}
-                                          </div>
-                                          <span className="font-bold text-sm text-medieval-text group-hover:text-medieval-gold transition-colors">{item.name}</span>
-                                        </div>
-                                      </td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-gold">{item.armor ?? 0}</td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-text/60">{item.weight.toFixed(2)}</td>
-                                      <td className="p-4 text-center">
-                                        <span className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-tighter ${
-                                          item.attributeClass === 0 ? 'bg-gray-500/20 text-gray-400' :
-                                          item.attributeClass === 1 ? 'bg-green-500/20 text-green-400' :
-                                          item.attributeClass === 2 ? 'bg-blue-500/20 text-blue-400' :
-                                          item.attributeClass === 3 ? 'bg-purple-500/20 text-purple-400' :
-                                          item.attributeClass === 4 ? 'bg-orange-500/20 text-orange-400' :
-                                          'bg-red-500/20 text-red-400'
-                                        }`}>
-                                          Class {item.attributeClass}
-                                        </span>
-                                      </td>
-                                      <td className="p-4">
-                                        <div className="flex flex-wrap gap-1">
-                                          {attrs.length > 0 ? attrs.map((p, i) => (
-                                            <span key={i} className="text-[9px] border border-medieval-gold/10 bg-white/5 px-1.5 py-0.5 rounded text-medieval-gold/80 uppercase font-mono">
-                                              {p}
-                                            </span>
-                                          )) : <span className="text-[9px] text-white/10 uppercase font-mono">-</span>}
-                                        </div>
-                                      </td>
-                                    </tr>
-                                  );
-                                })}
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Legs Table */}
-                      {itemsSubTab === 'legs' && (
-                        <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
-                          <div className="overflow-x-auto">
-                            <table className="w-full text-left border-collapse">
-                              <thead>
-                                <tr className="bg-black/60 border-b border-medieval-gold/20">
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{t('item')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('arm')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('weight')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('class')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{t('properties')}</th>
-                                </tr>
-                              </thead>
-                              <tbody className="divide-y divide-medieval-gold/5">
-                                {legsList.map((item, idx) => {
-                                  const attrs = ATTRIBUTE_DATA["Legs"]?.find(i => i.name === item.name)?.attributes || [];
-                                  return (
-                                    <tr key={idx} className="hover:bg-white/5 transition-colors group">
-                                      <td className="p-4">
-                                        <div className="flex items-center gap-4">
-                                          <div className="w-10 h-10 bg-black/40 rounded border border-medieval-gold/10 flex items-center justify-center group-hover:border-medieval-gold/30 transition-all">
-                                            {item.img ? (
-                                              <img src={item.img} alt={item.name} className="w-8 h-8 object-contain" referrerPolicy="no-referrer" />
-                                            ) : (
-                                              <Shield className="w-5 h-5 text-medieval-gold/40 group-hover:text-medieval-gold/80 transition-colors" />
-                                            )}
-                                          </div>
-                                          <span className="font-bold text-sm text-medieval-text group-hover:text-medieval-gold transition-colors">{item.name}</span>
-                                        </div>
-                                      </td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-gold">{item.armor ?? 0}</td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-text/60">{item.weight.toFixed(2)}</td>
-                                      <td className="p-4 text-center">
-                                        <span className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-tighter ${
-                                          item.attributeClass === 0 ? 'bg-gray-500/20 text-gray-400' :
-                                          item.attributeClass === 1 ? 'bg-green-500/20 text-green-400' :
-                                          item.attributeClass === 2 ? 'bg-blue-500/20 text-blue-400' :
-                                          item.attributeClass === 3 ? 'bg-purple-500/20 text-purple-400' :
-                                          item.attributeClass === 4 ? 'bg-orange-500/20 text-orange-400' :
-                                          'bg-red-500/20 text-red-400'
-                                        }`}>
-                                          Class {item.attributeClass}
-                                        </span>
-                                      </td>
-                                      <td className="p-4">
-                                        <div className="flex flex-wrap gap-1">
-                                          {attrs.length > 0 ? attrs.map((p, i) => (
-                                            <span key={i} className="text-[9px] border border-medieval-gold/10 bg-white/5 px-1.5 py-0.5 rounded text-medieval-gold/80 uppercase font-mono">
-                                              {p}
-                                            </span>
-                                          )) : <span className="text-[9px] text-white/10 uppercase font-mono">-</span>}
-                                        </div>
-                                      </td>
-                                    </tr>
-                                  );
-                                })}
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Boots Table */}
-                      {itemsSubTab === 'boots' && (
-                        <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
-                          <div className="overflow-x-auto">
-                            <table className="w-full text-left border-collapse">
-                              <thead>
-                                <tr className="bg-black/60 border-b border-medieval-gold/20">
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{t('item')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('arm')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('weight')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('class')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{t('properties')}</th>
-                                </tr>
-                              </thead>
-                              <tbody className="divide-y divide-medieval-gold/5">
-                                {bootsList.map((item, idx) => {
-                                  const attrs = ATTRIBUTE_DATA["Boots"]?.find(i => i.name === item.name)?.attributes || [];
-                                  return (
-                                    <tr key={idx} className="hover:bg-white/5 transition-colors group">
-                                      <td className="p-4">
-                                        <div className="flex items-center gap-4">
-                                          <div className="w-10 h-10 bg-black/40 rounded border border-medieval-gold/10 flex items-center justify-center group-hover:border-medieval-gold/30 transition-all">
-                                            {item.img ? (
-                                              <img src={item.img} alt={item.name} className="w-8 h-8 object-contain" referrerPolicy="no-referrer" />
-                                            ) : (
-                                              <Sparkles className="w-5 h-5 text-medieval-gold/40 group-hover:text-medieval-gold/80 transition-colors" />
-                                            )}
-                                          </div>
-                                          <span className="font-bold text-sm text-medieval-text group-hover:text-medieval-gold transition-colors">{item.name}</span>
-                                        </div>
-                                      </td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-gold">{item.armor ?? 0}</td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-text/60">{item.weight.toFixed(2)}</td>
-                                      <td className="p-4 text-center">
-                                        <span className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-tighter ${
-                                          item.attributeClass === 0 ? 'bg-gray-500/20 text-gray-400' :
-                                          item.attributeClass === 1 ? 'bg-green-500/20 text-green-400' :
-                                          item.attributeClass === 2 ? 'bg-blue-500/20 text-blue-400' :
-                                          item.attributeClass === 3 ? 'bg-purple-500/20 text-purple-400' :
-                                          item.attributeClass === 4 ? 'bg-orange-500/20 text-orange-400' :
-                                          'bg-red-500/20 text-red-400'
-                                        }`}>
-                                          Class {item.attributeClass}
-                                        </span>
-                                      </td>
-                                      <td className="p-4">
-                                        <div className="flex flex-wrap gap-1">
-                                          {attrs.length > 0 ? attrs.map((p, i) => (
-                                            <span key={i} className="text-[9px] border border-medieval-gold/10 bg-white/5 px-1.5 py-0.5 rounded text-medieval-gold/80 uppercase font-mono">
-                                              {p}
-                                            </span>
-                                          )) : <span className="text-[9px] text-white/10 uppercase font-mono">-</span>}
-                                        </div>
-                                      </td>
-                                    </tr>
-                                  );
-                                })}
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Shields Table */}
-                      {itemsSubTab === 'shields' && (
-                        <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
-                          <div className="overflow-x-auto">
-                            <table className="w-full text-left border-collapse">
-                              <thead>
-                                <tr className="bg-black/60 border-b border-medieval-gold/20">
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{t('item')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">DEF</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('weight')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('class')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{t('properties')}</th>
-                                </tr>
-                              </thead>
-                              <tbody className="divide-y divide-medieval-gold/5">
-                                {shieldsList.map((item, idx) => {
-                                  const attrs = ATTRIBUTE_DATA["Shields"]?.find(i => i.name === item.name)?.attributes || [];
-                                  return (
-                                    <tr key={idx} className="hover:bg-white/5 transition-colors group">
-                                      <td className="p-4">
-                                        <div className="flex items-center gap-4">
-                                          <div className="w-10 h-10 bg-black/40 rounded border border-medieval-gold/10 flex items-center justify-center group-hover:border-medieval-gold/30 transition-all">
-                                            {item.img ? (
-                                              <img src={item.img} alt={item.name} className="w-8 h-8 object-contain" referrerPolicy="no-referrer" />
-                                            ) : (
-                                              <Shield className="w-5 h-5 text-medieval-gold/40 group-hover:text-medieval-gold/80 transition-colors" />
-                                            )}
-                                          </div>
-                                          <span className="font-bold text-sm text-medieval-text group-hover:text-medieval-gold transition-colors">{item.name}</span>
-                                        </div>
-                                      </td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-gold">{item.defense ?? 0}</td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-text/60">{item.weight.toFixed(2)}</td>
-                                      <td className="p-4 text-center">
-                                        <span className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-tighter ${
-                                          item.attributeClass === 0 ? 'bg-gray-500/20 text-gray-400' :
-                                          item.attributeClass === 1 ? 'bg-green-500/20 text-green-400' :
-                                          item.attributeClass === 2 ? 'bg-blue-500/20 text-blue-400' :
-                                          item.attributeClass === 3 ? 'bg-purple-500/20 text-purple-400' :
-                                          item.attributeClass === 4 ? 'bg-orange-500/20 text-orange-400' :
-                                          'bg-red-500/20 text-red-400'
-                                        }`}>
-                                          Class {item.attributeClass}
-                                        </span>
-                                      </td>
-                                      <td className="p-4">
-                                        <div className="flex flex-wrap gap-1">
-                                          {attrs.length > 0 ? attrs.map((p, i) => (
-                                            <span key={i} className="text-[9px] border border-medieval-gold/10 bg-white/5 px-1.5 py-0.5 rounded text-medieval-gold/80 uppercase font-mono">
-                                              {p}
-                                            </span>
-                                          )) : <span className="text-[9px] text-white/10 uppercase font-mono">-</span>}
-                                        </div>
-                                      </td>
-                                    </tr>
-                                  );
-                                })}
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Swords Table */}
-                      {itemsSubTab === 'swords' && (
-                        <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
-                          <div className="overflow-x-auto">
-                            <table className="w-full text-left border-collapse">
-                              <thead>
-                                <tr className="bg-black/60 border-b border-medieval-gold/20">
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{t('item')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">ATK</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">DEF</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('weight')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('class')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{t('properties')}</th>
-                                </tr>
-                              </thead>
-                              <tbody className="divide-y divide-medieval-gold/5">
-                                {swordsList.map((item, idx) => {
-                                  const attrs = ATTRIBUTE_DATA["Swords"]?.find(i => i.name === item.name)?.attributes || [];
-                                  return (
-                                    <tr key={idx} className="hover:bg-white/5 transition-colors group">
-                                      <td className="p-4">
-                                        <div className="flex items-center gap-4">
-                                          <div className="w-10 h-10 bg-black/40 rounded border border-medieval-gold/10 flex items-center justify-center group-hover:border-medieval-gold/30 transition-all">
-                                            {item.img ? (
-                                              <img src={item.img} alt={item.name} className="w-8 h-8 object-contain" referrerPolicy="no-referrer" />
-                                            ) : (
-                                              <Sword className="w-5 h-5 text-medieval-gold/40 group-hover:text-medieval-gold/80 transition-colors" />
-                                            )}
-                                          </div>
-                                          <span className="font-bold text-sm text-medieval-text group-hover:text-medieval-gold transition-colors">{item.name}</span>
-                                        </div>
-                                      </td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-gold">{item.attack ?? 0}</td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-text/50">{item.defense ?? 0}</td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-text/60">{item.weight.toFixed(2)}</td>
-                                      <td className="p-4 text-center">
-                                        <span className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-tighter ${
-                                          item.attributeClass === 0 ? 'bg-gray-500/20 text-gray-400' :
-                                          item.attributeClass === 1 ? 'bg-green-500/20 text-green-400' :
-                                          item.attributeClass === 2 ? 'bg-blue-500/20 text-blue-400' :
-                                          item.attributeClass === 3 ? 'bg-purple-500/20 text-purple-400' :
-                                          item.attributeClass === 4 ? 'bg-orange-500/20 text-orange-400' :
-                                          'bg-red-500/20 text-red-400'
-                                        }`}>
-                                          Class {item.attributeClass}
-                                        </span>
-                                      </td>
-                                      <td className="p-4">
-                                        <div className="flex flex-wrap gap-1">
-                                          {attrs.length > 0 ? attrs.map((p, i) => (
-                                            <span key={i} className="text-[9px] border border-medieval-gold/10 bg-white/5 px-1.5 py-0.5 rounded text-medieval-gold/80 uppercase font-mono">
-                                              {p}
-                                            </span>
-                                          )) : <span className="text-[9px] text-white/10 uppercase font-mono">-</span>}
-                                        </div>
-                                      </td>
-                                    </tr>
-                                  );
-                                })}
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Clubs Table */}
-                      {itemsSubTab === 'clubs' && (
-                        <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
-                          <div className="overflow-x-auto">
-                            <table className="w-full text-left border-collapse">
-                              <thead>
-                                <tr className="bg-black/60 border-b border-medieval-gold/20">
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{t('item')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">ATK</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">DEF</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('weight')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('class')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{t('properties')}</th>
-                                </tr>
-                              </thead>
-                              <tbody className="divide-y divide-medieval-gold/5">
-                                {clubsList.map((item, idx) => {
-                                  const attrs = ATTRIBUTE_DATA["Clubs"]?.find(i => i.name === item.name)?.attributes || [];
-                                  return (
-                                    <tr key={idx} className="hover:bg-white/5 transition-colors group">
-                                      <td className="p-4">
-                                        <div className="flex items-center gap-4">
-                                          <div className="w-10 h-10 bg-black/40 rounded border border-medieval-gold/10 flex items-center justify-center group-hover:border-medieval-gold/30 transition-all">
-                                            {item.img ? (
-                                              <img src={item.img} alt={item.name} className="w-8 h-8 object-contain" referrerPolicy="no-referrer" />
-                                            ) : (
-                                              <Hammer className="w-5 h-5 text-medieval-gold/40 group-hover:text-medieval-gold/80 transition-colors" />
-                                            )}
-                                          </div>
-                                          <span className="font-bold text-sm text-medieval-text group-hover:text-medieval-gold transition-colors">{item.name}</span>
-                                        </div>
-                                      </td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-gold">{item.attack ?? 0}</td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-text/50">{item.defense ?? 0}</td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-text/60">{item.weight.toFixed(2)}</td>
-                                      <td className="p-4 text-center">
-                                        <span className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-tighter ${
-                                          item.attributeClass === 0 ? 'bg-gray-500/20 text-gray-400' :
-                                          item.attributeClass === 1 ? 'bg-green-500/20 text-green-400' :
-                                          item.attributeClass === 2 ? 'bg-blue-500/20 text-blue-400' :
-                                          item.attributeClass === 3 ? 'bg-purple-500/20 text-purple-400' :
-                                          item.attributeClass === 4 ? 'bg-orange-500/20 text-orange-400' :
-                                          'bg-red-500/20 text-red-400'
-                                        }`}>
-                                          Class {item.attributeClass}
-                                        </span>
-                                      </td>
-                                      <td className="p-4">
-                                        <div className="flex flex-wrap gap-1">
-                                          {attrs.length > 0 ? attrs.map((p, i) => (
-                                            <span key={i} className="text-[9px] border border-medieval-gold/10 bg-white/5 px-1.5 py-0.5 rounded text-medieval-gold/80 uppercase font-mono">
-                                              {p}
-                                            </span>
-                                          )) : <span className="text-[9px] text-white/10 uppercase font-mono">-</span>}
-                                        </div>
-                                      </td>
-                                    </tr>
-                                  );
-                                })}
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Axes Table */}
-                      {itemsSubTab === 'axes' && (
-                        <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
-                          <div className="overflow-x-auto">
-                            <table className="w-full text-left border-collapse">
-                              <thead>
-                                <tr className="bg-black/60 border-b border-medieval-gold/20">
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{t('item')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">ATK</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">DEF</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('weight')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('class')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{t('properties')}</th>
-                                </tr>
-                              </thead>
-                              <tbody className="divide-y divide-medieval-gold/5">
-                                {axesList.map((item, idx) => {
-                                  const attrs = ATTRIBUTE_DATA["Axes"]?.find(i => i.name === item.name)?.attributes || [];
-                                  return (
-                                    <tr key={idx} className="hover:bg-white/5 transition-colors group">
-                                      <td className="p-4">
-                                        <div className="flex items-center gap-4">
-                                          <div className="w-10 h-10 bg-black/40 rounded border border-medieval-gold/10 flex items-center justify-center group-hover:border-medieval-gold/30 transition-all">
-                                            {item.img ? (
-                                              <img src={item.img} alt={item.name} className="w-8 h-8 object-contain" referrerPolicy="no-referrer" />
-                                            ) : (
-                                              <Axe className="w-5 h-5 text-medieval-gold/40 group-hover:text-medieval-gold/80 transition-colors" />
-                                            )}
-                                          </div>
-                                          <span className="font-bold text-sm text-medieval-text group-hover:text-medieval-gold transition-colors">{item.name}</span>
-                                        </div>
-                                      </td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-gold">{item.attack ?? 0}</td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-text/50">{item.defense ?? 0}</td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-text/60">{item.weight.toFixed(2)}</td>
-                                      <td className="p-4 text-center">
-                                        <span className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-tighter ${
-                                          item.attributeClass === 0 ? 'bg-gray-500/20 text-gray-400' :
-                                          item.attributeClass === 1 ? 'bg-green-500/20 text-green-400' :
-                                          item.attributeClass === 2 ? 'bg-blue-500/20 text-blue-400' :
-                                          item.attributeClass === 3 ? 'bg-purple-500/20 text-purple-400' :
-                                          item.attributeClass === 4 ? 'bg-orange-500/20 text-orange-400' :
-                                          'bg-red-500/20 text-red-400'
-                                        }`}>
-                                          Class {item.attributeClass}
-                                        </span>
-                                      </td>
-                                      <td className="p-4">
-                                        <div className="flex flex-wrap gap-1">
-                                          {attrs.length > 0 ? attrs.map((p, i) => (
-                                            <span key={i} className="text-[9px] border border-medieval-gold/10 bg-white/5 px-1.5 py-0.5 rounded text-medieval-gold/80 uppercase font-mono">
-                                              {p}
-                                            </span>
-                                          )) : <span className="text-[9px] text-white/10 uppercase font-mono">-</span>}
-                                        </div>
-                                      </td>
-                                    </tr>
-                                  );
-                                })}
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Distance Table */}
-                      {itemsSubTab === 'distance' && (
-                        <div className="space-y-4">
-                          {/* Inner Distance Filters */}
-                          <div className="flex flex-wrap justify-center gap-1.5 pb-2 border-b border-medieval-gold/10">
-                            {[
-                              { id: 'all', label: language === 'pt' ? 'Todos' : 'All' },
-                              { id: 'bow', label: language === 'pt' ? 'Arcos (Bows)' : 'Bows' },
-                              { id: 'crossbow', label: language === 'pt' ? 'Bestas (Crossbows)' : 'Crossbows' },
-                              { id: 'throwing', label: language === 'pt' ? 'Arremesso' : 'Throwing' },
-                            ].map((pill) => (
-                              <button
-                                key={pill.id}
-                                onClick={() => setDistanceFilter(pill.id as any)}
-                                className={`px-3 py-1 rounded-sm text-[10px] font-black uppercase tracking-wider transition-all border ${
-                                  distanceFilter === pill.id
-                                    ? 'bg-medieval-gold/20 text-medieval-gold border-medieval-gold shadow-sm'
-                                    : 'bg-black/20 text-medieval-gold/40 border-transparent hover:border-medieval-gold/20 hover:text-medieval-gold/60'
-                                }`}
-                              >
-                                {pill.label}
-                              </button>
-                            ))}
-                          </div>
-
-                          <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
-                            <div className="overflow-x-auto">
-                              <table className="w-full text-left border-collapse">
-                                <thead>
-                                  <tr className="bg-black/60 border-b border-medieval-gold/20">
-                                    <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{t('item')}</th>
-                                    <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{language === 'pt' ? 'TIPO' : 'TYPE'}</th>
-                                    <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">ATK</th>
-                                    <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('weight')}</th>
-                                    <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('class')}</th>
-                                    <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{t('properties')}</th>
+                                        <span className="font-bold text-sm text-medieval-text group-hover:text-medieval-gold transition-colors">{helmet.name}</span>
+                                      </div>
+                                    </td>
+                                    <td className="p-4 text-center font-mono text-sm text-medieval-gold">{helmet.armor}</td>
+                                    <td className="p-4 text-center font-mono text-sm text-medieval-text/60">{helmet.weight.toFixed(2)}</td>
+                                    <td className="p-4 text-center">
+                                      <span className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-tighter ${
+                                        helmet.class === 0 ? 'bg-gray-500/20 text-gray-400' :
+                                        helmet.class === 1 ? 'bg-green-500/20 text-green-400' :
+                                        helmet.class === 2 ? 'bg-blue-500/20 text-blue-400' :
+                                        helmet.class === 3 ? 'bg-purple-500/20 text-purple-400' :
+                                        helmet.class === 4 ? 'bg-orange-500/20 text-orange-400' :
+                                        'bg-red-500/20 text-red-400'
+                                      }`}>
+                                        Class {helmet.class}
+                                      </span>
+                                    </td>
+                                    <td className="p-4">
+                                      <div className="flex flex-wrap gap-1">
+                                        {helmet.properties ? helmet.properties.map((p, i) => (
+                                          <span key={i} className="text-[9px] bg-white/5 px-1.5 py-0.5 rounded text-medieval-text/40 uppercase font-mono">
+                                            {p}
+                                          </span>
+                                        )) : <span className="text-[9px] text-white/10 uppercase font-mono">-</span>}
+                                      </div>
+                                    </td>
                                   </tr>
-                                </thead>
-                                <tbody className="divide-y divide-medieval-gold/5">
-                                  {distanceList
-                                    .filter(item => {
-                                      const isBow = item.name.toLowerCase().includes('bow');
-                                      const isXbow = item.name.toLowerCase().includes('crossbow');
-                                      if (distanceFilter === 'bow') return isBow;
-                                      if (distanceFilter === 'crossbow') return isXbow;
-                                      if (distanceFilter === 'throwing') return !isBow && !isXbow;
-                                      return true;
-                                    })
-                                    .map((item, idx) => {
-                                      const isBow = item.name.toLowerCase().includes('bow');
-                                      const isXbow = item.name.toLowerCase().includes('crossbow');
-                                      const typeLabel = isBow 
-                                        ? (language === 'pt' ? 'Arco (Bow)' : 'Bow')
-                                        : isXbow 
-                                          ? (language === 'pt' ? 'Besta (Crossbow)' : 'Crossbow')
-                                          : (language === 'pt' ? 'Arremesso' : 'Throwing');
-
-                                      const attrs = ATTRIBUTE_DATA["Distance"]?.find(i => i.name === item.name)?.attributes || [];
-                                      return (
-                                        <tr key={idx} className="hover:bg-white/5 transition-colors group">
-                                          <td className="p-4">
-                                            <div className="flex items-center gap-4">
-                                              <div className="w-10 h-10 bg-black/40 rounded border border-medieval-gold/10 flex items-center justify-center group-hover:border-medieval-gold/30 transition-all">
-                                                {item.img ? (
-                                                  <img src={item.img} alt={item.name} className="w-8 h-8 object-contain" referrerPolicy="no-referrer" />
-                                                ) : (
-                                                  <Target className="w-5 h-5 text-medieval-gold/40 group-hover:text-medieval-gold/80 transition-colors" />
-                                                )}
-                                              </div>
-                                              <span className="font-bold text-sm text-medieval-text group-hover:text-medieval-gold transition-colors">{item.name}</span>
-                                            </div>
-                                          </td>
-                                          <td className="p-4 text-center">
-                                            <span className="px-2 py-0.5 rounded bg-white/5 text-[9px] font-black uppercase tracking-tighter text-medieval-gold/60 font-mono">
-                                              {typeLabel}
-                                            </span>
-                                          </td>
-                                          <td className="p-4 text-center font-mono text-sm text-medieval-gold">{item.attack ?? 0}</td>
-                                          <td className="p-4 text-center font-mono text-sm text-medieval-text/60">{item.weight.toFixed(2)}</td>
-                                          <td className="p-4 text-center">
-                                            <span className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-tighter ${
-                                              item.attributeClass === 0 ? 'bg-gray-500/20 text-gray-400' :
-                                              item.attributeClass === 1 ? 'bg-green-500/20 text-green-400' :
-                                              item.attributeClass === 2 ? 'bg-blue-500/20 text-blue-400' :
-                                              item.attributeClass === 3 ? 'bg-purple-500/20 text-purple-400' :
-                                              item.attributeClass === 4 ? 'bg-orange-500/20 text-orange-400' :
-                                              'bg-red-500/20 text-red-400'
-                                            }`}>
-                                              Class {item.attributeClass}
-                                            </span>
-                                          </td>
-                                          <td className="p-4">
-                                            <div className="flex flex-wrap gap-1">
-                                              {attrs.length > 0 ? attrs.map((p, i) => (
-                                                <span key={i} className="text-[9px] border border-medieval-gold/10 bg-white/5 px-1.5 py-0.5 rounded text-medieval-gold/80 uppercase font-mono">
-                                                  {p}
-                                                </span>
-                                              )) : <span className="text-[9px] text-white/10 uppercase font-mono">-</span>}
-                                            </div>
-                                          </td>
-                                        </tr>
-                                      );
-                                    })}
-                                </tbody>
-                              </table>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Ammo Table */}
-                      {itemsSubTab === 'ammo' && (
-                        <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
-                          <div className="overflow-x-auto">
-                            <table className="w-full text-left border-collapse">
-                              <thead>
-                                <tr className="bg-black/60 border-b border-medieval-gold/20">
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{t('item')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">ATK</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('weight')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('class')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{t('properties')}</th>
-                                </tr>
-                              </thead>
-                              <tbody className="divide-y divide-medieval-gold/5">
-                                {ammoList.map((item, idx) => {
-                                  const attrs = ATTRIBUTE_DATA["Ammo"]?.find(i => i.name === item.name)?.attributes || [];
-                                  return (
-                                    <tr key={idx} className="hover:bg-white/5 transition-colors group">
-                                      <td className="p-4">
-                                        <div className="flex items-center gap-4">
-                                          <div className="w-10 h-10 bg-black/40 rounded border border-medieval-gold/10 flex items-center justify-center group-hover:border-medieval-gold/30 transition-all">
-                                            {item.img ? (
-                                              <img src={item.img} alt={item.name} className="w-8 h-8 object-contain" referrerPolicy="no-referrer" />
-                                            ) : (
-                                              <Zap className="w-5 h-5 text-medieval-gold/40 group-hover:text-medieval-gold/80 transition-colors" />
-                                            )}
-                                          </div>
-                                          <span className="font-bold text-sm text-medieval-text group-hover:text-medieval-gold transition-colors">{item.name}</span>
-                                        </div>
-                                      </td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-gold">{item.attack ?? 0}</td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-text/60">{item.weight.toFixed(2)}</td>
-                                      <td className="p-4 text-center">
-                                        <span className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-tighter ${
-                                          item.attributeClass === 0 ? 'bg-gray-500/20 text-gray-400' :
-                                          item.attributeClass === 1 ? 'bg-green-500/20 text-green-400' :
-                                          item.attributeClass === 2 ? 'bg-blue-500/20 text-blue-400' :
-                                          item.attributeClass === 3 ? 'bg-purple-500/20 text-purple-400' :
-                                          item.attributeClass === 4 ? 'bg-orange-500/20 text-orange-400' :
-                                          'bg-red-500/20 text-red-400'
-                                        }`}>
-                                          Class {item.attributeClass}
-                                        </span>
-                                      </td>
-                                      <td className="p-4">
-                                        <div className="flex flex-wrap gap-1">
-                                          {attrs.length > 0 ? attrs.map((p, i) => (
-                                            <span key={i} className="text-[9px] border border-medieval-gold/10 bg-white/5 px-1.5 py-0.5 rounded text-medieval-gold/80 uppercase font-mono">
-                                              {p}
-                                            </span>
-                                          )) : <span className="text-[9px] text-white/10 uppercase font-mono">-</span>}
-                                        </div>
-                                      </td>
-                                    </tr>
-                                  );
-                                })}
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Rings Table */}
-                      {itemsSubTab === 'rings' && (
-                        <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
-                          <div className="overflow-x-auto">
-                            <table className="w-full text-left border-collapse">
-                              <thead>
-                                <tr className="bg-black/60 border-b border-medieval-gold/20">
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{t('item')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('weight')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{language === 'pt' ? 'PROPRIEDADES / EFEITOS' : 'PROPERTIES / EFFECTS'}</th>
-                                </tr>
-                              </thead>
-                              <tbody className="divide-y divide-medieval-gold/5">
-                                {ringsList.map((item, idx) => {
-                                  const effects = getItemEffects(item);
-                                  return (
-                                    <tr key={idx} className="hover:bg-white/5 transition-colors group">
-                                      <td className="p-4">
-                                        <div className="flex items-center gap-4">
-                                          <div className="w-10 h-10 bg-black/40 rounded border border-medieval-gold/10 flex items-center justify-center group-hover:border-medieval-gold/30 transition-all">
-                                            {item.img ? (
-                                              <img src={item.img} alt={item.name} className="w-8 h-8 object-contain" referrerPolicy="no-referrer" />
-                                            ) : (
-                                              <Circle className="w-5 h-5 text-medieval-gold/40 group-hover:text-medieval-gold/80 transition-colors" />
-                                            )}
-                                          </div>
-                                          <span className="font-bold text-sm text-medieval-text group-hover:text-medieval-gold transition-colors">{item.name}</span>
-                                        </div>
-                                      </td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-text/60">{item.weight.toFixed(2)}</td>
-                                      <td className="p-4">
-                                        <div className="flex flex-wrap gap-1">
-                                          {effects.length > 0 ? effects.map((p, i) => (
-                                            <span key={i} className="text-[9px] border border-medieval-gold/10 bg-white/5 px-1.5 py-0.5 rounded text-medieval-gold/80 uppercase font-mono">
-                                              {p}
-                                            </span>
-                                          )) : <span className="text-[9px] text-white/10 uppercase font-mono">-</span>}
-                                        </div>
-                                      </td>
-                                    </tr>
-                                  );
-                                })}
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Amulets Table */}
-                      {itemsSubTab === 'amulets' && (
-                        <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
-                          <div className="overflow-x-auto">
-                            <table className="w-full text-left border-collapse">
-                              <thead>
-                                <tr className="bg-black/60 border-b border-medieval-gold/20">
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{t('item')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('arm')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('weight')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{language === 'pt' ? 'PROPRIEDADES / EFEITOS' : 'PROPERTIES / EFFECTS'}</th>
-                                </tr>
-                              </thead>
-                              <tbody className="divide-y divide-medieval-gold/5">
-                                {amuletsList.map((item, idx) => {
-                                  const effects = getItemEffects(item);
-                                  return (
-                                    <tr key={idx} className="hover:bg-white/5 transition-colors group">
-                                      <td className="p-4">
-                                        <div className="flex items-center gap-4">
-                                          <div className="w-10 h-10 bg-black/40 rounded border border-medieval-gold/10 flex items-center justify-center group-hover:border-medieval-gold/30 transition-all">
-                                            {item.img ? (
-                                              <img src={item.img} alt={item.name} className="w-8 h-8 object-contain" referrerPolicy="no-referrer" />
-                                            ) : (
-                                              <Heart className="w-5 h-5 text-medieval-gold/40 group-hover:text-medieval-gold/80 transition-colors" />
-                                            )}
-                                          </div>
-                                          <span className="font-bold text-sm text-medieval-text group-hover:text-medieval-gold transition-colors">{item.name}</span>
-                                        </div>
-                                      </td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-gold">{item.armor ?? '-'}</td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-text/60">{item.weight.toFixed(2)}</td>
-                                      <td className="p-4">
-                                        <div className="flex flex-wrap gap-1">
-                                          {effects.length > 0 ? effects.map((p, i) => (
-                                            <span key={i} className="text-[9px] border border-medieval-gold/10 bg-white/5 px-1.5 py-0.5 rounded text-medieval-gold/80 uppercase font-mono">
-                                              {p}
-                                            </span>
-                                          )) : <span className="text-[9px] text-white/10 uppercase font-mono">-</span>}
-                                        </div>
-                                      </td>
-                                    </tr>
-                                  );
-                                })}
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Relics Table */}
-                      {itemsSubTab === 'relics' && (
-                        <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
-                          <div className="overflow-x-auto">
-                            <table className="w-full text-left border-collapse">
-                              <thead>
-                                <tr className="bg-black/60 border-b border-medieval-gold/20">
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{t('item')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('arm')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold text-center">{t('weight')}</th>
-                                  <th className="p-4 text-[10px] font-black uppercase tracking-widest text-medieval-gold">{language === 'pt' ? 'PROPRIEDADES / EFEITOS' : 'PROPERTIES / EFFECTS'}</th>
-                                </tr>
-                              </thead>
-                              <tbody className="divide-y divide-medieval-gold/5">
-                                {relicsList.map((item, idx) => {
-                                  const effects = getItemEffects(item);
-                                  return (
-                                    <tr key={idx} className="hover:bg-white/5 transition-colors group">
-                                      <td className="p-4">
-                                        <div className="flex items-center gap-4">
-                                          <div className="w-10 h-10 bg-black/40 rounded border border-medieval-gold/10 flex items-center justify-center group-hover:border-medieval-gold/30 transition-all">
-                                            {item.img ? (
-                                              <img src={item.img} alt={item.name} className="w-8 h-8 object-contain" referrerPolicy="no-referrer" />
-                                            ) : (
-                                              <Sparkles className="w-5 h-5 text-medieval-gold/40 group-hover:text-medieval-gold/80 transition-colors" />
-                                            )}
-                                          </div>
-                                          <span className="font-bold text-sm text-medieval-text group-hover:text-medieval-gold transition-colors">{item.name}</span>
-                                        </div>
-                                      </td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-gold">{item.armor ?? '-'}</td>
-                                      <td className="p-4 text-center font-mono text-sm text-medieval-text/60">{item.weight.toFixed(2)}</td>
-                                      <td className="p-4">
-                                        <div className="flex flex-wrap gap-1">
-                                          {effects.length > 0 ? effects.map((p, i) => (
-                                            <span key={i} className="text-[9px] border border-medieval-gold/10 bg-white/5 px-1.5 py-0.5 rounded text-medieval-gold/80 uppercase font-mono">
-                                              {p}
-                                            </span>
-                                          )) : <span className="text-[9px] text-white/10 uppercase font-mono">-</span>}
-                                        </div>
-                                      </td>
-                                    </tr>
-                                  );
-                                })}
+                                ))}
                               </tbody>
                             </table>
                           </div>

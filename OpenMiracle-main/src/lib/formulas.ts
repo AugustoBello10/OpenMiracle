@@ -16,25 +16,25 @@ const SKILL_CONSTANTS: Record<Vocation, Record<SkillType, SkillConstants>> = {
     Melee: { base: 50, multiplier: 1.1 },
     Distance: { base: 30, multiplier: 1.4 },
     Shielding: { base: 100, multiplier: 1.1 },
-    'Magic Level': { base: 400, multiplier: 3.0 },
+    'Magic Level': { base: 1600, multiplier: 3.0 },
   },
   Paladin: {
     Melee: { base: 50, multiplier: 1.2 },
     Distance: { base: 30, multiplier: 1.1 },
     Shielding: { base: 100, multiplier: 1.1 },
-    'Magic Level': { base: 400, multiplier: 1.4 },
+    'Magic Level': { base: 1600, multiplier: 1.4 },
   },
   Sorcerer: {
     Melee: { base: 50, multiplier: 2.0 },
     Distance: { base: 30, multiplier: 2.0 },
     Shielding: { base: 100, multiplier: 2.0 },
-    'Magic Level': { base: 400, multiplier: 1.1 },
+    'Magic Level': { base: 1600, multiplier: 1.1 },
   },
   Druid: {
     Melee: { base: 50, multiplier: 1.8 },
     Distance: { base: 30, multiplier: 2.0 },
     Shielding: { base: 100, multiplier: 1.8 },
-    'Magic Level': { base: 400, multiplier: 1.1 },
+    'Magic Level': { base: 1600, multiplier: 1.1 },
   },
 };
 
