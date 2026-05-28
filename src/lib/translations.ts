@@ -34,6 +34,7 @@ export const translations = {
     
     // Home Page
     welcome: "Bem-vindo ao",
+    followCreator: "Acompanhe o Criador:",
     heroTitle: "O Guia Definitivo para sua Jornada",
     heroSubtitle: "Ferramentas de precisão, guias detalhados e dados atualizados para dominar o mundo de Tibia.",
     startJourney: "Começar Jornada",
@@ -54,6 +55,7 @@ export const translations = {
     openMap: "Abrir Mapa",
     accessLobby: "Acessar Lobby",
     twitchChannel: "Twitch do obellao_",
+    youtubeChannel: "YouTube do obellao_",
     ourDiscord: "Nosso Discord",
     wikiSoon: "Em breve: Wiki de Profissões",
     wikiSoonDesc: "Estamos catalogando todas as profissões, drops e segredos do Miracle 7.4. Fique atento às atualizações!",
@@ -428,6 +430,7 @@ export const translations = {
     
     // Home Page
     welcome: "Welcome to",
+    followCreator: "Follow the Creator:",
     heroTitle: "The Ultimate Guide for your Journey",
     heroSubtitle: "Precision tools, detailed guides, and updated data to master the world of Tibia.",
     startJourney: "Start Journey",
@@ -448,6 +451,7 @@ export const translations = {
     openMap: "Open Map",
     accessLobby: "Access Lobby",
     twitchChannel: "obellao_'s Twitch",
+    youtubeChannel: "obellao_'s YouTube",
     ourDiscord: "Our Discord",
     wikiSoon: "Coming soon: Professions Wiki",
     wikiSoonDesc: "We are cataloging all professions, drops, and secrets of Miracle 7.4. Stay tuned for updates!",

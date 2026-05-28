@@ -1797,6 +1797,40 @@ export default function App() {
                     </p>
                   </div>
 
+                  {/* Creator Live & Social Banner (Unconstrained, Centered Badge Row) */}
+                  <motion.div 
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.2, type: 'spring' }}
+                    className="flex flex-wrap justify-center items-center gap-4 px-6 py-3 bg-gradient-to-r from-red-600/10 via-medieval-gold/15 to-[#9146FF]/10 border border-medieval-gold/30 hover:border-medieval-gold/60 rounded-full max-w-2xl mx-auto backdrop-blur-md shadow-2xl relative overflow-hidden group hover:shadow-medieval-gold/10 transition-all duration-300"
+                  >
+                    <span className="text-xs font-black uppercase tracking-widest text-medieval-gold flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5 text-medieval-gold animate-bounce" />
+                      {t('followCreator')}
+                    </span>
+                    <div className="h-4 w-px bg-medieval-gold/20 hidden sm:block"></div>
+                    <div className="flex gap-4">
+                      <a 
+                        href="https://www.youtube.com/@obellaoyt" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-4 py-1.5 bg-red-600/15 hover:bg-red-600/30 text-red-400 hover:text-red-300 border border-red-500/30 hover:border-red-500/60 rounded-full transition-all text-xs font-bold uppercase tracking-wider shadow-lg hover:shadow-red-600/20"
+                      >
+                        <Youtube className="w-4 h-4 text-red-500" />
+                        <span>YouTube</span>
+                      </a>
+                      <a 
+                        href="https://twitch.tv/obellao_" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-4 py-1.5 bg-[#9146FF]/15 hover:bg-[#9146FF]/30 text-[#b585ff] hover:text-white border border-[#9146FF]/30 hover:border-[#9146FF]/60 rounded-full transition-all text-xs font-bold uppercase tracking-wider shadow-lg hover:shadow-[#9146FF]/20"
+                      >
+                        <Twitch className="w-4 h-4 text-[#9146FF]" />
+                        <span>Twitch</span>
+                      </a>
+                    </div>
+                  </motion.div>
+
                   {/* Visual Search Bar */}
                   <div className="relative max-w-xl mx-auto group">
                     <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
@@ -1946,6 +1980,18 @@ export default function App() {
                       <h2 className="text-2xl font-black text-medieval-gold uppercase tracking-tight">{t('community')}</h2>
                     </div>
                     <div className="flex flex-col gap-3">
+                      <a 
+                        href="https://www.youtube.com/@obellaoyt" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-between p-3 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold transition-all group"
+                      >
+                        <div className="flex items-center gap-3">
+                          <Youtube className="text-red-500 w-4 h-4" />
+                          <span className="text-[10px] font-bold uppercase tracking-widest">{t('youtubeChannel')}</span>
+                        </div>
+                        <ExternalLink className="w-3 h-3 text-medieval-gold/40 group-hover:text-medieval-gold" />
+                      </a>
                       <a 
                         href="https://twitch.tv/obellao_" 
                         target="_blank" 
@@ -2353,6 +2399,9 @@ export default function App() {
                         <div className="grid grid-cols-1 gap-4">
                           <a href="https://www.twitch.tv/obellao_" target="_blank" rel="noopener noreferrer" className="medieval-button flex items-center justify-center gap-3">
                             <Twitch className="w-6 h-6" /> Twitch
+                          </a>
+                          <a href="https://www.youtube.com/@obellaoyt" target="_blank" rel="noopener noreferrer" className="bg-red-600 text-white font-bold py-3 px-6 rounded-sm flex items-center justify-center gap-3 hover:bg-red-700 transition-colors shadow-lg shadow-red-600/10">
+                            <Youtube className="w-6 h-6" /> YouTube
                           </a>
                           <a href="https://discord.gg/nacCypRkqQ" target="_blank" rel="noopener noreferrer" className="bg-[#5865F2] text-white font-bold py-3 px-6 rounded-sm flex items-center justify-center gap-3 hover:bg-[#4752C4] transition-colors">
                             <MessageSquare className="w-6 h-6" /> Discord
