@@ -539,3 +539,82 @@ export const SpecialsCard: React.FC<CardProps> = ({
     </div>
   );
 };
+
+export const RunesCard: React.FC<CardProps> = ({ 
+  stats, compareStats, settings, showCompare, language, t 
+}) => {
+  const runes = stats.runes || [];
+  const compareRunes = compareStats?.runes || [];
+
+  return (
+    <div className="flex flex-col gap-2 max-h-[450px] overflow-y-auto pr-1 scrollbar-medieval">
+      {runes.map((rune) => {
+        const compareRune = compareRunes.find(r => r.name === rune.name);
+        
+        const minDelta = compareRune ? rune.min - compareRune.min : 0;
+        const maxDelta = compareRune ? rune.max - compareRune.max : 0;
+        const avgDelta = compareRune ? rune.avg - compareRune.avg : 0;
+
+        const isHealing = rune.name.toLowerCase().includes('healing') || rune.name.toLowerCase().includes('uh');
+
+        return (
+          <div key={rune.name} className="bg-black/45 p-2 rounded border border-medieval-gold/10 space-y-1.5 hover:border-medieval-gold/30 transition-all duration-200">
+            {/* Header: Rune Name, Style badge */}
+            <div className="flex flex-wrap items-center justify-between gap-1">
+              <div className="flex items-center gap-1.5">
+                <span className="text-[11px] font-bold text-medieval-gold leading-none">{rune.name}</span>
+                <span className="text-[8px] font-mono text-medieval-muted/65 bg-black/40 px-1 py-0.5 rounded border border-medieval-gold/5">{rune.baseFormula}</span>
+              </div>
+            </div>
+
+            {/* Min, Avg, Max numbers */}
+            <div className="grid grid-cols-3 gap-1 text-[9.5px] text-center font-mono bg-black/60 p-1.5 border border-medieval-gold/5 rounded relative">
+              <div>
+                <div className="text-[7.5px] text-medieval-muted/50 uppercase font-sans font-bold">{language === 'pt' ? 'Mínimo' : 'Minimum'}</div>
+                <div className={cn("font-bold mt-0.5", isHealing ? "text-emerald-400/90" : "text-stone-300")}>
+                  {rune.min} {isHealing ? 'HP' : 'Dmg'}
+                </div>
+                {showCompare && compareRune && minDelta !== 0 && (
+                  <div className={cn(
+                    "text-[8px] font-bold mt-0.5",
+                    minDelta > 0 ? "text-green-500 border-green-500/20 bg-green-500/5 px-0.5 rounded-sm inline-block" : "text-red-500 border-red-500/20 bg-red-500/5 px-0.5 rounded-sm inline-block"
+                  )}>
+                    {minDelta > 0 ? `+${minDelta}` : minDelta}
+                  </div>
+                )}
+              </div>
+              <div className="border-x border-medieval-gold/10 px-0.5">
+                <div className="text-[7.5px] text-medieval-gold/50 uppercase font-sans font-bold">{language === 'pt' ? 'Médio' : 'Average'}</div>
+                <div className="text-medieval-gold font-bold mt-0.5">
+                  {rune.avg} {isHealing ? 'HP' : 'Dmg'}
+                </div>
+                {showCompare && compareRune && avgDelta !== 0 && (
+                  <div className={cn(
+                    "text-[8px] font-bold mt-0.5",
+                    avgDelta > 0 ? "text-green-500 border-green-500/20 bg-green-500/5 px-0.5 rounded-sm inline-block" : "text-red-500 border-red-500/20 bg-red-500/5 px-0.5 rounded-sm inline-block"
+                  )}>
+                    {avgDelta > 0 ? `+${avgDelta}` : avgDelta}
+                  </div>
+                )}
+              </div>
+              <div>
+                <div className="text-[7.5px] text-medieval-muted/50 uppercase font-sans font-bold">{language === 'pt' ? 'Máximo' : 'Maximum'}</div>
+                <div className={cn("font-bold mt-0.5", isHealing ? "text-emerald-300" : "text-orange-400/90")}>
+                  {rune.max} {isHealing ? 'HP' : 'Dmg'}
+                </div>
+                {showCompare && compareRune && maxDelta !== 0 && (
+                  <div className={cn(
+                    "text-[8px] font-bold mt-0.5",
+                    maxDelta > 0 ? "text-green-500 border-green-500/20 bg-green-500/5 px-0.5 rounded-sm inline-block" : "text-red-500 border-red-500/20 bg-red-500/5 px-0.5 rounded-sm inline-block"
+                  )}>
+                    {maxDelta > 0 ? `+${maxDelta}` : maxDelta}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};

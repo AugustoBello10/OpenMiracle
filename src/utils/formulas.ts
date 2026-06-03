@@ -15,6 +15,16 @@ export interface RegenDetail {
   valPerSec: number;
 }
 
+export interface CalculatedRune {
+  name: string;
+  min: number;
+  max: number;
+  avg: number;
+  stylePt: string;
+  styleEn: string;
+  baseFormula: string;
+}
+
 export interface CalculatedStats {
   hp: number;
   mp: number;
@@ -63,6 +73,7 @@ export interface CalculatedStats {
   maxBlock: number;
   minBlock: number;
   avgBlock: number;
+  runes: CalculatedRune[];
   minMelee: number;
   avgMelee: number;
   minDist: number;
@@ -406,6 +417,83 @@ export function calculateStats(build: BuildState): CalculatedStats {
   const totalHpRegenPerSec = healthRegenList.reduce((acc, current) => acc + current.valPerSec, 0);
   const totalMpRegenPerSec = manaRegenList.reduce((acc, current) => acc + current.valPerSec, 0);
 
+  const mlTotal = skillsBreakdown.magic.total;
+  const standardBase = (2 * level) + (3 * mlTotal);
+  const fmmBase = level + (4 * mlTotal);
+
+  const runesListRaw: CalculatedRune[] = [
+    {
+      name: "Ultimate Healing (UH)",
+      min: Math.floor(standardBase * 2.50),
+      max: Math.floor(standardBase * 2.50),
+      avg: Math.floor(standardBase * 2.50),
+      stylePt: "Cura Estável / Fixa",
+      styleEn: "Stable / Fixed Healing",
+      baseFormula: "(2×Level)+(3×ML)"
+    },
+    {
+      name: "Sudden Death (SD)",
+      min: Math.floor(standardBase * 1.39),
+      max: Math.floor(standardBase * 1.55),
+      avg: Math.floor((Math.floor(standardBase * 1.39) + Math.floor(standardBase * 1.55)) / 2),
+      stylePt: "Alto Dano Estável",
+      styleEn: "High Stable Damage",
+      baseFormula: "(2×Level)+(3×ML)"
+    },
+    {
+      name: "Explosion",
+      min: Math.floor(standardBase * 0.20),
+      max: Math.floor(standardBase * 1.00),
+      avg: Math.floor((Math.floor(standardBase * 0.20) + Math.floor(standardBase * 1.00)) / 2),
+      stylePt: "Volátil (Físico)",
+      styleEn: "Volatile (Physical)",
+      baseFormula: "(2×Level)+(3×ML)"
+    },
+    {
+      name: "Great Fireball (GFB)",
+      min: Math.floor(standardBase * 0.45),
+      max: Math.floor(standardBase * 0.70),
+      avg: Math.floor((Math.floor(standardBase * 0.45) + Math.floor(standardBase * 0.70)) / 2),
+      stylePt: "Dano em Área (AoE)",
+      styleEn: "Area Damage (AoE)",
+      baseFormula: "(2×Level)+(3×ML)"
+    },
+    {
+      name: "Heavy Magic Missile (HMM)",
+      min: Math.floor(standardBase * 0.40),
+      max: Math.floor(standardBase * 0.60),
+      avg: Math.floor((Math.floor(standardBase * 0.40) + Math.floor(standardBase * 0.60)) / 2),
+      stylePt: "Dano de Alvo Único",
+      styleEn: "Single Target Damage",
+      baseFormula: "(2×Level)+(3×ML)"
+    },
+    {
+      name: "Fireball",
+      min: Math.floor(standardBase * 0.35),
+      max: Math.floor(standardBase * 0.55),
+      avg: Math.floor((Math.floor(standardBase * 0.35) + Math.floor(standardBase * 0.55)) / 2),
+      stylePt: "Progressão Inicial",
+      styleEn: "Early Progression",
+      baseFormula: "(2×Level)+(3×ML)"
+    },
+    {
+      name: "Frost Magic Missile (FMM)",
+      min: Math.floor(fmmBase * 0.20),
+      max: Math.floor(fmmBase * 0.40),
+      avg: Math.floor((Math.floor(fmmBase * 0.20) + Math.floor(fmmBase * 0.40)) / 2),
+      stylePt: "Foco total em ML (Gelo)",
+      styleEn: "Full ML Focus (Ice)",
+      baseFormula: "Level+(4×ML)"
+    }
+  ];
+
+  const runesList = runesListRaw.filter(rune => {
+    if (vocation === 'Knight' && rune.name === 'Sudden Death (SD)') {
+      return false;
+    }
+    return true;
+  });
+
   return {
     hp: Math.floor(totalHp),
     mp: Math.floor(totalMp),
@@ -429,6 +517,7 @@ export function calculateStats(build: BuildState): CalculatedStats {
     manaRegenList,
     totalHpRegenPerSec,
     totalMpRegenPerSec,
+    runes: runesList,
     critChance: bonuses['crit-hit-chance'] || 0,
     critAmount: bonuses['crit-hit'] || 0,
     lifeLeech: bonuses['life-leech-chance'] || bonuses['life-leech'] || 0,

@@ -10,7 +10,7 @@ import {
   MessageSquare, ExternalLink, Info, Table as TableIcon, 
   TrendingUp, AlertTriangle, Book, Sparkles, Briefcase, 
   ChevronRight, ChevronUp, ChevronDown, Menu, X, Map, Youtube, Fish, FlaskConical, Utensils, Sprout, Scissors, Users,
-  History, Plus, Minus, Check, RefreshCw, Clock, Calendar, Download, Shield, Circle, Heart, Target, Axe
+  History, Plus, Minus, Check, RefreshCw, Clock, Calendar, Download, Shield, Circle, Heart, Target, Axe, Coins
 } from 'lucide-react';
 import { calculateTrainingTime, Vocation, SkillType, TRAINING_WEAPONS_DATA, TrainingWeapon, calculateBlessCosts } from './lib/formulas';
 import { Language, translations } from './lib/translations';
@@ -18,10 +18,13 @@ import { PROJECT_PATCH_NOTES, SERVER_PATCH_NOTES } from './data/patchNotes';
 import { LIBRARY_DATA, LibraryEntry } from './data/library';
 import { HELMETS_DATA, EquipmentItem } from './data/items';
 import { ALL_BUILD_ITEMS } from './data/buildItems';
+import { ALCHEMY_RUNES } from './data/alchemy';
+import { FARMING_TREES } from './data/farming';
 import { AlchemyCalculator } from './components/AlchemyCalculator';
 import { FarmingCalculator } from './components/FarmingCalculator';
 import { CraftingCalculator } from './components/CraftingCalculator';
 import { MiningCalculator } from './components/MiningCalculator';
+import { LootOptimizer } from './components/LootOptimizer';
 
 // --- Dados do Banco de Dados Embutido ---
 const CRAFT_ITEMS = [
@@ -462,7 +465,7 @@ const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
 
 import { BuildMakerView } from './components/BuildMakerView';
 
-type Tab = 'home' | 'calculadoras' | 'profissoes' | 'mapa' | 'eventos' | 'wiki' | 'buildmaker';
+type Tab = 'home' | 'calculadoras' | 'profissoes' | 'mapa' | 'eventos' | 'wiki' | 'buildmaker' | 'loot';
 
 const VOC_SPELLS: Record<string, { name: string; mana: number }[]> = {
   Sorcerer: [
@@ -1315,6 +1318,27 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<{ id: string; label: string; type: string; action: () => void }[]>([]);
 
+  // Deep-link States for Global Search Navigation & Highlighting
+  const [searchCraftCategory, setSearchCraftCategory] = useState<string | undefined>(undefined);
+  const [searchCraftItemName, setSearchCraftItemName] = useState<string | undefined>(undefined);
+  const [searchFarmingTree, setSearchFarmingTree] = useState<string | undefined>(undefined);
+  const [searchAlchemyRune, setSearchAlchemyRune] = useState<string | undefined>(undefined);
+
+  // Sidebar accordion groups state
+  const [sidebarOpenGroups, setSidebarOpenGroups] = useState({
+    inicio: true,
+    guias: true,
+    calculadores: true,
+    profissoes: true,
+    cyclopedia: true,
+    biblioteca: false,
+    utilitarios: true
+  });
+
+  const toggleGroup = (group: keyof typeof sidebarOpenGroups) => {
+    setSidebarOpenGroups(prev => ({ ...prev, [group]: !prev[group] }));
+  };
+
   const t = (key: keyof typeof translations['pt']) => translations[language][key] || key;
 
   const armorsList = useMemo(() => {
@@ -1422,7 +1446,7 @@ export default function App() {
     return [...list].sort((a, b) => a.name.localeCompare(b.name));
   }, []);
 
-  // Global Search Logic
+  // Global Search Logic - Redesigned to act as a complete Multi-Resource Wiki Index
   const handleSearch = (query: string) => {
     setSearchQuery(query);
     if (!query.trim()) {
@@ -1435,31 +1459,119 @@ export default function App() {
 
     const results: { id: string; label: string; type: string; action: () => void }[] = [];
 
-    // Search in Items
-    HELMETS_DATA.forEach(item => {
+    // Helper to get matching wiki tab and attribute categories
+    const getSubTabAndAttrCat = (item: any): { subTab: any; attrCat?: string } => {
+      const cat = item.category?.toLowerCase() || '';
+      const subCat = item.subCategory?.toLowerCase() || '';
+      
+      if (cat === 'head' || cat === 'helmet') return { subTab: 'helmets', attrCat: 'Helmets' };
+      if (cat === 'armor') return { subTab: 'armors', attrCat: 'Armors' };
+      if (cat === 'legs') return { subTab: 'legs', attrCat: 'Legs' };
+      if (cat === 'feet' || cat === 'boots' || cat === 'boot') return { subTab: 'boots', attrCat: 'Boots' };
+      if (cat === 'shield') return { subTab: 'shields', attrCat: 'Shields' };
+      if (cat === 'sword') return { subTab: 'swords', attrCat: 'Swords' };
+      if (cat === 'club') return { subTab: 'clubs', attrCat: 'Clubs' };
+      if (cat === 'axe') return { subTab: 'axes', attrCat: 'Axes' };
+      if (cat === 'distance') return { subTab: 'distance', attrCat: 'Distance' };
+      if (cat === 'ammo' || cat === 'ammunition' || subCat === 'ammo') return { subTab: 'ammo', attrCat: 'Ammo' };
+      if (cat === 'ring') return { subTab: 'rings' };
+      if (cat === 'necklace') return { subTab: 'amulets' };
+      if (cat === 'relic') return { subTab: 'relics' };
+      return { subTab: 'helmets' };
+    };
+
+    // 1. Search in Equipment & Items (HELMETS_DATA & ALL_BUILD_ITEMS)
+    const allEquipItems = [...HELMETS_DATA, ...ALL_BUILD_ITEMS];
+    allEquipItems.forEach(item => {
       if (normalize(item.name).includes(q)) {
+        const { subTab, attrCat } = getSubTabAndAttrCat(item);
+        
+        // Match 1a: Wiki detailed database card
         results.push({
-          id: `item-${item.name}`,
-          label: item.name,
-          type: 'Item / Wiki',
+          id: `equip-wiki-${item.name}`,
+          label: `Wiki: ${item.name}`,
+          type: `Equipamento (${subTab.toUpperCase()})`,
           action: () => {
             setActiveTab('wiki');
             setWikiMainTab('items');
-            setItemsSubTab('helmets');
+            setItemsSubTab(subTab);
             setSearchQuery('');
             setSearchResults([]);
           }
         });
-        // Also suggest attribute calculator for helmets
+
+        // Match 1b: Attribute Calculator link
+        if (attrCat) {
+          results.push({
+            id: `equip-attr-${item.name}`,
+            label: `${item.name} (Calculadora de Atributos)`,
+            type: 'Calculadora de Atributos',
+            action: () => {
+              setActiveTab('calculadoras');
+              setCalcSubTab('atributos');
+              setAttrCategory(attrCat);
+              setAttrItemName(item.name);
+              setSearchQuery('');
+              setSearchResults([]);
+            }
+          });
+        }
+      }
+    });
+
+    // 2. Search in Crafting Formulas & Blueprints (CRAFT_ITEMS & materials used)
+    CRAFT_ITEMS.forEach(cat => {
+      cat.items.forEach(item => {
+        // Match 2a: Recipe Name matching
+        if (normalize(item.name).includes(q)) {
+          results.push({
+            id: `craft-recipe-${item.name}`,
+            label: `Forjar: ${item.name}`,
+            type: `Crafting (${cat.category === 'giantGemsRelics' ? 'Gemas & Relíquias' : cat.category === 'toolsPicks' ? 'Ferramentas' : cat.category === 'mysticRunes' ? 'Runas Místicas' : 'Geral'})`,
+            action: () => {
+              setActiveTab('profissoes');
+              setProfSubTab('crafting');
+              setSearchCraftCategory(cat.category);
+              setSearchCraftItemName(item.name);
+              setSearchQuery('');
+              setSearchResults([]);
+            }
+          });
+        }
+
+        // Match 2b: Material Ingredient matching (What items use Draconian Steel, etc.)
+        if (item.materials) {
+          const matchingMat = item.materials.find((mat: any) => normalize(mat.name).includes(q));
+          if (matchingMat) {
+            results.push({
+              id: `craft-material-${item.name}-${matchingMat.name}`,
+              label: `Forjar ${item.name} (Utiliza ${matchingMat.name})`,
+              type: `Crafting Ingredient`,
+              action: () => {
+                setActiveTab('profissoes');
+                setProfSubTab('crafting');
+                setSearchCraftCategory(cat.category);
+                setSearchCraftItemName(item.name);
+                setSearchQuery('');
+                setSearchResults([]);
+              }
+            });
+          }
+        }
+      });
+    });
+
+    // 3. Search in Alchemy Runes & Crystals (ALCHEMY_RUNES & ALCHEMY_CRYSTALS)
+    ALCHEMY_RUNES.forEach(rune => {
+      if (normalize(rune.name).includes(q)) {
         results.push({
-          id: `attr-${item.name}`,
-          label: `${item.name} (Atributos)`,
-          type: 'Calculadora',
+          id: `alchemy-rune-${rune.name}`,
+          label: `Alquimia: Runa ${rune.name}`,
+          type: 'Profissão: Alquimia',
           action: () => {
-            setActiveTab('calculadoras');
-            setCalcSubTab('atributos');
-            setAttrCategory('Helmets');
-            setAttrItemName(item.name);
+            setActiveTab('profissoes');
+            setProfSubTab('alchemy');
+            setSearchAlchemyRune(rune.name);
             setSearchQuery('');
             setSearchResults([]);
           }
@@ -1467,44 +1579,66 @@ export default function App() {
       }
     });
 
-    // Search in Library
+    FARMING_TREES.forEach(tree => {
+      if (normalize(tree.name).includes(q) || normalize(tree.fruit).includes(q)) {
+        results.push({
+          id: `farming-tree-${tree.name}`,
+          label: `Farming: ${tree.name} (${tree.fruit})`,
+          type: 'Profissão: Farming',
+          action: () => {
+            setActiveTab('profissoes');
+            setProfSubTab('farming');
+            setSearchFarmingTree(tree.name);
+            setSearchQuery('');
+            setSearchResults([]);
+          }
+        });
+      }
+    });
+
+    // 4. Search in Lore Books & Library (LIBRARY_DATA)
     LIBRARY_DATA.forEach(book => {
-      if (normalize(book.title[language]).includes(q)) {
-        results.push({
-          id: `book-${book.id}`,
-          label: book.title[language],
-          type: 'Biblioteca',
-          action: () => {
-            setActiveTab('wiki');
-            setWikiMainTab('library');
-            setSelectedRegion(book.region[language]);
-            setSelectedBookId(book.id);
-            setSearchQuery('');
-            setSearchResults([]);
-          }
-        });
+      const titleMatch = normalize(book.title[language]).includes(q);
+      const contentMatch = book.content[language]?.some(page => normalize(page).includes(q));
+      if (titleMatch || contentMatch) {
+         results.push({
+           id: `book-${book.id}`,
+           label: `Livro: ${book.title[language]}`,
+           type: `Lore: Biblioteca (${book.region[language]})`,
+           action: () => {
+             setActiveTab('wiki');
+             setWikiMainTab('library');
+             setSelectedRegion(book.region[language]);
+             setSelectedBookId(book.id);
+             setSearchQuery('');
+             setSearchResults([]);
+           }
+         });
       }
     });
 
-    // Search in Tools/Keywords
+    // 5. Search in Direct Links, Keywords & Tools
     const keywords = [
-      { keys: ['pick', 'mining', 'mineracao', 'craft'], tab: 'profissoes', sub: 'mining', label: 'Mineração' },
-      { keys: ['pick', 'crafting', 'forja'], tab: 'profissoes', sub: 'crafting', label: 'Crafting' },
-      { keys: ['alchemy', 'alquimia', 'potion', 'pocao'], tab: 'profissoes', sub: 'alchemy', label: 'Alquimia' },
-      { keys: ['bless', 'morte', 'death'], tab: 'calculadoras', sub: 'bless', label: 'Calculadora de Bless' },
-      { keys: ['skill', 'treino', 'training'], tab: 'calculadoras', sub: 'skills', label: 'Calculadora de Skills' },
+      { keys: ['pick', 'mining', 'mineracao', 'picareta'], tab: 'profissoes', sub: 'mining', label: 'Mineração (Profissão / Força das Picaretas)' },
+      { keys: ['pick', 'crafting', 'forja', 'craft'], tab: 'profissoes', sub: 'crafting', label: 'Crafting (Profissão / Fabricação)' },
+      { keys: ['alchemy', 'alquimia', 'potion', 'pocao', 'runa', 'runas'], tab: 'profissoes', sub: 'alchemy', label: 'Alquimia (Profissão / Runas de Duplicação)' },
+      { keys: ['farming', 'seed', 'fazenda', 'plantio', 'agricultura'], tab: 'profissoes', sub: 'farming', label: 'Farming (Profissão / Plantio de Árvores)' },
+      { keys: ['bless', 'morte', 'death', 'bencao'], tab: 'calculadoras', sub: 'bless', label: 'Calculadora de Bless' },
+      { keys: ['skill', 'treino', 'training', 'vocation'], tab: 'calculadoras', sub: 'skills', label: 'Calculadora de Skills & Treino' },
+      { keys: ['build', 'maker', 'set', 'equipar', 'atributos'], tab: 'buildmaker', sub: '', label: 'Build Maker (Criador de Sets)' },
+      { keys: ['map', 'mapa', 'interativo', 'quest'], tab: 'mapa', sub: '', label: 'Mapa Interativo de Comarca / Quests' },
     ];
 
     keywords.forEach(kw => {
       if (kw.keys.some(k => normalize(k).includes(q))) {
         results.push({
-          id: `tool-${kw.label}-${kw.sub}`,
+          id: `kw-link-${kw.label}`,
           label: kw.label,
-          type: 'Ferramenta',
+          type: 'Link Direto',
           action: () => {
             setActiveTab(kw.tab as Tab);
-            if (kw.tab === 'profissoes') setProfSubTab(kw.sub as any);
-            if (kw.tab === 'calculadoras') setCalcSubTab(kw.sub as any);
+            if (kw.tab === 'profissoes' && kw.sub) setProfSubTab(kw.sub as any);
+            if (kw.tab === 'calculadoras' && kw.sub) setCalcSubTab(kw.sub as any);
             setSearchQuery('');
             setSearchResults([]);
           }
@@ -1512,7 +1646,7 @@ export default function App() {
       }
     });
 
-    setSearchResults(results.slice(0, 8));
+    setSearchResults(results.slice(0, 15));
   };
 
   // Estados para Calculadora de Skills
@@ -1637,6 +1771,362 @@ export default function App() {
     { id: 'wiki', label: t('wiki'), icon: <Book className="w-4 h-4" /> },
   ];
 
+  const renderSidebarContent = (isMobile = false) => {
+    const activeSubmenuClass = "w-full text-left flex items-center gap-2.5 py-2 px-3 rounded-md bg-gradient-to-r from-medieval-gold/15 to-medieval-gold/[0.02] border-l-2 border-medieval-gold text-medieval-gold font-bold shadow-[inset_1px_0_10px_rgba(197,160,89,0.05)] transition-all duration-200 text-[11px] uppercase tracking-wider";
+    const inactiveSubmenuClass = "w-full text-left flex items-center gap-2.5 py-2 px-3 rounded-md text-medieval-text/60 hover:text-medieval-gold hover:bg-white/[0.02] border-l-2 border-transparent hover:border-medieval-gold/30 transition-all duration-150 text-[11px] uppercase tracking-wider hover:translate-x-1";
+
+    return (
+      <div className="flex flex-col gap-4 text-left select-none pb-12 font-sans">
+        {/* INÍCIO & NOTAS SECTION */}
+        <div className="space-y-1.5">
+          <button 
+            onClick={() => toggleGroup('inicio')}
+            className="w-full flex items-center justify-between py-2 px-3 rounded-md bg-black/40 border border-medieval-gold/10 hover:border-medieval-gold/30 hover:bg-black/60 transition-all text-[11px] font-black text-medieval-gold uppercase tracking-wider"
+          >
+            <span className="flex items-center gap-2">
+              <Sparkles className="w-3.5 h-3.5 text-medieval-gold/85" />
+              {language === 'pt' ? 'Início & Updates' : 'Home & Updates'}
+            </span>
+            <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.inicio ? 'rotate-90 text-medieval-gold' : ''}`} />
+          </button>
+          
+          <AnimatePresence initial={false}>
+            {sidebarOpenGroups.inicio && (
+              <motion.div 
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5"
+              >
+                <button 
+                  onClick={() => { setActiveTab('home'); if (wikiMainTab !== 'home') setWikiMainTab('home'); if(isMobile) setIsMenuOpen(false); }}
+                  className={activeTab === 'home' ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <Book className="w-3.5 h-3.5 opacity-70" />
+                  {language === 'pt' ? 'Página Principal' : 'Home Page'}
+                </button>
+                <button 
+                  onClick={() => { setActiveTab('wiki'); setWikiMainTab('updates'); if(isMobile) setIsMenuOpen(false); }}
+                  className={(activeTab === 'wiki' && wikiMainTab === 'updates') ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <History className="w-3.5 h-3.5 opacity-70" />
+                  {language === 'pt' ? 'Notas de Atualizações' : 'Patch Notes'}
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* BUILD MAKER (EXCLUSIVE PREMIUM HIGHLIGHTED ROW) */}
+        <div className="space-y-1">
+          <button 
+            onClick={() => { setActiveTab('buildmaker'); if(isMobile) setIsMenuOpen(false); }}
+            className={`w-full py-2.5 px-3 rounded-md text-[11px] font-black uppercase tracking-wider flex items-center justify-between border transition-all duration-300 ${
+              activeTab === 'buildmaker' 
+                ? 'bg-medieval-gold text-black border-medieval-gold shadow-[0_3px_15px_rgba(197,160,89,0.3)] font-black' 
+                : 'bg-medieval-gold/5 text-medieval-gold border-medieval-gold/25 hover:border-medieval-gold hover:bg-medieval-gold/10'
+            }`}
+          >
+            <span className="flex items-center gap-2.5">
+              <Hammer className="w-4 h-4" />
+              BUILD MAKER
+            </span>
+            <span className={`text-[9px] font-mono py-0.5 px-1.5 border rounded font-bold transition-all ${
+              activeTab === 'buildmaker'
+                ? 'bg-black/20 text-black border-black/30'
+                : 'bg-black/40 text-medieval-gold border-medieval-gold/20'
+            }`}>V1.4</span>
+          </button>
+        </div>
+
+        {/* LOOT OPTIMIZER (EXCLUSIVE PREMIUM HIGHLIGHTED ROW) */}
+        <div className="space-y-1">
+          <button 
+            onClick={() => { setActiveTab('loot'); if(isMobile) setIsMenuOpen(false); }}
+            className={`w-full py-2.5 px-3 rounded-md text-[11px] font-black uppercase tracking-wider flex items-center justify-between border transition-all duration-300 ${
+              activeTab === 'loot' 
+                ? 'bg-medieval-gold text-black border-medieval-gold shadow-[0_3px_15px_rgba(197,160,89,0.3)] font-black' 
+                : 'bg-medieval-gold/5 text-medieval-gold border-medieval-gold/25 hover:border-medieval-gold hover:bg-medieval-gold/10'
+            }`}
+          >
+            <span className="flex items-center gap-2.5">
+              <Coins className="w-4 h-4" />
+              {language === 'pt' ? 'OTIMIZADOR DE LOOT' : 'LOOT OPTIMIZER'}
+            </span>
+            <span className={`text-[9px] font-mono py-0.5 px-1.5 border rounded font-bold transition-all ${
+              activeTab === 'loot'
+                ? 'bg-black/20 text-black border-black/30'
+                : 'bg-black/40 text-medieval-gold border-medieval-gold/20'
+            }`}>AUTO</span>
+          </button>
+        </div>
+
+        {/* TUTORIAIS & GUIAS (Requested by user) */}
+        <div className="space-y-1.5">
+          <button 
+            onClick={() => toggleGroup('guias')}
+            className="w-full flex items-center justify-between py-2 px-3 rounded-md bg-black/40 border border-medieval-gold/10 hover:border-medieval-gold/30 hover:bg-black/60 transition-all text-[11px] font-black text-medieval-gold uppercase tracking-wider"
+          >
+            <span className="flex items-center gap-2">
+              <Youtube className="w-3.5 h-3.5 text-medieval-gold/85" />
+              {language === 'pt' ? 'Tutoriais & Guias' : 'Guides & Tutorials'}
+            </span>
+            <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.guias ? 'rotate-90 text-medieval-gold' : ''}`} />
+          </button>
+
+          <AnimatePresence initial={false}>
+            {sidebarOpenGroups.guias && (
+              <motion.div 
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5"
+              >
+                <button 
+                  onClick={() => { setActiveTab('profissoes'); if(isMobile) setIsMenuOpen(false); }}
+                  className={activeTab === 'profissoes' ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <Youtube className="w-3.5 h-3.5 opacity-70 text-red-500 animate-pulse" />
+                  {language === 'pt' ? 'Guia de Profissões' : 'Professions Video'}
+                </button>
+                <button 
+                  onClick={() => { setActiveTab('mapa'); if(isMobile) setIsMenuOpen(false); }}
+                  className={activeTab === 'mapa' ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <Map className="w-3.5 h-3.5 opacity-70" />
+                  {language === 'pt' ? 'Mapa Interativo' : 'Interactive Map'}
+                </button>
+                <button 
+                  onClick={() => { setActiveTab('eventos'); if(isMobile) setIsMenuOpen(false); }}
+                  className={activeTab === 'eventos' ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <Users className="w-3.5 h-3.5 opacity-70" />
+                  {language === 'pt' ? 'Lobby de Quests' : 'Quests & Events'}
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* CALCULADORAS */}
+        <div className="space-y-1.5">
+          <button 
+            onClick={() => toggleGroup('calculadores')}
+            className="w-full flex items-center justify-between py-2 px-3 rounded-md bg-black/40 border border-medieval-gold/10 hover:border-medieval-gold/30 hover:bg-black/60 transition-all text-[11px] font-black text-medieval-gold uppercase tracking-wider"
+          >
+            <span className="flex items-center gap-2">
+              <TrendingUp className="w-3.5 h-3.5 text-medieval-gold/85" />
+              {language === 'pt' ? 'Calculadoras' : 'Calculators'}
+            </span>
+            <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.calculadores ? 'rotate-90 text-medieval-gold' : ''}`} />
+          </button>
+
+          <AnimatePresence initial={false}>
+            {sidebarOpenGroups.calculadores && (
+              <motion.div 
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5"
+              >
+                <button 
+                  onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('skills'); if(isMobile) setIsMenuOpen(false); }}
+                  className={(activeTab === 'calculadoras' && calcSubTab === 'skills') ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <Target className="w-3.5 h-3.5 opacity-70" />
+                  {language === 'pt' ? 'Treino de Skills' : 'Skill Training'}
+                </button>
+                <button 
+                  onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('bless'); if(isMobile) setIsMenuOpen(false); }}
+                  className={(activeTab === 'calculadoras' && calcSubTab === 'bless') ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <Shield className="w-3.5 h-3.5 opacity-70" />
+                  {language === 'pt' ? 'Bênção & Morte' : 'Bless & Death Loss'}
+                </button>
+                <button 
+                  onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('atributos'); if(isMobile) setIsMenuOpen(false); }}
+                  className={(activeTab === 'calculadoras' && calcSubTab === 'atributos') ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <Zap className="w-3.5 h-3.5 opacity-70" />
+                  {language === 'pt' ? 'Simulador Atributos' : 'Attributes Sim'}
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* PROFISSÕES TABELAS E CALCULADORAS */}
+        <div className="space-y-1.5">
+          <button 
+            onClick={() => toggleGroup('profissoes')}
+            className="w-full flex items-center justify-between py-2 px-3 rounded-md bg-black/40 border border-medieval-gold/10 hover:border-medieval-gold/30 hover:bg-black/60 transition-all text-[11px] font-black text-medieval-gold uppercase tracking-wider"
+          >
+            <span className="flex items-center gap-2">
+              <Briefcase className="w-3.5 h-3.5 text-medieval-gold/85" />
+              {language === 'pt' ? 'Calculadoras Profissão' : 'Profession Calcs'}
+            </span>
+            <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.profissoes ? 'rotate-90 text-medieval-gold' : ''}`} />
+          </button>
+
+          <AnimatePresence initial={false}>
+            {sidebarOpenGroups.profissoes && (
+              <motion.div 
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5"
+              >
+                <button 
+                  onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('crafting'); if(isMobile) setIsMenuOpen(false); }}
+                  className={(activeTab === 'calculadoras' && calcSubTab === 'professions' && profSubTab === 'crafting') ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <Hammer className="w-3.5 h-3.5 opacity-70" />
+                  {language === 'pt' ? 'Forja & Crafting' : 'Forge & Crafting'}
+                </button>
+                <button 
+                  onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('alchemy'); if(isMobile) setIsMenuOpen(false); }}
+                  className={(activeTab === 'calculadoras' && calcSubTab === 'professions' && profSubTab === 'alchemy') ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <FlaskConical className="w-3.5 h-3.5 opacity-70" />
+                  {language === 'pt' ? 'Alquimia & Runas' : 'Alchemy & Runes'}
+                </button>
+                <button 
+                  onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('farming'); if(isMobile) setIsMenuOpen(false); }}
+                  className={(activeTab === 'calculadoras' && calcSubTab === 'professions' && profSubTab === 'farming') ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <Sprout className="w-3.5 h-3.5 opacity-70" />
+                  {language === 'pt' ? 'Fazenda (Farming)' : 'Farming / Planting'}
+                </button>
+                <button 
+                  onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('mining'); if(isMobile) setIsMenuOpen(false); }}
+                  className={(activeTab === 'calculadoras' && calcSubTab === 'professions' && profSubTab === 'mining') ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <Pickaxe className="w-3.5 h-3.5 opacity-70" />
+                  {language === 'pt' ? 'Mineração (Drops)' : 'Mining Drops'}
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* CYCLOPEDIA ITENS */}
+        <div className="space-y-1.5">
+          <button 
+            onClick={() => toggleGroup('cyclopedia')}
+            className="w-full flex items-center justify-between py-2 px-3 rounded-md bg-black/40 border border-medieval-gold/10 hover:border-medieval-gold/30 hover:bg-black/60 transition-all text-[11px] font-black text-medieval-gold uppercase tracking-wider"
+          >
+            <span className="flex items-center gap-2">
+              <Sword className="w-3.5 h-3.5 text-medieval-gold/85" />
+              {language === 'pt' ? 'Cyclopedia (Itens)' : 'Itens Database'}
+            </span>
+            <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.cyclopedia ? 'rotate-90 text-medieval-gold' : ''}`} />
+          </button>
+
+          <AnimatePresence initial={false}>
+            {sidebarOpenGroups.cyclopedia && (
+              <motion.div 
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5 max-h-56 overflow-y-auto custom-scrollbar pr-1 select-none"
+              >
+                {[
+                  { id: 'helmets', labelPt: 'Capacetes', labelEn: 'Helmets', icon: <Shield className="w-3.5 h-3.5 opacity-70" /> },
+                  { id: 'armors', labelPt: 'Armaduras', labelEn: 'Armor Sets', icon: <Shield className="w-3.5 h-3.5 opacity-70" /> },
+                  { id: 'legs', labelPt: 'Calças', labelEn: 'Legs', icon: <Shield className="w-3.5 h-3.5 opacity-70" /> },
+                  { id: 'boots', labelPt: 'Botas', labelEn: 'Boots', icon: <Zap className="w-3.5 h-3.5 opacity-70" /> },
+                  { id: 'shields', labelPt: 'Escudos', labelEn: 'Shields', icon: <Shield className="w-3.5 h-3.5 opacity-70" /> },
+                  { id: 'swords', labelPt: 'Espadas', labelEn: 'Swords', icon: <Sword className="w-3.5 h-3.5 opacity-70" /> },
+                  { id: 'clubs', labelPt: 'Maças', labelEn: 'Clubs', icon: <Hammer className="w-3.5 h-3.5 opacity-70" /> },
+                  { id: 'axes', labelPt: 'Machados', labelEn: 'Axes', icon: <Axe className="w-3.5 h-3.5 opacity-70" /> },
+                  { id: 'distance', labelPt: 'Armas Distância', labelEn: 'Distance Weap.', icon: <Target className="w-3.5 h-3.5 opacity-70" /> },
+                  { id: 'rings', labelPt: 'Anéis Mágicos', labelEn: 'Magic Rings', icon: <Gem className="w-3.5 h-3.5 opacity-70" /> },
+                  { id: 'amulets', labelPt: 'Amuletos', labelEn: 'Amulets', icon: <Heart className="w-3.5 h-3.5 opacity-70" /> },
+                  { id: 'relics', labelPt: 'Relíquias', labelEn: 'Holy Relics', icon: <Sparkles className="w-3.5 h-3.5 opacity-70" /> }
+                ].map(sub => {
+                  const isSelected = activeTab === 'wiki' && wikiMainTab === 'items' && itemsSubTab === sub.id;
+                  return (
+                    <button 
+                      key={sub.id}
+                      onClick={() => {
+                        setActiveTab('wiki');
+                        setWikiMainTab('items');
+                        setItemsSubTab(sub.id as any);
+                        if(isMobile) setIsMenuOpen(false);
+                      }}
+                      className={isSelected ? activeSubmenuClass : inactiveSubmenuClass}
+                    >
+                      <span className="flex items-center gap-2.5">
+                        {sub.icon}
+                        {language === 'pt' ? sub.labelPt : sub.labelEn}
+                      </span>
+                    </button>
+                  );
+                })}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* BIBLIOTECA */}
+        <div className="space-y-1.5">
+          <button 
+            onClick={() => toggleGroup('biblioteca')}
+            className="w-full flex items-center justify-between py-2 px-3 rounded-md bg-black/40 border border-medieval-gold/10 hover:border-medieval-gold/30 hover:bg-black/60 transition-all text-[11px] font-black text-medieval-gold uppercase tracking-wider"
+          >
+            <span className="flex items-center gap-2">
+              <Book className="w-3.5 h-3.5 text-medieval-gold/85" />
+              {language === 'pt' ? 'Biblioteca & Lore' : 'Wiki Library'}
+            </span>
+            <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.biblioteca ? 'rotate-90 text-medieval-gold' : ''}`} />
+          </button>
+
+          <AnimatePresence initial={false}>
+            {sidebarOpenGroups.biblioteca && (
+              <motion.div 
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5 max-h-48 overflow-y-auto custom-scrollbar pr-1"
+              >
+                <button 
+                  onClick={() => {
+                    setActiveTab('wiki');
+                    setWikiMainTab('library');
+                    setSelectedRegion(null);
+                    if(isMobile) setIsMenuOpen(false);
+                  }}
+                  className={(activeTab === 'wiki' && wikiMainTab === 'library' && !selectedRegion) ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <Book className="w-3.5 h-3.5 opacity-70" />
+                  {language === 'pt' ? '[Tudo do Mapa]' : '[All Regions]'}
+                </button>
+                {regions.map(r => {
+                  const isSelected = activeTab === 'wiki' && wikiMainTab === 'library' && selectedRegion === r.id;
+                  return (
+                    <button 
+                      key={r.id}
+                      onClick={() => {
+                        setActiveTab('wiki');
+                        setWikiMainTab('library');
+                        setSelectedRegion(r.id);
+                        if(isMobile) setIsMenuOpen(false);
+                      }}
+                      className={isSelected ? activeSubmenuClass : inactiveSubmenuClass}
+                    >
+                      <Book className="w-3.5 h-3.5 opacity-70" />
+                      {r.label}
+                    </button>
+                  );
+                })}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-[#0f0f0f]">
       {/* Navigation Bar */}
@@ -1751,33 +2241,25 @@ export default function App() {
               exit={{ opacity: 0, height: 0 }}
               className="md:hidden bg-medieval-dark border-t border-medieval-gold/20 overflow-hidden"
             >
-              <div className="flex flex-col p-4 gap-2">
-                {tabs.map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => {
-                      setActiveTab(tab.id as Tab);
-                      setIsMenuOpen(false);
-                    }}
-                    className={`flex items-center gap-3 p-3 rounded-sm text-sm font-black uppercase tracking-widest ${
-                      activeTab === tab.id 
-                        ? 'bg-medieval-gold text-black' 
-                        : 'text-medieval-gold/60'
-                    }`}
-                  >
-                    {tab.icon}
-                    {tab.label}
-                  </button>
-                ))}
+              <div className="flex flex-col p-4 max-h-[75vh] overflow-y-auto">
+                {renderSidebarContent(true)}
               </div>
             </motion.div>
           )}
         </AnimatePresence>
       </nav>
 
-      <div className="flex-1 overflow-y-auto py-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <AnimatePresence mode="wait">
+      {/* Main Workspace with sidebar + responsive layout */}
+      <div className="flex-grow flex flex-row overflow-hidden max-w-[1920px] w-full mx-auto relative">
+        {/* Left Sidebar Menu */}
+        <aside className="w-64 lg:w-72 hidden md:block shrink-0 border-r border-medieval-gold/15 bg-black/55 py-6 px-4 overflow-y-auto custom-scrollbar select-none self-stretch">
+          {renderSidebarContent(false)}
+        </aside>
+
+        {/* Dynamic Content Panel */}
+        <div className="flex-grow overflow-y-auto py-8 px-4 sm:px-6 lg:px-8 custom-scrollbar pt-[12px] sm:pt-[12px]">
+          <div className={`mx-auto w-full ${activeTab === 'buildmaker' ? 'max-w-[1600px] px-2 xl:px-6' : 'max-w-5xl'}`}>
+            <AnimatePresence mode="wait">
             {activeTab === 'home' && (
               <motion.div
                 key="home"
@@ -1832,45 +2314,69 @@ export default function App() {
                   </motion.div>
 
                   {/* Visual Search Bar */}
-                  <div className="relative max-w-xl mx-auto group">
-                    <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-                      <Book className="text-medieval-gold/40 w-5 h-5 group-focus-within:text-medieval-gold transition-colors" />
+                  <div className="space-y-4 max-w-xl mx-auto">
+                    <div className="relative group">
+                      <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                        <Book className="text-medieval-gold/40 w-5 h-5 group-focus-within:text-medieval-gold transition-colors" />
+                      </div>
+                      <input 
+                        type="text" 
+                        value={searchQuery}
+                        onChange={(e) => handleSearch(e.target.value)}
+                        placeholder={t('databaseSearch')}
+                        className="w-full bg-black/40 border border-medieval-gold/20 rounded-full py-4 pl-12 pr-6 text-medieval-gold placeholder:text-medieval-gold/20 focus:outline-none focus:border-medieval-gold/50 focus:bg-black/60 transition-all text-sm font-bold tracking-wider"
+                      />
+                      
+                      {/* Search Results Dropdown */}
+                      <AnimatePresence>
+                        {searchResults.length > 0 && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 10 }}
+                            className="absolute top-full left-0 right-0 mt-2 bg-medieval-dark border border-medieval-gold/30 rounded-lg shadow-2xl overflow-hidden z-50 text-left"
+                          >
+                            <div className="max-h-[300px] overflow-y-auto custom-scrollbar">
+                              {searchResults.map((result) => (
+                                <button
+                                  key={result.id}
+                                  onClick={result.action}
+                                  className="w-full px-6 py-3 text-left hover:bg-medieval-gold/10 flex items-center justify-between group transition-colors border-b border-medieval-gold/5 last:border-0"
+                                >
+                                  <div className="flex flex-col">
+                                    <span className="text-medieval-gold font-bold text-sm">{result.label}</span>
+                                    <span className="text-[10px] text-medieval-gold/40 uppercase tracking-widest">{result.type}</span>
+                                  </div>
+                                  <ChevronRight className="w-4 h-4 text-medieval-gold/20 group-hover:text-medieval-gold group-hover:translate-x-1 transition-all" />
+                                </button>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
-                    <input 
-                      type="text" 
-                      value={searchQuery}
-                      onChange={(e) => handleSearch(e.target.value)}
-                      placeholder={t('databaseSearch')}
-                      className="w-full bg-black/40 border border-medieval-gold/20 rounded-full py-4 pl-12 pr-6 text-medieval-gold placeholder:text-medieval-gold/20 focus:outline-none focus:border-medieval-gold/50 focus:bg-black/60 transition-all text-sm font-bold tracking-wider"
-                    />
-                    
-                    {/* Search Results Dropdown */}
-                    <AnimatePresence>
-                      {searchResults.length > 0 && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 10 }}
-                          className="absolute top-full left-0 right-0 mt-2 bg-medieval-dark border border-medieval-gold/30 rounded-lg shadow-2xl overflow-hidden z-50"
+
+                    {/* Interactive suggestions pills */}
+                    <div className="flex flex-wrap justify-center items-center gap-1 text-xs">
+                      <span className="text-medieval-gold/40 font-mono text-[9px] uppercase tracking-wider mr-1">Sugestões comuns:</span>
+                      {[
+                        { text: 'Demon Helmet', display: 'Demon Helmet' },
+                        { text: 'Sword of Valor', display: 'Sword of Valor' },
+                        { text: 'Soft Boots', display: 'Soft Boots' },
+                        { text: 'Alquimia', display: 'Alquimia (Runas)' },
+                        { text: 'farming', display: 'Farming (Cultivo)' },
+                        { text: 'forjar', display: 'Crafting (Forjas)' },
+                        { text: 'Bless', display: 'Bless / Morte' }
+                      ].map((pill, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => handleSearch(pill.text)}
+                          className="px-2.5 py-1 bg-medieval-gold/5 hover:bg-medieval-gold/15 border border-medieval-gold/10 hover:border-medieval-gold/30 rounded text-medieval-gold/85 hover:text-medieval-gold text-[10px] font-mono transition-all lowercase"
                         >
-                          <div className="max-h-[300px] overflow-y-auto custom-scrollbar">
-                            {searchResults.map((result) => (
-                              <button
-                                key={result.id}
-                                onClick={result.action}
-                                className="w-full px-6 py-3 text-left hover:bg-medieval-gold/10 flex items-center justify-between group transition-colors border-b border-medieval-gold/5 last:border-0"
-                              >
-                                <div className="flex flex-col">
-                                  <span className="text-medieval-gold font-bold text-sm">{result.label}</span>
-                                  <span className="text-[10px] text-medieval-gold/40 uppercase tracking-widest">{result.type}</span>
-                                </div>
-                                <ChevronRight className="w-4 h-4 text-medieval-gold/20 group-hover:text-medieval-gold group-hover:translate-x-1 transition-all" />
-                              </button>
-                            ))}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                          {pill.display}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
@@ -2273,11 +2779,17 @@ export default function App() {
                     </div>
 
                     {profSubTab === 'crafting' ? (
-                      <CraftingCalculator t={t} CRAFT_ITEMS={CRAFT_ITEMS} BREAKING_DATA={BREAKING_DATA} />
+                      <CraftingCalculator 
+                        t={t} 
+                        CRAFT_ITEMS={CRAFT_ITEMS} 
+                        BREAKING_DATA={BREAKING_DATA} 
+                        initialCategory={searchCraftCategory}
+                        initialItemName={searchCraftItemName}
+                      />
                     ) : profSubTab === 'alchemy' ? (
-                      <AlchemyCalculator t={t} />
+                      <AlchemyCalculator t={t} initialRuneName={searchAlchemyRune} />
                     ) : profSubTab === 'farming' ? (
-                      <FarmingCalculator t={t} />
+                      <FarmingCalculator t={t} initialTreeName={searchFarmingTree} />
                     ) : (
                       <MiningCalculator t={t} />
                     )}
@@ -2430,6 +2942,18 @@ export default function App() {
                     </div>
                   </div>
                 )}
+              </motion.div>
+            )}
+
+            {activeTab === 'loot' && (
+              <motion.div
+                key="loot"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                className="space-y-8"
+              >
+                <LootOptimizer language={language} rashidCity={rashidCity} />
               </motion.div>
             )}
 
@@ -2724,41 +3248,186 @@ export default function App() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -20 }}
-                      className="space-y-12"
+                      className="space-y-12 text-left"
                     >
-                      <header className="text-center">
-                        <h1 className="text-4xl sm:text-5xl font-black text-medieval-gold uppercase tracking-tighter mb-4">
+                      {/* Hero Header Banner */}
+                      <header className="text-center relative py-6">
+                        <div className="absolute inset-0 bg-gradient-to-b from-medieval-gold/5 via-transparent to-transparent blur-3xl rounded-full"></div>
+                        <h1 className="text-4xl sm:text-5xl font-black text-medieval-gold uppercase tracking-tighter mb-3 relative drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
                           Wiki Miracle 7.4
                         </h1>
-                        <p className="text-medieval-gold/60 font-mono text-sm max-w-2xl mx-auto italic">
-                          "O conhecimento é a chave para a sobrevivência nas terras de Miracle."
+                        <p className="text-medieval-gold/70 font-mono text-xs max-w-2xl mx-auto italic tracking-wide">
+                          "O conhecimento é a chave para a sobrevivência e para o topo das tabelas nas terras de Miracle."
                         </p>
+                        <div className="w-24 h-px bg-gradient-to-r from-transparent via-medieval-gold/40 to-transparent mx-auto mt-6"></div>
                       </header>
 
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {[
-                          { id: 'items', title: t('items'), desc: 'Database completo de equipamentos, armas e itens raros.', icon: <Sword className="w-8 h-8" /> },
-                          { id: 'library', title: t('library'), desc: 'Livros, pergaminhos e documentos históricos encontrados pelo mapa.', icon: <Book className="w-8 h-8" /> },
-                          { id: 'updates', title: t('updates'), desc: 'Acompanhe todas as mudanças e evoluções do servidor e do projeto.', icon: <History className="w-8 h-8" /> },
-                        ].map((card) => (
-                          <button
-                            key={card.id}
-                            onClick={() => setWikiMainTab(card.id as any)}
-                            className="medieval-card bg-medieval-card p-8 medieval-border rounded-lg text-left group hover:border-medieval-gold transition-all relative overflow-hidden"
-                          >
-                            <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                              {card.icon}
+                      {/* Main Navigation Chapters */}
+                      <div className="space-y-4">
+                        <h2 className="text-xs font-bold uppercase tracking-[0.3em] text-medieval-gold/50 mb-6 text-center">
+                          — {language === 'pt' ? 'Capítulos Principais da Enciclopédia' : 'Main Encyclopedia Chapters'} —
+                        </h2>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                          {[
+                            { 
+                              id: 'items', 
+                              title: t('items'), 
+                              desc: language === 'pt' ? 'Database completo de equipamentos, armas, armaduras e atributos adicionais de Miracle 7.4.' : 'Complete database of weapons, armor, shields, and additional attributes of Miracle 7.4.', 
+                              icon: <Sword className="w-6 h-6" />,
+                              meta: language === 'pt' ? 'Explorar Equipamentos' : 'Explore Equipment'
+                            },
+                            { 
+                              id: 'library', 
+                              title: t('library'), 
+                              desc: language === 'pt' ? 'Livros históricos e diários lendários espalhados pelas misteriosas regiões do mapa.' : 'Historical documentation and ancient diaries found across the regions.', 
+                              icon: <Book className="w-6 h-6" />,
+                              meta: language === 'pt' ? 'Abrir Biblioteca' : 'Open Library'
+                            },
+                            { 
+                              id: 'updates', 
+                              title: t('updates'), 
+                              desc: language === 'pt' ? 'Histórico completo de patches de servidores, atualizações e balanceamento de Miracle.' : 'Full server patch history, balancing logs, and development progress.', 
+                              icon: <History className="w-6 h-6" />,
+                              meta: language === 'pt' ? 'Notas de Patches' : 'Patch Notes'
+                            },
+                          ].map((card) => (
+                            <button
+                              key={card.id}
+                              onClick={() => setWikiMainTab(card.id as any)}
+                              className="medieval-card bg-medieval-card p-6 medieval-border rounded-lg text-left group hover:border-medieval-gold transition-all relative overflow-hidden flex flex-col justify-between h-48 hover:shadow-[0_0_15px_rgba(212,175,55,0.05)]"
+                            >
+                              <div className="absolute top-2 right-2 p-2 opacity-[0.03] group-hover:opacity-[0.1] group-hover:scale-110 transition-all">
+                                {card.icon}
+                              </div>
+                              <div>
+                                <div className="text-medieval-gold/50 group-hover:text-medieval-gold transition-colors mb-4 bg-medieval-gold/5 p-2 rounded-lg w-fit border border-medieval-gold/10">
+                                  {card.icon}
+                                </div>
+                                <h3 className="text-lg font-black text-medieval-gold uppercase mb-1">{card.title}</h3>
+                                <p className="text-xs text-medieval-text/60 leading-relaxed line-clamp-2 md:line-clamp-3">{card.desc}</p>
+                              </div>
+                              <div className="flex items-center gap-1 text-[9px] font-black uppercase tracking-widest text-medieval-gold/40 group-hover:text-medieval-gold transition-colors pt-4 mt-auto">
+                                {card.meta} <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                              </div>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Interactive FAQ and Direct Multi-Tab Routing Widget */}
+                      <div className="space-y-6 pt-4 border-t border-medieval-gold/10">
+                        <div className="flex flex-col items-center text-center max-w-xl mx-auto">
+                          <h2 className="text-xs font-bold uppercase tracking-[0.3em] text-medieval-gold/50 mb-2">
+                            — {language === 'pt' ? 'Guia Rápido & Atalhos de Dúvidas' : 'Quick Guide & Common Questions'} —
+                          </h2>
+                          <p className="text-[11px] text-medieval-text/50 leading-relaxed font-mono">
+                            {language === 'pt' 
+                              ? 'Mais procurados pela comunidade e tirados diretamente de dúvidas frequentes em lives.' 
+                              : 'Most requested by the community and extracted directly from stream questions.'}
+                          </p>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          {/* FAQ 1: Crafting Recipe Lookup */}
+                          <div className="bg-black/40 border border-medieval-gold/15 rounded-lg p-5 flex flex-col justify-between space-y-4 hover:border-medieval-gold/35 transition-all">
+                            <div className="space-y-2">
+                              <div className="flex items-center gap-2">
+                                <span className="bg-red-500/10 text-red-400 font-mono text-[9px] uppercase tracking-wider px-2 py-0.5 rounded border border-red-500/20">Receitas & Ingredientes</span>
+                                <h4 className="text-xs font-black text-medieval-gold uppercase">{language === 'pt' ? 'Onde vejo a lista de materiais para forjar?' : 'Where do I find item crafting costs?'}</h4>
+                              </div>
+                              <p className="text-xs text-medieval-text/60 leading-relaxed">
+                                {language === 'pt'
+                                  ? 'No Simulador de Forja sob a aba Profissões. Lá você pode selecionar qualquer item criável para ver ingredientes e simular custos de skills de fabricação.'
+                                  : 'Inside Crafting Simulator under Professions. Select any forgeable weapon, armor, or tool to inspect lists of ingredients directly.'}
+                              </p>
                             </div>
-                            <div className="text-medieval-gold/40 group-hover:text-medieval-gold transition-colors mb-6">
-                              {card.icon}
+                            <button
+                              onClick={() => {
+                                setActiveTab('profissoes');
+                                setProfSubTab('crafting');
+                              }}
+                              className="text-[10px] uppercase font-black tracking-widest text-medieval-gold/70 hover:text-medieval-gold flex items-center gap-1.5 w-fit hover:underline"
+                            >
+                              <Hammer className="w-3.5 h-3.5 text-medieval-gold" />
+                              {language === 'pt' ? 'Ir para Calculadora de Crafting' : 'Go to Crafting Calculator'}
+                            </button>
+                          </div>
+
+                          {/* FAQ 2: Alchemy Duping Runes */}
+                          <div className="bg-black/40 border border-medieval-gold/15 rounded-lg p-5 flex flex-col justify-between space-y-4 hover:border-medieval-gold/35 transition-all">
+                            <div className="space-y-2">
+                              <div className="flex items-center gap-2">
+                                <span className="bg-blue-500/10 text-blue-400 font-mono text-[9px] uppercase tracking-wider px-2 py-0.5 rounded border border-blue-500/20">Alquimia & Duplicação</span>
+                                <h4 className="text-xs font-black text-medieval-gold uppercase">{language === 'pt' ? 'Onde vejo as Runas que Duplicam (Alquimia)?' : 'Which Runes can be duplicated during use?'}</h4>
+                              </div>
+                              <p className="text-xs text-medieval-text/60 leading-relaxed">
+                                {language === 'pt'
+                                  ? 'Na nossa Calculadora de Alquimia. É possível listar todas as runas recriáveis, saber as chances percentuais de duplicação e as skills desejadas.'
+                                  : 'Under Alchemy Profession. It lists every rune, highlighting double duplication chances and required alchemy skill levels.'}
+                              </p>
                             </div>
-                            <h3 className="text-xl font-black text-medieval-gold uppercase mb-2">{card.title}</h3>
-                            <p className="text-sm text-medieval-text/60 leading-relaxed">{card.desc}</p>
-                            <div className="mt-6 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-medieval-gold/40 group-hover:text-medieval-gold transition-colors">
-                              Explorar <ChevronRight className="w-3 h-3" />
+                            <button
+                              onClick={() => {
+                                setActiveTab('profissoes');
+                                setProfSubTab('alchemy');
+                              }}
+                              className="text-[10px] uppercase font-black tracking-widest text-medieval-gold/70 hover:text-medieval-gold flex items-center gap-1.5 w-fit hover:underline"
+                            >
+                              <FlaskConical className="w-3.5 h-3.5 text-medieval-gold" />
+                              {language === 'pt' ? 'Ir para Calculadora de Alquimia' : 'Go to Alchemy Calculator'}
+                            </button>
+                          </div>
+
+                          {/* FAQ 3: Equip Attribute Calculator */}
+                          <div className="bg-black/40 border border-medieval-gold/15 rounded-lg p-5 flex flex-col justify-between space-y-4 hover:border-medieval-gold/35 transition-all">
+                            <div className="space-y-2">
+                              <div className="flex items-center gap-2">
+                                <span className="bg-orange-500/10 text-orange-400 font-mono text-[9px] uppercase tracking-wider px-2 py-0.5 rounded border border-orange-500/20">Atributos & Sorte</span>
+                                <h4 className="text-xs font-black text-medieval-gold uppercase">{language === 'pt' ? 'Como simular rolagens secundárias de itens?' : 'How do I simulate secondary item stats?'}</h4>
+                              </div>
+                              <p className="text-xs text-medieval-text/60 leading-relaxed">
+                                {language === 'pt'
+                                  ? 'Abra a Calculadora de Atributos ou clique direto abaixo para simular os bônus possíveis de cada equipamento (como HP, Leech ou Atividades).'
+                                  : 'Select any weapon or armor in our Attributes simulator to check roll counts and rates based on item rarity grades.'}
+                              </p>
                             </div>
-                          </button>
-                        ))}
+                            <button
+                              onClick={() => {
+                                setActiveTab('calculadoras');
+                                setCalcSubTab('atributos');
+                              }}
+                              className="text-[10px] uppercase font-black tracking-widest text-medieval-gold/70 hover:text-medieval-gold flex items-center gap-1.5 w-fit hover:underline"
+                            >
+                              <Gem className="w-3.5 h-3.5 text-medieval-gold" />
+                              {language === 'pt' ? 'Ir para Simulador de Atributos' : 'Go to Attributes Simulator'}
+                            </button>
+                          </div>
+
+                          {/* FAQ 4: Bless Costs & Death Losses */}
+                          <div className="bg-black/40 border border-medieval-gold/15 rounded-lg p-5 flex flex-col justify-between space-y-4 hover:border-medieval-gold/35 transition-all">
+                            <div className="space-y-2">
+                              <div className="flex items-center gap-2">
+                                <span className="bg-green-500/10 text-green-400 font-mono text-[9px] uppercase tracking-wider px-2 py-0.5 rounded border border-green-500/20">Morte & Blessings</span>
+                                <h4 className="text-xs font-black text-medieval-gold uppercase">{language === 'pt' ? 'Qual é o preço e efeito de mortes com Bless?' : 'What is the exact death penalty with Bless?'}</h4>
+                              </div>
+                              <p className="text-xs text-medieval-text/60 leading-relaxed">
+                                {language === 'pt'
+                                  ? 'A morte sem bênçãos custa caro! Acesse a Calculadora de Bless para calcular o custo percentual conforme seu level e quantidade de bônus protetivos.'
+                                  : 'Calculate progress/experience losses and get exact wallet prices for up to 5 protect blessings according to level.'}
+                              </p>
+                            </div>
+                            <button
+                              onClick={() => {
+                                setActiveTab('calculadoras');
+                                setCalcSubTab('bless');
+                              }}
+                              className="text-[10px] uppercase font-black tracking-widest text-medieval-gold/70 hover:text-medieval-gold flex items-center gap-1.5 w-fit hover:underline"
+                            >
+                              <Zap className="w-3.5 h-3.5 text-medieval-gold" />
+                              {language === 'pt' ? 'Abrir Calculadora de Bless' : 'Open Bless Calculator'}
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </motion.div>
                   )}
@@ -4020,6 +4689,7 @@ export default function App() {
             </motion.div>
           )}
         </AnimatePresence>
+          </div>
         </div>
       </div>
       <footer className="bg-black/80 border-t border-medieval-gold/10 py-6 px-4">

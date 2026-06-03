@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { CalculatedStats } from '../../utils/formulas';
 import { cn } from '../../lib/utils';
 import { 
-  VitalsCard, SkillsCard, CombatCard, RegenCard, ProtectionsCard, SpecialsCard 
+  VitalsCard, SkillsCard, CombatCard, RegenCard, ProtectionsCard, SpecialsCard, RunesCard
 } from './ModularStatsCards';
 import { VocationType } from '../../types/build';
 import { 
@@ -72,6 +72,9 @@ export interface SidebarLiveSettings {
   showReflectElements: boolean;
   showAbsorbHealth: boolean;
   showDestruction: boolean;
+
+  // Runes
+  showRunes: boolean;
 }
 
 export const DEFAULT_SETTINGS: SidebarLiveSettings = {
@@ -115,6 +118,7 @@ export const DEFAULT_SETTINGS: SidebarLiveSettings = {
   showReflectElements: true,
   showAbsorbHealth: true,
   showDestruction: true,
+  showRunes: true,
 };
 
 const getPresetSettings = (presetName: string): SidebarLiveSettings => {
@@ -128,6 +132,7 @@ const getPresetSettings = (presetName: string): SidebarLiveSettings => {
         showClub: false,
         showDistance: false,
         showMaxDist: false,
+        showRunes: true,
       };
     case 'knight-axe':
       return {
@@ -137,6 +142,7 @@ const getPresetSettings = (presetName: string): SidebarLiveSettings => {
         showClub: false,
         showDistance: false,
         showMaxDist: false,
+        showRunes: true,
       };
     case 'knight-club':
       return {
@@ -146,6 +152,7 @@ const getPresetSettings = (presetName: string): SidebarLiveSettings => {
         showAxe: false,
         showDistance: false,
         showMaxDist: false,
+        showRunes: true,
       };
     case 'paladin':
       return {
@@ -155,6 +162,7 @@ const getPresetSettings = (presetName: string): SidebarLiveSettings => {
         showAxe: false,
         showClub: false,
         showMaxMelee: false,
+        showRunes: true,
       };
     case 'mage':
       return {
@@ -165,6 +173,7 @@ const getPresetSettings = (presetName: string): SidebarLiveSettings => {
         showDistance: false,
         showMaxMelee: false,
         showMaxDist: false,
+        showRunes: true,
       };
     case 'essential':
       return {
@@ -181,6 +190,7 @@ const getPresetSettings = (presetName: string): SidebarLiveSettings => {
         showReflectPhys: false,
         showReflectElements: false,
         showAbsorbHealth: false,
+        showRunes: true,
       };
     case 'all':
     default:
@@ -368,16 +378,16 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({ title, stats, compar
     }));
   };
 
-  const [blockLayout, setBlockLayout] = useState<{ id: string; span: 1 | 2 | 3 }[]>(() => {
+  const [blockLayout, setBlockLayout] = useState<{ id: string; span: 1 | 2 | 3 | 4 }[]>(() => {
     try {
       const saved = localStorage.getItem('miracle_wiki_buildmaker_layout_order_v1');
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          const validIds = ['vitals', 'skills', 'combat', 'regen', 'protections', 'specials'];
+          const validIds = ['vitals', 'skills', 'combat', 'regen', 'protections', 'specials', 'runes'];
           const filtered = parsed.filter((item: any) => validIds.includes(item.id));
           const missing = validIds.filter(id => !filtered.some((item: any) => item.id === id));
-          return [...filtered, ...missing.map(id => ({ id, span: 1 as const }))];
+          return [...filtered, ...missing.map(id => ({ id, span: 1 as 1 | 2 | 3 | 4 }))];
         }
       }
     } catch (e) {
@@ -387,6 +397,7 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({ title, stats, compar
       { id: 'vitals', span: 1 },
       { id: 'skills', span: 1 },
       { id: 'combat', span: 1 },
+      { id: 'runes', span: 1 },
       { id: 'regen', span: 1 },
       { id: 'protections', span: 1 },
       { id: 'specials', span: 1 }
@@ -413,8 +424,8 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({ title, stats, compar
     setBlockLayout(prev => {
       return prev.map(block => {
         if (block.id === blockId) {
-          const nextSpan = block.span === 1 ? 2 : (block.span === 2 ? 3 : 1);
-          return { ...block, span: nextSpan as 1 | 2 | 3 };
+          const nextSpan = block.span === 1 ? 2 : (block.span === 2 ? 3 : (block.span === 3 ? 4 : 1));
+          return { ...block, span: nextSpan as 1 | 2 | 3 | 4 };
         }
         return block;
       });
@@ -447,6 +458,7 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({ title, stats, compar
       case 'regen': return t('bm_regenSystem') || (language === 'pt' ? 'Sistema de Regeneração' : 'Regen System');
       case 'protections': return language === 'pt' ? 'Resistências & Proteções' : 'Resistances & Protections';
       case 'specials': return t('bm_specialAttributes') || (language === 'pt' ? 'Atributos Especiais' : 'Special Attributes');
+      case 'runes': return language === 'pt' ? 'Danos & Curas de Runas' : 'Rune Damage & Healing';
       default: return blockId;
     }
   };
@@ -743,6 +755,15 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({ title, stats, compar
                 <input type="checkbox" checked={settings.showDestruction} onChange={e => updateSettingFlag('showDestruction', e.target.checked)} className="accent-medieval-gold" />
                 <span>Destruction</span>
               </label>
+
+              {/* Group Runes */}
+              <div className="col-span-2 border-b border-medieval-gold/10 pb-0.5 mt-2 mb-1 flex items-center justify-between">
+                <span className="text-medieval-gold font-bold">{language === 'pt' ? 'Runas & Magias' : 'Runes & Spells'}</span>
+              </div>
+              <label className="flex items-center gap-1 cursor-pointer hover:text-medieval-gold">
+                <input type="checkbox" checked={settings.showRunes} onChange={e => updateSettingFlag('showRunes', e.target.checked)} className="accent-medieval-gold" />
+                <span>{language === 'pt' ? 'Cálculos de Runas' : 'Rune Calculations'}</span>
+              </label>
             </div>
           </div>
           
@@ -761,7 +782,7 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({ title, stats, compar
       )}
 
       {/* Grid container with customizable block ordering & column spanning */}
-      <div className="flex-1 overflow-y-auto pr-1 scrollbar-medieval grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 items-start align-top content-start p-0.5">
+      <div className="flex-1 overflow-y-auto pr-1 scrollbar-medieval grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3 items-start align-top content-start p-0.5">
         {blockLayout.map((block, idx) => {
           let isVisible = false;
           if (block.id === 'vitals') isVisible = hasVisibleVitals;
@@ -770,6 +791,7 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({ title, stats, compar
           else if (block.id === 'regen') isVisible = true;
           else if (block.id === 'protections') isVisible = hasVisibleProtections;
           else if (block.id === 'specials') isVisible = hasVisibleSpecials;
+          else if (block.id === 'runes') isVisible = settings.showRunes;
 
           if (!isVisible) return null;
 
@@ -778,6 +800,8 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({ title, stats, compar
             spanClass = "col-span-1 md:col-span-2 border border-medieval-gold/5 bg-black/10 p-2.5 rounded hover:border-medieval-gold/35 transition-all duration-300 relative group/block shadow-md hover:shadow-medieval-gold/5";
           } else if (block.span === 3) {
             spanClass = "col-span-1 md:col-span-2 xl:col-span-3 border border-medieval-gold/5 bg-black/10 p-2.5 rounded hover:border-medieval-gold/35 transition-all duration-300 relative group/block shadow-md hover:shadow-medieval-gold/5";
+          } else if (block.span === 4) {
+            spanClass = "col-span-1 md:col-span-2 xl:col-span-3 2xl:col-span-4 border border-medieval-gold/5 bg-black/10 p-2.5 rounded hover:border-medieval-gold/35 transition-all duration-300 relative group/block shadow-md hover:shadow-medieval-gold/5";
           }
 
           return (
@@ -802,6 +826,7 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({ title, stats, compar
                     {block.id === 'regen' && <Activity size={13} className="text-emerald-500 animate-pulse" />}
                     {block.id === 'protections' && <Flame size={13} />}
                     {block.id === 'specials' && <Sparkles size={13} />}
+                    {block.id === 'runes' && <Sparkles size={13} className="text-medieval-gold" />}
                     {getBlockLabel(block.id)}
                   </h3>
                 </div>
@@ -893,6 +918,16 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({ title, stats, compar
                   )}
                   {block.id === 'specials' && (
                     <SpecialsCard 
+                      stats={stats} 
+                      compareStats={compareStats || undefined} 
+                      settings={settings} 
+                      showCompare={showCompare} 
+                      language={language} 
+                      t={t} 
+                    />
+                  )}
+                  {block.id === 'runes' && (
+                    <RunesCard 
                       stats={stats} 
                       compareStats={compareStats || undefined} 
                       settings={settings} 

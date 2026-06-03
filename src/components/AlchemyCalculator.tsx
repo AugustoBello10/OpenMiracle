@@ -5,9 +5,10 @@ import { ALCHEMY_RUNES, ALCHEMY_CRYSTALS } from '../data/alchemy';
 
 interface AlchemyCalculatorProps {
   t: (key: string) => string;
+  initialRuneName?: string;
 }
 
-export const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({ t }) => {
+export const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({ t, initialRuneName }) => {
   const [alchemySkill, setAlchemySkill] = useState<number | string>(10);
   const [decayMinutes, setDecayMinutes] = useState<number | string>(0);
   const [isAlchemist, setIsAlchemist] = useState<boolean>(false);
@@ -140,12 +141,20 @@ export const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({ t }) => {
               </div>
             </div>
 
+            <div className="p-3.5 bg-medieval-gold/5 border border-medieval-gold/20 rounded-lg flex items-start sm:items-center gap-2.5">
+              <Info className="w-4 h-4 text-medieval-gold shrink-0 mt-0.5 sm:mt-0" />
+              <p className="text-[10.5px] sm:text-xs text-medieval-text/85 leading-relaxed font-mono">
+                {t('alchemyFormulaNote')}
+              </p>
+            </div>
+
             <div className="medieval-border rounded-lg overflow-hidden bg-medieval-card">
               <div className="overflow-x-auto">
                 <table className="w-full text-left border-collapse">
                   <thead>
                     <tr className="bg-black/60 border-b border-medieval-gold/20">
                       <th className="p-4 text-[10px] font-black text-medieval-gold uppercase tracking-widest">Rune</th>
+                      <th className="p-4 text-[10px] font-black text-medieval-gold uppercase tracking-widest">{t('magicLevelConjure')}</th>
                       <th className="p-4 text-[10px] font-black text-medieval-gold uppercase tracking-widest">{t('minSkill')}</th>
                       <th className="p-4 text-[10px] font-black text-medieval-gold uppercase tracking-widest">{t('baseChance')}</th>
                       <th className="p-4 text-[10px] font-black text-medieval-gold uppercase tracking-widest">{t('finalChance')}</th>
@@ -158,9 +167,10 @@ export const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({ t }) => {
                       const hasSkill = alchemySkill >= rune.minSkill;
                       const canUse = !rune.alchemistOnly || isAlchemist;
                       const isPossible = hasSkill && canUse;
+                      const isHighlighted = initialRuneName && rune.name.toLowerCase().includes(initialRuneName.toLowerCase());
 
                       return (
-                        <tr key={rune.name} className={`hover:bg-medieval-gold/5 transition-colors ${!isPossible ? 'opacity-40' : ''}`}>
+                        <tr key={rune.name} className={`hover:bg-medieval-gold/5 transition-colors ${!isPossible ? 'opacity-40' : ''} ${isHighlighted ? 'bg-medieval-gold/10 border-l-2 border-medieval-gold ring-1 ring-medieval-gold/30' : ''}`}>
                           <td className="p-4">
                             <div className="flex flex-col">
                               <span className="text-xs font-bold text-medieval-text uppercase tracking-tighter">{rune.name}</span>
@@ -169,7 +179,17 @@ export const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({ t }) => {
                               )}
                             </div>
                           </td>
-                          <td className="p-4 font-mono text-xs text-medieval-gold/80">{rune.minSkill}</td>
+                          <td className="p-4 font-mono text-xs text-medieval-gold/80">
+                            <div className="flex flex-col">
+                              <span className="font-bold text-slate-200">ML {rune.magicLevel}</span>
+                            </div>
+                          </td>
+                          <td className="p-4 font-mono text-xs text-medieval-gold/80">
+                            <div className="flex flex-col">
+                              <span className="font-bold text-medieval-gold">{rune.minSkill} Alchemy</span>
+                              <span className="text-[8.5px] text-medieval-text/40">({rune.magicLevel} × 2 + 10)</span>
+                            </div>
+                          </td>
                           <td className="p-4 font-mono text-xs text-medieval-gold/60">{rune.baseChance}%</td>
                           <td className="p-4">
                             <span className={`font-mono text-sm font-black ${isPossible ? 'text-medieval-gold' : 'text-medieval-red'}`}>

@@ -57,5 +57,20 @@
   .scrollbar-medieval::-webkit-scrollbar-thumb {
     @apply bg-medieval-gold/20 hover:bg-medieval-gold/40 rounded-full;
   }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.4);
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(197, 160, 89, 0.25);
+    border-radius: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(197, 160, 89, 0.45);
+  }
 }
 

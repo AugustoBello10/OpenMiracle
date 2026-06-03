@@ -5,12 +5,19 @@ import { FARMING_TREES, FarmingTree } from '../data/farming';
 
 interface FarmingCalculatorProps {
   t: (key: string) => string;
+  initialTreeName?: string;
 }
 
-export const FarmingCalculator: React.FC<FarmingCalculatorProps> = ({ t }) => {
+export const FarmingCalculator: React.FC<FarmingCalculatorProps> = ({ t, initialTreeName }) => {
   const [farmingSkill, setFarmingSkill] = useState<number | string>(10);
   const [miracleCoinPrice, setMiracleCoinPrice] = useState<number | string>(5000);
   const [selectedTreeName, setSelectedTreeName] = useState<string>(FARMING_TREES[0].name);
+
+  React.useEffect(() => {
+    if (initialTreeName) {
+      setSelectedTreeName(initialTreeName);
+    }
+  }, [initialTreeName]);
   const [fruitPrice, setFruitPrice] = useState<number | string>(50);
   const [treeQuantity, setTreeQuantity] = useState<number | string>(1);
 
