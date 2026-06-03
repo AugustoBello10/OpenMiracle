@@ -1839,7 +1839,8 @@ export default function App() {
           </button>
         </div>
 
-        {/* LOOT OPTIMIZER (EXCLUSIVE PREMIUM HIGHLIGHTED ROW) */}
+        {/* LOOT OPTIMIZER (EXCLUSIVE PREMIUM HIGHLIGHTED ROW) - HIDDEN TEMPORARILY */ }
+        {/*
         <div className="space-y-1">
           <button 
             onClick={() => { setActiveTab('loot'); if(isMobile) setIsMenuOpen(false); }}
@@ -1860,6 +1861,7 @@ export default function App() {
             }`}>AUTO</span>
           </button>
         </div>
+        */}
 
         {/* TUTORIAIS & GUIAS (Requested by user) */}
         <div className="space-y-1.5">
