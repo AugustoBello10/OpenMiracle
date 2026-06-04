@@ -464,8 +464,9 @@ const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
 };
 
 import { BuildMakerView } from './components/BuildMakerView';
+import { FeedbackBoard } from './components/FeedbackBoard';
 
-type Tab = 'home' | 'calculadoras' | 'profissoes' | 'mapa' | 'eventos' | 'wiki' | 'buildmaker' | 'loot';
+type Tab = 'home' | 'calculadoras' | 'profissoes' | 'mapa' | 'eventos' | 'wiki' | 'buildmaker' | 'loot' | 'feedback';
 
 const VOC_SPELLS: Record<string, { name: string; mana: number }[]> = {
   Sorcerer: [
@@ -1332,7 +1333,8 @@ export default function App() {
     profissoes: true,
     cyclopedia: true,
     biblioteca: false,
-    utilitarios: true
+    utilitarios: true,
+    comunidade: true
   });
 
   const toggleGroup = (group: keyof typeof sidebarOpenGroups) => {
@@ -1904,6 +1906,39 @@ export default function App() {
                 >
                   <Users className="w-3.5 h-3.5 opacity-70" />
                   {language === 'pt' ? 'Lobby de Quests' : 'Quests & Events'}
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* COMUNIDADE & FEEDBACK */}
+        <div className="space-y-1.5">
+          <button 
+            onClick={() => toggleGroup('comunidade' as any)}
+            className="w-full flex items-center justify-between py-2 px-3 rounded-md bg-black/40 border border-medieval-gold/10 hover:border-medieval-gold/30 hover:bg-black/60 transition-all text-[11px] font-black text-medieval-gold uppercase tracking-wider"
+          >
+            <span className="flex items-center gap-2">
+              <MessageSquare className="w-3.5 h-3.5 text-medieval-gold/85" />
+              {language === 'pt' ? 'Comunidade & Feedback' : 'Community & Feedback'}
+            </span>
+            <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.comunidade ? 'rotate-90 text-medieval-gold' : ''}`} />
+          </button>
+
+          <AnimatePresence initial={false}>
+            {sidebarOpenGroups.comunidade && (
+              <motion.div 
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5"
+              >
+                <button 
+                  onClick={() => { setActiveTab('feedback'); if(isMobile) setIsMenuOpen(false); }}
+                  className={activeTab === 'feedback' ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <MessageSquare className="w-3.5 h-3.5 opacity-70" />
+                  {language === 'pt' ? 'Sugestões / Feedback' : 'Suggestions / Feedback'}
                 </button>
               </motion.div>
             )}
@@ -2524,6 +2559,16 @@ export default function App() {
                         </div>
                         <ExternalLink className="w-3 h-3 text-medieval-gold/40 group-hover:text-medieval-gold" />
                       </a>
+                      <button 
+                        onClick={() => setActiveTab('feedback')}
+                        className="flex items-center justify-between p-3 bg-medieval-gold/10 border border-medieval-gold/30 rounded hover:border-medieval-gold hover:bg-medieval-gold/20 transition-all group shadow-[0_0_10px_rgba(197,160,89,0.1)]"
+                      >
+                        <div className="flex items-center gap-3">
+                          <MessageSquare className="text-medieval-gold w-4 h-4" />
+                          <span className="text-[10px] font-bold uppercase tracking-widest text-medieval-gold">{language === 'pt' ? 'Feedback & Sugestões' : 'Feedback & Suggestions'}</span>
+                        </div>
+                        <ChevronRight className="w-3 h-3 text-medieval-gold/60 group-hover:text-medieval-gold group-hover:translate-x-1 transition-all" />
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -2664,6 +2709,18 @@ export default function App() {
               className="h-full"
             >
               <BuildMakerView language={language} />
+            </motion.div>
+          )}
+
+          {activeTab === 'feedback' && (
+            <motion.div
+              key="feedback"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4 }}
+            >
+              <FeedbackBoard language={language} />
             </motion.div>
           )}
 
@@ -4694,6 +4751,21 @@ export default function App() {
           </div>
         </div>
       </div>
+      
+      {/* Global Floating Feedback Button */}
+      {activeTab !== 'feedback' && (
+        <motion.button
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          onClick={() => setActiveTab('feedback')}
+          className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-medieval-gold to-yellow-600 text-black font-black uppercase tracking-widest text-[10px] rounded-full shadow-[0_0_20px_rgba(197,160,89,0.3)] hover:shadow-[0_0_30px_rgba(197,160,89,0.5)] hover:scale-105 transition-all duration-300"
+        >
+          <MessageSquare className="w-4 h-4" />
+          <span className="hidden sm:inline">{language === 'pt' ? 'Deixe seu Feedback' : 'Leave Feedback'}</span>
+          <span className="sm:hidden">Feedback</span>
+        </motion.button>
+      )}
+
       <footer className="bg-black/80 border-t border-medieval-gold/10 py-6 px-4">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-widest font-mono text-medieval-gold/40">
           <p>© 2024 Miracle 7.4 Wiki Project</p>
