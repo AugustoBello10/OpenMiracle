@@ -24,6 +24,7 @@ import { AlchemyCalculator } from './components/AlchemyCalculator';
 import { FarmingCalculator } from './components/FarmingCalculator';
 import { CraftingCalculator } from './components/CraftingCalculator';
 import { MiningCalculator } from './components/MiningCalculator';
+import { RuneMakingCalculator } from './components/RuneMakingCalculator';
 import { LootOptimizer } from './components/LootOptimizer';
 
 // --- Dados do Banco de Dados Embutido ---
@@ -1300,7 +1301,7 @@ const getItemEffects = (item: any) => {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>('home');
-  const [calcSubTab, setCalcSubTab] = useState<'skills' | 'bless' | 'atributos' | 'professions'>('skills');
+  const [calcSubTab, setCalcSubTab] = useState<'skills' | 'bless' | 'atributos' | 'professions' | 'runemaking'>('skills');
   const [profSubTab, setProfSubTab] = useState<'crafting' | 'alchemy' | 'farming' | 'mining'>('crafting');
   const [wikiSubTab, setWikiSubTab] = useState<'server' | 'project'>('server');
   const [wikiMainTab, setWikiMainTab] = useState<'home' | 'updates' | 'library' | 'items'>('home');
@@ -1986,6 +1987,13 @@ export default function App() {
                 >
                   <Zap className="w-3.5 h-3.5 opacity-70" />
                   {language === 'pt' ? 'Simulador Atributos' : 'Attributes Sim'}
+                </button>
+                <button 
+                  onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('runemaking'); if(isMobile) setIsMenuOpen(false); }}
+                  className={(activeTab === 'calculadoras' && calcSubTab === 'runemaking') ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <FlaskConical className="w-3.5 h-3.5 opacity-70" />
+                  {language === 'pt' ? 'Rune Making' : 'Rune Making'}
                 </button>
               </motion.div>
             )}
@@ -2771,6 +2779,18 @@ export default function App() {
                     </div>
                   </button>
                   <button
+                    onClick={() => setCalcSubTab('runemaking')}
+                    className={`px-6 py-3 rounded-sm font-black uppercase tracking-widest text-xs transition-all ${
+                      calcSubTab === 'runemaking'
+                        ? 'bg-medieval-gold text-black shadow-[0_4px_0_#8b7326]'
+                        : 'bg-medieval-card text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <FlaskConical className="w-4 h-4" /> {language === 'pt' ? 'Rune Making' : 'Rune Making'}
+                    </div>
+                  </button>
+                  <button
                     onClick={() => setCalcSubTab('professions')}
                     className={`px-6 py-3 rounded-sm font-black uppercase tracking-widest text-xs transition-all ${
                       calcSubTab === 'professions'
@@ -2864,6 +2884,8 @@ export default function App() {
                   />
                 ) : calcSubTab === 'bless' ? (
                   <BlessCalculator t={t} />
+                ) : calcSubTab === 'runemaking' ? (
+                  <RuneMakingCalculator t={t} language={language} />
                 ) : (
                   <div className="space-y-8">
                     <header className="text-center mb-12">

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { MessageSquare, Plus, ChevronRight, MessageCircle, Clock, ThumbsUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { supabase } from '../lib/supabase';
 
 interface Comment {
   id: string;
+  topic_id: string;
   author: string;
   content: string;
-  createdAt: number;
+  created_at: string;
 }
 
 interface Topic {
@@ -14,7 +16,7 @@ interface Topic {
   title: string;
   description: string;
   author: string;
-  createdAt: number;
+  created_at: string;
   likes: number;
   comments: Comment[];
   category: 'sugestao' | 'bug' | 'discussao';
@@ -24,12 +26,11 @@ interface FeedbackBoardProps {
   language: 'pt' | 'en';
 }
 
-const STORAGE_KEY = 'miracle_wiki_feedback_v1';
-
 export const FeedbackBoard: React.FC<FeedbackBoardProps> = ({ language }) => {
   const [topics, setTopics] = useState<Topic[]>([]);
   const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
   const [isCreatingTopic, setIsCreatingTopic] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Form states
   const [newTopicTitle, setNewTopicTitle] = useState('');
@@ -40,97 +41,120 @@ export const FeedbackBoard: React.FC<FeedbackBoardProps> = ({ language }) => {
   const [newCommentContent, setNewCommentContent] = useState('');
   const [newCommentAuthor, setNewCommentAuthor] = useState('');
 
-  useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      try {
-        setTopics(JSON.parse(saved));
-      } catch (e) {
-        console.error("Failed to parse topics", e);
+  const fetchTopicsAndComments = async () => {
+    try {
+      setIsLoading(true);
+      const { data: topicsData, error: topicsError } = await supabase
+        .from('feedback_topics')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (topicsError) throw topicsError;
+
+      const { data: commentsData, error: commentsError } = await supabase
+        .from('feedback_comments')
+        .select('*')
+        .order('created_at', { ascending: true });
+
+      if (commentsError) throw commentsError;
+
+      const formattedTopics: Topic[] = (topicsData || []).map(t => ({
+        ...t,
+        comments: (commentsData || []).filter(c => c.topic_id === t.id)
+      }));
+
+      setTopics(formattedTopics);
+      
+      // Update selected topic if it exists
+      if (selectedTopic) {
+        const updated = formattedTopics.find(t => t.id === selectedTopic.id);
+        if (updated) setSelectedTopic(updated);
       }
-    } else {
-      // Mock initial data
-      setTopics([
-        {
-          id: '1',
-          title: 'Adicionar Calculadora de Imbuements',
-          description: 'Acho que seria legal ter uma aba que mostra os custos de vida/mana/critico de cada nível de imbuement.',
-          author: 'Jogador123',
-          createdAt: Date.now() - 86400000,
-          likes: 12,
-          category: 'sugestao',
-          comments: [
-            {
-              id: 'c1',
-              author: 'Admin',
-              content: 'Boa ideia! Está no nosso radar para as próximas atualizações.',
-              createdAt: Date.now() - 40000000,
-            }
-          ]
-        }
-      ]);
+    } catch (e) {
+      console.error("Failed to fetch topics", e);
+    } finally {
+      setIsLoading(false);
     }
+  };
+
+  useEffect(() => {
+    fetchTopicsAndComments();
+
+    const topicsSub = supabase.channel('feedback_topics_changes')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'feedback_topics' }, () => {
+        fetchTopicsAndComments();
+      }).subscribe();
+
+    const commentsSub = supabase.channel('feedback_comments_changes')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'feedback_comments' }, () => {
+        fetchTopicsAndComments();
+      }).subscribe();
+
+    return () => {
+      topicsSub.unsubscribe();
+      commentsSub.unsubscribe();
+    };
   }, []);
 
-  useEffect(() => {
-    if (topics.length > 0) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(topics));
-    }
-  }, [topics]);
-
-  const handleCreateTopic = (e: React.FormEvent) => {
+  const handleCreateTopic = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newTopicTitle.trim() || !newTopicDesc.trim() || !newTopicAuthor.trim()) return;
 
-    const newTopic: Topic = {
-      id: Math.random().toString(36).substr(2, 9),
-      title: newTopicTitle,
-      description: newTopicDesc,
-      author: newTopicAuthor,
-      createdAt: Date.now(),
-      likes: 0,
-      category: newTopicCategory,
-      comments: []
-    };
+    try {
+      const { error } = await supabase.from('feedback_topics').insert([{
+        title: newTopicTitle,
+        description: newTopicDesc,
+        author: newTopicAuthor,
+        category: newTopicCategory,
+        likes: 0
+      }]);
 
-    setTopics([newTopic, ...topics]);
-    setIsCreatingTopic(false);
-    setNewTopicTitle('');
-    setNewTopicDesc('');
-    setNewTopicAuthor('');
+      if (error) {
+        alert('Error creating topic: ' + error.message);
+        return;
+      }
+
+      setIsCreatingTopic(false);
+      setNewTopicTitle('');
+      setNewTopicDesc('');
+      setNewTopicAuthor('');
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handleAddComment = (e: React.FormEvent) => {
+  const handleAddComment = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedTopic || !newCommentContent.trim() || !newCommentAuthor.trim()) return;
 
-    const newComment: Comment = {
-      id: Math.random().toString(36).substr(2, 9),
-      author: newCommentAuthor,
-      content: newCommentContent,
-      createdAt: Date.now()
-    };
+    try {
+      const { error } = await supabase.from('feedback_comments').insert([{
+        topic_id: selectedTopic.id,
+        author: newCommentAuthor,
+        content: newCommentContent
+      }]);
 
-    const updatedTopics = topics.map(t => {
-      if (t.id === selectedTopic.id) {
-        const updatedTopic = { ...t, comments: [...t.comments, newComment] };
-        setSelectedTopic(updatedTopic); // update modal state
-        return updatedTopic;
+      if (error) {
+        alert('Error adding comment: ' + error.message);
+        return;
       }
-      return t;
-    });
 
-    setTopics(updatedTopics);
-    setNewCommentContent('');
-    // Keep author name for convenience
+      setNewCommentContent('');
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handleLike = (e: React.MouseEvent, topicId: string) => {
+  const handleLike = async (e: React.MouseEvent, topic: Topic) => {
     e.stopPropagation();
-    setTopics(topics.map(t => t.id === topicId ? { ...t, likes: t.likes + 1 } : t));
+    try {
+      await supabase.from('feedback_topics').update({ likes: topic.likes + 1 }).eq('id', topic.id);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const formatDate = (ts: number) => {
+  const formatDate = (ts: string | number) => {
     return new Date(ts).toLocaleDateString(language === 'pt' ? 'pt-BR' : 'en-US', {
       day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit'
     });
@@ -180,10 +204,6 @@ export const FeedbackBoard: React.FC<FeedbackBoardProps> = ({ language }) => {
           </h1>
           <p className="text-medieval-muted text-sm mt-2 max-w-2xl">
             {t.subtitle} 
-            <br />
-            <span className="text-xs text-red-400 mt-1 inline-block">
-              {language === 'pt' ? '(Aviso: Atualmente rodando em modo Local. Os posts não aparecerão para outras pessoas até integrarmos um Banco de Dados.)' : '(Warning: Running in Local mode. Posts won\'t be visible to others until a Database is integrated.)'}
-            </span>
           </p>
         </div>
         {!selectedTopic && !isCreatingTopic && (
@@ -297,7 +317,7 @@ export const FeedbackBoard: React.FC<FeedbackBoardProps> = ({ language }) => {
               <h2 className="text-xl font-bold text-medieval-gold mb-2 pr-24">{selectedTopic.title}</h2>
               <div className="flex items-center gap-4 text-xs font-mono text-medieval-muted/60 mb-6">
                 <span>By: <strong className="text-medieval-gold/80 font-sans">{selectedTopic.author}</strong></span>
-                <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {formatDate(selectedTopic.createdAt)}</span>
+                <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {formatDate(selectedTopic.created_at)}</span>
               </div>
               <p className="text-sm text-gray-300 leading-relaxed whitespace-pre-wrap">
                 {selectedTopic.description}
@@ -318,7 +338,7 @@ export const FeedbackBoard: React.FC<FeedbackBoardProps> = ({ language }) => {
                     <div key={comment.id} className="bg-black/30 border border-medieval-gold/5 rounded p-4">
                        <div className="flex items-center justify-between gap-4 text-xs font-mono text-medieval-muted/60 mb-2 border-b border-white/5 pb-2">
                         <span><strong className="text-medieval-gold/70 font-sans">{comment.author}</strong></span>
-                        <span>{formatDate(comment.createdAt)}</span>
+                        <span>{formatDate(comment.created_at)}</span>
                       </div>
                       <p className="text-sm text-gray-300">{comment.content}</p>
                     </div>
@@ -398,7 +418,7 @@ export const FeedbackBoard: React.FC<FeedbackBoardProps> = ({ language }) => {
                     </p>
                     <div className="flex items-center gap-4 mt-3 text-[10px] font-mono text-medieval-gold/50">
                       <span>By: {topic.author}</span>
-                      <span>{formatDate(topic.createdAt)}</span>
+                      <span>{formatDate(topic.created_at)}</span>
                     </div>
                   </div>
                   

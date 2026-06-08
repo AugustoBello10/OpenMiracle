@@ -29,3 +29,26 @@ ALTER PUBLICATION supabase_realtime ADD TABLE inscricoes;
 -- INSERT INTO eventos (nome, descricao, data_hora, vagas) VALUES 
 -- ('Desert Quest', 'Necessário 1 de cada vocação level 20+', '2026-04-10 20:00:00+00', 4),
 -- ('Demon Helmet', 'Blocker e Shooters level 100+', '2026-04-12 21:00:00+00', 10);
+
+-- 5. Tabelas de Feedback Board
+CREATE TABLE feedback_topics (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  title TEXT NOT NULL,
+  description TEXT NOT NULL,
+  author TEXT NOT NULL,
+  category TEXT NOT NULL CHECK (category IN ('sugestao', 'bug', 'discussao')),
+  likes INTEGER DEFAULT 0,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE feedback_comments (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  topic_id UUID REFERENCES feedback_topics(id) ON DELETE CASCADE,
+  author TEXT NOT NULL,
+  content TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Habilitar Realtime para Feedback Board
+ALTER PUBLICATION supabase_realtime ADD TABLE feedback_topics;
+ALTER PUBLICATION supabase_realtime ADD TABLE feedback_comments;
