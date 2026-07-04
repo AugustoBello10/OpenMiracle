@@ -4,13 +4,14 @@
  */
 
 import { useState, useEffect, useMemo, ReactNode } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Hammer, Sword, Gem, Pickaxe, Wand2, Zap, Twitch, 
   MessageSquare, ExternalLink, Info, Table as TableIcon, 
   TrendingUp, AlertTriangle, Book, Sparkles, Briefcase, 
   ChevronRight, ChevronUp, ChevronDown, Menu, X, Map, Youtube, Fish, FlaskConical, Utensils, Sprout, Scissors, Users,
-  History, Plus, Minus, Check, RefreshCw, Clock, Calendar, Download, Shield, Circle, Heart, Target, Axe, Coins
+  History, Plus, Minus, Check, RefreshCw, Clock, Calendar, Download, Shield, Circle, Heart, Target, Axe, Coins, Eye
 } from 'lucide-react';
 import { calculateTrainingTime, Vocation, SkillType, TRAINING_WEAPONS_DATA, TrainingWeapon, calculateBlessCosts } from './lib/formulas';
 import { Language, translations } from './lib/translations';
@@ -26,6 +27,7 @@ import { CraftingCalculator } from './components/CraftingCalculator';
 import { MiningCalculator } from './components/MiningCalculator';
 import { RuneMakingCalculator } from './components/RuneMakingCalculator';
 import { LootOptimizer } from './components/LootOptimizer';
+import { supabase } from './lib/supabase';
 
 // --- Dados do Banco de Dados Embutido ---
 const CRAFT_ITEMS = [
@@ -1300,11 +1302,142 @@ const getItemEffects = (item: any) => {
 };
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<Tab>('home');
-  const [calcSubTab, setCalcSubTab] = useState<'skills' | 'bless' | 'atributos' | 'professions' | 'runemaking'>('skills');
-  const [profSubTab, setProfSubTab] = useState<'crafting' | 'alchemy' | 'farming' | 'mining'>('crafting');
-  const [wikiSubTab, setWikiSubTab] = useState<'server' | 'project'>('server');
-  const [wikiMainTab, setWikiMainTab] = useState<'home' | 'updates' | 'library' | 'items'>('home');
+  const getInitialTab = (): Tab => {
+    const path = typeof window !== 'undefined' ? window.location.pathname : '/';
+    if (path.startsWith('/buildmaker')) return 'buildmaker';
+    if (path.startsWith('/calculadoras')) return 'calculadoras';
+    if (path.startsWith('/profissoes')) return 'profissoes';
+    if (path.startsWith('/mapa')) return 'mapa';
+    if (path.startsWith('/eventos')) return 'eventos';
+    if (path.startsWith('/wiki')) return 'wiki';
+    if (path.startsWith('/loot')) return 'loot';
+    if (path.startsWith('/feedback')) return 'feedback';
+    return 'home';
+  };
+
+  const getInitialCalcSubTab = () => {
+    const path = typeof window !== 'undefined' ? window.location.pathname : '/';
+    if (path.includes('/runas')) return 'runemaking';
+    if (path.includes('/bless')) return 'bless';
+    if (path.includes('/atributos')) return 'atributos';
+    if (path.includes('/profissoes')) return 'professions';
+    return 'skills';
+  };
+
+  const getInitialProfSubTab = () => {
+    const path = typeof window !== 'undefined' ? window.location.pathname : '/';
+    if (path.includes('/alquimia')) return 'alchemy';
+    if (path.includes('/fazenda')) return 'farming';
+    if (path.includes('/mineracao')) return 'mining';
+    return 'crafting';
+  };
+
+  const getInitialWikiSubTab = () => {
+    const path = typeof window !== 'undefined' ? window.location.pathname : '/';
+    if (path.includes('/projeto')) return 'project';
+    return 'server';
+  };
+
+  const getInitialWikiMainTab = () => {
+    const path = typeof window !== 'undefined' ? window.location.pathname : '/';
+    if (path.includes('/updates')) return 'updates';
+    if (path.includes('/biblioteca')) return 'library';
+    if (path.includes('/itens')) return 'items';
+    return 'home';
+  };
+
+  const [activeTab, setActiveTab] = useState<Tab>(getInitialTab);
+  const [calcSubTab, setCalcSubTab] = useState<'skills' | 'bless' | 'atributos' | 'professions' | 'runemaking'>(getInitialCalcSubTab);
+  const [profSubTab, setProfSubTab] = useState<'crafting' | 'alchemy' | 'farming' | 'mining'>(getInitialProfSubTab);
+  const [wikiSubTab, setWikiSubTab] = useState<'server' | 'project'>(getInitialWikiSubTab);
+  const [wikiMainTab, setWikiMainTab] = useState<'home' | 'updates' | 'library' | 'items'>(getInitialWikiMainTab);
+  
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // 1. Sync URL to State (initial load & browser nav)
+  useEffect(() => {
+    const path = location.pathname;
+    
+    if (path === '/' || path === '') {
+      setActiveTab('home');
+    } else if (path.startsWith('/buildmaker')) {
+      setActiveTab('buildmaker');
+    } else if (path.startsWith('/calculadoras')) {
+      setActiveTab('calculadoras');
+      if (path.includes('/runas')) setCalcSubTab('runemaking');
+      else if (path.includes('/skills')) setCalcSubTab('skills');
+      else if (path.includes('/bless')) setCalcSubTab('bless');
+      else if (path.includes('/atributos')) setCalcSubTab('atributos');
+      else if (path.includes('/profissoes')) {
+        setCalcSubTab('professions');
+        if (path.includes('/crafting')) setProfSubTab('crafting');
+        else if (path.includes('/alquimia')) setProfSubTab('alchemy');
+        else if (path.includes('/fazenda')) setProfSubTab('farming');
+        else if (path.includes('/mineracao')) setProfSubTab('mining');
+      }
+    } else if (path.startsWith('/profissoes')) {
+      setActiveTab('profissoes');
+    } else if (path.startsWith('/mapa')) {
+      setActiveTab('mapa');
+    } else if (path.startsWith('/eventos')) {
+      setActiveTab('eventos');
+    } else if (path.startsWith('/wiki')) {
+      setActiveTab('wiki');
+      if (path.includes('/projeto')) setWikiSubTab('project');
+      else setWikiSubTab('server');
+      
+      if (path.includes('/updates')) setWikiMainTab('updates');
+      else if (path.includes('/biblioteca')) setWikiMainTab('library');
+      else if (path.includes('/itens')) setWikiMainTab('items');
+      else setWikiMainTab('home');
+    } else if (path.startsWith('/loot')) {
+      setActiveTab('loot');
+    } else if (path.startsWith('/feedback')) {
+      setActiveTab('feedback');
+    }
+  }, [location.pathname]);
+
+  // 2. Sync State to URL
+  useEffect(() => {
+    let newPath = '/';
+    if (activeTab === 'home') newPath = '/';
+    else if (activeTab === 'buildmaker') newPath = '/buildmaker';
+    else if (activeTab === 'calculadoras') {
+      if (calcSubTab === 'runemaking') newPath = '/calculadoras/runas';
+      else if (calcSubTab === 'skills') newPath = '/calculadoras/skills';
+      else if (calcSubTab === 'bless') newPath = '/calculadoras/bless';
+      else if (calcSubTab === 'atributos') newPath = '/calculadoras/atributos';
+      else if (calcSubTab === 'professions') {
+         if (profSubTab === 'crafting') newPath = '/calculadoras/profissoes/crafting';
+         else if (profSubTab === 'alchemy') newPath = '/calculadoras/profissoes/alquimia';
+         else if (profSubTab === 'farming') newPath = '/calculadoras/profissoes/fazenda';
+         else if (profSubTab === 'mining') newPath = '/calculadoras/profissoes/mineracao';
+         else newPath = '/calculadoras/profissoes/crafting';
+      } else {
+        newPath = '/calculadoras/skills';
+      }
+    } else if (activeTab === 'profissoes') newPath = '/profissoes';
+    else if (activeTab === 'mapa') newPath = '/mapa';
+    else if (activeTab === 'eventos') newPath = '/eventos';
+    else if (activeTab === 'wiki') {
+      let wikiPath = '/wiki';
+      if (wikiSubTab === 'project') wikiPath += '/projeto';
+      else wikiPath += '/server';
+      
+      if (wikiMainTab === 'updates') wikiPath += '/updates';
+      else if (wikiMainTab === 'library') wikiPath += '/biblioteca';
+      else if (wikiMainTab === 'items') wikiPath += '/itens';
+      
+      newPath = wikiPath;
+    } else if (activeTab === 'loot') newPath = '/loot';
+    else if (activeTab === 'feedback') newPath = '/feedback';
+
+    if (location.pathname !== newPath) {
+      navigate(newPath);
+    }
+  }, [activeTab, calcSubTab, profSubTab, wikiSubTab, wikiMainTab]);
+
   const [itemsSubTab, setItemsSubTab] = useState<'helmets' | 'armors' | 'legs' | 'boots' | 'shields' | 'swords' | 'clubs' | 'axes' | 'distance' | 'ammo' | 'rings' | 'amulets' | 'relics'>('helmets');
   const [distanceFilter, setDistanceFilter] = useState<'all' | 'bow' | 'crossbow' | 'throwing'>('all');
   const [selectedBookId, setSelectedBookId] = useState<string>(LIBRARY_DATA[0]?.id || '');
@@ -1337,6 +1470,45 @@ export default function App() {
     utilitarios: true,
     comunidade: true
   });
+
+  // Secret Admin Tracking State
+  const [showAdmin, setShowAdmin] = useState(false);
+  const [visitCount, setVisitCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    // Registra a visita ao abrir o app
+    const trackVisit = async () => {
+      try {
+        await supabase.from('site_visits').insert([{ 
+          path: window.location.pathname,
+          user_agent: navigator.userAgent
+        }]);
+      } catch (e) {
+        console.error("Falha ao registrar visita");
+      }
+    };
+    trackVisit();
+  }, []);
+
+  useEffect(() => {
+    // Atalho secreto: Ctrl + Shift + V
+    const handleKeyDown = async (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'v') {
+        setShowAdmin(prev => {
+          if (!prev) {
+            // Ao abrir, atualiza a contagem
+            supabase
+              .from('site_visits')
+              .select('*', { count: 'exact', head: true })
+              .then(({ count }) => setVisitCount(count));
+          }
+          return !prev;
+        });
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const toggleGroup = (group: keyof typeof sidebarOpenGroups) => {
     setSidebarOpenGroups(prev => ({ ...prev, [group]: !prev[group] }));
@@ -4797,6 +4969,34 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* Secret Admin Modal */}
+      <AnimatePresence>
+        {showAdmin && (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            className="fixed bottom-6 left-6 z-50 bg-black/90 border border-medieval-gold/30 p-6 rounded shadow-[0_0_40px_rgba(197,160,89,0.15)] flex flex-col gap-4 backdrop-blur-sm"
+          >
+            <div className="flex justify-between items-center gap-8">
+              <h3 className="text-medieval-gold font-black uppercase text-xs tracking-widest flex items-center gap-2">
+                <Eye className="w-4 h-4" />
+                Acessos ao Site
+              </h3>
+              <button onClick={() => setShowAdmin(false)} className="text-medieval-gold/40 hover:text-medieval-gold">
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            <div className="text-3xl font-mono text-white tracking-widest text-center py-2 bg-black/50 border border-medieval-gold/10 rounded">
+              {visitCount !== null ? visitCount : '...'}
+            </div>
+            <p className="text-[10px] text-medieval-gold/40 text-center uppercase tracking-widest font-mono">
+              Via Supabase Realtime
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

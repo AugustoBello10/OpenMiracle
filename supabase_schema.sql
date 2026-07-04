@@ -52,3 +52,14 @@ CREATE TABLE feedback_comments (
 -- Habilitar Realtime para Feedback Board
 ALTER PUBLICATION supabase_realtime ADD TABLE feedback_topics;
 ALTER PUBLICATION supabase_realtime ADD TABLE feedback_comments;
+
+-- 6. Tabela de Analytics (Visitas ao site)
+CREATE TABLE site_visits (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  visited_at TIMESTAMPTZ DEFAULT NOW(),
+  path TEXT,
+  user_agent TEXT
+);
+
+-- Habilitar Realtime para Analytics (opcional)
+ALTER PUBLICATION supabase_realtime ADD TABLE site_visits;

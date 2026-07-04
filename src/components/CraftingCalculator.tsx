@@ -61,7 +61,8 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
 
     let totalCost = 0;
     const materials = selectedItem.materials.map((mat: any) => {
-      const totalNeeded = mat.amount * expectedAttempts;
+      const isNonConsumable = mat.name.toLowerCase() === 'onyx';
+      const totalNeeded = isNonConsumable ? (mat.amount * quantityNum) : (mat.amount * expectedAttempts);
       const unitPrice = Number(materialPrices[mat.name]) || 0;
       totalCost += totalNeeded * unitPrice;
       
