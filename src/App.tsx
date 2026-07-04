@@ -11,7 +11,8 @@ import {
   MessageSquare, ExternalLink, Info, Table as TableIcon, 
   TrendingUp, AlertTriangle, Book, Sparkles, Briefcase, 
   ChevronRight, ChevronUp, ChevronDown, Menu, X, Map, Youtube, Fish, FlaskConical, Utensils, Sprout, Scissors, Users,
-  History, Plus, Minus, Check, RefreshCw, Clock, Calendar, Download, Shield, Circle, Heart, Target, Axe, Coins, Eye
+  History, Plus, Minus, Check, RefreshCw, Clock, Calendar, Download, Shield, Circle, Heart, Target, Axe, Coins, Eye,
+  Search
 } from 'lucide-react';
 import { calculateTrainingTime, Vocation, SkillType, TRAINING_WEAPONS_DATA, TrainingWeapon, calculateBlessCosts } from './lib/formulas';
 import { Language, translations } from './lib/translations';
@@ -248,6 +249,7 @@ const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
     { "name": "Ancient Tiara", "class": 3, "attributes": ["Armor", "Healing", "Max Mana", "Momentum", "Mana Regen", "Magic Level", "Health Regen", "Protect Fire", "Protect Mana Drain"] },
     { "name": "Magician Hat", "class": 3, "attributes": ["Max Mana", "Momentum", "Mana Regen", "Magic Level", "Mana Healing", "Protect Energy", "Protect Mana Drain"] },
     { "name": "Ceremonial Mask", "class": 3, "attributes": ["Speed", "Max Health", "Distance Fighting", "Magic Level", "Protect Fire", "Attack Interval"] },
+    { "name": "Black Hat", "class": 3, "attributes": ["Speed", "Max Mana", "Momentum", "Mana Regen", "Magic Level", "Destruction", "Mana Healing", "Protect Fire", "Protect Death", "Critical Spell", "Protect Life Drain", "Protect Mana Drain"] },
     { "name": "Crusader Helmet", "class": 3, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Protect Physical"] },
     { "name": "Warrior Helmet", "class": 3, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Sword Fighting", "Shielding", "Protect Physical"] },
     { "name": "Frozen Helmet", "class": 3, "attributes": ["Armor", "Speed", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Protect Ice", "Sword Fighting", "Health Regen"] },
@@ -255,7 +257,8 @@ const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
     { "name": "Winged Helmet", "class": 4, "attributes": ["Armor", "Speed", "Weight", "Healing", "Max Health", "Distance Fighting", "Health Regen", "Shielding", "Protect Energy", "Protect Physical"] },
     { "name": "Demon Helmet", "class": 4, "attributes": ["Armor", "Speed", "Weight", "Max Mana", "Momentum", "Axe Fighting", "Mana Regen", "Max Health", "Club Fighting", "Distance Fighting", "Magic Level", "Sword Fighting", "Health Regen", "Protect Fire", "Protect Energy"] },
     { "name": "Dragon Scale Helmet", "class": 4, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Protect Fire", "Shielding", "Protect Physical"] },
-    { "name": "Helmet Of The Ancients", "class": 5, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Protect Fire", "Shielding", "Protect Physical"] },
+    { "name": "Helmet Of The Ancients (Empty)", "class": 5, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Protect Fire", "Shielding", "Protect Physical"] },
+    { "name": "Helmet Of The Ancients (Full)", "class": 5, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Protect Fire", "Shielding", "Protect Physical"] },
     { "name": "Horned Helmet", "class": 5, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Protect Fire", "Shielding", "Protect Physical"] },
     { "name": "Golden Helmet", "class": 5, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Shielding", "Protect Elements", "Protect Physical"] }
   ],
@@ -308,7 +311,6 @@ const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
     { "name": "Plate Legs", "class": 2, "attributes": ["Armor", "Weight", "Max Health", "Protect Physical"] },
     { "name": "Knight Legs", "class": 3, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Sword Fighting", "Protect Physical"] },
     { "name": "Crown Legs", "class": 3, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Protect Physical"] },
-    { "name": "Bast Skirt", "class": 4, "attributes": [] },
     { "name": "Golden Legs", "class": 3, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Protect Energy", "Protect Physical"] },
     { "name": "Demon Legs", "class": 4, "attributes": ["Armor", "Speed", "Weight", "Max Mana", "Axe Fighting", "Mana Regen", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Magic Level", "Protect Physical"] },
     { "name": "Frozen Legs", "class": 3, "attributes": [] },
@@ -1016,7 +1018,6 @@ function SkillCalculator({
             </h3>
             <div className="space-y-4 text-xs text-medieval-text/70 leading-relaxed font-mono">
               <p>• <span className="text-medieval-gold">{t('meleeInfo').split(':')[0]}:</span> {t('meleeInfo').split(':')[1]}</p>
-              <p>• <span className="text-medieval-gold">{t('distanceInfo').split(':')[0]}:</span> {t('distanceInfo').split(':')[1]}</p>
               <p>• <span className="text-medieval-gold">{t('shieldingInfo').split(':')[0]}:</span> {t('shieldingInfo').split(':')[1]}</p>
               <p>• <span className="text-medieval-gold">{t('atkIntervalInfo').split(':')[0]}:</span> {t('atkIntervalInfo').split(':')[1]}</p>
               <p>• <span className="text-medieval-gold">{t('trainingWeaponInfo').split(':')[0]}:</span> {t('trainingWeaponInfo').split(':')[1]}</p>
@@ -1629,7 +1630,7 @@ export default function App() {
       return;
     }
 
-    const normalize = (str: string) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    const normalize = (str: string) => str ? str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : "";
     const q = normalize(query);
 
     const results: { id: string; label: string; type: string; action: () => void }[] = [];
@@ -1655,6 +1656,15 @@ export default function App() {
       return { subTab: 'helmets' };
     };
 
+    // Keep track of added items to prevent exact duplicates in list
+    const addedIds = new Set<string>();
+
+    const addResult = (id: string, label: string, type: string, action: () => void) => {
+      if (addedIds.has(id)) return;
+      addedIds.add(id);
+      results.push({ id, label, type, action });
+    };
+
     // 1. Search in Equipment & Items (HELMETS_DATA & ALL_BUILD_ITEMS)
     const allEquipItems = [...HELMETS_DATA, ...ALL_BUILD_ITEMS];
     allEquipItems.forEach(item => {
@@ -1662,26 +1672,26 @@ export default function App() {
         const { subTab, attrCat } = getSubTabAndAttrCat(item);
         
         // Match 1a: Wiki detailed database card
-        results.push({
-          id: `equip-wiki-${item.name}`,
-          label: `Wiki: ${item.name}`,
-          type: `Equipamento (${subTab.toUpperCase()})`,
-          action: () => {
+        addResult(
+          `equip-wiki-${item.name}`,
+          `Wiki: ${item.name}`,
+          `Equipamento (${subTab.toUpperCase()})`,
+          () => {
             setActiveTab('wiki');
             setWikiMainTab('items');
             setItemsSubTab(subTab);
             setSearchQuery('');
             setSearchResults([]);
           }
-        });
+        );
 
         // Match 1b: Attribute Calculator link
         if (attrCat) {
-          results.push({
-            id: `equip-attr-${item.name}`,
-            label: `${item.name} (Calculadora de Atributos)`,
-            type: 'Calculadora de Atributos',
-            action: () => {
+          addResult(
+            `equip-attr-${item.name}`,
+            `${item.name} (Calculadora de Atributos)`,
+            'Calculadora de Atributos',
+            () => {
               setActiveTab('calculadoras');
               setCalcSubTab('atributos');
               setAttrCategory(attrCat);
@@ -1689,8 +1699,20 @@ export default function App() {
               setSearchQuery('');
               setSearchResults([]);
             }
-          });
+          );
         }
+
+        // Match 1c: Build Maker link ("seja build maker")
+        addResult(
+          `equip-bm-${item.name}`,
+          `Build Maker: Equipar ${item.name}`,
+          'Build Maker (Simulador)',
+          () => {
+            setActiveTab('buildmaker');
+            setSearchQuery('');
+            setSearchResults([]);
+          }
+        );
       }
     });
 
@@ -1699,88 +1721,93 @@ export default function App() {
       cat.items.forEach(item => {
         // Match 2a: Recipe Name matching
         if (normalize(item.name).includes(q)) {
-          results.push({
-            id: `craft-recipe-${item.name}`,
-            label: `Forjar: ${item.name}`,
-            type: `Crafting (${cat.category === 'giantGemsRelics' ? 'Gemas & Relíquias' : cat.category === 'toolsPicks' ? 'Ferramentas' : cat.category === 'mysticRunes' ? 'Runas Místicas' : 'Geral'})`,
-            action: () => {
-              setActiveTab('profissoes');
+          addResult(
+            `craft-recipe-${item.name}`,
+            `Forjar: ${item.name}`,
+            `Calculadora de Crafting (${cat.category === 'giantGemsRelics' ? 'Gemas & Relíquias' : cat.category === 'toolsPicks' ? 'Ferramentas' : cat.category === 'mysticRunes' ? 'Runas Místicas' : 'Geral'})`,
+            () => {
+              setActiveTab('calculadoras');
+              setCalcSubTab('professions');
               setProfSubTab('crafting');
               setSearchCraftCategory(cat.category);
               setSearchCraftItemName(item.name);
               setSearchQuery('');
               setSearchResults([]);
             }
-          });
+          );
         }
 
-        // Match 2b: Material Ingredient matching (What items use Draconian Steel, etc.)
+        // Match 2b: Material Ingredient matching (What items use Onyx, Draconian Steel, etc.)
         if (item.materials) {
           const matchingMat = item.materials.find((mat: any) => normalize(mat.name).includes(q));
           if (matchingMat) {
-            results.push({
-              id: `craft-material-${item.name}-${matchingMat.name}`,
-              label: `Forjar ${item.name} (Utiliza ${matchingMat.name})`,
-              type: `Crafting Ingredient`,
-              action: () => {
-                setActiveTab('profissoes');
+            addResult(
+              `craft-material-${item.name}-${matchingMat.name}`,
+              `Forjar ${item.name} (Utiliza ${matchingMat.name})`,
+              `Ingrediente de Crafting`,
+              () => {
+                setActiveTab('calculadoras');
+                setCalcSubTab('professions');
                 setProfSubTab('crafting');
                 setSearchCraftCategory(cat.category);
                 setSearchCraftItemName(item.name);
                 setSearchQuery('');
                 setSearchResults([]);
               }
-            });
+            );
           }
         }
       });
     });
 
-    // 3. Search in Alchemy Runes & Crystals (ALCHEMY_RUNES & ALCHEMY_CRYSTALS)
+    // 3. Search in Alchemy Runes & Crystals (ALCHEMY_RUNES)
     ALCHEMY_RUNES.forEach(rune => {
       if (normalize(rune.name).includes(q)) {
-        results.push({
-          id: `alchemy-rune-${rune.name}`,
-          label: `Alquimia: Runa ${rune.name}`,
-          type: 'Profissão: Alquimia',
-          action: () => {
-            setActiveTab('profissoes');
+        addResult(
+          `alchemy-rune-${rune.name}`,
+          `Alquimia: Runa ${rune.name}`,
+          'Profissão: Alquimia',
+          () => {
+            setActiveTab('calculadoras');
+            setCalcSubTab('professions');
             setProfSubTab('alchemy');
             setSearchAlchemyRune(rune.name);
             setSearchQuery('');
             setSearchResults([]);
           }
-        });
+        );
       }
     });
 
     FARMING_TREES.forEach(tree => {
       if (normalize(tree.name).includes(q) || normalize(tree.fruit).includes(q)) {
-        results.push({
-          id: `farming-tree-${tree.name}`,
-          label: `Farming: ${tree.name} (${tree.fruit})`,
-          type: 'Profissão: Farming',
-          action: () => {
-            setActiveTab('profissoes');
+        addResult(
+          `farming-tree-${tree.name}`,
+          `Farming: ${tree.name} (${tree.fruit})`,
+          'Profissão: Farming',
+          () => {
+            setActiveTab('calculadoras');
+            setCalcSubTab('professions');
             setProfSubTab('farming');
             setSearchFarmingTree(tree.name);
             setSearchQuery('');
             setSearchResults([]);
           }
-        });
+        );
       }
     });
 
     // 4. Search in Lore Books & Library (LIBRARY_DATA)
     LIBRARY_DATA.forEach(book => {
-      const titleMatch = normalize(book.title[language]).includes(q);
-      const contentMatch = book.content[language]?.some(page => normalize(page).includes(q));
+      const titleMatch = normalize(book.title[language] || '').includes(q);
+      const contentStr = book.content[language] || '';
+      const contentMatch = normalize(contentStr).includes(q);
       if (titleMatch || contentMatch) {
-         results.push({
-           id: `book-${book.id}`,
-           label: `Livro: ${book.title[language]}`,
-           type: `Lore: Biblioteca (${book.region[language]})`,
-           action: () => {
+         addResult(
+           `book-${book.id}`,
+           `Livro: ${book.title[language]}`,
+           `Lore: Biblioteca (${book.region[language]})`,
+           () => {
              setActiveTab('wiki');
              setWikiMainTab('library');
              setSelectedRegion(book.region[language]);
@@ -1788,36 +1815,92 @@ export default function App() {
              setSearchQuery('');
              setSearchResults([]);
            }
-         });
+         );
       }
     });
 
-    // 5. Search in Direct Links, Keywords & Tools
-    const keywords = [
-      { keys: ['pick', 'mining', 'mineracao', 'picareta'], tab: 'profissoes', sub: 'mining', label: 'Mineração (Profissão / Força das Picaretas)' },
-      { keys: ['pick', 'crafting', 'forja', 'craft'], tab: 'profissoes', sub: 'crafting', label: 'Crafting (Profissão / Fabricação)' },
-      { keys: ['alchemy', 'alquimia', 'potion', 'pocao', 'runa', 'runas'], tab: 'profissoes', sub: 'alchemy', label: 'Alquimia (Profissão / Runas de Duplicação)' },
-      { keys: ['farming', 'seed', 'fazenda', 'plantio', 'agricultura'], tab: 'profissoes', sub: 'farming', label: 'Farming (Profissão / Plantio de Árvores)' },
-      { keys: ['bless', 'morte', 'death', 'bencao'], tab: 'calculadoras', sub: 'bless', label: 'Calculadora de Bless' },
-      { keys: ['skill', 'treino', 'training', 'vocation'], tab: 'calculadoras', sub: 'skills', label: 'Calculadora de Skills & Treino' },
-      { keys: ['build', 'maker', 'set', 'equipar', 'atributos'], tab: 'buildmaker', sub: '', label: 'Build Maker (Criador de Sets)' },
-      { keys: ['map', 'mapa', 'interativo', 'quest'], tab: 'mapa', sub: '', label: 'Mapa Interativo de Comarca / Quests' },
+    // 5. Intelligent Profession Keyword matching (suggests calculators and video tutorials directly)
+    const profKeywords = [
+      {
+        keys: ['pick', 'mining', 'mineracao', 'picareta', 'ore', 'miner', 'minerar'],
+        labelCalc: 'Calculadora de Mineração (Antiazar & Ganhos)',
+        labelVid: 'Vídeo Tutorial: Guia de Mineração',
+        sub: 'mining'
+      },
+      {
+        keys: ['pick', 'crafting', 'forja', 'craft', 'ferreiro', 'forjar', 'recipe', 'receita', 'onyx'],
+        labelCalc: 'Calculadora de Crafting (Fórmulas & Custos)',
+        labelVid: 'Vídeo Tutorial: Guia de Crafting / Forja',
+        sub: 'crafting'
+      },
+      {
+        keys: ['alchemy', 'alquimia', 'potion', 'pocao', 'runa', 'runas', 'duplicacao', 'onyx'],
+        labelCalc: 'Calculadora de Alquimia (Duplicação de Runas)',
+        labelVid: 'Vídeo Tutorial: Guia de Alquimia',
+        sub: 'alchemy'
+      },
+      {
+        keys: ['farming', 'seed', 'fazenda', 'plantio', 'agricultura', 'cultivo', 'colheita', 'arvore'],
+        labelCalc: 'Calculadora de Farming (Cultivo de Árvores)',
+        labelVid: 'Vídeo Tutorial: Guia de Farming / Fazenda',
+        sub: 'farming'
+      }
     ];
 
-    keywords.forEach(kw => {
+    profKeywords.forEach(kw => {
       if (kw.keys.some(k => normalize(k).includes(q))) {
-        results.push({
-          id: `kw-link-${kw.label}`,
-          label: kw.label,
-          type: 'Link Direto',
-          action: () => {
-            setActiveTab(kw.tab as Tab);
-            if (kw.tab === 'profissoes' && kw.sub) setProfSubTab(kw.sub as any);
-            if (kw.tab === 'calculadoras' && kw.sub) setCalcSubTab(kw.sub as any);
+        // Direct Calculator Shortcut
+        addResult(
+          `prof-calc-${kw.sub}`,
+          kw.labelCalc,
+          'Calculadora de Profissão',
+          () => {
+            setActiveTab('calculadoras');
+            setCalcSubTab('professions');
+            setProfSubTab(kw.sub as any);
             setSearchQuery('');
             setSearchResults([]);
           }
-        });
+        );
+        // Video Guide Shortcut ("seja vídeo de profissão")
+        addResult(
+          `prof-vid-${kw.sub}`,
+          kw.labelVid,
+          'Guia de Profissão (Vídeo)',
+          () => {
+            setActiveTab('profissoes');
+            setSearchQuery('');
+            setSearchResults([]);
+          }
+        );
+      }
+    });
+
+    // 6. Other General Tools / Guides
+    const generalKeywords = [
+      { keys: ['bless', 'morte', 'death', 'bencao'], tab: 'calculadoras', sub: 'bless', label: 'Calculadora de Bless & Penalidade de Morte', type: 'Utilitário' },
+      { keys: ['skill', 'treino', 'training', 'vocation', 'druid', 'sorcerer', 'knight', 'paladin'], tab: 'calculadoras', sub: 'skills', label: 'Calculadora de Skills & Tempo de Treino', type: 'Utilitário' },
+      { keys: ['build', 'maker', 'set', 'equipar', 'atributos', 'simulador'], tab: 'buildmaker', sub: '', label: 'Build Maker (Criador & Simulador de Sets)', type: 'Build Maker' },
+      { keys: ['map', 'mapa', 'interativo', 'quest', 'comarca'], tab: 'mapa', sub: '', label: 'Mapa Interativo de Comarca / Quests', type: 'Ferramenta' },
+      { keys: ['patch', 'notes', 'notas', 'update', 'atualizacao', 'versao', 'mudancas'], tab: 'wiki', sub: 'updates', label: 'Histórico de Patch Notes & Atualizações', type: 'Wiki' },
+    ];
+
+    generalKeywords.forEach(kw => {
+      if (kw.keys.some(k => normalize(k).includes(q))) {
+        addResult(
+          `gen-kw-${kw.label}`,
+          kw.label,
+          kw.type,
+          () => {
+            setActiveTab(kw.tab as Tab);
+            if (kw.tab === 'calculadoras' && kw.sub) setCalcSubTab(kw.sub as any);
+            if (kw.tab === 'wiki' && kw.sub === 'updates') {
+              setWikiMainTab('updates');
+            }
+            setSearchQuery('');
+            setSearchResults([]);
+          }
+        );
       }
     });
 
@@ -2371,13 +2454,35 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           <button 
             onClick={() => setActiveTab('home')}
-            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity shrink-0"
           >
             <Hammer className="text-medieval-gold w-6 h-6" />
             <span className="text-medieval-gold font-black uppercase tracking-tighter text-lg hidden sm:inline">
               Miracle Wiki Tools
             </span>
           </button>
+
+          {/* Desktop Global Search Bar */}
+          <div className="hidden lg:block relative max-w-xs w-full mx-6">
+            <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+              <Search className="text-medieval-gold/40 w-4 h-4" />
+            </div>
+            <input 
+              type="text" 
+              value={searchQuery}
+              onChange={(e) => {
+                if (activeTab !== 'home') setActiveTab('home');
+                handleSearch(e.target.value);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && searchResults.length > 0) {
+                  searchResults[0].action();
+                }
+              }}
+              placeholder={language === 'pt' ? 'Buscar no site...' : 'Search wiki...'}
+              className="w-full bg-black/40 border border-medieval-gold/20 rounded-full py-1.5 pl-9 pr-4 text-medieval-gold placeholder:text-medieval-gold/30 focus:outline-none focus:border-medieval-gold/50 focus:bg-black/60 transition-all text-xs font-mono tracking-wider"
+            />
+          </div>
 
           {/* Desktop Tabs */}
           <div className="hidden md:flex items-center gap-1">
@@ -2540,9 +2645,38 @@ export default function App() {
                         type="text" 
                         value={searchQuery}
                         onChange={(e) => handleSearch(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' && searchResults.length > 0) {
+                            searchResults[0].action();
+                          }
+                        }}
                         placeholder={t('databaseSearch')}
-                        className="w-full bg-black/40 border border-medieval-gold/20 rounded-full py-4 pl-12 pr-6 text-medieval-gold placeholder:text-medieval-gold/20 focus:outline-none focus:border-medieval-gold/50 focus:bg-black/60 transition-all text-sm font-bold tracking-wider"
+                        className="w-full bg-black/40 border border-medieval-gold/20 rounded-full py-4 pl-12 pr-12 text-medieval-gold placeholder:text-medieval-gold/20 focus:outline-none focus:border-medieval-gold/50 focus:bg-black/60 transition-all text-sm font-bold tracking-wider"
                       />
+                      <div className="absolute inset-y-0 right-4 flex items-center gap-1.5">
+                        {searchQuery && (
+                          <button
+                            onClick={() => {
+                              setSearchQuery('');
+                              setSearchResults([]);
+                            }}
+                            className="text-medieval-gold/40 hover:text-medieval-gold p-1"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        )}
+                        <button
+                          onClick={() => {
+                            if (searchResults.length > 0) {
+                              searchResults[0].action();
+                            }
+                          }}
+                          className="bg-medieval-gold text-black rounded-full p-2 hover:bg-medieval-gold/80 transition-all"
+                          title={language === 'pt' ? 'Ir para primeiro resultado' : 'Go to first result'}
+                        >
+                          <Search className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
                       
                       {/* Search Results Dropdown */}
                       <AnimatePresence>
@@ -2572,11 +2706,12 @@ export default function App() {
                         )}
                       </AnimatePresence>
                     </div>
-
+ 
                     {/* Interactive suggestions pills */}
                     <div className="flex flex-wrap justify-center items-center gap-1 text-xs">
                       <span className="text-medieval-gold/40 font-mono text-[9px] uppercase tracking-wider mr-1">Sugestões comuns:</span>
                       {[
+                        { text: 'Onyx', display: 'Onyx' },
                         { text: 'Demon Helmet', display: 'Demon Helmet' },
                         { text: 'Sword of Valor', display: 'Sword of Valor' },
                         { text: 'Soft Boots', display: 'Soft Boots' },
@@ -2588,12 +2723,62 @@ export default function App() {
                         <button
                           key={idx}
                           onClick={() => handleSearch(pill.text)}
-                          className="px-2.5 py-1 bg-medieval-gold/5 hover:bg-medieval-gold/15 border border-medieval-gold/10 hover:border-medieval-gold/30 rounded text-medieval-gold/85 hover:text-medieval-gold text-[10px] font-mono transition-all lowercase"
+                          className="px-2.5 py-1 bg-medieval-gold/5 hover:bg-medieval-gold/15 border border-medieval-gold/10 hover:border-medieval-gold/30 rounded text-medieval-gold/85 hover:text-medieval-gold text-[10px] font-mono transition-all"
                         >
                           {pill.display}
                         </button>
                       ))}
                     </div>
+
+                    {/* Highly-Reliable Inline Search Results Grid (Guarantees Visibility on all screens) */}
+                    {searchQuery.trim() && (
+                      <motion.div 
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="bg-black/55 border border-medieval-gold/25 rounded-lg p-5 mt-6 text-left space-y-4 shadow-xl"
+                      >
+                        <div className="flex items-center justify-between border-b border-medieval-gold/10 pb-2">
+                          <span className="text-xs font-black text-medieval-gold uppercase tracking-widest flex items-center gap-2">
+                            <Sparkles className="w-3.5 h-3.5 text-medieval-gold" />
+                            {language === 'pt' ? 'Busca Inteligente: Possibilidades' : 'Intelligent Matches found'} ({searchResults.length})
+                          </span>
+                          {searchResults.length > 0 && (
+                            <span className="text-[9px] text-medieval-gold/60 font-mono uppercase bg-medieval-gold/10 px-2 py-0.5 rounded">
+                              {language === 'pt' ? 'Enter no teclado ativa o 1º resultado' : 'Enter runs 1st option'}
+                            </span>
+                          )}
+                        </div>
+
+                        {searchResults.length > 0 ? (
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[350px] overflow-y-auto custom-scrollbar pr-1">
+                            {searchResults.map((result, idx) => (
+                              <button
+                                key={result.id}
+                                onClick={result.action}
+                                className={`p-3 bg-black/40 hover:bg-medieval-gold/10 border ${idx === 0 ? 'border-medieval-gold/55 bg-medieval-gold/5' : 'border-medieval-gold/10'} hover:border-medieval-gold/40 rounded flex items-center justify-between group transition-all text-left`}
+                              >
+                                <div className="space-y-1 pr-2">
+                                  <div className="text-medieval-gold font-bold text-xs leading-snug flex flex-wrap items-center gap-1">
+                                    {result.label}
+                                    {idx === 0 && (
+                                      <span className="text-[8px] bg-medieval-gold text-black font-black px-1 rounded uppercase tracking-tighter">1º / Enter</span>
+                                    )}
+                                  </div>
+                                  <div className="text-[9px] text-medieval-gold/40 uppercase tracking-widest font-mono">
+                                    {result.type}
+                                  </div>
+                                </div>
+                                <ChevronRight className="w-3.5 h-3.5 text-medieval-gold/30 group-hover:text-medieval-gold group-hover:translate-x-0.5 transition-all shrink-0" />
+                              </button>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="py-8 text-center text-medieval-gold/40 text-xs font-mono">
+                            {language === 'pt' ? 'Nenhum resultado correspondente para "'+searchQuery+'". Tente palavras-chave como "onyx", "crafting", "demon", "alquimia".' : 'No matches. Try keywords like "onyx", "crafting", "demon", "alchemy".'}
+                          </div>
+                        )}
+                      </motion.div>
+                    )}
                   </div>
                 </div>
 
@@ -3249,7 +3434,7 @@ export default function App() {
                         {t('minimapUpdated')}
                       </p>
                       <a 
-                        href="https://drive.google.com/u/0/uc?id=1Nf7CHYGN39nRhGhq8x8X49rCbKyBzdZE&export=download" 
+                        href="https://drive.google.com/uc?export=download&id=1LC7gzYWQLKHD2VOTy3h5zxQp5cmlATko" 
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-[9px] font-black text-medieval-gold hover:underline uppercase tracking-tighter"
@@ -3596,7 +3781,8 @@ export default function App() {
                             </div>
                             <button
                               onClick={() => {
-                                setActiveTab('profissoes');
+                                setActiveTab('calculadoras');
+                                setCalcSubTab('professions');
                                 setProfSubTab('crafting');
                               }}
                               className="text-[10px] uppercase font-black tracking-widest text-medieval-gold/70 hover:text-medieval-gold flex items-center gap-1.5 w-fit hover:underline"
@@ -3621,7 +3807,8 @@ export default function App() {
                             </div>
                             <button
                               onClick={() => {
-                                setActiveTab('profissoes');
+                                setActiveTab('calculadoras');
+                                setCalcSubTab('professions');
                                 setProfSubTab('alchemy');
                               }}
                               className="text-[10px] uppercase font-black tracking-widest text-medieval-gold/70 hover:text-medieval-gold flex items-center gap-1.5 w-fit hover:underline"

@@ -128,9 +128,13 @@ export function getAttributeValueAndDescription(attrId: string, level: number, i
       return { amount: amt, chance: ch, text: `Poison (Amount: +${amt} / Chance: +${ch}%)` };
     }
     case 'crit-spell': {
-      const amt = level * 20;
-      const ch = level + 4;
+      const isBlackHat = item?.name === 'Black Hat';
+      const amt = isBlackHat ? level * 5 : level * 20;
+      const ch = isBlackHat ? level : level + 4;
       return { amount: amt, chance: ch, text: `Critical Spell (Amount: +${amt}% / Chance: +${ch}%)` };
+    }
+    case 'destruction': {
+      return { amount: 0, chance: level, text: `Destruction (Chance: +${level}%)` };
     }
     case 'hitchance':
       return { amount: level, text: `+${level}% Hitchance` };
@@ -144,6 +148,10 @@ export function getAttributeValueAndDescription(attrId: string, level: number, i
       return { amount: level, text: `+${level}% Protect Poison` };
     case 'phys-prot':
       return { amount: level, text: `+${level}% Protect Physical` };
+    case 'death-prot':
+      return { amount: level, text: `+${level}% Protect Death` };
+    case 'life-drain-prot':
+      return { amount: level, text: `+${level}% Protect Life Drain` };
     case 'mana-drain-prot':
       return { amount: level, text: `+${level}% Protect Mana Drain` };
     case 'elements-prot':
