@@ -199,7 +199,7 @@ export const FeedbackBoard: React.FC<FeedbackBoardProps> = ({ language }) => {
       <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-medieval-gold/20 pb-4 gap-4">
         <div>
           <h1 className="text-2xl font-black text-medieval-gold uppercase tracking-widest flex items-center gap-3">
-            <MessageSquare className="w-6 h-6" />
+            <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849034/comunidadeefeedback.gif" className="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Comunidade" />
             {t.title}
           </h1>
           <p className="text-medieval-muted text-sm mt-2 max-w-2xl">
@@ -225,7 +225,7 @@ export const FeedbackBoard: React.FC<FeedbackBoardProps> = ({ language }) => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="bg-black/40 border border-medieval-gold/20 rounded-lg p-6 max-w-2xl mx-auto"
+            className="bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded-lg p-6 max-w-2xl mx-auto"
           >
             <h2 className="text-lg font-bold text-medieval-gold uppercase tracking-wider mb-6 border-b border-medieval-gold/10 pb-2">
               {t.newTopic}
@@ -236,7 +236,7 @@ export const FeedbackBoard: React.FC<FeedbackBoardProps> = ({ language }) => {
                 <select 
                   value={newTopicCategory} 
                   onChange={(e) => setNewTopicCategory(e.target.value as any)}
-                  className="w-full bg-black/60 border border-medieval-gold/20 rounded p-2 text-sm text-medieval-gold focus:border-medieval-gold outline-none"
+                  className="medieval-input"
                 >
                   <option value="sugestao">{t.cat_sugestao}</option>
                   <option value="bug">{t.cat_bug}</option>
@@ -249,7 +249,7 @@ export const FeedbackBoard: React.FC<FeedbackBoardProps> = ({ language }) => {
                   type="text" 
                   value={newTopicTitle}
                   onChange={(e) => setNewTopicTitle(e.target.value)}
-                  className="w-full bg-black/60 border border-medieval-gold/20 rounded p-2 text-sm text-medieval-gold focus:border-medieval-gold outline-none placeholder-medieval-muted/30"
+                  className="medieval-input"
                   placeholder="Ex: Adicionar aba de bestiário"
                   required
                 />
@@ -270,7 +270,7 @@ export const FeedbackBoard: React.FC<FeedbackBoardProps> = ({ language }) => {
                   type="text" 
                   value={newTopicAuthor}
                   onChange={(e) => setNewTopicAuthor(e.target.value)}
-                  className="w-full bg-black/60 border border-medieval-gold/20 rounded p-2 text-sm text-medieval-gold focus:border-medieval-gold outline-none placeholder-medieval-muted/30"
+                  className="medieval-input"
                   placeholder="Player Name"
                   required
                 />
@@ -310,7 +310,7 @@ export const FeedbackBoard: React.FC<FeedbackBoardProps> = ({ language }) => {
             </button>
 
             {/* OP Post */}
-            <div className="bg-black/40 border border-medieval-gold/20 rounded-lg p-6 relative">
+            <div className="bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded-lg p-6 relative">
               <span className={`absolute top-4 right-4 text-[9px] uppercase tracking-wider font-bold px-2 py-1 border rounded ${getCategoryColor(selectedTopic.category)}`}>
                 {selectedTopic.category === 'sugestao' ? t.cat_sugestao : selectedTopic.category === 'bug' ? t.cat_bug : t.cat_discussao}
               </span>
@@ -354,7 +354,7 @@ export const FeedbackBoard: React.FC<FeedbackBoardProps> = ({ language }) => {
                       type="text" 
                       value={newCommentAuthor}
                       onChange={(e) => setNewCommentAuthor(e.target.value)}
-                      className="w-full bg-black/60 border border-medieval-gold/20 rounded p-2 text-sm text-medieval-gold focus:border-medieval-gold outline-none placeholder-medieval-muted/30"
+                      className="medieval-input"
                       placeholder={t.f_author}
                       required
                     />
@@ -364,7 +364,7 @@ export const FeedbackBoard: React.FC<FeedbackBoardProps> = ({ language }) => {
                       type="text" 
                       value={newCommentContent}
                       onChange={(e) => setNewCommentContent(e.target.value)}
-                      className="w-full bg-black/60 border border-medieval-gold/20 rounded p-2 text-sm text-medieval-gold focus:border-medieval-gold outline-none placeholder-medieval-muted/30"
+                      className="medieval-input"
                       placeholder={t.c_msg}
                       required
                     />
@@ -402,7 +402,7 @@ export const FeedbackBoard: React.FC<FeedbackBoardProps> = ({ language }) => {
                 <div 
                   key={topic.id}
                   onClick={() => setSelectedTopic(topic)}
-                  className="bg-black/40 border border-medieval-gold/10 rounded-lg p-4 cursor-pointer hover:bg-black/60 hover:border-medieval-gold/40 transition-all flex flex-col md:flex-row gap-4 justify-between group"
+                  className="bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/10 backdrop-blur-sm rounded-lg p-4 cursor-pointer hover:bg-black/60 hover:border-medieval-gold/40 transition-all flex flex-col md:flex-row gap-4 justify-between group"
                 >
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 mb-1">

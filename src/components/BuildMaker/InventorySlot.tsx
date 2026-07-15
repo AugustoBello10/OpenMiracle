@@ -49,7 +49,7 @@ export const InventorySlot: React.FC<InventorySlotProps> = ({
                     "w-1 h-1 rounded-full",
                     i < activeAttributesCount 
                       ? "bg-medieval-gold shadow-[0_0_4px_#c5a059]" 
-                      : "bg-black/40 border border-medieval-gold/20"
+                      : "bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm"
                   )}
                 />
               ))}

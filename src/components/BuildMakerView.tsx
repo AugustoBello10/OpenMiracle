@@ -124,6 +124,11 @@ export const BuildMakerView: React.FC<BuildMakerViewProps> = ({ language }) => {
       {/* Build Maker Top Bar */}
       <div className="flex items-center justify-between mb-4 pb-4 border-b border-medieval-gold/10 shrink-0">
         <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 hidden sm:flex">
+            <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783850373/buildmaker.gif" className="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Build Maker" />
+            <span className="text-sm font-black text-medieval-gold uppercase tracking-widest drop-shadow-[0_0_10px_rgba(197,160,89,0.5)]">Build Maker</span>
+          </div>
+
           <div className="flex bg-black/40 p-1 rounded-sm border border-medieval-gold/20">
             <button 
               onClick={() => setActiveBuild(1)}
@@ -190,7 +195,7 @@ export const BuildMakerView: React.FC<BuildMakerViewProps> = ({ language }) => {
                 onChange={(e) => {
                   setBuildLocal(prev => ({ ...prev, vocation: e.target.value as VocationType }));
                 }}
-                className="bg-black/40 border border-medieval-gold/20 rounded px-1.5 py-1 text-[11px] text-medieval-gold font-bold focus:outline-none focus:border-medieval-gold cursor-pointer"
+                className="bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded px-1.5 py-1 text-[11px] text-medieval-gold font-bold focus:outline-none focus:border-medieval-gold cursor-pointer"
               >
                 <option value="Knight">Knight</option>
                 <option value="Paladin">Paladin</option>
@@ -209,7 +214,7 @@ export const BuildMakerView: React.FC<BuildMakerViewProps> = ({ language }) => {
                 onChange={(e) => {
                   setBuildLocal(prev => ({ ...prev, level: parseInt(e.target.value) || 1 }));
                 }}
-                className="bg-black/40 border border-medieval-gold/20 rounded px-1.5 py-1 text-xs text-medieval-gold font-mono font-bold text-center focus:outline-none focus:border-medieval-gold"
+                className="bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded px-1.5 py-1 text-xs text-medieval-gold font-mono font-bold text-center focus:outline-none focus:border-medieval-gold"
               />
             </div>
 
@@ -220,7 +225,7 @@ export const BuildMakerView: React.FC<BuildMakerViewProps> = ({ language }) => {
                 onChange={(e) => {
                   setBuildLocal(prev => ({ ...prev, stance: e.target.value as StanceType }));
                 }}
-                className="bg-black/40 border border-medieval-gold/20 rounded px-1 py-1 text-[10px] text-medieval-gold font-bold focus:outline-none focus:border-medieval-gold cursor-pointer"
+                className="bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded px-1 py-1 text-[10px] text-medieval-gold font-bold focus:outline-none focus:border-medieval-gold cursor-pointer"
               >
                 <option value="Balanced">{t('bm_balanced')}</option>
                 <option value="Full Attack">{t('bm_fullAttack')}</option>

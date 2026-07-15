@@ -7,12 +7,12 @@ import { useState, useEffect, useMemo, ReactNode } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
-  Hammer, Sword, Gem, Pickaxe, Wand2, Zap, Twitch, 
+  Hammer, Sword, Gem, Pickaxe, Wand2, Zap, Twitch, Wheat, 
   MessageSquare, ExternalLink, Info, Table as TableIcon, 
   TrendingUp, AlertTriangle, Book, Sparkles, Briefcase, 
   ChevronRight, ChevronUp, ChevronDown, Menu, X, Map, Youtube, Fish, FlaskConical, Utensils, Sprout, Scissors, Users,
   History, Plus, Minus, Check, RefreshCw, Clock, Calendar, Download, Shield, Circle, Heart, Target, Axe, Coins, Eye,
-  Search
+  Search, Skull
 } from 'lucide-react';
 import { calculateTrainingTime, Vocation, SkillType, TRAINING_WEAPONS_DATA, TrainingWeapon, calculateBlessCosts } from './lib/formulas';
 import { Language, translations } from './lib/translations';
@@ -471,7 +471,7 @@ const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
 import { BuildMakerView } from './components/BuildMakerView';
 import { FeedbackBoard } from './components/FeedbackBoard';
 
-type Tab = 'home' | 'calculadoras' | 'profissoes' | 'mapa' | 'eventos' | 'wiki' | 'buildmaker' | 'loot' | 'feedback';
+type Tab = 'home' | 'calculadoras' | 'profissoes' | 'mapa' | 'eventos' | 'wiki' | 'buildmaker' | 'loot' | 'feedback' | 'hunts';
 
 const VOC_SPELLS: Record<string, { name: string; mana: number }[]> = {
   Sorcerer: [
@@ -624,8 +624,8 @@ function SkillCalculator({
   return (
     <div className="space-y-8">
       <header className="text-center mb-12">
-        <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
-          {t('skills')}
+        <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2 flex items-center justify-center gap-3">
+          <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849036/treinodeskils.gif" className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Skills" /> {t('skills')}
         </h1>
         <p className="text-medieval-gold/80 font-mono text-sm">
           {t('heroSubtitle')}
@@ -634,7 +634,7 @@ function SkillCalculator({
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         <div className="lg:col-span-7 space-y-6">
-          <div className="medieval-card bg-medieval-card p-6 sm:p-8 medieval-border rounded-lg">
+          <div className="medieval-card p-6 sm:p-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {/* Vocação */}
               <div className="flex flex-col gap-2">
@@ -796,7 +796,7 @@ function SkillCalculator({
                     <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
                       Runa / Magia Demonstrativa
                     </label>
-                    <div className="medieval-input bg-black/40 border border-medieval-gold/10 text-medieval-gold/50 flex items-center px-3 h-[42px] italic text-[11px]">
+                    <div className="medieval-input bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/10 backdrop-blur-sm text-medieval-gold/50 flex items-center px-3 h-[42px] italic text-[11px]">
                       Knights não criam runas
                     </div>
                   </div>
@@ -1000,7 +1000,7 @@ function SkillCalculator({
         </div>
 
         <div className="lg:col-span-5 space-y-6">
-          <div className="medieval-border rounded-lg bg-medieval-card p-6 space-y-4">
+          <div className="medieval-card p-6 space-y-4">
             <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest flex items-center gap-2">
               <Wand2 className="w-4 h-4 text-medieval-gold" /> Regras de Magic Level
             </h3>
@@ -1012,7 +1012,7 @@ function SkillCalculator({
             </div>
           </div>
 
-          <div className="medieval-border rounded-lg bg-medieval-card p-6 space-y-4">
+          <div className="medieval-card p-6 space-y-4">
             <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest flex items-center gap-2">
               <Info className="w-4 h-4" /> {t('trainingInfo')}
             </h3>
@@ -1051,7 +1051,7 @@ function BlessCalculator({ t }: { t: any }) {
   return (
     <div className="space-y-8">
       <header className="text-center mb-12">
-        <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
+        <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2 flex items-center justify-center gap-3">
           {t('blessDeath')}
         </h1>
         <p className="text-medieval-gold/80 font-mono text-sm">
@@ -1061,7 +1061,7 @@ function BlessCalculator({ t }: { t: any }) {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         <div className="lg:col-span-7 space-y-6">
-          <div className="medieval-card bg-medieval-card p-6 sm:p-8 medieval-border rounded-lg">
+          <div className="medieval-card p-6 sm:p-8">
             <div className="space-y-6">
               <div className="flex flex-col gap-2">
                 <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest flex items-center gap-2">
@@ -1128,7 +1128,7 @@ function BlessCalculator({ t }: { t: any }) {
         </div>
 
         <div className="lg:col-span-5 space-y-6">
-          <div className="medieval-border rounded-lg bg-medieval-card p-6 space-y-4">
+          <div className="medieval-card p-6 space-y-4">
             <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest flex items-center gap-2">
               <Info className="w-4 h-4" /> {t('blessDetails')}
             </h3>
@@ -1310,6 +1310,7 @@ export default function App() {
     if (path.startsWith('/profissoes')) return 'profissoes';
     if (path.startsWith('/mapa')) return 'mapa';
     if (path.startsWith('/eventos')) return 'eventos';
+
     if (path.startsWith('/wiki')) return 'wiki';
     if (path.startsWith('/loot')) return 'loot';
     if (path.startsWith('/feedback')) return 'feedback';
@@ -1383,6 +1384,9 @@ export default function App() {
       setActiveTab('mapa');
     } else if (path.startsWith('/eventos')) {
       setActiveTab('eventos');
+    } else if (path.startsWith('/hunts')) {
+      setActiveTab('hunts');
+
     } else if (path.startsWith('/wiki')) {
       setActiveTab('wiki');
       if (path.includes('/projeto')) setWikiSubTab('project');
@@ -1403,6 +1407,7 @@ export default function App() {
   useEffect(() => {
     let newPath = '/';
     if (activeTab === 'home') newPath = '/';
+    else if (activeTab === 'hunts') newPath = '/hunts';
     else if (activeTab === 'buildmaker') newPath = '/buildmaker';
     else if (activeTab === 'calculadoras') {
       if (calcSubTab === 'runemaking') newPath = '/calculadoras/runas';
@@ -1421,6 +1426,7 @@ export default function App() {
     } else if (activeTab === 'profissoes') newPath = '/profissoes';
     else if (activeTab === 'mapa') newPath = '/mapa';
     else if (activeTab === 'eventos') newPath = '/eventos';
+
     else if (activeTab === 'wiki') {
       let wikiPath = '/wiki';
       if (wikiSubTab === 'project') wikiPath += '/projeto';
@@ -1972,7 +1978,7 @@ export default function App() {
     return LIBRARY_DATA.filter(b => b.region[language] === selectedRegion).map(b => ({
       id: b.id,
       label: b.title[language],
-      icon: <img src={b.spriteImage} alt="" className="w-5 h-5 object-contain" referrerPolicy="no-referrer" />
+      icon: <img src={b.spriteImage} alt="" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" referrerPolicy="no-referrer" />
     }));
   }, [selectedRegion, language]);
 
@@ -2021,408 +2027,370 @@ export default function App() {
 
   const tabs = [
     { id: 'home', label: t('home'), icon: <Book className="w-4 h-4" /> },
-    { id: 'buildmaker', label: 'Build Maker', icon: <Hammer className="w-4 h-4" /> },
-    { id: 'calculadoras', label: t('calculators'), icon: <Hammer className="w-4 h-4" /> },
-    { id: 'profissoes', label: t('professions'), icon: <Briefcase className="w-4 h-4" /> },
-    { id: 'mapa', label: t('map'), icon: <Map className="w-4 h-4" /> },
-    { id: 'eventos', label: t('events'), icon: <Users className="w-4 h-4" /> },
-    { id: 'wiki', label: t('wiki'), icon: <Book className="w-4 h-4" /> },
+    { id: 'buildmaker', label: 'Build Maker', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849031/buildmaker.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Build Maker" /> },
+    { id: 'calculadoras', label: t('calculators'), icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849027/calculadoras.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Calculadoras" /> },
+    { id: 'profissoes', label: t('professions'), icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/guiadeprofissoes.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Profissoes" /> },
+    { id: 'mapa', label: t('map'), icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849033/mapainterativo.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Mapa" /> },
+    { id: 'wiki', label: t('wiki'), icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783850372/wiki.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Wiki" /> },
   ];
 
   const renderSidebarContent = (isMobile = false) => {
-    const activeSubmenuClass = "w-full text-left flex items-center gap-2.5 py-2 px-3 rounded-md bg-gradient-to-r from-medieval-gold/15 to-medieval-gold/[0.02] border-l-2 border-medieval-gold text-medieval-gold font-bold shadow-[inset_1px_0_10px_rgba(197,160,89,0.05)] transition-all duration-200 text-[11px] uppercase tracking-wider";
-    const inactiveSubmenuClass = "w-full text-left flex items-center gap-2.5 py-2 px-3 rounded-md text-medieval-text/60 hover:text-medieval-gold hover:bg-white/[0.02] border-l-2 border-transparent hover:border-medieval-gold/30 transition-all duration-150 text-[11px] uppercase tracking-wider hover:translate-x-1";
+    const activeSubmenuClass = "w-full text-left py-2 px-3 rounded-lg text-xs uppercase tracking-wider font-black transition-all duration-300 bg-gradient-to-r from-medieval-gold to-yellow-600 text-black shadow-[0_0_15px_rgba(197,160,89,0.4)] flex items-center gap-3 scale-[1.02] ml-1";
+    const inactiveSubmenuClass = "w-full text-left py-2 px-3 rounded-lg text-xs uppercase tracking-wider font-bold transition-all duration-300 text-medieval-gold/60 hover:text-medieval-gold hover:bg-gradient-to-r hover:from-white/[0.05] hover:to-transparent flex items-center gap-3 hover:translate-x-1 group";
+
+    const isFerramentas = ['calculadoras', 'buildmaker', 'loot', 'profissoes'].includes(activeTab);
+    const isWiki = ['wiki', 'mapa', 'eventos'].includes(activeTab);
+
+    const WIKI_SECTIONS = [
+      { id: 'helmets', label: language === 'pt' ? 'Capacetes' : 'Helmets', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/capacetes.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Helmets" /> },
+      { id: 'armors', label: language === 'pt' ? 'Armaduras' : 'Armors', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849027/armaduras.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Armors" /> },
+      { id: 'legs', label: language === 'pt' ? 'Pernas' : 'Legs', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/cal%C3%A7as.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Legs" /> },
+      { id: 'boots', label: language === 'pt' ? 'Botas' : 'Boots', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/botas.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Boots" /> },
+      { id: 'shields', label: language === 'pt' ? 'Escudos' : 'Shields', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849030/escudos.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Shields" /> },
+      { id: 'swords', label: language === 'pt' ? 'Espadas' : 'Swords', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849031/espadas.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Swords" /> },
+      { id: 'clubs', label: language === 'pt' ? 'Clavas' : 'Clubs', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/clavas.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Clubs" /> },
+      { id: 'axes', label: language === 'pt' ? 'Machados' : 'Axes', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849032/machados.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Axes" /> },
+      { id: 'distance', label: language === 'pt' ? 'Distância' : 'Distance', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849030/distance.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Distance" /> },
+      { id: 'ammo', label: language === 'pt' ? 'Munição' : 'Ammo', icon: <Zap className="w-5 h-5 text-medieval-gold drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" /> },
+      { id: 'rings', label: language === 'pt' ? 'Anéis' : 'Rings', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849027/aneis_magicos.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Rings" /> },
+      { id: 'amulets', label: language === 'pt' ? 'Amuletos' : 'Amulets', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849026/amuletos.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Amulets" /> },
+      { id: 'relics', label: language === 'pt' ? 'Relíquias' : 'Relics', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849034/reliquias.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Relics" /> },
+    ];
+
 
     return (
-      <div className="flex flex-col gap-4 text-left select-none pb-12 font-sans">
-        {/* INÍCIO & NOTAS SECTION */}
-        <div className="space-y-1.5">
-          <button 
-            onClick={() => toggleGroup('inicio')}
-            className="w-full flex items-center justify-between py-2 px-3 rounded-md bg-black/40 border border-medieval-gold/10 hover:border-medieval-gold/30 hover:bg-black/60 transition-all text-[11px] font-black text-medieval-gold uppercase tracking-wider"
-          >
-            <span className="flex items-center gap-2">
-              <Sparkles className="w-3.5 h-3.5 text-medieval-gold/85" />
-              {language === 'pt' ? 'Início & Updates' : 'Home & Updates'}
-            </span>
-            <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.inicio ? 'rotate-90 text-medieval-gold' : ''}`} />
-          </button>
-          
-          <AnimatePresence initial={false}>
-            {sidebarOpenGroups.inicio && (
-              <motion.div 
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5"
+      <div className="flex flex-col gap-4 text-left select-none pb-12 font-['DotGothic16']">
+        
+        {/* WIKI GROUP */}
+        {isWiki && (
+          <>
+            <div className="space-y-1.5">
+              <button 
+                onClick={() => toggleGroup('inicio')}
+                className="w-full flex items-center justify-between py-2.5 px-3 rounded-lg bg-gradient-to-b from-black/80 to-[#0a0a0a] border border-medieval-gold/20 shadow-[0_4px_15px_rgba(0,0,0,0.5)] hover:border-medieval-gold/50 hover:shadow-[0_4px_20px_rgba(197,160,89,0.15)] transition-all text-xs font-black text-medieval-gold uppercase tracking-widest relative overflow-hidden group"
               >
-                <button 
-                  onClick={() => { setActiveTab('home'); if (wikiMainTab !== 'home') setWikiMainTab('home'); if(isMobile) setIsMenuOpen(false); }}
-                  className={activeTab === 'home' ? activeSubmenuClass : inactiveSubmenuClass}
-                >
-                  <Book className="w-3.5 h-3.5 opacity-70" />
-                  {language === 'pt' ? 'Página Principal' : 'Home Page'}
-                </button>
-                <button 
-                  onClick={() => { setActiveTab('wiki'); setWikiMainTab('updates'); if(isMobile) setIsMenuOpen(false); }}
-                  className={(activeTab === 'wiki' && wikiMainTab === 'updates') ? activeSubmenuClass : inactiveSubmenuClass}
-                >
-                  <History className="w-3.5 h-3.5 opacity-70" />
-                  {language === 'pt' ? 'Notas de Atualizações' : 'Patch Notes'}
-                </button>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-
-        {/* BUILD MAKER (EXCLUSIVE PREMIUM HIGHLIGHTED ROW) */}
-        <div className="space-y-1">
-          <button 
-            onClick={() => { setActiveTab('buildmaker'); if(isMobile) setIsMenuOpen(false); }}
-            className={`w-full py-2.5 px-3 rounded-md text-[11px] font-black uppercase tracking-wider flex items-center justify-between border transition-all duration-300 ${
-              activeTab === 'buildmaker' 
-                ? 'bg-medieval-gold text-black border-medieval-gold shadow-[0_3px_15px_rgba(197,160,89,0.3)] font-black' 
-                : 'bg-medieval-gold/5 text-medieval-gold border-medieval-gold/25 hover:border-medieval-gold hover:bg-medieval-gold/10'
-            }`}
-          >
-            <span className="flex items-center gap-2.5">
-              <Hammer className="w-4 h-4" />
-              BUILD MAKER
-            </span>
-            <span className={`text-[9px] font-mono py-0.5 px-1.5 border rounded font-bold transition-all ${
-              activeTab === 'buildmaker'
-                ? 'bg-black/20 text-black border-black/30'
-                : 'bg-black/40 text-medieval-gold border-medieval-gold/20'
-            }`}>V1.4</span>
-          </button>
-        </div>
-
-        {/* LOOT OPTIMIZER (EXCLUSIVE PREMIUM HIGHLIGHTED ROW) - HIDDEN TEMPORARILY */ }
-        {/*
-        <div className="space-y-1">
-          <button 
-            onClick={() => { setActiveTab('loot'); if(isMobile) setIsMenuOpen(false); }}
-            className={`w-full py-2.5 px-3 rounded-md text-[11px] font-black uppercase tracking-wider flex items-center justify-between border transition-all duration-300 ${
-              activeTab === 'loot' 
-                ? 'bg-medieval-gold text-black border-medieval-gold shadow-[0_3px_15px_rgba(197,160,89,0.3)] font-black' 
-                : 'bg-medieval-gold/5 text-medieval-gold border-medieval-gold/25 hover:border-medieval-gold hover:bg-medieval-gold/10'
-            }`}
-          >
-            <span className="flex items-center gap-2.5">
-              <Coins className="w-4 h-4" />
-              {language === 'pt' ? 'OTIMIZADOR DE LOOT' : 'LOOT OPTIMIZER'}
-            </span>
-            <span className={`text-[9px] font-mono py-0.5 px-1.5 border rounded font-bold transition-all ${
-              activeTab === 'loot'
-                ? 'bg-black/20 text-black border-black/30'
-                : 'bg-black/40 text-medieval-gold border-medieval-gold/20'
-            }`}>AUTO</span>
-          </button>
-        </div>
-        */}
-
-        {/* TUTORIAIS & GUIAS (Requested by user) */}
-        <div className="space-y-1.5">
-          <button 
-            onClick={() => toggleGroup('guias')}
-            className="w-full flex items-center justify-between py-2 px-3 rounded-md bg-black/40 border border-medieval-gold/10 hover:border-medieval-gold/30 hover:bg-black/60 transition-all text-[11px] font-black text-medieval-gold uppercase tracking-wider"
-          >
-            <span className="flex items-center gap-2">
-              <Youtube className="w-3.5 h-3.5 text-medieval-gold/85" />
-              {language === 'pt' ? 'Tutoriais & Guias' : 'Guides & Tutorials'}
-            </span>
-            <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.guias ? 'rotate-90 text-medieval-gold' : ''}`} />
-          </button>
-
-          <AnimatePresence initial={false}>
-            {sidebarOpenGroups.guias && (
-              <motion.div 
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5"
-              >
-                <button 
-                  onClick={() => { setActiveTab('profissoes'); if(isMobile) setIsMenuOpen(false); }}
-                  className={activeTab === 'profissoes' ? activeSubmenuClass : inactiveSubmenuClass}
-                >
-                  <Youtube className="w-3.5 h-3.5 opacity-70 text-red-500 animate-pulse" />
-                  {language === 'pt' ? 'Guia de Profissões' : 'Professions Video'}
-                </button>
-                <button 
-                  onClick={() => { setActiveTab('mapa'); if(isMobile) setIsMenuOpen(false); }}
-                  className={activeTab === 'mapa' ? activeSubmenuClass : inactiveSubmenuClass}
-                >
-                  <Map className="w-3.5 h-3.5 opacity-70" />
-                  {language === 'pt' ? 'Mapa Interativo' : 'Interactive Map'}
-                </button>
-                <button 
-                  onClick={() => { setActiveTab('eventos'); if(isMobile) setIsMenuOpen(false); }}
-                  className={activeTab === 'eventos' ? activeSubmenuClass : inactiveSubmenuClass}
-                >
-                  <Users className="w-3.5 h-3.5 opacity-70" />
-                  {language === 'pt' ? 'Lobby de Quests' : 'Quests & Events'}
-                </button>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-
-        {/* COMUNIDADE & FEEDBACK */}
-        <div className="space-y-1.5">
-          <button 
-            onClick={() => toggleGroup('comunidade' as any)}
-            className="w-full flex items-center justify-between py-2 px-3 rounded-md bg-black/40 border border-medieval-gold/10 hover:border-medieval-gold/30 hover:bg-black/60 transition-all text-[11px] font-black text-medieval-gold uppercase tracking-wider"
-          >
-            <span className="flex items-center gap-2">
-              <MessageSquare className="w-3.5 h-3.5 text-medieval-gold/85" />
-              {language === 'pt' ? 'Comunidade & Feedback' : 'Community & Feedback'}
-            </span>
-            <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.comunidade ? 'rotate-90 text-medieval-gold' : ''}`} />
-          </button>
-
-          <AnimatePresence initial={false}>
-            {sidebarOpenGroups.comunidade && (
-              <motion.div 
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5"
-              >
-                <button 
-                  onClick={() => { setActiveTab('feedback'); if(isMobile) setIsMenuOpen(false); }}
-                  className={activeTab === 'feedback' ? activeSubmenuClass : inactiveSubmenuClass}
-                >
-                  <MessageSquare className="w-3.5 h-3.5 opacity-70" />
-                  {language === 'pt' ? 'Sugestões / Feedback' : 'Suggestions / Feedback'}
-                </button>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-
-        {/* CALCULADORAS */}
-        <div className="space-y-1.5">
-          <button 
-            onClick={() => toggleGroup('calculadores')}
-            className="w-full flex items-center justify-between py-2 px-3 rounded-md bg-black/40 border border-medieval-gold/10 hover:border-medieval-gold/30 hover:bg-black/60 transition-all text-[11px] font-black text-medieval-gold uppercase tracking-wider"
-          >
-            <span className="flex items-center gap-2">
-              <TrendingUp className="w-3.5 h-3.5 text-medieval-gold/85" />
-              {language === 'pt' ? 'Calculadoras' : 'Calculators'}
-            </span>
-            <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.calculadores ? 'rotate-90 text-medieval-gold' : ''}`} />
-          </button>
-
-          <AnimatePresence initial={false}>
-            {sidebarOpenGroups.calculadores && (
-              <motion.div 
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5"
-              >
-                <button 
-                  onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('skills'); if(isMobile) setIsMenuOpen(false); }}
-                  className={(activeTab === 'calculadoras' && calcSubTab === 'skills') ? activeSubmenuClass : inactiveSubmenuClass}
-                >
-                  <Target className="w-3.5 h-3.5 opacity-70" />
-                  {language === 'pt' ? 'Treino de Skills' : 'Skill Training'}
-                </button>
-                <button 
-                  onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('bless'); if(isMobile) setIsMenuOpen(false); }}
-                  className={(activeTab === 'calculadoras' && calcSubTab === 'bless') ? activeSubmenuClass : inactiveSubmenuClass}
-                >
-                  <Shield className="w-3.5 h-3.5 opacity-70" />
-                  {language === 'pt' ? 'Bênção & Morte' : 'Bless & Death Loss'}
-                </button>
-                <button 
-                  onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('atributos'); if(isMobile) setIsMenuOpen(false); }}
-                  className={(activeTab === 'calculadoras' && calcSubTab === 'atributos') ? activeSubmenuClass : inactiveSubmenuClass}
-                >
-                  <Zap className="w-3.5 h-3.5 opacity-70" />
-                  {language === 'pt' ? 'Simulador Atributos' : 'Attributes Sim'}
-                </button>
-                <button 
-                  onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('runemaking'); if(isMobile) setIsMenuOpen(false); }}
-                  className={(activeTab === 'calculadoras' && calcSubTab === 'runemaking') ? activeSubmenuClass : inactiveSubmenuClass}
-                >
-                  <FlaskConical className="w-3.5 h-3.5 opacity-70" />
-                  {language === 'pt' ? 'Rune Making' : 'Rune Making'}
-                </button>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-
-        {/* PROFISSÕES TABELAS E CALCULADORAS */}
-        <div className="space-y-1.5">
-          <button 
-            onClick={() => toggleGroup('profissoes')}
-            className="w-full flex items-center justify-between py-2 px-3 rounded-md bg-black/40 border border-medieval-gold/10 hover:border-medieval-gold/30 hover:bg-black/60 transition-all text-[11px] font-black text-medieval-gold uppercase tracking-wider"
-          >
-            <span className="flex items-center gap-2">
-              <Briefcase className="w-3.5 h-3.5 text-medieval-gold/85" />
-              {language === 'pt' ? 'Calculadoras Profissão' : 'Profession Calcs'}
-            </span>
-            <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.profissoes ? 'rotate-90 text-medieval-gold' : ''}`} />
-          </button>
-
-          <AnimatePresence initial={false}>
-            {sidebarOpenGroups.profissoes && (
-              <motion.div 
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5"
-              >
-                <button 
-                  onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('crafting'); if(isMobile) setIsMenuOpen(false); }}
-                  className={(activeTab === 'calculadoras' && calcSubTab === 'professions' && profSubTab === 'crafting') ? activeSubmenuClass : inactiveSubmenuClass}
-                >
-                  <Hammer className="w-3.5 h-3.5 opacity-70" />
-                  {language === 'pt' ? 'Forja & Crafting' : 'Forge & Crafting'}
-                </button>
-                <button 
-                  onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('alchemy'); if(isMobile) setIsMenuOpen(false); }}
-                  className={(activeTab === 'calculadoras' && calcSubTab === 'professions' && profSubTab === 'alchemy') ? activeSubmenuClass : inactiveSubmenuClass}
-                >
-                  <FlaskConical className="w-3.5 h-3.5 opacity-70" />
-                  {language === 'pt' ? 'Alquimia & Runas' : 'Alchemy & Runes'}
-                </button>
-                <button 
-                  onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('farming'); if(isMobile) setIsMenuOpen(false); }}
-                  className={(activeTab === 'calculadoras' && calcSubTab === 'professions' && profSubTab === 'farming') ? activeSubmenuClass : inactiveSubmenuClass}
-                >
-                  <Sprout className="w-3.5 h-3.5 opacity-70" />
-                  {language === 'pt' ? 'Fazenda (Farming)' : 'Farming / Planting'}
-                </button>
-                <button 
-                  onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('mining'); if(isMobile) setIsMenuOpen(false); }}
-                  className={(activeTab === 'calculadoras' && calcSubTab === 'professions' && profSubTab === 'mining') ? activeSubmenuClass : inactiveSubmenuClass}
-                >
-                  <Pickaxe className="w-3.5 h-3.5 opacity-70" />
-                  {language === 'pt' ? 'Mineração (Drops)' : 'Mining Drops'}
-                </button>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-
-        {/* CYCLOPEDIA ITENS */}
-        <div className="space-y-1.5">
-          <button 
-            onClick={() => toggleGroup('cyclopedia')}
-            className="w-full flex items-center justify-between py-2 px-3 rounded-md bg-black/40 border border-medieval-gold/10 hover:border-medieval-gold/30 hover:bg-black/60 transition-all text-[11px] font-black text-medieval-gold uppercase tracking-wider"
-          >
-            <span className="flex items-center gap-2">
-              <Sword className="w-3.5 h-3.5 text-medieval-gold/85" />
-              {language === 'pt' ? 'Cyclopedia (Itens)' : 'Itens Database'}
-            </span>
-            <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.cyclopedia ? 'rotate-90 text-medieval-gold' : ''}`} />
-          </button>
-
-          <AnimatePresence initial={false}>
-            {sidebarOpenGroups.cyclopedia && (
-              <motion.div 
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5 max-h-56 overflow-y-auto custom-scrollbar pr-1 select-none"
-              >
-                {[
-                  { id: 'helmets', labelPt: 'Capacetes', labelEn: 'Helmets', icon: <Shield className="w-3.5 h-3.5 opacity-70" /> },
-                  { id: 'armors', labelPt: 'Armaduras', labelEn: 'Armor Sets', icon: <Shield className="w-3.5 h-3.5 opacity-70" /> },
-                  { id: 'legs', labelPt: 'Calças', labelEn: 'Legs', icon: <Shield className="w-3.5 h-3.5 opacity-70" /> },
-                  { id: 'boots', labelPt: 'Botas', labelEn: 'Boots', icon: <Zap className="w-3.5 h-3.5 opacity-70" /> },
-                  { id: 'shields', labelPt: 'Escudos', labelEn: 'Shields', icon: <Shield className="w-3.5 h-3.5 opacity-70" /> },
-                  { id: 'swords', labelPt: 'Espadas', labelEn: 'Swords', icon: <Sword className="w-3.5 h-3.5 opacity-70" /> },
-                  { id: 'clubs', labelPt: 'Maças', labelEn: 'Clubs', icon: <Hammer className="w-3.5 h-3.5 opacity-70" /> },
-                  { id: 'axes', labelPt: 'Machados', labelEn: 'Axes', icon: <Axe className="w-3.5 h-3.5 opacity-70" /> },
-                  { id: 'distance', labelPt: 'Armas Distância', labelEn: 'Distance Weap.', icon: <Target className="w-3.5 h-3.5 opacity-70" /> },
-                  { id: 'rings', labelPt: 'Anéis Mágicos', labelEn: 'Magic Rings', icon: <Gem className="w-3.5 h-3.5 opacity-70" /> },
-                  { id: 'amulets', labelPt: 'Amuletos', labelEn: 'Amulets', icon: <Heart className="w-3.5 h-3.5 opacity-70" /> },
-                  { id: 'relics', labelPt: 'Relíquias', labelEn: 'Holy Relics', icon: <Sparkles className="w-3.5 h-3.5 opacity-70" /> }
-                ].map(sub => {
-                  const isSelected = activeTab === 'wiki' && wikiMainTab === 'items' && itemsSubTab === sub.id;
-                  return (
+                <span className="flex items-center gap-2.5 relative z-10">
+                  <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849034/inicio_updates.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Inicio" />
+                  {language === 'pt' ? 'Início & Updates' : 'Home & Updates'}
+                </span>
+                <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.inicio ? 'rotate-90 text-medieval-gold' : ''}`} />
+              </button>
+              <AnimatePresence initial={false}>
+                {sidebarOpenGroups.inicio && (
+                  <motion.div 
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5"
+                  >
                     <button 
-                      key={sub.id}
-                      onClick={() => {
-                        setActiveTab('wiki');
-                        setWikiMainTab('items');
-                        setItemsSubTab(sub.id as any);
-                        if(isMobile) setIsMenuOpen(false);
-                      }}
-                      className={isSelected ? activeSubmenuClass : inactiveSubmenuClass}
+                      onClick={() => { setActiveTab('home'); if (wikiMainTab !== 'home') setWikiMainTab('home'); if(isMobile) setIsMenuOpen(false); }}
+                      className={activeTab === 'home' ? activeSubmenuClass : inactiveSubmenuClass}
                     >
-                      <span className="flex items-center gap-2.5">
-                        {sub.icon}
-                        {language === 'pt' ? sub.labelPt : sub.labelEn}
-                      </span>
+                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849033/paginaprincipal.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Home" />
+                      {language === 'pt' ? 'Página Principal' : 'Front Page'}
                     </button>
-                  );
-                })}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-
-        {/* BIBLIOTECA */}
-        <div className="space-y-1.5">
-          <button 
-            onClick={() => toggleGroup('biblioteca')}
-            className="w-full flex items-center justify-between py-2 px-3 rounded-md bg-black/40 border border-medieval-gold/10 hover:border-medieval-gold/30 hover:bg-black/60 transition-all text-[11px] font-black text-medieval-gold uppercase tracking-wider"
-          >
-            <span className="flex items-center gap-2">
-              <Book className="w-3.5 h-3.5 text-medieval-gold/85" />
-              {language === 'pt' ? 'Biblioteca & Lore' : 'Wiki Library'}
-            </span>
-            <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.biblioteca ? 'rotate-90 text-medieval-gold' : ''}`} />
-          </button>
-
-          <AnimatePresence initial={false}>
-            {sidebarOpenGroups.biblioteca && (
-              <motion.div 
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5 max-h-48 overflow-y-auto custom-scrollbar pr-1"
-              >
-                <button 
-                  onClick={() => {
-                    setActiveTab('wiki');
-                    setWikiMainTab('library');
-                    setSelectedRegion(null);
-                    if(isMobile) setIsMenuOpen(false);
-                  }}
-                  className={(activeTab === 'wiki' && wikiMainTab === 'library' && !selectedRegion) ? activeSubmenuClass : inactiveSubmenuClass}
-                >
-                  <Book className="w-3.5 h-3.5 opacity-70" />
-                  {language === 'pt' ? '[Tudo do Mapa]' : '[All Regions]'}
-                </button>
-                {regions.map(r => {
-                  const isSelected = activeTab === 'wiki' && wikiMainTab === 'library' && selectedRegion === r.id;
-                  return (
                     <button 
-                      key={r.id}
+                      onClick={() => { setActiveTab('wiki'); setWikiMainTab('updates'); if(isMobile) setIsMenuOpen(false); }}
+                      className={(activeTab === 'wiki' && wikiMainTab === 'updates') ? activeSubmenuClass : inactiveSubmenuClass}
+                    >
+                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849034/inicio_updates.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Updates" />
+                      {language === 'pt' ? 'Patch Notes' : 'Recent Updates'}
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <div className="space-y-1.5">
+              <button 
+                onClick={() => toggleGroup('cyclopedia')}
+                className="w-full flex items-center justify-between py-2.5 px-3 rounded-lg bg-gradient-to-b from-black/80 to-[#0a0a0a] border border-medieval-gold/20 shadow-[0_4px_15px_rgba(0,0,0,0.5)] hover:border-medieval-gold/50 hover:shadow-[0_4px_20px_rgba(197,160,89,0.15)] transition-all text-xs font-black text-medieval-gold uppercase tracking-widest relative overflow-hidden group"
+              >
+                <span className="flex items-center gap-2.5 relative z-10">
+                  <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849030/cyclopedia.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Cyclopedia" />
+                  Cyclopedia
+                </span>
+                <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.cyclopedia ? 'rotate-90 text-medieval-gold' : ''}`} />
+              </button>
+              <AnimatePresence initial={false}>
+                {sidebarOpenGroups.cyclopedia && (
+                  <motion.div 
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5"
+                  >
+                    {WIKI_SECTIONS.map((sub) => {
+                      const isSelected = activeTab === 'wiki' && wikiMainTab === 'items' && itemsSubTab === sub.id;
+                      return (
+                        <button 
+                          key={sub.id}
+                          onClick={() => {
+                            setActiveTab('wiki');
+                            setWikiMainTab('items');
+                            setItemsSubTab(sub.id as any);
+                            if(isMobile) setIsMenuOpen(false);
+                          }}
+                          className={isSelected ? activeSubmenuClass : inactiveSubmenuClass}
+                        >
+                          {sub.icon}
+                          {sub.label}
+                        </button>
+                      );
+                    })}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <div className="space-y-1.5">
+              <button 
+                onClick={() => toggleGroup('biblioteca')}
+                className="w-full flex items-center justify-between py-2.5 px-3 rounded-lg bg-gradient-to-b from-black/80 to-[#0a0a0a] border border-medieval-gold/20 shadow-[0_4px_15px_rgba(0,0,0,0.5)] hover:border-medieval-gold/50 hover:shadow-[0_4px_20px_rgba(197,160,89,0.15)] transition-all text-xs font-black text-medieval-gold uppercase tracking-widest relative overflow-hidden group"
+              >
+                <span className="flex items-center gap-2.5 relative z-10">
+                  <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1775658826/Blue_Book_wstv3r.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Biblioteca" />
+                  {language === 'pt' ? 'Livros & Lore' : 'Library & Lore'}
+                </span>
+                <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.biblioteca ? 'rotate-90 text-medieval-gold' : ''}`} />
+              </button>
+              <AnimatePresence initial={false}>
+                {sidebarOpenGroups.biblioteca && (
+                  <motion.div 
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5"
+                  >
+                    <button 
                       onClick={() => {
                         setActiveTab('wiki');
                         setWikiMainTab('library');
-                        setSelectedRegion(r.id);
+                        setSelectedRegion(null);
                         if(isMobile) setIsMenuOpen(false);
                       }}
-                      className={isSelected ? activeSubmenuClass : inactiveSubmenuClass}
+                      className={(activeTab === 'wiki' && wikiMainTab === 'library' && !selectedRegion) ? activeSubmenuClass : inactiveSubmenuClass}
                     >
-                      <Book className="w-3.5 h-3.5 opacity-70" />
-                      {r.label}
+                      <Book className="w-5 h-5 text-medieval-gold drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" />
+                      {language === 'pt' ? '[Tudo do Mapa]' : '[All Regions]'}
                     </button>
-                  );
-                })}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+                    {regions.map(r => {
+                      const isSelected = activeTab === 'wiki' && wikiMainTab === 'library' && selectedRegion === r.id;
+                      return (
+                        <button 
+                          key={r.id}
+                          onClick={() => {
+                            setActiveTab('wiki');
+                            setWikiMainTab('library');
+                            setSelectedRegion(r.id);
+                            if(isMobile) setIsMenuOpen(false);
+                          }}
+                          className={isSelected ? activeSubmenuClass : inactiveSubmenuClass}
+                        >
+                          <Book className="w-5 h-5 text-medieval-gold drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" />
+                          {r.label}
+                        </button>
+                      );
+                    })}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <div className="space-y-1.5">
+              <button 
+                onClick={() => toggleGroup('guias')}
+                className="w-full flex items-center justify-between py-2.5 px-3 rounded-lg bg-gradient-to-b from-black/80 to-[#0a0a0a] border border-medieval-gold/20 shadow-[0_4px_15px_rgba(0,0,0,0.5)] hover:border-medieval-gold/50 hover:shadow-[0_4px_20px_rgba(197,160,89,0.15)] transition-all text-xs font-black text-medieval-gold uppercase tracking-widest relative overflow-hidden group"
+              >
+                <span className="flex items-center gap-2.5 relative z-10">
+                  <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849026/A_Helpful_Fairy.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Guias" />
+                  {language === 'pt' ? 'Tutoriais & Guias' : 'Guides & Tutorials'}
+                </span>
+                <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.guias ? 'rotate-90 text-medieval-gold' : ''}`} />
+              </button>
+              <AnimatePresence initial={false}>
+                {sidebarOpenGroups.guias && (
+                  <motion.div 
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5"
+                  >
+                    <button 
+                      onClick={() => { setActiveTab('mapa'); if(isMobile) setIsMenuOpen(false); }}
+                      className={activeTab === 'mapa' ? activeSubmenuClass : inactiveSubmenuClass}
+                    >
+                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849033/mapainterativo.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Mapa" />
+                      {language === 'pt' ? 'Mapa Interativo' : 'Interactive Map'}
+                    </button>
+                    <button 
+                      onClick={() => { setActiveTab('eventos'); if(isMobile) setIsMenuOpen(false); }}
+                      className={activeTab === 'eventos' ? activeSubmenuClass : inactiveSubmenuClass}
+                    >
+                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849035/lobbyquest.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Lobby Quest" />
+                      {language === 'pt' ? 'Lobby de Quests' : 'Quests & Events'}
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </>
+        )}
+
+        {/* TOOLS GROUP */}
+        {isFerramentas && (
+          <>
+            <div className="space-y-1.5">
+              <button 
+                onClick={() => toggleGroup('calculadores')}
+                className="w-full flex items-center justify-between py-2.5 px-3 rounded-lg bg-gradient-to-b from-black/80 to-[#0a0a0a] border border-medieval-gold/20 shadow-[0_4px_15px_rgba(0,0,0,0.5)] hover:border-medieval-gold/50 hover:shadow-[0_4px_20px_rgba(197,160,89,0.15)] transition-all text-xs font-black text-medieval-gold uppercase tracking-widest relative overflow-hidden group"
+              >
+                <span className="flex items-center gap-2.5 relative z-10">
+                  <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849027/calculadoras.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Calculadoras" />
+                  {language === 'pt' ? 'Ferramentas' : 'Tools'}
+                </span>
+                <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.calculadores ? 'rotate-90 text-medieval-gold' : ''}`} />
+              </button>
+              <AnimatePresence initial={false}>
+                {sidebarOpenGroups.calculadores && (
+                  <motion.div 
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5"
+                  >
+                    <button 
+                      onClick={() => { setActiveTab('buildmaker'); if(isMobile) setIsMenuOpen(false); }}
+                      className={activeTab === 'buildmaker' ? activeSubmenuClass : inactiveSubmenuClass}
+                    >
+                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849031/buildmaker.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Build Maker" />
+                      {language === 'pt' ? 'Build Maker' : 'Build Maker'}
+                    </button>
+                    <button 
+                      onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('skills'); if(isMobile) setIsMenuOpen(false); }}
+                      className={(activeTab === 'calculadoras' && calcSubTab === 'skills') ? activeSubmenuClass : inactiveSubmenuClass}
+                    >
+                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849036/treinodeskils.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Skills" />
+                      {language === 'pt' ? 'Skills & Tempo' : 'Skills & Time'}
+                    </button>
+                    <button 
+                      onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('bless'); if(isMobile) setIsMenuOpen(false); }}
+                      className={(activeTab === 'calculadoras' && calcSubTab === 'bless') ? activeSubmenuClass : inactiveSubmenuClass}
+                    >
+                      <Skull className="w-6 h-6 text-medieval-gold drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" />
+                      {language === 'pt' ? 'Bless & Morte' : 'Bless & Death'}
+                    </button>
+                    <button 
+                      onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('atributos'); if(isMobile) setIsMenuOpen(false); }}
+                      className={(activeTab === 'calculadoras' && calcSubTab === 'atributos') ? activeSubmenuClass : inactiveSubmenuClass}
+                    >
+                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849026/A_Helpful_Fairy.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Atributos" />
+                      {language === 'pt' ? 'Atributos' : 'Attributes'}
+                    </button>
+                    <button 
+                      onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('runemaking'); if(isMobile) setIsMenuOpen(false); }}
+                      className={(activeTab === 'calculadoras' && calcSubTab === 'runemaking') ? activeSubmenuClass : inactiveSubmenuClass}
+                    >
+                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849035/runemaking.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Runas" />
+                      {language === 'pt' ? 'Runemaking' : 'Runemaking'}
+                    </button>
+                    <button 
+                      onClick={() => { setActiveTab('loot'); if(isMobile) setIsMenuOpen(false); }}
+                      className={activeTab === 'loot' ? activeSubmenuClass : inactiveSubmenuClass}
+                    >
+                      <Coins className="w-6 h-6 text-medieval-gold drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" />
+                      {language === 'pt' ? 'Loot Counter' : 'Loot Counter'}
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <div className="space-y-1.5">
+              <button 
+                onClick={() => toggleGroup('profissoes')}
+                className="w-full flex items-center justify-between py-2.5 px-3 rounded-lg bg-gradient-to-b from-black/80 to-[#0a0a0a] border border-medieval-gold/20 shadow-[0_4px_15px_rgba(0,0,0,0.5)] hover:border-medieval-gold/50 hover:shadow-[0_4px_20px_rgba(197,160,89,0.15)] transition-all text-xs font-black text-medieval-gold uppercase tracking-widest relative overflow-hidden group"
+              >
+                <span className="flex items-center gap-2.5 relative z-10">
+                  <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/guiadeprofissoes.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Profissoes" />
+                  {language === 'pt' ? 'Profissões' : 'Professions'}
+                </span>
+                <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.profissoes ? 'rotate-90 text-medieval-gold' : ''}`} />
+              </button>
+              <AnimatePresence initial={false}>
+                {sidebarOpenGroups.profissoes && (
+                  <motion.div 
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5"
+                  >
+                    <button 
+                      onClick={() => { setActiveTab('profissoes'); if(isMobile) setIsMenuOpen(false); }}
+                      className={activeTab === 'profissoes' ? activeSubmenuClass : inactiveSubmenuClass}
+                    >
+                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/guiadeprofissoes.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Guia Profissoes" />
+                      {language === 'pt' ? 'Guia de Profissões' : 'Professions Video'}
+                    </button>
+                    <button 
+                      onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('crafting'); if(isMobile) setIsMenuOpen(false); }}
+                      className={(activeTab === 'calculadoras' && calcSubTab === 'professions' && profSubTab === 'crafting') ? activeSubmenuClass : inactiveSubmenuClass}
+                    >
+                      <Hammer className="w-6 h-6 object-contain text-medieval-gold/70" />
+                      {language === 'pt' ? 'Crafting' : 'Crafting'}
+                    </button>
+                    <button 
+                      onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('alchemy'); if(isMobile) setIsMenuOpen(false); }}
+                      className={(activeTab === 'calculadoras' && calcSubTab === 'professions' && profSubTab === 'alchemy') ? activeSubmenuClass : inactiveSubmenuClass}
+                    >
+                      <FlaskConical className="w-6 h-6 object-contain text-medieval-gold/70" />
+                      {language === 'pt' ? 'Alquimia' : 'Alchemy'}
+                    </button>
+                    <button 
+                      onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('farming'); if(isMobile) setIsMenuOpen(false); }}
+                      className={(activeTab === 'calculadoras' && calcSubTab === 'professions' && profSubTab === 'farming') ? activeSubmenuClass : inactiveSubmenuClass}
+                    >
+                      <Wheat className="w-6 h-6 object-contain text-medieval-gold/70" />
+                      {language === 'pt' ? 'Fazenda' : 'Farming'}
+                    </button>
+                    <button 
+                      onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('mining'); if(isMobile) setIsMenuOpen(false); }}
+                      className={(activeTab === 'calculadoras' && calcSubTab === 'professions' && profSubTab === 'mining') ? activeSubmenuClass : inactiveSubmenuClass}
+                    >
+                      <Pickaxe className="w-6 h-6 object-contain text-medieval-gold/70" />
+                      {language === 'pt' ? 'Mineração' : 'Mining'}
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </>
+        )}
+
+        {/* FEEDBACK (Always visible when in feedback, or we can just keep it independent) */}
+        {activeTab === 'feedback' && (
+          <div className="space-y-1.5">
+            <button 
+              className="w-full flex items-center justify-between py-2.5 px-3 rounded-lg bg-gradient-to-b from-black/80 to-[#0a0a0a] border border-medieval-gold/20 shadow-[0_4px_15px_rgba(0,0,0,0.5)] transition-all text-xs font-black text-medieval-gold uppercase tracking-widest relative overflow-hidden group"
+            >
+              <span className="flex items-center gap-2.5 relative z-10">
+                <MessageSquare className="w-6 h-6 object-contain text-medieval-gold drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" />
+                {language === 'pt' ? 'Comunidade' : 'Community'}
+              </span>
+            </button>
+            <div className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5">
+              <button 
+                onClick={() => { setActiveTab('feedback'); if(isMobile) setIsMenuOpen(false); }}
+                className={activeTab === 'feedback' ? activeSubmenuClass : inactiveSubmenuClass}
+              >
+                <MessageSquare className="w-6 h-6 object-contain opacity-70" />
+                {language === 'pt' ? 'Feedback Board' : 'Feedback Board'}
+              </button>
+            </div>
+          </div>
+        )}
+
       </div>
     );
   };
@@ -2430,6 +2398,7 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col bg-[#0f0f0f]">
       {/* Navigation Bar */}
+      {activeTab !== "home" && (
       <nav className="sticky top-0 z-50 bg-medieval-dark/95 backdrop-blur-md border-b border-medieval-gold/30">
         {/* Rashid Top Bar */}
         <div className="bg-black/40 border-b border-medieval-gold/5 py-1 hidden md:block">
@@ -2463,25 +2432,35 @@ export default function App() {
           </button>
 
           {/* Desktop Global Search Bar */}
-          <div className="hidden lg:block relative max-w-xs w-full mx-6">
-            <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-              <Search className="text-medieval-gold/40 w-4 h-4" />
+          <div className="hidden lg:flex relative max-w-sm w-full mx-6 items-center gap-2">
+            <div className="relative w-full">
+              <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                <Search className="text-medieval-gold/40 w-4 h-4" />
+              </div>
+              <input 
+                type="text" 
+                value={searchQuery}
+                onChange={(e) => {
+                  if (activeTab !== 'home') setActiveTab('home');
+                  handleSearch(e.target.value);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && searchResults.length > 0) {
+                    searchResults[0].action();
+                  }
+                }}
+                placeholder={language === 'pt' ? 'Buscar no site...' : 'Search wiki...'}
+                className="w-full bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded-full py-1.5 pl-9 pr-4 text-medieval-gold placeholder:text-medieval-gold/30 focus:outline-none focus:border-medieval-gold/50 focus:bg-black/60 transition-all text-xs font-mono tracking-wider"
+              />
             </div>
-            <input 
-              type="text" 
-              value={searchQuery}
-              onChange={(e) => {
-                if (activeTab !== 'home') setActiveTab('home');
-                handleSearch(e.target.value);
+            <button 
+              onClick={() => {
+                if (searchResults.length > 0) searchResults[0].action();
               }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' && searchResults.length > 0) {
-                  searchResults[0].action();
-                }
-              }}
-              placeholder={language === 'pt' ? 'Buscar no site...' : 'Search wiki...'}
-              className="w-full bg-black/40 border border-medieval-gold/20 rounded-full py-1.5 pl-9 pr-4 text-medieval-gold placeholder:text-medieval-gold/30 focus:outline-none focus:border-medieval-gold/50 focus:bg-black/60 transition-all text-xs font-mono tracking-wider"
-            />
+              className="shrink-0 bg-medieval-gold/10 text-medieval-gold border border-medieval-gold/20 hover:bg-medieval-gold hover:text-black hover:border-medieval-gold px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all"
+            >
+              {language === 'pt' ? 'Buscar' : 'Search'}
+            </button>
           </div>
 
           {/* Desktop Tabs */}
@@ -2490,10 +2469,10 @@ export default function App() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as Tab)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-sm text-xs font-black uppercase tracking-widest transition-all duration-300 ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-sm text-xs uppercase tracking-widest transition-all duration-300 ${
                   activeTab === tab.id 
-                    ? 'bg-medieval-gold text-black shadow-[0_2px_0_#8b7326]' 
-                    : 'text-medieval-gold/60 hover:text-medieval-gold hover:bg-white/5'
+                    ? 'bg-medieval-gold text-black shadow-[0_2px_0_#8b7326] font-black' 
+                    : 'text-medieval-gold/60 hover:text-medieval-gold hover:bg-white/5 font-semibold'
                 }`}
               >
                 {tab.icon}
@@ -2546,10 +2525,15 @@ export default function App() {
               </button>
             </div>
             <button 
-              className="text-medieval-gold p-2"
+              className="text-medieval-gold p-2 flex items-center gap-1.5"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {isMenuOpen ? <X /> : <Menu />}
+              {isMenuOpen ? <X className="w-5 h-5" /> : (
+                <>
+                  <Menu className="w-5 h-5" />
+                  <span className="text-[10px] font-bold uppercase tracking-wider">{language === 'pt' ? 'Menu' : 'Menu'}</span>
+                </>
+              )}
             </button>
           </div>
         </div>
@@ -2570,14 +2554,16 @@ export default function App() {
           )}
         </AnimatePresence>
       </nav>
+      )}
+      <div className="flex-grow flex flex-row overflow-hidden max-w-[1920px] w-full mx-auto relative">
 
       {/* Main Workspace with sidebar + responsive layout */}
-      <div className="flex-grow flex flex-row overflow-hidden max-w-[1920px] w-full mx-auto relative">
         {/* Left Sidebar Menu */}
+        {activeTab !== "home" && (
         <aside className="w-64 lg:w-72 hidden md:block shrink-0 border-r border-medieval-gold/15 bg-black/55 py-6 px-4 overflow-y-auto custom-scrollbar select-none self-stretch">
           {renderSidebarContent(false)}
         </aside>
-
+        )}
         {/* Dynamic Content Panel */}
         <div className="flex-grow overflow-y-auto py-8 px-4 sm:px-6 lg:px-8 custom-scrollbar pt-[12px] sm:pt-[12px]">
           <div className={`mx-auto w-full ${activeTab === 'buildmaker' ? 'max-w-[1600px] px-2 xl:px-6' : 'max-w-5xl'}`}>
@@ -2588,485 +2574,70 @@ export default function App() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                className="space-y-16 py-10"
+                className="space-y-12 py-10"
               >
-                {/* Hero Section with Search Feel */}
-                <div className="text-center space-y-8 max-w-4xl mx-auto">
-                  <div className="space-y-4">
-                    <h1 className="text-5xl sm:text-7xl font-black text-medieval-gold uppercase tracking-tighter leading-none">
-                      {t('welcome')} <br /> Miracle Wiki
+                <header className="text-center mb-16">
+                  <div className="flex flex-col items-center justify-center gap-6 mb-6">
+                    <h1 className="text-4xl sm:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-medieval-gold to-medieval-gold/30 uppercase tracking-tighter drop-shadow-[0_0_25px_rgba(197,160,89,0.4)]">
+                      Miracle Wiki
                     </h1>
-                    <p className="text-medieval-gold/60 font-mono text-lg max-w-2xl mx-auto">
-                      {t('heroSubtitle')}
-                    </p>
                   </div>
+                  <p className="text-medieval-gold/70 font-mono text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+                    {language === 'pt' 
+                      ? 'Escolha a sua jornada. Encontre guias completos, ferramentas avançadas e organize suas caçadas em Miracle 7.4.' 
+                      : 'Choose your journey. Find complete guides, advanced tools, and organize your hunts in Miracle 7.4.'}
+                  </p>
+                </header>
 
-                  {/* Creator Live & Social Banner (Unconstrained, Centered Badge Row) */}
-                  <motion.div 
-                    initial={{ scale: 0.9, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 0.2, type: 'spring' }}
-                    className="flex flex-wrap justify-center items-center gap-4 px-6 py-3 bg-gradient-to-r from-red-600/10 via-medieval-gold/15 to-[#9146FF]/10 border border-medieval-gold/30 hover:border-medieval-gold/60 rounded-full max-w-2xl mx-auto backdrop-blur-md shadow-2xl relative overflow-hidden group hover:shadow-medieval-gold/10 transition-all duration-300"
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                  {/* Ferramentas */}
+                  <motion.button 
+                    whileHover={{ y: -5, scale: 1.02 }}
+                    onClick={() => { setActiveTab('calculadoras'); window.scrollTo(0,0); }}
+                    className="relative group p-8 sm:p-10 rounded-3xl bg-gradient-to-b from-[#111] to-black border border-medieval-gold/20 hover:border-medieval-gold/60 transition-all text-left flex flex-col justify-between min-h-[300px] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_50px_rgba(197,160,89,0.2)]"
                   >
-                    <span className="text-xs font-black uppercase tracking-widest text-medieval-gold flex items-center gap-1.5">
-                      <Sparkles className="w-3.5 h-3.5 text-medieval-gold animate-bounce" />
-                      {t('followCreator')}
-                    </span>
-                    <div className="h-4 w-px bg-medieval-gold/20 hidden sm:block"></div>
-                    <div className="flex gap-4">
-                      <a 
-                        href="https://www.youtube.com/@obellaoyt" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-1.5 bg-red-600/15 hover:bg-red-600/30 text-red-400 hover:text-red-300 border border-red-500/30 hover:border-red-500/60 rounded-full transition-all text-xs font-bold uppercase tracking-wider shadow-lg hover:shadow-red-600/20"
-                      >
-                        <Youtube className="w-4 h-4 text-red-500" />
-                        <span>YouTube</span>
-                      </a>
-                      <a 
-                        href="https://twitch.tv/obellao_" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-1.5 bg-[#9146FF]/15 hover:bg-[#9146FF]/30 text-[#b585ff] hover:text-white border border-[#9146FF]/30 hover:border-[#9146FF]/60 rounded-full transition-all text-xs font-bold uppercase tracking-wider shadow-lg hover:shadow-[#9146FF]/20"
-                      >
-                        <Twitch className="w-4 h-4 text-[#9146FF]" />
-                        <span>Twitch</span>
-                      </a>
-                    </div>
-                  </motion.div>
-
-                  {/* Visual Search Bar */}
-                  <div className="space-y-4 max-w-xl mx-auto">
-                    <div className="relative group">
-                      <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-                        <Book className="text-medieval-gold/40 w-5 h-5 group-focus-within:text-medieval-gold transition-colors" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-medieval-gold/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="flex justify-between items-start relative z-10">
+                      <div className="p-4 bg-black/60 border border-medieval-gold/30 rounded-2xl group-hover:bg-medieval-gold/20 group-hover:border-medieval-gold shadow-inner transition-all duration-300">
+                        <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/guiadeprofissoes.gif" className="w-10 h-10 sm:w-12 sm:h-12 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)] group-hover:scale-110 transition-transform" alt="Ferramentas" />
                       </div>
-                      <input 
-                        type="text" 
-                        value={searchQuery}
-                        onChange={(e) => handleSearch(e.target.value)}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' && searchResults.length > 0) {
-                            searchResults[0].action();
-                          }
-                        }}
-                        placeholder={t('databaseSearch')}
-                        className="w-full bg-black/40 border border-medieval-gold/20 rounded-full py-4 pl-12 pr-12 text-medieval-gold placeholder:text-medieval-gold/20 focus:outline-none focus:border-medieval-gold/50 focus:bg-black/60 transition-all text-sm font-bold tracking-wider"
-                      />
-                      <div className="absolute inset-y-0 right-4 flex items-center gap-1.5">
-                        {searchQuery && (
-                          <button
-                            onClick={() => {
-                              setSearchQuery('');
-                              setSearchResults([]);
-                            }}
-                            className="text-medieval-gold/40 hover:text-medieval-gold p-1"
-                          >
-                            <X className="w-4 h-4" />
-                          </button>
-                        )}
-                        <button
-                          onClick={() => {
-                            if (searchResults.length > 0) {
-                              searchResults[0].action();
-                            }
-                          }}
-                          className="bg-medieval-gold text-black rounded-full p-2 hover:bg-medieval-gold/80 transition-all"
-                          title={language === 'pt' ? 'Ir para primeiro resultado' : 'Go to first result'}
-                        >
-                          <Search className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
-                      
-                      {/* Search Results Dropdown */}
-                      <AnimatePresence>
-                        {searchResults.length > 0 && (
-                          <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 10 }}
-                            className="absolute top-full left-0 right-0 mt-2 bg-medieval-dark border border-medieval-gold/30 rounded-lg shadow-2xl overflow-hidden z-50 text-left"
-                          >
-                            <div className="max-h-[300px] overflow-y-auto custom-scrollbar">
-                              {searchResults.map((result) => (
-                                <button
-                                  key={result.id}
-                                  onClick={result.action}
-                                  className="w-full px-6 py-3 text-left hover:bg-medieval-gold/10 flex items-center justify-between group transition-colors border-b border-medieval-gold/5 last:border-0"
-                                >
-                                  <div className="flex flex-col">
-                                    <span className="text-medieval-gold font-bold text-sm">{result.label}</span>
-                                    <span className="text-[10px] text-medieval-gold/40 uppercase tracking-widest">{result.type}</span>
-                                  </div>
-                                  <ChevronRight className="w-4 h-4 text-medieval-gold/20 group-hover:text-medieval-gold group-hover:translate-x-1 transition-all" />
-                                </button>
-                              ))}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
+                      <ChevronRight className="text-medieval-gold/30 group-hover:text-medieval-gold group-hover:translate-x-2 transition-all w-8 h-8" />
                     </div>
- 
-                    {/* Interactive suggestions pills */}
-                    <div className="flex flex-wrap justify-center items-center gap-1 text-xs">
-                      <span className="text-medieval-gold/40 font-mono text-[9px] uppercase tracking-wider mr-1">Sugestões comuns:</span>
-                      {[
-                        { text: 'Onyx', display: 'Onyx' },
-                        { text: 'Demon Helmet', display: 'Demon Helmet' },
-                        { text: 'Sword of Valor', display: 'Sword of Valor' },
-                        { text: 'Soft Boots', display: 'Soft Boots' },
-                        { text: 'Alquimia', display: 'Alquimia (Runas)' },
-                        { text: 'farming', display: 'Farming (Cultivo)' },
-                        { text: 'forjar', display: 'Crafting (Forjas)' },
-                        { text: 'Bless', display: 'Bless / Morte' }
-                      ].map((pill, idx) => (
-                        <button
-                          key={idx}
-                          onClick={() => handleSearch(pill.text)}
-                          className="px-2.5 py-1 bg-medieval-gold/5 hover:bg-medieval-gold/15 border border-medieval-gold/10 hover:border-medieval-gold/30 rounded text-medieval-gold/85 hover:text-medieval-gold text-[10px] font-mono transition-all"
-                        >
-                          {pill.display}
-                        </button>
-                      ))}
-                    </div>
-
-                    {/* Highly-Reliable Inline Search Results Grid (Guarantees Visibility on all screens) */}
-                    {searchQuery.trim() && (
-                      <motion.div 
-                        initial={{ opacity: 0, y: 15 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="bg-black/55 border border-medieval-gold/25 rounded-lg p-5 mt-6 text-left space-y-4 shadow-xl"
-                      >
-                        <div className="flex items-center justify-between border-b border-medieval-gold/10 pb-2">
-                          <span className="text-xs font-black text-medieval-gold uppercase tracking-widest flex items-center gap-2">
-                            <Sparkles className="w-3.5 h-3.5 text-medieval-gold" />
-                            {language === 'pt' ? 'Busca Inteligente: Possibilidades' : 'Intelligent Matches found'} ({searchResults.length})
-                          </span>
-                          {searchResults.length > 0 && (
-                            <span className="text-[9px] text-medieval-gold/60 font-mono uppercase bg-medieval-gold/10 px-2 py-0.5 rounded">
-                              {language === 'pt' ? 'Enter no teclado ativa o 1º resultado' : 'Enter runs 1st option'}
-                            </span>
-                          )}
-                        </div>
-
-                        {searchResults.length > 0 ? (
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[350px] overflow-y-auto custom-scrollbar pr-1">
-                            {searchResults.map((result, idx) => (
-                              <button
-                                key={result.id}
-                                onClick={result.action}
-                                className={`p-3 bg-black/40 hover:bg-medieval-gold/10 border ${idx === 0 ? 'border-medieval-gold/55 bg-medieval-gold/5' : 'border-medieval-gold/10'} hover:border-medieval-gold/40 rounded flex items-center justify-between group transition-all text-left`}
-                              >
-                                <div className="space-y-1 pr-2">
-                                  <div className="text-medieval-gold font-bold text-xs leading-snug flex flex-wrap items-center gap-1">
-                                    {result.label}
-                                    {idx === 0 && (
-                                      <span className="text-[8px] bg-medieval-gold text-black font-black px-1 rounded uppercase tracking-tighter">1º / Enter</span>
-                                    )}
-                                  </div>
-                                  <div className="text-[9px] text-medieval-gold/40 uppercase tracking-widest font-mono">
-                                    {result.type}
-                                  </div>
-                                </div>
-                                <ChevronRight className="w-3.5 h-3.5 text-medieval-gold/30 group-hover:text-medieval-gold group-hover:translate-x-0.5 transition-all shrink-0" />
-                              </button>
-                            ))}
-                          </div>
-                        ) : (
-                          <div className="py-8 text-center text-medieval-gold/40 text-xs font-mono">
-                            {language === 'pt' ? 'Nenhum resultado correspondente para "'+searchQuery+'". Tente palavras-chave como "onyx", "crafting", "demon", "alquimia".' : 'No matches. Try keywords like "onyx", "crafting", "demon", "alchemy".'}
-                          </div>
-                        )}
-                      </motion.div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Main Hub Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {/* Calculators Hub */}
-                  <button 
-                    onClick={() => setActiveTab('calculadoras')}
-                    className="medieval-card group p-8 medieval-border rounded-lg bg-medieval-card hover:bg-medieval-gold/5 transition-all text-left flex flex-col gap-4"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="p-3 bg-medieval-gold/10 rounded-lg group-hover:bg-medieval-gold/20 transition-colors">
-                        <Hammer className="text-medieval-gold w-8 h-8" />
-                      </div>
-                      <ChevronRight className="text-medieval-gold/20 group-hover:text-medieval-gold group-hover:translate-x-1 transition-all" />
-                    </div>
-                    <div>
-                      <h2 className="text-2xl font-black text-medieval-gold uppercase tracking-tight">{t('calculators')}</h2>
-                      <p className="text-medieval-text/60 text-sm mt-2 leading-relaxed">
-                        {t('toolsDesc')}
+                    <div className="relative z-10 mt-8">
+                      <h2 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-medieval-gold to-medieval-gold/70 uppercase tracking-tight mb-3 group-hover:from-white group-hover:to-medieval-gold transition-colors">
+                        {language === 'pt' ? 'Ferramentas' : 'Tools'}
+                      </h2>
+                      <p className="text-medieval-gold/60 text-sm leading-relaxed font-mono">
+                        {language === 'pt' ? 'Calculadoras de skills, runas, forja e simulação de atributos para maximizar seus ganhos.' : 'Skill calculators, runes, crafting and attribute simulation to maximize your gains.'}
                       </p>
                     </div>
-                  </button>
+                  </motion.button>
 
-                  {/* Professions Hub */}
-                  <button 
-                    onClick={() => setActiveTab('profissoes')}
-                    className="medieval-card group p-8 medieval-border rounded-lg bg-medieval-card hover:bg-medieval-gold/5 transition-all text-left flex flex-col gap-4"
+                  {/* Wiki & Quests */}
+                  <motion.button 
+                    whileHover={{ y: -5, scale: 1.02 }}
+                    onClick={() => { setActiveTab('wiki'); window.scrollTo(0,0); }}
+                    className="relative group p-8 sm:p-10 rounded-3xl bg-gradient-to-b from-[#111] to-black border border-medieval-gold/20 hover:border-medieval-gold/60 transition-all text-left flex flex-col justify-between min-h-[300px] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_50px_rgba(197,160,89,0.2)]"
                   >
-                    <div className="flex items-center justify-between">
-                      <div className="p-3 bg-medieval-gold/10 rounded-lg group-hover:bg-medieval-gold/20 transition-colors">
-                        <Briefcase className="text-medieval-gold w-8 h-8" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-medieval-gold/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="flex justify-between items-start relative z-10">
+                      <div className="p-4 bg-black/60 border border-medieval-gold/30 rounded-2xl group-hover:bg-medieval-gold/20 group-hover:border-medieval-gold shadow-inner transition-all duration-300">
+                        <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783850372/wiki.gif" className="w-10 h-10 sm:w-12 sm:h-12 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)] group-hover:scale-110 transition-transform" alt="Wiki" />
                       </div>
-                      <ChevronRight className="text-medieval-gold/20 group-hover:text-medieval-gold group-hover:translate-x-1 transition-all" />
+                      <ChevronRight className="text-medieval-gold/30 group-hover:text-medieval-gold group-hover:translate-x-2 transition-all w-8 h-8" />
                     </div>
-                    <div>
-                      <h2 className="text-2xl font-black text-medieval-gold uppercase tracking-tight">{t('professions')}</h2>
-                      <p className="text-medieval-text/60 text-sm mt-2 leading-relaxed">
-                        {t('professionsDesc')}
+                    <div className="relative z-10 mt-8">
+                      <h2 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-medieval-gold to-medieval-gold/70 uppercase tracking-tight mb-3 group-hover:from-white group-hover:to-medieval-gold transition-colors">
+                        Wiki & Quests
+                      </h2>
+                      <p className="text-medieval-gold/60 text-sm leading-relaxed font-mono">
+                        {language === 'pt' ? 'Explore a enciclopédia completa de itens, equipamentos, bestiário, missões e guias.' : 'Explore the complete encyclopedia of items, equipment, bestiary, quests and guides.'}
                       </p>
                     </div>
-                  </button>
-
-                  {/* Map Hub */}
-                  <button 
-                    onClick={() => setActiveTab('mapa')}
-                    className="medieval-card group p-8 medieval-border rounded-lg bg-medieval-card hover:bg-medieval-gold/5 transition-all text-left flex flex-col gap-4"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="p-3 bg-medieval-gold/10 rounded-lg group-hover:bg-medieval-gold/20 transition-colors">
-                        <Map className="text-medieval-gold w-8 h-8" />
-                      </div>
-                      <ChevronRight className="text-medieval-gold/20 group-hover:text-medieval-gold group-hover:translate-x-1 transition-all" />
-                    </div>
-                    <div>
-                      <h2 className="text-2xl font-black text-medieval-gold uppercase tracking-tight">{t('map')}</h2>
-                      <p className="text-medieval-text/60 text-sm mt-2 leading-relaxed">
-                        {t('mapDesc')}
-                      </p>
-                    </div>
-                  </button>
-
-                  {/* Wiki/Library Hub */}
-                  <button 
-                    onClick={() => setActiveTab('wiki')}
-                    className="medieval-card group p-8 medieval-border rounded-lg bg-medieval-card hover:bg-medieval-gold/5 transition-all text-left flex flex-col gap-4"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="p-3 bg-medieval-gold/10 rounded-lg group-hover:bg-medieval-gold/20 transition-colors">
-                        <Book className="text-medieval-gold w-8 h-8" />
-                      </div>
-                      <ChevronRight className="text-medieval-gold/20 group-hover:text-medieval-gold group-hover:translate-x-1 transition-all" />
-                    </div>
-                    <div>
-                      <h2 className="text-2xl font-black text-medieval-gold uppercase tracking-tight">{t('wiki')}</h2>
-                      <p className="text-medieval-text/60 text-sm mt-2 leading-relaxed">
-                        {t('wikiGuidesDesc')}
-                      </p>
-                    </div>
-                  </button>
-
-                  {/* Events Hub */}
-                  <button 
-                    onClick={() => setActiveTab('eventos')}
-                    className="medieval-card group p-8 medieval-border rounded-lg bg-medieval-card hover:bg-medieval-gold/5 transition-all text-left flex flex-col gap-4"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="p-3 bg-medieval-gold/10 rounded-lg group-hover:bg-medieval-gold/20 transition-colors">
-                        <Users className="text-medieval-gold w-8 h-8" />
-                      </div>
-                      <ChevronRight className="text-medieval-gold/20 group-hover:text-medieval-gold group-hover:translate-x-1 transition-all" />
-                    </div>
-                    <div>
-                      <h2 className="text-2xl font-black text-medieval-gold uppercase tracking-tight">{t('events')}</h2>
-                      <p className="text-medieval-text/60 text-sm mt-2 leading-relaxed">
-                        {t('eventsDesc')}
-                      </p>
-                    </div>
-                  </button>
-
-                  {/* Community Hub */}
-                  <div className="medieval-card p-8 medieval-border rounded-lg bg-medieval-card flex flex-col gap-6">
-                    <div className="flex items-center gap-4">
-                      <div className="p-3 bg-medieval-gold/10 rounded-lg">
-                        <MessageSquare className="text-medieval-gold w-8 h-8" />
-                      </div>
-                      <h2 className="text-2xl font-black text-medieval-gold uppercase tracking-tight">{t('community')}</h2>
-                    </div>
-                    <div className="flex flex-col gap-3">
-                      <a 
-                        href="https://www.youtube.com/@obellaoyt" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-between p-3 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold transition-all group"
-                      >
-                        <div className="flex items-center gap-3">
-                          <Youtube className="text-red-500 w-4 h-4" />
-                          <span className="text-[10px] font-bold uppercase tracking-widest">{t('youtubeChannel')}</span>
-                        </div>
-                        <ExternalLink className="w-3 h-3 text-medieval-gold/40 group-hover:text-medieval-gold" />
-                      </a>
-                      <a 
-                        href="https://twitch.tv/obellao_" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-between p-3 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold transition-all group"
-                      >
-                        <div className="flex items-center gap-3">
-                          <Twitch className="text-[#9146FF] w-4 h-4" />
-                          <span className="text-[10px] font-bold uppercase tracking-widest">{t('twitchChannel')}</span>
-                        </div>
-                        <ExternalLink className="w-3 h-3 text-medieval-gold/40 group-hover:text-medieval-gold" />
-                      </a>
-                      <a 
-                        href="https://discord.gg/miracle74" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-between p-3 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold transition-all group"
-                      >
-                        <div className="flex items-center gap-3">
-                          <MessageSquare className="text-[#5865F2] w-4 h-4" />
-                          <span className="text-[10px] font-bold uppercase tracking-widest">{t('ourDiscord')}</span>
-                        </div>
-                        <ExternalLink className="w-3 h-3 text-medieval-gold/40 group-hover:text-medieval-gold" />
-                      </a>
-                      <button 
-                        onClick={() => setActiveTab('feedback')}
-                        className="flex items-center justify-between p-3 bg-medieval-gold/10 border border-medieval-gold/30 rounded hover:border-medieval-gold hover:bg-medieval-gold/20 transition-all group shadow-[0_0_10px_rgba(197,160,89,0.1)]"
-                      >
-                        <div className="flex items-center gap-3">
-                          <MessageSquare className="text-medieval-gold w-4 h-4" />
-                          <span className="text-[10px] font-bold uppercase tracking-widest text-medieval-gold">{language === 'pt' ? 'Feedback & Sugestões' : 'Feedback & Suggestions'}</span>
-                        </div>
-                        <ChevronRight className="w-3 h-3 text-medieval-gold/60 group-hover:text-medieval-gold group-hover:translate-x-1 transition-all" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Secondary Section: Patch Notes & News */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 pt-8 border-t border-medieval-gold/10">
-                  <div className="lg:col-span-2 space-y-8">
-                    <div className="flex items-center justify-between border-b border-medieval-gold/20 pb-4">
-                      <div className="flex items-center gap-3">
-                        <History className="text-medieval-gold w-6 h-6" />
-                        <h3 className="text-2xl font-black text-medieval-gold uppercase tracking-tight">{t('latestUpdates')}</h3>
-                      </div>
-                      <button 
-                        onClick={() => { setActiveTab('wiki'); setWikiMainTab('updates'); }}
-                        className="text-[10px] font-bold uppercase tracking-widest text-medieval-gold/60 hover:text-medieval-gold transition-colors"
-                      >
-                        {t('viewAll')}
-                      </button>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {/* Project Patch Notes Preview */}
-                      <div className="space-y-4">
-                        <h4 className="text-xs font-black text-medieval-gold/40 uppercase tracking-widest">{t('projectPatchNotes')}</h4>
-                        <div className="space-y-3">
-                          {PROJECT_PATCH_NOTES.slice(0, 3).map((note, idx) => {
-                            const firstChange = note.changes.added?.[language][0] || note.changes.changed?.[language][0] || note.changes.fixed?.[language][0];
-                            return (
-                              <button 
-                                key={idx} 
-                                onClick={() => {
-                                  setActiveTab('wiki');
-                                  setWikiMainTab('updates');
-                                  setWikiSubTab('project');
-                                  setSelectedPatchVersion(note.version);
-                                }}
-                                className="w-full text-left p-4 bg-black/20 border border-medieval-gold/10 rounded-sm hover:border-medieval-gold/30 transition-colors group"
-                              >
-                                <div className="flex justify-between items-start mb-1">
-                                  <span className="text-medieval-gold font-bold text-[10px] group-hover:text-medieval-gold transition-colors">{note.version}</span>
-                                  <span className="text-[9px] text-medieval-gold/40 font-mono">{note.date}</span>
-                                </div>
-                                <p className="text-xs text-medieval-text/80 line-clamp-2">{firstChange}</p>
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </div>
-
-                      {/* Server Patch Notes Preview */}
-                      <div className="space-y-4">
-                        <h4 className="text-xs font-black text-medieval-gold/40 uppercase tracking-widest">{t('serverPatchNotes')}</h4>
-                        <div className="space-y-3">
-                          {SERVER_PATCH_NOTES.slice(0, 3).map((note, idx) => {
-                            const firstChange = note.changes.added?.[language][0] || note.changes.changed?.[language][0] || note.changes.fixed?.[language][0];
-                            return (
-                              <button 
-                                key={idx} 
-                                onClick={() => {
-                                  setActiveTab('wiki');
-                                  setWikiMainTab('updates');
-                                  setWikiSubTab('server');
-                                  setSelectedPatchVersion(note.version);
-                                }}
-                                className="w-full text-left p-4 bg-black/20 border border-medieval-gold/10 rounded-sm hover:border-medieval-gold/30 transition-colors group"
-                              >
-                                <div className="flex justify-between items-start mb-1">
-                                  <span className="text-medieval-gold font-bold text-[10px] group-hover:text-medieval-gold transition-colors">{note.version}</span>
-                                  <span className="text-[9px] text-medieval-gold/40 font-mono">{note.date}</span>
-                                </div>
-                                <p className="text-xs text-medieval-text/80 line-clamp-2">{firstChange}</p>
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Sidebar: Quick Links / Featured */}
-                  <div className="space-y-8">
-                    <div className="border-b border-medieval-gold/20 pb-4">
-                      <div className="flex items-center gap-3">
-                        <Zap className="text-medieval-gold w-5 h-5" />
-                        <h3 className="text-xl font-black text-medieval-gold uppercase tracking-tight">{t('featuredTools')}</h3>
-                      </div>
-                    </div>
-                    
-                    <div className="space-y-4">
-                      <button 
-                        onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('skills'); }}
-                        className="w-full p-4 bg-medieval-gold/5 border border-medieval-gold/20 rounded hover:border-medieval-gold transition-all text-left flex items-center gap-4 group"
-                      >
-                        <div className="p-2 bg-medieval-gold/10 rounded">
-                          <TrendingUp className="text-medieval-gold w-4 h-4" />
-                        </div>
-                        <div>
-                          <span className="block text-[10px] font-black uppercase text-medieval-gold tracking-widest">{t('skills')}</span>
-                          <span className="block text-[9px] text-medieval-gold/40 uppercase font-bold">Training Calculator</span>
-                        </div>
-                      </button>
-
-                      <button 
-                        onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('mining'); }}
-                        className="w-full p-4 bg-medieval-gold/5 border border-medieval-gold/20 rounded hover:border-medieval-gold transition-all text-left flex items-center gap-4 group"
-                      >
-                        <div className="p-2 bg-medieval-gold/10 rounded">
-                          <Pickaxe className="text-medieval-gold w-4 h-4" />
-                        </div>
-                        <div>
-                          <span className="block text-[10px] font-black uppercase text-medieval-gold tracking-widest">{t('mining')}</span>
-                          <span className="block text-[9px] text-medieval-gold/40 uppercase font-bold">Profit & Drop Calc</span>
-                        </div>
-                      </button>
-
-                      <button 
-                        onClick={() => setActiveTab('mapa')}
-                        className="w-full p-4 bg-medieval-gold/5 border border-medieval-gold/20 rounded hover:border-medieval-gold transition-all text-left flex items-center gap-4 group"
-                      >
-                        <div className="p-2 bg-medieval-gold/10 rounded">
-                          <Map className="text-medieval-gold w-4 h-4" />
-                        </div>
-                        <div>
-                          <span className="block text-[10px] font-black uppercase text-medieval-gold tracking-widest">{t('map')}</span>
-                          <span className="block text-[9px] text-medieval-gold/40 uppercase font-bold">Interactive World Map</span>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
+                  </motion.button>
                 </div>
               </motion.div>
             )}
-
             {activeTab === 'buildmaker' && (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -3097,66 +2668,80 @@ export default function App() {
                 exit={{ opacity: 0, y: -20 }}
                 className="space-y-12"
               >
+                <header className="text-center mb-12 mt-4">
+                  <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2 flex items-center justify-center gap-3">
+                    <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849027/calculadoras.gif" className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Calculadoras" />
+                    {language === 'pt' ? 'Calculadoras' : 'Calculators'}
+                  </h1>
+                  <p className="text-medieval-gold/80 font-mono text-sm">
+                    {language === 'pt' ? 'Ferramentas essenciais para calcular seus ganhos e atributos' : 'Essential tools to calculate your gains and attributes'}
+                  </p>
+                </header>
                 {/* Sub-navegação Calculadoras */}
                 <div className="flex flex-wrap justify-center gap-4 mb-8">
                   <button
                     onClick={() => setCalcSubTab('skills')}
-                    className={`px-6 py-3 rounded-sm font-black uppercase tracking-widest text-xs transition-all ${
+                    className={`relative overflow-hidden px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs transition-all duration-300 group ${
                       calcSubTab === 'skills'
-                        ? 'bg-medieval-gold text-black shadow-[0_4px_0_#8b7326]'
-                        : 'bg-medieval-card text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50'
+                        ? 'bg-gradient-to-r from-medieval-gold to-yellow-600 text-black shadow-[0_0_20px_rgba(197,160,89,0.4)] scale-105'
+                        : 'bg-black/60 text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50 hover:bg-medieval-gold/10 hover:text-medieval-gold'
                     }`}
                   >
-                    <div className="flex items-center gap-2">
-                      <Zap className="w-4 h-4" /> {t('skills')}
+                    <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="flex items-center gap-2 relative z-10">
+                      <Zap className={`w-4 h-4 ${calcSubTab === 'skills' ? 'animate-pulse' : ''}`} /> {t('skills')}
                     </div>
                   </button>
                   <button
                     onClick={() => setCalcSubTab('bless')}
-                    className={`px-6 py-3 rounded-sm font-black uppercase tracking-widest text-xs transition-all ${
+                    className={`relative overflow-hidden px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs transition-all duration-300 group ${
                       calcSubTab === 'bless'
-                        ? 'bg-medieval-gold text-black shadow-[0_4px_0_#8b7326]'
-                        : 'bg-medieval-card text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50'
+                        ? 'bg-gradient-to-r from-medieval-gold to-yellow-600 text-black shadow-[0_0_20px_rgba(197,160,89,0.4)] scale-105'
+                        : 'bg-black/60 text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50 hover:bg-medieval-gold/10 hover:text-medieval-gold'
                     }`}
                   >
-                    <div className="flex items-center gap-2">
-                      <TrendingUp className="w-4 h-4" /> {t('blessDeath')}
+                    <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="flex items-center gap-2 relative z-10">
+                      <TrendingUp className={`w-4 h-4 ${calcSubTab === 'bless' ? 'animate-pulse' : ''}`} /> {t('blessDeath')}
                     </div>
                   </button>
                   <button
                     onClick={() => setCalcSubTab('atributos')}
-                    className={`px-6 py-3 rounded-sm font-black uppercase tracking-widest text-xs transition-all ${
+                    className={`relative overflow-hidden px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs transition-all duration-300 group ${
                       calcSubTab === 'atributos'
-                        ? 'bg-medieval-gold text-black shadow-[0_4px_0_#8b7326]'
-                        : 'bg-medieval-card text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50'
+                        ? 'bg-gradient-to-r from-medieval-gold to-yellow-600 text-black shadow-[0_0_20px_rgba(197,160,89,0.4)] scale-105'
+                        : 'bg-black/60 text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50 hover:bg-medieval-gold/10 hover:text-medieval-gold'
                     }`}
                   >
-                    <div className="flex items-center gap-2">
-                      <Sparkles className="w-4 h-4" /> {t('attributes')}
+                    <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="flex items-center gap-2 relative z-10">
+                      <Sparkles className={`w-4 h-4 ${calcSubTab === 'atributos' ? 'animate-pulse' : ''}`} /> <Zap className="w-8 h-8 text-medieval-gold opacity-80" /> {t('attributes')}
                     </div>
                   </button>
                   <button
                     onClick={() => setCalcSubTab('runemaking')}
-                    className={`px-6 py-3 rounded-sm font-black uppercase tracking-widest text-xs transition-all ${
+                    className={`relative overflow-hidden px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs transition-all duration-300 group ${
                       calcSubTab === 'runemaking'
-                        ? 'bg-medieval-gold text-black shadow-[0_4px_0_#8b7326]'
-                        : 'bg-medieval-card text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50'
+                        ? 'bg-gradient-to-r from-medieval-gold to-yellow-600 text-black shadow-[0_0_20px_rgba(197,160,89,0.4)] scale-105'
+                        : 'bg-black/60 text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50 hover:bg-medieval-gold/10 hover:text-medieval-gold'
                     }`}
                   >
-                    <div className="flex items-center gap-2">
-                      <FlaskConical className="w-4 h-4" /> {language === 'pt' ? 'Rune Making' : 'Rune Making'}
+                    <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="flex items-center gap-2 relative z-10">
+                      <FlaskConical className={`w-4 h-4 ${calcSubTab === 'runemaking' ? 'animate-pulse' : ''}`} /> {language === 'pt' ? 'Rune Making' : 'Rune Making'}
                     </div>
                   </button>
                   <button
                     onClick={() => setCalcSubTab('professions')}
-                    className={`px-6 py-3 rounded-sm font-black uppercase tracking-widest text-xs transition-all ${
+                    className={`relative overflow-hidden px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs transition-all duration-300 group ${
                       calcSubTab === 'professions'
-                        ? 'bg-medieval-gold text-black shadow-[0_4px_0_#8b7326]'
-                        : 'bg-medieval-card text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50'
+                        ? 'bg-gradient-to-r from-medieval-gold to-yellow-600 text-black shadow-[0_0_20px_rgba(197,160,89,0.4)] scale-105'
+                        : 'bg-black/60 text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50 hover:bg-medieval-gold/10 hover:text-medieval-gold'
                     }`}
                   >
-                    <div className="flex items-center gap-2">
-                      <Briefcase className="w-4 h-4" /> {t('professions')}
+                    <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="flex items-center gap-2 relative z-10">
+                      <Briefcase className={`w-4 h-4 ${calcSubTab === 'professions' ? 'animate-pulse' : ''}`} /> {t('professions')}
                     </div>
                   </button>
                 </div>
@@ -3166,50 +2751,54 @@ export default function App() {
                     <div className="flex flex-wrap justify-center gap-3">
                       <button
                         onClick={() => setProfSubTab('crafting')}
-                        className={`px-4 py-2 rounded-sm font-bold uppercase text-[10px] tracking-widest transition-all ${
+                        className={`relative overflow-hidden px-5 py-2.5 rounded-lg font-bold uppercase text-[10px] tracking-widest transition-all duration-300 group ${
                           profSubTab === 'crafting'
-                            ? 'bg-medieval-gold/20 text-medieval-gold border border-medieval-gold'
-                            : 'bg-black/40 text-medieval-gold/40 border border-medieval-gold/10 hover:border-medieval-gold/30'
+                            ? 'bg-gradient-to-r from-medieval-gold to-yellow-600 text-black shadow-[0_0_15px_rgba(197,160,89,0.3)] scale-105'
+                            : 'bg-black/40 text-medieval-gold/40 border border-medieval-gold/10 hover:border-medieval-gold/30 hover:bg-medieval-gold/10 hover:text-medieval-gold'
                         }`}
                       >
-                        <div className="flex items-center gap-2">
-                          <Hammer className="w-3 h-3" /> {t('crafting')}
+                        <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div className="flex items-center gap-2 relative z-10">
+                          <Hammer className={`w-3 h-3 ${profSubTab === 'crafting' ? 'animate-pulse' : ''}`} /> {t('crafting')}
                         </div>
                       </button>
                       <button
                         onClick={() => setProfSubTab('alchemy')}
-                        className={`px-4 py-2 rounded-sm font-bold uppercase text-[10px] tracking-widest transition-all ${
+                        className={`relative overflow-hidden px-5 py-2.5 rounded-lg font-bold uppercase text-[10px] tracking-widest transition-all duration-300 group ${
                           profSubTab === 'alchemy'
-                            ? 'bg-medieval-gold/20 text-medieval-gold border border-medieval-gold'
-                            : 'bg-black/40 text-medieval-gold/40 border border-medieval-gold/10 hover:border-medieval-gold/30'
+                            ? 'bg-gradient-to-r from-medieval-gold to-yellow-600 text-black shadow-[0_0_15px_rgba(197,160,89,0.3)] scale-105'
+                            : 'bg-black/40 text-medieval-gold/40 border border-medieval-gold/10 hover:border-medieval-gold/30 hover:bg-medieval-gold/10 hover:text-medieval-gold'
                         }`}
                       >
-                        <div className="flex items-center gap-2">
-                          <FlaskConical className="w-3 h-3" /> {t('alchemy')}
+                        <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div className="flex items-center gap-2 relative z-10">
+                          <FlaskConical className={`w-3 h-3 ${profSubTab === 'alchemy' ? 'animate-pulse' : ''}`} /> {t('alchemy')}
                         </div>
                       </button>
                       <button
                         onClick={() => setProfSubTab('farming')}
-                        className={`px-4 py-2 rounded-sm font-bold uppercase text-[10px] tracking-widest transition-all ${
+                        className={`relative overflow-hidden px-5 py-2.5 rounded-lg font-bold uppercase text-[10px] tracking-widest transition-all duration-300 group ${
                           profSubTab === 'farming'
-                            ? 'bg-medieval-gold/20 text-medieval-gold border border-medieval-gold'
-                            : 'bg-black/40 text-medieval-gold/40 border border-medieval-gold/10 hover:border-medieval-gold/30'
+                            ? 'bg-gradient-to-r from-medieval-gold to-yellow-600 text-black shadow-[0_0_15px_rgba(197,160,89,0.3)] scale-105'
+                            : 'bg-black/40 text-medieval-gold/40 border border-medieval-gold/10 hover:border-medieval-gold/30 hover:bg-medieval-gold/10 hover:text-medieval-gold'
                         }`}
                       >
-                        <div className="flex items-center gap-2">
-                          <Sprout className="w-3 h-3" /> {t('farming')}
+                        <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div className="flex items-center gap-2 relative z-10">
+                          <Sprout className={`w-3 h-3 ${profSubTab === 'farming' ? 'animate-pulse' : ''}`} /> {t('farming')}
                         </div>
                       </button>
                       <button
                         onClick={() => setProfSubTab('mining')}
-                        className={`px-4 py-2 rounded-sm font-bold uppercase text-[10px] tracking-widest transition-all ${
+                        className={`relative overflow-hidden px-5 py-2.5 rounded-lg font-bold uppercase text-[10px] tracking-widest transition-all duration-300 group ${
                           profSubTab === 'mining'
-                            ? 'bg-medieval-gold/20 text-medieval-gold border border-medieval-gold'
-                            : 'bg-black/40 text-medieval-gold/40 border border-medieval-gold/10 hover:border-medieval-gold/30'
+                            ? 'bg-gradient-to-r from-medieval-gold to-yellow-600 text-black shadow-[0_0_15px_rgba(197,160,89,0.3)] scale-105'
+                            : 'bg-black/40 text-medieval-gold/40 border border-medieval-gold/10 hover:border-medieval-gold/30 hover:bg-medieval-gold/10 hover:text-medieval-gold'
                         }`}
                       >
-                        <div className="flex items-center gap-2">
-                          <Pickaxe className="w-3 h-3" /> {t('mining')}
+                        <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div className="flex items-center gap-2 relative z-10">
+                          <Pickaxe className={`w-3 h-3 ${profSubTab === 'mining' ? 'animate-pulse' : ''}`} /> {t('mining')}
                         </div>
                       </button>
                     </div>
@@ -3246,8 +2835,8 @@ export default function App() {
                 ) : (
                   <div className="space-y-8">
                     <header className="text-center mb-12">
-                      <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
-                        {t('attributes')}
+                      <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2 flex items-center justify-center gap-3">
+                        <Zap className="w-8 h-8 text-medieval-gold opacity-80" /> {t('attributes')}
                       </h1>
                       <p className="text-medieval-gold/80 font-mono text-sm">
                         {t('attributeSubtitle')}
@@ -3256,7 +2845,7 @@ export default function App() {
 
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                       <div className="lg:col-span-7 space-y-6">
-                        <div className="medieval-card bg-medieval-card p-6 sm:p-8 medieval-border rounded-lg">
+                        <div className="medieval-card p-6 sm:p-8">
                           <div className="space-y-6">
                             {/* Seleção de Categoria */}
                             <div className="flex flex-col gap-2">
@@ -3340,7 +2929,7 @@ export default function App() {
 
                       <div className="lg:col-span-5 space-y-6">
                         {/* Twitch/Social */}
-                        <div className="medieval-border rounded-lg overflow-hidden bg-black aspect-video">
+                        <div className="medieval-card overflow-hidden aspect-video">
                           <iframe
                             src={`https://player.twitch.tv/?channel=obellao_&parent=${window.location.hostname}`}
                             height="100%" width="100%" allowFullScreen title="Twitch Player"
@@ -3358,7 +2947,7 @@ export default function App() {
                           </a>
                         </div>
 
-                        <div className="medieval-border rounded-lg bg-medieval-card p-6 space-y-4">
+                        <div className="medieval-card p-6 space-y-4">
                           <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest flex items-center gap-2">
                             <TrendingUp className="w-4 h-4" /> {t('understandFormula')}
                           </h3>
@@ -3405,8 +2994,8 @@ export default function App() {
               >
                 <header className="relative flex flex-col md:flex-row md:items-start justify-between gap-6 mb-8">
                   <div className="flex-1 text-center md:text-left">
-                    <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
-                      {t('mapTitle')}
+                    <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2 flex items-center justify-center gap-3">
+                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849033/mapainterativo.gif" className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Mapa" /> {t('mapTitle')}
                     </h1>
                     <p className="text-medieval-gold/80 font-mono text-sm mb-4">
                       {t('mapSubtitle')}
@@ -3419,7 +3008,7 @@ export default function App() {
                     </div>
                   </div>
 
-                  <div className="medieval-card bg-medieval-gold/5 p-3 medieval-border rounded-lg flex items-center gap-3 shrink-0 max-w-xs mx-auto md:mx-0">
+                  <div className="medieval-card bg-medieval-gold/5 p-3 flex items-center gap-3 shrink-0 max-w-xs mx-auto md:mx-0">
                     <div className="p-2 bg-medieval-gold/10 rounded-full">
                       <Download className="w-4 h-4 text-medieval-gold" />
                     </div>
@@ -3445,7 +3034,7 @@ export default function App() {
                   </div>
                 </header>
 
-                <div className="medieval-border rounded-lg overflow-hidden bg-black shadow-2xl" style={{ height: '70vh' }}>
+                <div className="medieval-card overflow-hidden shadow-2xl" style={{ height: '70vh' }}>
                   <iframe 
                     src="/mapa.html" 
                     className="w-full h-full border-none"
@@ -3475,8 +3064,8 @@ export default function App() {
                 className="space-y-12"
               >
                 <header className="text-center mb-12">
-                  <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
-                    {t('professionsTitle')}
+                  <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2 flex items-center justify-center gap-3">
+                    <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/guiadeprofissoes.gif" className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Profissoes" /> {t('professionsTitle')}
                   </h1>
                   <p className="text-medieval-gold/80 font-mono text-sm">
                     {t('professionsSubtitle')}
@@ -3485,108 +3074,110 @@ export default function App() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {/* Card Crafting */}
-                  <div className="medieval-card bg-medieval-card p-8 medieval-border rounded-lg space-y-6 flex flex-col">
-                    <div className="flex items-center gap-4">
-                      <div className="p-3 bg-medieval-gold/10 rounded-lg">
-                        <Hammer className="text-medieval-gold w-8 h-8" />
+                  <motion.div whileHover={{ y: -5 }} className="relative group p-8 rounded-2xl bg-gradient-to-b from-black/80 to-black border border-medieval-gold/20 hover:border-medieval-gold/60 transition-all flex flex-col space-y-6 overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+                    <div className="absolute inset-0 bg-gradient-to-br from-medieval-gold/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="flex items-center gap-4 relative z-10">
+                      <div className="p-4 bg-black/60 border border-medieval-gold/30 rounded-xl group-hover:bg-medieval-gold/20 group-hover:border-medieval-gold shadow-inner transition-all duration-300">
+                        <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/guiadeprofissoes.gif" className="w-12 h-12 object-contain group-hover:scale-110 transition-transform drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Calculadoras" />
                       </div>
-                      <h2 className="text-2xl font-black text-medieval-gold uppercase">{t('crafting')}</h2>
+                      <h2 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-medieval-gold to-medieval-gold/70 uppercase tracking-tight group-hover:from-white group-hover:to-medieval-gold transition-colors">{t('crafting')}</h2>
                     </div>
-                    <p className="text-medieval-text/70 text-sm leading-relaxed flex-1">
+                    <p className="text-medieval-gold/60 text-sm leading-relaxed font-mono flex-1 relative z-10">
                       {t('craftingDesc')}
                     </p>
-                    <div className="pt-4">
+                    <div className="pt-4 relative z-10">
                       <a 
                         href="https://www.youtube.com/watch?v=keb5CtwOwBI" 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="bg-[#FF0000] text-white font-bold py-3 px-6 rounded-sm flex items-center justify-center gap-3 hover:bg-[#CC0000] transition-colors w-full"
+                        className="bg-red-600/20 text-red-400 border border-red-500/30 font-bold py-3 px-6 rounded-xl flex items-center justify-center gap-3 hover:bg-red-600/40 hover:text-white hover:border-red-500/80 transition-all w-full text-xs uppercase tracking-wider group/btn shadow-lg"
                       >
-                        <Youtube className="w-5 h-5" /> {t('craftingTutorial')}
+                        <Youtube className="w-5 h-5 text-red-500 group-hover/btn:scale-110 transition-transform" /> {t('craftingTutorial')}
                       </a>
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* Mineração */}
-                  <div className="medieval-card bg-medieval-card p-8 medieval-border rounded-lg space-y-6 opacity-50 grayscale">
-                    <div className="flex items-center gap-4">
-                      <div className="p-3 bg-medieval-gold/10 rounded-lg">
+                  <div className="relative p-8 rounded-2xl bg-gradient-to-b from-black/80 to-black border border-medieval-gold/10 space-y-6 opacity-50 grayscale flex flex-col">
+                    <div className="flex items-center gap-4 relative z-10">
+                      <div className="p-4 bg-black/60 border border-medieval-gold/30 rounded-xl">
                         <Pickaxe className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-2xl font-black text-medieval-gold uppercase">{t('mining')}</h2>
+                      <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-tight">{t('mining')}</h2>
                     </div>
-                    <p className="text-medieval-text/70 text-sm leading-relaxed">
+                    <p className="text-medieval-gold/60 text-sm leading-relaxed font-mono relative z-10">
                       {t('miningGuideSoon')}
                     </p>
                   </div>
 
                   {/* Farming */}
-                  <div className="medieval-card bg-medieval-card p-8 medieval-border rounded-lg space-y-6 opacity-50 grayscale">
-                    <div className="flex items-center gap-4">
-                      <div className="p-3 bg-medieval-gold/10 rounded-lg">
+                  <div className="relative p-8 rounded-2xl bg-gradient-to-b from-black/80 to-black border border-medieval-gold/10 space-y-6 opacity-50 grayscale flex flex-col">
+                    <div className="flex items-center gap-4 relative z-10">
+                      <div className="p-4 bg-black/60 border border-medieval-gold/30 rounded-xl">
                         <Sprout className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-2xl font-black text-medieval-gold uppercase">{t('farmer')}</h2>
+                      <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-tight">{t('farmer')}</h2>
                     </div>
-                    <p className="text-medieval-text/70 text-sm leading-relaxed">
+                    <p className="text-medieval-gold/60 text-sm leading-relaxed font-mono relative z-10">
                       {t('farmingDesc')}
                     </p>
                   </div>
 
                   {/* Cooking */}
-                  <div className="medieval-card bg-medieval-card p-8 medieval-border rounded-lg space-y-6 opacity-50 grayscale">
-                    <div className="flex items-center gap-4">
-                      <div className="p-3 bg-medieval-gold/10 rounded-lg">
+                  <div className="relative p-8 rounded-2xl bg-gradient-to-b from-black/80 to-black border border-medieval-gold/10 space-y-6 opacity-50 grayscale flex flex-col">
+                    <div className="flex items-center gap-4 relative z-10">
+                      <div className="p-4 bg-black/60 border border-medieval-gold/30 rounded-xl">
                         <Utensils className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-2xl font-black text-medieval-gold uppercase">{t('cook')}</h2>
+                      <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-tight">{t('cook')}</h2>
                     </div>
-                    <p className="text-medieval-text/70 text-sm leading-relaxed">
+                    <p className="text-medieval-gold/60 text-sm leading-relaxed font-mono relative z-10">
                       {t('cookingDesc')}
                     </p>
                   </div>
 
                   {/* Skinning */}
-                  <div className="medieval-card bg-medieval-card p-8 medieval-border rounded-lg space-y-6 opacity-50 grayscale">
-                    <div className="flex items-center gap-4">
-                      <div className="p-3 bg-medieval-gold/10 rounded-lg">
+                  <div className="relative p-8 rounded-2xl bg-gradient-to-b from-black/80 to-black border border-medieval-gold/10 space-y-6 opacity-50 grayscale flex flex-col">
+                    <div className="flex items-center gap-4 relative z-10">
+                      <div className="p-4 bg-black/60 border border-medieval-gold/30 rounded-xl">
                         <Scissors className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-2xl font-black text-medieval-gold uppercase">Skinning</h2>
+                      <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-tight">Skinning</h2>
                     </div>
-                    <p className="text-medieval-text/70 text-sm leading-relaxed">
+                    <p className="text-medieval-gold/60 text-sm leading-relaxed font-mono relative z-10">
                       {t('skinningDesc')}
                     </p>
                   </div>
 
                   {/* Fishing */}
-                  <div className="medieval-card bg-medieval-card p-8 medieval-border rounded-lg space-y-6 opacity-50 grayscale">
-                    <div className="flex items-center gap-4">
-                      <div className="p-3 bg-medieval-gold/10 rounded-lg">
+                  <div className="relative p-8 rounded-2xl bg-gradient-to-b from-black/80 to-black border border-medieval-gold/10 space-y-6 opacity-50 grayscale flex flex-col">
+                    <div className="flex items-center gap-4 relative z-10">
+                      <div className="p-4 bg-black/60 border border-medieval-gold/30 rounded-xl">
                         <Fish className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-2xl font-black text-medieval-gold uppercase">{t('fisherman')}</h2>
+                      <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-tight">{t('fisherman')}</h2>
                     </div>
-                    <p className="text-medieval-text/70 text-sm leading-relaxed">
+                    <p className="text-medieval-gold/60 text-sm leading-relaxed font-mono relative z-10">
                       {t('fishingDesc')}
                     </p>
                   </div>
 
                   {/* Alchemy */}
-                  <div className="medieval-card bg-medieval-card p-8 medieval-border rounded-lg space-y-6 opacity-50 grayscale">
-                    <div className="flex items-center gap-4">
-                      <div className="p-3 bg-medieval-gold/10 rounded-lg">
+                  <div className="relative p-8 rounded-2xl bg-gradient-to-b from-black/80 to-black border border-medieval-gold/10 space-y-6 opacity-50 grayscale flex flex-col">
+                    <div className="flex items-center gap-4 relative z-10">
+                      <div className="p-4 bg-black/60 border border-medieval-gold/30 rounded-xl">
                         <FlaskConical className="text-medieval-gold w-8 h-8" />
                       </div>
-                      <h2 className="text-2xl font-black text-medieval-gold uppercase">{t('alchemist')}</h2>
+                      <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-tight">{t('alchemist')}</h2>
                     </div>
-                    <p className="text-medieval-text/70 text-sm leading-relaxed">
+                    <p className="text-medieval-gold/60 text-sm leading-relaxed font-mono relative z-10">
                       {t('alchemyDesc')}
                     </p>
                   </div>
                 </div>
               </motion.div>
             )}
+
 
             {activeTab === 'eventos' && (
               <motion.div
@@ -3597,19 +3188,19 @@ export default function App() {
                 className="space-y-8"
               >
                 <header className="text-center mb-8">
-                  <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
-                    {t('eventsLobbyTitle')}
+                  <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2 flex items-center justify-center gap-3">
+                    <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849035/lobbyquest.gif" className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Eventos" /> {t('eventsLobbyTitle')}
                   </h1>
                   <div className="inline-flex items-center gap-2 px-4 py-1 bg-medieval-gold/10 border border-medieval-gold/30 rounded-full">
                     <span className="relative flex h-2 w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                     </span>
-                    <p className="text-[10px] font-black text-medieval-gold uppercase tracking-widest">V3.2 - {t('realTimeSystem')}</p>
+                    <p className="text-xs font-black text-medieval-gold uppercase tracking-widest">V3.2 - {t('realTimeSystem')}</p>
                   </div>
                 </header>
 
-                <div className="medieval-border rounded-lg overflow-hidden bg-black h-[800px] relative">
+                <div className="medieval-card rounded-lg overflow-hidden bg-black h-[800px] relative">
                   <iframe 
                     src="/lobby.html?v=3.2" 
                     className="w-full h-full border-none"
@@ -3631,50 +3222,54 @@ export default function App() {
                 <div className="flex justify-center gap-4 mb-12">
                   <button
                     onClick={() => setWikiMainTab('home')}
-                    className={`px-8 py-3 rounded-sm font-black uppercase text-sm tracking-[0.2em] transition-all border-b-2 ${
+                    className={`relative overflow-hidden px-8 py-3 rounded-xl font-bold uppercase text-sm tracking-widest transition-all duration-300 group ${
                       wikiMainTab === 'home'
-                        ? 'text-medieval-gold border-medieval-gold bg-medieval-gold/5'
-                        : 'text-medieval-gold/40 border-transparent hover:text-medieval-gold/60'
+                        ? 'bg-gradient-to-r from-medieval-gold to-yellow-600 text-black shadow-[0_0_20px_rgba(197,160,89,0.4)] scale-105'
+                        : 'bg-black/60 text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50 hover:bg-medieval-gold/10 hover:text-medieval-gold'
                     }`}
                   >
-                    <div className="flex items-center gap-2">
-                      <Sparkles className="w-4 h-4" /> {t('home')}
+                    <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="flex items-center gap-2 relative z-10">
+                      <Sparkles className={`w-4 h-4 ${wikiMainTab === 'home' ? 'animate-pulse' : ''}`} /> {t('home')}
                     </div>
                   </button>
                   <button
                     onClick={() => setWikiMainTab('items')}
-                    className={`px-8 py-3 rounded-sm font-black uppercase text-sm tracking-[0.2em] transition-all border-b-2 ${
+                    className={`relative overflow-hidden px-8 py-3 rounded-xl font-bold uppercase text-sm tracking-widest transition-all duration-300 group ${
                       wikiMainTab === 'items'
-                        ? 'text-medieval-gold border-medieval-gold bg-medieval-gold/5'
-                        : 'text-medieval-gold/40 border-transparent hover:text-medieval-gold/60'
+                        ? 'bg-gradient-to-r from-medieval-gold to-yellow-600 text-black shadow-[0_0_20px_rgba(197,160,89,0.4)] scale-105'
+                        : 'bg-black/60 text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50 hover:bg-medieval-gold/10 hover:text-medieval-gold'
                     }`}
                   >
-                    <div className="flex items-center gap-2">
-                      <Sword className="w-4 h-4" /> {t('items')}
+                    <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="flex items-center gap-2 relative z-10">
+                      <Sword className={`w-4 h-4 ${wikiMainTab === 'items' ? 'animate-pulse' : ''}`} /> <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783850372/wiki.gif" className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Itens" /> {t('items')}
                     </div>
                   </button>
                   <button
                     onClick={() => setWikiMainTab('library')}
-                    className={`px-8 py-3 rounded-sm font-black uppercase text-sm tracking-[0.2em] transition-all border-b-2 ${
+                    className={`relative overflow-hidden px-8 py-3 rounded-xl font-bold uppercase text-sm tracking-widest transition-all duration-300 group ${
                       wikiMainTab === 'library'
-                        ? 'text-medieval-gold border-medieval-gold bg-medieval-gold/5'
-                        : 'text-medieval-gold/40 border-transparent hover:text-medieval-gold/60'
+                        ? 'bg-gradient-to-r from-medieval-gold to-yellow-600 text-black shadow-[0_0_20px_rgba(197,160,89,0.4)] scale-105'
+                        : 'bg-black/60 text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50 hover:bg-medieval-gold/10 hover:text-medieval-gold'
                     }`}
                   >
-                    <div className="flex items-center gap-2">
-                      <Book className="w-4 h-4" /> {t('library')}
+                    <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="flex items-center gap-2 relative z-10">
+                      <Book className={`w-4 h-4 ${wikiMainTab === 'library' ? 'animate-pulse' : ''}`} /> <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783850372/wiki.gif" className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Library" /> {t('library')}
                     </div>
                   </button>
                   <button
                     onClick={() => setWikiMainTab('updates')}
-                    className={`px-8 py-3 rounded-sm font-black uppercase text-sm tracking-[0.2em] transition-all border-b-2 ${
+                    className={`relative overflow-hidden px-8 py-3 rounded-xl font-bold uppercase text-sm tracking-widest transition-all duration-300 group ${
                       wikiMainTab === 'updates'
-                        ? 'text-medieval-gold border-medieval-gold bg-medieval-gold/5'
-                        : 'text-medieval-gold/40 border-transparent hover:text-medieval-gold/60'
+                        ? 'bg-gradient-to-r from-medieval-gold to-yellow-600 text-black shadow-[0_0_20px_rgba(197,160,89,0.4)] scale-105'
+                        : 'bg-black/60 text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50 hover:bg-medieval-gold/10 hover:text-medieval-gold'
                     }`}
                   >
-                    <div className="flex items-center gap-2">
-                      <History className="w-4 h-4" /> {t('updates')}
+                    <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="flex items-center gap-2 relative z-10">
+                      <History className={`w-4 h-4 ${wikiMainTab === 'updates' ? 'animate-pulse' : ''}`} /> {t('updates')}
                     </div>
                   </button>
                 </div>
@@ -3691,8 +3286,8 @@ export default function App() {
                       {/* Hero Header Banner */}
                       <header className="text-center relative py-6">
                         <div className="absolute inset-0 bg-gradient-to-b from-medieval-gold/5 via-transparent to-transparent blur-3xl rounded-full"></div>
-                        <h1 className="text-4xl sm:text-5xl font-black text-medieval-gold uppercase tracking-tighter mb-3 relative drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-                          Wiki Miracle 7.4
+                        <h1 className="text-4xl sm:text-5xl font-black text-medieval-gold uppercase tracking-tighter mb-3 relative drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] flex items-center justify-center gap-3">
+                          <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783850372/wiki.gif" className="w-10 h-10 sm:w-12 sm:h-12 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Wiki" /> Wiki Miracle 7.4
                         </h1>
                         <p className="text-medieval-gold/70 font-mono text-xs max-w-2xl mx-auto italic tracking-wide">
                           "O conhecimento é a chave para a sobrevivência e para o topo das tabelas nas terras de Miracle."
@@ -3732,7 +3327,7 @@ export default function App() {
                             <button
                               key={card.id}
                               onClick={() => setWikiMainTab(card.id as any)}
-                              className="medieval-card bg-medieval-card p-6 medieval-border rounded-lg text-left group hover:border-medieval-gold transition-all relative overflow-hidden flex flex-col justify-between h-48 hover:shadow-[0_0_15px_rgba(212,175,55,0.05)]"
+                              className="medieval-card p-6 text-left group hover:border-medieval-gold transition-all relative overflow-hidden flex flex-col justify-between h-48 hover:shadow-[0_0_15px_rgba(212,175,55,0.05)]"
                             >
                               <div className="absolute top-2 right-2 p-2 opacity-[0.03] group-hover:opacity-[0.1] group-hover:scale-110 transition-all">
                                 {card.icon}
@@ -3881,8 +3476,8 @@ export default function App() {
                       className="space-y-8"
                     >
                       <header className="text-center mb-12">
-                        <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
-                          {t('items')}
+                        <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2 flex items-center justify-center gap-3">
+                          <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783850372/wiki.gif" className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Itens" /> {t('items')}
                         </h1>
                         <p className="text-medieval-gold/80 font-mono text-sm">
                           Enciclopédia de Equipamentos e Tesouros de Miracle 7.4
@@ -3892,37 +3487,40 @@ export default function App() {
                       {/* Items Sub-Navigation */}
                       <div className="flex flex-wrap justify-center gap-2 mb-8">
                         {[
-                          { id: 'helmets', label: t('helmets'), icon: <Gem className="w-4 h-4" /> },
-                          { id: 'armors', label: language === 'pt' ? 'Armaduras' : 'Armors', icon: <Shield className="w-4 h-4" /> },
-                          { id: 'legs', label: language === 'pt' ? 'Calças' : 'Legs', icon: <Sword className="w-4 h-4" /> },
-                          { id: 'boots', label: language === 'pt' ? 'Botas' : 'Boots', icon: <Sparkles className="w-4 h-4" /> },
-                          { id: 'shields', label: language === 'pt' ? 'Escudos' : 'Shields', icon: <Shield className="w-4 h-4" /> },
-                          { id: 'swords', label: language === 'pt' ? 'Espadas' : 'Swords', icon: <Sword className="w-4 h-4" /> },
-                          { id: 'clubs', label: language === 'pt' ? 'Clavas' : 'Clubs', icon: <Hammer className="w-4 h-4" /> },
-                          { id: 'axes', label: language === 'pt' ? 'Machados' : 'Axes', icon: <Axe className="w-4 h-4" /> },
-                          { id: 'distance', label: language === 'pt' ? 'Distância' : 'Distance', icon: <Target className="w-4 h-4" /> },
+                          { id: 'helmets', labelPt: 'Capacetes', labelEn: 'Helmets', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/capacetes.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Helmets" /> },
+                          { id: 'armors', labelPt: 'Armaduras', labelEn: 'Armor Sets', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849027/armaduras.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Armors" /> },
+                          { id: 'legs', labelPt: 'Calças', labelEn: 'Legs', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/cal%C3%A7as.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Legs" /> },
+                          { id: 'boots', labelPt: 'Botas', labelEn: 'Boots', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/botas.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Boots" /> },
+                          { id: 'shields', labelPt: 'Escudos', labelEn: 'Shields', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849030/escudos.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Shields" /> },
+                          { id: 'swords', labelPt: 'Espadas', labelEn: 'Swords', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849031/espadas.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Swords" /> },
+                          { id: 'clubs', labelPt: 'Maças', labelEn: 'Clubs', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/clavas.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Clubs" /> },
+                          { id: 'axes', labelPt: 'Machados', labelEn: 'Axes', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849032/machados.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Axes" /> },
+                          { id: 'distance', labelPt: 'Distância', labelEn: 'Distance', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849030/distance.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Distance" /> },
                           { id: 'ammo', label: language === 'pt' ? 'Munições' : 'Ammo', icon: <Zap className="w-4 h-4" /> },
-                          { id: 'rings', label: language === 'pt' ? 'Anéis' : 'Rings', icon: <Circle className="w-4 h-4" /> },
-                          { id: 'amulets', label: language === 'pt' ? 'Amuletos' : 'Amulets', icon: <Heart className="w-4 h-4" /> },
-                          { id: 'relics', label: language === 'pt' ? 'Relíquias' : 'Relics', icon: <Sparkles className="w-4 h-4" /> },
+                          { id: 'rings', labelPt: 'Anéis', labelEn: 'Magic Rings', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849027/aneis_magicos.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Rings" /> },
+                          { id: 'amulets', labelPt: 'Amuletos', labelEn: 'Amulets', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849026/amuletos.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Amulets" /> },
+                          { id: 'relics', labelPt: 'Relíquias', labelEn: 'Holy Relics', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849034/reliquias.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Relics" /> }
                         ].map((sub) => (
                           <button
                             key={sub.id}
                             onClick={() => setItemsSubTab(sub.id as any)}
-                            className={`px-4 py-2 rounded-sm font-black uppercase text-[10px] tracking-widest transition-all flex items-center gap-2 border ${
+                            className={`relative overflow-hidden px-4 py-2 rounded-lg font-bold uppercase text-[10px] tracking-widest transition-all duration-300 group flex items-center gap-2 border ${
                               itemsSubTab === sub.id
-                                ? 'bg-medieval-gold text-black border-medieval-gold shadow-medieval-gold'
-                                : 'bg-black/40 text-medieval-gold/60 border-medieval-gold/20 hover:border-medieval-gold/40'
+                                ? 'bg-gradient-to-r from-medieval-gold to-yellow-600 text-black border-medieval-gold shadow-[0_0_15px_rgba(197,160,89,0.3)] scale-105'
+                                : 'bg-black/40 text-medieval-gold/60 border-medieval-gold/20 hover:border-medieval-gold/50 hover:bg-medieval-gold/10 hover:text-medieval-gold'
                             }`}
                           >
-                            {sub.icon} {sub.label}
+                            <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <div className="relative z-10 flex items-center gap-2">
+                              {sub.icon} {sub.label}
+                            </div>
                           </button>
                         ))}
                       </div>
 
                       {/* Helmets Table */}
                       {itemsSubTab === 'helmets' && (
-                        <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
+                        <div className="medieval-card overflow-hidden">
                           <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
                               <thead>
@@ -3986,7 +3584,7 @@ export default function App() {
 
                       {/* Armors Table */}
                       {itemsSubTab === 'armors' && (
-                        <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
+                        <div className="medieval-card overflow-hidden">
                           <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
                               <thead>
@@ -4049,7 +3647,7 @@ export default function App() {
 
                       {/* Legs Table */}
                       {itemsSubTab === 'legs' && (
-                        <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
+                        <div className="medieval-card overflow-hidden">
                           <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
                               <thead>
@@ -4112,7 +3710,7 @@ export default function App() {
 
                       {/* Boots Table */}
                       {itemsSubTab === 'boots' && (
-                        <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
+                        <div className="medieval-card overflow-hidden">
                           <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
                               <thead>
@@ -4175,7 +3773,7 @@ export default function App() {
 
                       {/* Shields Table */}
                       {itemsSubTab === 'shields' && (
-                        <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
+                        <div className="medieval-card overflow-hidden">
                           <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
                               <thead>
@@ -4238,7 +3836,7 @@ export default function App() {
 
                       {/* Swords Table */}
                       {itemsSubTab === 'swords' && (
-                        <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
+                        <div className="medieval-card overflow-hidden">
                           <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
                               <thead>
@@ -4303,7 +3901,7 @@ export default function App() {
 
                       {/* Clubs Table */}
                       {itemsSubTab === 'clubs' && (
-                        <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
+                        <div className="medieval-card overflow-hidden">
                           <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
                               <thead>
@@ -4368,7 +3966,7 @@ export default function App() {
 
                       {/* Axes Table */}
                       {itemsSubTab === 'axes' && (
-                        <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
+                        <div className="medieval-card overflow-hidden">
                           <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
                               <thead>
@@ -4456,7 +4054,7 @@ export default function App() {
                             ))}
                           </div>
 
-                          <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
+                          <div className="medieval-card overflow-hidden">
                             <div className="overflow-x-auto">
                               <table className="w-full text-left border-collapse">
                                 <thead>
@@ -4543,7 +4141,7 @@ export default function App() {
 
                       {/* Ammo Table */}
                       {itemsSubTab === 'ammo' && (
-                        <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
+                        <div className="medieval-card overflow-hidden">
                           <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
                               <thead>
@@ -4606,7 +4204,7 @@ export default function App() {
 
                       {/* Rings Table */}
                       {itemsSubTab === 'rings' && (
-                        <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
+                        <div className="medieval-card overflow-hidden">
                           <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
                               <thead>
@@ -4654,7 +4252,7 @@ export default function App() {
 
                       {/* Amulets Table */}
                       {itemsSubTab === 'amulets' && (
-                        <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
+                        <div className="medieval-card overflow-hidden">
                           <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
                               <thead>
@@ -4704,7 +4302,7 @@ export default function App() {
 
                       {/* Relics Table */}
                       {itemsSubTab === 'relics' && (
-                        <div className="medieval-card bg-medieval-card medieval-border rounded-lg overflow-hidden">
+                        <div className="medieval-card overflow-hidden">
                           <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
                               <thead>
@@ -4763,8 +4361,8 @@ export default function App() {
                       className="space-y-8"
                     >
                       <header className="text-center mb-12">
-                      <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
-                        {t('patchNotes')}
+                      <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2 flex items-center justify-center gap-3">
+                        <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849034/inicio_updates.gif" className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Updates" /> {t('patchNotes')}
                       </h1>
                       <p className="text-medieval-gold/80 font-mono text-sm">
                         {t('patchNotesSubtitle')}
@@ -4778,33 +4376,35 @@ export default function App() {
                           setWikiSubTab('server');
                           setSelectedPatchVersion(SERVER_PATCH_NOTES[0].version);
                         }}
-                        className={`px-6 py-2 rounded-sm font-black uppercase text-xs tracking-widest transition-all border ${
+                        className={`relative overflow-hidden px-6 py-2.5 rounded-lg font-bold uppercase text-xs tracking-widest transition-all duration-300 group ${
                           wikiSubTab === 'server'
-                            ? 'bg-medieval-gold text-black border-medieval-gold shadow-medieval-gold'
-                            : 'bg-black/40 text-medieval-gold/60 border-medieval-gold/20 hover:border-medieval-gold/40'
+                            ? 'bg-gradient-to-r from-medieval-gold to-yellow-600 text-black shadow-[0_0_15px_rgba(197,160,89,0.3)] scale-105'
+                            : 'bg-black/40 text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50 hover:bg-medieval-gold/10 hover:text-medieval-gold'
                         }`}
                       >
-                        {t('serverUpdates')}
+                        <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <span className="relative z-10">{t('serverUpdates')}</span>
                       </button>
                       <button
                         onClick={() => {
                           setWikiSubTab('project');
                           setSelectedPatchVersion(PROJECT_PATCH_NOTES[0].version);
                         }}
-                        className={`px-6 py-2 rounded-sm font-black uppercase text-xs tracking-widest transition-all border ${
+                        className={`relative overflow-hidden px-6 py-2.5 rounded-lg font-bold uppercase text-xs tracking-widest transition-all duration-300 group ${
                           wikiSubTab === 'project'
-                            ? 'bg-medieval-gold text-black border-medieval-gold shadow-medieval-gold'
-                            : 'bg-black/40 text-medieval-gold/60 border-medieval-gold/20 hover:border-medieval-gold/40'
+                            ? 'bg-gradient-to-r from-medieval-gold to-yellow-600 text-black shadow-[0_0_15px_rgba(197,160,89,0.3)] scale-105'
+                            : 'bg-black/40 text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50 hover:bg-medieval-gold/10 hover:text-medieval-gold'
                         }`}
                       >
-                        {t('projectUpdates')}
+                        <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <span className="relative z-10">{t('projectUpdates')}</span>
                       </button>
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                       {/* Sidebar - Version List */}
                       <div className="lg:col-span-4 space-y-4">
-                        <div className="medieval-card bg-medieval-card p-4 medieval-border rounded-lg">
+                        <div className="medieval-card p-4">
                           <h3 className="text-medieval-gold font-black uppercase text-xs tracking-widest mb-4 flex items-center gap-2">
                             <History className="w-4 h-4" /> Histórico de Versões
                           </h3>
@@ -4829,7 +4429,7 @@ export default function App() {
                           </div>
                         </div>
 
-                        <div className="medieval-card bg-medieval-gold/5 p-6 medieval-border rounded-lg border-dashed">
+                        <div className="medieval-card bg-medieval-gold/5 p-6 border-dashed">
                           <div className="flex items-center gap-3 mb-3">
                             <MessageSquare className="w-5 h-5 text-medieval-gold" />
                             <h4 className="text-medieval-gold font-bold text-sm uppercase">{t('social')}</h4>
@@ -4858,7 +4458,7 @@ export default function App() {
                               initial={{ opacity: 0, y: 10 }}
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, y: -10 }}
-                              className="medieval-card bg-medieval-card p-6 sm:p-8 medieval-border rounded-lg space-y-8"
+                              className="medieval-card p-6 sm:p-8 space-y-8"
                             >
                               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-medieval-gold/20 pb-6">
                                 <div>
@@ -4962,8 +4562,8 @@ export default function App() {
                     className="space-y-8"
                   >
                     <header className="text-center mb-12">
-                      <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
-                        {t('library')}
+                      <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2 flex items-center justify-center gap-3">
+                        <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783850372/wiki.gif" className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Library" /> {t('library')}
                       </h1>
                       <p className="text-medieval-gold/80 font-mono text-sm italic">
                         "Mysteriando: Desvendando os segredos de Miracle 7.4"
@@ -4972,7 +4572,7 @@ export default function App() {
 
                     <div className="flex flex-col space-y-8">
                       {/* Minimalist Horizontal Drum Navigation */}
-                      <div className="medieval-card bg-medieval-card p-4 medieval-border rounded-lg">
+                      <div className="medieval-card p-4">
                         <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
                           <DrumMenu 
                             label="1. Região"
@@ -5016,7 +4616,7 @@ export default function App() {
                                 className="space-y-6"
                               >
                                 {/* Header Info */}
-                                <div className="medieval-card bg-medieval-card p-6 medieval-border rounded-lg">
+                                <div className="medieval-card p-6">
                                   <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center">
                                     <div className="w-20 h-20 bg-black/40 rounded-lg border border-medieval-gold/20 flex items-center justify-center shrink-0">
                                       <img 
@@ -5045,7 +4645,7 @@ export default function App() {
                                 {/* Location & Map & Transcription Layout */}
                                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                                   <div className="space-y-6">
-                                    <div className="medieval-card bg-medieval-card p-6 medieval-border rounded-lg space-y-4">
+                                    <div className="medieval-card p-6 space-y-4">
                                       <h4 className="text-medieval-gold font-black text-xs uppercase tracking-widest flex items-center gap-2">
                                         <Map className="w-4 h-4" /> {t('location')}
                                       </h4>
@@ -5099,7 +4699,7 @@ export default function App() {
                                     </div>
                                   </div>
 
-                                  <div className="medieval-card bg-medieval-card p-6 medieval-border rounded-lg space-y-4">
+                                  <div className="medieval-card p-6 space-y-4">
                                     <h4 className="text-medieval-gold font-black text-xs uppercase tracking-widest flex items-center gap-2">
                                       <Book className="w-4 h-4" /> {t('transcription')}
                                     </h4>
@@ -5147,8 +4747,48 @@ export default function App() {
         </motion.button>
       )}
 
-      <footer className="bg-black/80 border-t border-medieval-gold/10 py-6 px-4">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-widest font-mono text-medieval-gold/40">
+      <footer className="bg-black/80 border-t border-medieval-gold/10 pt-12 pb-6 px-4 mt-auto">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-[11px] font-mono tracking-wider">
+          {/* Section 1: About */}
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center gap-2 text-medieval-gold font-black uppercase text-sm tracking-tighter mb-2">
+              <Hammer className="w-5 h-5" />
+              Miracle Wiki Tools
+            </div>
+            <p className="text-medieval-gold/40 leading-relaxed max-w-xs">
+              {language === 'pt' 
+                ? 'Ferramentas, calculadoras e biblioteca completas para aprimorar sua jornada em Miracle 7.4.' 
+                : 'Complete tools, calculators, and library to enhance your journey in Miracle 7.4.'}
+            </p>
+          </div>
+
+          {/* Section 2: Navigation Layer */}
+          <div className="flex flex-col gap-3">
+            <h4 className="text-medieval-gold font-bold uppercase mb-2">Navigation</h4>
+            <button onClick={() => { setActiveTab('home'); window.scrollTo(0,0); }} className="text-medieval-gold/50 hover:text-medieval-gold text-left transition-colors">Home</button>
+            <button onClick={() => { setActiveTab('buildmaker'); window.scrollTo(0,0); }} className="text-medieval-gold/50 hover:text-medieval-gold text-left transition-colors">Build Maker</button>
+            <button onClick={() => { setActiveTab('calculadoras'); window.scrollTo(0,0); }} className="text-medieval-gold/50 hover:text-medieval-gold text-left transition-colors">Calculators</button>
+            <button onClick={() => { setActiveTab('profissoes'); window.scrollTo(0,0); }} className="text-medieval-gold/50 hover:text-medieval-gold text-left transition-colors">Professions</button>
+          </div>
+
+          {/* Section 3: Resources Layer */}
+          <div className="flex flex-col gap-3">
+            <h4 className="text-medieval-gold font-bold uppercase mb-2">Resources</h4>
+            <button onClick={() => { setActiveTab('wiki'); window.scrollTo(0,0); }} className="text-medieval-gold/50 hover:text-medieval-gold text-left transition-colors">Wiki & Lore</button>
+            <button onClick={() => { setActiveTab('mapa'); window.scrollTo(0,0); }} className="text-medieval-gold/50 hover:text-medieval-gold text-left transition-colors">Interactive Map</button>
+          </div>
+
+          {/* Section 4: Community Layer */}
+          <div className="flex flex-col gap-3">
+            <h4 className="text-medieval-gold font-bold uppercase mb-2">Community</h4>
+            <button onClick={() => { setActiveTab('feedback'); window.scrollTo(0,0); }} className="text-medieval-gold/50 hover:text-medieval-gold text-left transition-colors flex items-center gap-2">
+              <MessageSquare className="w-3.5 h-3.5" />
+              {language === 'pt' ? 'Sugestões / Feedback' : 'Suggestions / Feedback'}
+            </button>
+          </div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-widest font-mono text-medieval-gold/30 pt-6 border-t border-medieval-gold/10">
           <p>© 2024 Miracle 7.4 Wiki Project</p>
           <div className="flex gap-6">
             <span>{t('createdBy')}</span>

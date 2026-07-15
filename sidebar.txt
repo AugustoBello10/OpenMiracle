@@ -1,0 +1,361 @@
+
+    return (
+      <div className="flex flex-col gap-4 text-left select-none pb-12 font-['DotGothic16']">
+        {/* INÍCIO & NOTAS SECTION */}
+        <div className="space-y-1.5">
+          <button 
+            onClick={() => toggleGroup('inicio')}
+            className="w-full flex items-center justify-between py-2.5 px-3 rounded-lg bg-gradient-to-b from-black/80 to-[#0a0a0a] border border-medieval-gold/20 shadow-[0_4px_15px_rgba(0,0,0,0.5)] hover:border-medieval-gold/50 hover:shadow-[0_4px_20px_rgba(197,160,89,0.15)] transition-all text-xs font-black text-medieval-gold uppercase tracking-widest relative overflow-hidden group"
+          >
+            <span className="flex items-center gap-2.5 relative z-10">
+              <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849034/inicio_updates.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Inicio" />
+              {language === 'pt' ? 'Início & Updates' : 'Home & Updates'}
+            </span>
+            <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.inicio ? 'rotate-90 text-medieval-gold' : ''}`} />
+          </button>
+          
+          <AnimatePresence initial={false}>
+            {sidebarOpenGroups.inicio && (
+              <motion.div 
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5"
+              >
+                <button 
+                  onClick={() => { setActiveTab('home'); if (wikiMainTab !== 'home') setWikiMainTab('home'); if(isMobile) setIsMenuOpen(false); }}
+                  className={activeTab === 'home' ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849033/paginaprincipal.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Home" />
+                  {language === 'pt' ? 'Página Principal' : 'Home Page'}
+                </button>
+                <button 
+                  onClick={() => { setActiveTab('wiki'); setWikiMainTab('updates'); if(isMobile) setIsMenuOpen(false); }}
+                  className={(activeTab === 'wiki' && wikiMainTab === 'updates') ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849032/notasdeatualizacoes.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Updates" />
+                  {language === 'pt' ? 'Notas de Atualizações' : 'Patch Notes'}
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* BUILD MAKER (EXCLUSIVE PREMIUM HIGHLIGHTED ROW) */}
+        <div className="space-y-1">
+          <button 
+            onClick={() => { setActiveTab('buildmaker'); if(isMobile) setIsMenuOpen(false); }}
+            className={`w-full py-2.5 px-3 rounded-md text-[11px] font-black uppercase tracking-wider flex items-center justify-between border transition-all duration-300 ${
+              activeTab === 'buildmaker' 
+                ? 'bg-medieval-gold text-black border-medieval-gold shadow-[0_3px_15px_rgba(197,160,89,0.3)] font-black' 
+                : 'bg-medieval-gold/5 text-medieval-gold border-medieval-gold/25 hover:border-medieval-gold hover:bg-medieval-gold/10'
+            }`}
+          >
+            <span className="flex items-center gap-2.5">
+              <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783850373/buildmaker.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Build Maker" />
+              BUILD MAKER
+            </span>
+            <span className={`text-[9px] font-mono py-0.5 px-1.5 border rounded font-bold transition-all ${
+              activeTab === 'buildmaker'
+                ? 'bg-black/20 text-black border-black/30'
+                : 'bg-black/40 text-medieval-gold border-medieval-gold/20'
+            }`}>V1.4</span>
+          </button>
+        </div>
+
+        {/* LOOT OPTIMIZER (EXCLUSIVE PREMIUM HIGHLIGHTED ROW) - HIDDEN TEMPORARILY */ }
+        {/*
+        <div className="space-y-1">
+          <button 
+            onClick={() => { setActiveTab('loot'); if(isMobile) setIsMenuOpen(false); }}
+            className={`w-full py-2.5 px-3 rounded-md text-[11px] font-black uppercase tracking-wider flex items-center justify-between border transition-all duration-300 ${
+              activeTab === 'loot' 
+                ? 'bg-medieval-gold text-black border-medieval-gold shadow-[0_3px_15px_rgba(197,160,89,0.3)] font-black' 
+                : 'bg-medieval-gold/5 text-medieval-gold border-medieval-gold/25 hover:border-medieval-gold hover:bg-medieval-gold/10'
+            }`}
+          >
+            <span className="flex items-center gap-2.5">
+              <Coins className="w-4 h-4" />
+              {language === 'pt' ? 'OTIMIZADOR DE LOOT' : 'LOOT OPTIMIZER'}
+            </span>
+            <span className={`text-[9px] font-mono py-0.5 px-1.5 border rounded font-bold transition-all ${
+              activeTab === 'loot'
+                ? 'bg-black/20 text-black border-black/30'
+                : 'bg-black/40 text-medieval-gold border-medieval-gold/20'
+            }`}>AUTO</span>
+          </button>
+        </div>
+        */}
+
+        {/* TUTORIAIS & GUIAS (Requested by user) */}
+        <div className="space-y-1.5">
+          <button 
+            onClick={() => toggleGroup('guias')}
+            className="w-full flex items-center justify-between py-2.5 px-3 rounded-lg bg-gradient-to-b from-black/80 to-[#0a0a0a] border border-medieval-gold/20 shadow-[0_4px_15px_rgba(0,0,0,0.5)] hover:border-medieval-gold/50 hover:shadow-[0_4px_20px_rgba(197,160,89,0.15)] transition-all text-xs font-black text-medieval-gold uppercase tracking-widest relative overflow-hidden group"
+          >
+            <span className="flex items-center gap-2.5 relative z-10">
+              <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849026/A_Helpful_Fairy.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Guias" />
+              {language === 'pt' ? 'Tutoriais & Guias' : 'Guides & Tutorials'}
+            </span>
+            <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.guias ? 'rotate-90 text-medieval-gold' : ''}`} />
+          </button>
+
+          <AnimatePresence initial={false}>
+            {sidebarOpenGroups.guias && (
+              <motion.div 
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5"
+              >
+                <button 
+                  onClick={() => { setActiveTab('profissoes'); if(isMobile) setIsMenuOpen(false); }}
+                  className={activeTab === 'profissoes' ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/guiadeprofissoes.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Guia Profissoes" />
+                  {language === 'pt' ? 'Guia de Profissões' : 'Professions Video'}
+                </button>
+                <button 
+                  onClick={() => { setActiveTab('mapa'); if(isMobile) setIsMenuOpen(false); }}
+                  className={activeTab === 'mapa' ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849033/mapainterativo.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Mapa" />
+                  {language === 'pt' ? 'Mapa Interativo' : 'Interactive Map'}
+                </button>
+                <button 
+                  className={activeTab === 'eventos' ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                <button 
+                  onClick={() => { setActiveTab('hunts'); if(isMobile) setIsMenuOpen(false); }}
+                  className={activeTab === 'hunts' ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <Map className="w-6 h-6 object-contain opacity-70" />
+                  {language === 'pt' ? 'Agenda de Hunts' : 'Hunts Agenda'}
+                </button>
+                  <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849035/lobbyquest.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Lobby Quest" />
+                  {language === 'pt' ? 'Lobby de Quests' : 'Quests & Events'}
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* COMUNIDADE & FEEDBACK */}
+        <div className="space-y-1.5">
+          <button 
+            onClick={() => toggleGroup('comunidade' as any)}
+            className="w-full flex items-center justify-between py-2.5 px-3 rounded-lg bg-gradient-to-b from-black/80 to-[#0a0a0a] border border-medieval-gold/20 shadow-[0_4px_15px_rgba(0,0,0,0.5)] hover:border-medieval-gold/50 hover:shadow-[0_4px_20px_rgba(197,160,89,0.15)] transition-all text-xs font-black text-medieval-gold uppercase tracking-widest relative overflow-hidden group"
+          >
+            <span className="flex items-center gap-2.5 relative z-10">
+              <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849034/comunidadeefeedback.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Feedback" />
+              {language === 'pt' ? 'Comunidade & Feedback' : 'Community & Feedback'}
+            </span>
+            <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.comunidade ? 'rotate-90 text-medieval-gold' : ''}`} />
+          </button>
+
+          <AnimatePresence initial={false}>
+            {sidebarOpenGroups.comunidade && (
+              <motion.div 
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5"
+              >
+                <button 
+                  onClick={() => { setActiveTab('feedback'); if(isMobile) setIsMenuOpen(false); }}
+                  className={activeTab === 'feedback' ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849034/comunidadeefeedback.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Feedback" />
+                  {language === 'pt' ? 'Sugestões / Feedback' : 'Suggestions / Feedback'}
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* CALCULADORAS */}
+        <div className="space-y-1.5">
+          <button 
+            onClick={() => toggleGroup('calculadores')}
+            className="w-full flex items-center justify-between py-2.5 px-3 rounded-lg bg-gradient-to-b from-black/80 to-[#0a0a0a] border border-medieval-gold/20 shadow-[0_4px_15px_rgba(0,0,0,0.5)] hover:border-medieval-gold/50 hover:shadow-[0_4px_20px_rgba(197,160,89,0.15)] transition-all text-xs font-black text-medieval-gold uppercase tracking-widest relative overflow-hidden group"
+          >
+            <span className="flex items-center gap-2.5 relative z-10">
+              <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849027/calculadoras.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Calculadoras" />
+              {language === 'pt' ? 'Calculadoras' : 'Calculators'}
+            </span>
+            <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.calculadores ? 'rotate-90 text-medieval-gold' : ''}`} />
+          </button>
+
+          <AnimatePresence initial={false}>
+            {sidebarOpenGroups.calculadores && (
+              <motion.div 
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5"
+              >
+                <button 
+                  onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('skills'); if(isMobile) setIsMenuOpen(false); }}
+                  className={(activeTab === 'calculadoras' && calcSubTab === 'skills') ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849036/treinodeskils.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Skills" />
+                  {language === 'pt' ? 'Treino de Skills' : 'Skill Training'}
+                </button>
+                <button 
+                  onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('bless'); if(isMobile) setIsMenuOpen(false); }}
+                  className={(activeTab === 'calculadoras' && calcSubTab === 'bless') ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849027/bencaoemorte.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Bless" />
+                  {language === 'pt' ? 'Bênção & Morte' : 'Bless & Death Loss'}
+                </button>
+                <button 
+                  onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('atributos'); if(isMobile) setIsMenuOpen(false); }}
+                  className={(activeTab === 'calculadoras' && calcSubTab === 'atributos') ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <Zap className="w-3.5 h-3.5 opacity-70" />
+                  {language === 'pt' ? 'Simulador Atributos' : 'Attributes Sim'}
+                </button>
+                <button 
+                  onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('runemaking'); if(isMobile) setIsMenuOpen(false); }}
+                  className={(activeTab === 'calculadoras' && calcSubTab === 'runemaking') ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849027/alchemy.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Alchemy" />
+                  {language === 'pt' ? 'Rune Making' : 'Rune Making'}
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* PROFISSÕES TABELAS E CALCULADORAS */}
+        <div className="space-y-1.5">
+          <button 
+            onClick={() => toggleGroup('profissoes')}
+            className="w-full flex items-center justify-between py-2.5 px-3 rounded-lg bg-gradient-to-b from-black/80 to-[#0a0a0a] border border-medieval-gold/20 shadow-[0_4px_15px_rgba(0,0,0,0.5)] hover:border-medieval-gold/50 hover:shadow-[0_4px_20px_rgba(197,160,89,0.15)] transition-all text-xs font-black text-medieval-gold uppercase tracking-widest relative overflow-hidden group"
+          >
+            <span className="flex items-center gap-2.5 relative z-10">
+              <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849031/ferramentas.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Ferramentas" />
+              {language === 'pt' ? 'Calculadoras Profissão' : 'Profession Calcs'}
+            </span>
+            <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.profissoes ? 'rotate-90 text-medieval-gold' : ''}`} />
+          </button>
+
+          <AnimatePresence initial={false}>
+            {sidebarOpenGroups.profissoes && (
+              <motion.div 
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5"
+              >
+                <button 
+                  onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('crafting'); if(isMobile) setIsMenuOpen(false); }}
+                  className={(activeTab === 'calculadoras' && calcSubTab === 'professions' && profSubTab === 'crafting') ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849031/forja_crafting.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Crafting" />
+                  {language === 'pt' ? 'Forja & Crafting' : 'Forge & Crafting'}
+                </button>
+                <button 
+                  onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('alchemy'); if(isMobile) setIsMenuOpen(false); }}
+                  className={(activeTab === 'calculadoras' && calcSubTab === 'professions' && profSubTab === 'alchemy') ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849027/alchemy.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Alchemy" />
+                  {language === 'pt' ? 'Alquimia & Runas' : 'Alchemy & Runes'}
+                </button>
+                <button 
+                  onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('farming'); if(isMobile) setIsMenuOpen(false); }}
+                  className={(activeTab === 'calculadoras' && calcSubTab === 'professions' && profSubTab === 'farming') ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849031/fazenda_farming.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Farming" />
+                  {language === 'pt' ? 'Fazenda (Farming)' : 'Farming / Planting'}
+                </button>
+                <button 
+                  onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('mining'); if(isMobile) setIsMenuOpen(false); }}
+                  className={(activeTab === 'calculadoras' && calcSubTab === 'professions' && profSubTab === 'mining') ? activeSubmenuClass : inactiveSubmenuClass}
+                >
+                  <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849033/mineracao.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Mining" />
+                  {language === 'pt' ? 'Mineração (Drops)' : 'Mining Drops'}
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* CYCLOPEDIA ITENS */}
+        <div className="space-y-1.5">
+          <button 
+            onClick={() => toggleGroup('cyclopedia')}
+            className="w-full flex items-center justify-between py-2.5 px-3 rounded-lg bg-gradient-to-b from-black/80 to-[#0a0a0a] border border-medieval-gold/20 shadow-[0_4px_15px_rgba(0,0,0,0.5)] hover:border-medieval-gold/50 hover:shadow-[0_4px_20px_rgba(197,160,89,0.15)] transition-all text-xs font-black text-medieval-gold uppercase tracking-widest relative overflow-hidden group"
+          >
+            <span className="flex items-center gap-2.5 relative z-10">
+              <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849029/cyclopedia.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Cyclopedia" />
+              {language === 'pt' ? 'Cyclopedia (Itens)' : 'Itens Database'}
+            </span>
+            <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.cyclopedia ? 'rotate-90 text-medieval-gold' : ''}`} />
+          </button>
+
+          <AnimatePresence initial={false}>
+            {sidebarOpenGroups.cyclopedia && (
+              <motion.div 
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5 max-h-56 overflow-y-auto custom-scrollbar pr-1 select-none"
+              >
+                {[
+                  { id: 'helmets', labelPt: 'Capacetes', labelEn: 'Helmets', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/capacetes.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Helmets" /> },
+                  { id: 'armors', labelPt: 'Armaduras', labelEn: 'Armor Sets', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849027/armaduras.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Armors" /> },
+                  { id: 'legs', labelPt: 'Calças', labelEn: 'Legs', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/cal%C3%A7as.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Legs" /> },
+                  { id: 'boots', labelPt: 'Botas', labelEn: 'Boots', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/botas.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Boots" /> },
+                  { id: 'shields', labelPt: 'Escudos', labelEn: 'Shields', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849030/escudos.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Shields" /> },
+                  { id: 'swords', labelPt: 'Espadas', labelEn: 'Swords', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849031/espadas.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Swords" /> },
+                  { id: 'clubs', labelPt: 'Maças', labelEn: 'Clubs', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/clavas.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Clubs" /> },
+                  { id: 'axes', labelPt: 'Machados', labelEn: 'Axes', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849032/machados.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Axes" /> },
+                  { id: 'distance', labelPt: 'Distância', labelEn: 'Distance', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849030/distance.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Distance" /> },
+                  { id: 'rings', labelPt: 'Anéis', labelEn: 'Magic Rings', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849027/aneis_magicos.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Rings" /> },
+                  { id: 'amulets', labelPt: 'Amuletos', labelEn: 'Amulets', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849026/amuletos.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Amulets" /> },
+                  { id: 'relics', labelPt: 'Relíquias', labelEn: 'Holy Relics', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849034/reliquias.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Relics" /> }
+                ].map(sub => {
+                  const isSelected = activeTab === 'wiki' && wikiMainTab === 'items' && itemsSubTab === sub.id;
+                  return (
+                    <button 
+                      key={sub.id}
+                      onClick={() => {
+                        setActiveTab('wiki');
+                        setWikiMainTab('items');
+                        setItemsSubTab(sub.id as any);
+                        if(isMobile) setIsMenuOpen(false);
+                      }}
+                      className={isSelected ? activeSubmenuClass : inactiveSubmenuClass}
+                    >
+                      <span className="flex items-center gap-2.5">
+                        {sub.icon}
+                        {language === 'pt' ? sub.labelPt : sub.labelEn}
+                      </span>
+                    </button>
+                  );
+                })}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* BIBLIOTECA */}
+        <div className="space-y-1.5">
+          <button 
+            onClick={() => toggleGroup('biblioteca')}
+            className="w-full flex items-center justify-between py-2.5 px-3 rounded-lg bg-gradient-to-b from-black/80 to-[#0a0a0a] border border-medieval-gold/20 shadow-[0_4px_15px_rgba(0,0,0,0.5)] hover:border-medieval-gold/50 hover:shadow-[0_4px_20px_rgba(197,160,89,0.15)] transition-all text-xs font-black text-medieval-gold uppercase tracking-widest relative overflow-hidden group"
+          >
+            <span className="flex items-center gap-2.5 relative z-10">
+              <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849031/ferramentas.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Biblioteca" />
+              {language === 'pt' ? 'Biblioteca & Lore' : 'Wiki Library'}
+            </span>
+            <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.biblioteca ? 'rotate-90 text-medieval-gold' : ''}`} />
+          </button>
+
+          <AnimatePresence initial={false}>
+            {sidebarOpenGroups.biblioteca && (
+              <motion.div 
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}

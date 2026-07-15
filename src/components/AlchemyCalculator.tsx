@@ -47,7 +47,7 @@ export const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({ t, initial
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Sidebar: Skill Input */}
         <div className="lg:col-span-4 space-y-6">
-          <div className="medieval-card bg-medieval-card p-6 medieval-border rounded-lg space-y-6">
+          <div className="medieval-card p-6 space-y-6">
             <div className="flex flex-col gap-2">
               <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest flex items-center gap-2">
                 <FlaskConical className="w-4 h-4" /> {t('alchemySkill')}
@@ -66,7 +66,7 @@ export const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({ t, initial
               <span className="text-xs font-bold uppercase text-medieval-gold/60">{t('alchemistOnly')}?</span>
               <button
                 onClick={() => setIsAlchemist(!isAlchemist)}
-                className={`w-12 h-6 rounded-full p-1 transition-colors ${isAlchemist ? 'bg-medieval-gold' : 'bg-medieval-card border border-medieval-gold/30'}`}
+                className={`w-12 h-6 rounded-full p-1 transition-colors ${isAlchemist ? 'bg-medieval-gold' : ' border border-medieval-gold/30'}`}
               >
                 <div className={`w-4 h-4 rounded-full transition-transform ${isAlchemist ? 'translate-x-6 bg-black' : 'translate-x-0 bg-medieval-gold/40'}`} />
               </button>
@@ -83,7 +83,7 @@ export const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({ t, initial
           </div>
 
           {/* Gold Conversion Card */}
-          <div className="medieval-card bg-medieval-card p-6 medieval-border rounded-lg space-y-4">
+          <div className="medieval-card p-6 space-y-4">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-medieval-gold/10 rounded">
                 <Coins className="text-medieval-gold w-5 h-5" />
@@ -107,7 +107,7 @@ export const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({ t, initial
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {ALCHEMY_CRYSTALS.map(crystal => (
-                <div key={crystal.key} className="medieval-card bg-medieval-card p-4 medieval-border rounded-lg space-y-3">
+                <div key={crystal.key} className="medieval-card p-4 space-y-3">
                   <div className="flex justify-between items-start">
                     <span className="text-[10px] font-black uppercase text-medieval-gold tracking-tighter">{crystal.name}</span>
                     <span className="text-xs font-mono text-medieval-gold/60">{crystal.baseChance}% Base</span>
@@ -148,7 +148,7 @@ export const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({ t, initial
               </p>
             </div>
 
-            <div className="medieval-border rounded-lg overflow-hidden bg-medieval-card">
+            <div className=" rounded-lg overflow-hidden ">
               <div className="overflow-x-auto">
                 <table className="w-full text-left border-collapse">
                   <thead>

@@ -136,7 +136,7 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
           <div className="grid grid-cols-1 gap-8">
             {/* Calculadora */}
             <div className="space-y-6">
-              <div className="medieval-card bg-medieval-card p-6 sm:p-8 medieval-border rounded-lg">
+              <div className="medieval-card p-6 sm:p-8">
                 <div className="space-y-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="flex flex-col gap-2">
@@ -237,7 +237,7 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
                                   placeholder="0"
                                   value={materialPrices[mat.name] || ''}
                                   onChange={(e) => handlePriceChange(mat.name, e.target.value)}
-                                  className="bg-black/40 border border-medieval-gold/20 rounded px-2 py-1 text-xs text-medieval-gold w-24 focus:border-medieval-gold outline-none transition-colors"
+                                  className="bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded px-2 py-1 text-xs text-medieval-gold w-24 focus:border-medieval-gold outline-none transition-colors"
                                 />
                               </div>
                             </div>
@@ -283,7 +283,7 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
             
             <div className="space-y-4">
               {BREAKING_DATA.map((catGroup, catIdx) => (
-                <div key={catIdx} className="medieval-border rounded-lg overflow-hidden bg-medieval-card">
+                <div key={catIdx} className=" rounded-lg overflow-hidden ">
                   <button 
                     onClick={() => toggleCategory(catGroup.category)}
                     className="w-full flex items-center justify-between p-4 bg-black/60 hover:bg-black/80 transition-colors border-b border-medieval-gold/20"

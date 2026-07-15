@@ -1047,7 +1047,7 @@ export const LootOptimizer: React.FC<LootOptimizerProps> = ({ language, rashidCi
                     initial={{ opacity: 0, y: 5 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95 }}
-                    className="flex items-center justify-between bg-medieval-card/40 hover:bg-medieval-card/60 border border-medieval-gold/10 p-3 rounded-lg transition-all"
+                    className="flex items-center justify-between /40 hover:/60 border border-medieval-gold/10 p-3 rounded-lg transition-all"
                   >
                     <div className="flex items-center gap-3">
                       {/* Placeholder or standard item label */}
@@ -1291,7 +1291,7 @@ export const LootOptimizer: React.FC<LootOptimizerProps> = ({ language, rashidCi
             return (
               <div 
                 key={item.id}
-                className="bg-black/40 border border-medieval-gold/10 hover:border-medieval-gold/30 rounded-lg p-4 transition-all duration-200 flex flex-col justify-between gap-4 select-none"
+                className="bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/10 backdrop-blur-sm hover:border-medieval-gold/30 rounded-lg p-4 transition-all duration-200 flex flex-col justify-between gap-4 select-none"
               >
                 <div className="flex gap-3">
                   <div className="w-10 h-10 shrink-0 bg-black/60 border border-medieval-gold/20 rounded flex items-center justify-center font-mono text-[10px] font-black text-medieval-gold/80">

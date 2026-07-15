@@ -105,7 +105,7 @@ export const FarmingCalculator: React.FC<FarmingCalculatorProps> = ({ t, initial
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Sidebar: Inputs */}
         <div className="lg:col-span-4 space-y-6">
-          <div className="medieval-card bg-medieval-card p-6 medieval-border rounded-lg space-y-6">
+          <div className="medieval-card p-6 space-y-6">
             <div className="flex flex-col gap-2">
               <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest flex items-center gap-2">
                 <Sprout className="w-4 h-4" /> {t('currentSkill')}
@@ -177,10 +177,10 @@ export const FarmingCalculator: React.FC<FarmingCalculatorProps> = ({ t, initial
               <button
                 key={tree.name}
                 onClick={() => setSelectedTreeName(tree.name)}
-                className={`medieval-card p-4 medieval-border rounded-lg text-left transition-all ${
+                className={`medieval-card p-4  rounded-lg text-left transition-all ${
                   selectedTreeName === tree.name 
                     ? 'bg-medieval-gold/10 border-medieval-gold shadow-[0_0_15px_rgba(212,175,55,0.1)]' 
-                    : 'bg-medieval-card border-medieval-gold/20 hover:border-medieval-gold/50'
+                    : ' border-medieval-gold/20 hover:border-medieval-gold/50'
                 }`}
               >
                 <div className="flex justify-between items-start mb-2">
@@ -204,7 +204,7 @@ export const FarmingCalculator: React.FC<FarmingCalculatorProps> = ({ t, initial
 
           {/* Results Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="medieval-card bg-medieval-card p-6 medieval-border rounded-lg space-y-6">
+            <div className="medieval-card p-6 space-y-6">
               <h3 className="text-sm font-black text-medieval-gold uppercase tracking-widest flex items-center gap-2">
                 <Sprout className="w-4 h-4" /> {t('yieldPerHarvest')}
               </h3>
@@ -238,7 +238,7 @@ export const FarmingCalculator: React.FC<FarmingCalculatorProps> = ({ t, initial
               </div>
             </div>
 
-            <div className="medieval-card bg-medieval-card p-6 medieval-border rounded-lg space-y-6">
+            <div className="medieval-card p-6 space-y-6">
               <h3 className="text-sm font-black text-medieval-gold uppercase tracking-widest flex items-center gap-2">
                 <TrendingUp className="w-4 h-4" /> {t('estimatedProfit')}
               </h3>
@@ -280,7 +280,7 @@ export const FarmingCalculator: React.FC<FarmingCalculatorProps> = ({ t, initial
           </div>
 
           {/* Break-even Section */}
-          <div className="medieval-card bg-medieval-card p-6 medieval-border rounded-lg space-y-4">
+          <div className="medieval-card p-6 space-y-4">
             <h3 className="text-sm font-black text-medieval-gold uppercase tracking-widest flex items-center gap-2">
               <TrendingUp className="w-4 h-4" /> {t('breakEven')}
             </h3>
@@ -299,7 +299,7 @@ export const FarmingCalculator: React.FC<FarmingCalculatorProps> = ({ t, initial
           </div>
 
           {/* Watering Section */}
-          <div className="medieval-card bg-medieval-card p-6 medieval-border rounded-lg space-y-4">
+          <div className="medieval-card p-6 space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-blue-500/10 rounded">

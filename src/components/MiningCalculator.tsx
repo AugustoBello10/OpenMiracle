@@ -129,7 +129,7 @@ export function MiningCalculator({ t }: MiningCalculatorProps) {
       <div className="relative min-h-[400px]">
         {isOutdated && (
           <div className="absolute inset-0 z-10 flex items-start justify-center pt-12">
-            <div className="medieval-card bg-black/95 p-8 medieval-border rounded-lg max-w-2xl w-full text-center space-y-6 shadow-2xl backdrop-blur-md border-medieval-gold/50">
+            <div className="medieval-card bg-black/95 p-8  rounded-lg max-w-2xl w-full text-center space-y-6 shadow-2xl backdrop-blur-md border-medieval-gold/50">
               <div className="flex justify-center">
                 <AlertTriangle className="w-16 h-16 text-medieval-gold animate-pulse" />
               </div>
@@ -154,7 +154,7 @@ export function MiningCalculator({ t }: MiningCalculatorProps) {
 
         <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 transition-all duration-500 ${isOutdated ? 'opacity-10 grayscale blur-sm pointer-events-none select-none' : ''}`}>
           <div className="lg:col-span-7 space-y-6">
-          <div className="medieval-card bg-medieval-card p-6 sm:p-8 medieval-border rounded-lg">
+          <div className="medieval-card p-6 sm:p-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {/* Skill de Mineração */}
               <div className="flex flex-col gap-2">
@@ -347,7 +347,7 @@ export function MiningCalculator({ t }: MiningCalculatorProps) {
           </div>
 
           {/* Planejador de Metas Interativo */}
-          <div className="medieval-card bg-medieval-card p-6 sm:p-8 medieval-border rounded-lg space-y-6 animate-fade-in hover:border-medieval-gold/30 transition-all duration-300">
+          <div className="medieval-card p-6 sm:p-8 space-y-6 animate-fade-in hover:border-medieval-gold/30 transition-all duration-300">
             <div className="flex items-center gap-3 border-b border-medieval-gold/20 pb-4">
               <Target className="w-5 h-5 text-medieval-gold animate-bounce" />
               <div>
@@ -509,7 +509,7 @@ export function MiningCalculator({ t }: MiningCalculatorProps) {
         </div>
 
         <div className="lg:col-span-5 space-y-6">
-          <div className="medieval-border rounded-lg bg-medieval-card p-6 space-y-4">
+          <div className=" rounded-lg  p-6 space-y-4">
             <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest flex items-center gap-2 font-sans">
               <Info className="w-4 h-4" /> {t('miningInfo')}
             </h3>

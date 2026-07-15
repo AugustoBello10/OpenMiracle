@@ -143,7 +143,7 @@ export const SalvageGuide: React.FC<SalvageGuideProps> = ({ language }) => {
       </div>
 
       {/* Real-time Material Price Configuration panel */}
-      <div className="medieval-border bg-black/45 rounded-lg p-5 border-medieval-gold/20 space-y-4 shadow-xl">
+      <div className=" bg-black/45 rounded-lg p-5 border-medieval-gold/20 space-y-4 shadow-xl">
         <div className="flex items-center gap-2 border-b border-medieval-gold/15 pb-2.5">
           <Settings className="w-4 h-4 text-medieval-gold" />
           <h3 className="text-xs font-black text-medieval-gold uppercase tracking-wider">
@@ -272,7 +272,7 @@ export const SalvageGuide: React.FC<SalvageGuideProps> = ({ language }) => {
       </div>
 
       {/* Main interactive Table list */}
-      <div className="medieval-border rounded-lg bg-medieval-card overflow-hidden">
+      <div className=" rounded-lg  overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse min-w-[1000px]">
             <thead>

@@ -350,7 +350,7 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         <div className="lg:col-span-7 space-y-6">
-          <div className="medieval-card bg-medieval-card p-6 sm:p-8 medieval-border rounded-lg space-y-6">
+          <div className="medieval-card p-6 sm:p-8 space-y-6">
             
             {/* Vocation & Promoted */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -361,7 +361,7 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
                 <select
                   value={vocation}
                   onChange={(e) => setVocation(e.target.value as any)}
-                  className="medieval-input bg-black/60 border border-medieval-gold/20 flex items-center px-3 h-[42px] text-xs font-bold uppercase tracking-wider text-medieval-gold cursor-pointer"
+                  className="medieval-input flex items-center px-3 h-[42px] text-xs font-bold uppercase tracking-wider text-medieval-gold cursor-pointer"
                 >
                   <option value="Sorcerer">Sorcerer</option>
                   <option value="Druid">Druid</option>
@@ -401,7 +401,7 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
                 <select
                   value={selectedRune}
                   onChange={(e) => setSelectedRune(Number(e.target.value))}
-                  className="medieval-input bg-black/60 border border-medieval-gold/20 flex items-center px-3 h-[42px] text-xs uppercase tracking-wider text-medieval-gold cursor-pointer w-full truncate"
+                  className="medieval-input flex items-center px-3 h-[42px] text-xs uppercase tracking-wider text-medieval-gold cursor-pointer w-full truncate"
                 >
                   {VOC_SPELLS[vocation]?.map((s) => (
                     <option key={s.name} value={s.mana}>
@@ -418,7 +418,7 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
                 
                 {calcMode === 'online' ? (
                   <div className="flex gap-2 h-[42px]">
-                    <div className="flex bg-black/40 border border-medieval-gold/20 rounded-sm overflow-hidden focus-within:border-medieval-gold/60 transition-colors w-1/2">
+                    <div className="flex bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded-sm overflow-hidden focus-within:border-medieval-gold/60 transition-colors w-1/2">
                       <input
                         type="number"
                         min="0"
@@ -428,7 +428,7 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
                       />
                       <div className="px-2 py-2 bg-medieval-gold/10 text-medieval-gold text-xs font-bold border-l border-medieval-gold/20 flex items-center">h</div>
                     </div>
-                    <div className="flex bg-black/40 border border-medieval-gold/20 rounded-sm overflow-hidden focus-within:border-medieval-gold/60 transition-colors w-1/2">
+                    <div className="flex bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded-sm overflow-hidden focus-within:border-medieval-gold/60 transition-colors w-1/2">
                       <input
                         type="number"
                         min="0"
@@ -445,13 +445,13 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
                     <select
                       value={mfTargetMode}
                       onChange={(e) => setMfTargetMode(e.target.value as any)}
-                      className="medieval-input bg-black/60 border border-medieval-gold/20 px-2 text-[10px] sm:text-xs text-medieval-gold/80 outline-none w-1/2"
+                      className="medieval-input px-2 text-[10px] sm:text-xs text-medieval-gold/80 outline-none w-1/2"
                     >
                       <option value="fluids">Qtd Mana Fluids</option>
                       <option value="runes">Qtd Runas Alvo</option>
                     </select>
 
-                    <div className="flex bg-black/40 border border-medieval-gold/20 rounded-sm overflow-hidden focus-within:border-medieval-gold/60 transition-colors w-1/2">
+                    <div className="flex bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded-sm overflow-hidden focus-within:border-medieval-gold/60 transition-colors w-1/2">
                       {mfTargetMode === 'fluids' ? (
                         <input
                           type="number"
@@ -473,7 +473,7 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
                   </div>
                 ) : (
                   <div className="flex gap-2 h-[42px]">
-                    <div className="flex bg-black/40 border border-medieval-gold/20 rounded-sm overflow-hidden focus-within:border-medieval-gold/60 transition-colors w-full">
+                    <div className="flex bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded-sm overflow-hidden focus-within:border-medieval-gold/60 transition-colors w-full">
                       <input
                         type="number"
                         min="1"
@@ -543,7 +543,7 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
                     
                     <div className="flex-1">
                       {timerTargetMode === 'time' ? (
-                        <div className="flex bg-black/40 border border-medieval-gold/20 rounded-sm overflow-hidden focus-within:border-medieval-gold/60 transition-colors max-w-[150px]">
+                        <div className="flex bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded-sm overflow-hidden focus-within:border-medieval-gold/60 transition-colors max-w-[150px]">
                           <input
                             type="number"
                             min="1"
@@ -659,7 +659,7 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
                         ))}
                       </select>
                       {RINGS[selectedRing].durationSecs && (
-                        <div className="flex bg-black/40 border border-medieval-gold/20 rounded-sm overflow-hidden focus-within:border-medieval-gold/60 transition-colors w-20">
+                        <div className="flex bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded-sm overflow-hidden focus-within:border-medieval-gold/60 transition-colors w-20">
                           <input
                             type="number"
                             min="1"
@@ -695,7 +695,7 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
                         ))}
                       </select>
                       {RELICS[selectedRelic].durationSecs && (
-                        <div className="flex bg-black/40 border border-medieval-gold/20 rounded-sm overflow-hidden focus-within:border-medieval-gold/60 transition-colors w-20">
+                        <div className="flex bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded-sm overflow-hidden focus-within:border-medieval-gold/60 transition-colors w-20">
                           <input
                             type="number"
                             min="1"
@@ -751,7 +751,7 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
               </h2>
 
               <div className="space-y-6 relative z-10">
-                <div className="bg-black/40 border border-medieval-gold/10 rounded-lg p-5">
+                <div className="bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/10 backdrop-blur-sm rounded-lg p-5">
                   <div className="text-[10px] text-medieval-gold/40 uppercase tracking-widest mb-1">
                     Mana Total Gerada
                   </div>
@@ -777,7 +777,7 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-black/40 border border-medieval-gold/10 rounded-lg p-4 text-center">
+                  <div className="bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/10 backdrop-blur-sm rounded-lg p-4 text-center">
                     <div className="text-[10px] text-medieval-gold/40 uppercase tracking-widest mb-1 leading-tight flex justify-center items-center gap-1">
                       <FlaskConical className="w-3 h-3 text-medieval-gold" />{" "}
                       Runas (Cargas)
@@ -788,7 +788,7 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
                   </div>
 
                   {calcMode === 'manafluids' && mfTargetMode === 'runes' ? (
-                    <div className="bg-black/40 border border-medieval-gold/10 rounded-lg p-4 text-center">
+                    <div className="bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/10 backdrop-blur-sm rounded-lg p-4 text-center">
                       <div className="text-[10px] text-medieval-gold/40 uppercase tracking-widest mb-1 leading-tight flex justify-center items-center gap-1">
                         <FlaskConical className="w-3 h-3 text-[#5ba2ff]" />{" "}
                         Mana Fluids (Gastas)
@@ -798,7 +798,7 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
                       </div>
                     </div>
                   ) : (
-                    <div className="bg-black/40 border border-medieval-gold/10 rounded-lg p-4 text-center relative overflow-hidden">
+                    <div className="bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/10 backdrop-blur-sm rounded-lg p-4 text-center relative overflow-hidden">
                       <div className="text-[10px] text-medieval-gold/40 uppercase tracking-widest mb-1 leading-tight">
                         Custo ({calcMode === 'manafluids' ? 'Blanks + MFs' : 'Blanks'})
                       </div>
@@ -810,7 +810,7 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
                   )}
                   
                   {calcMode === 'manafluids' && mfTargetMode === 'runes' && (
-                    <div className="col-span-2 bg-black/40 border border-medieval-gold/10 rounded-lg p-4 text-center relative overflow-hidden">
+                    <div className="col-span-2 bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/10 backdrop-blur-sm rounded-lg p-4 text-center relative overflow-hidden">
                       <div className="text-[10px] text-medieval-gold/40 uppercase tracking-widest mb-1 leading-tight">
                         Custo Estimado (Blanks + Mana Fluids)
                       </div>
@@ -854,7 +854,7 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
                               min="0"
                               value={currentML}
                               onChange={(e) => setCurrentML(Math.max(0, parseInt(e.target.value) || 0))}
-                              className="medieval-input bg-black/60 border border-medieval-gold/20 px-3 py-2 text-xs font-bold text-medieval-gold outline-none"
+                              className="medieval-input px-3 py-2 text-xs font-bold text-medieval-gold outline-none"
                             />
                           </div>
                           <div className="flex flex-col gap-1.5">
