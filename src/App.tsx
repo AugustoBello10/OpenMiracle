@@ -2272,20 +2272,20 @@ export default function App() {
                       className={(activeTab === 'calculadoras' && calcSubTab === 'skills') ? activeSubmenuClass : inactiveSubmenuClass}
                     >
                       <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849036/treinodeskils.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Skills" />
-                      {language === 'pt' ? 'Skills & Tempo' : 'Skills & Time'}
+                      {language === 'pt' ? 'Skills & Magic Level' : 'Skills & Magic Level'}
                     </button>
                     <button 
                       onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('bless'); if(isMobile) setIsMenuOpen(false); }}
                       className={(activeTab === 'calculadoras' && calcSubTab === 'bless') ? activeSubmenuClass : inactiveSubmenuClass}
                     >
-                      <Skull className="w-6 h-6 text-medieval-gold drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" />
+                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784153774/Skull__Item.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Bless" />
                       {language === 'pt' ? 'Bless & Morte' : 'Bless & Death'}
                     </button>
                     <button 
                       onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('atributos'); if(isMobile) setIsMenuOpen(false); }}
                       className={(activeTab === 'calculadoras' && calcSubTab === 'atributos') ? activeSubmenuClass : inactiveSubmenuClass}
                     >
-                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849026/A_Helpful_Fairy.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Atributos" />
+                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784153978/emberrune.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Atributos" />
                       {language === 'pt' ? 'Atributos' : 'Attributes'}
                     </button>
                     <button 
@@ -2294,13 +2294,6 @@ export default function App() {
                     >
                       <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849035/runemaking.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Runas" />
                       {language === 'pt' ? 'Runemaking' : 'Runemaking'}
-                    </button>
-                    <button 
-                      onClick={() => { setActiveTab('loot'); if(isMobile) setIsMenuOpen(false); }}
-                      className={activeTab === 'loot' ? activeSubmenuClass : inactiveSubmenuClass}
-                    >
-                      <Coins className="w-6 h-6 text-medieval-gold drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" />
-                      {language === 'pt' ? 'Loot Counter' : 'Loot Counter'}
                     </button>
                   </motion.div>
                 )}
@@ -2337,28 +2330,28 @@ export default function App() {
                       onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('crafting'); if(isMobile) setIsMenuOpen(false); }}
                       className={(activeTab === 'calculadoras' && calcSubTab === 'professions' && profSubTab === 'crafting') ? activeSubmenuClass : inactiveSubmenuClass}
                     >
-                      <Hammer className="w-6 h-6 object-contain text-medieval-gold/70" />
+                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784154515/crafting.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Crafting" />
                       {language === 'pt' ? 'Crafting' : 'Crafting'}
                     </button>
                     <button 
                       onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('alchemy'); if(isMobile) setIsMenuOpen(false); }}
                       className={(activeTab === 'calculadoras' && calcSubTab === 'professions' && profSubTab === 'alchemy') ? activeSubmenuClass : inactiveSubmenuClass}
                     >
-                      <FlaskConical className="w-6 h-6 object-contain text-medieval-gold/70" />
+                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784154515/Alchemistic_Table.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Alquimia" />
                       {language === 'pt' ? 'Alquimia' : 'Alchemy'}
                     </button>
                     <button 
                       onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('farming'); if(isMobile) setIsMenuOpen(false); }}
                       className={(activeTab === 'calculadoras' && calcSubTab === 'professions' && profSubTab === 'farming') ? activeSubmenuClass : inactiveSubmenuClass}
                     >
-                      <Wheat className="w-6 h-6 object-contain text-medieval-gold/70" />
+                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784154514/Orange_Tree.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Fazenda" />
                       {language === 'pt' ? 'Fazenda' : 'Farming'}
                     </button>
                     <button 
                       onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('mining'); if(isMobile) setIsMenuOpen(false); }}
                       className={(activeTab === 'calculadoras' && calcSubTab === 'professions' && profSubTab === 'mining') ? activeSubmenuClass : inactiveSubmenuClass}
                     >
-                      <Pickaxe className="w-6 h-6 object-contain text-medieval-gold/70" />
+                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784154515/mining.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Mineração" />
                       {language === 'pt' ? 'Mineração' : 'Mining'}
                     </button>
                   </motion.div>
@@ -2574,8 +2567,24 @@ export default function App() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                className="space-y-12 py-10"
+                className="space-y-12 py-10 relative"
               >
+                {/* Language Switcher for Home Page */}
+                <div className="absolute top-0 right-0 flex items-center gap-1 border border-medieval-gold/20 bg-black/40 px-2 py-1 rounded-full backdrop-blur-sm shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                  <button 
+                    onClick={() => setLanguage('pt')}
+                    className={`text-[10px] font-bold px-3 py-1.5 rounded-full transition-all ${language === 'pt' ? 'bg-medieval-gold text-black shadow-[0_0_10px_rgba(197,160,89,0.3)]' : 'text-medieval-gold/50 hover:text-medieval-gold'}`}
+                  >
+                    PT
+                  </button>
+                  <button 
+                    onClick={() => setLanguage('en')}
+                    className={`text-[10px] font-bold px-3 py-1.5 rounded-full transition-all ${language === 'en' ? 'bg-medieval-gold text-black shadow-[0_0_10px_rgba(197,160,89,0.3)]' : 'text-medieval-gold/50 hover:text-medieval-gold'}`}
+                  >
+                    EN
+                  </button>
+                </div>
+
                 <header className="text-center mb-16">
                   <div className="flex flex-col items-center justify-center gap-6 mb-6">
                     <h1 className="text-4xl sm:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-medieval-gold to-medieval-gold/30 uppercase tracking-tighter drop-shadow-[0_0_25px_rgba(197,160,89,0.4)]">
@@ -2584,8 +2593,8 @@ export default function App() {
                   </div>
                   <p className="text-medieval-gold/70 font-mono text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
                     {language === 'pt' 
-                      ? 'Escolha a sua jornada. Encontre guias completos, ferramentas avançadas e organize suas caçadas em Miracle 7.4.' 
-                      : 'Choose your journey. Find complete guides, advanced tools, and organize your hunts in Miracle 7.4.'}
+                      ? 'Escolha a sua jornada. Encontre guias completos e ferramentas avançadas em Miracle 7.4.' 
+                      : 'Choose your journey. Find complete guides and advanced tools in Miracle 7.4.'}
                   </p>
                 </header>
 
@@ -2608,7 +2617,7 @@ export default function App() {
                         {language === 'pt' ? 'Ferramentas' : 'Tools'}
                       </h2>
                       <p className="text-medieval-gold/60 text-sm leading-relaxed font-mono">
-                        {language === 'pt' ? 'Calculadoras de skills, runas, forja e simulação de atributos para maximizar seus ganhos.' : 'Skill calculators, runes, crafting and attribute simulation to maximize your gains.'}
+                        {language === 'pt' ? 'Calculadoras de skills, Rune Making, profissões, chance de atributar itens e Build Maker para maximizar seus ganhos.' : 'Skill calculators, Rune Making, professions, attribute chance and Build Maker to maximize your gains.'}
                       </p>
                     </div>
                   </motion.button>
@@ -2631,7 +2640,7 @@ export default function App() {
                         Wiki & Quests
                       </h2>
                       <p className="text-medieval-gold/60 text-sm leading-relaxed font-mono">
-                        {language === 'pt' ? 'Explore a enciclopédia completa de itens, equipamentos, bestiário, missões e guias.' : 'Explore the complete encyclopedia of items, equipment, bestiary, quests and guides.'}
+                        {language === 'pt' ? '[Em Construção] Explore a enciclopédia completa de itens, equipamentos, bestiário, missões e guias.' : '[Under Construction] Explore the complete encyclopedia of items, equipment, bestiary, quests and guides.'}
                       </p>
                     </div>
                   </motion.button>
@@ -4747,6 +4756,7 @@ export default function App() {
         </motion.button>
       )}
 
+      {activeTab !== 'home' && (
       <footer className="bg-black/80 border-t border-medieval-gold/10 pt-12 pb-6 px-4 mt-auto">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-[11px] font-mono tracking-wider">
           {/* Section 1: About */}
@@ -4796,6 +4806,7 @@ export default function App() {
           </div>
         </div>
       </footer>
+      )}
 
       {/* Secret Admin Modal */}
       <AnimatePresence>
