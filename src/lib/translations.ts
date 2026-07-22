@@ -184,7 +184,7 @@ export const translations = {
     fisherman: "Pescador",
     
     // Crafting / Breaking Guide
-    breakingGuide: "Guia de Quebra de Itens",
+    breakingGuide: "Lista de Itens Quebráveis",
     successChance: "Chance de Sucesso",
     verdict: "Veredito",
     item: "Item",
@@ -303,6 +303,8 @@ export const translations = {
     
     // Crafting Categories
     giantGemsRelics: "Gemas Gigantes (Relíquias)",
+    skinningKnives: "Skinning Knifes",
+    cuttingAxes: "Cutting Axes",
     toolsPicks: "Ferramentas & Picks",
     rods: "Rods",
     mysticRunes: "Mystic Runes",
@@ -582,7 +584,7 @@ export const translations = {
     fisherman: "Fisherman",
     
     // Crafting / Breaking Guide
-    breakingGuide: "Item Breaking Guide",
+    breakingGuide: "Breakable Items List",
     successChance: "Success Chance",
     verdict: "Verdict",
     item: "Item",
@@ -701,6 +703,8 @@ export const translations = {
     
     // Crafting Categories
     giantGemsRelics: "Giant Gems (Relics)",
+    skinningKnives: "Skinning Knifes",
+    cuttingAxes: "Cutting Axes",
     toolsPicks: "Tools & Picks",
     rods: "Rods",
     mysticRunes: "Mystic Runes",

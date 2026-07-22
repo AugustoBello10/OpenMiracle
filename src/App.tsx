@@ -31,65 +31,73 @@ import { LootOptimizer } from './components/LootOptimizer';
 import { supabase } from './lib/supabase';
 
 // --- Dados do Banco de Dados Embutido ---
-const CRAFT_ITEMS = [
-  {
-    category: "giantGemsRelics",
-    icon: <Gem className="w-5 h-5" />,
-    items: [
-      { name: "Giant Ruby", multiplier: 2, req: "10 Small Rubys", materials: [{ name: "Small Ruby", amount: 10 }] },
-      { name: "Giant Emerald", multiplier: 2, req: "10 Small Emeralds", materials: [{ name: "Small Emerald", amount: 10 }] },
-      { name: "Giant Sapphire", multiplier: 2, req: "10 Small Sapphires", materials: [{ name: "Small Sapphire", amount: 10 }] },
-      { name: "Giant Amethyst", multiplier: 2, req: "10 Small Amethysts", materials: [{ name: "Small Amethyst", amount: 10 }] },
-      { name: "Spiritualist Gem", multiplier: 2, req: "10 Small Spiritualist Gems", materials: [{ name: "Small Spiritualist Gem", amount: 10 }] },
-      { name: "Marksman Gem", multiplier: 2, req: "10 Small Marksman Gems", materials: [{ name: "Small Marksman Gem", amount: 10 }] },
-      { name: "Sage Gem", multiplier: 2, req: "10 Small Sage Gems", materials: [{ name: "Small Sage Gem", amount: 10 }] },
-      { name: "Guardian Gem", multiplier: 2, req: "10 Small Guardian Gems", materials: [{ name: "Small Guardian Gem", amount: 10 }] },
-    ]
-  },
+export const CRAFT_ITEMS = [
   {
     category: "toolsPicks",
-    icon: <Pickaxe className="w-5 h-5" />,
     items: [
-      { name: "Modified Pick", multiplier: 2, req: "1 Pick + 5 Steels", materials: [{ name: "Pick", amount: 1 }, { name: "Steel", amount: 5 }] },
-      { name: "Advanced Pick", multiplier: 1.5, req: "1 Pick + 1 Draconian Steel + 10 Steels", materials: [{ name: "Pick", amount: 1 }, { name: "Draconian Steel", amount: 1 }, { name: "Steel", amount: 10 }] },
-      { name: "Enhanced Pick", multiplier: 1, req: "1 Pick + 5 Draconian Steels + 20 Steels", materials: [{ name: "Pick", amount: 1 }, { name: "Draconian Steel", amount: 5 }, { name: "Steel", amount: 20 }] },
-      { name: "Diamon Knife", multiplier: 1, req: "10 small diamonds + 5 Hell Steels + 1 Combat Knife", materials: [{ name: "Small Diamond", amount: 10 }, { name: "Hell Steel", amount: 5 }, { name: "Combat Knife", amount: 1 }] },
+      { name: "Modified Pick", multiplier: 2, req: "1 Pick + 5 Steels", materials: [{ name: "Pick", amount: 1 }, { name: "Steel", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Modified_pick.gif" },
+      { name: "Advanced Pick", multiplier: 1.5, req: "1 Pick + 1 Draconian Steel + 10 Steels", materials: [{ name: "Pick", amount: 1 }, { name: "Draconian Steel", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }, { name: "Steel", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Advanced_pick.gif" },
+      { name: "Enhanced Pick", multiplier: 1, req: "1 Pick + 5 Draconian Steels + 20 Steels", materials: [{ name: "Pick", amount: 1 }, { name: "Draconian Steel", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }, { name: "Steel", amount: 20, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Enchanced_Pick.gif" },
     ]
   },
   {
     category: "rods",
-    icon: <Wand2 className="w-5 h-5" />,
     items: [
-      { name: "Reinforced Rod", multiplier: 2, req: "1 fishing rod + 5 steels", materials: [{ name: "Fishing Rod", amount: 1 }, { name: "Steel", amount: 5 }] },
-      { name: "Engineered Rod", multiplier: 1.5, req: "1 fishing rod + 10 steels + 1 draconian steel", materials: [{ name: "Fishing Rod", amount: 1 }, { name: "Steel", amount: 10 }, { name: "Draconian Steel", amount: 1 }] },
-      { name: "Volcanic Rod", multiplier: 1, req: "1 fishing rod + 20 steels + 10 glimmering soils + 5 draconian steels + 3 hell steels", materials: [{ name: "Fishing Rod", amount: 1 }, { name: "Steel", amount: 20 }, { name: "Glimmering Soil", amount: 10 }, { name: "Draconian Steel", amount: 5 }, { name: "Hell Steel", amount: 3 }] },
-      { name: "Golden Rod", multiplier: 0.5, req: "1 fishing rod + 40 steels + 10 draconian steels + 3 gold ingot + 3 hell steels", materials: [{ name: "Fishing Rod", amount: 1 }, { name: "Steel", amount: 40 }, { name: "Draconian Steel", amount: 10 }, { name: "Gold Ingot", amount: 3 }, { name: "Hell Steel", amount: 3 }] },
+      { name: "Reinforced Rod", multiplier: 2, req: "1 fishing rod + 5 steels", materials: [{ name: "Fishing Rod", amount: 1 }, { name: "Steel", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Reinforced_rod.gif" },
+      { name: "Engineered Rod", multiplier: 1.5, req: "1 fishing rod + 10 steels + 1 draconian steel", materials: [{ name: "Fishing Rod", amount: 1 }, { name: "Steel", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }, { name: "Draconian Steel", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }] },
+      { name: "Volcanic Rod", multiplier: 1, req: "1 fishing rod + 20 steels + 10 glimmering soils + 5 draconian steels + 3 hell steels", materials: [{ name: "Fishing Rod", amount: 1 }, { name: "Steel", amount: 20, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }, { name: "Glimmering Soil", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/glmeringsoil.gif" }, { name: "Draconian Steel", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }, { name: "Hell Steel", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/hell_steel.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Volcanic_rod.gif" },
+      { name: "Golden Rod", multiplier: 0.5, req: "1 fishing rod + 40 steels + 10 draconian steels + 3 gold ingot + 3 hell steels", materials: [{ name: "Fishing Rod", amount: 1 }, { name: "Steel", amount: 40, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }, { name: "Draconian Steel", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }, { name: "Gold Ingot", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/goldingot.gif" }, { name: "Hell Steel", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/hell_steel.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Golden_rod.gif" },
+    ]
+  },
+  {
+    category: "skinningKnives",
+    items: [
+      { name: "Diamond Knife", multiplier: 1, req: "10 small diamonds + 5 Hell Steels + 1 Combat Knife", materials: [{ name: "Small Diamond", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/smalldiamond.gif" }, { name: "Hell Steel", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/hell_steel.gif" }, { name: "Combat Knife", amount: 1 }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784736439/diamong_knife.gif" },
+    ]
+  },
+  {
+    category: "cuttingAxes",
+    items: [
+      { name: "Refined Axe", multiplier: 1, req: "1x rough axe (consumed on success), 10x steels, 1x draconian steel", materials: [{ name: "Rough Axe", amount: 1 }, { name: "Steel", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }, { name: "Draconian Steel", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }] },
+      { name: "Superior Axe", multiplier: 0.8, req: "1x refined axe (consumed on success), 20x steels, 5x draconian steels", materials: [{ name: "Refined Axe", amount: 1 }, { name: "Steel", amount: 20, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }, { name: "Draconian Steel", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }] },
+      { name: "Masterwork Axe", multiplier: 0.6, req: "1x superior axe (consumed on success), 40x steels, 10x draconian steels", materials: [{ name: "Superior Axe", amount: 1 }, { name: "Steel", amount: 40, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }, { name: "Draconian Steel", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }] },
+      { name: "Grandmaster Axe", multiplier: 0.4, req: "1x masterwork axe (consumed on success), 80x steels, 20x draconian steels, 3x hell steel, 5x small topaz", materials: [{ name: "Masterwork Axe", amount: 1 }, { name: "Steel", amount: 80, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }, { name: "Draconian Steel", amount: 20, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }, { name: "Hell Steel", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/hell_steel.gif" }, { name: "Small Topaz", amount: 5 }] },
     ]
   },
   {
     category: "mysticRunes",
-    icon: <Zap className="w-5 h-5" />,
     items: [
-      { name: "Ember Rune", multiplier: 1, req: "5 Ember Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Ember Fragment", amount: 5 }, { name: "Pulverized Ore", amount: 3 }, { name: "Onyx", amount: 1 }] },
-      { name: "Protector Rune", multiplier: 1, req: "5 Protector Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Protector Fragment", amount: 5 }, { name: "Pulverized Ore", amount: 3 }, { name: "Onyx", amount: 1 }] },
-      { name: "Obsidian Rune", multiplier: 1, req: "5 Protector Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Protector Fragment", amount: 5 }, { name: "Pulverized Ore", amount: 3 }, { name: "Onyx", amount: 1 }] },
-      { name: "Astral Rune", multiplier: 1, req: "5 Astral Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Astral Fragment", amount: 5 }, { name: "Pulverized Ore", amount: 3 }, { name: "Onyx", amount: 1 }] },
-      { name: "Aegis Rune", multiplier: 1, req: "5 Aegis Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Aegis Fragment", amount: 5 }, { name: "Pulverized Ore", amount: 3 }, { name: "Onyx", amount: 1 }] },
-      { name: "Molten Rune", multiplier: 1, req: "5 Molten Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Molten Fragment", amount: 5 }, { name: "Pulverized Ore", amount: 3 }, { name: "Onyx", amount: 1 }] },
-    ]
-  },
-  {
-    category: "ammunition",
-    icon: <Sword className="w-5 h-5" />,
-    items: [
-      { name: "10x Steel Bolts", multiplier: 2, req: "10 bolt + 1 steel", materials: [{ name: "Bolt", amount: 10 }, { name: "Steel", amount: 1 }] },
+      { name: "Ember Rune", multiplier: 1, req: "5 Ember Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Ember Fragment", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/emberfrag.gif" }, { name: "Pulverized Ore", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/pulverizedore.gif" }, { name: "Onyx", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/onyx.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/ember.gif" },
+      { name: "Protector Rune", multiplier: 1, req: "5 Protector Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Protector Fragment", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/protectorfrag.gif" }, { name: "Pulverized Ore", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/pulverizedore.gif" }, { name: "Onyx", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/onyx.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/protector.gif" },
+      { name: "Obsidian Rune", multiplier: 1, req: "5 Obsidian Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Obsidian Fragment", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/obsidianfrag.gif" }, { name: "Pulverized Ore", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/pulverizedore.gif" }, { name: "Onyx", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/onyx.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/obsidian.gif" },
+      { name: "Astral Rune", multiplier: 1, req: "5 Astral Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Astral Fragment", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/astralfrag.gif" }, { name: "Pulverized Ore", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/pulverizedore.gif" }, { name: "Onyx", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/onyx.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/astral.gif" },
+      { name: "Aegis Rune", multiplier: 1, req: "5 Aegis Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Aegis Fragment", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/aegisfrag.gif" }, { name: "Pulverized Ore", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/pulverizedore.gif" }, { name: "Onyx", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/onyx.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/aegis.gif" },
+      { name: "Molten Rune", multiplier: 1, req: "5 Molten Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Molten Fragment", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/moltenfrag.gif" }, { name: "Pulverized Ore", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/pulverizedore.gif" }, { name: "Onyx", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/onyx.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/molten.gif" },
     ]
   },
   {
     category: "others",
-    icon: <Sword className="w-5 h-5" />,
     items: [
-      { name: "Fiery Stone", multiplier: 0.5, req: "5 Glimmering Soils", materials: [{ name: "Glimmering Soil", amount: 5 }] },
+      { name: "Fiery Stone", multiplier: 0.5, req: "5 Glimmering Soils", materials: [{ name: "Glimmering Soil", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/glmeringsoil.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/fiery.gif" },
+    ]
+  },
+  {
+    category: "giantGemsRelics",
+    items: [
+      { name: "Giant Ruby", multiplier: 2, req: "10 Small Rubys", materials: [{ name: "Small Ruby", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/smallruby.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/giant_ruby.gif" },
+      { name: "Giant Emerald", multiplier: 2, req: "10 Small Emeralds", materials: [{ name: "Small Emerald", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/smallemerald.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/giant_emerald.gif" },
+      { name: "Giant Sapphire", multiplier: 2, req: "10 Small Sapphires", materials: [{ name: "Small Sapphire", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/smallsaphire.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/giant_saphire.gif" },
+      { name: "Giant Amethyst", multiplier: 2, req: "10 Small Amethysts", materials: [{ name: "Small Amethyst", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/smallamethyst.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/giant_amethyst.gif" },
+      { name: "Spiritualist Gem", multiplier: 2, req: "10 Small Spiritualist Gems", materials: [{ name: "Small Spiritualist Gem", amount: 10 }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/spiritualist_gem.gif" },
+      { name: "Marksman Gem", multiplier: 2, req: "10 Small Marksman Gems", materials: [{ name: "Small Marksman Gem", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/marksmanfrag.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/marksman_gem.gif" },
+      { name: "Sage Gem", multiplier: 2, req: "10 Small Sage Gems", materials: [{ name: "Small Sage Gem", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/sagefrag.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Sage_gem.gif" },
+      { name: "Guardian Gem", multiplier: 2, req: "10 Small Guardian Gems", materials: [{ name: "Small Guardian Gem", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/guardianfrag.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/guardian_gem.gif" },
+    ]
+  },
+  {
+    category: "ammunition",
+    items: [
+      { name: "10x Steel Bolts", multiplier: 2, req: "10 bolt + 1 steel", materials: [{ name: "Bolt", amount: 10 }, { name: "Steel", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }] },
     ]
   }
 ];
@@ -469,6 +477,7 @@ const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
 };
 
 import { BuildMakerView } from './components/BuildMakerView';
+import { ProfessionsGuideView } from "./components/ProfessionsGuideView";
 import { FeedbackBoard } from './components/FeedbackBoard';
 
 type Tab = 'home' | 'calculadoras' | 'profissoes' | 'mapa' | 'eventos' | 'wiki' | 'buildmaker' | 'loot' | 'feedback' | 'hunts';
@@ -1345,6 +1354,7 @@ export default function App() {
     if (path.includes('/updates')) return 'updates';
     if (path.includes('/biblioteca')) return 'library';
     if (path.includes('/itens')) return 'items';
+    if (path.includes('/profissoes')) return 'profissoes';
     return 'home';
   };
 
@@ -1352,7 +1362,7 @@ export default function App() {
   const [calcSubTab, setCalcSubTab] = useState<'skills' | 'bless' | 'atributos' | 'professions' | 'runemaking'>(getInitialCalcSubTab);
   const [profSubTab, setProfSubTab] = useState<'crafting' | 'alchemy' | 'farming' | 'mining'>(getInitialProfSubTab);
   const [wikiSubTab, setWikiSubTab] = useState<'server' | 'project'>(getInitialWikiSubTab);
-  const [wikiMainTab, setWikiMainTab] = useState<'home' | 'updates' | 'library' | 'items'>(getInitialWikiMainTab);
+  const [wikiMainTab, setWikiMainTab] = useState<'home' | 'updates' | 'library' | 'items' | 'profissoes'>(getInitialWikiMainTab);
   
   const navigate = useNavigate();
   const location = useLocation();
@@ -2029,7 +2039,7 @@ export default function App() {
     { id: 'home', label: t('home'), icon: <Book className="w-4 h-4" /> },
     { id: 'buildmaker', label: 'Build Maker', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849031/buildmaker.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Build Maker" /> },
     { id: 'calculadoras', label: t('calculators'), icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849027/calculadoras.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Calculadoras" /> },
-    { id: 'profissoes', label: t('professions'), icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/guiadeprofissoes.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Profissoes" /> },
+    { id: 'profissoes', label: language === 'pt' ? 'Profissões' : 'Professions', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/guiadeprofissoes.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Profissoes" /> },
     { id: 'mapa', label: t('map'), icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849033/mapainterativo.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Mapa" /> },
     { id: 'wiki', label: t('wiki'), icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783850372/wiki.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Wiki" /> },
   ];
@@ -2038,8 +2048,8 @@ export default function App() {
     const activeSubmenuClass = "w-full text-left py-2 px-3 rounded-lg text-xs uppercase tracking-wider font-black transition-all duration-300 bg-gradient-to-r from-medieval-gold to-yellow-600 text-black shadow-[0_0_15px_rgba(197,160,89,0.4)] flex items-center gap-3 scale-[1.02] ml-1";
     const inactiveSubmenuClass = "w-full text-left py-2 px-3 rounded-lg text-xs uppercase tracking-wider font-bold transition-all duration-300 text-medieval-gold/60 hover:text-medieval-gold hover:bg-gradient-to-r hover:from-white/[0.05] hover:to-transparent flex items-center gap-3 hover:translate-x-1 group";
 
-    const isFerramentas = ['calculadoras', 'buildmaker', 'loot', 'profissoes'].includes(activeTab);
-    const isWiki = ['wiki', 'mapa', 'eventos'].includes(activeTab);
+    const isFerramentas = ['calculadoras', 'buildmaker', 'loot'].includes(activeTab);
+    const isWiki = ['wiki', 'mapa', 'eventos', 'profissoes'].includes(activeTab);
 
     const WIKI_SECTIONS = [
       { id: 'helmets', label: language === 'pt' ? 'Capacetes' : 'Helmets', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/capacetes.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Helmets" /> },
@@ -2218,6 +2228,13 @@ export default function App() {
                     className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5"
                   >
                     <button 
+                      onClick={() => { setActiveTab('profissoes'); if(isMobile) setIsMenuOpen(false); }}
+                      className={activeTab === 'profissoes' ? activeSubmenuClass : inactiveSubmenuClass}
+                    >
+                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/guiadeprofissoes.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Guia Profissoes" />
+                      {language === 'pt' ? 'Guia de Profissões' : 'Professions Video'}
+                    </button>
+                    <button 
                       onClick={() => { setActiveTab('mapa'); if(isMobile) setIsMenuOpen(false); }}
                       className={activeTab === 'mapa' ? activeSubmenuClass : inactiveSubmenuClass}
                     >
@@ -2320,13 +2337,6 @@ export default function App() {
                     className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5"
                   >
                     <button 
-                      onClick={() => { setActiveTab('profissoes'); if(isMobile) setIsMenuOpen(false); }}
-                      className={activeTab === 'profissoes' ? activeSubmenuClass : inactiveSubmenuClass}
-                    >
-                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/guiadeprofissoes.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Guia Profissoes" />
-                      {language === 'pt' ? 'Guia de Profissões' : 'Professions Video'}
-                    </button>
-                    <button 
                       onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('professions'); setProfSubTab('crafting'); if(isMobile) setIsMenuOpen(false); }}
                       className={(activeTab === 'calculadoras' && calcSubTab === 'professions' && profSubTab === 'crafting') ? activeSubmenuClass : inactiveSubmenuClass}
                     >
@@ -2418,7 +2428,7 @@ export default function App() {
             onClick={() => setActiveTab('home')}
             className="flex items-center gap-3 hover:opacity-80 transition-opacity shrink-0"
           >
-            <Hammer className="text-medieval-gold w-6 h-6" />
+            <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784748006/logowiki.png" alt="Wiki Logo" className="h-12 w-auto object-contain" />
             <span className="text-medieval-gold font-black uppercase tracking-tighter text-lg hidden sm:inline">
               Miracle Wiki Tools
             </span>
@@ -2608,7 +2618,7 @@ export default function App() {
                     <div className="absolute inset-0 bg-gradient-to-br from-medieval-gold/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div className="flex justify-between items-start relative z-10">
                       <div className="p-4 bg-black/60 border border-medieval-gold/30 rounded-2xl group-hover:bg-medieval-gold/20 group-hover:border-medieval-gold shadow-inner transition-all duration-300">
-                        <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/guiadeprofissoes.gif" className="w-10 h-10 sm:w-12 sm:h-12 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)] group-hover:scale-110 transition-transform" alt="Ferramentas" />
+                        <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849027/calculadoras.gif" className="w-10 h-10 sm:w-12 sm:h-12 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)] group-hover:scale-110 transition-transform" alt="Ferramentas" />
                       </div>
                       <ChevronRight className="text-medieval-gold/30 group-hover:text-medieval-gold group-hover:translate-x-2 transition-all w-8 h-8" />
                     </div>
@@ -2617,7 +2627,7 @@ export default function App() {
                         {language === 'pt' ? 'Ferramentas' : 'Tools'}
                       </h2>
                       <p className="text-medieval-gold/60 text-sm leading-relaxed font-mono">
-                        {language === 'pt' ? 'Calculadoras de skills, Rune Making, profissões, chance de atributar itens e Build Maker para maximizar seus ganhos.' : 'Skill calculators, Rune Making, professions, attribute chance and Build Maker to maximize your gains.'}
+                        {language === 'pt' ? 'Calculadoras de skills, Rune Making, chance de atributar itens e Build Maker para maximizar seus ganhos.' : 'Skill calculators, Rune Making, attribute chance and Build Maker to maximize your gains.'}
                       </p>
                     </div>
                   </motion.button>
@@ -2640,7 +2650,7 @@ export default function App() {
                         Wiki & Quests
                       </h2>
                       <p className="text-medieval-gold/60 text-sm leading-relaxed font-mono">
-                        {language === 'pt' ? '[Em Construção] Explore a enciclopédia completa de itens, equipamentos, bestiário, missões e guias.' : '[Under Construction] Explore the complete encyclopedia of items, equipment, bestiary, quests and guides.'}
+                        {language === 'pt' ? '[Em Construção] Explore o guia de profissões, enciclopédia de itens, equipamentos, bestiário e missões.' : '[Under Construction] Explore the professions guide, encyclopedia of items, equipment, bestiary and quests.'}
                       </p>
                     </div>
                   </motion.button>
@@ -2698,7 +2708,7 @@ export default function App() {
                   >
                     <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <div className="flex items-center gap-2 relative z-10">
-                      <Zap className={`w-4 h-4 ${calcSubTab === 'skills' ? 'animate-pulse' : ''}`} /> {t('skills')}
+                      {t('skills')}
                     </div>
                   </button>
                   <button
@@ -2711,7 +2721,7 @@ export default function App() {
                   >
                     <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <div className="flex items-center gap-2 relative z-10">
-                      <TrendingUp className={`w-4 h-4 ${calcSubTab === 'bless' ? 'animate-pulse' : ''}`} /> {t('blessDeath')}
+                      {t('blessDeath')}
                     </div>
                   </button>
                   <button
@@ -2724,7 +2734,7 @@ export default function App() {
                   >
                     <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <div className="flex items-center gap-2 relative z-10">
-                      <Sparkles className={`w-4 h-4 ${calcSubTab === 'atributos' ? 'animate-pulse' : ''}`} /> <Zap className="w-8 h-8 text-medieval-gold opacity-80" /> {t('attributes')}
+                      {t('attributes')}
                     </div>
                   </button>
                   <button
@@ -2737,7 +2747,7 @@ export default function App() {
                   >
                     <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <div className="flex items-center gap-2 relative z-10">
-                      <FlaskConical className={`w-4 h-4 ${calcSubTab === 'runemaking' ? 'animate-pulse' : ''}`} /> {language === 'pt' ? 'Rune Making' : 'Rune Making'}
+                      {language === 'pt' ? 'Rune Making' : 'Rune Making'}
                     </div>
                   </button>
                   <button
@@ -2750,7 +2760,7 @@ export default function App() {
                   >
                     <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <div className="flex items-center gap-2 relative z-10">
-                      <Briefcase className={`w-4 h-4 ${calcSubTab === 'professions' ? 'animate-pulse' : ''}`} /> {t('professions')}
+                      {t('professions')}
                     </div>
                   </button>
                 </div>
@@ -2768,7 +2778,7 @@ export default function App() {
                       >
                         <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <div className="flex items-center gap-2 relative z-10">
-                          <Hammer className={`w-3 h-3 ${profSubTab === 'crafting' ? 'animate-pulse' : ''}`} /> {t('crafting')}
+                          {t('crafting')}
                         </div>
                       </button>
                       <button
@@ -2781,7 +2791,7 @@ export default function App() {
                       >
                         <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <div className="flex items-center gap-2 relative z-10">
-                          <FlaskConical className={`w-3 h-3 ${profSubTab === 'alchemy' ? 'animate-pulse' : ''}`} /> {t('alchemy')}
+                          {t('alchemy')}
                         </div>
                       </button>
                       <button
@@ -2794,7 +2804,7 @@ export default function App() {
                       >
                         <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <div className="flex items-center gap-2 relative z-10">
-                          <Sprout className={`w-3 h-3 ${profSubTab === 'farming' ? 'animate-pulse' : ''}`} /> {t('farming')}
+                          {t('farming')}
                         </div>
                       </button>
                       <button
@@ -2807,7 +2817,7 @@ export default function App() {
                       >
                         <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <div className="flex items-center gap-2 relative z-10">
-                          <Pickaxe className={`w-3 h-3 ${profSubTab === 'mining' ? 'animate-pulse' : ''}`} /> {t('mining')}
+                          {t('mining')}
                         </div>
                       </button>
                     </div>
@@ -3063,129 +3073,25 @@ export default function App() {
                 </div>
               </motion.div>
             )}
-
             {activeTab === 'profissoes' && (
               <motion.div
                 key="profissoes"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                className="space-y-12"
+                className="h-full"
               >
-                <header className="text-center mb-12">
-                  <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2 flex items-center justify-center gap-3">
-                    <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/guiadeprofissoes.gif" className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Profissoes" /> {t('professionsTitle')}
-                  </h1>
-                  <p className="text-medieval-gold/80 font-mono text-sm">
-                    {t('professionsSubtitle')}
-                  </p>
-                </header>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {/* Card Crafting */}
-                  <motion.div whileHover={{ y: -5 }} className="relative group p-8 rounded-2xl bg-gradient-to-b from-black/80 to-black border border-medieval-gold/20 hover:border-medieval-gold/60 transition-all flex flex-col space-y-6 overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-                    <div className="absolute inset-0 bg-gradient-to-br from-medieval-gold/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div className="flex items-center gap-4 relative z-10">
-                      <div className="p-4 bg-black/60 border border-medieval-gold/30 rounded-xl group-hover:bg-medieval-gold/20 group-hover:border-medieval-gold shadow-inner transition-all duration-300">
-                        <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/guiadeprofissoes.gif" className="w-12 h-12 object-contain group-hover:scale-110 transition-transform drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Calculadoras" />
-                      </div>
-                      <h2 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-medieval-gold to-medieval-gold/70 uppercase tracking-tight group-hover:from-white group-hover:to-medieval-gold transition-colors">{t('crafting')}</h2>
-                    </div>
-                    <p className="text-medieval-gold/60 text-sm leading-relaxed font-mono flex-1 relative z-10">
-                      {t('craftingDesc')}
-                    </p>
-                    <div className="pt-4 relative z-10">
-                      <a 
-                        href="https://www.youtube.com/watch?v=keb5CtwOwBI" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="bg-red-600/20 text-red-400 border border-red-500/30 font-bold py-3 px-6 rounded-xl flex items-center justify-center gap-3 hover:bg-red-600/40 hover:text-white hover:border-red-500/80 transition-all w-full text-xs uppercase tracking-wider group/btn shadow-lg"
-                      >
-                        <Youtube className="w-5 h-5 text-red-500 group-hover/btn:scale-110 transition-transform" /> {t('craftingTutorial')}
-                      </a>
-                    </div>
-                  </motion.div>
-
-                  {/* Mineração */}
-                  <div className="relative p-8 rounded-2xl bg-gradient-to-b from-black/80 to-black border border-medieval-gold/10 space-y-6 opacity-50 grayscale flex flex-col">
-                    <div className="flex items-center gap-4 relative z-10">
-                      <div className="p-4 bg-black/60 border border-medieval-gold/30 rounded-xl">
-                        <Pickaxe className="text-medieval-gold w-8 h-8" />
-                      </div>
-                      <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-tight">{t('mining')}</h2>
-                    </div>
-                    <p className="text-medieval-gold/60 text-sm leading-relaxed font-mono relative z-10">
-                      {t('miningGuideSoon')}
-                    </p>
-                  </div>
-
-                  {/* Farming */}
-                  <div className="relative p-8 rounded-2xl bg-gradient-to-b from-black/80 to-black border border-medieval-gold/10 space-y-6 opacity-50 grayscale flex flex-col">
-                    <div className="flex items-center gap-4 relative z-10">
-                      <div className="p-4 bg-black/60 border border-medieval-gold/30 rounded-xl">
-                        <Sprout className="text-medieval-gold w-8 h-8" />
-                      </div>
-                      <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-tight">{t('farmer')}</h2>
-                    </div>
-                    <p className="text-medieval-gold/60 text-sm leading-relaxed font-mono relative z-10">
-                      {t('farmingDesc')}
-                    </p>
-                  </div>
-
-                  {/* Cooking */}
-                  <div className="relative p-8 rounded-2xl bg-gradient-to-b from-black/80 to-black border border-medieval-gold/10 space-y-6 opacity-50 grayscale flex flex-col">
-                    <div className="flex items-center gap-4 relative z-10">
-                      <div className="p-4 bg-black/60 border border-medieval-gold/30 rounded-xl">
-                        <Utensils className="text-medieval-gold w-8 h-8" />
-                      </div>
-                      <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-tight">{t('cook')}</h2>
-                    </div>
-                    <p className="text-medieval-gold/60 text-sm leading-relaxed font-mono relative z-10">
-                      {t('cookingDesc')}
-                    </p>
-                  </div>
-
-                  {/* Skinning */}
-                  <div className="relative p-8 rounded-2xl bg-gradient-to-b from-black/80 to-black border border-medieval-gold/10 space-y-6 opacity-50 grayscale flex flex-col">
-                    <div className="flex items-center gap-4 relative z-10">
-                      <div className="p-4 bg-black/60 border border-medieval-gold/30 rounded-xl">
-                        <Scissors className="text-medieval-gold w-8 h-8" />
-                      </div>
-                      <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-tight">Skinning</h2>
-                    </div>
-                    <p className="text-medieval-gold/60 text-sm leading-relaxed font-mono relative z-10">
-                      {t('skinningDesc')}
-                    </p>
-                  </div>
-
-                  {/* Fishing */}
-                  <div className="relative p-8 rounded-2xl bg-gradient-to-b from-black/80 to-black border border-medieval-gold/10 space-y-6 opacity-50 grayscale flex flex-col">
-                    <div className="flex items-center gap-4 relative z-10">
-                      <div className="p-4 bg-black/60 border border-medieval-gold/30 rounded-xl">
-                        <Fish className="text-medieval-gold w-8 h-8" />
-                      </div>
-                      <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-tight">{t('fisherman')}</h2>
-                    </div>
-                    <p className="text-medieval-gold/60 text-sm leading-relaxed font-mono relative z-10">
-                      {t('fishingDesc')}
-                    </p>
-                  </div>
-
-                  {/* Alchemy */}
-                  <div className="relative p-8 rounded-2xl bg-gradient-to-b from-black/80 to-black border border-medieval-gold/10 space-y-6 opacity-50 grayscale flex flex-col">
-                    <div className="flex items-center gap-4 relative z-10">
-                      <div className="p-4 bg-black/60 border border-medieval-gold/30 rounded-xl">
-                        <FlaskConical className="text-medieval-gold w-8 h-8" />
-                      </div>
-                      <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-tight">{t('alchemist')}</h2>
-                    </div>
-                    <p className="text-medieval-gold/60 text-sm leading-relaxed font-mono relative z-10">
-                      {t('alchemyDesc')}
-                    </p>
-                  </div>
-                </div>
+                <ProfessionsGuideView 
+                  language={language} 
+                  onNavigateToCalculator={(calc) => {
+                    setActiveTab('calculadoras');
+                    setCalcSubTab('professions');
+                    setProfSubTab(calc);
+                    window.scrollTo(0, 0);
+                  }}
+                />
               </motion.div>
             )}
+
 
 
             {activeTab === 'eventos' && (
@@ -3256,6 +3162,15 @@ export default function App() {
                     </div>
                   </button>
                   <button
+                    onClick={() => setActiveTab('profissoes')}
+                    className={`relative overflow-hidden px-8 py-3 rounded-xl font-bold uppercase text-sm tracking-widest transition-all duration-300 group bg-black/60 text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50 hover:bg-medieval-gold/10 hover:text-medieval-gold`}
+                  >
+                    <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="flex items-center gap-2 relative z-10">
+                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/guiadeprofissoes.gif" className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Profissoes" /> {language === 'pt' ? 'Profissões' : 'Professions'}
+                    </div>
+                  </button>
+                  <button
                     onClick={() => setWikiMainTab('library')}
                     className={`relative overflow-hidden px-8 py-3 rounded-xl font-bold uppercase text-sm tracking-widest transition-all duration-300 group ${
                       wikiMainTab === 'library'
@@ -3309,8 +3224,15 @@ export default function App() {
                         <h2 className="text-xs font-bold uppercase tracking-[0.3em] text-medieval-gold/50 mb-6 text-center">
                           — {language === 'pt' ? 'Capítulos Principais da Enciclopédia' : 'Main Encyclopedia Chapters'} —
                         </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                           {[
+                            { 
+                              id: 'profissoes', 
+                              title: language === 'pt' ? 'Guia de Profissões' : 'Professions Guide', 
+                              desc: language === 'pt' ? 'Guia completo e em vídeo sobre as profissões de Miracle 7.4.' : 'Complete video guide covering the professions in Miracle 7.4.', 
+                              icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/guiadeprofissoes.gif" className="w-6 h-6 object-contain" alt="Profissoes" />,
+                              meta: language === 'pt' ? 'Abrir Guia' : 'Open Guide'
+                            },
                             { 
                               id: 'items', 
                               title: t('items'), 
@@ -3335,16 +3257,13 @@ export default function App() {
                           ].map((card) => (
                             <button
                               key={card.id}
-                              onClick={() => setWikiMainTab(card.id as any)}
+                              onClick={() => {
+                                if (card.id === 'profissoes') setActiveTab('profissoes');
+                                else setWikiMainTab(card.id as any);
+                              }}
                               className="medieval-card p-6 text-left group hover:border-medieval-gold transition-all relative overflow-hidden flex flex-col justify-between h-48 hover:shadow-[0_0_15px_rgba(212,175,55,0.05)]"
                             >
-                              <div className="absolute top-2 right-2 p-2 opacity-[0.03] group-hover:opacity-[0.1] group-hover:scale-110 transition-all">
-                                {card.icon}
-                              </div>
                               <div>
-                                <div className="text-medieval-gold/50 group-hover:text-medieval-gold transition-colors mb-4 bg-medieval-gold/5 p-2 rounded-lg w-fit border border-medieval-gold/10">
-                                  {card.icon}
-                                </div>
                                 <h3 className="text-lg font-black text-medieval-gold uppercase mb-1">{card.title}</h3>
                                 <p className="text-xs text-medieval-text/60 leading-relaxed line-clamp-2 md:line-clamp-3">{card.desc}</p>
                               </div>
@@ -3475,6 +3394,7 @@ export default function App() {
                       </div>
                     </motion.div>
                   )}
+
 
                   {wikiMainTab === 'items' && (
                     <motion.div
@@ -4762,7 +4682,7 @@ export default function App() {
           {/* Section 1: About */}
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2 text-medieval-gold font-black uppercase text-sm tracking-tighter mb-2">
-              <Hammer className="w-5 h-5" />
+              <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784748006/logowiki.png" alt="Wiki Logo" className="h-8 w-auto object-contain" />
               Miracle Wiki Tools
             </div>
             <p className="text-medieval-gold/40 leading-relaxed max-w-xs">

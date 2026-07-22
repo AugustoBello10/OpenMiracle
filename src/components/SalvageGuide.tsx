@@ -132,8 +132,8 @@ export const SalvageGuide: React.FC<SalvageGuideProps> = ({ language }) => {
       {/* Intro Header */}
       <div className="text-center md:text-left space-y-2">
         <h2 className="text-2xl sm:text-3xl font-black text-medieval-gold uppercase tracking-tight flex items-center justify-center md:justify-start gap-2.5">
-          <Hammer className="w-7 h-7 text-medieval-gold animate-pulse" />
-          {language === 'pt' ? 'Guia de Quebra & Salvamento de Itens' : 'Item Breakdown & Salvage Guide'}
+          
+          {language === 'pt' ? 'Lista de Itens Quebráveis' : 'Breakable Items List'}
         </h2>
         <p className="text-sm text-medieval-text/80 max-w-3xl leading-relaxed">
           {language === 'pt' 

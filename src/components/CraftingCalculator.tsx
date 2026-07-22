@@ -13,7 +13,10 @@ interface CraftingCalculatorProps {
 }
 
 export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT_ITEMS, BREAKING_DATA, initialCategory, initialItemName }) => {
-  const [activeMode, setActiveMode] = useState<'forge' | 'salvage'>('forge');
+  const [activeMode, setActiveMode] = useState<'forge' | 'salvage'>(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('mode') === 'salvage' ? 'salvage' : 'forge';
+  });
   const [skill, setSkill] = useState<number | string>(10);
   const [quantity, setQuantity] = useState<number | string>(1);
   const [materialPrices, setMaterialPrices] = useState<Record<string, number | string>>({});
@@ -69,7 +72,8 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
       return {
         name: mat.name,
         total: totalNeeded,
-        unitPrice
+        unitPrice,
+        img: mat.img
       };
     });
 
@@ -113,7 +117,7 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
               : 'bg-black/25 text-medieval-text/50 border-transparent hover:border-medieval-gold/30 hover:text-medieval-text/80'
           }`}
         >
-          <Hammer className="w-4 h-4" />
+          
           {language === 'pt' ? 'Forjar Itens (Forge)' : 'Forge & Craft'}
         </button>
         <button
@@ -124,8 +128,8 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
               : 'bg-black/25 text-medieval-text/50 border-transparent hover:border-medieval-gold/30 hover:text-medieval-text/80'
           }`}
         >
-          <TableIcon className="w-4 h-4" />
-          {language === 'pt' ? 'Guia de Quebra & Salvamento' : 'Salvage & Break Guide'}
+          
+          {language === 'pt' ? 'Tabela de Itens Quebráveis' : 'Breakable Items Table'}
         </button>
       </div>
 
@@ -226,7 +230,10 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
                           {materialsCalculation.materials.map((mat: any, idx: number) => (
                             <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-3 bg-black/20 p-3 rounded border border-medieval-gold/10">
                               <div className="flex-1 flex justify-between items-center">
-                                <span className="text-xs text-medieval-text">{mat.name}</span>
+                                <div className="flex items-center gap-2">
+                                  {mat.img && <img src={mat.img} alt={mat.name} className="w-6 h-6 object-contain" />}
+                                  <span className="text-xs text-medieval-text">{mat.name}</span>
+                                </div>
                                 <span className="text-sm font-black text-medieval-gold">{mat.total}x</span>
                               </div>
                               <div className="flex items-center gap-2 sm:border-l sm:border-medieval-gold/20 sm:pl-3">
@@ -277,7 +284,7 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
           {/* Tabela de Quebra */}
           <section className="space-y-6">
             <div className="flex items-center gap-3">
-              <TableIcon className="text-medieval-gold w-6 h-6" />
+              
               <h2 className="text-2xl font-black text-medieval-gold uppercase tracking-tight">{t('breakingGuide')}</h2>
             </div>
             
