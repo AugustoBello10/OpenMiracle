@@ -2159,7 +2159,30 @@ export default function App() {
                   </p>
                 </header>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                  {/* Mapa Interativo */}
+                  <motion.button 
+                    whileHover={{ y: -5, scale: 1.02 }}
+                    onClick={() => { setActiveTab('mapa'); window.scrollTo(0,0); }}
+                    className="relative group p-8 sm:p-10 rounded-3xl bg-gradient-to-b from-[#111] to-black border border-medieval-gold/20 hover:border-medieval-gold/60 transition-all text-left flex flex-col justify-between min-h-[300px] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_50px_rgba(197,160,89,0.2)]"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-medieval-gold/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="flex justify-between items-start relative z-10">
+                      <div className="p-4 bg-black/60 border border-medieval-gold/30 rounded-2xl group-hover:bg-medieval-gold/20 group-hover:border-medieval-gold shadow-inner transition-all duration-300">
+                        <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849033/mapainterativo.gif" className="w-10 h-10 sm:w-12 sm:h-12 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)] group-hover:scale-110 transition-transform" alt="Mapa" />
+                      </div>
+                      <ChevronRight className="text-medieval-gold/30 group-hover:text-medieval-gold group-hover:translate-x-2 transition-all w-8 h-8" />
+                    </div>
+                    <div className="relative z-10 mt-8">
+                      <h2 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-medieval-gold to-medieval-gold/70 uppercase tracking-tight mb-3 group-hover:from-white group-hover:to-medieval-gold transition-colors">
+                        {language === 'pt' ? 'Mapa Interativo' : 'Interactive Map'}
+                      </h2>
+                      <p className="text-medieval-gold/60 text-sm leading-relaxed font-mono">
+                        {language === 'pt' ? 'Explore o mapa mundi, encontre NPCs, respawns e rotas secretas em alta resolução.' : 'Explore the world map, find NPCs, respawns and secret routes in high resolution.'}
+                      </p>
+                    </div>
+                  </motion.button>
+
                   {/* Ferramentas */}
                   <motion.button 
                     whileHover={{ y: -5, scale: 1.02 }}
@@ -2771,6 +2794,13 @@ export default function App() {
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                           {[
                             { 
+                              id: 'mapa', 
+                              title: language === 'pt' ? 'Mapa Interativo' : 'Interactive Map', 
+                              desc: language === 'pt' ? 'Explore o mapa mundi, encontre NPCs, respawns de monstros e rotas secretas.' : 'Explore the world map, find NPCs, monster respawns, and secret routes.', 
+                              icon: <Map className="w-6 h-6" />,
+                              meta: language === 'pt' ? 'Abrir Mapa' : 'Open Map'
+                            },
+                            { 
                               id: 'profissoes', 
                               title: language === 'pt' ? 'Guia de Profissões' : 'Professions Guide', 
                               desc: language === 'pt' ? 'Guia completo e em vídeo sobre as profissões de Miracle 7.4.' : 'Complete video guide covering the professions in Miracle 7.4.', 
@@ -2803,6 +2833,7 @@ export default function App() {
                               key={card.id}
                               onClick={() => {
                                 if (card.id === 'profissoes') setActiveTab('profissoes');
+                                else if (card.id === 'mapa') setActiveTab('mapa');
                                 else setWikiMainTab(card.id as any);
                               }}
                               className="medieval-card p-6 text-left group hover:border-medieval-gold transition-all relative overflow-hidden flex flex-col justify-between h-48 hover:shadow-[0_0_15px_rgba(212,175,55,0.05)]"
