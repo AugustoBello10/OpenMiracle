@@ -220,26 +220,37 @@ export const ItemSelector: React.FC<ItemSelectorProps> = ({ slotId, onSelectItem
             onClick={() => onSelectItem(item)}
             className="medieval-card p-3 cursor-pointer hover:border-medieval-gold/50 transition-all flex items-center justify-between group"
           >
-            <div className="flex flex-col">
-              <span className="text-sm font-bold text-medieval-gold group-hover:tracking-wider transition-all">{item.name}</span>
-              {getItemEffectsString(item) && (
-                <span className="text-[10px] text-amber-500/85 font-sans italic my-0.5 max-w-xs truncate" title={getItemEffectsString(item)}>
-                  {getItemEffectsString(item)}
-                </span>
-              )}
-              <div className="flex items-center gap-3 mt-1">
-                {item.armor !== undefined && (
-                  <div className="flex items-center gap-1 text-[10px] text-medieval-muted">
-                    <Shield size={10} /> {item.armor}
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-black/40 border border-medieval-gold/20 rounded flex items-center justify-center shrink-0">
+                {item.img ? (
+                  <img src={item.img} alt={item.name} className="w-8 h-8 object-contain" referrerPolicy="no-referrer" />
+                ) : (
+                  <div className="text-medieval-gold text-[8px] uppercase tracking-tighter truncate w-full text-center px-1">
+                    {item.name.substring(0,6)}
                   </div>
                 )}
-                {item.attack !== undefined && (
-                  <div className="flex items-center gap-1 text-[10px] text-medieval-muted">
-                    <Sword size={10} /> {item.attack}
-                  </div>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-sm font-bold text-medieval-gold group-hover:tracking-wider transition-all">{item.name}</span>
+                {getItemEffectsString(item) && (
+                  <span className="text-[10px] text-amber-500/85 font-sans italic my-0.5 max-w-xs truncate" title={getItemEffectsString(item)}>
+                    {getItemEffectsString(item)}
+                  </span>
                 )}
-                <div className="flex items-center gap-1 text-[10px] text-medieval-muted">
-                  <Weight size={10} /> {item.weight}
+                <div className="flex items-center gap-3 mt-1">
+                  {item.armor !== undefined && (
+                    <div className="flex items-center gap-1 text-[10px] text-medieval-muted">
+                      <Shield size={10} /> {item.armor}
+                    </div>
+                  )}
+                  {item.attack !== undefined && (
+                    <div className="flex items-center gap-1 text-[10px] text-medieval-muted">
+                      <Sword size={10} /> {item.attack}
+                    </div>
+                  )}
+                  <div className="flex items-center gap-1 text-[10px] text-medieval-muted">
+                    <Weight size={10} /> {item.weight}
+                  </div>
                 </div>
               </div>
             </div>

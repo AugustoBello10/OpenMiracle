@@ -70,7 +70,7 @@ export const translations = {
     mining: "Mineração",
     
     // Skill Calculator
-    isPromoted: "I'm Promoted (Elite, Royal, Master, Elder)",
+    isPromoted: "Sou Promoted (Elite, Royal, Master, Elder)",
     disclaimerML: "* Os cálculos de Magic Level foram retirados de tabelas e fórmulas divulgadas em pesquisas na internet. Podem representar valores aproximados e não exatos.",
     runesCreated: "Criações estimadas com esse montante de mana casting:",
     manaNeeded: "Mana Mínima Necessária",

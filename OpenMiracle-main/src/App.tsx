@@ -6,10 +6,10 @@
 import { useState, useEffect, useMemo, ReactNode } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
-  Hammer, Sword, Gem, Pickaxe, Wand2, Zap, Twitch, 
+  Hammer, Sword, Gem, Pickaxe, Wand2, Zap, Tv, 
   MessageSquare, ExternalLink, Info, Table as TableIcon, 
   TrendingUp, AlertTriangle, Book, Sparkles, Briefcase, 
-  ChevronRight, ChevronUp, ChevronDown, Menu, X, Map, Youtube, Fish, FlaskConical, Utensils, Sprout, Scissors, Users,
+  ChevronRight, ChevronUp, ChevronDown, Menu, X, Map, MonitorPlay, Fish, FlaskConical, Utensils, Sprout, Scissors, Users,
   History, Plus, Minus, Check, RefreshCw, Clock, Calendar, Download
 } from 'lucide-react';
 import { calculateTrainingTime, Vocation, SkillType, TRAINING_WEAPONS_DATA, TrainingWeapon, calculateBlessCosts } from './lib/formulas';
@@ -1533,7 +1533,7 @@ export default function App() {
                         className="flex items-center justify-between p-3 bg-black/40 border border-medieval-gold/20 rounded hover:border-medieval-gold transition-all group"
                       >
                         <div className="flex items-center gap-3">
-                          <Twitch className="text-[#9146FF] w-4 h-4" />
+                          <Tv className="text-[#9146FF] w-4 h-4" />
                           <span className="text-[10px] font-bold uppercase tracking-widest">{t('twitchChannel')}</span>
                         </div>
                         <ExternalLink className="w-3 h-3 text-medieval-gold/40 group-hover:text-medieval-gold" />
@@ -1913,16 +1913,16 @@ export default function App() {
                       </div>
 
                       <div className="lg:col-span-5 space-y-6">
-                        {/* Twitch/Social */}
+                        {/* Tv/Social */}
                         <div className="medieval-border rounded-lg overflow-hidden bg-black aspect-video">
                           <iframe
                             src={`https://player.twitch.tv/?channel=obellao_&parent=${window.location.hostname}`}
-                            height="100%" width="100%" allowFullScreen title="Twitch Player"
+                            height="100%" width="100%" allowFullScreen title="Tv Player"
                           />
                         </div>
                         <div className="grid grid-cols-1 gap-4">
                           <a href="https://www.twitch.tv/obellao_" target="_blank" rel="noopener noreferrer" className="medieval-button flex items-center justify-center gap-3">
-                            <Twitch className="w-6 h-6" /> Twitch
+                            <Tv className="w-6 h-6" /> Tv
                           </a>
                           <a href="https://discord.gg/nacCypRkqQ" target="_blank" rel="noopener noreferrer" className="bg-[#5865F2] text-white font-bold py-3 px-6 rounded-sm flex items-center justify-center gap-3 hover:bg-[#4752C4] transition-colors">
                             <MessageSquare className="w-6 h-6" /> Discord
@@ -2061,7 +2061,7 @@ export default function App() {
                         rel="noopener noreferrer" 
                         className="bg-[#FF0000] text-white font-bold py-3 px-6 rounded-sm flex items-center justify-center gap-3 hover:bg-[#CC0000] transition-colors w-full"
                       >
-                        <Youtube className="w-5 h-5" /> {t('craftingTutorial')}
+                        <MonitorPlay className="w-5 h-5" /> {t('craftingTutorial')}
                       </a>
                     </div>
                   </div>

@@ -4,6 +4,7 @@ import { BuildState, VocationType, StanceType, Skills, SlotId, GameItem, Enchant
 import { calculateStats, getRarityStyles } from '../utils/formulas';
 import { StatsSidebar } from './BuildMaker/StatsSidebar';
 import { InventorySlot } from './BuildMaker/InventorySlot';
+import { ItemImage } from './ItemImage';
 import { Modal } from './Modal';
 import { ItemSelector } from './BuildMaker/ItemSelector';
 import { AttributeEncoder, getAttributeValueAndDescription } from './BuildMaker/AttributeEncoder';
@@ -403,7 +404,7 @@ export const BuildMakerView: React.FC<BuildMakerViewProps> = ({ language }) => {
                   rarity.borderClassName
                 )}>
                   {item.img ? (
-                    <img src={item.img} alt={item.name} className="w-12 h-12 object-contain select-none" referrerPolicy="no-referrer" />
+                    <ItemImage item={item} className="w-12 h-12 object-contain select-none" />
                   ) : (
                     <div className="w-12 h-12 flex items-center justify-center rounded bg-medieval-gold/10 border border-medieval-gold/20 text-medieval-gold font-bold text-xs text-center p-1">
                       {item.name.substring(0, 3).toUpperCase()}

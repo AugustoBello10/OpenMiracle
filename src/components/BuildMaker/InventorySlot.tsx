@@ -4,6 +4,7 @@ import { SlotId, GameItem } from '../../types/build';
 import { cn } from '../../lib/utils';
 import { getRarityStyles } from '../../utils/formulas';
 import { LucideIcon } from 'lucide-react';
+import { ItemImage } from '../ItemImage';
 
 interface InventorySlotProps {
   id: SlotId;
@@ -34,7 +35,7 @@ export const InventorySlot: React.FC<InventorySlotProps> = ({
       {item ? (
         <div className="flex flex-col items-center justify-center p-1 w-full h-full relative">
           {item.img ? (
-            <img src={item.img} alt={item.name} className="w-10 h-10 object-contain select-none scale-105" referrerPolicy="no-referrer" />
+            <ItemImage item={item} className="w-10 h-10 object-contain select-none scale-105" />
           ) : (
             <div className="text-medieval-gold text-[10px] text-center font-bold tracking-tight px-1 leading-tight uppercase font-mono max-w-full truncate overflow-hidden">
               {item.name.substring(0, 8)}

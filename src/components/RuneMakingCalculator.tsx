@@ -3,19 +3,67 @@ import { Clock, Calculator, Zap, Shield, FlaskConical, Bed, Volume2, VolumeX, Pl
 import { motion, AnimatePresence } from "motion/react";
 
 // Using known data
-const VOC_SPELLS: Record<string, { name: string; mana: number }[]> = {
+const VOC_SPELLS: Record<string, { name: string; mana: number; isRune: boolean }[]> = {
   Sorcerer: [
-    { name: "Heavy Magic Missile (HMM) - 70 mp", mana: 70 },
-    { name: "Great Fireball (GFB) - 120 mp", mana: 120 },
-    { name: "Sudden Death (SD) - 220 mp", mana: 220 },
+    { name: "Animate Dead (300 mp)", mana: 300, isRune: true },
+    { name: "Desintegrate (100 mp)", mana: 100, isRune: true },
+    { name: "Destroy Field (60 mp)", mana: 60, isRune: true },
+    { name: "Energy Field (80 mp)", mana: 80, isRune: true },
+    { name: "Energy Wall (250 mp)", mana: 250, isRune: true },
+    { name: "Energybomb (220 mp)", mana: 220, isRune: true },
+    { name: "Explosion (180 mp)", mana: 180, isRune: true },
+    { name: "Fire Field (60 mp)", mana: 60, isRune: true },
+    { name: "Fireball (60 mp)", mana: 60, isRune: true },
+    { name: "Firebomb (150 mp)", mana: 150, isRune: true },
+    { name: "Frost Magic Missile (90 mp)", mana: 90, isRune: true },
+    { name: "Great Fireball (120 mp)", mana: 120, isRune: true },
+    { name: "Heavy Magic Missile (70 mp)", mana: 70, isRune: true },
+    { name: "Light Magic Missile (40 mp)", mana: 40, isRune: true },
+    { name: "Magic Wall (250 mp)", mana: 250, isRune: true },
+    { name: "Poison Field (50 mp)", mana: 50, isRune: true },
+    { name: "Poison Wall (160 mp)", mana: 160, isRune: true },
+    { name: "Soulfire (150 mp)", mana: 150, isRune: true },
+    { name: "Sudden Death (220 mp)", mana: 220, isRune: true },
   ],
   Druid: [
-    { name: "Intense Healing (IH) - 60 mp", mana: 60 },
-    { name: "Heavy Magic Missile (HMM) - 70 mp", mana: 70 },
-    { name: "Ultimate Healing (UH) - 100 mp", mana: 100 },
-    { name: "Envenom (Poison Bomb) - 100 mp", mana: 100 },
+    { name: "Animate Dead (300 mp)", mana: 300, isRune: true },
+    { name: "Antidote Rune (50 mp)", mana: 50, isRune: true },
+    { name: "Chameleon (150 mp)", mana: 150, isRune: true },
+    { name: "Convince Creature (100 mp)", mana: 100, isRune: true },
+    { name: "Desintegrate (100 mp)", mana: 100, isRune: true },
+    { name: "Destroy Field (60 mp)", mana: 60, isRune: true },
+    { name: "Energy Field (80 mp)", mana: 80, isRune: true },
+    { name: "Energy Wall (250 mp)", mana: 250, isRune: true },
+    { name: "Envenom (100 mp)", mana: 100, isRune: true },
+    { name: "Explosion (180 mp)", mana: 180, isRune: true },
+    { name: "Fire Field (60 mp)", mana: 60, isRune: true },
+    { name: "Fireball (60 mp)", mana: 60, isRune: true },
+    { name: "Firebomb (150 mp)", mana: 150, isRune: true },
+    { name: "Frost Magic Missile (90 mp)", mana: 90, isRune: true },
+    { name: "Great Fireball (120 mp)", mana: 120, isRune: true },
+    { name: "Heavy Magic Missile (70 mp)", mana: 70, isRune: true },
+    { name: "Intense Healing Rune (60 mp)", mana: 60, isRune: true },
+    { name: "Light Magic Missile (40 mp)", mana: 40, isRune: true },
+    { name: "Paralyze (600 mp)", mana: 600, isRune: true },
+    { name: "Poison Field (50 mp)", mana: 50, isRune: true },
+    { name: "Poison Wall (160 mp)", mana: 160, isRune: true },
+    { name: "Poisonbomb (130 mp)", mana: 130, isRune: true },
+    { name: "Soulfire (150 mp)", mana: 150, isRune: true },
+    { name: "Ultimate Healing Rune (100 mp)", mana: 100, isRune: true },
   ],
-  Paladin: [{ name: "Heavy Magic Missile (HMM) - 70 mp", mana: 70 }],
+  Paladin: [
+    { name: "Conjure Arrow (40 mp)", mana: 40, isRune: false },
+    { name: "Conjure Bolt (70 mp)", mana: 70, isRune: false },
+    { name: "Desintegrate (100 mp)", mana: 100, isRune: true },
+    { name: "Destroy Field (60 mp)", mana: 60, isRune: true },
+    { name: "Enchant Spear (120 mp)", mana: 120, isRune: false },
+    { name: "Explosive Arrow (120 mp)", mana: 120, isRune: false },
+    { name: "Fireball (60 mp)", mana: 60, isRune: true },
+    { name: "Heavy Magic Missile (70 mp)", mana: 70, isRune: true },
+    { name: "Light Magic Missile (40 mp)", mana: 40, isRune: true },
+    { name: "Poisoned Arrow (70 mp)", mana: 70, isRune: false },
+    { name: "Power Bolt (200 mp)", mana: 200, isRune: false },
+  ]
 };
 
 const MANA_REGEN_TIME_PER_MP: Record<
@@ -28,15 +76,12 @@ const MANA_REGEN_TIME_PER_MP: Record<
 };
 
 const RINGS = [
-  { name: "Nenhum", mps: 0, durationSecs: null },
-  { name: "Life Ring (20m)", mps: 1 / 3, durationSecs: 20 * 60 },
-  { name: "Ring of Healing (7.5m)", mps: 1, durationSecs: 7.5 * 60 },
+  { name: "Life Ring (20m)", mps: 1 / 3, durationSecs: 20 * 60, img: 'life_ring.gif' },
+  { name: "Ring of Healing (7.5m)", mps: 1, durationSecs: 7.5 * 60, img: 'ring_of_healing.gif' },
 ];
 
 const RELICS = [
-  { name: "Nenhuma", mps: 0, durationSecs: null },
-  { name: "Ancestral / Cobra / Eternal (Infinito)", mps: 1 / 36, durationSecs: null },
-  { name: "Giant Sapphire (1h 30m)", mps: 1 / 3, durationSecs: 90 * 60 },
+  { name: "Giant Sapphire (1h 30m)", mps: 1 / 3, durationSecs: 90 * 60, img: 'v1784727632/giant_saphire.gif' },
 ];
 
 const ML_BASES: Record<string, { base: number, multiplier: number }> = {
@@ -108,11 +153,52 @@ const playBeep = () => {
   }
 };
 
+
+const getSpellImage = (spellName: string) => {
+  const name = spellName.toLowerCase();
+  let img = 'blan_rune.gif';
+  if (name.includes('animate dead')) img = 'animate_dead.gif';
+  else if (name.includes('antidote')) img = 'antidote_rune.gif';
+  else if (name.includes('chameleon')) img = 'chameleon_rune.gif';
+  else if (name.includes('convince')) img = 'convince_creature.gif';
+  else if (name.includes('desintegrate')) img = 'desintegrate.gif';
+  else if (name.includes('destroy field')) img = 'destroy_field.gif';
+  else if (name.includes('energy field')) img = 'energy_field.gif';
+  else if (name.includes('energy wall')) img = 'energy_wall.gif';
+  else if (name.includes('energybomb')) img = 'energy_bomb.gif';
+  else if (name.includes('explosion')) img = 'explosion.gif';
+  else if (name.includes('fire field')) img = 'fire_field.gif';
+  else if (name.includes('fire wall')) img = 'fire_wall.gif';
+  else if (name.includes('firebomb')) img = 'firebomb.gif';
+  else if (name.includes('fireball')) img = 'fireball.gif';
+  else if (name.includes('frost magic missile')) img = 'frost_magic_missile.gif';
+  else if (name.includes('great fireball')) img = 'great_fireball.gif';
+  else if (name.includes('heavy magic missile')) img = 'heavy_magic_missile.gif';
+  else if (name.includes('intense healing')) img = 'Intense_healing.gif';
+  else if (name.includes('light magic missile')) img = 'Light_magic_missile.gif';
+  else if (name.includes('magic wall')) img = 'Magic_wall.gif';
+  else if (name.includes('paralyze')) img = 'paralyze.gif';
+  else if (name.includes('poison field')) img = 'poison_field.gif';
+  else if (name.includes('poison wall')) img = 'poison_wall.gif';
+  else if (name.includes('poisonbomb')) img = 'poison_bomb.gif';
+  else if (name.includes('soulfire')) img = 'soulfire.gif';
+  else if (name.includes('sudden death')) img = 'Sudden_death.gif';
+  else if (name.includes('ultimate healing')) img = 'ultimate_healing.gif';
+  else if (name.includes('envenom')) img = 'envenom.gif';
+  else if (name.includes('enchant staff')) img = 'enchant_staff.gif';
+  else if (name.includes('arrow')) img = 'arrow.gif';
+  else if (name.includes('bolt')) img = 'bolt.gif';
+  else if (name.includes('spear')) img = 'spear.gif';
+  
+  return `https://res.cloudinary.com/dc4nkbnkg/image/upload/${img}`;
+};
+
 export const RuneMakingCalculator = ({ t, language }: any) => {
   const [calcMode, setCalcMode] = useState<'online' | 'offline' | 'manafluids'>('online');
   const [vocation, setVocation] = useState<"Sorcerer" | "Druid" | "Paladin">("Sorcerer");
   const [isPromoted, setIsPromoted] = useState(true);
-  const [selectedRune, setSelectedRune] = useState<number>(VOC_SPELLS["Sorcerer"][2].mana);
+  const [selectedRune, setSelectedRune] = useState<string>(VOC_SPELLS["Sorcerer"][0].name);
+  const [selectedRune2, setSelectedRune2] = useState<string>(VOC_SPELLS["Sorcerer"][1]?.name || VOC_SPELLS["Sorcerer"][0].name);
   
   // Timer & Duration settings
   const [hours, setHours] = useState(1);
@@ -127,9 +213,9 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
   const [offlineDurationMinutes, setOfflineDurationMinutes] = useState(200); // default 200m
 
   // Equipment & Config
-  const [selectedRing, setSelectedRing] = useState(0);
+  const [selectedRing, setSelectedRing] = useState(-1);
   const [ringAmount, setRingAmount] = useState(1);
-  const [selectedRelic, setSelectedRelic] = useState(0);
+  const [selectedRelic, setSelectedRelic] = useState(-1);
   const [relicAmount, setRelicAmount] = useState(1);
   const [forja1, setForja1] = useState(0);
   const [forja2, setForja2] = useState(0);
@@ -143,8 +229,8 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
         : 1 / MANA_REGEN_TIME_PER_MP[vocation].normal)
     : (1 / 60);
 
-  const ringMpsInstant = calcMode === 'online' ? RINGS[selectedRing].mps : 0;
-  const relicMpsInstant = calcMode === 'online' ? RELICS[selectedRelic].mps : 0;
+  const ringMpsInstant = calcMode === 'online' && selectedRing >= 0 && RINGS[selectedRing] ? RINGS[selectedRing].mps : 0;
+  const relicMpsInstant = calcMode === 'online' && selectedRelic >= 0 && RELICS[selectedRelic] ? RELICS[selectedRelic].mps : 0;
   const forjaMpsInstant = calcMode === 'online' 
     ? (FORJA_TIERS[forja1].mps + FORJA_TIERS[forja2].mps + FORJA_TIERS[forja3].mps + FORJA_TIERS[forja4].mps)
     : 0;
@@ -163,6 +249,12 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
   const [timerSecondsLeft, setTimerSecondsLeft] = useState(0);
   const [timerTotalCalculatedSeconds, setTimerTotalCalculatedSeconds] = useState(0);
   const [timerEndTime, setTimerEndTime] = useState<number | null>(null);
+
+  // Rune / Profit settings
+  const [blankRuneBpPrice, setBlankRuneBpPrice] = useState(200);
+  const [runeBpPrice, setRuneBpPrice] = useState(1000);
+  const [runeBpPrice2, setRuneBpPrice2] = useState(1000);
+
 
   // Update calculated seconds when config changes (only if not running, or we can just let it be)
   useEffect(() => {
@@ -184,10 +276,14 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
   const [mlPercent, setMlPercent] = useState(100);
 
   // Update selected rune if vocation changes to keep it valid
+  
   useEffect(() => {
-    const defaultMana = VOC_SPELLS[vocation]?.[0]?.mana || 100;
-    setSelectedRune(defaultMana);
+    const defaultRune = VOC_SPELLS[vocation]?.[0]?.name || "";
+    const defaultRune2 = VOC_SPELLS[vocation]?.[1]?.name || defaultRune;
+    setSelectedRune(defaultRune);
+    setSelectedRune2(defaultRune2);
   }, [vocation]);
+
 
   // Timer Logic
   useEffect(() => {
@@ -263,14 +359,14 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
 
   const baseMps = baseMpsInstant;
 
-  const ringDur = RINGS[selectedRing].durationSecs;
-  const ringMps = calcMode === 'online' ? RINGS[selectedRing].mps : 0;
+  const ringDur = selectedRing >= 0 && RINGS[selectedRing] ? RINGS[selectedRing].durationSecs : null;
+  const ringMps = calcMode === 'online' && selectedRing >= 0 && RINGS[selectedRing] ? RINGS[selectedRing].mps : 0;
   const effectiveRingTime = ringDur && calcMode === 'online' 
     ? Math.min(ringDur * ringAmount, totalTimeSeconds) 
     : totalTimeSeconds;
 
-  const relicDur = RELICS[selectedRelic].durationSecs;
-  const relicMps = calcMode === 'online' ? RELICS[selectedRelic].mps : 0;
+  const relicDur = selectedRelic >= 0 && RELICS[selectedRelic] ? RELICS[selectedRelic].durationSecs : null;
+  const relicMps = calcMode === 'online' && selectedRelic >= 0 && RELICS[selectedRelic] ? RELICS[selectedRelic].mps : 0;
   const effectiveRelicTime = relicDur && calcMode === 'online' 
     ? Math.min(relicDur * relicAmount, totalTimeSeconds) 
     : totalTimeSeconds;
@@ -281,6 +377,11 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
        FORJA_TIERS[forja3].mps +
        FORJA_TIERS[forja4].mps)
     : 0;
+
+  
+  const selectedRuneData = VOC_SPELLS[vocation]?.find(r => r.name === selectedRune) || VOC_SPELLS[vocation][0];
+  const runeMana = selectedRuneData?.mana || 1;
+  const isRuneType = selectedRuneData?.isRune ?? true;
 
   const baseMana = baseMps * totalTimeSeconds;
   const forjaMana = forjaMps * totalTimeSeconds;
@@ -295,26 +396,48 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
     if (mfTargetMode === 'fluids') {
       mfNeededOrUsed = mfCount;
       generatedMana = mfCount * 35;
-      runesAmount = selectedRune > 0 ? Math.floor(generatedMana / selectedRune) : 0;
+      runesAmount = runeMana > 0 ? Math.floor(generatedMana / runeMana) : 0;
     } else {
-      const neededMana = targetRunesCount * selectedRune;
+      const neededMana = targetRunesCount * runeMana;
       mfNeededOrUsed = Math.ceil(neededMana / 35);
       generatedMana = mfNeededOrUsed * 35;
       runesAmount = targetRunesCount;
     }
   } else {
     generatedMana = Math.floor(baseMana + forjaMana + ringMana + relicMana);
-    runesAmount = selectedRune > 0 ? Math.floor(generatedMana / selectedRune) : 0;
+    runesAmount = runeMana > 0 ? Math.floor(generatedMana / runeMana) : 0;
   }
 
   const avgMps = totalTimeSeconds > 0 ? generatedMana / totalTimeSeconds : 0;
   const mlProgress = calculateMagicLevelProgress(vocation, currentML, mlPercent, generatedMana);
 
+  const bpsProduced = runesAmount / 20;
+
+  const selectedRuneData2 = VOC_SPELLS[vocation]?.find(r => r.name === selectedRune2) || VOC_SPELLS[vocation][0];
+  const isRuneType2 = selectedRuneData2?.isRune ?? true;
+
+  const calculateBpStats = (runeData: any, sellPrice: number) => {
+    if (!runeData) return { cost: 0, profit: 0, mfCount: 0, manaForBp: 0, goldPerMp: 0 };
+    const manaForBp = runeData.mana * 20;
+    let cost = runeData.isRune ? blankRuneBpPrice : 0;
+    let mfCount = 0;
+    if (calcMode === 'manafluids') {
+      mfCount = Math.ceil(manaForBp / 35);
+      cost += mfCount * 100;
+    }
+    const profit = sellPrice - cost;
+    const goldPerMp = manaForBp > 0 ? profit / manaForBp : 0;
+    return { cost, profit, mfCount, manaForBp, goldPerMp };
+  };
+
+  const bpStats1 = calculateBpStats(selectedRuneData, runeBpPrice);
+  const bpStats2 = calculateBpStats(selectedRuneData2, runeBpPrice2);
+
   return (
     <div className="space-y-8">
       <header className="text-center mb-12">
         <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2 flex items-center justify-center gap-3">
-          <FlaskConical className="w-8 h-8 text-medieval-gold opacity-80" />
+          
           {language === "pt" ? "Fabricação de Runas" : "Rune Making"}
         </h1>
         <p className="text-medieval-gold/80 font-mono text-sm max-w-xl mx-auto mt-2 leading-relaxed">
@@ -348,30 +471,34 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <div className="lg:col-span-7 space-y-6">
+      <div className="flex flex-col gap-8">
+        <div className="w-full space-y-6">
           <div className="medieval-card p-6 sm:p-8 space-y-6">
             
             {/* Vocation & Promoted */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="flex flex-col gap-2">
                 <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                  <Shield className="w-3.5 h-3.5" /> Vocação
+                  Vocação
                 </label>
-                <select
-                  value={vocation}
-                  onChange={(e) => setVocation(e.target.value as any)}
-                  className="medieval-input flex items-center px-3 h-[42px] text-xs font-bold uppercase tracking-wider text-medieval-gold cursor-pointer"
-                >
-                  <option value="Sorcerer">Sorcerer</option>
-                  <option value="Druid">Druid</option>
-                  <option value="Paladin">Paladin</option>
-                </select>
+                <div className="flex flex-wrap gap-2">
+                  {['Sorcerer', 'Druid', 'Paladin'].map(voc => (
+                    <button
+                      key={voc}
+                      onClick={() => setVocation(voc as "Sorcerer" | "Druid" | "Paladin")}
+                      className={`flex-1 px-4 py-2 h-[42px] rounded font-black text-xs uppercase tracking-wider transition-colors ${
+                        vocation === voc ? 'bg-[#3b82f6] text-white border-none shadow-[0_0_10px_rgba(59,130,246,0.3)]' : 'bg-black/40 text-white/50 border border-medieval-gold/10 hover:border-medieval-gold/30 hover:text-white'
+                      }`}
+                    >
+                      {voc}
+                    </button>
+                  ))}
+                </div>
               </div>
 
               <div className="flex flex-col gap-2">
                 <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                  <Zap className="w-3.5 h-3.5" /> Promotion
+                  Promotion
                 </label>
                 <div className="flex gap-2">
                   <button
@@ -393,65 +520,65 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
             </div>
 
             {/* Rune Selection & Time */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 border-t border-medieval-gold/10">
+            <div className="pt-4 border-t border-medieval-gold/10 flex flex-col gap-4">
               <div className="flex flex-col gap-2">
                 <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                  <FlaskConical className="w-3.5 h-3.5" /> Runa a fabricar
+                   Runa a Fabricar
                 </label>
-                <select
-                  value={selectedRune}
-                  onChange={(e) => setSelectedRune(Number(e.target.value))}
-                  className="medieval-input flex items-center px-3 h-[42px] text-xs uppercase tracking-wider text-medieval-gold cursor-pointer w-full truncate"
-                >
+                <div className="flex flex-wrap gap-1.5">
                   {VOC_SPELLS[vocation]?.map((s) => (
-                    <option key={s.name} value={s.mana}>
-                      {s.name}
-                    </option>
+                    <button
+                      key={s.name}
+                      onClick={() => setSelectedRune(s.name)}
+                      title={s.name}
+                      className={`relative w-10 h-10 flex items-center justify-center rounded transition-all ${
+                        selectedRune === s.name 
+                          ? 'bg-[#3b82f6]/20 border border-[#3b82f6] shadow-[0_0_10px_rgba(59,130,246,0.3)]' 
+                          : 'bg-black/40 border border-medieval-gold/10 hover:border-medieval-gold/40'
+                      }`}
+                    >
+                      <img src={getSpellImage(s.name)} alt={s.name} className="w-8 h-8 object-contain select-none" referrerPolicy="no-referrer" />
+                    </button>
                   ))}
-                </select>
+                </div>
               </div>
 
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 max-w-xs mt-2">
                 <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                  {calcMode === 'online' ? <><Clock className="w-3.5 h-3.5" /> Tempo Gastando Mana</> : calcMode === 'offline' ? <><Clock className="w-3.5 h-3.5" /> Tempo de Cama (Max 200m)</> : <><FlaskConical className="w-3.5 h-3.5" /> Calcular Baseado Em</>}
+                   {calcMode === 'manafluids' ? 'Quantidade Desejada' : 'Tempo de Regeneração'}
                 </label>
                 
                 {calcMode === 'online' ? (
-                  <div className="flex gap-2 h-[42px]">
-                    <div className="flex bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded-sm overflow-hidden focus-within:border-medieval-gold/60 transition-colors w-1/2">
-                      <input
-                        type="number"
-                        min="0"
-                        value={hours}
-                        onChange={(e) => setHours(Math.max(0, parseInt(e.target.value) || 0))}
-                        className="w-full bg-transparent px-3 py-2 text-sm text-medieval-gold font-bold text-center outline-none"
-                      />
-                      <div className="px-2 py-2 bg-medieval-gold/10 text-medieval-gold text-xs font-bold border-l border-medieval-gold/20 flex items-center">h</div>
-                    </div>
-                    <div className="flex bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded-sm overflow-hidden focus-within:border-medieval-gold/60 transition-colors w-1/2">
-                      <input
-                        type="number"
-                        min="0"
-                        max="59"
-                        value={minutes}
-                        onChange={(e) => setMinutes(Math.max(0, Math.min(59, parseInt(e.target.value) || 0)))}
-                        className="w-full bg-transparent px-3 py-2 text-sm text-medieval-gold font-bold text-center outline-none"
-                      />
-                      <div className="px-2 py-2 bg-medieval-gold/10 text-medieval-gold text-xs font-bold border-l border-medieval-gold/20 flex items-center">m</div>
-                    </div>
+                  <div className="flex bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded-sm overflow-hidden focus-within:border-medieval-gold/60 transition-colors">
+                    <input
+                      type="number"
+                      min="0"
+                      value={hours}
+                      onChange={(e) => setHours(Math.max(0, parseInt(e.target.value) || 0))}
+                      className="w-full bg-transparent px-3 py-2 text-sm text-medieval-gold font-bold text-center outline-none"
+                    />
+                    <div className="px-3 py-2 bg-medieval-gold/10 text-medieval-gold text-xs font-bold border-l border-r border-medieval-gold/20 flex items-center">h</div>
+                    <input
+                      type="number"
+                      min="0"
+                      max="59"
+                      value={minutes}
+                      onChange={(e) => setMinutes(Math.max(0, Math.min(59, parseInt(e.target.value) || 0)))}
+                      className="w-full bg-transparent px-3 py-2 text-sm text-medieval-gold font-bold text-center outline-none"
+                    />
+                    <div className="px-3 py-2 bg-medieval-gold/10 text-medieval-gold text-xs font-bold border-l border-medieval-gold/20 flex items-center">m</div>
                   </div>
                 ) : calcMode === 'manafluids' ? (
                   <div className="flex gap-2 h-[42px]">
                     <select
                       value={mfTargetMode}
                       onChange={(e) => setMfTargetMode(e.target.value as any)}
-                      className="medieval-input px-2 text-[10px] sm:text-xs text-medieval-gold/80 outline-none w-1/2"
+                      className="medieval-input px-3 text-xs font-bold uppercase tracking-wider text-medieval-gold cursor-pointer"
                     >
-                      <option value="fluids">Qtd Mana Fluids</option>
-                      <option value="runes">Qtd Runas Alvo</option>
+                      <option value="fluids">Fluids</option>
+                      <option value="runes">Runas</option>
                     </select>
-
-                    <div className="flex bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded-sm overflow-hidden focus-within:border-medieval-gold/60 transition-colors w-1/2">
+                    <div className="flex bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded-sm overflow-hidden focus-within:border-medieval-gold/60 transition-colors w-full">
                       {mfTargetMode === 'fluids' ? (
                         <input
                           type="number"
@@ -492,18 +619,385 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
               </div>
             </div>
 
+            {/* Equipments Extra Regen (ONLY Online) */}
+            {calcMode === 'online' && (
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="pt-4 border-t border-medieval-gold/10 space-y-4"
+              >
+                <h3 className="text-medieval-gold font-black uppercase text-[10px] tracking-widest mb-2 flex items-center gap-2">
+                  Bônus de Regeneração de Mana
+                </h3>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {/* RINGS */}
+                  <div className="flex flex-col gap-2">
+                    <div className="flex justify-between items-end">
+                      <label className="text-medieval-gold/70 font-bold uppercase text-[9px] tracking-wider">
+                        Anel Equipado (Ring)
+                      </label>
+                      {selectedRing >= 0 && RINGS[selectedRing]?.durationSecs && (
+                        <span className="text-[9px] text-medieval-gold/50">
+                          {language === 'pt' ? 'Necessários: ' : 'Needed: '}
+                          {Math.ceil(totalTimeSeconds / RINGS[selectedRing].durationSecs!)}
+                        </span>
+                      )}
+                    </div>
+                    
+                    <div className="flex flex-col gap-2">
+                      <div className="flex gap-2">
+                        {RINGS.map((r, i) => (
+                          <button
+                            key={i}
+                            onClick={() => setSelectedRing(prev => prev === i ? -1 : i)}
+                            title={r.name}
+                            className={`relative w-10 h-10 flex items-center justify-center rounded transition-all ${
+                              selectedRing === i 
+                                ? 'bg-[#3b82f6]/20 border border-[#3b82f6] shadow-[0_0_10px_rgba(59,130,246,0.3)]' 
+                                : 'bg-black/40 border border-medieval-gold/10 hover:border-medieval-gold/40'
+                            }`}
+                          >
+                            <img src={`https://res.cloudinary.com/dc4nkbnkg/image/upload/${r.img}`} alt={r.name} className="w-8 h-8 object-contain select-none" referrerPolicy="no-referrer" />
+                          </button>
+                        ))}
+                      </div>
+                      
+                      {selectedRing >= 0 && RINGS[selectedRing]?.durationSecs && (
+                        <div className="flex items-center gap-2 mt-1">
+                          <span className="text-[9px] text-medieval-gold/60 uppercase tracking-widest font-bold">Quantidade disponível:</span>
+                          <div className="flex bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded-sm overflow-hidden focus-within:border-medieval-gold/60 transition-colors w-20">
+                            <input
+                              type="number"
+                              min="1"
+                              value={ringAmount}
+                              onChange={(e) => setRingAmount(Math.max(1, parseInt(e.target.value) || 0))}
+                              className="w-full bg-transparent px-2 py-1 text-sm text-medieval-gold font-bold text-center outline-none"
+                              title="Quantidade de Anéis que possui"
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* RELICS */}
+                  <div className="flex flex-col gap-2">
+                    <div className="flex justify-between items-end">
+                      <label className="text-medieval-gold/70 font-bold uppercase text-[9px] tracking-wider">
+                        Relíquia Equipada (Relic)
+                      </label>
+                      {selectedRelic >= 0 && RELICS[selectedRelic]?.durationSecs && (
+                        <span className="text-[9px] text-medieval-gold/50">
+                          {language === 'pt' ? 'Necessários: ' : 'Needed: '}
+                          {Math.ceil(totalTimeSeconds / RELICS[selectedRelic].durationSecs!)}
+                        </span>
+                      )}
+                    </div>
+                    
+                    <div className="flex flex-col gap-2">
+                      <div className="flex gap-2">
+                        {RELICS.map((r, i) => (
+                          <button
+                            key={i}
+                            onClick={() => setSelectedRelic(prev => prev === i ? -1 : i)}
+                            title={r.name}
+                            className={`relative w-10 h-10 flex items-center justify-center rounded transition-all ${
+                              selectedRelic === i 
+                                ? 'bg-[#3b82f6]/20 border border-[#3b82f6] shadow-[0_0_10px_rgba(59,130,246,0.3)]' 
+                                : 'bg-black/40 border border-medieval-gold/10 hover:border-medieval-gold/40'
+                            }`}
+                          >
+                            <img src={`https://res.cloudinary.com/dc4nkbnkg/image/upload/${r.img}`} alt={r.name} className="w-8 h-8 object-contain select-none" referrerPolicy="no-referrer" />
+                          </button>
+                        ))}
+                      </div>
+                      
+                      {selectedRelic >= 0 && RELICS[selectedRelic]?.durationSecs && (
+                        <div className="flex items-center gap-2 mt-1">
+                          <span className="text-[9px] text-medieval-gold/60 uppercase tracking-widest font-bold">Quantidade disponível:</span>
+                          <div className="flex bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded-sm overflow-hidden focus-within:border-medieval-gold/60 transition-colors w-20">
+                            <input
+                              type="number"
+                              min="1"
+                              value={relicAmount}
+                              onChange={(e) => setRelicAmount(Math.max(1, parseInt(e.target.value) || 0))}
+                              className="w-full bg-transparent px-2 py-1 text-sm text-medieval-gold font-bold text-center outline-none"
+                              title="Quantidade de Relíquias que possui"
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-2 mt-4">
+                  <label className="text-medieval-gold/70 font-bold uppercase text-[9px] tracking-wider block mb-1.5">
+                    Equipamentos Atributados (Atributo Regen. Mana)
+                  </label>
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
+                    <select value={forja1} onChange={(e) => setForja1(Number(e.target.value))} className="medieval-input h-[42px] px-2 text-[10px] sm:text-xs text-medieval-gold/80 bg-black/60 outline-none">
+                      {FORJA_TIERS.map((f, i) => <option key={i} value={i}>{i === 0 ? "Vazio" : `Slot 1: ${f.name}`}</option>)}
+                    </select>
+                    <select value={forja2} onChange={(e) => setForja2(Number(e.target.value))} className="medieval-input h-[42px] px-2 text-[10px] sm:text-xs text-medieval-gold/80 bg-black/60 outline-none">
+                      {FORJA_TIERS.map((f, i) => <option key={i} value={i}>{i === 0 ? "Vazio" : `Slot 2: ${f.name}`}</option>)}
+                    </select>
+                    <select value={forja3} onChange={(e) => setForja3(Number(e.target.value))} className="medieval-input h-[42px] px-2 text-[10px] sm:text-xs text-medieval-gold/80 bg-black/60 outline-none">
+                      {FORJA_TIERS.map((f, i) => <option key={i} value={i}>{i === 0 ? "Vazio" : `Slot 3: ${f.name}`}</option>)}
+                    </select>
+                    <select value={forja4} onChange={(e) => setForja4(Number(e.target.value))} className="medieval-input h-[42px] px-2 text-[10px] sm:text-xs text-medieval-gold/80 bg-black/60 outline-none">
+                      {FORJA_TIERS.map((f, i) => <option key={i} value={i}>{i === 0 ? "Vazio" : `Slot 4: ${f.name}`}</option>)}
+                    </select>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+          </div>
+        </div>
+
+        
+{/* Results Panel */}
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="bg-gradient-to-b from-black/80 to-medieval-dark border border-medieval-gold/30 rounded-xl p-8 relative overflow-hidden group shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md"
+          >
+            <div className="absolute inset-0 bg-medieval-gold/[0.02] group-hover:bg-medieval-gold/[0.04] transition-colors"></div>
+
+            <h2 className="text-xl font-black text-medieval-gold uppercase tracking-tighter border-b border-medieval-gold/10 pb-4 mb-6 flex justify-between items-end">
+              <span>{language === "pt" ? "Produção Estimada (Tempo)" : "Estimated Production (Time)"}</span>
+              {calcMode === 'offline' && <span className="text-[10px] bg-red-900/30 text-red-400 px-2 py-1 rounded border border-red-500/20 font-sans tracking-widest">+ DEBUFF OFFLINE</span>}
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+              <div className="bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/10 backdrop-blur-sm rounded-lg p-5">
+                <div className="text-[10px] text-medieval-gold/40 uppercase tracking-widest mb-1">
+                  Mana Total Gerada
+                </div>
+                <div className="text-3xl font-black text-[#5ba2ff] drop-shadow-[0_0_8px_rgba(91,162,255,0.4)]">
+                  {generatedMana.toLocaleString()} <span className="text-sm font-bold text-[#5ba2ff]/60">MP</span>
+                </div>
+                <div className="mt-2 text-[10px] font-mono text-medieval-muted">
+                  {calcMode !== 'manafluids' && (
+                    <span>Regen {calcMode === 'online' ? 'Média' : 'Config'}: <span className="text-medieval-gold/80">{avgMps.toFixed(3)} MP/s</span></span>
+                  )}
+                  {calcMode === 'offline' && <span className="text-medieval-gold/40">1 MP / Min</span>}
+                  {calcMode === 'manafluids' && <span className="text-[#5ba2ff]/80">Modo Fluido</span>}
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/10 backdrop-blur-sm rounded-lg p-5 text-center flex flex-col justify-center">
+                <div className="text-[10px] text-medieval-gold/40 uppercase tracking-widest mb-1 leading-tight flex justify-center items-center gap-1">
+                  Runas Produzidas
+                </div>
+                <div className="text-3xl font-black text-medieval-gold">
+                  {runesAmount.toLocaleString()}
+                </div>
+                <div className="text-[10px] text-medieval-gold/60 mt-1">
+                  (~{bpsProduced.toFixed(1)} BP{bpsProduced !== 1 ? 's' : ''})
+                </div>
+              </div>
+              
+              <div className="lg:col-span-2 bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/10 backdrop-blur-sm rounded-lg p-5">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-medieval-gold font-black uppercase text-[10px] tracking-widest flex items-center gap-2">
+                     Previsão de Magic Level
+                  </h3>
+                  <button 
+                    onClick={() => setShowML(!showML)}
+                    className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded transition-colors ${showML ? 'bg-medieval-gold text-black' : 'bg-black/40 text-medieval-gold/60 border border-medieval-gold/20 hover:text-medieval-gold'}`}
+                  >
+                    {showML ? 'Ocultar' : 'Calcular ML'}
+                  </button>
+                </div>
+                
+                <AnimatePresence>
+                  {showML && (
+                    <motion.div 
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="flex flex-col gap-1.5">
+                          <label className="text-medieval-gold/50 text-[9px] uppercase font-bold tracking-widest">
+                            ML Atual
+                          </label>
+                          <input
+                            type="number"
+                            min="0"
+                            value={currentML}
+                            onChange={(e) => setCurrentML(Math.max(0, parseInt(e.target.value) || 0))}
+                            className="medieval-input px-3 py-2 text-xs font-bold text-medieval-gold outline-none"
+                          />
+                        </div>
+                        <div className="flex flex-col gap-1.5">
+                          <label className="text-medieval-gold/50 text-[9px] uppercase font-bold tracking-widest">
+                            % Faltando
+                          </label>
+                          <div className="flex bg-black/60 border border-medieval-gold/20 rounded-sm">
+                            <input
+                              type="number"
+                              min="0.01"
+                              max="100"
+                              step="0.01"
+                              value={mlPercent}
+                              onChange={(e) => setMlPercent(Math.max(0.01, Math.min(100, parseFloat(e.target.value) || 0.01)))}
+                              className="w-full bg-transparent px-3 py-2 text-xs font-bold text-medieval-gold outline-none"
+                            />
+                            <div className="px-2 py-2 bg-medieval-gold/5 text-medieval-gold/50 text-[10px] flex items-center">%</div>
+                          </div>
+                        </div>
+                        
+                        <div className="col-span-2 bg-black/50 border border-[#5ba2ff]/20 p-3 rounded-lg flex justify-between items-center mt-2">
+                          <div className="text-[10px] text-[#5ba2ff]/50 uppercase tracking-widest">
+                            ML Resultante (Estimado)
+                          </div>
+                          <div className="text-right">
+                            <div className="text-xl font-black text-[#5ba2ff]">
+                              {mlProgress.level}
+                            </div>
+                            <div className="text-[9px] text-[#5ba2ff]/80 font-mono">
+                              Faltam {mlProgress.percent.toFixed(2)}%
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+            </div>
+          </motion.div>
+{/* Análise por BP Panel */}
+        <div className="w-full">
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            className="bg-gradient-to-b from-black/80 to-medieval-dark border border-medieval-gold/30 rounded-xl p-8 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md mb-8"
+          >
+            <div className="flex justify-between items-center border-b border-medieval-gold/10 pb-4 mb-6">
+              <h2 className="text-xl font-black text-medieval-gold uppercase tracking-tighter">
+                {language === "pt" ? "Comparação & Lucro (Por BP)" : "Comparison & Profit (Per BP)"}
+              </h2>
+              <div className="flex bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded-sm overflow-hidden focus-within:border-medieval-gold/60 transition-colors max-w-[200px]">
+                <div className="px-3 py-2 bg-medieval-gold/10 text-medieval-gold text-[10px] font-bold border-r border-medieval-gold/20 flex items-center uppercase tracking-wider">Custo Blank</div>
+                <input
+                  type="number"
+                  min="0"
+                  value={blankRuneBpPrice}
+                  onChange={(e) => setBlankRuneBpPrice(Math.max(0, parseInt(e.target.value) || 0))}
+                  className="w-full bg-transparent px-3 py-2 text-sm text-medieval-gold font-bold text-center outline-none"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Rune 1 Analysis */}
+              <div className="bg-black/40 border border-medieval-gold/10 rounded-lg p-5 space-y-4">
+                <div className="flex gap-4 items-center">
+                  <div className="relative aspect-square flex items-center justify-center p-2 rounded bg-black/60 border border-medieval-gold/20">
+                    <img src={getSpellImage(selectedRuneData?.name || "")} alt="" className="w-10 h-10 object-contain select-none" referrerPolicy="no-referrer" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-[10px] text-medieval-gold/50 uppercase tracking-widest font-bold">Runa 1 (Timer)</div>
+                    <div className="text-sm text-medieval-gold font-bold truncate" title={selectedRuneData?.name}>{selectedRuneData?.name}</div>
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-black/60 border border-medieval-gold/10 rounded p-3 text-center">
+                    <div className="text-[9px] text-medieval-gold/40 uppercase tracking-widest mb-1">Custo da BP</div>
+                    <div className="text-lg font-black text-red-400">{bpStats1.cost.toLocaleString()} <span className="text-[10px]">gp</span></div>
+                  </div>
+                  <div className="bg-black/60 border border-medieval-gold/10 rounded p-3 text-center">
+                    <div className="text-[9px] text-medieval-gold/40 uppercase tracking-widest mb-1">Venda da BP</div>
+                    <input type="number" min="0" value={runeBpPrice} onChange={(e) => setRuneBpPrice(Math.max(0, parseInt(e.target.value) || 0))} className="w-full bg-transparent text-lg font-black text-medieval-gold text-center outline-none border-b border-medieval-gold/20 pb-0.5 focus:border-medieval-gold/60" />
+                  </div>
+                  <div className="col-span-2 bg-black/60 border border-medieval-gold/10 rounded p-3 text-center">
+                    <div className="text-[9px] text-medieval-gold/40 uppercase tracking-widest mb-1">Lucro por BP</div>
+                    <div className={`text-xl font-black ${bpStats1.profit >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                      {bpStats1.profit >= 0 ? '+' : ''}{bpStats1.profit.toLocaleString()} <span className="text-[10px] opacity-70">gp</span>
+                    </div>
+                  </div>
+                  <div className="col-span-2 bg-black/60 border border-medieval-gold/10 rounded p-3 text-center flex justify-between items-center px-4">
+                    <div className="text-[9px] text-medieval-gold/40 uppercase tracking-widest">Lucro por MP</div>
+                    <div className={`text-sm font-black ${bpStats1.goldPerMp >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                      {bpStats1.goldPerMp.toFixed(2)} <span className="text-[9px] opacity-70">gp/MP</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Rune 2 Analysis */}
+              <div className="bg-black/40 border border-medieval-gold/10 rounded-lg p-5 space-y-4">
+                <div className="flex gap-4 items-center">
+                  <div className="relative aspect-square flex items-center justify-center p-2 rounded bg-black/60 border border-medieval-gold/20">
+                    <img src={getSpellImage(selectedRuneData2?.name || "")} alt="" className="w-10 h-10 object-contain select-none" referrerPolicy="no-referrer" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-[10px] text-medieval-gold/50 uppercase tracking-widest font-bold">Runa 2 (Comparação)</div>
+                    <select
+                      value={selectedRune2}
+                      onChange={(e) => setSelectedRune2(e.target.value)}
+                      className="medieval-input w-full bg-black/60 text-xs font-bold text-medieval-gold px-2 py-1 outline-none mt-1"
+                    >
+                      {VOC_SPELLS[vocation]?.map(s => <option key={s.name} value={s.name}>{s.name}</option>)}
+                    </select>
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-black/60 border border-medieval-gold/10 rounded p-3 text-center">
+                    <div className="text-[9px] text-medieval-gold/40 uppercase tracking-widest mb-1">Custo da BP</div>
+                    <div className="text-lg font-black text-red-400">{bpStats2.cost.toLocaleString()} <span className="text-[10px]">gp</span></div>
+                  </div>
+                  <div className="bg-black/60 border border-medieval-gold/10 rounded p-3 text-center">
+                    <div className="text-[9px] text-medieval-gold/40 uppercase tracking-widest mb-1">Venda da BP</div>
+                    <input type="number" min="0" value={runeBpPrice2} onChange={(e) => setRuneBpPrice2(Math.max(0, parseInt(e.target.value) || 0))} className="w-full bg-transparent text-lg font-black text-medieval-gold text-center outline-none border-b border-medieval-gold/20 pb-0.5 focus:border-medieval-gold/60" />
+                  </div>
+                  <div className="col-span-2 bg-black/60 border border-medieval-gold/10 rounded p-3 text-center">
+                    <div className="text-[9px] text-medieval-gold/40 uppercase tracking-widest mb-1">Lucro por BP</div>
+                    <div className={`text-xl font-black ${bpStats2.profit >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                      {bpStats2.profit >= 0 ? '+' : ''}{bpStats2.profit.toLocaleString()} <span className="text-[10px] opacity-70">gp</span>
+                    </div>
+                  </div>
+                  <div className="col-span-2 bg-black/60 border border-medieval-gold/10 rounded p-3 text-center flex justify-between items-center px-4">
+                    <div className="text-[9px] text-medieval-gold/40 uppercase tracking-widest">Lucro por MP</div>
+                    <div className={`text-sm font-black ${bpStats2.goldPerMp >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                      {bpStats2.goldPerMp.toFixed(2)} <span className="text-[9px] opacity-70">gp/MP</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          
+
+        {/* Timer Panel at the bottom */}
+        <div className="w-full">
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            className="medieval-card p-6 sm:p-8"
+          >
             {/* Unified Timer / Alarme (Online & Offline) */}
             {calcMode !== 'manafluids' && (
               <motion.div 
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
-                className="pt-4 border-t border-medieval-gold/20"
+                className=""
               >
                 <div className="bg-black/50 border border-medieval-gold/20 rounded-lg p-5">
                   <div className="flex justify-between items-start mb-4">
                     <div>
                       <h3 className="text-medieval-gold font-black uppercase text-[10px] tracking-widest flex items-center gap-2">
-                        <Bell className="w-4 h-4" /> {language === 'pt' ? 'Alarme / Timer' : 'Timer / Alarm'}
+                        {language === 'pt' ? 'Alarme / Timer' : 'Timer / Alarm'}
                       </h3>
                       <p className="text-medieval-gold/50 text-[10px] mt-1 pr-4 max-w-sm">
                         {language === 'pt' ? 'Seja avisado quando atingir um tempo específico ou uma meta de mana (baseado no regen atual).' : 'Get notified when reaching a specific time or a mana target (based on current regen).'}
@@ -624,276 +1118,13 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
               </motion.div>
             )}
 
-            {/* Equipments Extra Regen (ONLY Online) */}
-            {calcMode === 'online' && (
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="pt-4 border-t border-medieval-gold/10 space-y-4"
-              >
-                <h3 className="text-medieval-gold font-black uppercase text-[10px] tracking-widest mb-2 flex items-center gap-2">
-                  <Calculator className="w-4 h-4" /> Bônus de Regeneração de Mana
-                </h3>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="flex flex-col gap-1.5">
-                    <div className="flex justify-between items-end">
-                      <label className="text-medieval-gold/70 font-bold uppercase text-[9px] tracking-wider">
-                        Anel Equipada (Ring)
-                      </label>
-                      {RINGS[selectedRing].durationSecs && (
-                        <span className="text-[9px] text-medieval-gold/50">
-                          {language === 'pt' ? 'Necessários: ' : 'Needed: '}
-                          {Math.ceil(totalTimeSeconds / RINGS[selectedRing].durationSecs!)}
-                        </span>
-                      )}
-                    </div>
-                    <div className="flex gap-2">
-                      <select
-                        value={selectedRing}
-                        onChange={(e) => setSelectedRing(Number(e.target.value))}
-                        className="medieval-input h-[42px] px-3 flex-1 text-xs text-medieval-gold/80 bg-black/60 outline-none truncate"
-                      >
-                        {RINGS.map((r, i) => (
-                          <option key={i} value={i}>{r.name}</option>
-                        ))}
-                      </select>
-                      {RINGS[selectedRing].durationSecs && (
-                        <div className="flex bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded-sm overflow-hidden focus-within:border-medieval-gold/60 transition-colors w-20">
-                          <input
-                            type="number"
-                            min="1"
-                            value={ringAmount}
-                            onChange={(e) => setRingAmount(Math.max(1, parseInt(e.target.value) || 0))}
-                            className="w-full bg-transparent px-2 py-2 text-sm text-medieval-gold font-bold text-center outline-none"
-                            title="Quantidade de Anéis que possui"
-                          />
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  <div className="flex flex-col gap-1.5">
-                    <div className="flex justify-between items-end">
-                      <label className="text-medieval-gold/70 font-bold uppercase text-[9px] tracking-wider">
-                        Relíquia Equipada (Relic)
-                      </label>
-                      {RELICS[selectedRelic].durationSecs && (
-                        <span className="text-[9px] text-medieval-gold/50">
-                          {language === 'pt' ? 'Necessários: ' : 'Needed: '}
-                          {Math.ceil(totalTimeSeconds / RELICS[selectedRelic].durationSecs!)}
-                        </span>
-                      )}
-                    </div>
-                    <div className="flex gap-2">
-                      <select
-                        value={selectedRelic}
-                        onChange={(e) => setSelectedRelic(Number(e.target.value))}
-                        className="medieval-input h-[42px] px-3 flex-1 text-xs text-medieval-gold/80 bg-black/60 outline-none truncate"
-                      >
-                        {RELICS.map((r, i) => (
-                          <option key={i} value={i}>{r.name}</option>
-                        ))}
-                      </select>
-                      {RELICS[selectedRelic].durationSecs && (
-                        <div className="flex bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded-sm overflow-hidden focus-within:border-medieval-gold/60 transition-colors w-20">
-                          <input
-                            type="number"
-                            min="1"
-                            value={relicAmount}
-                            onChange={(e) => setRelicAmount(Math.max(1, parseInt(e.target.value) || 0))}
-                            className="w-full bg-transparent px-2 py-2 text-sm text-medieval-gold font-bold text-center outline-none"
-                            title="Quantidade de Relíquias que possui"
-                          />
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
 
-                <div className="space-y-2 mt-4">
-                  <label className="text-medieval-gold/70 font-bold uppercase text-[9px] tracking-wider block mb-1.5">
-                    Equipamentos Forjados (Atributo Regen. Mana)
-                  </label>
-                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
-                    <select value={forja1} onChange={(e) => setForja1(Number(e.target.value))} className="medieval-input h-[42px] px-2 text-[10px] sm:text-xs text-medieval-gold/80 bg-black/60 outline-none">
-                      {FORJA_TIERS.map((f, i) => <option key={i} value={i}>{i === 0 ? "Vazio" : `Slot 1: ${f.name}`}</option>)}
-                    </select>
-                    <select value={forja2} onChange={(e) => setForja2(Number(e.target.value))} className="medieval-input h-[42px] px-2 text-[10px] sm:text-xs text-medieval-gold/80 bg-black/60 outline-none">
-                      {FORJA_TIERS.map((f, i) => <option key={i} value={i}>{i === 0 ? "Vazio" : `Slot 2: ${f.name}`}</option>)}
-                    </select>
-                    <select value={forja3} onChange={(e) => setForja3(Number(e.target.value))} className="medieval-input h-[42px] px-2 text-[10px] sm:text-xs text-medieval-gold/80 bg-black/60 outline-none">
-                      {FORJA_TIERS.map((f, i) => <option key={i} value={i}>{i === 0 ? "Vazio" : `Slot 3: ${f.name}`}</option>)}
-                    </select>
-                    <select value={forja4} onChange={(e) => setForja4(Number(e.target.value))} className="medieval-input h-[42px] px-2 text-[10px] sm:text-xs text-medieval-gold/80 bg-black/60 outline-none">
-                      {FORJA_TIERS.map((f, i) => <option key={i} value={i}>{i === 0 ? "Vazio" : `Slot 4: ${f.name}`}</option>)}
-                    </select>
-                  </div>
-                </div>
-              </motion.div>
-            )}
 
-          </div>
+            
+          </motion.div>
         </div>
 
-        {/* Results Panel */}
-        <div className="lg:col-span-5 relative">
-          <div className="sticky top-24">
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              className="bg-gradient-to-b from-black/80 to-medieval-dark border border-medieval-gold/30 rounded-xl p-8 relative overflow-hidden group shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md"
-            >
-              <div className="absolute inset-0 bg-medieval-gold/[0.02] group-hover:bg-medieval-gold/[0.04] transition-colors"></div>
 
-              <h2 className="text-xl font-black text-medieval-gold uppercase tracking-tighter border-b border-medieval-gold/10 pb-4 mb-6 flex justify-between items-end">
-                <span>{language === "pt" ? "Resultado" : "Result"}</span>
-                {calcMode === 'offline' && <span className="text-[10px] bg-red-900/30 text-red-400 px-2 py-1 rounded border border-red-500/20 font-sans tracking-widest">+ DEBUFF OFFLINE</span>}
-              </h2>
-
-              <div className="space-y-6 relative z-10">
-                <div className="bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/10 backdrop-blur-sm rounded-lg p-5">
-                  <div className="text-[10px] text-medieval-gold/40 uppercase tracking-widest mb-1">
-                    Mana Total Gerada
-                  </div>
-                  <div className="text-3xl font-black text-[#5ba2ff] drop-shadow-[0_0_8px_rgba(91,162,255,0.4)]">
-                    {generatedMana.toLocaleString()}{" "}
-                    <span className="text-sm font-bold text-[#5ba2ff]/60">
-                      MP
-                    </span>
-                  </div>
-                  <div className="mt-2 flex items-center justify-between text-[10px] font-mono text-medieval-muted">
-                    {calcMode !== 'manafluids' && (
-                      <span>
-                        Regen {calcMode === 'online' ? 'Média' : 'Configurada'}: <span className="text-medieval-gold/80">{avgMps.toFixed(3)} MP/s</span>
-                      </span>
-                    )}
-                    {calcMode === 'offline' && (
-                      <span className="text-medieval-gold/40">1 MP / Minuto</span>
-                    )}
-                    {calcMode === 'manafluids' && (
-                      <span className="text-[#5ba2ff]/80">Modo Fluido Instantâneo</span>
-                    )}
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/10 backdrop-blur-sm rounded-lg p-4 text-center">
-                    <div className="text-[10px] text-medieval-gold/40 uppercase tracking-widest mb-1 leading-tight flex justify-center items-center gap-1">
-                      <FlaskConical className="w-3 h-3 text-medieval-gold" />{" "}
-                      Runas (Cargas)
-                    </div>
-                    <div className="text-2xl font-black text-medieval-gold">
-                      {runesAmount.toLocaleString()}
-                    </div>
-                  </div>
-
-                  {calcMode === 'manafluids' && mfTargetMode === 'runes' ? (
-                    <div className="bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/10 backdrop-blur-sm rounded-lg p-4 text-center">
-                      <div className="text-[10px] text-medieval-gold/40 uppercase tracking-widest mb-1 leading-tight flex justify-center items-center gap-1">
-                        <FlaskConical className="w-3 h-3 text-[#5ba2ff]" />{" "}
-                        Mana Fluids (Gastas)
-                      </div>
-                      <div className="text-2xl font-black text-[#5ba2ff]">
-                        {mfNeededOrUsed.toLocaleString()}
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/10 backdrop-blur-sm rounded-lg p-4 text-center relative overflow-hidden">
-                      <div className="text-[10px] text-medieval-gold/40 uppercase tracking-widest mb-1 leading-tight">
-                        Custo ({calcMode === 'manafluids' ? 'Blanks + MFs' : 'Blanks'})
-                      </div>
-                      <div className="text-xl font-black text-yellow-500">
-                        {((runesAmount * 10) + (calcMode === 'manafluids' ? mfNeededOrUsed * 100 : 0)).toLocaleString()}{" "}
-                        <span className="text-[10px] text-yellow-500/70">gp</span>
-                      </div>
-                    </div>
-                  )}
-                  
-                  {calcMode === 'manafluids' && mfTargetMode === 'runes' && (
-                    <div className="col-span-2 bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/10 backdrop-blur-sm rounded-lg p-4 text-center relative overflow-hidden">
-                      <div className="text-[10px] text-medieval-gold/40 uppercase tracking-widest mb-1 leading-tight">
-                        Custo Estimado (Blanks + Mana Fluids)
-                      </div>
-                      <div className="text-xl font-black text-yellow-500">
-                        {((runesAmount * 10) + (mfNeededOrUsed * 100)).toLocaleString()}{" "}
-                        <span className="text-[10px] text-yellow-500/70">gp</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Seção Analisador de Magic Level */}
-                <div className="pt-4 border-t border-medieval-gold/20">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-medieval-gold font-black uppercase text-[10px] tracking-widest flex items-center gap-2">
-                       Previsão de Magic Level
-                    </h3>
-                    <button 
-                      onClick={() => setShowML(!showML)}
-                      className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded transition-colors ${showML ? 'bg-medieval-gold text-black' : 'bg-black/40 text-medieval-gold/60 border border-medieval-gold/20 hover:text-medieval-gold'}`}
-                    >
-                      {showML ? 'Ocultar' : 'Calcular ML'}
-                    </button>
-                  </div>
-                  
-                  <AnimatePresence>
-                    {showML && (
-                      <motion.div 
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="overflow-hidden space-y-4"
-                      >
-                        <div className="grid grid-cols-2 gap-4">
-                          <div className="flex flex-col gap-1.5">
-                            <label className="text-medieval-gold/50 text-[9px] uppercase font-bold tracking-widest">
-                              ML Atual
-                            </label>
-                            <input
-                              type="number"
-                              min="0"
-                              value={currentML}
-                              onChange={(e) => setCurrentML(Math.max(0, parseInt(e.target.value) || 0))}
-                              className="medieval-input px-3 py-2 text-xs font-bold text-medieval-gold outline-none"
-                            />
-                          </div>
-                          <div className="flex flex-col gap-1.5">
-                            <label className="text-medieval-gold/50 text-[9px] uppercase font-bold tracking-widest">
-                              % Atual (Faltando)
-                            </label>
-                            <div className="flex bg-black/60 border border-medieval-gold/20 rounded-sm">
-                              <input
-                                type="number"
-                                min="0.01"
-                                max="100"
-                                step="0.01"
-                                value={mlPercent}
-                                onChange={(e) => setMlPercent(Math.max(0.01, Math.min(100, parseFloat(e.target.value) || 0.01)))}
-                                className="w-full bg-transparent px-3 py-2 text-xs font-bold text-medieval-gold outline-none"
-                              />
-                              <div className="px-2 py-2 bg-medieval-gold/5 text-medieval-gold/50 text-[10px] flex items-center">%</div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="bg-black/50 border border-[#5ba2ff]/20 p-4 rounded-lg flex flex-col items-center justify-center text-center">
-                          <div className="text-[10px] text-[#5ba2ff]/50 uppercase tracking-widest mb-1">
-                            ML Resultante (Estimado)
-                          </div>
-                          <div className="text-2xl font-black text-[#5ba2ff]">
-                            {mlProgress.level}
-                          </div>
-                          <div className="text-[10px] text-[#5ba2ff]/80 font-mono mt-1">
-                            Faltando {mlProgress.percent.toFixed(2)}% para o Próximo
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              </div>
-            </motion.div>
-          </div>
         </div>
       </div>
     </div>
