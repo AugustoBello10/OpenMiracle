@@ -2,12 +2,15 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { MapContainer, ImageOverlay, useMap, useMapEvents, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
-import { ChevronUp, ChevronDown, Layers } from 'lucide-react';
+import { ChevronUp, ChevronDown, Layers, Filter, BookOpen } from 'lucide-react';
 import 'leaflet/dist/leaflet.css';
-import { RESPAWNS, Respawn } from '../data/respawns';
+import { RESPAWNS, Respawn, PREDEFINED_MONSTERS } from '../data/respawns';
 import MapEditorPanel, { MapClickHandler } from './MapEditorPanel';
+import BestiaryModal from './BestiaryModal';
+import { BESTIARY_DB } from '../data/bestiaryDb';
 
 // Fix for default Leaflet icon paths not resolving in React
+
 // @ts-ignore
 import iconUrl from 'leaflet/dist/images/marker-icon.png';
 // @ts-ignore
@@ -30,17 +33,19 @@ L.Marker.prototype.options.icon = DefaultIcon;
 const createMonsterIcon = (image: string, count: number) => {
   return L.divIcon({
     html: `
-      <div style="position: relative; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 0 2px rgba(0,0,0,0.8));">
-        <img src="${image}" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
-        <div style="position: absolute; bottom: -6px; right: -6px; background: rgba(0,0,0,0.85); border: 1px solid #c8aa6e; color: #c8aa6e; font-size: 10px; font-weight: bold; border-radius: 4px; padding: 0 4px; line-height: 1.2; font-family: monospace;">
-          ${count}
+      <div style="position: relative; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 0 2px rgba(0,0,0,0.8));">
+        <div style="position: relative; display: inline-flex;">
+          <img src="${image}" style="max-width: 48px; max-height: 48px; object-fit: contain;" />
+          <div style="position: absolute; bottom: -6px; right: -6px; background: rgba(0,0,0,0.9); border: 1px solid #c8aa6e; color: #c8aa6e; font-size: 11px; font-weight: bold; border-radius: 4px; padding: 1px 4px; line-height: 1.2; box-shadow: 0 0 4px rgba(0,0,0,1); font-family: monospace; z-index: 10;">
+            ${count}
+          </div>
         </div>
       </div>
     `,
     className: 'custom-monster-icon',
-    iconSize: [32, 32],
-    iconAnchor: [16, 16],
-    popupAnchor: [0, -16],
+    iconSize: [48, 48],
+    iconAnchor: [24, 24],
+    popupAnchor: [0, -24],
   });
 };
 
@@ -48,6 +53,7 @@ const createClusterCustomIcon = (cluster: any) => {
   const markers = cluster.getAllChildMarkers();
   let totalCount = 0;
   let image = '';
+
   markers.forEach((marker: any) => {
     totalCount += marker.options.monsterCount || 0;
     if (!image) image = marker.options.monsterImage;
@@ -55,16 +61,16 @@ const createClusterCustomIcon = (cluster: any) => {
 
   return L.divIcon({
     html: `
-      <div style="position: relative; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.4); border-radius: 50%; border: 1px solid rgba(200,170,110,0.5); backdrop-filter: blur(2px);">
+      <div style="position: relative; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.4); border-radius: 50%; border: 1px solid rgba(200,170,110,0.5); backdrop-filter: blur(2px);">
         <img src="${image}" style="max-width: 75%; max-height: 75%; object-fit: contain; filter: drop-shadow(0 0 2px rgba(0,0,0,0.8));" />
-        <div style="position: absolute; bottom: -4px; right: -4px; background: rgba(0,0,0,0.9); border: 1px solid #c8aa6e; color: #c8aa6e; font-size: 11px; font-weight: bold; border-radius: 4px; padding: 1px 5px; line-height: 1.2; box-shadow: 0 0 4px rgba(0,0,0,1); font-family: monospace;">
+        <div style="position: absolute; bottom: -4px; right: -4px; background: rgba(0,0,0,0.9); border: 1px solid #c8aa6e; color: #c8aa6e; font-size: 12px; font-weight: bold; border-radius: 4px; padding: 1px 5px; line-height: 1.2; box-shadow: 0 0 4px rgba(0,0,0,1); font-family: monospace; z-index: 10;">
           ${totalCount}
         </div>
       </div>
     `,
     className: 'custom-monster-cluster-icon',
-    iconSize: [44, 44],
-    iconAnchor: [22, 22],
+    iconSize: [56, 56],
+    iconAnchor: [28, 28],
   });
 };
 
@@ -75,25 +81,12 @@ interface Bounds {
   max_y: number;
 }
 
-// Limites (bounds) enviados pelo usuário
-const mapBounds: Record<string, Bounds> = {
-  "0": {"min_x": 32128, "max_x": 33280, "min_y": 31232, "max_y": 32832},
-  "1": {"min_x": 31808, "max_x": 33280, "min_y": 31104, "max_y": 32896},
-  "2": {"min_x": 31744, "max_x": 33856, "min_y": 30912, "max_y": 32896},
-  "3": {"min_x": 31744, "max_x": 33856, "min_y": 30912, "max_y": 32896},
-  "4": {"min_x": 31744, "max_x": 33920, "min_y": 30912, "max_y": 32896},
-  "5": {"min_x": 31744, "max_x": 33856, "min_y": 30912, "max_y": 32896},
-  "6": {"min_x": 31744, "max_x": 33920, "min_y": 30912, "max_y": 32960},
-  "7": {"min_x": 31744, "max_x": 33920, "min_y": 30912, "max_y": 32960},
-  "8": {"min_x": 31680, "max_x": 33984, "min_y": 30912, "max_y": 32896},
-  "9": {"min_x": 31872, "max_x": 33984, "min_y": 30912, "max_y": 32960},
-  "10": {"min_x": 31872, "max_x": 33920, "min_y": 30848, "max_y": 32960},
-  "11": {"min_x": 31872, "max_x": 33856, "min_y": 30848, "max_y": 32960},
-  "12": {"min_x": 31872, "max_x": 33856, "min_y": 30912, "max_y": 33024},
-  "13": {"min_x": 31936, "max_x": 33856, "min_y": 30848, "max_y": 33024},
-  "14": {"min_x": 32064, "max_x": 33472, "min_y": 30912, "max_y": 33024},
-  "15": {"min_x": 32064, "max_x": 33408, "min_y": 30912, "max_y": 33024},
-  "16": {"min_x": 32064, "max_x": 32192, "min_y": 30912, "max_y": 31040}
+// Limites (bounds) globais exportados pelo OTMMConverter
+const GLOBAL_BOUNDS: Bounds = {
+  min_x: 31680,
+  max_x: 33984,
+  min_y: 30848,
+  max_y: 33024
 };
 
 function UrlSync({ floor }: { floor: number }) {
@@ -137,16 +130,18 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
   const initialParams = useMemo(() => typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : new URLSearchParams(), []);
   const initialFloor = propZ !== undefined ? propZ : parseInt(initialParams.get('floor') || '7', 10);
   const [floor, setFloor] = useState(isNaN(initialFloor) ? 7 : initialFloor);
+  const [selectedBestiaryMonster, setSelectedBestiaryMonster] = useState<string | null>(null);
 
   const currentBounds = useMemo(() => {
-    const b = mapBounds[String(floor)] || mapBounds['7'];
+    const b = GLOBAL_BOUNDS;
     return [
       [-b.max_y, b.min_x],
       [-b.min_y, b.max_x]
     ] as [[number, number], [number, number]];
-  }, [floor]);
+  }, []);
 
-  const mapImageUrl = `https://res.cloudinary.com/dc4nkbnkg/image/upload/floor_${floor}.png`;
+  // Adicionando ?v=2 para forçar o navegador a baixar a nova imagem sem usar o cache antigo
+  const mapImageUrl = `https://res.cloudinary.com/dc4nkbnkg/image/upload/floor_${floor}.png?v=2`;
   
   const initialX = propX !== undefined ? propX : parseFloat(initialParams.get('x') || '');
   const initialY = propY !== undefined ? propY : parseFloat(initialParams.get('y') || '');
@@ -163,11 +158,27 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
 
   const [localRespawns, setLocalRespawns] = useState<Respawn[]>(RESPAWNS);
   const [brushMode, setBrushMode] = useState(false);
-  const [activeMonster, setActiveMonster] = useState({ name: '', image: '' });
+  const [activeMonster, setActiveMonster] = useState<{ name: string; image: string; categories?: string[] }>({ name: '', image: '', categories: ['Monstros'] });
   const [spawnCount, setSpawnCount] = useState(1);
+  const [filterType, setFilterType] = useState<string>('all');
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  const DEFAULT_CATEGORIES = useMemo(() => ['Monstros', 'Mineração', 'Cooking', 'Chaves', 'Farming', 'WoodCutting', 'Fishing', 'NPC'], []);
+  
+  const allCategories = useMemo(() => {
+    const cats = new Set(DEFAULT_CATEGORIES);
+    localRespawns.forEach(r => r.categories?.forEach(c => cats.add(c)));
+    return Array.from(cats).sort();
+  }, [localRespawns, DEFAULT_CATEGORIES]);
 
   // Filter respawns for current floor
-  const currentRespawns = useMemo(() => localRespawns.filter(r => r.z === floor), [floor, localRespawns]);
+  const currentRespawns = useMemo(() => localRespawns.filter(r => {
+    if (r.z !== floor) return false;
+    if (filterType === 'all') return true;
+    
+    const cats = r.categories && r.categories.length > 0 ? r.categories : ['Monstros'];
+    return cats.includes(filterType);
+  }), [floor, localRespawns, filterType]);
 
   // Group by monster name or image
   const respawnsGrouped = useMemo(() => {
@@ -186,6 +197,7 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
       id: `${activeMonster.name.toLowerCase().replace(/ /g, '-')}-${Date.now()}`,
       name: activeMonster.name,
       image: activeMonster.image,
+      categories: activeMonster.categories || ['Monstros'],
       count: spawnCount,
       x,
       y,
@@ -207,35 +219,77 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
           setActiveMonster={setActiveMonster}
           spawnCount={spawnCount}
           setSpawnCount={setSpawnCount}
+          allCategories={allCategories}
        />
        <div className="absolute top-4 right-4 z-[400] flex flex-col gap-2">
-         {/* Floor Controls */}
-         <div className="bg-black/80 p-3 rounded-lg border border-medieval-gold/30 flex flex-col items-center gap-3 backdrop-blur-sm shadow-[0_0_15px_rgba(0,0,0,0.8)]">
-           <div className="flex flex-col items-center gap-1">
-             <Layers className="w-4 h-4 text-medieval-gold/70" />
-             <span className="text-medieval-gold text-xs font-bold uppercase tracking-widest">Andar {floor}</span>
+         {/* Filter Controls */}
+         <div className="bg-black/80 p-2 rounded-lg border border-medieval-gold/30 flex flex-col gap-2 backdrop-blur-sm shadow-[0_0_15px_rgba(0,0,0,0.8)] mb-2 w-32">
+           <div 
+             className="flex items-center justify-between cursor-pointer group"
+             onClick={() => setIsFilterOpen(!isFilterOpen)}
+           >
+             <Filter className="w-4 h-4 text-medieval-gold/70 group-hover:text-medieval-gold transition-colors" title="Filtros" />
+             <div className="text-medieval-gold/70 group-hover:text-medieval-gold transition-colors">
+               {isFilterOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+             </div>
            </div>
            
-           <div className="flex flex-col gap-1 w-full mt-1">
+           {isFilterOpen && (
+             <div className="flex flex-col gap-1.5 w-full text-xs mt-1 border-t border-medieval-gold/20 pt-2 max-h-[60vh] overflow-y-auto custom-scrollbar pr-1">
+               <label className="flex items-center gap-2 text-zinc-300 hover:text-white cursor-pointer select-none">
+                 <input 
+                   type="radio" 
+                   name="mapFilter" 
+                   value="all"
+                   checked={filterType === 'all'}
+                   onChange={() => setFilterType('all')}
+                   className="accent-medieval-gold w-3 h-3 shrink-0"
+                 />
+                 <span className={`truncate ${filterType === 'all' ? 'text-medieval-gold font-bold' : ''}`}>Todos</span>
+               </label>
+               {allCategories.map(cat => (
+                 <label key={cat} className="flex items-center gap-2 text-zinc-300 hover:text-white cursor-pointer select-none">
+                   <input 
+                     type="radio" 
+                     name="mapFilter" 
+                     value={cat}
+                     checked={filterType === cat}
+                     onChange={() => setFilterType(cat)}
+                     className="accent-medieval-gold w-3 h-3 shrink-0"
+                   />
+                   <span className={`truncate ${filterType === cat ? 'text-medieval-gold font-bold' : ''}`} title={cat}>{cat}</span>
+                 </label>
+               ))}
+             </div>
+           )}
+         </div>
+
+         {/* Floor Controls */}
+         <div className="bg-black/80 p-2 rounded-lg border border-medieval-gold/30 flex flex-col items-center gap-2 backdrop-blur-sm shadow-[0_0_15px_rgba(0,0,0,0.8)] w-24">
+           <div className="flex flex-col items-center">
+             <span className="text-medieval-gold text-[10px] font-bold uppercase tracking-widest">Andar {floor}</span>
+           </div>
+           
+           <div className="flex flex-col gap-1 w-full">
              <button 
                onClick={() => setFloor(f => Math.max(0, f - 1))}
                disabled={floor <= 0}
-               className="p-1.5 text-medieval-gold/80 hover:text-white disabled:opacity-30 bg-medieval-gold/10 rounded border border-medieval-gold/20 hover:bg-medieval-gold/30 transition-all flex justify-center"
+               className="p-1 text-medieval-gold/80 hover:text-white disabled:opacity-30 bg-medieval-gold/10 rounded border border-medieval-gold/20 hover:bg-medieval-gold/30 transition-all flex justify-center"
                title="Sobe um andar (Z menor)"
              >
-               <ChevronUp className="w-5 h-5" />
+               <ChevronUp className="w-4 h-4" />
              </button>
              <button 
                onClick={() => setFloor(f => Math.min(16, f + 1))}
                disabled={floor >= 16}
-               className="p-1.5 text-medieval-gold/80 hover:text-white disabled:opacity-30 bg-medieval-gold/10 rounded border border-medieval-gold/20 hover:bg-medieval-gold/30 transition-all flex justify-center"
+               className="p-1 text-medieval-gold/80 hover:text-white disabled:opacity-30 bg-medieval-gold/10 rounded border border-medieval-gold/20 hover:bg-medieval-gold/30 transition-all flex justify-center"
                title="Desce um andar (Z maior)"
              >
-               <ChevronDown className="w-5 h-5" />
+               <ChevronDown className="w-4 h-4" />
              </button>
            </div>
            
-           {floor === 7 && <span className="text-[9px] text-medieval-gold/50 font-mono">(Superfície)</span>}
+           {floor === 7 && <span className="text-[8px] text-medieval-gold/50 font-mono">(Superfície)</span>}
          </div>
        </div>
 
@@ -283,6 +337,27 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
                       <div className="text-center min-w-[100px] flex flex-col gap-2">
                         <div className="font-bold text-sm">{respawn.name}</div>
                         <div className="text-xs text-gray-600 bg-gray-100 rounded px-2 py-1 inline-block">Quantidade: {respawn.count}</div>
+
+                        {/* Bestiary Button */}
+                        {(() => {
+                          const predefined = PREDEFINED_MONSTERS.find(m => m.name.toLowerCase() === respawn.name.toLowerCase());
+                          const isMonster = predefined?.categories?.includes('Monstros') || predefined?.categories?.includes("Monstros") || respawn.categories?.includes('Monstros') || respawn.categories?.includes("Monstros") || Object.keys(BESTIARY_DB).some(k => k.toLowerCase() === respawn.name.toLowerCase());
+                          
+                          if (!isMonster) return null;
+                          
+                          return (
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setSelectedBestiaryMonster(respawn.name);
+                              }}
+                              className="bg-[#2c2c2c] hover:bg-[#3a3a3a] text-[#a0a0a0] hover:text-white text-xs py-1.5 px-2 rounded font-bold cursor-pointer transition-colors flex items-center justify-center gap-1 border border-[#4a4a4a] mt-1"
+                            >
+                              Cyclopedia
+                            </button>
+                          );
+                        })()}
+
                         {/* @ts-ignore */}
                         {import.meta.env.DEV && (
                           <div className="flex flex-col gap-1 mt-1 border-t pt-2">
@@ -325,6 +400,13 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
             ))}
           </MapContainer>
        </div>
+       
+       {selectedBestiaryMonster && (
+         <BestiaryModal 
+           initialMonster={selectedBestiaryMonster} 
+           onClose={() => setSelectedBestiaryMonster(null)} 
+         />
+       )}
     </div>
   );
 }

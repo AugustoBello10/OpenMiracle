@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   Hammer, Sword, Gem, Pickaxe, Wand2, Zap, Tv, Wheat, 
   MessageSquare, ExternalLink, Info, Table as TableIcon, 
-  TrendingUp, AlertTriangle, Book, Sparkles, Briefcase, 
+  TrendingUp, AlertTriangle, Book, BookOpen, Sparkles, Briefcase, 
   ChevronRight, ChevronUp, ChevronDown, Menu, X, Map, MonitorPlay, Fish, FlaskConical, Utensils, Sprout, Scissors, Users,
   History, Plus, Minus, Check, RefreshCw, Clock, Calendar, Download, Shield, Circle, Heart, Target, Axe, Coins, Eye,
   Search, Skull
@@ -483,8 +483,10 @@ const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
 import { BuildMakerView } from './components/BuildMakerView';
 import { ProfessionsGuideView } from "./components/ProfessionsGuideView";
 import { FeedbackBoard } from './components/FeedbackBoard';
+import BestiaryEditor from './components/BestiaryEditor';
+import CyclopediaView from './components/CyclopediaView';
 
-type Tab = 'home' | 'calculadoras' | 'profissoes' | 'mapa' | 'eventos' | 'wiki' | 'buildmaker' | 'loot' | 'feedback' | 'hunts';
+type Tab = 'home' | 'calculadoras' | 'profissoes' | 'mapa' | 'eventos' | 'wiki' | 'buildmaker' | 'loot' | 'feedback' | 'hunts' | 'bestiary-editor';
 
 const VOC_SPELLS: Record<string, { name: string; mana: number }[]> = {
   Sorcerer: [
@@ -905,6 +907,7 @@ export default function App() {
     if (path.includes('/updates')) return 'updates';
     if (path.includes('/biblioteca')) return 'library';
     if (path.includes('/itens')) return 'items';
+    if (path.includes('/cyclopedia')) return 'cyclopedia';
     if (path.includes('/profissoes')) return 'profissoes';
     return 'home';
   };
@@ -913,7 +916,7 @@ export default function App() {
   const [calcSubTab, setCalcSubTab] = useState<'skills' | 'bless' | 'atributos' | 'professions' | 'runemaking'>(getInitialCalcSubTab);
   const [profSubTab, setProfSubTab] = useState<'crafting' | 'alchemy' | 'farming' | 'mining'>(getInitialProfSubTab);
   const [wikiSubTab, setWikiSubTab] = useState<'server' | 'project'>(getInitialWikiSubTab);
-  const [wikiMainTab, setWikiMainTab] = useState<'home' | 'updates' | 'library' | 'items' | 'profissoes'>(getInitialWikiMainTab);
+  const [wikiMainTab, setWikiMainTab] = useState<'home' | 'updates' | 'library' | 'items' | 'profissoes' | 'cyclopedia'>(getInitialWikiMainTab);
   
   const navigate = useNavigate();
   const location = useLocation();
@@ -996,6 +999,7 @@ export default function App() {
       if (wikiMainTab === 'updates') wikiPath += '/updates';
       else if (wikiMainTab === 'library') wikiPath += '/biblioteca';
       else if (wikiMainTab === 'items') wikiPath += '/itens';
+      else if (wikiMainTab === 'cyclopedia') wikiPath += '/cyclopedia';
       
       newPath = wikiPath;
     } else if (activeTab === 'loot') newPath = '/loot';
@@ -1033,6 +1037,7 @@ export default function App() {
     guias: true,
     calculadores: true,
     profissoes: true,
+    equipamentos: true,
     cyclopedia: true,
     biblioteca: false,
     utilitarios: true,
@@ -1665,17 +1670,17 @@ export default function App() {
 
             <div className="space-y-1.5">
               <button 
-                onClick={() => toggleGroup('cyclopedia')}
+                onClick={() => toggleGroup('equipamentos')}
                 className="w-full flex items-center justify-between py-2.5 px-3 rounded-lg bg-gradient-to-b from-black/80 to-[#0a0a0a] border border-medieval-gold/20 shadow-[0_4px_15px_rgba(0,0,0,0.5)] hover:border-medieval-gold/50 hover:shadow-[0_4px_20px_rgba(197,160,89,0.15)] transition-all text-xs font-black text-medieval-gold uppercase tracking-widest relative overflow-hidden group"
               >
                 <span className="flex items-center gap-2.5 relative z-10">
-                  <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849030/cyclopedia.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Cyclopedia" />
-                  Cyclopedia
+                  <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849030/cyclopedia.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Equipamentos" />
+                  {language === 'pt' ? 'Equipamentos' : 'Equipment'}
                 </span>
-                <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.cyclopedia ? 'rotate-90 text-medieval-gold' : ''}`} />
+                <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.equipamentos ? 'rotate-90 text-medieval-gold' : ''}`} />
               </button>
               <AnimatePresence initial={false}>
-                {sidebarOpenGroups.cyclopedia && (
+                {sidebarOpenGroups.equipamentos && (
                   <motion.div 
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
@@ -1700,6 +1705,41 @@ export default function App() {
                         </button>
                       );
                     })}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <div className="space-y-1.5">
+              <button 
+                onClick={() => toggleGroup('cyclopedia')}
+                className="w-full flex items-center justify-between py-2.5 px-3 rounded-lg bg-gradient-to-b from-black/80 to-[#0a0a0a] border border-medieval-gold/20 shadow-[0_4px_15px_rgba(0,0,0,0.5)] hover:border-medieval-gold/50 hover:shadow-[0_4px_20px_rgba(197,160,89,0.15)] transition-all text-xs font-black text-medieval-gold uppercase tracking-widest relative overflow-hidden group"
+              >
+                <span className="flex items-center gap-2.5 relative z-10">
+                  <BookOpen className="w-5 h-5 text-medieval-gold drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" />
+                  Cyclopedia
+                </span>
+                <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.cyclopedia ? 'rotate-90 text-medieval-gold' : ''}`} />
+              </button>
+              <AnimatePresence initial={false}>
+                {sidebarOpenGroups.cyclopedia && (
+                  <motion.div 
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="overflow-hidden flex flex-col gap-1 pl-1 pt-0.5"
+                  >
+                    <button 
+                      onClick={() => {
+                        setActiveTab('wiki');
+                        setWikiMainTab('cyclopedia');
+                        if(isMobile) setIsMenuOpen(false);
+                      }}
+                      className={activeTab === 'wiki' && wikiMainTab === 'cyclopedia' ? activeSubmenuClass : inactiveSubmenuClass}
+                    >
+                      <BookOpen className="w-4 h-4" />
+                      {language === 'pt' ? 'Bestiário' : 'Bestiary'}
+                    </button>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -1834,6 +1874,14 @@ export default function App() {
                     >
                       <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849031/buildmaker.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Build Maker" />
                       {language === 'pt' ? 'Build Maker' : 'Build Maker'}
+                    </button>
+                    <button 
+                      onClick={() => { setActiveTab('bestiary-editor'); if(isMobile) setIsMenuOpen(false); }}
+                      className={activeTab === 'bestiary-editor' ? activeSubmenuClass : inactiveSubmenuClass}
+                      style={{display: 'none'}}
+                    >
+                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784748006/logowiki.png" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Bestiary" />
+                      {language === 'pt' ? 'Bestiary Editor' : 'Bestiary Editor'}
                     </button>
                     <button 
                       onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('skills'); if(isMobile) setIsMenuOpen(false); }}
@@ -2791,7 +2839,7 @@ export default function App() {
                         <h2 className="text-xs font-bold uppercase tracking-[0.3em] text-medieval-gold/50 mb-6 text-center">
                           — {language === 'pt' ? 'Capítulos Principais da Enciclopédia' : 'Main Encyclopedia Chapters'} —
                         </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                           {[
                             { 
                               id: 'mapa', 
@@ -2828,13 +2876,24 @@ export default function App() {
                               icon: <History className="w-6 h-6" />,
                               meta: language === 'pt' ? 'Notas de Patches' : 'Patch Notes'
                             },
+                            { 
+                              id: 'cyclopedia', 
+                              title: language === 'pt' ? 'Cyclopedia' : 'Cyclopedia', 
+                              desc: language === 'pt' ? 'Catálogo de todas as criaturas do mundo de Miracle. Explore seus atributos, fraquezas e recompensas.' : 'Catalog of all creatures in the world of Miracle. Explore their attributes, weaknesses, and rewards.', 
+                              icon: <BookOpen className="w-6 h-6" />,
+                              meta: language === 'pt' ? 'Abrir Cyclopedia' : 'Open Cyclopedia'
+                            },
                           ].map((card) => (
                             <button
                               key={card.id}
                               onClick={() => {
                                 if (card.id === 'profissoes') setActiveTab('profissoes');
                                 else if (card.id === 'mapa') setActiveTab('mapa');
-                                else setWikiMainTab(card.id as any);
+                                else {
+                                  setActiveTab('wiki');
+                                  setWikiMainTab(card.id as any);
+                                }
+                                window.scrollTo(0, 0);
                               }}
                               className="medieval-card p-6 text-left group hover:border-medieval-gold transition-all relative overflow-hidden flex flex-col justify-between h-48 hover:shadow-[0_0_15px_rgba(212,175,55,0.05)]"
                             >
@@ -4006,6 +4065,18 @@ export default function App() {
                         </AnimatePresence>
                       </div>
                     </div>
+                  </motion.div>
+                )}
+
+                {wikiMainTab === 'cyclopedia' && (
+                  <motion.div
+                    key="wiki-cyclopedia"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    className="w-full"
+                  >
+                    <CyclopediaView />
                   </motion.div>
                 )}
 
