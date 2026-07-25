@@ -180,10 +180,19 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed)) {
-          return parsed.map((item: any) => ({
-            ...item,
-            categories: fixCategories(item.categories, item.name || '')
-          }));
+          const mergedMap = new Map<string, Respawn>();
+          // Carrega os do código base primeiro
+          RESPAWNS.forEach(r => mergedMap.set(r.id, r));
+          
+          // Sobrescreve/adiciona os locais (mantém os que o usuário adicionou que não estão no código)
+          parsed.forEach((item: any) => {
+            mergedMap.set(item.id, {
+              ...item,
+              categories: fixCategories(item.categories, item.name || '')
+            });
+          });
+          
+          return Array.from(mergedMap.values());
         }
         return parsed;
       }
