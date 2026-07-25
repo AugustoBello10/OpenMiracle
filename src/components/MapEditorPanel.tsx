@@ -1,7 +1,9 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Brush, Copy, Plus, Save, Edit2, Trash2, X } from 'lucide-react';
-import { Respawn, PREDEFINED_MONSTERS } from '../data/respawns';
+import { Brush, Copy, Plus, Save, Edit2, Trash2, X, Upload } from 'lucide-react';
+import { Respawn, PREDEFINED_MONSTERS, fixCategories } from '../data/respawns';
 import { useMapEvents } from 'react-leaflet';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { db } from '../lib/firebase';
 
 import OTMMConverter from './OTMMConverter';
 
@@ -49,6 +51,40 @@ export default function MapEditorPanel({
   const [isAddingNew, setIsAddingNew] = useState(false);
   const [copied, setCopied] = useState(false);
   const [isEditingCategories, setIsEditingCategories] = useState(false);
+  
+  const [dbMapVersion, setDbMapVersion] = useState('');
+  const [isUpdatingVersion, setIsUpdatingVersion] = useState(false);
+
+  useEffect(() => {
+    const fetchVersion = async () => {
+      try {
+        const docRef = doc(db, 'map_config', 'images');
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists() && docSnap.data().version) {
+          setDbMapVersion(docSnap.data().version);
+        } else {
+          setDbMapVersion('2');
+        }
+      } catch (err) {
+        console.error("Error fetching map config:", err);
+      }
+    };
+    fetchVersion();
+  }, []);
+
+  const handleUpdateMapVersion = async () => {
+    if (!dbMapVersion) return;
+    setIsUpdatingVersion(true);
+    try {
+      await setDoc(doc(db, 'map_config', 'images'), { version: dbMapVersion }, { merge: true });
+      alert("Versão do mapa atualizada com sucesso no banco de dados!");
+    } catch (err) {
+      console.error(err);
+      alert("Erro ao atualizar versão do mapa.");
+    } finally {
+      setIsUpdatingVersion(false);
+    }
+  };
 
   const uniqueMonsters = useMemo(() => {
     const map = new Map<string, { name: string; image: string; categories?: string[] }>();
@@ -118,41 +154,48 @@ export default function MapEditorPanel({
     }
   };
 
-  const generateExportCode = () => {
-    const code = `export interface Respawn {
-  id: string;
-  name: string;
-  x: number;
-  y: number;
-  z: number;
-  count: number;
-  image: string;
-  categories?: string[];
-}
-
-export const RESPAWNS: Respawn[] = [\n` + 
-    localRespawns.map((r, i) => `  {
-    id: '${r.name.toLowerCase().replace(/ /g, '-')}-${i + 1}',
-    name: '${r.name}',
-    x: ${r.x},
-    y: ${r.y},
-    z: ${r.z},
-    count: ${r.count},
-    image: '${r.image}',
-    categories: ${JSON.stringify(r.categories || ['Monstros'])}
-  }`).join(',\n') + `\n];\n`;
-    
-    return code;
+  const handleExportJSON = () => {
+    try {
+      const dataStr = JSON.stringify(localRespawns, null, 2);
+      const blob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'respawns.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error('Failed to export JSON: ', err);
+    }
   };
 
-  const handleCopyCode = async () => {
-    try {
-      await navigator.clipboard.writeText(generateExportCode());
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error('Failed to copy code: ', err);
-    }
+  const handleImportJSON = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const result = event.target?.result;
+        if (typeof result === 'string') {
+          const parsed = JSON.parse(result);
+          if (Array.isArray(parsed)) {
+            const fixedParsed = parsed.map((item: any) => ({
+              ...item,
+              categories: fixCategories(item.categories, item.name || '')
+            }));
+            setLocalRespawns(fixedParsed);
+          }
+        }
+      } catch (err) {
+        alert("Erro ao importar JSON. Verifique se o arquivo é válido.");
+        console.error(err);
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = ''; // reset input
   };
 
   // @ts-ignore
@@ -176,7 +219,7 @@ export const RESPAWNS: Respawn[] = [\n` +
   }
 
   return (
-    <div className="absolute top-4 left-4 z-[400] flex flex-col gap-2 w-72 max-h-[90vh]">
+    <div className="absolute top-4 left-4 z-[400] flex flex-col gap-2 w-72 max-h-[calc(100%-2rem)]">
       <div className="bg-black/90 p-4 rounded-lg border border-red-500/50 flex flex-col gap-4 backdrop-blur-sm shadow-[0_0_15px_rgba(255,0,0,0.2)] overflow-y-auto custom-scrollbar">
         <div className="flex items-center justify-between border-b border-red-500/30 pb-2">
           <span className="text-red-400 font-bold text-sm tracking-widest uppercase">Editor de Mapa</span>
@@ -378,29 +421,60 @@ export const RESPAWNS: Respawn[] = [\n` +
           )}
 
           {/* Actions */}
-          <div className="mt-2 pt-3 border-t border-red-500/30">
+          <div className="mt-2 pt-3 border-t border-red-500/30 flex flex-col gap-2">
             <button 
-              onClick={handleCopyCode}
-              className={`w-full flex items-center justify-center gap-2 py-2 rounded text-sm font-bold transition-colors ${copied ? 'bg-green-600 text-white' : 'bg-zinc-800 text-gray-300 hover:bg-zinc-700 border border-zinc-600'}`}
+              onClick={handleExportJSON}
+              className="w-full flex items-center justify-center gap-2 py-2 rounded text-sm font-bold transition-colors bg-zinc-800 text-gray-300 hover:bg-zinc-700 border border-zinc-600"
             >
-              {copied ? (
-                <>
-                  <Save className="w-4 h-4" />
-                  Copiado!
-                </>
-              ) : (
-                <>
-                  <Copy className="w-4 h-4" />
-                  Copiar src/data/respawns.ts
-                </>
-              )}
+              <Save className="w-4 h-4" />
+              Baixar JSON (Backup)
             </button>
-            <p className="text-[10px] text-gray-500 mt-2 text-center">
-              (Apenas em ambiente de desenvolvimento)
+
+            <label className="w-full flex items-center justify-center gap-2 py-2 rounded text-sm font-bold transition-colors bg-zinc-800 text-gray-300 hover:bg-zinc-700 border border-zinc-600 cursor-pointer">
+              <Upload className="w-4 h-4" />
+              Importar JSON
+              <input type="file" accept=".json" className="hidden" onChange={handleImportJSON} />
+            </label>
+            <button 
+              onClick={() => {
+                if(window.confirm('Tem certeza que deseja apagar todos os respawns locais?')) {
+                  setLocalRespawns([]);
+                }
+              }}
+              className="w-full flex items-center justify-center gap-2 py-2 rounded text-sm font-bold transition-colors bg-red-900/50 text-red-300 hover:bg-red-800 border border-red-800 cursor-pointer"
+            >
+              <Trash2 className="w-4 h-4" />
+              Limpar Mapa
+            </button>
+            <p className="text-[10px] text-gray-500 mt-2 text-center leading-tight">
+              Os dados são salvos automaticamente no seu navegador. Use Baixar JSON para não perdê-los!
             </p>
           </div>
           
           <div className="mt-4 pt-4 border-t border-zinc-800">
+             <div className="flex flex-col gap-2 mb-4">
+               <label className="text-xs text-gray-400 font-semibold uppercase">Versão da Imagem do Mapa (Cloudinary v=)</label>
+               <div className="flex gap-2">
+                 <input 
+                   type="text" 
+                   value={dbMapVersion}
+                   onChange={(e) => setDbMapVersion(e.target.value)}
+                   className="flex-1 bg-zinc-800 border border-zinc-700 text-white text-sm rounded px-2 py-1 outline-none focus:border-red-500"
+                   placeholder="Ex: 2, 3, 4"
+                 />
+                 <button 
+                   onClick={handleUpdateMapVersion}
+                   disabled={isUpdatingVersion}
+                   className="bg-red-500 hover:bg-red-600 text-white font-bold px-3 py-1 rounded text-xs transition-colors disabled:opacity-50"
+                 >
+                   Salvar DB
+                 </button>
+               </div>
+               <p className="text-[10px] text-gray-500 leading-tight">
+                 Atualize o número da versão para forçar os usuários a baixarem a imagem mais recente do Cloudinary, ignorando o cache.
+               </p>
+             </div>
+             
              <OTMMConverter />
           </div>
         </div>

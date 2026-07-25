@@ -4,10 +4,12 @@ import L from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 import { ChevronUp, ChevronDown, Layers, Filter, BookOpen } from 'lucide-react';
 import 'leaflet/dist/leaflet.css';
-import { RESPAWNS, Respawn, PREDEFINED_MONSTERS } from '../data/respawns';
+import { RESPAWNS, Respawn, PREDEFINED_MONSTERS, fixCategories } from '../data/respawns';
 import MapEditorPanel, { MapClickHandler } from './MapEditorPanel';
 import BestiaryModal from './BestiaryModal';
 import { BESTIARY_DB } from '../data/bestiaryDb';
+import { doc, onSnapshot } from 'firebase/firestore';
+import { db } from '../lib/firebase';
 
 // Fix for default Leaflet icon paths not resolving in React
 
@@ -124,13 +126,29 @@ interface MapViewerProps {
   initialZoom?: number;
   markers?: { x: number; y: number; title: string }[];
   isModal?: boolean;
+  language?: 'pt' | 'en';
 }
 
-export default function MapViewer({ initialX: propX, initialY: propY, initialZ: propZ, initialZoom: propZoom, markers, isModal }: MapViewerProps) {
+export default function MapViewer({ initialX: propX, initialY: propY, initialZ: propZ, initialZoom: propZoom, markers, isModal, language = 'pt' }: MapViewerProps) {
   const initialParams = useMemo(() => typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : new URLSearchParams(), []);
   const initialFloor = propZ !== undefined ? propZ : parseInt(initialParams.get('floor') || '7', 10);
   const [floor, setFloor] = useState(isNaN(initialFloor) ? 7 : initialFloor);
   const [selectedBestiaryMonster, setSelectedBestiaryMonster] = useState<string | null>(null);
+  const [imageVersion, setImageVersion] = useState<string>('2');
+
+  useEffect(() => {
+    const unsub = onSnapshot(doc(db, 'map_config', 'images'), (docSnapshot) => {
+      if (docSnapshot.exists()) {
+        const data = docSnapshot.data();
+        if (data.version) {
+          setImageVersion(data.version);
+        }
+      }
+    }, (error) => {
+      console.error("Error fetching map_config/images from Firestore:", error);
+    });
+    return () => unsub();
+  }, []);
 
   const currentBounds = useMemo(() => {
     const b = GLOBAL_BOUNDS;
@@ -140,8 +158,8 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
     ] as [[number, number], [number, number]];
   }, []);
 
-  // Adicionando ?v=2 para forçar o navegador a baixar a nova imagem sem usar o cache antigo
-  const mapImageUrl = `https://res.cloudinary.com/dc4nkbnkg/image/upload/floor_${floor}.png?v=2`;
+  // Utilizando o imageVersion que vem do Firestore
+  const mapImageUrl = `https://res.cloudinary.com/dc4nkbnkg/image/upload/floor_${floor}.png?v=${imageVersion}`;
   
   const initialX = propX !== undefined ? propX : parseFloat(initialParams.get('x') || '');
   const initialY = propY !== undefined ? propY : parseFloat(initialParams.get('y') || '');
@@ -156,14 +174,35 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
         (currentBounds[0][1] + currentBounds[1][1]) / 2
     ] as [number, number];
 
-  const [localRespawns, setLocalRespawns] = useState<Respawn[]>(RESPAWNS);
+  const [localRespawns, setLocalRespawns] = useState<Respawn[]>(() => {
+    try {
+      const saved = localStorage.getItem('miracle-wiki-respawns');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          return parsed.map((item: any) => ({
+            ...item,
+            categories: fixCategories(item.categories, item.name || '')
+          }));
+        }
+        return parsed;
+      }
+    } catch (e) {
+      console.error('Failed to parse saved respawns:', e);
+    }
+    return RESPAWNS;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('miracle-wiki-respawns', JSON.stringify(localRespawns));
+  }, [localRespawns]);
   const [brushMode, setBrushMode] = useState(false);
   const [activeMonster, setActiveMonster] = useState<{ name: string; image: string; categories?: string[] }>({ name: '', image: '', categories: ['Monstros'] });
   const [spawnCount, setSpawnCount] = useState(1);
   const [filterType, setFilterType] = useState<string>('all');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  const DEFAULT_CATEGORIES = useMemo(() => ['Monstros', 'Mineração', 'Cooking', 'Chaves', 'Farming', 'WoodCutting', 'Fishing', 'NPC'], []);
+  const DEFAULT_CATEGORIES = useMemo(() => ['Monstros', 'Mineração', 'Cooking', 'Chaves', 'Farming', 'Woodcutting', 'Fishing', 'NPC', 'Pick Holes', 'Interação no Mapa'], []);
   
   const allCategories = useMemo(() => {
     const cats = new Set(DEFAULT_CATEGORIES);
@@ -221,14 +260,14 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
           setSpawnCount={setSpawnCount}
           allCategories={allCategories}
        />
-       <div className="absolute top-4 right-4 z-[400] flex flex-col gap-2">
+       <div className="absolute top-4 right-4 z-[400] flex flex-col gap-2 max-h-[calc(100%-2rem)]">
          {/* Filter Controls */}
-         <div className="bg-black/80 p-2 rounded-lg border border-medieval-gold/30 flex flex-col gap-2 backdrop-blur-sm shadow-[0_0_15px_rgba(0,0,0,0.8)] mb-2 w-32">
+         <div className="bg-black/80 p-2 rounded-lg border border-medieval-gold/30 flex flex-col gap-2 backdrop-blur-sm shadow-[0_0_15px_rgba(0,0,0,0.8)] mb-2 overflow-y-auto custom-scrollbar w-32">
            <div 
              className="flex items-center justify-between cursor-pointer group"
              onClick={() => setIsFilterOpen(!isFilterOpen)}
            >
-             <Filter className="w-4 h-4 text-medieval-gold/70 group-hover:text-medieval-gold transition-colors" title="Filtros" />
+             <Filter className="w-4 h-4 text-medieval-gold/70 group-hover:text-medieval-gold transition-colors" title={language === 'pt' ? "Filtros" : "Filters"} />
              <div className="text-medieval-gold/70 group-hover:text-medieval-gold transition-colors">
                {isFilterOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
              </div>
@@ -245,7 +284,7 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
                    onChange={() => setFilterType('all')}
                    className="accent-medieval-gold w-3 h-3 shrink-0"
                  />
-                 <span className={`truncate ${filterType === 'all' ? 'text-medieval-gold font-bold' : ''}`}>Todos</span>
+                 <span className={`truncate ${filterType === 'all' ? 'text-medieval-gold font-bold' : ''}`}>{language === 'pt' ? 'Todos' : 'All'}</span>
                </label>
                {allCategories.map(cat => (
                  <label key={cat} className="flex items-center gap-2 text-zinc-300 hover:text-white cursor-pointer select-none">
@@ -267,7 +306,7 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
          {/* Floor Controls */}
          <div className="bg-black/80 p-2 rounded-lg border border-medieval-gold/30 flex flex-col items-center gap-2 backdrop-blur-sm shadow-[0_0_15px_rgba(0,0,0,0.8)] w-24">
            <div className="flex flex-col items-center">
-             <span className="text-medieval-gold text-[10px] font-bold uppercase tracking-widest">Andar {floor}</span>
+             <span className="text-medieval-gold text-[10px] font-bold uppercase tracking-widest">{language === 'pt' ? 'Andar' : 'Floor'} {floor}</span>
            </div>
            
            <div className="flex flex-col gap-1 w-full">
@@ -275,7 +314,7 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
                onClick={() => setFloor(f => Math.max(0, f - 1))}
                disabled={floor <= 0}
                className="p-1 text-medieval-gold/80 hover:text-white disabled:opacity-30 bg-medieval-gold/10 rounded border border-medieval-gold/20 hover:bg-medieval-gold/30 transition-all flex justify-center"
-               title="Sobe um andar (Z menor)"
+               title={language === 'pt' ? "Sobe um andar (Z menor)" : "Up one floor (lower Z)"}
              >
                <ChevronUp className="w-4 h-4" />
              </button>
@@ -283,13 +322,13 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
                onClick={() => setFloor(f => Math.min(16, f + 1))}
                disabled={floor >= 16}
                className="p-1 text-medieval-gold/80 hover:text-white disabled:opacity-30 bg-medieval-gold/10 rounded border border-medieval-gold/20 hover:bg-medieval-gold/30 transition-all flex justify-center"
-               title="Desce um andar (Z maior)"
+               title={language === 'pt' ? "Desce um andar (Z maior)" : "Down one floor (higher Z)"}
              >
                <ChevronDown className="w-4 h-4" />
              </button>
            </div>
            
-           {floor === 7 && <span className="text-[8px] text-medieval-gold/50 font-mono">(Superfície)</span>}
+           {floor === 7 && <span className="text-[8px] text-medieval-gold/50 font-mono">({language === 'pt' ? 'Superfície' : 'Surface'})</span>}
          </div>
        </div>
 

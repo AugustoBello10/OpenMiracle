@@ -1,0 +1,1199 @@
+[
+  {
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Ancient Frozen Dragon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ancient_Frozen_Dragon.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Ancient Scarab",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ancient_Scarab.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Armored Fire Devil",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Armored_Fire_Devil.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Assassin",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Assassin.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Azra'Gorath",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Azra'Gorath.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Badger",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Badger.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Bandit",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Bandit.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Banshee",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Banshee.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Barbarian",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Barbarian.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Barbarian Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Barbarian_Berserker.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Barbarian Brute",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Barbarian_Brute.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Barbarian Dothraki",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Barbarian_Dothraki.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Barbarian Guard",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Barbarian_Guard.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Bat",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Bat.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Bear",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Bear.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Behemoth",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Behemoth.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Beholder",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Beholder.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Black Crystal",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Black_Crystal.gif",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Black Knight",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Black_Knight.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Black Sheep",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Black_Sheep.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Blue Djinn",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Blue_Djinn.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Bonebeast",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Bonebeast.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Bug",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Bug.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Cave Rat",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Cave_Rat.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Centipede",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Centipede.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Cobra",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Cobra.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Corrupted Ice Spider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Corrupted_Ice_Spider.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Crypt Shambler",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Crypt_Shambler.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Cyclops",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Cyclops.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Cyclops Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Cyclops_Warrior.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Dark Frozen Monk",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dark_Frozen_Monk.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Dark Magician",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dark_Magician.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Dark Monk",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dark_Monk.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Dark Wraith",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dark_Wraith.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Death Beholder",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Death_Beholder.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Deathslicer",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Deathslicer.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Deer",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Deer.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Demon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Demon.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Demon Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Demon_Skeleton.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Demongoblin",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Demongoblin.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Dog",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dog.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Dragon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dragon.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Dragon Lord",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dragon_Lord.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Dwarf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dwarf.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Dwarf Cavebomb",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dwarf_Cavebomb.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Dwarf Geomancer",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dwarf_Geomancer.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Dwarf Guard",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dwarf_Guard.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Dwarf Lord",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dwarf_Lord.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Dwarf Miner",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dwarf_Miner.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Dwarf Reaver",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dwarf_Reaver.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Dwarf Smith",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dwarf_Smith.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Dwarf Soldier",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dwarf_Soldier.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Dwarf Tyrant",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dwarf_Tyrant.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Efreet",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Efreet.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Elder Beholder",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Elder_Beholder.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Elf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Elf.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Elf Arcanist",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Elf_Arcanist.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Elf Scout",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Elf_Scout.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Enslaved Dwarf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Enslaved_Dwarf.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Fire Devil",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Fire_Devil.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Fire Elemental",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Fire_Elemental.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Flamethrower",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Flamethrower.gif",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Frost Bug",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Frost_Bug.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Frost Elf Assassin",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Frost_Elf_Assassin.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Frost Elf Sorcerer",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Frost_Elf_Sorcerer.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Frost Elf Strider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Frost_Elf_Strider.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Frost Elf Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Frost_Elf_Warrior.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Frost Spider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Frost_Spider.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Frost Troll",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Frost_Troll.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Frost Walk er Reaper",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Frost_Walk_er_Reaper.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Frost Walker Savage",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Frost_Walker_Savage.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Frost Walker Shaman",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Frost_Walker_Shaman.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Frost Walk er Wraith",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Frost_Walk_er_Wraith.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Frozen Behemoth",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Frozen_Behemoth.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Frozen Overlord",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Frozen_Overlord.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Gargoyle",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Gargoyle.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Gazer",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Gazer.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Ghost",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghost.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Ghoul",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghoul.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Giant Crystal Spider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Giant_Crystal_Spider.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Giant Spider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Giant_Spider.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Glacial Dragon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Glacial_Dragon.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Goblin",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Goblin.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Green Djinn",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Green_Djinn.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Hero",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Hero.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Hunter",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Hunter.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Hyaena",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Hyaena.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Hydra",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Hydra.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Ice Colossus",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Colossus.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Ice Demon Spider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Demon_Spider.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Ice Elemental",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Elemental.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Ice Golem",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Golem.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Ice Witch",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Witch.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Infernalist",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Infernalist.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Kraglin",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Kraglin.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Kraglin Archer",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Kraglin_Archer.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Kraglin Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Kraglin_Berserker.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Kraglin Shaman",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Kraglin_Shaman.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Larva",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Larva.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Lava Golem",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Lava_Golem.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Lich",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Lich.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Lion",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Lion.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Lost Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Lost_Berserker.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Magicthrower",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Magicthrower.gif",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Marid",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Marid.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Mimic",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Mimic.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Minotaur",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Minotaur.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Minotaur Archer",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Minotaur_Archer.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Minotaur Champion",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Minotaur_Champion.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Minotaur Executioner",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Minotaur_Executioner.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Minotaur Guard",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Minotaur_Guard.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Minotaur Mage",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Minotaur_Mage.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Monk",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Monk.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Morgrothuar",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Morgrothuar.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Mummy",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Mummy.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Necromancer",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Necromancer.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Orc",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Orc Beastmaster",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Beastmaster.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Orc Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Berserker.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Orc Dragon Rider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Dragon_Rider.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Orc Leader",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Leader.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Orc Pyromancer",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Pyromancer.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Orc Rider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Rider.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Orc Shaman",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Shaman.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Orc Spearman",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Spearman.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Orc Warlord",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warlord.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Pig",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Pig.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Plaguethrower",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Plaguethrower.gif",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Poison Spider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Poison_Spider.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Polar Bear",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Polar_Bear.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Priestess",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Priestess.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Rabbit",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Rabbit.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Rat",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Rat.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Rotworm.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Scarab",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Scarab.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Scorpion",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Scorpion.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Sealed Golem",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Sealed_Golem.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Sheep",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Sheep.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Shredderthrower",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Shredderthrower.gif",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Skeleton.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Skeleton Archmage",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Skeleton_Archmage.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Skeleton Guard",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Skeleton_Guard.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Skunk",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Skunk.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Slime",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Slime.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Smuggler",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Smuggler.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Snake",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Snake.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Snow Hunter",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Snow_Hunter.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Spider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Spider.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Spiked Hero",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Spiked_Hero.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Stalker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Stalker.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Stone Golem",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Stone_Golem.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Swamp Troll",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Swamp_Troll.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Tarantula",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Tarantula.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Troll",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Troll.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Valkyrie",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Valkyrie.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Valkyrie Warden",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Valkyrie_Warden.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Vampire",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Vampire.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "War Wolf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/War_Wolf.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Warlock",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Warlock.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Wasp",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Wasp.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "White Knight",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/White_Knight.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "White Lion",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/White_Lion.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Wild Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Wild_Warrior.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Winter Dragon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Winter_Dragon.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Winter War Wolf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Winter_War_Wolf.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Winter Wolf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Winter_Wolf.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Witch",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Witch.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Wolf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Wolf.png",
+    "categories": [
+      "Monstros"
+    ]
+  },
+  {
+    "name": "Yeti",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Yeti.png",
+    "categories": [
+      "Monstros"
+    ]
+  }
+]

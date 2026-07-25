@@ -12,7 +12,7 @@ import {
   TrendingUp, AlertTriangle, Book, BookOpen, Sparkles, Briefcase, 
   ChevronRight, ChevronUp, ChevronDown, Menu, X, Map, MonitorPlay, Fish, FlaskConical, Utensils, Sprout, Scissors, Users,
   History, Plus, Minus, Check, RefreshCw, Clock, Calendar, Download, Shield, Circle, Heart, Target, Axe, Coins, Eye,
-  Search, Skull
+  Search, Skull, Settings
 } from 'lucide-react';
 import { calculateTrainingTime, Vocation, SkillType, TRAINING_WEAPONS_DATA, TrainingWeapon, calculateBlessCosts } from './lib/formulas';
 import { Language, translations } from './lib/translations';
@@ -659,12 +659,13 @@ function BlessCalculator({ t }: { t: any }) {
           <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest flex items-center gap-2 mb-6">
             <Info className="w-5 h-5" /> {t('blessDetails')}
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-xs sm:text-sm text-medieval-text/70 leading-relaxed font-mono">
+          <div className="grid grid-cols-1 gap-x-8 gap-y-4 text-xs sm:text-sm text-medieval-text/70 leading-relaxed font-mono">
+            <p>• <span className="text-red-400 font-bold">Penalidade Padrão:</span> A penalidade padrão ao morrer no Miracle é de <span className="text-white font-bold">10%</span> na experiência e skills/magic level.</p>
+            <p>• <span className="text-medieval-gold">Redução de XP/Skill:</span> Cada bless protege <span className="text-green-400 font-bold">0.8%</span> e a Promotion protege <span className="text-green-400 font-bold">3%</span>.</p>
             <p>• <span className="text-medieval-gold">{t('standardBless')}:</span> 10k fixo até o lvl 100. Após isso, +100gp por level cada.</p>
-            <p>• <span className="text-medieval-gold">{t('tomeBless')}:</span> Custo fixo de 25k no NPC Eremo.</p>
-            <p>• <span className="text-medieval-gold">{t('arcaneBless')}:</span> Protege seus atributos. Custo: 200gp x Level.</p>
-            <p>• <span className="text-medieval-gold">Amulet of Loss:</span> Protege seus itens. Custo fixo de 50k.</p>
-            <p>• <span className="text-medieval-gold">Redução de XP:</span> Cada uma das 5 blesses padrão reduz a perda em 0.8%.</p>
+            <p>• <span className="text-medieval-gold">{t('tomeBless')}:</span> Custo fixo de 25k no NPC Eremo. (Também protege XP/Skills)</p>
+            <p>• <span className="text-blue-400 font-bold">{t('arcaneBless')}:</span> É a única bless que <span className="text-red-400">não protege XP/Skills</span>. Ela protege seus itens de perderem <span className="text-blue-300 font-bold">atributos</span> e tem duração de 10 dias. <i>Atenção: A cada atributo adicional que você possua equipado, o tempo total de 10 dias é reduzido em 10%.</i> Custo: 200gp x Level.</p>
+            <p>• <span className="text-medieval-gold">Amulet of Loss:</span> Protege a queda da mochila (backpack) e equipamentos base. Custo fixo de 50k.</p>
           </div>
         </div>
 
@@ -916,7 +917,7 @@ export default function App() {
   const [calcSubTab, setCalcSubTab] = useState<'skills' | 'bless' | 'atributos' | 'professions' | 'runemaking'>(getInitialCalcSubTab);
   const [profSubTab, setProfSubTab] = useState<'crafting' | 'alchemy' | 'farming' | 'mining'>(getInitialProfSubTab);
   const [wikiSubTab, setWikiSubTab] = useState<'server' | 'project'>(getInitialWikiSubTab);
-  const [wikiMainTab, setWikiMainTab] = useState<'home' | 'updates' | 'library' | 'items' | 'profissoes' | 'cyclopedia'>(getInitialWikiMainTab);
+  const [wikiMainTab, setWikiMainTab] = useState<'home' | 'updates' | 'library' | 'items' | 'profissoes' | 'cyclopedia' | 'custom_systems'>(getInitialWikiMainTab);
   
   const navigate = useNavigate();
   const location = useLocation();
@@ -959,6 +960,7 @@ export default function App() {
       if (path.includes('/updates')) setWikiMainTab('updates');
       else if (path.includes('/biblioteca')) setWikiMainTab('library');
       else if (path.includes('/itens')) setWikiMainTab('items');
+      else if (path.includes('/sistemas')) setWikiMainTab('custom_systems');
       else setWikiMainTab('home');
     } else if (path.startsWith('/loot')) {
       setActiveTab('loot');
@@ -1000,6 +1002,7 @@ export default function App() {
       else if (wikiMainTab === 'library') wikiPath += '/biblioteca';
       else if (wikiMainTab === 'items') wikiPath += '/itens';
       else if (wikiMainTab === 'cyclopedia') wikiPath += '/cyclopedia';
+      else if (wikiMainTab === 'custom_systems') wikiPath += '/sistemas';
       
       newPath = wikiPath;
     } else if (activeTab === 'loot') newPath = '/loot';
@@ -1592,7 +1595,7 @@ export default function App() {
   }, [attrCategory, attrItemName]);
 
   const tabs = [
-    { id: 'home', label: t('home'), icon: <Book className="w-4 h-4" /> },
+    { id: 'home', label: t('home'), icon: null },
     { id: 'buildmaker', label: 'Build Maker', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849031/buildmaker.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Build Maker" /> },
     { id: 'calculadoras', label: t('calculators'), icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849027/calculadoras.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Calculadoras" /> },
     { id: 'profissoes', label: language === 'pt' ? 'Profissões' : 'Professions', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/guiadeprofissoes.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Profissoes" /> },
@@ -1617,7 +1620,7 @@ export default function App() {
       { id: 'clubs', label: language === 'pt' ? 'Clavas' : 'Clubs', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/clavas.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Clubs" /> },
       { id: 'axes', label: language === 'pt' ? 'Machados' : 'Axes', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849032/machados.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Axes" /> },
       { id: 'distance', label: language === 'pt' ? 'Distância' : 'Distance', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849030/distance.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Distance" /> },
-      { id: 'ammo', label: language === 'pt' ? 'Munição' : 'Ammo', icon: <Zap className="w-5 h-5 text-medieval-gold drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" /> },
+      { id: 'ammo', label: language === 'pt' ? 'Munição' : 'Ammo', icon: null },
       { id: 'rings', label: language === 'pt' ? 'Anéis' : 'Rings', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849027/aneis_magicos.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Rings" /> },
       { id: 'amulets', label: language === 'pt' ? 'Amuletos' : 'Amulets', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849026/amuletos.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Amulets" /> },
       { id: 'relics', label: language === 'pt' ? 'Relíquias' : 'Relics', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849034/reliquias.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Relics" /> },
@@ -1716,7 +1719,7 @@ export default function App() {
                 className="w-full flex items-center justify-between py-2.5 px-3 rounded-lg bg-gradient-to-b from-black/80 to-[#0a0a0a] border border-medieval-gold/20 shadow-[0_4px_15px_rgba(0,0,0,0.5)] hover:border-medieval-gold/50 hover:shadow-[0_4px_20px_rgba(197,160,89,0.15)] transition-all text-xs font-black text-medieval-gold uppercase tracking-widest relative overflow-hidden group"
               >
                 <span className="flex items-center gap-2.5 relative z-10">
-                  <BookOpen className="w-5 h-5 text-medieval-gold drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" />
+                  
                   Cyclopedia
                 </span>
                 <ChevronRight className={`w-3.5 h-3.5 text-medieval-gold/45 transition-transform duration-300 ${sidebarOpenGroups.cyclopedia ? 'rotate-90 text-medieval-gold' : ''}`} />
@@ -1737,7 +1740,7 @@ export default function App() {
                       }}
                       className={activeTab === 'wiki' && wikiMainTab === 'cyclopedia' ? activeSubmenuClass : inactiveSubmenuClass}
                     >
-                      <BookOpen className="w-4 h-4" />
+                      
                       {language === 'pt' ? 'Bestiário' : 'Bestiary'}
                     </button>
                   </motion.div>
@@ -1773,7 +1776,7 @@ export default function App() {
                       }}
                       className={(activeTab === 'wiki' && wikiMainTab === 'library' && !selectedRegion) ? activeSubmenuClass : inactiveSubmenuClass}
                     >
-                      <Book className="w-5 h-5 text-medieval-gold drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" />
+                      
                       {language === 'pt' ? '[Tudo do Mapa]' : '[All Regions]'}
                     </button>
                     {regions.map(r => {
@@ -1789,7 +1792,7 @@ export default function App() {
                           }}
                           className={isSelected ? activeSubmenuClass : inactiveSubmenuClass}
                         >
-                          <Book className="w-5 h-5 text-medieval-gold drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" />
+                          
                           {r.label}
                         </button>
                       );
@@ -2593,7 +2596,7 @@ export default function App() {
                           <div className="medieval-card p-6 space-y-4 h-full flex flex-col justify-between">
                             <div>
                               <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest flex items-center gap-2 mb-4">
-                                <Sparkles className="w-4 h-4" /> Onde adquirir Orbs?
+                                Onde adquirir Orbs?
                               </h3>
                               <p className="text-xs text-medieval-text/70 leading-relaxed font-mono">
                                 Normal Orbs e Grand Arcane Orbs podem ser obtidos derrotando criaturas <strong className="text-medieval-gold">Bosses</strong>, completando <strong className="text-medieval-gold">Tasks</strong> ou através do sistema de <strong className="text-medieval-gold">Alchemy</strong> craftando Mystic Runes.
@@ -2683,8 +2686,8 @@ export default function App() {
                   </div>
                 </header>
 
-                <div className="h-[70vh] w-full">
-                  <MapViewer />
+                <div className="h-[85vh] w-full">
+                  <MapViewer language={language} />
                 </div>
               </motion.div>
             )}
@@ -2760,7 +2763,7 @@ export default function App() {
                   >
                     <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <div className="flex items-center gap-2 relative z-10">
-                      <Sparkles className={`w-4 h-4 ${wikiMainTab === 'home' ? 'animate-pulse' : ''}`} /> {t('home')}
+                      {t('home')}
                     </div>
                   </button>
                   <button
@@ -2773,7 +2776,7 @@ export default function App() {
                   >
                     <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <div className="flex items-center gap-2 relative z-10">
-                      <Sword className={`w-4 h-4 ${wikiMainTab === 'items' ? 'animate-pulse' : ''}`} /> <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783850372/wiki.gif" className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Itens" /> {t('items')}
+                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783850372/wiki.gif" className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Itens" /> {t('items')}
                     </div>
                   </button>
                   <button
@@ -2795,7 +2798,7 @@ export default function App() {
                   >
                     <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <div className="flex items-center gap-2 relative z-10">
-                      <Book className={`w-4 h-4 ${wikiMainTab === 'library' ? 'animate-pulse' : ''}`} /> <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783850372/wiki.gif" className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Library" /> {t('library')}
+                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783850372/wiki.gif" className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Library" /> {t('library')}
                     </div>
                   </button>
                   <button
@@ -2808,7 +2811,7 @@ export default function App() {
                   >
                     <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <div className="flex items-center gap-2 relative z-10">
-                      <History className={`w-4 h-4 ${wikiMainTab === 'updates' ? 'animate-pulse' : ''}`} /> {t('updates')}
+                      {t('updates')}
                     </div>
                   </button>
                 </div>
@@ -2845,7 +2848,7 @@ export default function App() {
                               id: 'mapa', 
                               title: language === 'pt' ? 'Mapa Interativo' : 'Interactive Map', 
                               desc: language === 'pt' ? 'Explore o mapa mundi, encontre NPCs, respawns de monstros e rotas secretas.' : 'Explore the world map, find NPCs, monster respawns, and secret routes.', 
-                              icon: <Map className="w-6 h-6" />,
+                              icon: null,
                               meta: language === 'pt' ? 'Abrir Mapa' : 'Open Map'
                             },
                             { 
@@ -2859,29 +2862,36 @@ export default function App() {
                               id: 'items', 
                               title: t('items'), 
                               desc: language === 'pt' ? 'Database completo de equipamentos, armas, armaduras e atributos adicionais de Miracle 7.4.' : 'Complete database of weapons, armor, shields, and additional attributes of Miracle 7.4.', 
-                              icon: <Sword className="w-6 h-6" />,
+                              icon: null,
                               meta: language === 'pt' ? 'Explorar Equipamentos' : 'Explore Equipment'
                             },
                             { 
                               id: 'library', 
                               title: t('library'), 
                               desc: language === 'pt' ? 'Livros históricos e diários lendários espalhados pelas misteriosas regiões do mapa.' : 'Historical documentation and ancient diaries found across the regions.', 
-                              icon: <Book className="w-6 h-6" />,
+                              icon: null,
                               meta: language === 'pt' ? 'Abrir Biblioteca' : 'Open Library'
                             },
                             { 
                               id: 'updates', 
                               title: t('updates'), 
                               desc: language === 'pt' ? 'Histórico completo de patches de servidores, atualizações e balanceamento de Miracle.' : 'Full server patch history, balancing logs, and development progress.', 
-                              icon: <History className="w-6 h-6" />,
+                              icon: null,
                               meta: language === 'pt' ? 'Notas de Patches' : 'Patch Notes'
                             },
                             { 
                               id: 'cyclopedia', 
                               title: language === 'pt' ? 'Cyclopedia' : 'Cyclopedia', 
                               desc: language === 'pt' ? 'Catálogo de todas as criaturas do mundo de Miracle. Explore seus atributos, fraquezas e recompensas.' : 'Catalog of all creatures in the world of Miracle. Explore their attributes, weaknesses, and rewards.', 
-                              icon: <BookOpen className="w-6 h-6" />,
+                              icon: null,
                               meta: language === 'pt' ? 'Abrir Cyclopedia' : 'Open Cyclopedia'
+                            },
+                            {
+                               id: 'custom_systems',
+                               title: language === 'pt' ? 'Sistemas Custom' : 'Custom Systems',
+                               desc: language === 'pt' ? 'Conheça todos os sistemas customizados e exclusivos do Miracle.' : 'Discover all customized and exclusive systems of Miracle.',
+                               icon: null,
+                               meta: language === 'pt' ? 'Explorar Sistemas' : 'Explore Systems'
                             },
                           ].map((card) => (
                             <button
@@ -3020,7 +3030,7 @@ export default function App() {
                               }}
                               className="text-[10px] uppercase font-black tracking-widest text-medieval-gold/70 hover:text-medieval-gold flex items-center gap-1.5 w-fit hover:underline"
                             >
-                              <Zap className="w-3.5 h-3.5 text-medieval-gold" />
+                              
                               {language === 'pt' ? 'Abrir Calculadora de Bless' : 'Open Bless Calculator'}
                             </button>
                           </div>
@@ -3059,7 +3069,7 @@ export default function App() {
                           { id: 'clubs', labelPt: 'Maças', labelEn: 'Clubs', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849028/clavas.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Clubs" /> },
                           { id: 'axes', labelPt: 'Machados', labelEn: 'Axes', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849032/machados.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Axes" /> },
                           { id: 'distance', labelPt: 'Distância', labelEn: 'Distance', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849030/distance.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Distance" /> },
-                          { id: 'ammo', label: language === 'pt' ? 'Munições' : 'Ammo', icon: <Zap className="w-4 h-4" /> },
+                          { id: 'ammo', label: language === 'pt' ? 'Munições' : 'Ammo', icon: null },
                           { id: 'rings', labelPt: 'Anéis', labelEn: 'Magic Rings', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849027/aneis_magicos.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Rings" /> },
                           { id: 'amulets', labelPt: 'Amuletos', labelEn: 'Amulets', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849026/amuletos.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Amulets" /> },
                           { id: 'relics', labelPt: 'Relíquias', labelEn: 'Holy Relics', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849034/reliquias.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Relics" /> }
@@ -3921,7 +3931,7 @@ export default function App() {
                       <div className="lg:col-span-4 space-y-4">
                         <div className="medieval-card p-4">
                           <h3 className="text-medieval-gold font-black uppercase text-xs tracking-widest mb-4 flex items-center gap-2">
-                            <History className="w-4 h-4" /> Histórico de Versões
+                            Histórico de Versões
                           </h3>
                           <div className="space-y-2">
                             {(wikiSubTab === 'server' ? SERVER_PATCH_NOTES : PROJECT_PATCH_NOTES).map((patch) => (
@@ -4031,7 +4041,7 @@ export default function App() {
                                 {patch.changes.fixed?.[language] && patch.changes.fixed[language].length > 0 && (
                                   <div className="space-y-3">
                                     <h4 className="text-blue-400 font-black text-xs uppercase tracking-widest flex items-center gap-2">
-                                      <Zap className="w-4 h-4" /> {t('fixed')}
+                                       {t('fixed')}
                                     </h4>
                                     <ul className="space-y-2">
                                       {patch.changes.fixed[language].map((item, i) => (
@@ -4077,6 +4087,46 @@ export default function App() {
                     className="w-full"
                   >
                     <CyclopediaView />
+                  </motion.div>
+                )}
+
+                {wikiMainTab === 'custom_systems' && (
+                  <motion.div
+                    key="wiki-custom-systems"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    className="space-y-6"
+                  >
+                    <header className="text-center relative py-6">
+                      <div className="absolute inset-0 bg-gradient-to-b from-medieval-gold/5 via-transparent to-transparent blur-3xl rounded-full"></div>
+                      <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-3 relative drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] flex items-center justify-center gap-3">
+                        {language === 'pt' ? 'Sistemas Custom' : 'Custom Systems'}
+                      </h1>
+                      <p className="text-medieval-gold/70 font-mono text-xs max-w-2xl mx-auto italic tracking-wide">
+                        {language === 'pt' ? 'Guia completo de todas as mecânicas exclusivas do servidor Miracle 7.4.' : 'Complete guide of all exclusive mechanics in Miracle 7.4 server.'}
+                      </p>
+                      <div className="w-24 h-px bg-gradient-to-r from-transparent via-medieval-gold/40 to-transparent mx-auto mt-6"></div>
+                    </header>
+                    
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {[
+                        { id: 'relic_box', name: 'Relic Box' },
+                        { id: 'reliquias', name: 'Relíquias' },
+                        { id: 'atributos', name: 'Atributos' },
+                        { id: 'armas_treino', name: 'Armas de Treino' },
+                        { id: 'bed_making', name: 'Bed Making Runes' },
+                        { id: 'houses_lands', name: 'Houses & Lands' },
+                        { id: 'spawn_demonic', name: 'Spawn & Demonic Essences' },
+                        { id: 'shop_idle', name: 'Shop Idle' },
+                        { id: 'cam_system', name: 'Cam System' },
+                      ].map((sys) => (
+                        <div key={sys.id} className="medieval-card p-6 text-center group border border-white/5 relative overflow-hidden flex flex-col justify-center min-h-[140px]">
+                          <h3 className="text-lg font-black text-medieval-gold uppercase mb-2">{sys.name}</h3>
+                          <p className="text-xs text-medieval-text/50 uppercase tracking-widest">{language === 'pt' ? 'Em construção' : 'Under construction'}</p>
+                        </div>
+                      ))}
+                    </div>
                   </motion.div>
                 )}
 
@@ -4228,7 +4278,7 @@ export default function App() {
 
                                   <div className="medieval-card p-6 space-y-4">
                                     <h4 className="text-medieval-gold font-black text-xs uppercase tracking-widest flex items-center gap-2">
-                                      <Book className="w-4 h-4" /> {t('transcription')}
+                                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784748006/logowiki.png" className="w-5 h-5 object-contain opacity-70" alt="Inicio" /> {t('transcription')}
                                     </h4>
                                     <div className="relative p-6 sm:p-10 bg-[#f4e4bc] text-[#2c1810] rounded shadow-inner min-h-[400px] font-serif leading-relaxed italic text-lg overflow-hidden">
                                       {/* Parchment texture effect */}
@@ -4243,7 +4293,7 @@ export default function App() {
                             ))
                           ) : (
                             <div className="h-full flex flex-col items-center justify-center text-medieval-gold/20 space-y-4 py-20">
-                              <Book className="w-16 h-16 opacity-10" />
+                              
                               <p className="uppercase tracking-[0.3em] text-xs">Selecione um documento no tambor acima</p>
                             </div>
                           )}
