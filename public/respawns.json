@@ -2616,18 +2616,6 @@
     ]
   },
   {
-    "id": "lava-hole-219",
-    "name": "Lava Hole",
-    "x": 32260,
-    "y": 32493,
-    "z": 10,
-    "count": 1,
-    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737549/lava_hole.gif",
-    "categories": [
-      "Mineração"
-    ]
-  },
-  {
     "id": "lava-hole-220",
     "name": "Lava Hole",
     "x": 32260,
@@ -3952,18 +3940,6 @@
     "name": "Lava Hole",
     "x": 32384,
     "y": 32453,
-    "z": 6,
-    "count": 1,
-    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737549/lava_hole.gif",
-    "categories": [
-      "Mineração"
-    ]
-  },
-  {
-    "id": "lava-hole-331",
-    "name": "Lava Hole",
-    "x": 32395,
-    "y": 32448,
     "z": 6,
     "count": 1,
     "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737549/lava_hole.gif",
@@ -5710,5 +5686,6903 @@
     "categories": [
       "Mineração"
     ]
+  },
+  {
+    "id": "rotworm-1784978550768",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32324,
+    "y": 31766,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784978579645",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32328,
+    "y": 31778,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784978583234",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32346,
+    "y": 31797,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784978584411",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32339,
+    "y": 31801,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784978627323",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32379,
+    "y": 31807,
+    "z": 10
+  },
+  {
+    "id": "rotworm-1784978636006",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32355,
+    "y": 31806,
+    "z": 10
+  },
+  {
+    "id": "rotworm-1784978659431",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32352,
+    "y": 31795,
+    "z": 10
+  },
+  {
+    "id": "rotworm-1784978738084",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32302,
+    "y": 31780,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784978775127",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32326,
+    "y": 31795,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784978785853",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32322,
+    "y": 31809,
+    "z": 9
+  },
+  {
+    "id": "amazon-1784979953960",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32314,
+    "y": 31649,
+    "z": 7
+  },
+  {
+    "id": "amazon-1784979959616",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32330,
+    "y": 31641,
+    "z": 7
+  },
+  {
+    "id": "amazon-1784979970447",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32337,
+    "y": 31642,
+    "z": 7
+  },
+  {
+    "id": "amazon-1784979983182",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32347,
+    "y": 31652,
+    "z": 7
+  },
+  {
+    "id": "amazon-1784979992035",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32355,
+    "y": 31644,
+    "z": 7
+  },
+  {
+    "id": "amazon-1784980000021",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32347,
+    "y": 31608,
+    "z": 7
+  },
+  {
+    "id": "amazon-1784985696584",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32329,
+    "y": 31640,
+    "z": 6
+  },
+  {
+    "id": "amazon-1784985710782",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32314,
+    "y": 31649,
+    "z": 6
+  },
+  {
+    "id": "amazon-1784985713094",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32354,
+    "y": 31644,
+    "z": 6
+  },
+  {
+    "id": "amazon-1784985715967",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32347,
+    "y": 31608,
+    "z": 6
+  },
+  {
+    "id": "amazon-1784985840137",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32347,
+    "y": 31607,
+    "z": 5
+  },
+  {
+    "id": "amazon-1784985847271",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32356,
+    "y": 31645,
+    "z": 5
+  },
+  {
+    "id": "amazon-1784985854640",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32331,
+    "y": 31640,
+    "z": 5
+  },
+  {
+    "id": "valkyrie-1784985870085",
+    "name": "Valkyrie",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Valkyrie.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32314,
+    "y": 31649,
+    "z": 5
+  },
+  {
+    "id": "valkyrie-1784985876257",
+    "name": "Valkyrie",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Valkyrie.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32329,
+    "y": 31641,
+    "z": 5
+  },
+  {
+    "id": "valkyrie-1784985882428",
+    "name": "Valkyrie",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Valkyrie.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32353,
+    "y": 31644,
+    "z": 5
+  },
+  {
+    "id": "valkyrie-1784985900582",
+    "name": "Valkyrie",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Valkyrie.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32346,
+    "y": 31607,
+    "z": 4
+  },
+  {
+    "id": "valkyrie-1784985910904",
+    "name": "Valkyrie",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Valkyrie.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32352,
+    "y": 31643,
+    "z": 4
+  },
+  {
+    "id": "valkyrie-1784985917668",
+    "name": "Valkyrie",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Valkyrie.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32329,
+    "y": 31639,
+    "z": 4
+  },
+  {
+    "id": "valkyrie-1784985925751",
+    "name": "Valkyrie",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Valkyrie.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32317,
+    "y": 31651,
+    "z": 4
+  },
+  {
+    "id": "amazon-1784985936410",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32313,
+    "y": 31649,
+    "z": 4
+  },
+  {
+    "id": "amazon-1784985939995",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32355,
+    "y": 31645,
+    "z": 4
+  },
+  {
+    "id": "amazon-1784986010249",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32333,
+    "y": 31641,
+    "z": 3
+  },
+  {
+    "id": "amazon-1784986019867",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32349,
+    "y": 31609,
+    "z": 3
+  },
+  {
+    "id": "valkyrie-1784986031703",
+    "name": "Valkyrie",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Valkyrie.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32345,
+    "y": 31609,
+    "z": 3
+  },
+  {
+    "id": "valkyrie-1784986038444",
+    "name": "Valkyrie",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Valkyrie.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32354,
+    "y": 31644,
+    "z": 3
+  },
+  {
+    "id": "valkyrie-1784986044788",
+    "name": "Valkyrie",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Valkyrie.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32329,
+    "y": 31640,
+    "z": 3
+  },
+  {
+    "id": "witch-1784986057786",
+    "name": "Witch",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Witch.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32346,
+    "y": 31604,
+    "z": 3
+  },
+  {
+    "id": "witch-1784986242026",
+    "name": "Witch",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Witch.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32354,
+    "y": 31646,
+    "z": 2
+  },
+  {
+    "id": "amazon-1784986250118",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32356,
+    "y": 31643,
+    "z": 2
+  },
+  {
+    "id": "valkyrie-1784986256642",
+    "name": "Valkyrie",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Valkyrie.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32353,
+    "y": 31642,
+    "z": 2
+  },
+  {
+    "id": "rotworm-1784986386167",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32553,
+    "y": 31681,
+    "z": 8
+  },
+  {
+    "id": "skeleton-1784986419700",
+    "name": "Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Skeleton.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32544,
+    "y": 31697,
+    "z": 8
+  },
+  {
+    "id": "skeleton-1784986421716",
+    "name": "Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Skeleton.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32556,
+    "y": 31694,
+    "z": 8
+  },
+  {
+    "id": "skeleton-1784986430097",
+    "name": "Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Skeleton.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 4,
+    "x": 32567,
+    "y": 31690,
+    "z": 8
+  },
+  {
+    "id": "skeleton-1784986470216",
+    "name": "Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Skeleton.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32567,
+    "y": 31704,
+    "z": 9
+  },
+  {
+    "id": "ghoul-1784986480594",
+    "name": "Ghoul",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghoul.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32573,
+    "y": 31711,
+    "z": 9
+  },
+  {
+    "id": "ghoul-1784986483813",
+    "name": "Ghoul",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghoul.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32562,
+    "y": 31709,
+    "z": 9
+  },
+  {
+    "id": "ghoul-1784986488174",
+    "name": "Ghoul",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghoul.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32564,
+    "y": 31706,
+    "z": 8
+  },
+  {
+    "id": "mossy-stone-1784986530229",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32542,
+    "y": 31711,
+    "z": 8
+  },
+  {
+    "id": "yellow-maple-1784987143339",
+    "name": "Yellow Maple",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784987109/Yellow_maple.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32552,
+    "y": 31710,
+    "z": 8
+  },
+  {
+    "id": "red-maple-1784987164972",
+    "name": "Red Maple",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784987110/red_maple.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32549,
+    "y": 31715,
+    "z": 8
+  },
+  {
+    "id": "rotworm-1784987352784",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32761,
+    "y": 31574,
+    "z": 8
+  },
+  {
+    "id": "rotworm-1784987356165",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32748,
+    "y": 31571,
+    "z": 8
+  },
+  {
+    "id": "rotworm-1784987364176",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32756,
+    "y": 31588,
+    "z": 8
+  },
+  {
+    "id": "rotworm-1784987367126",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32736,
+    "y": 31579,
+    "z": 8
+  },
+  {
+    "id": "rotworm-1784987370507",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32726,
+    "y": 31574,
+    "z": 8
+  },
+  {
+    "id": "rotworm-1784987387143",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32746,
+    "y": 31602,
+    "z": 8
+  },
+  {
+    "id": "rotworm-1784987390942",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32753,
+    "y": 31615,
+    "z": 8
+  },
+  {
+    "id": "rotworm-1784987393304",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32736,
+    "y": 31631,
+    "z": 8
+  },
+  {
+    "id": "rotworm-1784987397284",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32720,
+    "y": 31614,
+    "z": 8
+  },
+  {
+    "id": "rotworm-1784987406537",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32711,
+    "y": 31607,
+    "z": 8
+  },
+  {
+    "id": "rotworm-1784987412066",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32713,
+    "y": 31637,
+    "z": 8
+  },
+  {
+    "id": "slime-1784987487995",
+    "name": "Slime",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Slime.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32700,
+    "y": 31633,
+    "z": 8
+  },
+  {
+    "id": "slime-1784987491412",
+    "name": "Slime",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Slime.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32723,
+    "y": 31634,
+    "z": 8
+  },
+  {
+    "id": "skeleton-1784987501133",
+    "name": "Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Skeleton.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32700,
+    "y": 31625,
+    "z": 8
+  },
+  {
+    "id": "skeleton-1784987506190",
+    "name": "Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Skeleton.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32714,
+    "y": 31625,
+    "z": 8
+  },
+  {
+    "id": "ghoul-1784987513095",
+    "name": "Ghoul",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghoul.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32717,
+    "y": 31626,
+    "z": 8
+  },
+  {
+    "id": "skeleton-1784987525154",
+    "name": "Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Skeleton.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32690,
+    "y": 31597,
+    "z": 8
+  },
+  {
+    "id": "skeleton-1784987531241",
+    "name": "Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Skeleton.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32723,
+    "y": 31595,
+    "z": 8
+  },
+  {
+    "id": "skeleton-1784987534387",
+    "name": "Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Skeleton.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32730,
+    "y": 31590,
+    "z": 8
+  },
+  {
+    "id": "skeleton-1784987549298",
+    "name": "Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Skeleton.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32702,
+    "y": 31590,
+    "z": 9
+  },
+  {
+    "id": "ghoul-1784987558619",
+    "name": "Ghoul",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghoul.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32732,
+    "y": 31592,
+    "z": 8
+  },
+  {
+    "id": "snake-1784987578270",
+    "name": "Snake",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Snake.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32713,
+    "y": 31597,
+    "z": 8
+  },
+  {
+    "id": "poison-spider-1784987587409",
+    "name": "Poison Spider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Poison_Spider.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 4,
+    "x": 32703,
+    "y": 31607,
+    "z": 8
+  },
+  {
+    "id": "troll-1784987668262",
+    "name": "Troll",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Troll.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32679,
+    "y": 31805,
+    "z": 7
+  },
+  {
+    "id": "troll-1784987680556",
+    "name": "Troll",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Troll.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32679,
+    "y": 31803,
+    "z": 8
+  },
+  {
+    "id": "troll-1784987682614",
+    "name": "Troll",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Troll.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32685,
+    "y": 31782,
+    "z": 8
+  },
+  {
+    "id": "troll-1784987685164",
+    "name": "Troll",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Troll.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 4,
+    "x": 32686,
+    "y": 31798,
+    "z": 8
+  },
+  {
+    "id": "troll-1784987686843",
+    "name": "Troll",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Troll.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 4,
+    "x": 32664,
+    "y": 31794,
+    "z": 8
+  },
+  {
+    "id": "troll-1784987703470",
+    "name": "Troll",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Troll.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32673,
+    "y": 31833,
+    "z": 8
+  },
+  {
+    "id": "troll-1784987704895",
+    "name": "Troll",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Troll.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32661,
+    "y": 31833,
+    "z": 8
+  },
+  {
+    "id": "troll-1784987709274",
+    "name": "Troll",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Troll.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32653,
+    "y": 31821,
+    "z": 8
+  },
+  {
+    "id": "troll-1784987716893",
+    "name": "Troll",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Troll.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32673,
+    "y": 31813,
+    "z": 8
+  },
+  {
+    "id": "troll-1784987726759",
+    "name": "Troll",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Troll.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32682,
+    "y": 31818,
+    "z": 9
+  },
+  {
+    "id": "troll-1784987730667",
+    "name": "Troll",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Troll.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 5,
+    "x": 32674,
+    "y": 31829,
+    "z": 9
+  },
+  {
+    "id": "minotaur-1784987807157",
+    "name": "Minotaur",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1782712956/Minotaur.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32746,
+    "y": 31877,
+    "z": 8
+  },
+  {
+    "id": "minotaur-1784987813502",
+    "name": "Minotaur",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1782712956/Minotaur.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32742,
+    "y": 31888,
+    "z": 8
+  },
+  {
+    "id": "minotaur-archer-1784987821962",
+    "name": "Minotaur Archer",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1782776305/Minotaur_Archer.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32758,
+    "y": 31866,
+    "z": 8
+  },
+  {
+    "id": "minotaur-archer-1784987829277",
+    "name": "Minotaur Archer",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1782776305/Minotaur_Archer.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32739,
+    "y": 31886,
+    "z": 8
+  },
+  {
+    "id": "minotaur-archer-1784987839940",
+    "name": "Minotaur Archer",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1782776305/Minotaur_Archer.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32734,
+    "y": 31887,
+    "z": 9
+  },
+  {
+    "id": "minotaur-mage-1784987847934",
+    "name": "Minotaur Mage",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1782776306/Minotaur_Mage.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32737,
+    "y": 31882,
+    "z": 9
+  },
+  {
+    "id": "minotaur-guard-1784987853898",
+    "name": "Minotaur Guard",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1782776305/Minotaur_Guard.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32739,
+    "y": 31887,
+    "z": 9
+  },
+  {
+    "id": "minotaur-guard-1784987862637",
+    "name": "Minotaur Guard",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1782776305/Minotaur_Guard.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32736,
+    "y": 31890,
+    "z": 8
+  },
+  {
+    "id": "rotworm-1784987890224",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32775,
+    "y": 31777,
+    "z": 8
+  },
+  {
+    "id": "rotworm-1784987891907",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32794,
+    "y": 31783,
+    "z": 8
+  },
+  {
+    "id": "rotworm-1784987896760",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32786,
+    "y": 31789,
+    "z": 8
+  },
+  {
+    "id": "rotworm-1784987902447",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32795,
+    "y": 31802,
+    "z": 8
+  },
+  {
+    "id": "rotworm-1784987904985",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32789,
+    "y": 31809,
+    "z": 8
+  },
+  {
+    "id": "rotworm-1784987910357",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32803,
+    "y": 31815,
+    "z": 8
+  },
+  {
+    "id": "rotworm-1784987913400",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32811,
+    "y": 31802,
+    "z": 8
+  },
+  {
+    "id": "rotworm-1784987920576",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32819,
+    "y": 31819,
+    "z": 8
+  },
+  {
+    "id": "rotworm-1784987923154",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32809,
+    "y": 31825,
+    "z": 8
+  },
+  {
+    "id": "rotworm-1784987932279",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32828,
+    "y": 31832,
+    "z": 8
+  },
+  {
+    "id": "rotworm-1784987934993",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32832,
+    "y": 31822,
+    "z": 8
+  },
+  {
+    "id": "rotworm-1784987938843",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32845,
+    "y": 31839,
+    "z": 8
+  },
+  {
+    "id": "amazon-1784987968056",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32814,
+    "y": 31702,
+    "z": 7
+  },
+  {
+    "id": "amazon-1784987969879",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32803,
+    "y": 31698,
+    "z": 7
+  },
+  {
+    "id": "amazon-1784987971004",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32810,
+    "y": 31693,
+    "z": 7
+  },
+  {
+    "id": "amazon-1784987974982",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32801,
+    "y": 31706,
+    "z": 7
+  },
+  {
+    "id": "amazon-1784987988737",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32831,
+    "y": 31707,
+    "z": 7
+  },
+  {
+    "id": "amazon-1784988004521",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32810,
+    "y": 31690,
+    "z": 8
+  },
+  {
+    "id": "valkyrie-1784988013601",
+    "name": "Valkyrie",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Valkyrie.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32809,
+    "y": 31683,
+    "z": 8
+  },
+  {
+    "id": "valkyrie-1784988016088",
+    "name": "Valkyrie",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Valkyrie.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32813,
+    "y": 31695,
+    "z": 8
+  },
+  {
+    "id": "valkyrie-1784988024080",
+    "name": "Valkyrie",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Valkyrie.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32818,
+    "y": 31694,
+    "z": 8
+  },
+  {
+    "id": "witch-1784988031041",
+    "name": "Witch",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Witch.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32823,
+    "y": 31696,
+    "z": 8
+  },
+  {
+    "id": "valkyrie-1784988047577",
+    "name": "Valkyrie",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Valkyrie.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32802,
+    "y": 31706,
+    "z": 6
+  },
+  {
+    "id": "valkyrie-1784988062452",
+    "name": "Valkyrie",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Valkyrie.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32814,
+    "y": 31702,
+    "z": 5
+  },
+  {
+    "id": "amazon-1784988069086",
+    "name": "Amazon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32813,
+    "y": 31702,
+    "z": 6
+  },
+  {
+    "id": "valkyrie-1784988085228",
+    "name": "Valkyrie",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Valkyrie.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32830,
+    "y": 31707,
+    "z": 6
+  },
+  {
+    "id": "monk-1784988102611",
+    "name": "Monk",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854356/Monk__Criatura.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32821,
+    "y": 31721,
+    "z": 7
+  },
+  {
+    "id": "monk-1784988108055",
+    "name": "Monk",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854356/Monk__Criatura.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32826,
+    "y": 31719,
+    "z": 6
+  },
+  {
+    "id": "monk-1784988109577",
+    "name": "Monk",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854356/Monk__Criatura.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32820,
+    "y": 31724,
+    "z": 6
+  },
+  {
+    "id": "monk-1784988117131",
+    "name": "Monk",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854356/Monk__Criatura.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 4,
+    "x": 32823,
+    "y": 31720,
+    "z": 5
+  },
+  {
+    "id": "monk-1784988128644",
+    "name": "Monk",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854356/Monk__Criatura.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32821,
+    "y": 31720,
+    "z": 4
+  },
+  {
+    "id": "monk-1784988132338",
+    "name": "Monk",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854356/Monk__Criatura.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32826,
+    "y": 31720,
+    "z": 4
+  },
+  {
+    "id": "monk-1784988133510",
+    "name": "Monk",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854356/Monk__Criatura.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32826,
+    "y": 31725,
+    "z": 4
+  },
+  {
+    "id": "monk-1784988136533",
+    "name": "Monk",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854356/Monk__Criatura.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32821,
+    "y": 31725,
+    "z": 4
+  },
+  {
+    "id": "stone-golem-1784988198352",
+    "name": "Stone Golem",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Stone_Golem.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32981,
+    "y": 31956,
+    "z": 7
+  },
+  {
+    "id": "stone-golem-1784988209831",
+    "name": "Stone Golem",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Stone_Golem.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32973,
+    "y": 31959,
+    "z": 7
+  },
+  {
+    "id": "stone-golem-1784988220032",
+    "name": "Stone Golem",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Stone_Golem.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32969,
+    "y": 31939,
+    "z": 7
+  },
+  {
+    "id": "stone-golem-1784988223294",
+    "name": "Stone Golem",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Stone_Golem.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32976,
+    "y": 31926,
+    "z": 7
+  },
+  {
+    "id": "stone-golem-1784988229913",
+    "name": "Stone Golem",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Stone_Golem.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32963,
+    "y": 31926,
+    "z": 7
+  },
+  {
+    "id": "stone-golem-1784988239449",
+    "name": "Stone Golem",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Stone_Golem.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32959,
+    "y": 31909,
+    "z": 7
+  },
+  {
+    "id": "stone-golem-1784988242408",
+    "name": "Stone Golem",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Stone_Golem.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32945,
+    "y": 31911,
+    "z": 7
+  },
+  {
+    "id": "stone-golem-1784988256496",
+    "name": "Stone Golem",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Stone_Golem.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32946,
+    "y": 31969,
+    "z": 7
+  },
+  {
+    "id": "stone-golem-1784988259032",
+    "name": "Stone Golem",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Stone_Golem.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32948,
+    "y": 31961,
+    "z": 7
+  },
+  {
+    "id": "stone-golem-1784988269291",
+    "name": "Stone Golem",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Stone_Golem.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32935,
+    "y": 31967,
+    "z": 7
+  },
+  {
+    "id": "stone-golem-1784988273121",
+    "name": "Stone Golem",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Stone_Golem.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32912,
+    "y": 31969,
+    "z": 7
+  },
+  {
+    "id": "stone-golem-1784988275082",
+    "name": "Stone Golem",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Stone_Golem.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32905,
+    "y": 31962,
+    "z": 7
+  },
+  {
+    "id": "stone-golem-1784988291262",
+    "name": "Stone Golem",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Stone_Golem.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32922,
+    "y": 31930,
+    "z": 7
+  },
+  {
+    "id": "giant-spider-1784988307102",
+    "name": "Giant Spider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784837137/giant_spider.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32936,
+    "y": 31937,
+    "z": 7
+  },
+  {
+    "id": "giant-spider-1784988309706",
+    "name": "Giant Spider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784837137/giant_spider.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32947,
+    "y": 31920,
+    "z": 7
+  },
+  {
+    "id": "mossy-stone-1784988325707",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32933,
+    "y": 31933,
+    "z": 7
+  },
+  {
+    "id": "mossy-stone-1784988332963",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32913,
+    "y": 31948,
+    "z": 7
+  },
+  {
+    "id": "mossy-stone-1784988336261",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32940,
+    "y": 31965,
+    "z": 7
+  },
+  {
+    "id": "mossy-stone-1784988358923",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32939,
+    "y": 31944,
+    "z": 6
+  },
+  {
+    "id": "mossy-stone-1784988372348",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32954,
+    "y": 31922,
+    "z": 6
+  },
+  {
+    "id": "stone-golem-1784988384694",
+    "name": "Stone Golem",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Stone_Golem.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32944,
+    "y": 31918,
+    "z": 6
+  },
+  {
+    "id": "stone-golem-1784988392997",
+    "name": "Stone Golem",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Stone_Golem.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32959,
+    "y": 31934,
+    "z": 6
+  },
+  {
+    "id": "stone-golem-1784988395780",
+    "name": "Stone Golem",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Stone_Golem.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32947,
+    "y": 31937,
+    "z": 6
+  },
+  {
+    "id": "stone-golem-1784988404709",
+    "name": "Stone Golem",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Stone_Golem.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32938,
+    "y": 31957,
+    "z": 6
+  },
+  {
+    "id": "stone-golem-1784988408158",
+    "name": "Stone Golem",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Stone_Golem.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32931,
+    "y": 31941,
+    "z": 6
+  },
+  {
+    "id": "stone-golem-1784988410799",
+    "name": "Stone Golem",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Stone_Golem.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32955,
+    "y": 31946,
+    "z": 6
+  },
+  {
+    "id": "stone-golem-1784988453221",
+    "name": "Stone Golem",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Stone_Golem.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32938,
+    "y": 31936,
+    "z": 5
+  },
+  {
+    "id": "poison-spider-1784988496424",
+    "name": "Poison Spider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Poison_Spider.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32916,
+    "y": 31953,
+    "z": 8
+  },
+  {
+    "id": "poison-spider-1784988498287",
+    "name": "Poison Spider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Poison_Spider.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32925,
+    "y": 31967,
+    "z": 8
+  },
+  {
+    "id": "mossy-stone-1784988502698",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32929,
+    "y": 31967,
+    "z": 8
+  },
+  {
+    "id": "mossy-stone-1784988523606",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32929,
+    "y": 31967,
+    "z": 9
+  },
+  {
+    "id": "mossy-stone-1784988529141",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32913,
+    "y": 31973,
+    "z": 9
+  },
+  {
+    "id": "mossy-stone-1784988533391",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32910,
+    "y": 31957,
+    "z": 9
+  },
+  {
+    "id": "mossy-stone-1784988546497",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32868,
+    "y": 31971,
+    "z": 9
+  },
+  {
+    "id": "mossy-stone-1784988551651",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32879,
+    "y": 31963,
+    "z": 9
+  },
+  {
+    "id": "mossy-stone-1784988564345",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32891,
+    "y": 31943,
+    "z": 9
+  },
+  {
+    "id": "mossy-stone-1784988572155",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32899,
+    "y": 31930,
+    "z": 9
+  },
+  {
+    "id": "poison-spider-1784988605481",
+    "name": "Poison Spider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Poison_Spider.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32926,
+    "y": 31970,
+    "z": 9
+  },
+  {
+    "id": "poison-spider-1784988624686",
+    "name": "Poison Spider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Poison_Spider.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32898,
+    "y": 31980,
+    "z": 9
+  },
+  {
+    "id": "poison-spider-1784988626447",
+    "name": "Poison Spider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Poison_Spider.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32898,
+    "y": 31970,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784988642407",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32909,
+    "y": 31981,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784988649761",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32906,
+    "y": 31994,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784988651851",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32899,
+    "y": 31985,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784988655686",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32890,
+    "y": 31988,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784988671157",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32883,
+    "y": 31968,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784988678082",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32871,
+    "y": 31962,
+    "z": 9
+  },
+  {
+    "id": "poison-spider-1784988683745",
+    "name": "Poison Spider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Poison_Spider.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32869,
+    "y": 31959,
+    "z": 9
+  },
+  {
+    "id": "poison-spider-1784988691695",
+    "name": "Poison Spider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Poison_Spider.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32876,
+    "y": 31946,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784988705552",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32862,
+    "y": 31947,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784988709951",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32853,
+    "y": 31960,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784988718500",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32841,
+    "y": 31954,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784988721799",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32839,
+    "y": 31945,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784988723325",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32830,
+    "y": 31950,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784988730202",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32855,
+    "y": 31932,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784988740808",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32880,
+    "y": 31923,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784988745688",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32888,
+    "y": 31925,
+    "z": 9
+  },
+  {
+    "id": "poison-spider-1784988756427",
+    "name": "Poison Spider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Poison_Spider.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32872,
+    "y": 31928,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784988781209",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32900,
+    "y": 31933,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784988795140",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32891,
+    "y": 31946,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784988806031",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 4,
+    "x": 32908,
+    "y": 31958,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784988814422",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32921,
+    "y": 31944,
+    "z": 9
+  },
+  {
+    "id": "rotworm-1784988816002",
+    "name": "Rotworm",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784850088/rotworm.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32915,
+    "y": 31935,
+    "z": 9
+  },
+  {
+    "id": "poison-spider-1784988837917",
+    "name": "Poison Spider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Poison_Spider.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32863,
+    "y": 31958,
+    "z": 8
+  },
+  {
+    "id": "poison-spider-1784988839230",
+    "name": "Poison Spider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Poison_Spider.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32874,
+    "y": 31956,
+    "z": 8
+  },
+  {
+    "id": "poison-spider-1784988840857",
+    "name": "Poison Spider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Poison_Spider.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32877,
+    "y": 31944,
+    "z": 8
+  },
+  {
+    "id": "mossy-stone-1784988850000",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32880,
+    "y": 31953,
+    "z": 8
+  },
+  {
+    "id": "swamp-troll-1784988929541",
+    "name": "Swamp Troll",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Swamp_Troll.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32810,
+    "y": 32016,
+    "z": 7
+  },
+  {
+    "id": "swamp-troll-1784988954842",
+    "name": "Swamp Troll",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Swamp_Troll.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32820,
+    "y": 32016,
+    "z": 8
+  },
+  {
+    "id": "swamp-troll-1784988956325",
+    "name": "Swamp Troll",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Swamp_Troll.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32836,
+    "y": 32012,
+    "z": 8
+  },
+  {
+    "id": "swamp-troll-1784988957690",
+    "name": "Swamp Troll",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Swamp_Troll.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 4,
+    "x": 32824,
+    "y": 32005,
+    "z": 8
+  },
+  {
+    "id": "swamp-troll-1784988961588",
+    "name": "Swamp Troll",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Swamp_Troll.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32806,
+    "y": 32017,
+    "z": 8
+  },
+  {
+    "id": "swamp-troll-1784988974673",
+    "name": "Swamp Troll",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Swamp_Troll.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32835,
+    "y": 32012,
+    "z": 9
+  },
+  {
+    "id": "swamp-troll-1784988976731",
+    "name": "Swamp Troll",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Swamp_Troll.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32820,
+    "y": 32017,
+    "z": 9
+  },
+  {
+    "id": "swamp-troll-1784988978495",
+    "name": "Swamp Troll",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Swamp_Troll.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32817,
+    "y": 32003,
+    "z": 9
+  },
+  {
+    "id": "swamp-troll-1784988982452",
+    "name": "Swamp Troll",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Swamp_Troll.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32820,
+    "y": 32008,
+    "z": 9
+  },
+  {
+    "id": "swamp-troll-1784988985044",
+    "name": "Swamp Troll",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Swamp_Troll.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32827,
+    "y": 32003,
+    "z": 9
+  },
+  {
+    "id": "mossy-stone-1784989003216",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32854,
+    "y": 32007,
+    "z": 9
+  },
+  {
+    "id": "mossy-stone-1784989006632",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32859,
+    "y": 32014,
+    "z": 9
+  },
+  {
+    "id": "mossy-stone-1784989009423",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32860,
+    "y": 32018,
+    "z": 9
+  },
+  {
+    "id": "red-maple-1784989019801",
+    "name": "Red Maple",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784987110/red_maple.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32853,
+    "y": 32015,
+    "z": 9
+  },
+  {
+    "id": "yellow-maple-1784989025649",
+    "name": "Yellow Maple",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784987109/Yellow_maple.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32857,
+    "y": 32016,
+    "z": 9
+  },
+  {
+    "id": "dragon-lord-1784989095553",
+    "name": "Dragon Lord",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784838282/Dragon_Lord.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 33004,
+    "y": 32588,
+    "z": 10
+  },
+  {
+    "id": "dragon-lord-1784989109224",
+    "name": "Dragon Lord",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784838282/Dragon_Lord.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32979,
+    "y": 32609,
+    "z": 10
+  },
+  {
+    "id": "dragon-lord-1784989115477",
+    "name": "Dragon Lord",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784838282/Dragon_Lord.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 33011,
+    "y": 32622,
+    "z": 10
+  },
+  {
+    "id": "dragon-lord-1784989124531",
+    "name": "Dragon Lord",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784838282/Dragon_Lord.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32997,
+    "y": 32649,
+    "z": 10
+  },
+  {
+    "id": "dragon-lord-1784989127716",
+    "name": "Dragon Lord",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784838282/Dragon_Lord.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32988,
+    "y": 32663,
+    "z": 10
+  },
+  {
+    "id": "dragon-lord-1784989130764",
+    "name": "Dragon Lord",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784838282/Dragon_Lord.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32968,
+    "y": 32641,
+    "z": 10
+  },
+  {
+    "id": "minotaur-archer-1784989287292",
+    "name": "Minotaur Archer",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1782776305/Minotaur_Archer.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31831,
+    "y": 31168,
+    "z": 6
+  },
+  {
+    "id": "minotaur-archer-1784989293082",
+    "name": "Minotaur Archer",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1782776305/Minotaur_Archer.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 31832,
+    "y": 31183,
+    "z": 6
+  },
+  {
+    "id": "minotaur-archer-1784989300812",
+    "name": "Minotaur Archer",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1782776305/Minotaur_Archer.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 31839,
+    "y": 31159,
+    "z": 3
+  },
+  {
+    "id": "white-knight-1784989323221",
+    "name": "White Knight",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/White_Knight.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 4,
+    "x": 31838,
+    "y": 31187,
+    "z": 5
+  },
+  {
+    "id": "snow-hunter-1784989330054",
+    "name": "Snow Hunter",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Snow_Hunter.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31839,
+    "y": 31173,
+    "z": 5
+  },
+  {
+    "id": "minotaur-guard-1784989368789",
+    "name": "Minotaur Guard",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1782776305/Minotaur_Guard.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 31819,
+    "y": 31187,
+    "z": 5
+  },
+  {
+    "id": "white-knight-1784989387449",
+    "name": "White Knight",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/White_Knight.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 31799,
+    "y": 31187,
+    "z": 5
+  },
+  {
+    "id": "minotaur-guard-1784989408381",
+    "name": "Minotaur Guard",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1782776305/Minotaur_Guard.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 31797,
+    "y": 31187,
+    "z": 4
+  },
+  {
+    "id": "orc-berserker-1784989417465",
+    "name": "Orc Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Berserker.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31801,
+    "y": 31188,
+    "z": 4
+  },
+  {
+    "id": "minotaur-champion-1784989431000",
+    "name": "Minotaur Champion",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Minotaur_Champion.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 31798,
+    "y": 31187,
+    "z": 3
+  },
+  {
+    "id": "minotaur-champion-1784989433672",
+    "name": "Minotaur Champion",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Minotaur_Champion.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 31799,
+    "y": 31149,
+    "z": 3
+  },
+  {
+    "id": "minotaur-champion-1784989435979",
+    "name": "Minotaur Champion",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Minotaur_Champion.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 31837,
+    "y": 31187,
+    "z": 3
+  },
+  {
+    "id": "snow-hunter-1784989448846",
+    "name": "Snow Hunter",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Snow_Hunter.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31839,
+    "y": 31188,
+    "z": 2
+  },
+  {
+    "id": "snow-hunter-1784989452016",
+    "name": "Snow Hunter",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Snow_Hunter.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31799,
+    "y": 31188,
+    "z": 2
+  },
+  {
+    "id": "snow-hunter-1784989454423",
+    "name": "Snow Hunter",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Snow_Hunter.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31799,
+    "y": 31149,
+    "z": 2
+  },
+  {
+    "id": "minotaur-guard-1784989493288",
+    "name": "Minotaur Guard",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1782776305/Minotaur_Guard.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31836,
+    "y": 31188,
+    "z": 4
+  },
+  {
+    "id": "minotaur-guard-1784989495375",
+    "name": "Minotaur Guard",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1782776305/Minotaur_Guard.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31839,
+    "y": 31171,
+    "z": 4
+  },
+  {
+    "id": "minotaur-guard-1784989504158",
+    "name": "Minotaur Guard",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1782776305/Minotaur_Guard.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 31838,
+    "y": 31159,
+    "z": 4
+  },
+  {
+    "id": "minotaur-champion-1784989512099",
+    "name": "Minotaur Champion",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Minotaur_Champion.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31839,
+    "y": 31163,
+    "z": 4
+  },
+  {
+    "id": "minotaur-guard-1784989526867",
+    "name": "Minotaur Guard",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1782776305/Minotaur_Guard.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31817,
+    "y": 31188,
+    "z": 4
+  },
+  {
+    "id": "orc-berserker-1784989538984",
+    "name": "Orc Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Berserker.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31840,
+    "y": 31187,
+    "z": 4
+  },
+  {
+    "id": "ice-witch-1784989569802",
+    "name": "Ice Witch",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Witch.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31810,
+    "y": 31182,
+    "z": 6
+  },
+  {
+    "id": "ice-witch-1784989577122",
+    "name": "Ice Witch",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Witch.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31792,
+    "y": 31160,
+    "z": 6
+  },
+  {
+    "id": "ice-witch-1784989578685",
+    "name": "Ice Witch",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Witch.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31793,
+    "y": 31172,
+    "z": 6
+  },
+  {
+    "id": "minotaur-guard-1784989598396",
+    "name": "Minotaur Guard",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1782776305/Minotaur_Guard.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31799,
+    "y": 31168,
+    "z": 4
+  },
+  {
+    "id": "minotaur-guard-1784989602778",
+    "name": "Minotaur Guard",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1782776305/Minotaur_Guard.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 31797,
+    "y": 31149,
+    "z": 4
+  },
+  {
+    "id": "orc-berserker-1784989613224",
+    "name": "Orc Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Berserker.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31801,
+    "y": 31149,
+    "z": 4
+  },
+  {
+    "id": "white-knight-1784989660812",
+    "name": "White Knight",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/White_Knight.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31799,
+    "y": 31149,
+    "z": 5
+  },
+  {
+    "id": "white-knight-1784989668498",
+    "name": "White Knight",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/White_Knight.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 31799,
+    "y": 31149,
+    "z": 6
+  },
+  {
+    "id": "minotaur-guard-1784989679369",
+    "name": "Minotaur Guard",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1782776305/Minotaur_Guard.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31799,
+    "y": 31165,
+    "z": 6
+  },
+  {
+    "id": "minotaur-guard-1784989681285",
+    "name": "Minotaur Guard",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1782776305/Minotaur_Guard.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 31799,
+    "y": 31164,
+    "z": 5
+  },
+  {
+    "id": "minotaur-guard-1784989703966",
+    "name": "Minotaur Guard",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1782776305/Minotaur_Guard.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 31818,
+    "y": 31187,
+    "z": 6
+  },
+  {
+    "id": "white-knight-1784989720802",
+    "name": "White Knight",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/White_Knight.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 31798,
+    "y": 31187,
+    "z": 6
+  },
+  {
+    "id": "white-knight-1784989752002",
+    "name": "White Knight",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/White_Knight.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31820,
+    "y": 31192,
+    "z": 6
+  },
+  {
+    "id": "white-knight-1784989775071",
+    "name": "White Knight",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/White_Knight.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 4,
+    "x": 31839,
+    "y": 31188,
+    "z": 6
+  },
+  {
+    "id": "white-knight-1784989788660",
+    "name": "White Knight",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/White_Knight.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 31839,
+    "y": 31166,
+    "z": 6
+  },
+  {
+    "id": "ice-witch-1784989819288",
+    "name": "Ice Witch",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Witch.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31839,
+    "y": 31159,
+    "z": 5
+  },
+  {
+    "id": "ice-witch-1784989828442",
+    "name": "Ice Witch",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Witch.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31820,
+    "y": 31155,
+    "z": 5
+  },
+  {
+    "id": "snow-hunter-1784989839060",
+    "name": "Snow Hunter",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Snow_Hunter.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31832,
+    "y": 31158,
+    "z": 5
+  },
+  {
+    "id": "minotaur-guard-1784989907160",
+    "name": "Minotaur Guard",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1782776305/Minotaur_Guard.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 31805,
+    "y": 31169,
+    "z": 6
+  },
+  {
+    "id": "skeleton-guard-1784989918946",
+    "name": "Skeleton Guard",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Skeleton_Guard.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31810,
+    "y": 31171,
+    "z": 6
+  },
+  {
+    "id": "orc-berserker-1784989934605",
+    "name": "Orc Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Berserker.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31807,
+    "y": 31165,
+    "z": 6
+  },
+  {
+    "id": "minotaur-executioner-1784989941158",
+    "name": "Minotaur Executioner",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Minotaur_Executioner.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31818,
+    "y": 31164,
+    "z": 6
+  },
+  {
+    "id": "ice-witch-1784989971624",
+    "name": "Ice Witch",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Witch.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31805,
+    "y": 31158,
+    "z": 6
+  },
+  {
+    "id": "ice-witch-1784989994356",
+    "name": "Ice Witch",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Witch.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31833,
+    "y": 31145,
+    "z": 2
+  },
+  {
+    "id": "ice-witch-1784989998458",
+    "name": "Ice Witch",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Witch.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 31832,
+    "y": 31148,
+    "z": 1
+  },
+  {
+    "id": "lever-1784990161713",
+    "name": "Lever",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784990101/Lever.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31839,
+    "y": 31152,
+    "z": 1
+  },
+  {
+    "id": "stalagmite-1784990396461",
+    "name": "Stalagmite",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784990364/Stalagmite__Stone.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31831,
+    "y": 31138,
+    "z": 5
+  },
+  {
+    "id": "winter-wolf-1784990831200",
+    "name": "Winter Wolf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784842083/winter_wolf.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32001,
+    "y": 31252,
+    "z": 6
+  },
+  {
+    "id": "polar-bear-1784990918327",
+    "name": "Polar Bear",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784849533/polar_bear.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31977,
+    "y": 31178,
+    "z": 6
+  },
+  {
+    "id": "polar-bear-1784990921509",
+    "name": "Polar Bear",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784849533/polar_bear.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31972,
+    "y": 31187,
+    "z": 6
+  },
+  {
+    "id": "snow-hunter-1784990942457",
+    "name": "Snow Hunter",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Snow_Hunter.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31990,
+    "y": 31123,
+    "z": 5
+  },
+  {
+    "id": "snow-hunter-1784990944398",
+    "name": "Snow Hunter",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Snow_Hunter.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32010,
+    "y": 31107,
+    "z": 5
+  },
+  {
+    "id": "winter-wolf-1784990997087",
+    "name": "Winter Wolf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784842083/winter_wolf.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31884,
+    "y": 31220,
+    "z": 6
+  },
+  {
+    "id": "winter-wolf-1784990999855",
+    "name": "Winter Wolf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784842083/winter_wolf.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31899,
+    "y": 31203,
+    "z": 6
+  },
+  {
+    "id": "winter-wolf-1784991012234",
+    "name": "Winter Wolf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784842083/winter_wolf.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31868,
+    "y": 31207,
+    "z": 6
+  },
+  {
+    "id": "polar-bear-1784991021931",
+    "name": "Polar Bear",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784849533/polar_bear.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 31885,
+    "y": 31195,
+    "z": 6
+  },
+  {
+    "id": "winter-war-wolf-1784991103297",
+    "name": "Winter War Wolf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784849723/Winter_war_wolf.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31856,
+    "y": 31183,
+    "z": 6
+  },
+  {
+    "id": "deer-1784991223952",
+    "name": "Deer",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784849303/deer.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 31860,
+    "y": 31147,
+    "z": 6
+  },
+  {
+    "id": "winter-wolf-1784991245475",
+    "name": "Winter Wolf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784842083/winter_wolf.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31861,
+    "y": 31164,
+    "z": 6
+  },
+  {
+    "id": "winter-wolf-1784991247758",
+    "name": "Winter Wolf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784842083/winter_wolf.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31858,
+    "y": 31152,
+    "z": 6
+  },
+  {
+    "id": "winter-wolf-1784991252052",
+    "name": "Winter Wolf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784842083/winter_wolf.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31854,
+    "y": 31142,
+    "z": 6
+  },
+  {
+    "id": "winter-wolf-1784991255168",
+    "name": "Winter Wolf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784842083/winter_wolf.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31849,
+    "y": 31131,
+    "z": 6
+  },
+  {
+    "id": "winter-wolf-1784991258294",
+    "name": "Winter Wolf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784842083/winter_wolf.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 4,
+    "x": 31841,
+    "y": 31128,
+    "z": 6
+  },
+  {
+    "id": "dark-magician-1784991461537",
+    "name": "Dark Magician",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dark_Magician.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31823,
+    "y": 31169,
+    "z": 5
+  },
+  {
+    "id": "skeleton-guard-1784991471606",
+    "name": "Skeleton Guard",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Skeleton_Guard.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31818,
+    "y": 31167,
+    "z": 5
+  },
+  {
+    "id": "spiked-hero-1784991506464",
+    "name": "Spiked Hero",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Spiked_Hero.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31811,
+    "y": 31173,
+    "z": 5
+  },
+  {
+    "id": "ice-witch-1784991530043",
+    "name": "Ice Witch",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Witch.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31818,
+    "y": 31175,
+    "z": 5
+  },
+  {
+    "id": "ice-witch-1784991569003",
+    "name": "Ice Witch",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Witch.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31823,
+    "y": 31175,
+    "z": 5
+  },
+  {
+    "id": "blue-shrine-stone-1784991612725",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 31818,
+    "y": 31179,
+    "z": 5
+  },
+  {
+    "id": "blue-shrine-stone-1784991614186",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 31819,
+    "y": 31179,
+    "z": 5
+  },
+  {
+    "id": "spiked-hero-1784991635509",
+    "name": "Spiked Hero",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Spiked_Hero.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31818,
+    "y": 31173,
+    "z": 4
+  },
+  {
+    "id": "black-knight-1784991645860",
+    "name": "Black Knight",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784853648/Old_Black_Knight.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31819,
+    "y": 31178,
+    "z": 4
+  },
+  {
+    "id": "ice-witch-1784991656268",
+    "name": "Ice Witch",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Witch.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 31815,
+    "y": 31176,
+    "z": 4
+  },
+  {
+    "id": "dark-magician-1784991676623",
+    "name": "Dark Magician",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dark_Magician.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31821,
+    "y": 31176,
+    "z": 4
+  },
+  {
+    "id": "ice-elemental-1784991836681",
+    "name": "Ice Elemental",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Elemental.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31818,
+    "y": 31150,
+    "z": 7
+  },
+  {
+    "id": "ice-elemental-1784991842250",
+    "name": "Ice Elemental",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Elemental.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31838,
+    "y": 31144,
+    "z": 7
+  },
+  {
+    "id": "ice-elemental-1784991845160",
+    "name": "Ice Elemental",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Elemental.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31837,
+    "y": 31157,
+    "z": 7
+  },
+  {
+    "id": "dark-frozen-monk-1784991872313",
+    "name": "Dark Frozen Monk",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dark_Frozen_Monk.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31801,
+    "y": 31148,
+    "z": 8
+  },
+  {
+    "id": "dark-frozen-monk-1784991889526",
+    "name": "Dark Frozen Monk",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dark_Frozen_Monk.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 31768,
+    "y": 31148,
+    "z": 8
+  },
+  {
+    "id": "ice-witch-1784991908596",
+    "name": "Ice Witch",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Witch.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31766,
+    "y": 31171,
+    "z": 8
+  },
+  {
+    "id": "dark-frozen-monk-1784991945692",
+    "name": "Dark Frozen Monk",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dark_Frozen_Monk.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31747,
+    "y": 31123,
+    "z": 8
+  },
+  {
+    "id": "ice-witch-1784991975307",
+    "name": "Ice Witch",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Witch.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31742,
+    "y": 31125,
+    "z": 8
+  },
+  {
+    "id": "ice-witch-1784991976397",
+    "name": "Ice Witch",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Witch.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31743,
+    "y": 31118,
+    "z": 8
+  },
+  {
+    "id": "ice-witch-1784991977732",
+    "name": "Ice Witch",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Witch.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31738,
+    "y": 31121,
+    "z": 8
+  },
+  {
+    "id": "spiked-hero-1784991984147",
+    "name": "Spiked Hero",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Spiked_Hero.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31742,
+    "y": 31130,
+    "z": 8
+  },
+  {
+    "id": "dark-frozen-monk-1784992030439",
+    "name": "Dark Frozen Monk",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dark_Frozen_Monk.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31823,
+    "y": 31132,
+    "z": 8
+  },
+  {
+    "id": "ice-witch-1784992047967",
+    "name": "Ice Witch",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Witch.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31838,
+    "y": 31116,
+    "z": 8
+  },
+  {
+    "id": "spiked-hero-1784992056946",
+    "name": "Spiked Hero",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Spiked_Hero.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31859,
+    "y": 31113,
+    "z": 8
+  },
+  {
+    "id": "ice-witch-1784992068768",
+    "name": "Ice Witch",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ice_Witch.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 31862,
+    "y": 31119,
+    "z": 8
+  },
+  {
+    "id": "stalker-1784992387408",
+    "name": "Stalker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854096/Stalker.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 33149,
+    "y": 31533,
+    "z": 13
+  },
+  {
+    "id": "morgrothar-1784992531254",
+    "name": "Morgrothar",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784902561/Morgrothar.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 33208,
+    "y": 31561,
+    "z": 15
+  },
+  {
+    "id": "demon-1784992624336",
+    "name": "Demon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Demon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 33203,
+    "y": 31640,
+    "z": 15
+  },
+  {
+    "id": "demon-1784992631190",
+    "name": "Demon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Demon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 33217,
+    "y": 31617,
+    "z": 15
+  },
+  {
+    "id": "demon-1784992639545",
+    "name": "Demon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Demon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 33174,
+    "y": 31634,
+    "z": 15
+  },
+  {
+    "id": "demon-1784992641075",
+    "name": "Demon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Demon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 33188,
+    "y": 31628,
+    "z": 15
+  },
+  {
+    "id": "demon-1784992645682",
+    "name": "Demon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Demon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 33188,
+    "y": 31665,
+    "z": 15
+  },
+  {
+    "id": "demon-1784992650220",
+    "name": "Demon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Demon.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 33230,
+    "y": 31644,
+    "z": 14
+  },
+  {
+    "id": "polar-bear-1784992948908",
+    "name": "Polar Bear",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784849533/polar_bear.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32102,
+    "y": 31115,
+    "z": 7
+  },
+  {
+    "id": "deer-1784992962852",
+    "name": "Deer",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784849303/deer.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 4,
+    "x": 32086,
+    "y": 31101,
+    "z": 7
+  },
+  {
+    "id": "wild-warrior-1784992994360",
+    "name": "Wild Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Wild_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32085,
+    "y": 31090,
+    "z": 7
+  },
+  {
+    "id": "wild-warrior-1784993001637",
+    "name": "Wild Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Wild_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32078,
+    "y": 31090,
+    "z": 7
+  },
+  {
+    "id": "wild-warrior-1784993008038",
+    "name": "Wild Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Wild_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32080,
+    "y": 31083,
+    "z": 7
+  },
+  {
+    "id": "snow-hunter-1784993017154",
+    "name": "Snow Hunter",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Snow_Hunter.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32085,
+    "y": 31084,
+    "z": 7
+  },
+  {
+    "id": "yeti-1784993098275",
+    "name": "Yeti",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Yeti.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32122,
+    "y": 31064,
+    "z": 7
+  },
+  {
+    "id": "yeti-1784993122362",
+    "name": "Yeti",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Yeti.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32131,
+    "y": 31041,
+    "z": 7
+  },
+  {
+    "id": "yeti-1784993153292",
+    "name": "Yeti",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Yeti.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32144,
+    "y": 31056,
+    "z": 7
+  },
+  {
+    "id": "snow-hunter-1784993195059",
+    "name": "Snow Hunter",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Snow_Hunter.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32155,
+    "y": 31085,
+    "z": 7
+  },
+  {
+    "id": "yeti-1784993232845",
+    "name": "Yeti",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Yeti.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32154,
+    "y": 31045,
+    "z": 7
+  },
+  {
+    "id": "yeti-1784993259002",
+    "name": "Yeti",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Yeti.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32157,
+    "y": 31041,
+    "z": 7
+  },
+  {
+    "id": "yeti-1784993334859",
+    "name": "Yeti",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Yeti.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32155,
+    "y": 31027,
+    "z": 7
+  },
+  {
+    "id": "yeti-1784993464834",
+    "name": "Yeti",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Yeti.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32184,
+    "y": 31033,
+    "z": 7
+  },
+  {
+    "id": "winter-wolf-1784993534637",
+    "name": "Winter Wolf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784842083/winter_wolf.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32160,
+    "y": 30986,
+    "z": 7
+  },
+  {
+    "id": "winter-war-wolf-1784993559221",
+    "name": "Winter War Wolf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784849723/Winter_war_wolf.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32145,
+    "y": 30995,
+    "z": 7
+  },
+  {
+    "id": "yeti-1784993588017",
+    "name": "Yeti",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Yeti.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32140,
+    "y": 30977,
+    "z": 7
+  },
+  {
+    "id": "yeti-1784993653467",
+    "name": "Yeti",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Yeti.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32115,
+    "y": 31001,
+    "z": 7
+  },
+  {
+    "id": "winter-war-wolf-1784993691449",
+    "name": "Winter War Wolf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784849723/Winter_war_wolf.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32096,
+    "y": 31016,
+    "z": 7
+  },
+  {
+    "id": "yeti-1784993777054",
+    "name": "Yeti",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Yeti.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32065,
+    "y": 31011,
+    "z": 7
+  },
+  {
+    "id": "wild-warrior-1784993838159",
+    "name": "Wild Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Wild_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32210,
+    "y": 31054,
+    "z": 7
+  },
+  {
+    "id": "snow-hunter-1784993841972",
+    "name": "Snow Hunter",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Snow_Hunter.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32217,
+    "y": 31065,
+    "z": 7
+  },
+  {
+    "id": "wild-warrior-1784993881536",
+    "name": "Wild Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Wild_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32191,
+    "y": 31076,
+    "z": 7
+  },
+  {
+    "id": "winter-war-wolf-1784993919049",
+    "name": "Winter War Wolf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784849723/Winter_war_wolf.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32119,
+    "y": 31089,
+    "z": 7
+  },
+  {
+    "id": "frost-walker-savage-1784994078926",
+    "name": "Frost Walker Savage",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Frost_Walker_Savage.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32261,
+    "y": 31032,
+    "z": 7
+  },
+  {
+    "id": "frost-walker-savage-1784994110226",
+    "name": "Frost Walker Savage",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Frost_Walker_Savage.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32278,
+    "y": 31040,
+    "z": 7
+  },
+  {
+    "id": "frost-walker-reaper-1784994192892",
+    "name": "Frost Walker Reaper",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784902499/Frost_Walker_Reaper.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32280,
+    "y": 31044,
+    "z": 7
+  },
+  {
+    "id": "frost-walker-reaper-1784994206112",
+    "name": "Frost Walker Reaper",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784902499/Frost_Walker_Reaper.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32274,
+    "y": 31054,
+    "z": 7
+  },
+  {
+    "id": "frost-walker-reaper-1784994250693",
+    "name": "Frost Walker Reaper",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784902499/Frost_Walker_Reaper.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32282,
+    "y": 31064,
+    "z": 7
+  },
+  {
+    "id": "frost-walker-savage-1784994281081",
+    "name": "Frost Walker Savage",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Frost_Walker_Savage.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32292,
+    "y": 31064,
+    "z": 7
+  },
+  {
+    "id": "frost-walker-reaper-1784994352802",
+    "name": "Frost Walker Reaper",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784902499/Frost_Walker_Reaper.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32310,
+    "y": 31086,
+    "z": 7
+  },
+  {
+    "id": "frost-walker-reaper-1784994362212",
+    "name": "Frost Walker Reaper",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784902499/Frost_Walker_Reaper.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32331,
+    "y": 31087,
+    "z": 7
+  },
+  {
+    "id": "ghoul-1784994387595",
+    "name": "Ghoul",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghoul.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32335,
+    "y": 31130,
+    "z": 7
+  },
+  {
+    "id": "skeleton-1784994396670",
+    "name": "Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Skeleton.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32331,
+    "y": 31129,
+    "z": 7
+  },
+  {
+    "id": "demon-skeleton-1784994417572",
+    "name": "Demon Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854082/Demon_Skeleton_old.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32333,
+    "y": 31137,
+    "z": 7
+  },
+  {
+    "id": "ghoul-1784994506300",
+    "name": "Ghoul",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghoul.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 5,
+    "x": 32260,
+    "y": 31107,
+    "z": 7
+  },
+  {
+    "id": "demon-skeleton-1784994524145",
+    "name": "Demon Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854082/Demon_Skeleton_old.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32253,
+    "y": 31119,
+    "z": 7
+  },
+  {
+    "id": "poison-spider-1784994543193",
+    "name": "Poison Spider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Poison_Spider.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32256,
+    "y": 31123,
+    "z": 8
+  },
+  {
+    "id": "scorpion-1784994592208",
+    "name": "Scorpion",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Scorpion.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32271,
+    "y": 31121,
+    "z": 8
+  },
+  {
+    "id": "ghoul-1784994605098",
+    "name": "Ghoul",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghoul.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32284,
+    "y": 31128,
+    "z": 8
+  },
+  {
+    "id": "ghoul-1784994609318",
+    "name": "Ghoul",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghoul.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32299,
+    "y": 31123,
+    "z": 8
+  },
+  {
+    "id": "skeleton-1784994661497",
+    "name": "Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Skeleton.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32301,
+    "y": 31132,
+    "z": 9
+  },
+  {
+    "id": "dark-wraith-1784994705114",
+    "name": "Dark Wraith",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dark_Wraith.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32295,
+    "y": 31190,
+    "z": 13
+  },
+  {
+    "id": "dark-wraith-1784994709763",
+    "name": "Dark Wraith",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dark_Wraith.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32301,
+    "y": 31190,
+    "z": 13
+  },
+  {
+    "id": "dark-wraith-1784994718206",
+    "name": "Dark Wraith",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dark_Wraith.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32315,
+    "y": 31166,
+    "z": 13
+  },
+  {
+    "id": "dark-wraith-1784994721932",
+    "name": "Dark Wraith",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dark_Wraith.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32280,
+    "y": 31167,
+    "z": 13
+  },
+  {
+    "id": "dark-wraith-1784994742762",
+    "name": "Dark Wraith",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dark_Wraith.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32285,
+    "y": 31167,
+    "z": 14
+  },
+  {
+    "id": "dark-wraith-1784994746587",
+    "name": "Dark Wraith",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dark_Wraith.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32279,
+    "y": 31166,
+    "z": 14
+  },
+  {
+    "id": "dark-wraith-1784994750756",
+    "name": "Dark Wraith",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dark_Wraith.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32316,
+    "y": 31166,
+    "z": 14
+  },
+  {
+    "id": "dark-wraith-1784994754829",
+    "name": "Dark Wraith",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dark_Wraith.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32309,
+    "y": 31167,
+    "z": 14
+  },
+  {
+    "id": "dark-wraith-1784994759954",
+    "name": "Dark Wraith",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dark_Wraith.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32294,
+    "y": 31146,
+    "z": 13
+  },
+  {
+    "id": "dark-wraith-1784994762637",
+    "name": "Dark Wraith",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dark_Wraith.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32301,
+    "y": 31147,
+    "z": 13
+  },
+  {
+    "id": "dark-wraith-1784994769811",
+    "name": "Dark Wraith",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dark_Wraith.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32295,
+    "y": 31194,
+    "z": 12
+  },
+  {
+    "id": "dark-wraith-1784994772106",
+    "name": "Dark Wraith",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dark_Wraith.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32301,
+    "y": 31194,
+    "z": 12
+  },
+  {
+    "id": "skeleton-1784994933533",
+    "name": "Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Skeleton.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32302,
+    "y": 31138,
+    "z": 9
+  },
+  {
+    "id": "skeleton-1784994971945",
+    "name": "Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Skeleton.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32300,
+    "y": 31147,
+    "z": 9
+  },
+  {
+    "id": "ghoul-1784994982108",
+    "name": "Ghoul",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghoul.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32320,
+    "y": 31147,
+    "z": 9
+  },
+  {
+    "id": "ghoul-1784994993625",
+    "name": "Ghoul",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghoul.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32321,
+    "y": 31139,
+    "z": 10
+  },
+  {
+    "id": "skeleton-1784994998997",
+    "name": "Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Skeleton.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32322,
+    "y": 31148,
+    "z": 10
+  },
+  {
+    "id": "demon-skeleton-1784995013844",
+    "name": "Demon Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854082/Demon_Skeleton_old.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32321,
+    "y": 31129,
+    "z": 10
+  },
+  {
+    "id": "ghost-1784995031482",
+    "name": "Ghost",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghost.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32317,
+    "y": 31113,
+    "z": 9
+  },
+  {
+    "id": "ghost-1784995033329",
+    "name": "Ghost",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghost.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32326,
+    "y": 31114,
+    "z": 9
+  },
+  {
+    "id": "mossy-stone-1784995167243",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32319,
+    "y": 31111,
+    "z": 9
+  },
+  {
+    "id": "mossy-stone-1784995168639",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32325,
+    "y": 31111,
+    "z": 9
+  },
+  {
+    "id": "dark-wraith-1784995224897",
+    "name": "Dark Wraith",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dark_Wraith.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32328,
+    "y": 31098,
+    "z": 10
+  },
+  {
+    "id": "demon-skeleton-1784995318261",
+    "name": "Demon Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854082/Demon_Skeleton_old.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32333,
+    "y": 31129,
+    "z": 10
+  },
+  {
+    "id": "demon-skeleton-1784995339892",
+    "name": "Demon Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854082/Demon_Skeleton_old.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32240,
+    "y": 31138,
+    "z": 9
+  },
+  {
+    "id": "stalker-1784995350643",
+    "name": "Stalker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854096/Stalker.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32246,
+    "y": 31136,
+    "z": 9
+  },
+  {
+    "id": "stalker-1784995446067",
+    "name": "Stalker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854096/Stalker.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32248,
+    "y": 31143,
+    "z": 10
+  },
+  {
+    "id": "death-beholder-1784995454174",
+    "name": "Death Beholder",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Death_Beholder.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32249,
+    "y": 31133,
+    "z": 10
+  },
+  {
+    "id": "demon-skeleton-1784995463718",
+    "name": "Demon Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854082/Demon_Skeleton_old.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32240,
+    "y": 31144,
+    "z": 10
+  },
+  {
+    "id": "demon-skeleton-1784995473166",
+    "name": "Demon Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854082/Demon_Skeleton_old.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32247,
+    "y": 31143,
+    "z": 11
+  },
+  {
+    "id": "demon-skeleton-1784995474983",
+    "name": "Demon Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854082/Demon_Skeleton_old.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32253,
+    "y": 31157,
+    "z": 11
+  },
+  {
+    "id": "ghost-1784995486705",
+    "name": "Ghost",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghost.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32260,
+    "y": 31138,
+    "z": 11
+  },
+  {
+    "id": "demon-skeleton-1784995510655",
+    "name": "Demon Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854082/Demon_Skeleton_old.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32274,
+    "y": 31142,
+    "z": 11
+  },
+  {
+    "id": "demon-skeleton-1784995516775",
+    "name": "Demon Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854082/Demon_Skeleton_old.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32285,
+    "y": 31124,
+    "z": 11
+  },
+  {
+    "id": "demon-skeleton-1784995527877",
+    "name": "Demon Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854082/Demon_Skeleton_old.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32295,
+    "y": 31145,
+    "z": 11
+  },
+  {
+    "id": "demon-skeleton-1784995539249",
+    "name": "Demon Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854082/Demon_Skeleton_old.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 4,
+    "x": 32299,
+    "y": 31157,
+    "z": 11
+  },
+  {
+    "id": "death-beholder-1784995553617",
+    "name": "Death Beholder",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Death_Beholder.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32297,
+    "y": 31160,
+    "z": 11
+  },
+  {
+    "id": "skeleton-archmage-1784995577703",
+    "name": "Skeleton Archmage",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Skeleton_Archmage.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32300,
+    "y": 31160,
+    "z": 11
+  },
+  {
+    "id": "frost-walker-savage-1784995874460",
+    "name": "Frost Walker Savage",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Frost_Walker_Savage.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32270,
+    "y": 31016,
+    "z": 7
+  },
+  {
+    "id": "frost-walker-reaper-1784995937500",
+    "name": "Frost Walker Reaper",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784902499/Frost_Walker_Reaper.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32275,
+    "y": 31027,
+    "z": 7
+  },
+  {
+    "id": "frost-walker-reaper-1784995993035",
+    "name": "Frost Walker Reaper",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784902499/Frost_Walker_Reaper.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32283,
+    "y": 31035,
+    "z": 7
+  },
+  {
+    "id": "frost-walker-savage-1784996000857",
+    "name": "Frost Walker Savage",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Frost_Walker_Savage.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32281,
+    "y": 31034,
+    "z": 7
+  },
+  {
+    "id": "frost-walker-reaper-1784996017647",
+    "name": "Frost Walker Reaper",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784902499/Frost_Walker_Reaper.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32290,
+    "y": 31038,
+    "z": 7
+  },
+  {
+    "id": "frost-walker-reaper-1784996020899",
+    "name": "Frost Walker Reaper",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784902499/Frost_Walker_Reaper.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32297,
+    "y": 31039,
+    "z": 7
+  },
+  {
+    "id": "frost-walker-reaper-1784996043853",
+    "name": "Frost Walker Reaper",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784902499/Frost_Walker_Reaper.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32305,
+    "y": 31035,
+    "z": 7
+  },
+  {
+    "id": "frost-walker-savage-1784996094175",
+    "name": "Frost Walker Savage",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Frost_Walker_Savage.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32296,
+    "y": 31058,
+    "z": 7
+  },
+  {
+    "id": "frost-walker-savage-1784996181568",
+    "name": "Frost Walker Savage",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Frost_Walker_Savage.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32296,
+    "y": 31054,
+    "z": 7
+  },
+  {
+    "id": "frost-walker-savage-1784996203505",
+    "name": "Frost Walker Savage",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Frost_Walker_Savage.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32305,
+    "y": 31074,
+    "z": 7
+  },
+  {
+    "id": "frost-walker-reaper-1784996221336",
+    "name": "Frost Walker Reaper",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784902499/Frost_Walker_Reaper.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32304,
+    "y": 31080,
+    "z": 7
+  },
+  {
+    "id": "frost-walker-reaper-1784996270125",
+    "name": "Frost Walker Reaper",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784902499/Frost_Walker_Reaper.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32285,
+    "y": 31090,
+    "z": 7
+  },
+  {
+    "id": "orc-1784996387298",
+    "name": "Orc",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32236,
+    "y": 31162,
+    "z": 8
+  },
+  {
+    "id": "beholder-1784996606511",
+    "name": "Beholder",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Beholder.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32776,
+    "y": 32009,
+    "z": 10
+  },
+  {
+    "id": "lava-hole-1784996617811",
+    "name": "Lava Hole",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737549/lava_hole.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32780,
+    "y": 32011,
+    "z": 10
+  },
+  {
+    "id": "pick-hole-1784996713603",
+    "name": "Pick Hole",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784996658/Hole__Rock.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32776,
+    "y": 32013,
+    "z": 10
+  },
+  {
+    "id": "mummy-1784996765699",
+    "name": "Mummy",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Mummy.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 5,
+    "x": 32774,
+    "y": 32010,
+    "z": 11
+  },
+  {
+    "id": "ghoul-1784996788743",
+    "name": "Ghoul",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghoul.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32769,
+    "y": 32020,
+    "z": 11
+  },
+  {
+    "id": "ghoul-1784996792010",
+    "name": "Ghoul",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghoul.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32784,
+    "y": 32023,
+    "z": 11
+  },
+  {
+    "id": "ghoul-1784996825146",
+    "name": "Ghoul",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghoul.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32788,
+    "y": 32005,
+    "z": 11
+  },
+  {
+    "id": "ghoul-1784996891698",
+    "name": "Ghoul",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghoul.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32809,
+    "y": 32014,
+    "z": 12
+  },
+  {
+    "id": "ghost-1784996898471",
+    "name": "Ghost",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghost.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 4,
+    "x": 32809,
+    "y": 32008,
+    "z": 12
+  },
+  {
+    "id": "ghost-1784997010324",
+    "name": "Ghost",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghost.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 4,
+    "x": 32820,
+    "y": 32004,
+    "z": 12
+  },
+  {
+    "id": "ghoul-1784997048437",
+    "name": "Ghoul",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghoul.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32828,
+    "y": 31996,
+    "z": 12
+  },
+  {
+    "id": "necromancer-1784997157095",
+    "name": "Necromancer",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Necromancer.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32829,
+    "y": 32005,
+    "z": 12
+  },
+  {
+    "id": "necromancer-1784997162095",
+    "name": "Necromancer",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Necromancer.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32829,
+    "y": 32013,
+    "z": 12
+  },
+  {
+    "id": "vampire-1784997170269",
+    "name": "Vampire",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Vampire.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32834,
+    "y": 32009,
+    "z": 12
+  },
+  {
+    "id": "ghoul-1784997254798",
+    "name": "Ghoul",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghoul.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32828,
+    "y": 32021,
+    "z": 12
+  },
+  {
+    "id": "ghost-1784997285656",
+    "name": "Ghost",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ghost.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 4,
+    "x": 32820,
+    "y": 32015,
+    "z": 12
+  },
+  {
+    "id": "slime-1784997313857",
+    "name": "Slime",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Slime.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32833,
+    "y": 32026,
+    "z": 12
+  },
+  {
+    "id": "demon-skeleton-1784997768251",
+    "name": "Demon Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854082/Demon_Skeleton_old.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 6,
+    "x": 32816,
+    "y": 32010,
+    "z": 12
+  },
+  {
+    "id": "demon-skeleton-1784997913280",
+    "name": "Demon Skeleton",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784854082/Demon_Skeleton_old.gif",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 6,
+    "x": 32794,
+    "y": 32023,
+    "z": 10
+  },
+  {
+    "id": "john-1784999058134",
+    "name": "John",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784999038/NPC_John.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32647,
+    "y": 32190,
+    "z": 7
+  },
+  {
+    "id": "wild-warrior-1784999143984",
+    "name": "Wild Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Wild_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32621,
+    "y": 32210,
+    "z": 7
+  },
+  {
+    "id": "wild-warrior-1784999382216",
+    "name": "Wild Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Wild_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32624,
+    "y": 32183,
+    "z": 8
+  },
+  {
+    "id": "wild-warrior-1784999385543",
+    "name": "Wild Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Wild_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32618,
+    "y": 32190,
+    "z": 9
+  },
+  {
+    "id": "wild-warrior-1784999390549",
+    "name": "Wild Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Wild_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32615,
+    "y": 32179,
+    "z": 9
+  },
+  {
+    "id": "wild-warrior-1784999392134",
+    "name": "Wild Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Wild_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32630,
+    "y": 32178,
+    "z": 9
+  },
+  {
+    "id": "wild-warrior-1784999393225",
+    "name": "Wild Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Wild_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32632,
+    "y": 32185,
+    "z": 9
+  },
+  {
+    "id": "orc-rider-1784999988474",
+    "name": "Orc Rider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Rider.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32321,
+    "y": 32041,
+    "z": 7
+  },
+  {
+    "id": "war-wolf-1784999999753",
+    "name": "War Wolf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/War_Wolf.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32321,
+    "y": 32037,
+    "z": 7
+  },
+  {
+    "id": "orc-warrior-1785000018624",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32318,
+    "y": 32038,
+    "z": 7
+  },
+  {
+    "id": "orc-spearman-1785000025174",
+    "name": "Orc Spearman",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Spearman.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32325,
+    "y": 32040,
+    "z": 7
+  },
+  {
+    "id": "orc-spearman-1785000046742",
+    "name": "Orc Spearman",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Spearman.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32319,
+    "y": 32028,
+    "z": 7
+  },
+  {
+    "id": "orc-spearman-1785000048437",
+    "name": "Orc Spearman",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Spearman.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32333,
+    "y": 32028,
+    "z": 7
+  },
+  {
+    "id": "orc-rider-1785000053670",
+    "name": "Orc Rider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Rider.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32326,
+    "y": 32021,
+    "z": 7
+  },
+  {
+    "id": "orc-warrior-1785000089385",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32313,
+    "y": 32020,
+    "z": 7
+  },
+  {
+    "id": "orc-warrior-1785000091315",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32315,
+    "y": 32008,
+    "z": 7
+  },
+  {
+    "id": "orc-berserker-1785000096058",
+    "name": "Orc Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Berserker.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32314,
+    "y": 32012,
+    "z": 7
+  },
+  {
+    "id": "orc-spearman-1785000104481",
+    "name": "Orc Spearman",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Spearman.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32312,
+    "y": 32024,
+    "z": 7
+  },
+  {
+    "id": "war-wolf-1785000116023",
+    "name": "War Wolf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/War_Wolf.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32307,
+    "y": 32016,
+    "z": 7
+  },
+  {
+    "id": "orc-rider-1785000144631",
+    "name": "Orc Rider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Rider.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32307,
+    "y": 32006,
+    "z": 7
+  },
+  {
+    "id": "orc-warrior-1785000151221",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32310,
+    "y": 32002,
+    "z": 7
+  },
+  {
+    "id": "orc-warrior-1785000168502",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32301,
+    "y": 32011,
+    "z": 7
+  },
+  {
+    "id": "orc-warrior-1785000192195",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32300,
+    "y": 32013,
+    "z": 6
+  },
+  {
+    "id": "orc-spearman-1785000200068",
+    "name": "Orc Spearman",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Spearman.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32315,
+    "y": 32011,
+    "z": 6
+  },
+  {
+    "id": "orc-spearman-1785000202679",
+    "name": "Orc Spearman",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Spearman.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32300,
+    "y": 32009,
+    "z": 6
+  },
+  {
+    "id": "orc-warrior-1785000215847",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32313,
+    "y": 32011,
+    "z": 6
+  },
+  {
+    "id": "orc-warrior-1785000251621",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32301,
+    "y": 32009,
+    "z": 5
+  },
+  {
+    "id": "orc-leader-1785000256319",
+    "name": "Orc Leader",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Leader.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32301,
+    "y": 32013,
+    "z": 5
+  },
+  {
+    "id": "orc-leader-1785000263897",
+    "name": "Orc Leader",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Leader.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32300,
+    "y": 32026,
+    "z": 5
+  },
+  {
+    "id": "orc-shaman-1785000274175",
+    "name": "Orc Shaman",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Shaman.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32299,
+    "y": 32030,
+    "z": 5
+  },
+  {
+    "id": "orc-warrior-1785000283685",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32302,
+    "y": 32029,
+    "z": 5
+  },
+  {
+    "id": "orc-berserker-1785000291026",
+    "name": "Orc Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Berserker.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32320,
+    "y": 32028,
+    "z": 5
+  },
+  {
+    "id": "orc-berserker-1785000296718",
+    "name": "Orc Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Berserker.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32320,
+    "y": 32028,
+    "z": 6
+  },
+  {
+    "id": "orc-berserker-1785000301542",
+    "name": "Orc Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Berserker.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32333,
+    "y": 32028,
+    "z": 5
+  },
+  {
+    "id": "orc-berserker-1785000304128",
+    "name": "Orc Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Berserker.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32333,
+    "y": 32028,
+    "z": 6
+  },
+  {
+    "id": "orc-warrior-1785000330325",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32303,
+    "y": 31994,
+    "z": 5
+  },
+  {
+    "id": "orc-shaman-1785000334729",
+    "name": "Orc Shaman",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Shaman.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32299,
+    "y": 31994,
+    "z": 5
+  },
+  {
+    "id": "orc-berserker-1785000357666",
+    "name": "Orc Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Berserker.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32313,
+    "y": 31993,
+    "z": 5
+  },
+  {
+    "id": "orc-berserker-1785000366000",
+    "name": "Orc Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Berserker.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32317,
+    "y": 31979,
+    "z": 5
+  },
+  {
+    "id": "orc-warrior-1785000370768",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32314,
+    "y": 31977,
+    "z": 5
+  },
+  {
+    "id": "orc-warrior-1785000372174",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32316,
+    "y": 31993,
+    "z": 5
+  },
+  {
+    "id": "orc-leader-1785000379564",
+    "name": "Orc Leader",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Leader.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32314,
+    "y": 31980,
+    "z": 5
+  },
+  {
+    "id": "orc-leader-1785000383558",
+    "name": "Orc Leader",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Leader.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32314,
+    "y": 31979,
+    "z": 4
+  },
+  {
+    "id": "orc-warlord-1785000411519",
+    "name": "Orc Warlord",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warlord.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32314,
+    "y": 31981,
+    "z": 3
+  },
+  {
+    "id": "orc-warlord-1785000422057",
+    "name": "Orc Warlord",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warlord.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32338,
+    "y": 31980,
+    "z": 3
+  },
+  {
+    "id": "orc-berserker-1785000429005",
+    "name": "Orc Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Berserker.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32314,
+    "y": 31978,
+    "z": 3
+  },
+  {
+    "id": "orc-berserker-1785000432541",
+    "name": "Orc Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Berserker.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32337,
+    "y": 31977,
+    "z": 3
+  },
+  {
+    "id": "orc-berserker-1785000460705",
+    "name": "Orc Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Berserker.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32326,
+    "y": 31979,
+    "z": 5
+  },
+  {
+    "id": "orc-berserker-1785000466126",
+    "name": "Orc Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Berserker.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32328,
+    "y": 31980,
+    "z": 4
+  },
+  {
+    "id": "orc-leader-1785000472595",
+    "name": "Orc Leader",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Leader.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 3,
+    "x": 32324,
+    "y": 31980,
+    "z": 4
+  },
+  {
+    "id": "orc-warrior-1785000483639",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32326,
+    "y": 31982,
+    "z": 5
+  },
+  {
+    "id": "orc-warrior-1785000519216",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32339,
+    "y": 31981,
+    "z": 5
+  },
+  {
+    "id": "orc-berserker-1785000527863",
+    "name": "Orc Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Berserker.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32336,
+    "y": 31979,
+    "z": 5
+  },
+  {
+    "id": "orc-leader-1785000534001",
+    "name": "Orc Leader",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Leader.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32339,
+    "y": 31978,
+    "z": 5
+  },
+  {
+    "id": "orc-leader-1785000541495",
+    "name": "Orc Leader",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Leader.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32338,
+    "y": 31979,
+    "z": 4
+  },
+  {
+    "id": "orc-leader-1785000573821",
+    "name": "Orc Leader",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Leader.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32340,
+    "y": 31994,
+    "z": 5
+  },
+  {
+    "id": "orc-warrior-1785000579722",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32337,
+    "y": 31994,
+    "z": 5
+  },
+  {
+    "id": "orc-warrior-1785000599357",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32353,
+    "y": 31996,
+    "z": 5
+  },
+  {
+    "id": "orc-shaman-1785000605301",
+    "name": "Orc Shaman",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Shaman.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32354,
+    "y": 31991,
+    "z": 5
+  },
+  {
+    "id": "orc-leader-1785000614842",
+    "name": "Orc Leader",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Leader.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32352,
+    "y": 31993,
+    "z": 5
+  },
+  {
+    "id": "orc-leader-1785000637135",
+    "name": "Orc Leader",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Leader.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32350,
+    "y": 32011,
+    "z": 5
+  },
+  {
+    "id": "orc-warrior-1785000643280",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32353,
+    "y": 32011,
+    "z": 5
+  },
+  {
+    "id": "orc-warrior-1785000645934",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32354,
+    "y": 32028,
+    "z": 5
+  },
+  {
+    "id": "orc-shaman-1785000652475",
+    "name": "Orc Shaman",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Shaman.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32351,
+    "y": 32030,
+    "z": 5
+  },
+  {
+    "id": "orc-leader-1785000663799",
+    "name": "Orc Leader",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Leader.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32351,
+    "y": 32027,
+    "z": 5
+  },
+  {
+    "id": "orc-berserker-1785000785266",
+    "name": "Orc Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Berserker.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32350,
+    "y": 32028,
+    "z": 6
+  },
+  {
+    "id": "orc-warrior-1785000791519",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32353,
+    "y": 32028,
+    "z": 6
+  },
+  {
+    "id": "orc-warrior-1785000817270",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32344,
+    "y": 32005,
+    "z": 7
+  },
+  {
+    "id": "orc-spearman-1785000828123",
+    "name": "Orc Spearman",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Spearman.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32346,
+    "y": 32003,
+    "z": 7
+  },
+  {
+    "id": "war-wolf-1785000840192",
+    "name": "War Wolf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/War_Wolf.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32334,
+    "y": 32002,
+    "z": 7
+  },
+  {
+    "id": "orc-rider-1785000848671",
+    "name": "Orc Rider",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Rider.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32341,
+    "y": 32002,
+    "z": 7
+  },
+  {
+    "id": "orc-warrior-1785000854144",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32331,
+    "y": 32003,
+    "z": 7
+  },
+  {
+    "id": "orc-warrior-1785000867532",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32338,
+    "y": 31994,
+    "z": 7
+  },
+  {
+    "id": "orc-berserker-1785000874533",
+    "name": "Orc Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Berserker.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32339,
+    "y": 32011,
+    "z": 7
+  },
+  {
+    "id": "war-wolf-1785000894055",
+    "name": "War Wolf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/War_Wolf.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32345,
+    "y": 32015,
+    "z": 7
+  },
+  {
+    "id": "orc-warrior-1785000907835",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32336,
+    "y": 32019,
+    "z": 7
+  },
+  {
+    "id": "orc-berserker-1785000929077",
+    "name": "Orc Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Berserker.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32332,
+    "y": 32036,
+    "z": 7
+  },
+  {
+    "id": "orc-berserker-1785000969756",
+    "name": "Orc Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Berserker.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32326,
+    "y": 32004,
+    "z": 7
+  },
+  {
+    "id": "orc-berserker-1785001099546",
+    "name": "Orc Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Berserker.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32326,
+    "y": 31979,
+    "z": 6
+  },
+  {
+    "id": "orc-warrior-1785001108664",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32330,
+    "y": 31978,
+    "z": 6
+  },
+  {
+    "id": "orc-warrior-1785001157330",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32315,
+    "y": 31979,
+    "z": 6
+  },
+  {
+    "id": "orc-warrior-1785001159686",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32315,
+    "y": 31994,
+    "z": 6
+  },
+  {
+    "id": "orc-warrior-1785001165551",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32303,
+    "y": 31993,
+    "z": 6
+  },
+  {
+    "id": "orc-berserker-1785001174097",
+    "name": "Orc Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Berserker.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32301,
+    "y": 31996,
+    "z": 6
+  },
+  {
+    "id": "orc-warrior-1785001205616",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32300,
+    "y": 32028,
+    "z": 6
+  },
+  {
+    "id": "orc-warrior-1785001256307",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32339,
+    "y": 32011,
+    "z": 6
+  },
+  {
+    "id": "orc-warrior-1785001258881",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32351,
+    "y": 32010,
+    "z": 6
+  },
+  {
+    "id": "orc-warrior-1785001296854",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32353,
+    "y": 31994,
+    "z": 6
+  },
+  {
+    "id": "orc-berserker-1785001302712",
+    "name": "Orc Berserker",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Berserker.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 32350,
+    "y": 31994,
+    "z": 6
+  },
+  {
+    "id": "orc-warrior-1785001321504",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32338,
+    "y": 31994,
+    "z": 6
+  },
+  {
+    "id": "orc-warrior-1785001323919",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32339,
+    "y": 31979,
+    "z": 6
+  },
+  {
+    "id": "orc-warrior-1785001354712",
+    "name": "Orc Warrior",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Orc_Warrior.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32314,
+    "y": 31994,
+    "z": 7
+  },
+  {
+    "id": "mossy-stone-1785001576970",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32611,
+    "y": 31919,
+    "z": 3
+  },
+  {
+    "id": "mossy-stone-1785001579024",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32611,
+    "y": 31927,
+    "z": 3
+  },
+  {
+    "id": "mossy-stone-1785001581021",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32617,
+    "y": 31927,
+    "z": 3
+  },
+  {
+    "id": "mossy-stone-1785001583658",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32623,
+    "y": 31927,
+    "z": 3
+  },
+  {
+    "id": "mossy-stone-1785001585196",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32623,
+    "y": 31919,
+    "z": 3
+  },
+  {
+    "id": "mossy-stone-1785001586546",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32617,
+    "y": 31919,
+    "z": 3
+  },
+  {
+    "id": "red-shrine-stone-1785001592023",
+    "name": "Red Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737540/red_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32614,
+    "y": 31919,
+    "z": 3
+  },
+  {
+    "id": "red-shrine-stone-1785001593360",
+    "name": "Red Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737540/red_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32620,
+    "y": 31919,
+    "z": 3
+  },
+  {
+    "id": "red-shrine-stone-1785001595706",
+    "name": "Red Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737540/red_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32614,
+    "y": 31927,
+    "z": 3
+  },
+  {
+    "id": "red-shrine-stone-1785001597174",
+    "name": "Red Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737540/red_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32620,
+    "y": 31927,
+    "z": 3
+  },
+  {
+    "id": "mossy-stone-1785001619788",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32622,
+    "y": 31917,
+    "z": 0
+  },
+  {
+    "id": "mossy-stone-1785001625914",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32617,
+    "y": 31925,
+    "z": 0
+  },
+  {
+    "id": "mossy-stone-1785001644271",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32606,
+    "y": 31930,
+    "z": 0
+  },
+  {
+    "id": "mossy-stone-1785001662842",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32601,
+    "y": 31936,
+    "z": 0
+  },
+  {
+    "id": "mossy-stone-1785001669699",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32603,
+    "y": 31933,
+    "z": 0
+  },
+  {
+    "id": "mossy-stone-1785001712830",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32593,
+    "y": 31943,
+    "z": 0
+  },
+  {
+    "id": "mossy-stone-1785001714235",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32591,
+    "y": 31944,
+    "z": 0
+  },
+  {
+    "id": "mossy-stone-1785001723697",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32581,
+    "y": 31941,
+    "z": 0
+  },
+  {
+    "id": "mossy-stone-1785001736630",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32577,
+    "y": 31932,
+    "z": 0
+  },
+  {
+    "id": "mossy-stone-1785001741288",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32577,
+    "y": 31927,
+    "z": 0
+  },
+  {
+    "id": "mossy-stone-1785001742732",
+    "name": "Mossy Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737551/mossy_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32576,
+    "y": 31928,
+    "z": 0
+  },
+  {
+    "id": "blue-shrine-stone-1785001873015",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32029,
+    "y": 31243,
+    "z": 9
+  },
+  {
+    "id": "blue-shrine-stone-1785001886750",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32001,
+    "y": 31233,
+    "z": 10
+  },
+  {
+    "id": "blue-shrine-stone-1785001892190",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 31980,
+    "y": 31251,
+    "z": 10
+  },
+  {
+    "id": "blue-shrine-stone-1785001909888",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 31956,
+    "y": 31250,
+    "z": 10
+  },
+  {
+    "id": "blue-shrine-stone-1785001912374",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 31957,
+    "y": 31235,
+    "z": 10
+  },
+  {
+    "id": "blue-shrine-stone-1785001928201",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 31975,
+    "y": 31247,
+    "z": 9
+  },
+  {
+    "id": "blue-shrine-stone-1785001938366",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 31978,
+    "y": 31273,
+    "z": 9
+  },
+  {
+    "id": "blue-shrine-stone-1785001946714",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32002,
+    "y": 31265,
+    "z": 10
+  },
+  {
+    "id": "blue-shrine-stone-1785001973262",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 31956,
+    "y": 31277,
+    "z": 10
+  },
+  {
+    "id": "blue-shrine-stone-1785001978723",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 31935,
+    "y": 31270,
+    "z": 10
+  },
+  {
+    "id": "blue-shrine-stone-1785001986991",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 31941,
+    "y": 31290,
+    "z": 10
+  },
+  {
+    "id": "blue-shrine-stone-1785001992350",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 31936,
+    "y": 31307,
+    "z": 10
+  },
+  {
+    "id": "blue-shrine-stone-1785001999304",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 31975,
+    "y": 31286,
+    "z": 10
+  },
+  {
+    "id": "blue-shrine-stone-1785002009494",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 31963,
+    "y": 31300,
+    "z": 9
+  },
+  {
+    "id": "blue-shrine-stone-1785002018493",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 31985,
+    "y": 31307,
+    "z": 8
+  },
+  {
+    "id": "blue-shrine-stone-1785002021894",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 31989,
+    "y": 31298,
+    "z": 9
+  },
+  {
+    "id": "blue-shrine-stone-1785002027761",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 31978,
+    "y": 31313,
+    "z": 10
+  },
+  {
+    "id": "blue-shrine-stone-1785002032336",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 31958,
+    "y": 31322,
+    "z": 10
+  },
+  {
+    "id": "blue-shrine-stone-1785002053641",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32002,
+    "y": 31307,
+    "z": 10
+  },
+  {
+    "id": "blue-shrine-stone-1785002062095",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32008,
+    "y": 31332,
+    "z": 10
+  },
+  {
+    "id": "blue-shrine-stone-1785002068483",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32019,
+    "y": 31321,
+    "z": 10
+  },
+  {
+    "id": "blue-shrine-stone-1785002070012",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32027,
+    "y": 31334,
+    "z": 10
+  },
+  {
+    "id": "winter-wolf-1785002218429",
+    "name": "Winter Wolf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784842083/winter_wolf.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 32036,
+    "y": 31322,
+    "z": 6
+  },
+  {
+    "id": "winter-wolf-1785002246663",
+    "name": "Winter Wolf",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784842083/winter_wolf.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 4,
+    "x": 32014,
+    "y": 31300,
+    "z": 6
+  },
+  {
+    "id": "blue-shrine-stone-1785002277046",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 31981,
+    "y": 31229,
+    "z": 5
+  },
+  {
+    "id": "blue-shrine-stone-1785002283740",
+    "name": "Blue Shrine Stone",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737542/blue_shrine_stone.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 31961,
+    "y": 31231,
+    "z": 5
+  },
+  {
+    "id": "witch-1785002364839",
+    "name": "Witch",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Witch.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 2,
+    "x": 31958,
+    "y": 31233,
+    "z": 4
+  },
+  {
+    "id": "white-lion-1785002372831",
+    "name": "White Lion",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/White_Lion.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31962,
+    "y": 31239,
+    "z": 4
+  },
+  {
+    "id": "valkyrie-1785002380213",
+    "name": "Valkyrie",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Valkyrie.png",
+    "categories": [
+      "Monstros"
+    ],
+    "count": 1,
+    "x": 31960,
+    "y": 31238,
+    "z": 4
+  },
+  {
+    "id": "lava-hole-1785003026641",
+    "name": "Lava Hole",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737549/lava_hole.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32784,
+    "y": 31566,
+    "z": 9
+  },
+  {
+    "id": "lava-hole-1785003082916",
+    "name": "Lava Hole",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737549/lava_hole.gif",
+    "categories": [
+      "Mineração"
+    ],
+    "count": 1,
+    "x": 32814,
+    "y": 31555,
+    "z": 9
+  },
+  {
+    "id": "lava-hole-1785003168186",
+    "name": "Lava Hole",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737549/lava_hole.gif",
+    "categories": [],
+    "count": 1,
+    "x": 32860,
+    "y": 31561,
+    "z": 10
+  },
+  {
+    "id": "lava-hole-1785003170200",
+    "name": "Lava Hole",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737549/lava_hole.gif",
+    "categories": [],
+    "count": 1,
+    "x": 32870,
+    "y": 31572,
+    "z": 10
+  },
+  {
+    "id": "lava-hole-1785003172416",
+    "name": "Lava Hole",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737549/lava_hole.gif",
+    "categories": [],
+    "count": 1,
+    "x": 32873,
+    "y": 31566,
+    "z": 10
+  },
+  {
+    "id": "lava-hole-1785003175013",
+    "name": "Lava Hole",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737549/lava_hole.gif",
+    "categories": [],
+    "count": 1,
+    "x": 32867,
+    "y": 31555,
+    "z": 10
+  },
+  {
+    "id": "lava-hole-1785003291586",
+    "name": "Lava Hole",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737549/lava_hole.gif",
+    "categories": [],
+    "count": 1,
+    "x": 32395,
+    "y": 32448,
+    "z": 6
+  },
+  {
+    "id": "lava-hole-1785003318086",
+    "name": "Lava Hole",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737549/lava_hole.gif",
+    "categories": [],
+    "count": 1,
+    "x": 32411,
+    "y": 32472,
+    "z": 8
+  },
+  {
+    "id": "lava-hole-1785003394881",
+    "name": "Lava Hole",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784737549/lava_hole.gif",
+    "categories": [],
+    "count": 1,
+    "x": 32259,
+    "y": 32493,
+    "z": 10
   }
 ]
