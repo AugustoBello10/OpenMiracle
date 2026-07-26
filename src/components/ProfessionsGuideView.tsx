@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CRAFT_ITEMS } from '../App';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
@@ -9,6 +9,8 @@ import {
 interface ProfessionsGuideViewProps {
   language: 'pt' | 'en';
   onNavigateToCalculator?: (calc: 'crafting' | 'alchemy' | 'mining' | 'farming') => void;
+  selectedProf: string | null;
+  onSelectProf: (prof: string | null) => void;
 }
 
 type ProfessionId = 'fishing' | 'crafting' | 'alchemy' | 'skinning' | 'mining' | 'cooking' | 'farming' | 'carpentry' | 'woodcutting';
@@ -21,10 +23,10 @@ interface ProfessionInfo {
   color: string;
 }
 
-export function ProfessionsGuideView({ language, onNavigateToCalculator }: ProfessionsGuideViewProps) {
-  const [selectedProf, setSelectedProf] = useState<ProfessionId | null>(null);
+export function ProfessionsGuideView({ language, onNavigateToCalculator, selectedProf, onSelectProf }: ProfessionsGuideViewProps) {
   const [expandedRecipeCat, setExpandedRecipeCat] = useState<string | null>(null);
   const [cookingRecipeIndex, setCookingRecipeIndex] = useState(0);
+
   const toggleRecipeCat = (cat: string) => setExpandedRecipeCat(prev => prev === cat ? null : cat);
 
   const getCatName = (cat: string) => {
@@ -691,14 +693,14 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator }: Profe
               <ul className="flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-4 text-sm">
                 <li><button onClick={() => document.getElementById('carpentry-intro')?.scrollIntoView({ behavior: 'smooth' })} className="text-medieval-gold/70 hover:text-medieval-gold hover:underline">1. {t('Apresentação', 'Introduction')}</button></li>
                 <li><button onClick={() => document.getElementById('carpentry-acquire')?.scrollIntoView({ behavior: 'smooth' })} className="text-medieval-gold/70 hover:text-medieval-gold hover:underline">2. {t('Como Adquirir a Profissão', 'How to Acquire the Profession')}</button></li>
-                <li><button onClick={() => document.getElementById('carpentry-tools')?.scrollIntoView({ behavior: 'smooth' })} className="text-medieval-gold/70 hover:text-medieval-gold hover:underline">3. {t('Ferramentas', 'Tools')}</button></li>
+                <li><button onClick={() => document.getElementById('carpentry-tools')?.scrollIntoView({ behavior: 'smooth' })} className="text-medieval-gold/70 hover:text-medieval-gold hover:underline">3. {t('Ferramentas Necessárias', 'Necessary Tools')}</button></li>
                 <li><button onClick={() => document.getElementById('carpentry-beds')?.scrollIntoView({ behavior: 'smooth' })} className="text-medieval-gold/70 hover:text-medieval-gold hover:underline">4. {t('Camas e Upgrades', 'Beds and Upgrades')}</button></li>
                 <li><button onClick={() => document.getElementById('carpentry-recipes')?.scrollIntoView({ behavior: 'smooth' })} className="text-medieval-gold/70 hover:text-medieval-gold hover:underline">5. {t('Receitas (Construções)', 'Recipes (Constructions)')}</button></li>
               </ul>
             </div>
 
             <p>
-              {t('Use um martelo (hammer) e um balcão (counter) para avançar sua habilidade de carpintaria e construir vários tipos de estruturas para suas terras. Carpinteiros também são especialistas em construir camas móveis para terras e novos kits de melhoria de camas para casas e terras.', 'Use an hammer and a counter to advance your carpentry skill and build various types of structures for your lands. Carpenters also specialize in building movable beds for lands and new bed upgradable kits for both houses and lands.')}
+              {t('A carpintaria é a arte de moldar a madeira para criar estruturas, decorações e aprimorar o conforto do seu personagem. Com esta profissão, você poderá construir vários tipos de estruturas para suas terras, além de fabricar camas móveis e kits de melhoria de camas tanto para casas quanto para terrenos.', 'Carpentry is the art of shaping wood to create structures, decorations, and improve your character\'s comfort. With this profession, you can build various types of structures for your lands, as well as craft movable beds and bed upgrade kits for both houses and terrains.')}
             </p>
 
             <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="carpentry-acquire">{t('Como Adquirir a Profissão', 'How to Acquire the Profession')}</h4>
@@ -718,24 +720,36 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator }: Profe
               </div>
             </div>
 
-            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="carpentry-tools">{t('Ferramentas', 'Tools')}</h4>
+            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="carpentry-tools">{t('Ferramentas Necessárias', 'Necessary Tools')}</h4>
             <div className="bg-black/30 p-4 rounded-lg border border-white/5 space-y-4">
               <p>
-                {t('As ferramentas principais usadas na carpintaria são:', 'The main tools used in carpentry are:')}
+                {t('Para exercer a carpintaria e evoluir suas habilidades, você precisará das seguintes ferramentas:', 'To practice carpentry and evolve your skills, you will need the following tools:')}
               </p>
-              <ul className="list-disc pl-5 space-y-4 text-stone-300">
+              <ul className="list-disc pl-5 space-y-6 text-stone-300">
                 <li className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
                   <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784741464/Hammer.gif" alt="Hammer" className="w-12 h-12 object-contain bg-black/40 border border-white/10 rounded p-1" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
                   <div>
                     <strong className="text-medieval-gold block mb-1">{t('Hammer (Martelo):', 'Hammer:')}</strong> 
-                    {t('O martelo também é usado para quebrar coisas como paredes, chãos e qualquer tipo de construção se você precisar limpar seu terreno, tudo baseado na sua habilidade de carpintaria.', 'The hammer is also used to break things such walls, grounds, and any kind of construction if you must clean your terrain, all based on your capentry skill.')}
+                    <p className="mb-2">{t('Ferramenta básica para construir e também destruir. O martelo é usado para quebrar paredes, chãos e qualquer tipo de construção caso você precise limpar seu terreno.', 'Basic tool for building and destroying. The hammer is used to break walls, floors, and any kind of construction in case you need to clean your land.')}</p>
+                    <p className="text-emerald-400/90 text-sm italic">{t('Dica: Ao quebrar as cercas (fences) das suas lands utilizando o martelo, o seu skill de carpintaria também sobe, baseado no seu nível de habilidade!', 'Tip: When breaking fences on your lands using the hammer, your carpentry skill also increases, based on your skill level!')}</p>
                   </div>
                 </li>
                 <li className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
                   <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784741479/square.gif" alt="Square" className="w-12 h-12 object-contain bg-black/40 border border-white/10 rounded p-1" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
                   <div>
                     <strong className="text-medieval-gold block mb-1">{t('Square (Esquadro):', 'Square:')}</strong> 
-                    {t('Para fazer as coisas direito, use um esquadro para construir paredes, portas e bordas em vários ângulos (horizontal, vertical...) girando o ângulo do próprio esquadro.', 'To make things right, use a square for building walls, doors and borders at various angles (horizontal, vertical..) by rotating the angle of the square itself.')}
+                    <p>{t('Fundamental para alinhar suas construções. Use o esquadro para construir paredes, portas e bordas em vários ângulos (horizontal, vertical...) girando o ângulo da própria ferramenta.', 'Fundamental to align your constructions. Use the square to build walls, doors, and borders at various angles (horizontal, vertical...) by rotating the tool\'s angle.')}</p>
+                  </div>
+                </li>
+                <li className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                  <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1785081340/Counter.gif" alt="Counter" className="w-12 h-12 object-contain bg-black/40 border border-white/10 rounded p-1" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                  <div>
+                    <strong className="text-medieval-gold block mb-1">{t('Counter (Bancada):', 'Counter:')}</strong> 
+                    <p className="mb-2">{t('A bancada de trabalho é onde a mágica acontece. É nela que você irá fabricar a maioria dos itens de carpintaria.', 'The workbench is where the magic happens. It is where you will craft most carpentry items.')}</p>
+                    <div className="bg-black/50 p-3 rounded border border-medieval-gold/10 text-sm space-y-1">
+                      <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-medieval-gold inline-block"></span>{t('Você pode utilizar as bancadas disponíveis gratuitamente na loja do NPC Aldren.', 'You can use the workbenches available for free at NPC Aldren\'s shop.')}</p>
+                      <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-medieval-gold inline-block"></span>{t('Também é possível adquirir a sua própria bancada na Store do jogo por 25 Miracle Points.', 'It is also possible to purchase your own workbench in the game Store for 25 Miracle Points.')}</p>
+                    </div>
                   </div>
                 </li>
               </ul>
@@ -744,10 +758,9 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator }: Profe
             <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="carpentry-beds">{t('Camas e Upgrades', 'Beds and Upgrades')}</h4>
             <div className="bg-black/30 p-4 rounded-lg border border-white/5 space-y-4">
               <p>
-                {t('Novos kits de melhoria de cama (Bed Modification) foram introduzidos:', 'New bed upgrade kits have been introduced:')}
+                {t('Novos kits de melhoria de cama (Bed Modification) foram introduzidos, permitindo que você aprimore o descanso do seu personagem e regenere atributos mais rapidamente:', 'New bed upgrade kits (Bed Modification) have been introduced, allowing you to improve your character\'s rest and regenerate stats faster:')}
               </p>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                 <div className="bg-black/40 border border-purple-500/30 rounded-lg p-4">
                   <h5 className="font-bold text-purple-400 mb-2">Bed Modification (Purple)</h5>
                   <p className="text-sm text-stone-400 mb-2">{t('Melhora camas normais para cama roxa.', 'Upgrade normal beds to purple bed.')}</p>
@@ -767,7 +780,6 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator }: Profe
                     <li><strong className="text-medieval-gold">Materials:</strong> 1x red blanket, 4x wooden planks, 8x dark wooden planks, 6x death wooden planks, 4x wooden beams, 8x dark wooden beams, 6x death wooden beams, 7x metal sheets, 14x nails.</li>
                   </ul>
                 </div>
-
                 <div className="bg-black/40 border border-stone-400/30 rounded-lg p-4">
                   <h5 className="font-bold text-stone-300 mb-2">Bed Modification (Gray)</h5>
                   <p className="text-sm text-stone-400 mb-2">{t('Melhora camas vermelhas para cama cinza.', 'Upgrade red bed to gray bed.')}</p>
@@ -777,7 +789,6 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator }: Profe
                     <li><strong className="text-medieval-gold">Materials:</strong> 1x gray blanket, 10x dark wooden planks, 10x death wooden planks, 10x dark wooden beams, 10x death wooden beams, 8x metal sheets, 16x nails.</li>
                   </ul>
                 </div>
-
                 <div className="bg-black/40 border border-stone-600/50 rounded-lg p-4">
                   <h5 className="font-bold text-stone-500 mb-2">Bed Modification (Black)</h5>
                   <p className="text-sm text-stone-400 mb-2">{t('Melhora camas cinzas para cama preta.', 'Upgrade gray beds to black beds.')}</p>
@@ -1702,7 +1713,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator }: Profe
             {professions.map((prof) => (
               <button
                 key={prof.id}
-                onClick={() => prof.isImplemented && setSelectedProf(prof.id)}
+                onClick={() => prof.isImplemented && onSelectProf(prof.id)}
                 disabled={!prof.isImplemented}
                 className={`relative overflow-hidden group rounded-xl bg-black/60 border ${prof.isImplemented ? 'border-medieval-gold/30 hover:border-medieval-gold hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(212,175,55,0.2)]' : 'border-white/5 opacity-60 grayscale cursor-not-allowed'} transition-all duration-300 h-32 lg:h-40 flex flex-col items-center justify-center shadow-lg`}
               >
@@ -1734,7 +1745,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator }: Profe
             </div>
             
             <button 
-              onClick={() => setSelectedProf(null)}
+              onClick={() => onSelectProf(null)}
               className="flex items-center gap-2 text-medieval-gold/60 hover:text-medieval-gold transition-colors font-bold uppercase text-xs tracking-wider mb-8 bg-black/40 px-4 py-2 rounded-lg border border-medieval-gold/10 hover:border-medieval-gold/30 w-fit"
             >
               <ArrowLeft className="w-4 h-4" /> {t('Voltar para o Menu', 'Back to Menu')}

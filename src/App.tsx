@@ -485,6 +485,7 @@ import { ProfessionsGuideView } from "./components/ProfessionsGuideView";
 import { FeedbackBoard } from './components/FeedbackBoard';
 import BestiaryEditor from './components/BestiaryEditor';
 import CyclopediaView from './components/CyclopediaView';
+import { CustomSystemsView } from './components/CustomSystemsView';
 
 type Tab = 'home' | 'calculadoras' | 'profissoes' | 'mapa' | 'eventos' | 'wiki' | 'buildmaker' | 'loot' | 'feedback' | 'hunts' | 'bestiary-editor';
 
@@ -913,11 +914,37 @@ export default function App() {
     return 'home';
   };
 
+  const getInitialProfGuideSubTab = () => {
+    const path = typeof window !== 'undefined' ? window.location.pathname : '/';
+    if (path.includes('/profissoes/')) {
+      const parts = path.split('/');
+      const last = parts[parts.length - 1];
+      if (['fishing', 'crafting', 'alchemy', 'skinning', 'mining', 'cooking', 'farming', 'carpentry', 'woodcutting'].includes(last)) {
+         return last;
+      }
+    }
+    return null;
+  };
+
+  const getInitialItemsSubTab = () => {
+    const path = typeof window !== 'undefined' ? window.location.pathname : '/';
+    if (path.includes('/itens/')) {
+      const parts = path.split('/');
+      const last = parts[parts.length - 1];
+      if (['helmets', 'armors', 'legs', 'boots', 'shields', 'swords', 'clubs', 'axes', 'distance', 'ammo', 'rings', 'amulets', 'reliquias'].includes(last)) {
+         return last as any;
+      }
+    }
+    return 'helmets';
+  };
+
   const [activeTab, setActiveTab] = useState<Tab>(getInitialTab);
   const [calcSubTab, setCalcSubTab] = useState<'skills' | 'bless' | 'atributos' | 'professions' | 'runemaking'>(getInitialCalcSubTab);
   const [profSubTab, setProfSubTab] = useState<'crafting' | 'alchemy' | 'farming' | 'mining'>(getInitialProfSubTab);
+  const [profGuideSubTab, setProfGuideSubTab] = useState<string | null>(getInitialProfGuideSubTab);
   const [wikiSubTab, setWikiSubTab] = useState<'server' | 'project'>(getInitialWikiSubTab);
   const [wikiMainTab, setWikiMainTab] = useState<'home' | 'updates' | 'library' | 'items' | 'profissoes' | 'cyclopedia' | 'custom_systems'>(getInitialWikiMainTab);
+  const [itemsSubTab, setItemsSubTab] = useState<'helmets' | 'armors' | 'legs' | 'boots' | 'shields' | 'swords' | 'clubs' | 'axes' | 'distance' | 'ammo' | 'rings' | 'amulets' | 'reliquias'>(getInitialItemsSubTab);
   
   const navigate = useNavigate();
   const location = useLocation();
@@ -945,6 +972,13 @@ export default function App() {
       }
     } else if (path.startsWith('/profissoes')) {
       setActiveTab('profissoes');
+      const parts = path.split('/');
+      const last = parts[parts.length - 1];
+      if (['fishing', 'crafting', 'alchemy', 'skinning', 'mining', 'cooking', 'farming', 'carpentry', 'woodcutting'].includes(last)) {
+         setProfGuideSubTab(last);
+      } else {
+         setProfGuideSubTab(null);
+      }
     } else if (path.startsWith('/mapa')) {
       setActiveTab('mapa');
     } else if (path.startsWith('/eventos')) {
@@ -959,7 +993,14 @@ export default function App() {
       
       if (path.includes('/updates')) setWikiMainTab('updates');
       else if (path.includes('/biblioteca')) setWikiMainTab('library');
-      else if (path.includes('/itens')) setWikiMainTab('items');
+      else if (path.includes('/itens')) {
+        setWikiMainTab('items');
+        const parts = path.split('/');
+        const last = parts[parts.length - 1];
+        if (['helmets', 'armors', 'legs', 'boots', 'shields', 'swords', 'clubs', 'axes', 'distance', 'ammo', 'rings', 'amulets', 'reliquias'].includes(last)) {
+           setItemsSubTab(last as any);
+        }
+      }
       else if (path.includes('/sistemas')) setWikiMainTab('custom_systems');
       else setWikiMainTab('home');
     } else if (path.startsWith('/loot')) {
@@ -989,8 +1030,9 @@ export default function App() {
       } else {
         newPath = '/calculadoras/skills';
       }
-    } else if (activeTab === 'profissoes') newPath = '/profissoes';
-    else if (activeTab === 'mapa') newPath = '/mapa';
+    } else if (activeTab === 'profissoes') {
+      newPath = profGuideSubTab ? `/profissoes/${profGuideSubTab}` : '/profissoes';
+    } else if (activeTab === 'mapa') newPath = '/mapa';
     else if (activeTab === 'eventos') newPath = '/eventos';
 
     else if (activeTab === 'wiki') {
@@ -1000,7 +1042,10 @@ export default function App() {
       
       if (wikiMainTab === 'updates') wikiPath += '/updates';
       else if (wikiMainTab === 'library') wikiPath += '/biblioteca';
-      else if (wikiMainTab === 'items') wikiPath += '/itens';
+      else if (wikiMainTab === 'items') {
+        wikiPath += '/itens';
+        if (itemsSubTab) wikiPath += `/${itemsSubTab}`;
+      }
       else if (wikiMainTab === 'cyclopedia') wikiPath += '/cyclopedia';
       else if (wikiMainTab === 'custom_systems') wikiPath += '/sistemas';
       
@@ -1011,9 +1056,8 @@ export default function App() {
     if (location.pathname !== newPath) {
       navigate(newPath);
     }
-  }, [activeTab, calcSubTab, profSubTab, wikiSubTab, wikiMainTab]);
+  }, [activeTab, calcSubTab, profSubTab, profGuideSubTab, wikiSubTab, wikiMainTab, itemsSubTab]);
 
-  const [itemsSubTab, setItemsSubTab] = useState<'helmets' | 'armors' | 'legs' | 'boots' | 'shields' | 'swords' | 'clubs' | 'axes' | 'distance' | 'ammo' | 'rings' | 'amulets' | 'relics'>('helmets');
   const [distanceFilter, setDistanceFilter] = useState<'all' | 'bow' | 'crossbow' | 'throwing'>('all');
   const [selectedBookId, setSelectedBookId] = useState<string>(LIBRARY_DATA[0]?.id || '');
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
@@ -1036,15 +1080,15 @@ export default function App() {
 
   // Sidebar accordion groups state
   const [sidebarOpenGroups, setSidebarOpenGroups] = useState({
-    inicio: true,
-    guias: true,
-    calculadores: true,
-    profissoes: true,
-    equipamentos: true,
-    cyclopedia: true,
+    inicio: false,
+    guias: false,
+    calculadores: false,
+    profissoes: false,
+    equipamentos: false,
+    cyclopedia: false,
     biblioteca: false,
-    utilitarios: true,
-    comunidade: true
+    utilitarios: false,
+    comunidade: false
   });
 
   // Secret Admin Tracking State
@@ -1227,7 +1271,7 @@ export default function App() {
       if (cat === 'ammo' || cat === 'ammunition' || subCat === 'ammo') return { subTab: 'ammo', attrCat: 'Ammo' };
       if (cat === 'ring') return { subTab: 'rings' };
       if (cat === 'necklace') return { subTab: 'amulets' };
-      if (cat === 'relic') return { subTab: 'relics' };
+      if (cat === 'relic') return { subTab: 'reliquias' };
       return { subTab: 'helmets' };
     };
 
@@ -1400,49 +1444,70 @@ export default function App() {
         keys: ['pick', 'mining', 'mineracao', 'picareta', 'ore', 'miner', 'minerar'],
         labelCalc: 'Calculadora de Mineração (Antiazar & Ganhos)',
         labelVid: 'Vídeo Tutorial: Guia de Mineração',
-        sub: 'mining'
+        sub: 'mining',
+        hasCalc: true
       },
       {
         keys: ['pick', 'crafting', 'forja', 'craft', 'ferreiro', 'forjar', 'recipe', 'receita', 'onyx'],
         labelCalc: 'Calculadora de Crafting (Fórmulas & Custos)',
         labelVid: 'Vídeo Tutorial: Guia de Crafting / Forja',
-        sub: 'crafting'
+        sub: 'crafting',
+        hasCalc: true
       },
       {
         keys: ['alchemy', 'alquimia', 'potion', 'pocao', 'runa', 'runas', 'duplicacao', 'onyx'],
         labelCalc: 'Calculadora de Alquimia (Duplicação de Runas)',
         labelVid: 'Vídeo Tutorial: Guia de Alquimia',
-        sub: 'alchemy'
+        sub: 'alchemy',
+        hasCalc: true
       },
       {
         keys: ['farming', 'seed', 'fazenda', 'plantio', 'agricultura', 'cultivo', 'colheita', 'arvore'],
         labelCalc: 'Calculadora de Farming (Cultivo de Árvores)',
         labelVid: 'Vídeo Tutorial: Guia de Farming / Fazenda',
-        sub: 'farming'
+        sub: 'farming',
+        hasCalc: true
+      },
+      {
+        keys: ['fishing', 'fish', 'pesca', 'pescador', 'pescaria', 'vara', 'peixe'],
+        labelVid: 'Guia de Pesca',
+        sub: 'fishing',
+        hasCalc: false
+      },
+      {
+        keys: ['cooking', 'food', 'comida', 'culinaria', 'cozinha', 'cozinheiro', 'receita', 'forno'],
+        labelVid: 'Guia de Culinária',
+        sub: 'cooking',
+        hasCalc: false
       }
     ];
 
     profKeywords.forEach(kw => {
-      if (kw.keys.some(k => normalize(k).includes(q))) {
+      const isMatch = kw.keys.some(k => normalize(k).includes(q) || q.includes(normalize(k)));
+      if (isMatch) {
         // Direct Calculator Shortcut
-        addResult(
-          `prof-calc-${kw.sub}`,
-          kw.labelCalc,
-          'Calculadora de Profissão',
-          () => {
-            setActiveTab('calculadoras');
-            setCalcSubTab('professions');
-            setProfSubTab(kw.sub as any);
-            setSearchQuery('');
-            setSearchResults([]);
-          }
-        );
+        if (kw.hasCalc && kw.labelCalc) {
+          addResult(
+            `prof-calc-${kw.sub}`,
+            kw.labelCalc,
+            'Calculadora de Profissão',
+            () => {
+              setActiveTab('calculadoras');
+              setCalcSubTab('professions');
+              setProfSubTab(kw.sub as any);
+              setSearchQuery('');
+              setSearchResults([]);
+            }
+          );
+        }
+
         // Video Guide Shortcut ("seja vídeo de profissão")
         addResult(
           `prof-vid-${kw.sub}`,
-          kw.labelVid,
-          'Guia de Profissão (Vídeo)',
+          kw.labelVid || 'Guia de Profissão',
+          'Guia de Profissão',
           () => {
+            setProfGuideSubTab(kw.sub);
             setActiveTab('profissoes');
             setSearchQuery('');
             setSearchResults([]);
@@ -1458,10 +1523,29 @@ export default function App() {
       { keys: ['build', 'maker', 'set', 'equipar', 'atributos', 'simulador'], tab: 'buildmaker', sub: '', label: 'Build Maker (Criador & Simulador de Sets)', type: 'Build Maker' },
       { keys: ['map', 'mapa', 'interativo', 'quest', 'comarca'], tab: 'mapa', sub: '', label: 'Mapa Interativo de Comarca / Quests', type: 'Ferramenta' },
       { keys: ['patch', 'notes', 'notas', 'update', 'atualizacao', 'versao', 'mudancas'], tab: 'wiki', sub: 'updates', label: 'Histórico de Patch Notes & Atualizações', type: 'Wiki' },
+      { keys: ['cyclopedia', 'monstros', 'criaturas', 'monsters', 'bestiary', 'bestiario', 'loots'], tab: 'wiki', sub: 'cyclopedia', label: 'Cyclopedia (Bestiário & Loots)', type: 'Wiki' },
+      { keys: ['sistemas custom', 'custom systems', 'sistemas', 'custom', 'guia', 'tutorial'], tab: 'wiki', sub: 'custom_systems', label: 'Sistemas Customizados / Guias', type: 'Wiki' },
+      { keys: ['itens', 'equipamentos', 'armas', 'armaduras', 'items', 'equipment'], tab: 'wiki', sub: 'items', label: 'Banco de Dados de Itens', type: 'Wiki' },
+      { keys: ['biblioteca', 'library', 'livros', 'lore', 'historia', 'books'], tab: 'wiki', sub: 'library', label: 'Biblioteca & Lore', type: 'Wiki' },
+      { keys: ['profissoes', 'professions', 'guias', 'tutorial', 'guia', 'video'], tab: 'profissoes', sub: '', label: 'Guias & Tutoriais de Profissões', type: 'Guia' },
+      { keys: ['loot', 'split', 'party', 'hunt', 'divisao', 'dividir'], tab: 'loot', sub: '', label: 'Loot Splitter (Divisor de Party)', type: 'Ferramenta' },
+      { keys: ['hunts', 'locais de caca', 'hunting', 'respawns', 'xp', 'level'], tab: 'hunts', sub: '', label: 'Hunts Recomendadas & Respawns', type: 'Guia' },
+      { keys: ['eventos', 'events', 'calendario', 'bosses', 'invasoes'], tab: 'eventos', sub: '', label: 'Calendário de Eventos & Bosses', type: 'Info' },
+      // Custom systems detailed
+      { keys: ['relic box', 'relic', 'box', 'caixa'], tab: 'wiki', sub: 'custom_systems', label: 'Sistema: Relic Box', type: 'Sistema Custom' },
+      { keys: ['reliquias', 'reliquia', 'reliquias'], tab: 'wiki', sub: 'custom_systems', label: 'Sistema: Relíquias', type: 'Sistema Custom' },
+      { keys: ['atributos', 'attributes', 'status'], tab: 'wiki', sub: 'custom_systems', label: 'Sistema: Atributos', type: 'Sistema Custom' },
+      { keys: ['armas de treino', 'training weapons', 'treino'], tab: 'wiki', sub: 'custom_systems', label: 'Sistema: Armas de Treino', type: 'Sistema Custom' },
+      { keys: ['bed making', 'bed', 'making', 'runes'], tab: 'wiki', sub: 'custom_systems', label: 'Sistema: Bed Making Runes', type: 'Sistema Custom' },
+      { keys: ['houses', 'lands', 'casas', 'terrenos'], tab: 'wiki', sub: 'custom_systems', label: 'Sistema: Houses & Lands', type: 'Sistema Custom' },
+      { keys: ['spawn', 'demonic essences', 'demonic', 'essences'], tab: 'wiki', sub: 'custom_systems', label: 'Sistema: Spawn & Demonic Essences', type: 'Sistema Custom' },
+      { keys: ['shop idle', 'shop', 'idle', 'afk'], tab: 'wiki', sub: 'custom_systems', label: 'Sistema: Shop Idle', type: 'Sistema Custom' },
+      { keys: ['cam system', 'cam', 'camera', 'replay'], tab: 'wiki', sub: 'custom_systems', label: 'Sistema: Cam System', type: 'Sistema Custom' },
     ];
 
     generalKeywords.forEach(kw => {
-      if (kw.keys.some(k => normalize(k).includes(q))) {
+      const isMatch = kw.keys.some(k => normalize(k).includes(q) || q.includes(normalize(k)));
+      if (isMatch) {
         addResult(
           `gen-kw-${kw.label}`,
           kw.label,
@@ -1469,8 +1553,8 @@ export default function App() {
           () => {
             setActiveTab(kw.tab as Tab);
             if (kw.tab === 'calculadoras' && kw.sub) setCalcSubTab(kw.sub as any);
-            if (kw.tab === 'wiki' && kw.sub === 'updates') {
-              setWikiMainTab('updates');
+            if (kw.tab === 'wiki' && kw.sub) {
+              setWikiMainTab(kw.sub as any);
             }
             setSearchQuery('');
             setSearchResults([]);
@@ -1623,7 +1707,7 @@ export default function App() {
       { id: 'ammo', label: language === 'pt' ? 'Munição' : 'Ammo', icon: null },
       { id: 'rings', label: language === 'pt' ? 'Anéis' : 'Rings', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849027/aneis_magicos.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Rings" /> },
       { id: 'amulets', label: language === 'pt' ? 'Amuletos' : 'Amulets', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849026/amuletos.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Amulets" /> },
-      { id: 'relics', label: language === 'pt' ? 'Relíquias' : 'Relics', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849034/reliquias.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Relics" /> },
+      { id: 'reliquias', label: language === 'pt' ? 'Relíquias' : 'Relics', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849034/reliquias.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Relics" /> },
     ];
 
 
@@ -1842,6 +1926,15 @@ export default function App() {
                       <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849035/lobbyquest.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Lobby Quest" />
                       {language === 'pt' ? 'Lobby de Quests' : 'Quests & Events'}
                     </button>
+                    <button 
+                      onClick={() => { setActiveTab('wiki'); setWikiMainTab('custom_systems'); if(isMobile) setIsMenuOpen(false); }}
+                      className={activeTab === 'wiki' && wikiMainTab === 'custom_systems' ? activeSubmenuClass : inactiveSubmenuClass}
+                    >
+                      <div className="w-7 h-7 flex items-center justify-center">
+                        <Settings className="w-5 h-5 text-medieval-gold drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" />
+                      </div>
+                      {language === 'pt' ? 'Sistemas Custom' : 'Custom Systems'}
+                    </button>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -2038,7 +2131,7 @@ export default function App() {
 
           {/* Desktop Global Search Bar */}
           <div className="hidden lg:flex relative max-w-sm w-full mx-6 items-center gap-2">
-            <div className="relative w-full">
+            <div className="relative w-full z-50">
               <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
                 <Search className="text-medieval-gold/40 w-4 h-4" />
               </div>
@@ -2046,7 +2139,6 @@ export default function App() {
                 type="text" 
                 value={searchQuery}
                 onChange={(e) => {
-                  if (activeTab !== 'home') setActiveTab('home');
                   handleSearch(e.target.value);
                 }}
                 onKeyDown={(e) => {
@@ -2054,15 +2146,42 @@ export default function App() {
                     searchResults[0].action();
                   }
                 }}
+                onFocus={() => {
+                  if (searchQuery.trim() && searchResults.length === 0) {
+                     handleSearch(searchQuery);
+                  }
+                }}
                 placeholder={language === 'pt' ? 'Buscar no site...' : 'Search wiki...'}
                 className="w-full bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded-full py-1.5 pl-9 pr-4 text-medieval-gold placeholder:text-medieval-gold/30 focus:outline-none focus:border-medieval-gold/50 focus:bg-black/60 transition-all text-xs font-mono tracking-wider"
               />
+              {searchResults.length > 0 && searchQuery && (
+                <>
+                  <div 
+                    className="fixed inset-0 z-[90]" 
+                    onClick={() => {
+                      setSearchResults([]);
+                    }}
+                  />
+                  <div className="absolute top-full mt-2 left-0 w-[400px] max-h-[60vh] overflow-y-auto bg-black/95 border border-medieval-gold/30 shadow-[0_4px_20px_rgba(0,0,0,0.8)] rounded-md flex flex-col z-[100] custom-scrollbar">
+                    {searchResults.map((res) => (
+                      <button
+                        key={res.id}
+                        onClick={res.action}
+                        className="text-left px-4 py-3 hover:bg-medieval-gold/20 transition-colors border-b border-white/5 flex flex-col gap-1 group"
+                      >
+                        <span className="text-medieval-gold font-bold text-sm group-hover:text-yellow-400">{res.label}</span>
+                        <span className="text-white/50 text-[10px] uppercase tracking-wider">{res.type}</span>
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
             <button 
               onClick={() => {
                 if (searchResults.length > 0) searchResults[0].action();
               }}
-              className="shrink-0 bg-medieval-gold/10 text-medieval-gold border border-medieval-gold/20 hover:bg-medieval-gold hover:text-black hover:border-medieval-gold px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all"
+              className="shrink-0 bg-medieval-gold/10 text-medieval-gold border border-medieval-gold/20 hover:bg-medieval-gold hover:text-black hover:border-medieval-gold px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all z-50"
             >
               {language === 'pt' ? 'Buscar' : 'Search'}
             </button>
@@ -2699,7 +2818,9 @@ export default function App() {
                 className="h-full"
               >
                 <ProfessionsGuideView 
-                  language={language} 
+                  language={language}
+                  selectedProf={profGuideSubTab}
+                  onSelectProf={setProfGuideSubTab}
                   onNavigateToCalculator={(calc) => {
                     setActiveTab('calculadoras');
                     setCalcSubTab('professions');
@@ -3072,7 +3193,7 @@ export default function App() {
                           { id: 'ammo', label: language === 'pt' ? 'Munições' : 'Ammo', icon: null },
                           { id: 'rings', labelPt: 'Anéis', labelEn: 'Magic Rings', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849027/aneis_magicos.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Rings" /> },
                           { id: 'amulets', labelPt: 'Amuletos', labelEn: 'Amulets', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849026/amuletos.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Amulets" /> },
-                          { id: 'relics', labelPt: 'Relíquias', labelEn: 'Holy Relics', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849034/reliquias.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Relics" /> }
+                          { id: 'reliquias', labelPt: 'Relíquias', labelEn: 'Holy Relics', icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849034/reliquias.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Relics" /> }
                         ].map((sub) => (
                           <button
                             key={sub.id}
@@ -3830,7 +3951,7 @@ export default function App() {
                       )}
 
                       {/* Relics Table */}
-                      {itemsSubTab === 'relics' && (
+                      {itemsSubTab === 'reliquias' && (
                         <div className="medieval-card overflow-hidden">
                           <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
@@ -4096,37 +4217,9 @@ export default function App() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
-                    className="space-y-6"
+                    className="w-full"
                   >
-                    <header className="text-center relative py-6">
-                      <div className="absolute inset-0 bg-gradient-to-b from-medieval-gold/5 via-transparent to-transparent blur-3xl rounded-full"></div>
-                      <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-3 relative drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] flex items-center justify-center gap-3">
-                        {language === 'pt' ? 'Sistemas Custom' : 'Custom Systems'}
-                      </h1>
-                      <p className="text-medieval-gold/70 font-mono text-xs max-w-2xl mx-auto italic tracking-wide">
-                        {language === 'pt' ? 'Guia completo de todas as mecânicas exclusivas do servidor Miracle 7.4.' : 'Complete guide of all exclusive mechanics in Miracle 7.4 server.'}
-                      </p>
-                      <div className="w-24 h-px bg-gradient-to-r from-transparent via-medieval-gold/40 to-transparent mx-auto mt-6"></div>
-                    </header>
-                    
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {[
-                        { id: 'relic_box', name: 'Relic Box' },
-                        { id: 'reliquias', name: 'Relíquias' },
-                        { id: 'atributos', name: 'Atributos' },
-                        { id: 'armas_treino', name: 'Armas de Treino' },
-                        { id: 'bed_making', name: 'Bed Making Runes' },
-                        { id: 'houses_lands', name: 'Houses & Lands' },
-                        { id: 'spawn_demonic', name: 'Spawn & Demonic Essences' },
-                        { id: 'shop_idle', name: 'Shop Idle' },
-                        { id: 'cam_system', name: 'Cam System' },
-                      ].map((sys) => (
-                        <div key={sys.id} className="medieval-card p-6 text-center group border border-white/5 relative overflow-hidden flex flex-col justify-center min-h-[140px]">
-                          <h3 className="text-lg font-black text-medieval-gold uppercase mb-2">{sys.name}</h3>
-                          <p className="text-xs text-medieval-text/50 uppercase tracking-widest">{language === 'pt' ? 'Em construção' : 'Under construction'}</p>
-                        </div>
-                      ))}
-                    </div>
+                    <CustomSystemsView language={language} />
                   </motion.div>
                 )}
 
@@ -4310,19 +4403,34 @@ export default function App() {
         </div>
       </div>
       
-      {/* Global Floating Feedback Button */}
-      {activeTab !== 'feedback' && (
-        <motion.button
+      {/* Global Floating Buttons (Feedback & Twitch) */}
+      <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 flex-col sm:flex-row">
+        <motion.a
+          href="https://www.twitch.tv/obellao_"
+          target="_blank"
+          rel="noopener noreferrer"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          onClick={() => setActiveTab('feedback')}
-          className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-medieval-gold to-yellow-600 text-black font-black uppercase tracking-widest text-[10px] rounded-full shadow-[0_0_20px_rgba(197,160,89,0.3)] hover:shadow-[0_0_30px_rgba(197,160,89,0.5)] hover:scale-105 transition-all duration-300"
+          className="flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-purple-600 to-purple-900 text-white font-black uppercase tracking-widest text-[10px] rounded-full shadow-[0_0_20px_rgba(147,51,234,0.3)] hover:shadow-[0_0_30px_rgba(147,51,234,0.5)] hover:scale-105 transition-all duration-300"
         >
-          <MessageSquare className="w-4 h-4" />
-          <span className="hidden sm:inline">{language === 'pt' ? 'Deixe seu Feedback' : 'Leave Feedback'}</span>
-          <span className="sm:hidden">Feedback</span>
-        </motion.button>
-      )}
+          <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+            <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z" />
+          </svg>
+          <span className="hidden sm:inline">Twitch</span>
+        </motion.a>
+        {activeTab !== 'feedback' && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            onClick={() => setActiveTab('feedback')}
+            className="flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-medieval-gold to-yellow-600 text-black font-black uppercase tracking-widest text-[10px] rounded-full shadow-[0_0_20px_rgba(197,160,89,0.3)] hover:shadow-[0_0_30px_rgba(197,160,89,0.5)] hover:scale-105 transition-all duration-300"
+          >
+            <MessageSquare className="w-4 h-4" />
+            <span className="hidden sm:inline">{language === 'pt' ? 'Deixe seu Feedback' : 'Leave Feedback'}</span>
+            <span className="sm:hidden">Feedback</span>
+          </motion.button>
+        )}
+      </div>
 
       {activeTab !== 'home' && (
       <footer className="bg-black/80 border-t border-medieval-gold/10 pt-12 pb-6 px-4 mt-auto">
