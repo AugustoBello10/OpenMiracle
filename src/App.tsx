@@ -33,6 +33,7 @@ import { MapModal } from './components/MapModal';
 import MapViewer from './components/MapViewer';
 import { LootOptimizer } from './components/LootOptimizer';
 import { supabase } from './lib/supabase';
+import { Analytics } from '@vercel/analytics/react';
 
 // --- Dados do Banco de Dados Embutido ---
 export const CRAFT_ITEMS = [
@@ -4403,6 +4404,7 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
+      <Analytics />
     </div>
   );
 }
