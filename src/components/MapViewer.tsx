@@ -187,7 +187,7 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
 
   const [localRespawns, setLocalRespawns] = useState<Respawn[]>(() => {
     try {
-      const saved = localStorage.getItem('miracle-wiki-respawns');
+      const saved = localStorage.getItem('miracle-wiki-respawns-v2');
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed)) {
@@ -214,7 +214,7 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
   });
 
   useEffect(() => {
-    localStorage.setItem('miracle-wiki-respawns', JSON.stringify(localRespawns));
+    localStorage.setItem('miracle-wiki-respawns-v2', JSON.stringify(localRespawns));
   }, [localRespawns]);
   const [brushMode, setBrushMode] = useState(false);
   const [activeMonster, setActiveMonster] = useState<{ name: string; image: string; categories?: string[] }>({ name: '', image: '', categories: ['Monstros'] });
@@ -368,7 +368,7 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
        <div className="absolute top-4 right-4 z-[400] flex flex-col gap-2 max-h-[calc(100%-2rem)]">
          
          {/* Search Controls */}
-         <div className="bg-black/80 rounded-lg border border-medieval-gold/30 flex flex-col backdrop-blur-sm shadow-[0_0_15px_rgba(0,0,0,0.8)] w-48 relative z-50">
+         <div className="bg-black/80 rounded-lg border border-medieval-gold/30 flex flex-col backdrop-blur-sm shadow-[0_0_15px_rgba(0,0,0,0.8)] w-48 relative z-[100]">
            {activeSearchMonster ? (
              <div className="flex flex-col p-2 gap-2">
                <div className="flex items-center justify-between">
