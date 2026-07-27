@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { MapContainer, ImageOverlay, useMap, useMapEvents, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
-import { ChevronUp, ChevronDown, Layers, Filter, BookOpen } from 'lucide-react';
+import { ChevronUp, ChevronDown, Layers, Filter, BookOpen, Search, MapPin, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import 'leaflet/dist/leaflet.css';
 import { RESPAWNS, Respawn, PREDEFINED_MONSTERS, fixCategories } from '../data/respawns';
 import MapEditorPanel, { MapClickHandler } from './MapEditorPanel';
@@ -119,6 +119,17 @@ function UrlSync({ floor }: { floor: number }) {
   return null;
 }
 
+
+function MapFlyTo({ center, zoom }: { center: [number, number] | null, zoom: number }) {
+  const map = useMap();
+  useEffect(() => {
+    if (center) {
+      map.flyTo(center, zoom, { duration: 0.5 });
+    }
+  }, [center, zoom, map]);
+  return null;
+}
+
 interface MapViewerProps {
   initialX?: number;
   initialY?: number;
@@ -211,6 +222,87 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
   const [filterType, setFilterType] = useState<string>('all');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
+  // Search logic
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [activeSearchMonster, setActiveSearchMonster] = useState<string | null>(null);
+  const [searchRegions, setSearchRegions] = useState<any[]>([]);
+  const [currentRegionIndex, setCurrentRegionIndex] = useState(0);
+  const [flyToPos, setFlyToPos] = useState<[number, number] | null>(null);
+
+  const uniqueMonsterNames = useMemo(() => {
+    const names = new Set<string>();
+    localRespawns.forEach(r => names.add(r.name));
+    return Array.from(names).sort();
+  }, [localRespawns]);
+
+  const searchSuggestions = useMemo(() => {
+    if (!searchQuery) return [];
+    const q = searchQuery.toLowerCase();
+    return uniqueMonsterNames.filter(n => n.toLowerCase().includes(q)).slice(0, 5);
+  }, [searchQuery, uniqueMonsterNames]);
+
+  useEffect(() => {
+    if (activeSearchMonster) {
+      const monsterRespawns = localRespawns.filter(r => r.name.toLowerCase() === activeSearchMonster.toLowerCase());
+      
+      const regions: any[] = [];
+      monsterRespawns.forEach(respawn => {
+        let foundRegion = regions.find(reg => 
+          reg.floor === respawn.z && 
+          Math.sqrt(Math.pow(reg.center.x - respawn.x, 2) + Math.pow(reg.center.y - respawn.y, 2)) < 150
+        );
+
+        if (foundRegion) {
+          foundRegion.respawns.push(respawn);
+          foundRegion.center.x = foundRegion.respawns.reduce((sum: number, r: any) => sum + r.x, 0) / foundRegion.respawns.length;
+          foundRegion.center.y = foundRegion.respawns.reduce((sum: number, r: any) => sum + r.y, 0) / foundRegion.respawns.length;
+        } else {
+          regions.push({
+            id: `reg-${regions.length}`,
+            floor: respawn.z,
+            center: { x: respawn.x, y: respawn.y },
+            respawns: [respawn]
+          });
+        }
+      });
+      
+      regions.sort((a, b) => b.respawns.length - a.respawns.length);
+      setSearchRegions(regions);
+      setCurrentRegionIndex(0);
+      
+      if (regions.length > 0) {
+        const reg = regions[0];
+        setFloor(reg.floor);
+        setFlyToPos([-reg.center.y, reg.center.x]);
+      }
+    } else {
+      setSearchRegions([]);
+    }
+  }, [activeSearchMonster, localRespawns]);
+
+  const handleNextRegion = () => {
+    if (searchRegions.length > 0) {
+      const nextIdx = (currentRegionIndex + 1) % searchRegions.length;
+      setCurrentRegionIndex(nextIdx);
+      const reg = searchRegions[nextIdx];
+      setFloor(reg.floor);
+      setFlyToPos([-reg.center.y, reg.center.x]);
+    }
+  };
+
+  const handlePrevRegion = () => {
+    if (searchRegions.length > 0) {
+      const prevIdx = (currentRegionIndex - 1 + searchRegions.length) % searchRegions.length;
+      setCurrentRegionIndex(prevIdx);
+      const reg = searchRegions[prevIdx];
+      setFloor(reg.floor);
+      setFlyToPos([-reg.center.y, reg.center.x]);
+    }
+  };
+
+
   const DEFAULT_CATEGORIES = useMemo(() => ['Monstros', 'Mineração', 'Cooking', 'Chaves', 'Farming', 'Woodcutting', 'Fishing', 'NPC', 'Pick Holes', 'Interação no Mapa'], []);
   
   const allCategories = useMemo(() => {
@@ -222,11 +314,15 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
   // Filter respawns for current floor
   const currentRespawns = useMemo(() => localRespawns.filter(r => {
     if (r.z !== floor) return false;
-    if (filterType === 'all') return true;
     
-    const cats = r.categories && r.categories.length > 0 ? r.categories : ['Monstros'];
-    return cats.includes(filterType);
-  }), [floor, localRespawns, filterType]);
+    if (activeSearchMonster) {
+      if (r.name.toLowerCase() !== activeSearchMonster.toLowerCase()) return false;
+    } else if (filterType !== 'all') {
+      const cats = r.categories && r.categories.length > 0 ? r.categories : ['Monstros'];
+      if (!cats.includes(filterType)) return false;
+    }
+    return true;
+  }), [floor, localRespawns, filterType, activeSearchMonster]);
 
   // Group by monster name or image
   const respawnsGrouped = useMemo(() => {
@@ -270,6 +366,74 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
           allCategories={allCategories}
        />
        <div className="absolute top-4 right-4 z-[400] flex flex-col gap-2 max-h-[calc(100%-2rem)]">
+         
+         {/* Search Controls */}
+         <div className="bg-black/80 rounded-lg border border-medieval-gold/30 flex flex-col backdrop-blur-sm shadow-[0_0_15px_rgba(0,0,0,0.8)] w-48 relative z-50">
+           {activeSearchMonster ? (
+             <div className="flex flex-col p-2 gap-2">
+               <div className="flex items-center justify-between">
+                 <span className="text-medieval-gold font-bold text-xs uppercase truncate max-w-[120px]" title={activeSearchMonster}>{activeSearchMonster}</span>
+                 <button onClick={() => setActiveSearchMonster(null)} className="text-gray-400 hover:text-red-400"><X className="w-4 h-4" /></button>
+               </div>
+               
+               {searchRegions.length > 0 ? (
+                 <div className="flex items-center justify-between bg-black/40 p-1 rounded border border-white/5">
+                   <button onClick={handlePrevRegion} className="p-1 hover:bg-white/10 rounded"><ChevronLeft className="w-4 h-4 text-medieval-gold" /></button>
+                   <div className="text-xs text-gray-300 font-mono">
+                     Região {currentRegionIndex + 1}/{searchRegions.length}
+                   </div>
+                   <button onClick={handleNextRegion} className="p-1 hover:bg-white/10 rounded"><ChevronRight className="w-4 h-4 text-medieval-gold" /></button>
+                 </div>
+               ) : (
+                 <div className="text-xs text-red-400 text-center py-1">Nenhum encontrado</div>
+               )}
+             </div>
+           ) : (
+             <div className="p-2 flex flex-col gap-2">
+               <div 
+                 className="flex items-center gap-2 cursor-pointer group"
+                 onClick={() => setIsSearchOpen(!isSearchOpen)}
+               >
+                 <Search className="w-4 h-4 text-medieval-gold/70 group-hover:text-medieval-gold transition-colors" />
+                 <span className="text-xs text-medieval-gold/70 group-hover:text-medieval-gold transition-colors font-bold uppercase">{language === 'pt' ? 'Buscar' : 'Search'}</span>
+               </div>
+               
+               {isSearchOpen && (
+                 <div className="relative border-t border-medieval-gold/20 pt-2">
+                   <input
+                     type="text"
+                     value={searchQuery}
+                     onChange={e => { setSearchQuery(e.target.value); setShowSuggestions(true); }}
+                     onFocus={() => setShowSuggestions(true)}
+                     onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+                     placeholder="Monstro..."
+                     className="w-full bg-black/50 border border-white/10 rounded px-2 py-1 text-xs text-white focus:outline-none focus:border-medieval-gold"
+                   />
+                   
+                   {showSuggestions && searchSuggestions.length > 0 && (
+                     <div className="absolute top-full left-0 right-0 mt-1 bg-black/90 border border-medieval-gold/30 rounded-lg max-h-40 overflow-y-auto z-[500] shadow-xl">
+                       {searchSuggestions.map(name => (
+                         <div 
+                           key={name} 
+                           className="px-2 py-1.5 text-xs text-gray-300 hover:text-medieval-gold hover:bg-white/5 cursor-pointer truncate"
+                           onClick={() => {
+                             setActiveSearchMonster(name);
+                             setSearchQuery('');
+                             setIsSearchOpen(false);
+                             setShowSuggestions(false);
+                           }}
+                         >
+                           {name}
+                         </div>
+                       ))}
+                     </div>
+                   )}
+                 </div>
+               )}
+             </div>
+           )}
+         </div>
+
          {/* Filter Controls */}
          <div className="bg-black/80 p-2 rounded-lg border border-medieval-gold/30 flex flex-col gap-2 backdrop-blur-sm shadow-[0_0_15px_rgba(0,0,0,0.8)] mb-2 overflow-y-auto custom-scrollbar w-32">
            <div 
@@ -351,7 +515,10 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
             className={`w-full h-full ${brushMode ? 'cursor-crosshair' : ''}`}
             style={{ background: '#18181b' }} // zinc-900
           >
+            
             {!isModal && <UrlSync floor={floor} />}
+            <MapFlyTo center={flyToPos} zoom={hasInitialPos ? initialZoom : 0} />
+
             {/* @ts-ignore */}
             {import.meta.env.DEV && <MapClickHandler isActive={brushMode} onMapClick={handleMapClick} />}
             <ImageOverlay
