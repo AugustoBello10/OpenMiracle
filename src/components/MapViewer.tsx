@@ -435,7 +435,7 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
          </div>
 
          {/* Filter Controls */}
-         <div className="bg-black/80 p-2 rounded-lg border border-medieval-gold/30 flex flex-col gap-2 backdrop-blur-sm shadow-[0_0_15px_rgba(0,0,0,0.8)] mb-2 overflow-y-auto custom-scrollbar w-32">
+         <div className="bg-black/80 p-2 rounded-lg border border-medieval-gold/30 flex flex-col gap-2 backdrop-blur-sm shadow-[0_0_15px_rgba(0,0,0,0.8)] mb-2 overflow-y-auto custom-scrollbar w-32 relative z-10">
            <div 
              className="flex items-center justify-between cursor-pointer group"
              onClick={() => setIsFilterOpen(!isFilterOpen)}
@@ -477,7 +477,7 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
          </div>
 
          {/* Floor Controls */}
-         <div className="bg-black/80 p-2 rounded-lg border border-medieval-gold/30 flex flex-col items-center gap-2 backdrop-blur-sm shadow-[0_0_15px_rgba(0,0,0,0.8)] w-24">
+         <div className="bg-black/80 p-2 rounded-lg border border-medieval-gold/30 flex flex-col items-center gap-2 backdrop-blur-sm shadow-[0_0_15px_rgba(0,0,0,0.8)] w-24 relative z-10">
            <div className="flex flex-col items-center">
              <span className="text-medieval-gold text-[10px] font-bold uppercase tracking-widest">{language === 'pt' ? 'Andar' : 'Floor'} {floor}</span>
            </div>
