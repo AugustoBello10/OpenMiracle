@@ -10,6 +10,7 @@ import BestiaryModal from './BestiaryModal';
 import { BESTIARY_DB } from '../data/bestiaryDb';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../lib/firebase';
+import LZString from 'lz-string';
 
 // Fix for default Leaflet icon paths not resolving in React
 
@@ -140,6 +141,133 @@ interface MapViewerProps {
   language?: 'pt' | 'en';
 }
 
+
+function RespawnsLayer({ 
+  currentRespawns, 
+  setSelectedBestiaryMonster, 
+  setLocalRespawns 
+}: { 
+  currentRespawns: Respawn[];
+  setSelectedBestiaryMonster: (name: string) => void;
+  setLocalRespawns: any;
+}) {
+  const map = useMapEvents({
+    moveend: () => setBounds(map.getBounds()),
+    zoomend: () => {
+      setZoom(map.getZoom());
+      setBounds(map.getBounds());
+    }
+  });
+
+  const [zoom, setZoom] = useState(map.getZoom());
+  const [bounds, setBounds] = useState(map.getBounds());
+
+
+
+  const bufferedBounds = bounds.pad(0.5);
+  const visibleRespawns = useMemo(() => {
+    return currentRespawns.filter(r => bufferedBounds.contains([-r.y, r.x]));
+  }, [currentRespawns, bounds]);
+
+  const respawnsGrouped = useMemo(() => {
+    const groups: Record<string, typeof visibleRespawns> = {};
+    visibleRespawns.forEach(r => {
+      if (!groups[r.name]) groups[r.name] = [];
+      groups[r.name].push(r);
+    });
+    return Object.values(groups);
+  }, [visibleRespawns]);
+
+  if (zoom <= 1) {
+    return null;
+  }
+
+  return (
+    <>
+      {respawnsGrouped.map((group, groupIdx) => (
+        <MarkerClusterGroup
+          key={`${group[0].name}-${groupIdx}`}
+          iconCreateFunction={createClusterCustomIcon}
+          maxClusterRadius={80}
+        >
+          {group.map((respawn) => (
+            /* @ts-ignore */
+            <Marker
+              key={respawn.id}
+              position={[-respawn.y, respawn.x]}
+              icon={createMonsterIcon(respawn.image, respawn.count)}
+              monsterCount={respawn.count}
+              monsterImage={respawn.image}
+            >
+              <Popup className="font-sans font-bold text-gray-800">
+                <div className="text-center min-w-[100px] flex flex-col gap-2">
+                  <div className="font-bold text-sm">{respawn.name}</div>
+                  <div className="text-xs text-gray-600 bg-gray-100 rounded px-2 py-1 inline-block">Quantidade: {respawn.count}</div>
+
+                  {/* Bestiary Button */}
+                  {(() => {
+                    const predefined = PREDEFINED_MONSTERS.find(m => m.name.toLowerCase() === respawn.name.toLowerCase());
+                    const isMonster = predefined?.categories?.includes('Monstros') || predefined?.categories?.includes("Monstros") || respawn.categories?.includes('Monstros') || respawn.categories?.includes("Monstros") || Object.keys(BESTIARY_DB).some(k => k.toLowerCase() === respawn.name.toLowerCase());
+                    
+                    if (!isMonster) return null;
+                    
+                    return (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedBestiaryMonster(respawn.name);
+                        }}
+                        className="bg-[#2c2c2c] hover:bg-[#3a3a3a] text-[#a0a0a0] hover:text-white text-xs py-1.5 px-2 rounded font-bold cursor-pointer transition-colors flex items-center justify-center gap-1 border border-[#4a4a4a] mt-1"
+                      >
+                        Cyclopedia
+                      </button>
+                    );
+                  })()}
+
+                  {/* @ts-ignore */}
+                  {import.meta.env.DEV && (
+                    <div className="flex flex-col gap-1 mt-1 border-t pt-2">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setLocalRespawns(prev => prev.filter(r => r.id !== respawn.id));
+                        }}
+                        className="bg-red-500 hover:bg-red-600 text-white text-xs py-1 px-2 rounded font-bold cursor-pointer transition-colors"
+                      >
+                        Excluir
+                      </button>
+                      <div className="flex gap-1">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setLocalRespawns(prev => prev.map(r => r.id === respawn.id ? {...r, count: Math.max(1, r.count - 1)} : r));
+                            }}
+                            className="bg-zinc-200 hover:bg-zinc-300 text-black font-bold text-xs py-1 px-2 rounded flex-1 cursor-pointer transition-colors"
+                          >
+                            -1
+                          </button>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setLocalRespawns(prev => prev.map(r => r.id === respawn.id ? {...r, count: r.count + 1} : r));
+                            }}
+                            className="bg-zinc-200 hover:bg-zinc-300 text-black font-bold text-xs py-1 px-2 rounded flex-1 cursor-pointer transition-colors"
+                          >
+                            +1
+                          </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </Popup>
+            </Marker>
+          ))}
+        </MarkerClusterGroup>
+      ))}
+    </>
+  );
+}
+
 export default function MapViewer({ initialX: propX, initialY: propY, initialZ: propZ, initialZoom: propZoom, markers, isModal, language = 'pt' }: MapViewerProps) {
   const initialParams = useMemo(() => typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : new URLSearchParams(), []);
   const initialFloor = propZ !== undefined ? propZ : parseInt(initialParams.get('floor') || '7', 10);
@@ -185,37 +313,40 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
         (currentBounds[0][1] + currentBounds[1][1]) / 2
     ] as [number, number];
 
-  const [localRespawns, setLocalRespawns] = useState<Respawn[]>(() => {
-    try {
-      const saved = localStorage.getItem('miracle-wiki-respawns-v2');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed)) {
-          const mergedMap = new Map<string, Respawn>();
-          // Carrega os do código base primeiro
-          RESPAWNS.forEach(r => mergedMap.set(r.id, r));
-          
-          // Sobrescreve/adiciona os locais (mantém os que o usuário adicionou que não estão no código)
-          parsed.forEach((item: any) => {
-            mergedMap.set(item.id, {
-              ...item,
-              categories: fixCategories(item.categories, item.name || '')
-            });
-          });
-          
-          return Array.from(mergedMap.values());
-        }
-        return parsed;
-      }
-    } catch (e) {
-      console.error('Failed to parse saved respawns:', e);
-    }
-    return RESPAWNS;
-  });
+  const [localRespawns, setLocalRespawns] = useState<Respawn[]>(RESPAWNS);
 
   useEffect(() => {
-    localStorage.setItem('miracle-wiki-respawns-v2', JSON.stringify(localRespawns));
-  }, [localRespawns]);
+    const unsub = onSnapshot(doc(db, 'map_config', 'respawns'), (docSnap) => {
+      if (docSnap.exists()) {
+        const docData = docSnap.data();
+        const rawData = docData.dataStr;
+        const compressedData = docData.dataCompressed;
+        
+        let dataToParse = null;
+        if (compressedData) {
+          dataToParse = LZString.decompressFromUTF16(compressedData);
+        } else if (rawData) {
+          dataToParse = rawData;
+        }
+
+        if (dataToParse) {
+          try {
+            const data = JSON.parse(dataToParse);
+            if (Array.isArray(data) && data.length > 0) {
+              const processed = data.map((item: any) => ({
+                ...item,
+                categories: fixCategories(item.categories, item.name || '')
+              }));
+              setLocalRespawns(processed);
+            }
+          } catch (e) {
+            console.error("Failed to parse respawns string from DB:", e);
+          }
+        }
+      }
+    });
+    return () => unsub();
+  }, []);
   const [brushMode, setBrushMode] = useState(false);
   const [activeMonster, setActiveMonster] = useState<{ name: string; image: string; categories?: string[] }>({ name: '', image: '', categories: ['Monstros'] });
   const [spawnCount, setSpawnCount] = useState(1);
@@ -230,6 +361,7 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
   const [searchRegions, setSearchRegions] = useState<any[]>([]);
   const [currentRegionIndex, setCurrentRegionIndex] = useState(0);
   const [flyToPos, setFlyToPos] = useState<[number, number] | null>(null);
+  const [flyToZoom, setFlyToZoom] = useState<number>(hasInitialPos ? initialZoom : 2);
 
   const uniqueMonsterNames = useMemo(() => {
     const names = new Set<string>();
@@ -276,6 +408,7 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
         const reg = regions[0];
         setFloor(reg.floor);
         setFlyToPos([-reg.center.y, reg.center.x]);
+      setFlyToZoom(2);
       }
     } else {
       setSearchRegions([]);
@@ -289,6 +422,7 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
       const reg = searchRegions[nextIdx];
       setFloor(reg.floor);
       setFlyToPos([-reg.center.y, reg.center.x]);
+      setFlyToZoom(2);
     }
   };
 
@@ -299,6 +433,7 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
       const reg = searchRegions[prevIdx];
       setFloor(reg.floor);
       setFlyToPos([-reg.center.y, reg.center.x]);
+      setFlyToZoom(2);
     }
   };
 
@@ -324,15 +459,7 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
     return true;
   }), [floor, localRespawns, filterType, activeSearchMonster]);
 
-  // Group by monster name or image
-  const respawnsGrouped = useMemo(() => {
-    const groups: Record<string, typeof currentRespawns> = {};
-    currentRespawns.forEach(r => {
-      if (!groups[r.name]) groups[r.name] = [];
-      groups[r.name].push(r);
-    });
-    return Object.values(groups);
-  }, [currentRespawns]);
+
 
   const handleMapClick = (x: number, y: number) => {
     if (!brushMode || !activeMonster.name || !activeMonster.image) return;
@@ -517,7 +644,7 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
           >
             
             {!isModal && <UrlSync floor={floor} />}
-            <MapFlyTo center={flyToPos} zoom={hasInitialPos ? initialZoom : 0} />
+            <MapFlyTo center={flyToPos} zoom={flyToZoom} />
 
             {/* @ts-ignore */}
             {import.meta.env.DEV && <MapClickHandler isActive={brushMode} onMapClick={handleMapClick} />}
@@ -533,86 +660,7 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
               </Marker>
             ))}
             
-            {respawnsGrouped.map((group, groupIdx) => (
-              <MarkerClusterGroup
-                key={groupIdx}
-                iconCreateFunction={createClusterCustomIcon}
-                maxClusterRadius={80}
-              >
-                {group.map((respawn) => (
-                  /* @ts-ignore */
-                  <Marker
-                    key={respawn.id}
-                    position={[-respawn.y, respawn.x]}
-                    icon={createMonsterIcon(respawn.image, respawn.count)}
-                    monsterCount={respawn.count}
-                    monsterImage={respawn.image}
-                  >
-                    <Popup className="font-sans font-bold text-gray-800">
-                      <div className="text-center min-w-[100px] flex flex-col gap-2">
-                        <div className="font-bold text-sm">{respawn.name}</div>
-                        <div className="text-xs text-gray-600 bg-gray-100 rounded px-2 py-1 inline-block">Quantidade: {respawn.count}</div>
-
-                        {/* Bestiary Button */}
-                        {(() => {
-                          const predefined = PREDEFINED_MONSTERS.find(m => m.name.toLowerCase() === respawn.name.toLowerCase());
-                          const isMonster = predefined?.categories?.includes('Monstros') || predefined?.categories?.includes("Monstros") || respawn.categories?.includes('Monstros') || respawn.categories?.includes("Monstros") || Object.keys(BESTIARY_DB).some(k => k.toLowerCase() === respawn.name.toLowerCase());
-                          
-                          if (!isMonster) return null;
-                          
-                          return (
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setSelectedBestiaryMonster(respawn.name);
-                              }}
-                              className="bg-[#2c2c2c] hover:bg-[#3a3a3a] text-[#a0a0a0] hover:text-white text-xs py-1.5 px-2 rounded font-bold cursor-pointer transition-colors flex items-center justify-center gap-1 border border-[#4a4a4a] mt-1"
-                            >
-                              Cyclopedia
-                            </button>
-                          );
-                        })()}
-
-                        {/* @ts-ignore */}
-                        {import.meta.env.DEV && (
-                          <div className="flex flex-col gap-1 mt-1 border-t pt-2">
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setLocalRespawns(prev => prev.filter(r => r.id !== respawn.id));
-                              }}
-                              className="bg-red-500 hover:bg-red-600 text-white text-xs py-1 px-2 rounded font-bold cursor-pointer transition-colors"
-                            >
-                              Excluir
-                            </button>
-                            <div className="flex gap-1">
-                                <button
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    setLocalRespawns(prev => prev.map(r => r.id === respawn.id ? {...r, count: Math.max(1, r.count - 1)} : r));
-                                  }}
-                                  className="bg-zinc-200 hover:bg-zinc-300 text-black font-bold text-xs py-1 px-2 rounded flex-1 cursor-pointer transition-colors"
-                                >
-                                  -1
-                                </button>
-                                <button
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    setLocalRespawns(prev => prev.map(r => r.id === respawn.id ? {...r, count: r.count + 1} : r));
-                                  }}
-                                  className="bg-zinc-200 hover:bg-zinc-300 text-black font-bold text-xs py-1 px-2 rounded flex-1 cursor-pointer transition-colors"
-                                >
-                                  +1
-                                </button>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </Popup>
-                  </Marker>
-                ))}
-              </MarkerClusterGroup>
-            ))}
+            <RespawnsLayer currentRespawns={currentRespawns} setSelectedBestiaryMonster={setSelectedBestiaryMonster} setLocalRespawns={setLocalRespawns} />
           </MapContainer>
        </div>
        

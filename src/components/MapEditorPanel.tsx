@@ -6,6 +6,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 
 import OTMMConverter from './OTMMConverter';
+import LZString from 'lz-string';
 
 export function MapClickHandler({ isActive, onMapClick }: { isActive: boolean, onMapClick: (x: number, y: number) => void }) {
   useMapEvents({
@@ -54,6 +55,22 @@ export default function MapEditorPanel({
   
   const [dbMapVersion, setDbMapVersion] = useState('');
   const [isUpdatingVersion, setIsUpdatingVersion] = useState(false);
+  const [isSavingDB, setIsSavingDB] = useState(false);
+  
+  const handleSaveToDB = async () => {
+    setIsSavingDB(true);
+    try {
+      const jsonStr = JSON.stringify(localRespawns);
+      const compressed = LZString.compressToUTF16(jsonStr);
+      await setDoc(doc(db, 'map_config', 'respawns'), { dataCompressed: compressed });
+      alert("Respawns salvos no Banco de Dados com sucesso!");
+    } catch (err) {
+      console.error(err);
+      alert("Erro ao salvar no BD.");
+    } finally {
+      setIsSavingDB(false);
+    }
+  };
 
   useEffect(() => {
     const fetchVersion = async () => {
@@ -446,9 +463,17 @@ export default function MapEditorPanel({
               <Trash2 className="w-4 h-4" />
               Limpar Mapa
             </button>
-            <p className="text-[10px] text-gray-500 mt-2 text-center leading-tight">
-              Os dados são salvos automaticamente no seu navegador. Use Baixar JSON para não perdê-los!
-            </p>
+            <button 
+    onClick={handleSaveToDB}
+    disabled={isSavingDB}
+    className="w-full flex items-center justify-center gap-2 py-2 rounded text-sm font-bold transition-colors bg-blue-600 text-white hover:bg-blue-500 disabled:opacity-50 mt-2"
+  >
+    <Save className="w-4 h-4" />
+    {isSavingDB ? 'Salvando...' : 'Salvar no Banco de Dados'}
+  </button>
+  <p className="text-[10px] text-gray-500 mt-2 text-center leading-tight">
+    O banco de dados é a fonte oficial para todos os usuários.
+  </p>
           </div>
           
           <div className="mt-4 pt-4 border-t border-zinc-800">
