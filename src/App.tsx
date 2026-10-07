@@ -2279,7 +2279,7 @@ export default function App() {
         </AnimatePresence>
       </nav>
       )}
-      <div className="flex-grow flex flex-row overflow-hidden max-w-[1920px] w-full mx-auto relative">
+      <div className={`flex-grow flex flex-row overflow-hidden w-full mx-auto relative ${activeTab === 'mapa' ? 'max-w-none' : 'max-w-[1920px]'}`}>
 
       {/* Main Workspace with sidebar + responsive layout */}
         {/* Left Sidebar Menu */}
@@ -2289,8 +2289,8 @@ export default function App() {
         </aside>
         )}
         {/* Dynamic Content Panel */}
-        <div className="flex-grow overflow-y-auto py-8 px-4 sm:px-6 lg:px-8 custom-scrollbar pt-[12px] sm:pt-[12px]">
-          <div className={`mx-auto w-full ${activeTab === 'buildmaker' ? 'max-w-[1600px] px-2 xl:px-6' : (activeTab === 'calculators' ? 'max-w-7xl px-4' : 'max-w-5xl px-4')}`}>
+        <div className={`flex-grow overflow-y-auto custom-scrollbar ${activeTab === 'mapa' ? 'py-4 pl-0 sm:pl-1 pr-1 sm:pr-3 pt-[10px]' : 'py-8 px-4 sm:px-6 lg:px-8 pt-[12px] sm:pt-[12px]'}`}>
+          <div className={`mx-auto w-full ${activeTab === 'mapa' ? 'max-w-none w-full px-0 sm:px-1' : (activeTab === 'buildmaker' ? 'max-w-[1600px] px-2 xl:px-6' : (activeTab === 'calculators' ? 'max-w-7xl px-4' : 'max-w-5xl px-4'))}`}>
             <AnimatePresence mode="wait">
             {activeTab === 'home' && (
               <motion.div
@@ -2761,9 +2761,9 @@ export default function App() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
-                className="space-y-8"
+                className="space-y-6 w-full"
               >
-                <header className="relative flex flex-col md:flex-row md:items-start justify-between gap-6 mb-8">
+                <header className="relative flex flex-col md:flex-row md:items-start justify-between gap-6 mb-6 px-1 sm:px-2">
                   <div className="flex-1 text-center md:text-left">
                     <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2 flex items-center justify-center gap-3">
                       <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849033/mapainterativo.gif" className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Mapa" /> {t('mapTitle')}
@@ -2805,7 +2805,7 @@ export default function App() {
                   </div>
                 </header>
 
-                <div className="h-[85vh] w-full rounded-xl overflow-hidden shadow-2xl border border-medieval-gold/30">
+                <div className="h-[85vh] w-full">
                   <MapViewer language={language} />
                 </div>
                 <div className="mt-6 bg-zinc-900/80 backdrop-blur-md border border-medieval-gold/20 p-5 rounded-xl shadow-lg">

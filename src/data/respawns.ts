@@ -1,3 +1,10 @@
+export interface TeleportTarget {
+  x: number;
+  y: number;
+  z: number;
+  label?: string;
+}
+
 export interface Respawn {
   id: string;
   name: string;
@@ -7,6 +14,8 @@ export interface Respawn {
   count: number;
   image: string;
   categories?: string[];
+  target?: TeleportTarget;
+  keyInfo?: string;
 }
 
 import respawnsData from '../../public/respawns.json';
@@ -21,7 +30,7 @@ export function fixCategories(categories: string[] | undefined, name: string): s
   if (['red maple', 'yellow maple'].includes(lowerName)) {
     return ['Woodcutting'];
   }
-  if (['lever', 'stalagmite'].includes(lowerName)) {
+  if (['lever', 'stalagmite', 'door', 'wagon', 'ore wagon'].includes(lowerName)) {
     return ['Interação no Mapa'];
   }
   if (['pick hole'].includes(lowerName)) {

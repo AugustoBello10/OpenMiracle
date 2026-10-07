@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Brush, Copy, Plus, Save, Edit2, Trash2, X, Upload } from 'lucide-react';
-import { Respawn, PREDEFINED_MONSTERS, fixCategories } from '../data/respawns';
+import { Respawn, PREDEFINED_MONSTERS, fixCategories, TeleportTarget } from '../data/respawns';
 import { useMapEvents } from 'react-leaflet';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../lib/firebase';
@@ -32,6 +32,10 @@ interface MapEditorPanelProps {
   spawnCount: number;
   setSpawnCount: (count: number) => void;
   allCategories: string[];
+  onTeleport?: (target: TeleportTarget) => void;
+  brushKeyInfo?: string;
+  setBrushKeyInfo?: (key: string) => void;
+  onFlyTo?: (x: number, y: number, z: number) => void;
 }
 
 export default function MapEditorPanel({ 
@@ -44,7 +48,11 @@ export default function MapEditorPanel({
   setActiveMonster,
   spawnCount,
   setSpawnCount,
-  allCategories
+  allCategories,
+  onTeleport,
+  brushKeyInfo,
+  setBrushKeyInfo,
+  onFlyTo
 }: MapEditorPanelProps) {
   const [isPanelOpen, setIsPanelOpen] = useState(true);
   const [newMonsterName, setNewMonsterName] = useState('');
@@ -420,6 +428,20 @@ export default function MapEditorPanel({
             />
           </div>
 
+          {/* Key (Opcional - Portas / Baús) */}
+          <div className="flex flex-col gap-1">
+            <label className="text-xs text-gray-400 font-semibold uppercase flex items-center gap-1">
+              <span>🔑</span> Chave (Opcional - Portas / Baús)
+            </label>
+            <input 
+              type="text" 
+              placeholder="Ex: Key 6002"
+              value={brushKeyInfo || ''}
+              onChange={(e) => setBrushKeyInfo?.(e.target.value)}
+              className="bg-zinc-800 border border-zinc-700 text-white text-sm rounded px-2 py-1 outline-none focus:border-amber-500 font-mono w-full"
+            />
+          </div>
+
           {/* Current Selection Preview */}
           {activeMonster.name && (
             <div className="flex items-center gap-3 p-2 bg-zinc-800/80 rounded border border-zinc-700">
@@ -433,9 +455,79 @@ export default function MapEditorPanel({
               <div className="flex flex-col overflow-hidden">
                 <span className="text-sm font-bold text-white truncate">{activeMonster.name}</span>
                 <span className="text-xs text-red-400">Clicar adiciona: {spawnCount}</span>
+                {brushKeyInfo?.trim() && (
+                  <span className="text-[11px] text-amber-300 font-mono">🔑 Chave: {brushKeyInfo.trim()}</span>
+                )}
               </div>
             </div>
           )}
+
+          {/* Teleports Management */}
+          <div className="flex flex-col gap-1.5 p-2.5 bg-indigo-950/30 rounded border border-indigo-500/30">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-400 flex items-center gap-1">
+                <span>✦</span> Teleportes / Atalhos
+              </span>
+              <span className="text-[10px] text-indigo-300 font-mono bg-indigo-900/60 px-1.5 py-0.5 rounded border border-indigo-500/20">
+                {localRespawns.filter(r => Boolean(r.target)).length} ativo(s)
+              </span>
+            </div>
+            <p className="text-[10px] text-zinc-400 leading-tight">
+              Para vincular um teleporte, clique em qualquer ícone no mapa (ex: Wagon, Door) e use "✦ Definir Destino".
+            </p>
+            {localRespawns.some(r => Boolean(r.target)) && (
+              <div className="max-h-24 overflow-y-auto custom-scrollbar flex flex-col gap-1 mt-1">
+                {localRespawns.filter(r => Boolean(r.target)).map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => item.target && onTeleport?.(item.target)}
+                    className="flex items-center justify-between p-1 rounded bg-zinc-900/80 hover:bg-zinc-800 border border-zinc-700/60 text-[10px] text-zinc-300 text-left cursor-pointer transition-colors"
+                    title={`Testar teleporte: Ir para Andar ${item.target?.z}`}
+                  >
+                    <span className="truncate font-bold text-white max-w-[90px]">{item.name}</span>
+                    <span className="font-mono text-indigo-300 text-[9px]">
+                      Z:{item.z} ➔ Z:{item.target?.z}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Locked Doors / Keys Management */}
+          <div className="flex flex-col gap-1.5 p-2.5 bg-amber-950/30 rounded border border-amber-500/30">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1">
+                <span>🔑</span> Portas & Chaves
+              </span>
+              <span className="text-[10px] text-amber-300 font-mono bg-amber-900/60 px-1.5 py-0.5 rounded border border-amber-500/20">
+                {localRespawns.filter(r => Boolean(r.keyInfo)).length} ativa(s)
+              </span>
+            </div>
+            <p className="text-[10px] text-zinc-400 leading-tight">
+              Clique em qualquer porta ou baú no mapa para definir qual chave abre (ex: Key 6002).
+            </p>
+            {localRespawns.some(r => Boolean(r.keyInfo)) && (
+              <div className="max-h-28 overflow-y-auto custom-scrollbar flex flex-col gap-1 mt-1">
+                {localRespawns.filter(r => Boolean(r.keyInfo)).map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => onFlyTo?.(item.x, item.y, item.z)}
+                    className="flex items-center justify-between p-1 rounded bg-zinc-900/80 hover:bg-zinc-800 border border-zinc-700/60 text-[10px] text-zinc-300 text-left cursor-pointer transition-colors"
+                    title={`Ver no mapa: Andar ${item.z} (${item.x}, ${item.y})`}
+                  >
+                    <span className="truncate font-bold text-white max-w-[85px]">{item.name}</span>
+                    <span className="font-mono text-amber-300 text-[10px] font-bold bg-amber-950/80 px-1.5 py-0.5 rounded border border-amber-700/40 truncate max-w-[90px]">
+                      {item.keyInfo}
+                    </span>
+                    <span className="text-[9px] text-zinc-400 font-mono">
+                      Z:{item.z}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
 
           {/* Actions */}
           <div className="mt-2 pt-3 border-t border-red-500/30 flex flex-col gap-2">

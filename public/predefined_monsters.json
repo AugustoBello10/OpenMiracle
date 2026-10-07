@@ -1195,5 +1195,19 @@
     "categories": [
       "Monstros"
     ]
+  },
+  {
+    "name": "Door",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1791402879/Door__Normal.gif",
+    "categories": [
+      "Interação no Mapa"
+    ]
+  },
+  {
+    "name": "Wagon",
+    "image": "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1791403401/Ore_Wagon.gif",
+    "categories": [
+      "Interação no Mapa"
+    ]
   }
 ]

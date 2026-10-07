@@ -1,16 +1,20 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { MapContainer, ImageOverlay, useMap, useMapEvents, Marker, Popup } from 'react-leaflet';
+import { MapContainer, ImageOverlay, useMap, useMapEvents, Marker, Popup, Circle } from 'react-leaflet';
 import L from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
-import { ChevronUp, ChevronDown, Layers, Filter, BookOpen, Search, MapPin, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronUp, ChevronDown, Layers, Filter, BookOpen, Search, MapPin, X, ChevronLeft, ChevronRight, Compass, Sparkles } from 'lucide-react';
 import 'leaflet/dist/leaflet.css';
-import { RESPAWNS, Respawn, PREDEFINED_MONSTERS, fixCategories } from '../data/respawns';
+import { RESPAWNS, Respawn, PREDEFINED_MONSTERS, fixCategories, TeleportTarget } from '../data/respawns';
 import MapEditorPanel, { MapClickHandler } from './MapEditorPanel';
 import BestiaryModal from './BestiaryModal';
 import { BESTIARY_DB } from '../data/bestiaryDb';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import LZString from 'lz-string';
+import MapRouteManager, { RouteClickHandler } from './MapRouteManager';
+import MapRoutesLayer from './MapRoutesLayer';
+import { MapRoute } from '../types/mapRoute';
+import { mapAnalyzer } from '../lib/mapAnalyzer';
 
 // Fix for default Leaflet icon paths not resolving in React
 
@@ -33,12 +37,22 @@ const DefaultIcon = L.icon({
 });
 L.Marker.prototype.options.icon = DefaultIcon;
 
-const createMonsterIcon = (image: string, count: number) => {
+const createMonsterIcon = (image: string, count: number, hasTeleport: boolean = false, keyInfo?: string) => {
   return L.divIcon({
     html: `
       <div style="position: relative; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 0 2px rgba(0,0,0,0.8));">
         <div style="position: relative; display: inline-flex;">
           <img src="${image}" style="max-width: 48px; max-height: 48px; object-fit: contain;" />
+          ${keyInfo ? `
+            <div style="position: absolute; top: -6px; left: -6px; background: rgba(217, 119, 6, 0.95); border: 1.5px solid #fef08a; color: #ffffff; font-size: 10px; font-weight: bold; border-radius: 9999px; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 8px rgba(245, 158, 11, 0.9); z-index: 12;" title="Trancado - ${keyInfo.replace(/"/g, '&quot;')}">
+              🔑
+            </div>
+          ` : ''}
+          ${hasTeleport ? `
+            <div style="position: absolute; top: -6px; right: -6px; background: rgba(99, 102, 241, 0.95); border: 1.5px solid #c7d2fe; color: #ffffff; font-size: 10px; font-weight: bold; border-radius: 9999px; width: 17px; height: 17px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 8px rgba(99, 102, 241, 0.9); z-index: 12;" title="Teleporte / Atalho">
+              ✦
+            </div>
+          ` : ''}
           <div style="position: absolute; bottom: -6px; right: -6px; background: rgba(0,0,0,0.9); border: 1px solid #c8aa6e; color: #c8aa6e; font-size: 11px; font-weight: bold; border-radius: 4px; padding: 1px 4px; line-height: 1.2; box-shadow: 0 0 4px rgba(0,0,0,1); font-family: monospace; z-index: 10;">
             ${count}
           </div>
@@ -121,13 +135,32 @@ function UrlSync({ floor }: { floor: number }) {
 }
 
 
-function MapFlyTo({ center, zoom }: { center: [number, number] | null, zoom: number }) {
+function MapFlyTo({ center, zoom, trigger }: { center: [number, number] | null, zoom: number, trigger?: number }) {
   const map = useMap();
   useEffect(() => {
     if (center) {
-      map.flyTo(center, zoom, { duration: 0.5 });
+      map.flyTo(center, zoom, { duration: 0.8 });
     }
-  }, [center, zoom, map]);
+  }, [center, zoom, trigger, map]);
+  return null;
+}
+
+function TeleportTargetPickerHandler({
+  isActive,
+  onTargetPicked
+}: {
+  isActive: boolean;
+  onTargetPicked: (x: number, y: number) => void;
+}) {
+  useMapEvents({
+    click(e) {
+      if (isActive) {
+        const x = Math.round(e.latlng.lng);
+        const y = Math.round(-e.latlng.lat);
+        onTargetPicked(x, y);
+      }
+    }
+  });
   return null;
 }
 
@@ -141,15 +174,91 @@ interface MapViewerProps {
   language?: 'pt' | 'en';
 }
 
+function RespawnKeyInput({
+  respawn,
+  setLocalRespawns
+}: {
+  respawn: Respawn;
+  setLocalRespawns: any;
+}) {
+  const [val, setVal] = useState(respawn.keyInfo || '');
+
+  useEffect(() => {
+    setVal(respawn.keyInfo || '');
+  }, [respawn.keyInfo]);
+
+  const handleSave = () => {
+    const trimmed = val.trim();
+    setLocalRespawns((prev: Respawn[]) =>
+      prev.map(r => r.id === respawn.id ? { ...r, keyInfo: trimmed || undefined } : r)
+    );
+  };
+
+  const handleClear = () => {
+    setVal('');
+    setLocalRespawns((prev: Respawn[]) =>
+      prev.map(r => r.id === respawn.id ? { ...r, keyInfo: undefined } : r)
+    );
+  };
+
+  return (
+    <div className="flex flex-col gap-1 p-1.5 bg-amber-50 rounded border border-amber-300/80 text-left">
+      <div className="text-[10px] font-bold uppercase tracking-wider text-amber-900 text-center flex items-center justify-center gap-1">
+        <span>🔑</span> Configurar Chave
+      </div>
+      <div className="flex gap-1 items-center" onClick={(e) => e.stopPropagation()}>
+        <input
+          type="text"
+          placeholder="Ex: Key 6002"
+          value={val}
+          onChange={(e) => setVal(e.target.value)}
+          onKeyDown={(e) => {
+            e.stopPropagation();
+            if (e.key === 'Enter') handleSave();
+          }}
+          className="flex-1 min-w-0 bg-white border border-zinc-300 text-zinc-900 text-xs rounded px-1.5 py-1 outline-none focus:border-amber-500 font-mono"
+        />
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            handleSave();
+          }}
+          className="bg-amber-600 hover:bg-amber-500 text-white text-[10px] py-1 px-2 rounded font-bold transition-colors cursor-pointer shrink-0"
+          title="Salvar Chave"
+        >
+          Salvar
+        </button>
+        {respawn.keyInfo && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleClear();
+            }}
+            className="bg-zinc-200 hover:bg-zinc-300 text-red-600 text-[10px] py-1 px-1.5 rounded font-bold transition-colors cursor-pointer shrink-0"
+            title="Remover Chave"
+          >
+            ✕
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
 
 function RespawnsLayer({ 
   currentRespawns, 
   setSelectedBestiaryMonster, 
-  setLocalRespawns 
+  setLocalRespawns,
+  onTeleport,
+  onStartPickTarget
 }: { 
   currentRespawns: Respawn[];
   setSelectedBestiaryMonster: (name: string) => void;
   setLocalRespawns: any;
+  onTeleport: (target: TeleportTarget) => void;
+  onStartPickTarget?: (respawn: Respawn) => void;
 }) {
   const map = useMapEvents({
     moveend: () => setBounds(map.getBounds()),
@@ -161,8 +270,6 @@ function RespawnsLayer({
 
   const [zoom, setZoom] = useState(map.getZoom());
   const [bounds, setBounds] = useState(map.getBounds());
-
-
 
   const bufferedBounds = bounds.pad(0.5);
   const visibleRespawns = useMemo(() => {
@@ -195,14 +302,48 @@ function RespawnsLayer({
             <Marker
               key={respawn.id}
               position={[-respawn.y, respawn.x]}
-              icon={createMonsterIcon(respawn.image, respawn.count)}
+              icon={createMonsterIcon(respawn.image, respawn.count, Boolean(respawn.target), respawn.keyInfo)}
               monsterCount={respawn.count}
               monsterImage={respawn.image}
             >
               <Popup className="font-sans font-bold text-gray-800">
-                <div className="text-center min-w-[100px] flex flex-col gap-2">
-                  <div className="font-bold text-sm">{respawn.name}</div>
-                  <div className="text-xs text-gray-600 bg-gray-100 rounded px-2 py-1 inline-block">Quantidade: {respawn.count}</div>
+                <div className="text-center min-w-[140px] flex flex-col gap-2">
+                  <div className="font-bold text-sm text-zinc-900">{respawn.name}</div>
+                  <div className="text-xs text-gray-600 bg-gray-100 rounded px-2 py-0.5 inline-block self-center">Quantidade: {respawn.count}</div>
+
+                  {/* Informação da Chave Necessária (visível para todos os jogadores) */}
+                  {respawn.keyInfo && (
+                    <div className="flex flex-col gap-1 p-2 bg-gradient-to-br from-amber-50 to-amber-100/90 rounded-lg border-2 border-amber-400 text-center shadow-xs my-0.5">
+                      <div className="flex items-center justify-center gap-1.5 text-amber-800 font-extrabold text-[11px] uppercase tracking-wide">
+                        <span className="text-sm">🔑</span>
+                        <span>Chave Necessária</span>
+                      </div>
+                      <div className="font-mono font-black text-sm text-amber-950 bg-white/95 py-1 px-2 rounded border border-amber-300 shadow-xs tracking-wider">
+                        {respawn.keyInfo}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Teleport Option A: Interactive button */}
+                  {respawn.target && (
+                    <div className="flex flex-col gap-1 mt-1 border-t border-zinc-200 pt-2">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onTeleport(respawn.target!);
+                        }}
+                        className="w-full bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-400 text-black font-extrabold text-xs py-2 px-2.5 rounded shadow-md flex items-center justify-center gap-1.5 transition-all transform hover:scale-[1.02] cursor-pointer"
+                      >
+                        <span className="text-sm">🪄</span>
+                        <span>
+                          {respawn.target.label ? respawn.target.label : `Viajar para Andar ${respawn.target.z}`}
+                        </span>
+                      </button>
+                      <div className="text-[10px] text-zinc-500 font-mono">
+                        Destino: ({respawn.target.x}, {respawn.target.y}) • Andar {respawn.target.z}
+                      </div>
+                    </div>
+                  )}
 
                   {/* Bestiary Button */}
                   {(() => {
@@ -226,35 +367,76 @@ function RespawnsLayer({
 
                   {/* @ts-ignore */}
                   {import.meta.env.DEV && (
-                    <div className="flex flex-col gap-1 mt-1 border-t pt-2">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setLocalRespawns(prev => prev.filter(r => r.id !== respawn.id));
-                        }}
-                        className="bg-red-500 hover:bg-red-600 text-white text-xs py-1 px-2 rounded font-bold cursor-pointer transition-colors"
-                      >
-                        Excluir
-                      </button>
-                      <div className="flex gap-1">
+                    <div className="flex flex-col gap-1.5 mt-2 border-t border-zinc-200 pt-2 text-left">
+                      <RespawnKeyInput respawn={respawn} setLocalRespawns={setLocalRespawns} />
+
+                      <div className="text-[10px] font-bold uppercase tracking-wider text-zinc-500 mb-0.5 text-center mt-1">
+                        Editor de Teleporte
+                      </div>
+                      {respawn.target ? (
+                        <div className="flex gap-1">
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
-                              setLocalRespawns(prev => prev.map(r => r.id === respawn.id ? {...r, count: Math.max(1, r.count - 1)} : r));
+                              onStartPickTarget?.(respawn);
                             }}
-                            className="bg-zinc-200 hover:bg-zinc-300 text-black font-bold text-xs py-1 px-2 rounded flex-1 cursor-pointer transition-colors"
+                            className="flex-1 bg-amber-500 hover:bg-amber-600 text-white text-[10px] py-1 px-1.5 rounded font-bold transition-colors text-center cursor-pointer"
                           >
-                            -1
+                            Mudar Destino
                           </button>
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
-                              setLocalRespawns(prev => prev.map(r => r.id === respawn.id ? {...r, count: r.count + 1} : r));
+                              setLocalRespawns((prev: Respawn[]) => prev.map(r => r.id === respawn.id ? { ...r, target: undefined } : r));
                             }}
-                            className="bg-zinc-200 hover:bg-zinc-300 text-black font-bold text-xs py-1 px-2 rounded flex-1 cursor-pointer transition-colors"
+                            className="bg-zinc-200 hover:bg-zinc-300 text-red-600 text-[10px] py-1 px-1.5 rounded font-bold transition-colors cursor-pointer"
+                            title="Remover teleporte"
                           >
-                            +1
+                            Remover
                           </button>
+                        </div>
+                      ) : (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onStartPickTarget?.(respawn);
+                          }}
+                          className="w-full bg-indigo-600 hover:bg-indigo-500 text-white text-[10px] py-1 px-2 rounded font-bold transition-colors flex items-center justify-center gap-1 cursor-pointer"
+                        >
+                          <span>✦</span> Definir Destino no Mapa
+                        </button>
+                      )}
+
+                      <div className="flex gap-1 mt-1 border-t border-zinc-100 pt-1">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setLocalRespawns((prev: Respawn[]) => prev.filter(r => r.id !== respawn.id));
+                          }}
+                          className="bg-red-500 hover:bg-red-600 text-white text-[10px] py-1 px-2 rounded font-bold cursor-pointer transition-colors flex-1"
+                        >
+                          Excluir
+                        </button>
+                        <div className="flex gap-1">
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setLocalRespawns((prev: Respawn[]) => prev.map(r => r.id === respawn.id ? {...r, count: Math.max(1, r.count - 1)} : r));
+                              }}
+                              className="bg-zinc-200 hover:bg-zinc-300 text-black font-bold text-[10px] py-1 px-2 rounded flex-1 cursor-pointer transition-colors"
+                            >
+                              -1
+                            </button>
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setLocalRespawns((prev: Respawn[]) => prev.map(r => r.id === respawn.id ? {...r, count: r.count + 1} : r));
+                              }}
+                              className="bg-zinc-200 hover:bg-zinc-300 text-black font-bold text-[10px] py-1 px-2 rounded flex-1 cursor-pointer transition-colors"
+                            >
+                              +1
+                            </button>
+                        </div>
                       </div>
                     </div>
                   )}
@@ -274,6 +456,32 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
   const [floor, setFloor] = useState(isNaN(initialFloor) ? 7 : initialFloor);
   const [selectedBestiaryMonster, setSelectedBestiaryMonster] = useState<string | null>(null);
   const [imageVersion, setImageVersion] = useState<string>('2');
+
+  const [routes, setRoutes] = useState<MapRoute[]>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('miracle-routes');
+      if (saved) {
+        try {
+          return JSON.parse(saved);
+        } catch(e) {}
+      }
+    }
+    return [];
+  });
+  const [activeRouteId, setActiveRouteId] = useState<string | null>(null);
+  const [isRouteMode, setIsRouteMode] = useState(false);
+  const [obstacleWarning, setObstacleWarning] = useState<{msg: string, confirm: () => void} | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('miracle-routes', JSON.stringify(routes));
+    }
+  }, [routes]);
+
+  useEffect(() => {
+    mapAnalyzer.setVersion(imageVersion);
+    mapAnalyzer.loadFloor(floor);
+  }, [floor, imageVersion]);
 
   useEffect(() => {
     const unsub = onSnapshot(doc(db, 'map_config', 'images'), (docSnapshot) => {
@@ -350,6 +558,7 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
   const [brushMode, setBrushMode] = useState(false);
   const [activeMonster, setActiveMonster] = useState<{ name: string; image: string; categories?: string[] }>({ name: '', image: '', categories: ['Monstros'] });
   const [spawnCount, setSpawnCount] = useState(1);
+  const [brushKeyInfo, setBrushKeyInfo] = useState('');
   const [filterType, setFilterType] = useState<string>('all');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
@@ -362,10 +571,90 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
   const [currentRegionIndex, setCurrentRegionIndex] = useState(0);
   const [flyToPos, setFlyToPos] = useState<[number, number] | null>(null);
   const [flyToZoom, setFlyToZoom] = useState<number>(hasInitialPos ? initialZoom : 2);
+  const [flyToTrigger, setFlyToTrigger] = useState(0);
+
+  // Teleport State
+  const [teleportArrival, setTeleportArrival] = useState<TeleportTarget | null>(null);
+  const [pickingTargetForRespawn, setPickingTargetForRespawn] = useState<Respawn | null>(null);
+  const [twoWayTeleport, setTwoWayTeleport] = useState(true);
+
+  const handleFlyTo = (x: number, y: number, z: number) => {
+    if (z !== floor) {
+      setFloor(z);
+    }
+    setFlyToPos([-y, x]);
+    setFlyToZoom(Math.max(flyToZoom, 3));
+    setFlyToTrigger(prev => prev + 1);
+  };
+
+  const handleTeleport = (target: TeleportTarget) => {
+    if (target.z !== floor) {
+      setFloor(target.z);
+    }
+    setFlyToPos([-target.y, target.x]);
+    setFlyToZoom(Math.max(flyToZoom, 3));
+    setFlyToTrigger(prev => prev + 1);
+    setTeleportArrival(target);
+    setTimeout(() => {
+      setTeleportArrival(null);
+    }, 4000);
+  };
+
+  const handleTargetPicked = (targetX: number, targetY: number) => {
+    if (!pickingTargetForRespawn) return;
+    const origin = pickingTargetForRespawn;
+    const targetFloor = floor;
+
+    setLocalRespawns(prev => {
+      let updated = prev.map(r => {
+        if (r.id === origin.id) {
+          return {
+            ...r,
+            target: { x: targetX, y: targetY, z: targetFloor }
+          };
+        }
+        return r;
+      });
+
+      if (twoWayTeleport) {
+        // If there is already a marker at the target position, link it back
+        const existingAtDest = updated.find(r => r.x === targetX && r.y === targetY && r.z === targetFloor);
+        if (existingAtDest) {
+          updated = updated.map(r => r.id === existingAtDest.id ? {
+            ...r,
+            target: { x: origin.x, y: origin.y, z: origin.z }
+          } : r);
+        } else {
+          // Create counterpart return marker with same name and image
+          const newReturnMarker: Respawn = {
+            id: `${origin.name.toLowerCase().replace(/ /g, '-')}-${Date.now()}-return`,
+            name: origin.name,
+            image: origin.image,
+            categories: origin.categories || ['Interação no Mapa'],
+            count: 1,
+            x: targetX,
+            y: targetY,
+            z: targetFloor,
+            target: { x: origin.x, y: origin.y, z: origin.z }
+          };
+          updated.push(newReturnMarker);
+        }
+      }
+
+      return updated;
+    });
+
+    setPickingTargetForRespawn(null);
+  };
 
   const uniqueMonsterNames = useMemo(() => {
     const names = new Set<string>();
-    localRespawns.forEach(r => names.add(r.name));
+    localRespawns.forEach(r => {
+      names.add(r.name);
+      if (r.keyInfo) {
+        names.add(r.keyInfo);
+      }
+    });
     return Array.from(names).sort();
   }, [localRespawns]);
 
@@ -377,7 +666,10 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
 
   useEffect(() => {
     if (activeSearchMonster) {
-      const monsterRespawns = localRespawns.filter(r => r.name.toLowerCase() === activeSearchMonster.toLowerCase());
+      const monsterRespawns = localRespawns.filter(r => 
+        r.name.toLowerCase() === activeSearchMonster.toLowerCase() ||
+        (r.keyInfo && r.keyInfo.toLowerCase() === activeSearchMonster.toLowerCase())
+      );
       
       const regions: any[] = [];
       monsterRespawns.forEach(respawn => {
@@ -451,7 +743,10 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
     if (r.z !== floor) return false;
     
     if (activeSearchMonster) {
-      if (r.name.toLowerCase() !== activeSearchMonster.toLowerCase()) return false;
+      if (
+        r.name.toLowerCase() !== activeSearchMonster.toLowerCase() &&
+        (!r.keyInfo || r.keyInfo.toLowerCase() !== activeSearchMonster.toLowerCase())
+      ) return false;
     } else if (filterType !== 'all') {
       const cats = r.categories && r.categories.length > 0 ? r.categories : ['Monstros'];
       if (!cats.includes(filterType)) return false;
@@ -462,7 +757,7 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
 
 
   const handleMapClick = (x: number, y: number) => {
-    if (!brushMode || !activeMonster.name || !activeMonster.image) return;
+    if (pickingTargetForRespawn || !brushMode || !activeMonster.name || !activeMonster.image) return;
     
     const newSpawn: Respawn = {
       id: `${activeMonster.name.toLowerCase().replace(/ /g, '-')}-${Date.now()}`,
@@ -472,7 +767,8 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
       count: spawnCount,
       x,
       y,
-      z: floor
+      z: floor,
+      keyInfo: brushKeyInfo && brushKeyInfo.trim() ? brushKeyInfo.trim() : undefined
     };
     
     setLocalRespawns(prev => [...prev, newSpawn]);
@@ -480,6 +776,74 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
 
   return (
     <div className="relative w-full h-full bg-zinc-900 overflow-hidden border border-medieval-gold/30 rounded-xl shadow-2xl flex flex-col">
+       {/* Teleport Pick Target Banner */}
+       {pickingTargetForRespawn && (
+         <div className="absolute top-4 left-1/2 -translate-x-1/2 z-[1000] bg-black/90 border-2 border-amber-500/80 px-4 py-3 rounded-xl shadow-[0_0_25px_rgba(245,158,11,0.4)] backdrop-blur-md flex flex-wrap items-center justify-center gap-3 text-white">
+           <div className="flex items-center gap-2">
+             <span className="w-2.5 h-2.5 bg-amber-400 rounded-full animate-ping" />
+             <span className="font-bold text-xs sm:text-sm text-amber-300">
+               Definindo Destino para "{pickingTargetForRespawn.name}"
+             </span>
+           </div>
+           <div className="text-[11px] sm:text-xs text-zinc-300">
+             Navegue para o andar desejado e <strong>clique no mapa</strong> no ponto de chegada.
+           </div>
+           <label className="flex items-center gap-1.5 text-xs text-amber-200 cursor-pointer bg-zinc-800/90 px-2 py-1 rounded border border-amber-500/30 hover:border-amber-500">
+             <input 
+               type="checkbox" 
+               checked={twoWayTeleport} 
+               onChange={(e) => setTwoWayTeleport(e.target.checked)} 
+               className="accent-amber-500 cursor-pointer"
+             />
+             <span>🔁 Ida & Volta Automático</span>
+           </label>
+           <button
+             onClick={() => setPickingTargetForRespawn(null)}
+             className="bg-red-500/80 hover:bg-red-600 text-white px-3 py-1 rounded text-xs font-bold transition-colors cursor-pointer"
+           >
+             Cancelar
+           </button>
+         </div>
+       )}
+
+       {/* Teleport Arrival Flash */}
+       {teleportArrival && (
+         <div className="absolute top-20 left-1/2 -translate-x-1/2 z-[1000] bg-black/90 border border-amber-500/60 px-4 py-2 rounded-lg shadow-xl backdrop-blur-md flex items-center gap-2 text-amber-300 text-xs font-bold animate-pulse pointer-events-none">
+           <span>🪄 Teleportado para Andar {teleportArrival.z} ({teleportArrival.x}, {teleportArrival.y})</span>
+         </div>
+       )}
+
+       {obstacleWarning && (
+         <div className="absolute top-0 left-0 w-full h-full bg-black/60 z-[9999] flex items-center justify-center backdrop-blur-sm">
+           <div className="bg-zinc-900 border border-red-500 rounded-lg p-6 max-w-sm flex flex-col gap-4 shadow-2xl">
+             <div className="text-red-400 font-bold text-lg flex items-center gap-2">
+               <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+               Aviso de Obstrução
+             </div>
+             <p className="text-sm text-gray-300">
+               {obstacleWarning.msg}
+             </p>
+             <div className="flex gap-2 mt-2">
+               <button 
+                 onClick={() => {
+                   obstacleWarning.confirm();
+                   setObstacleWarning(null);
+                 }}
+                 className="flex-1 bg-red-500/20 text-red-400 hover:bg-red-500 hover:text-white border border-red-500/30 transition-colors py-2 rounded text-sm font-bold"
+               >
+                 Ignorar e Adicionar
+               </button>
+               <button 
+                 onClick={() => setObstacleWarning(null)}
+                 className="flex-1 bg-zinc-800 text-gray-300 hover:bg-zinc-700 transition-colors py-2 rounded text-sm font-bold"
+               >
+                 Cancelar
+               </button>
+             </div>
+           </div>
+         </div>
+       )}
+
        <MapEditorPanel 
           floor={floor}
           localRespawns={localRespawns}
@@ -491,7 +855,23 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
           spawnCount={spawnCount}
           setSpawnCount={setSpawnCount}
           allCategories={allCategories}
+          onTeleport={handleTeleport}
+          brushKeyInfo={brushKeyInfo}
+          setBrushKeyInfo={setBrushKeyInfo}
+          onFlyTo={handleFlyTo}
        />
+       
+       <MapRouteManager 
+         floor={floor}
+         routes={routes}
+         setRoutes={setRoutes}
+         activeRouteId={activeRouteId}
+         setActiveRouteId={setActiveRouteId}
+         isRouteMode={isRouteMode}
+         setIsRouteMode={setIsRouteMode}
+         onObstacleWarning={(msg, confirm) => setObstacleWarning({msg, confirm})}
+       />
+
        <div className="absolute top-4 right-4 z-[400] flex flex-col gap-2 max-h-[calc(100%-2rem)]">
          
          {/* Search Controls */}
@@ -639,15 +1019,24 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
             minZoom={-3}
             maxZoom={5}
             crs={L.CRS.Simple}
-            className={`w-full h-full ${brushMode ? 'cursor-crosshair' : ''}`}
+            className={`w-full h-full ${pickingTargetForRespawn ? 'cursor-crosshair' : (brushMode ? 'cursor-crosshair' : '')}`}
             style={{ background: '#18181b' }} // zinc-900
           >
             
             {!isModal && <UrlSync floor={floor} />}
-            <MapFlyTo center={flyToPos} zoom={flyToZoom} />
+            <MapFlyTo center={flyToPos} zoom={flyToZoom} trigger={flyToTrigger} />
 
             {/* @ts-ignore */}
-            {import.meta.env.DEV && <MapClickHandler isActive={brushMode} onMapClick={handleMapClick} />}
+            {import.meta.env.DEV && <MapClickHandler isActive={brushMode && !pickingTargetForRespawn} onMapClick={handleMapClick} />}
+            <TeleportTargetPickerHandler isActive={Boolean(pickingTargetForRespawn)} onTargetPicked={handleTargetPicked} />
+            <RouteClickHandler 
+              isActive={isRouteMode} 
+              floor={floor} 
+              activeRouteId={activeRouteId} 
+              routes={routes} 
+              setRoutes={setRoutes} 
+              onObstacleWarning={(msg, confirm) => setObstacleWarning({msg, confirm})} 
+            />
             <ImageOverlay
               key={mapImageUrl} // force re-render on url change
               url={mapImageUrl}
@@ -660,7 +1049,29 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
               </Marker>
             ))}
             
-            <RespawnsLayer currentRespawns={currentRespawns} setSelectedBestiaryMonster={setSelectedBestiaryMonster} setLocalRespawns={setLocalRespawns} />
+            {teleportArrival && teleportArrival.z === floor && (
+              <Circle
+                center={[-teleportArrival.y, teleportArrival.x]}
+                radius={16}
+                pathOptions={{
+                  color: '#fbbf24',
+                  fillColor: '#f59e0b',
+                  fillOpacity: 0.35,
+                  weight: 3,
+                  dashArray: '6, 6'
+                }}
+              />
+            )}
+
+            <MapRoutesLayer routes={routes} currentFloor={floor} />
+            
+            <RespawnsLayer 
+              currentRespawns={currentRespawns} 
+              setSelectedBestiaryMonster={setSelectedBestiaryMonster} 
+              setLocalRespawns={setLocalRespawns} 
+              onTeleport={handleTeleport}
+              onStartPickTarget={(r) => setPickingTargetForRespawn(r)}
+            />
           </MapContainer>
        </div>
        
