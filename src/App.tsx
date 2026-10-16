@@ -29,6 +29,7 @@ import { FarmingCalculator } from './components/FarmingCalculator';
 import { CraftingCalculator } from './components/CraftingCalculator';
 import { MiningCalculator } from './components/MiningCalculator';
 import { RuneMakingCalculator } from './components/RuneMakingCalculator';
+import { ArcaneGuardianCalculator } from './components/ArcaneGuardianCalculator';
 import { MapModal } from './components/MapModal';
 import MapViewer from './components/MapViewer';
 import { LootOptimizer } from './components/LootOptimizer';
@@ -885,6 +886,7 @@ export default function App() {
     const path = typeof window !== 'undefined' ? window.location.pathname : '/';
     if (path.includes('/runas')) return 'runemaking';
     if (path.includes('/bless')) return 'bless';
+    if (path.includes('/arcane-guardian')) return 'arcane-guardian';
     if (path.includes('/atributos')) return 'atributos';
     if (path.includes('/profissoes')) return 'professions';
     return 'skills';
@@ -939,7 +941,7 @@ export default function App() {
   };
 
   const [activeTab, setActiveTab] = useState<Tab>(getInitialTab);
-  const [calcSubTab, setCalcSubTab] = useState<'skills' | 'bless' | 'atributos' | 'professions' | 'runemaking'>(getInitialCalcSubTab);
+  const [calcSubTab, setCalcSubTab] = useState<'skills' | 'bless' | 'arcane-guardian' | 'atributos' | 'professions' | 'runemaking'>(getInitialCalcSubTab);
   const [profSubTab, setProfSubTab] = useState<'crafting' | 'alchemy' | 'farming' | 'mining'>(getInitialProfSubTab);
   const [profGuideSubTab, setProfGuideSubTab] = useState<string | null>(getInitialProfGuideSubTab);
   const [wikiSubTab, setWikiSubTab] = useState<'server' | 'project'>(getInitialWikiSubTab);
@@ -962,6 +964,7 @@ export default function App() {
       if (path.includes('/runas')) setCalcSubTab('runemaking');
       else if (path.includes('/skills')) setCalcSubTab('skills');
       else if (path.includes('/bless')) setCalcSubTab('bless');
+      else if (path.includes('/arcane-guardian')) setCalcSubTab('arcane-guardian');
       else if (path.includes('/atributos')) setCalcSubTab('atributos');
       else if (path.includes('/profissoes')) {
         setCalcSubTab('professions');
@@ -1020,6 +1023,7 @@ export default function App() {
       if (calcSubTab === 'runemaking') newPath = '/calculadoras/runas';
       else if (calcSubTab === 'skills') newPath = '/calculadoras/skills';
       else if (calcSubTab === 'bless') newPath = '/calculadoras/bless';
+      else if (calcSubTab === 'arcane-guardian') newPath = '/calculadoras/arcane-guardian';
       else if (calcSubTab === 'atributos') newPath = '/calculadoras/atributos';
       else if (calcSubTab === 'professions') {
          if (profSubTab === 'crafting') newPath = '/calculadoras/profissoes/crafting';
@@ -1519,6 +1523,7 @@ export default function App() {
     // 6. Other General Tools / Guides
     const generalKeywords = [
       { keys: ['bless', 'morte', 'death', 'bencao'], tab: 'calculadoras', sub: 'bless', label: 'Calculadora de Bless & Penalidade de Morte', type: 'Utilitário' },
+      { keys: ['arcane', 'guardian', 'duracao', 'duration', 'atributos', 'bless', 'tempo', 'battle'], tab: 'calculadoras', sub: 'arcane-guardian', label: 'Calculadora: Duração Arcane Guardian', type: 'Utilitário' },
       { keys: ['skill', 'treino', 'training', 'vocation', 'druid', 'sorcerer', 'knight', 'paladin'], tab: 'calculadoras', sub: 'skills', label: 'Calculadora de Skills & Tempo de Treino', type: 'Utilitário' },
       { keys: ['build', 'maker', 'set', 'equipar', 'atributos', 'simulador'], tab: 'buildmaker', sub: '', label: 'Build Maker (Criador & Simulador de Sets)', type: 'Build Maker' },
       { keys: ['map', 'mapa', 'interativo', 'quest', 'comarca'], tab: 'mapa', sub: '', label: 'Mapa Interativo de Comarca / Quests', type: 'Ferramenta' },
@@ -1992,6 +1997,13 @@ export default function App() {
                     >
                       <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784153774/Skull__Item.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Bless" />
                       {language === 'pt' ? 'Bless & Morte' : 'Bless & Death'}
+                    </button>
+                    <button 
+                      onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('arcane-guardian'); if(isMobile) setIsMenuOpen(false); }}
+                      className={(activeTab === 'calculadoras' && calcSubTab === 'arcane-guardian') ? activeSubmenuClass : inactiveSubmenuClass}
+                    >
+                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/guardian_gem.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Arcane Guardian" />
+                      {language === 'pt' ? 'Duração Arcane Guardian' : 'Arcane Guardian Duration'}
                     </button>
                     <button 
                       onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('atributos'); if(isMobile) setIsMenuOpen(false); }}
@@ -2469,6 +2481,19 @@ export default function App() {
                     </div>
                   </button>
                   <button
+                    onClick={() => setCalcSubTab('arcane-guardian')}
+                    className={`relative overflow-hidden px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs transition-all duration-300 group ${
+                      calcSubTab === 'arcane-guardian'
+                        ? 'bg-gradient-to-r from-medieval-gold to-yellow-600 text-black shadow-[0_0_20px_rgba(197,160,89,0.4)] scale-105'
+                        : 'bg-black/60 text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50 hover:bg-medieval-gold/10 hover:text-medieval-gold'
+                    }`}
+                  >
+                    <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="flex items-center gap-2 relative z-10">
+                      {language === 'pt' ? 'Duração Arcane Guardian' : 'Arcane Guardian Duration'}
+                    </div>
+                  </button>
+                  <button
                     onClick={() => setCalcSubTab('atributos')}
                     className={`relative overflow-hidden px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs transition-all duration-300 group ${
                       calcSubTab === 'atributos'
@@ -2593,6 +2618,8 @@ export default function App() {
                   />
                 ) : calcSubTab === 'bless' ? (
                   <BlessCalculator t={t} />
+                ) : calcSubTab === 'arcane-guardian' ? (
+                  <ArcaneGuardianCalculator language={language} t={t} />
                 ) : calcSubTab === 'runemaking' ? (
                   <RuneMakingCalculator t={t} language={language} />
                 ) : (
