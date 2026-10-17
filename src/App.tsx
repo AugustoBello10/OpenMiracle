@@ -34,6 +34,7 @@ import { MapModal } from './components/MapModal';
 import MapViewer from './components/MapViewer';
 import { LootOptimizer } from './components/LootOptimizer';
 import { LetterReaderModal } from './components/LetterReaderModal';
+import { fetchWhoIsOnline } from './services/whoIsOnlineService';
 import { supabase } from './lib/supabase';
 
 // --- Dados do Banco de Dados Embutido ---
@@ -955,6 +956,9 @@ export default function App() {
 
   // 1. Sync URL to State (initial load & browser nav)
   useEffect(() => {
+    // Silently pre-fetch whoisonline so it is immediately cached before user even opens modal
+    fetchWhoIsOnline().catch(() => {});
+
     const path = location.pathname;
     if (path.startsWith('/carta-online') || path.startsWith('/fila-online')) {
       setIsLetterModalOpen(true);
@@ -2423,6 +2427,7 @@ export default function App() {
                     whileHover={{ scale: 1.01, y: -2 }}
                     whileTap={{ scale: 0.99 }}
                     onClick={() => setIsLetterModalOpen(true)}
+                    onMouseEnter={() => fetchWhoIsOnline().catch(() => {})}
                     className="group relative cursor-pointer p-5 sm:p-7 rounded-2xl bg-gradient-to-r from-[#121212] via-[#1a1711] to-[#121212] border-2 border-medieval-gold/30 hover:border-medieval-gold shadow-[0_8px_30px_rgba(0,0,0,0.6)] hover:shadow-[0_12px_40px_rgba(197,160,89,0.22)] transition-all overflow-hidden flex flex-col sm:flex-row items-center justify-between gap-6"
                   >
                     {/* Atmospheric Glow */}

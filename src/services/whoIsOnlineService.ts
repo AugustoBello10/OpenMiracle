@@ -49,9 +49,40 @@ const NON_MAKER_KEYWORDS = new Set([
   'th', 'ed', 'ms', 'ek', 'rp', 'maker', 'ok', 'yes', 'no'
 ]);
 
+const CLIENT_CACHE_KEY = 'miracle_whoisonline_cache_v2';
+const CLIENT_CACHE_TTL = 30 * 1000; // 30 seconds
+
 let clientCache: WhoIsOnlineResult | null = null;
 let lastClientFetch = 0;
-const CLIENT_CACHE_TTL = 15 * 1000; // 15 seconds
+
+/**
+ * Returns currently cached data synchronously (0ms delay) from memory or localStorage.
+ */
+export function getCachedWhoIsOnline(): WhoIsOnlineResult | null {
+  if (clientCache && Date.now() - lastClientFetch < CLIENT_CACHE_TTL) {
+    return clientCache;
+  }
+  try {
+    const raw = localStorage.getItem(CLIENT_CACHE_KEY);
+    if (raw) {
+      const data = JSON.parse(raw);
+      if (data && Array.isArray(data.characters) && data.characters.length > 0) {
+        clientCache = data;
+        lastClientFetch = data.timestamp || Date.now();
+        return data;
+      }
+    }
+  } catch (e) {}
+  return clientCache;
+}
+
+function saveToClientCache(data: WhoIsOnlineResult) {
+  clientCache = data;
+  lastClientFetch = Date.now();
+  try {
+    localStorage.setItem(CLIENT_CACHE_KEY, JSON.stringify(data));
+  } catch (e) {}
+}
 
 /**
  * Normalizes player name for reliable case-insensitive lookup.
@@ -66,55 +97,65 @@ export function normalizeName(name: string): string {
 
 /**
  * Fetches the live list of online players from Miracle 7.4.
- * Uses local dev middleware first, then falls back to public CORS proxies if needed.
+ * Uses persistent cache and Vercel Edge CDN for instant 0ms/fast response.
  */
 export async function fetchWhoIsOnline(forceRefresh = false): Promise<WhoIsOnlineResult> {
+  const cached = getCachedWhoIsOnline();
   const now = Date.now();
-  if (!forceRefresh && clientCache && now - lastClientFetch < CLIENT_CACHE_TTL) {
-    return clientCache;
+
+  if (!forceRefresh && cached && now - lastClientFetch < CLIENT_CACHE_TTL) {
+    return cached;
   }
 
-  // 1. Try internal Node/Vercel API route (/api/whoisonline)
+  // 1. Try internal Node/Vercel API route (/api/whoisonline) with Vercel Edge CDN caching
   try {
-    const res = await fetch('/api/whoisonline', { cache: 'no-store' });
+    const res = await fetch('/api/whoisonline');
     if (res.ok) {
       const data = await res.json();
-      if (data && Array.isArray(data.characters)) {
-        clientCache = {
+      if (data && Array.isArray(data.characters) && data.characters.length > 0) {
+        const result: WhoIsOnlineResult = {
           characters: data.characters,
           total: data.total || data.characters.length,
           timestamp: data.timestamp || now,
           serverTimeBRT: data.serverTimeBRT || getBrasiliaTime(),
           source: 'api',
         };
-        lastClientFetch = now;
-        return clientCache;
+        saveToClientCache(result);
+        return result;
       }
     }
   } catch (err) {
-    // Continue to PHP / proxy fallback
+    // Continue to PHP fallback
   }
 
   // 2. Try PHP proxy (/api/whoisonline.php) for cPanel / Apache / Nginx setups
   try {
-    const phpRes = await fetch('/api/whoisonline.php', { cache: 'no-store' });
+    const phpRes = await fetch('/api/whoisonline.php');
     if (phpRes.ok) {
       const data = await phpRes.json();
-      if (data && Array.isArray(data.characters)) {
-        clientCache = {
+      if (data && Array.isArray(data.characters) && data.characters.length > 0) {
+        const result: WhoIsOnlineResult = {
           characters: data.characters,
           total: data.total || data.characters.length,
           timestamp: data.timestamp || now,
           serverTimeBRT: data.serverTimeBRT || getBrasiliaTime(),
           source: 'api',
         };
-        lastClientFetch = now;
-        return clientCache;
+        saveToClientCache(result);
+        return result;
       }
     }
   } catch (err) {
-    // Continue to proxy fallback
+    // Continue
   }
+
+  // If network failed but we have any cached data (even slightly older), return it immediately!
+  if (clientCache) {
+    return clientCache;
+  }
+
+  const stored = getCachedWhoIsOnline();
+  if (stored) return stored;
 
   if (clientCache) return clientCache;
 

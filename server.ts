@@ -63,6 +63,7 @@ app.get('/api/whoisonline', async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Cache-Control', 'public, max-age=15, s-maxage=30, stale-while-revalidate=60');
 
   const now = Date.now();
   if (cachedData && now - lastFetchTime < CACHE_TTL_MS) {

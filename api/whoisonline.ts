@@ -51,6 +51,8 @@ export default async function handler(req: any, res: any) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.setHeader('Content-Type', 'application/json');
+  // Vercel Edge CDN cache: cache for 30s, serve stale up to 60s while revalidating in background
+  res.setHeader('Cache-Control', 'public, max-age=15, s-maxage=30, stale-while-revalidate=60');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();

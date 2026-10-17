@@ -14,12 +14,14 @@ import {
 } from 'lucide-react';
 import { 
   fetchWhoIsOnline, 
+  getCachedWhoIsOnline,
   parseLetterQueue, 
   generateAuditProof, 
   getBrasiliaTime, 
   getTimeUntilServerSave,
   OnlineCharacter, 
-  LetterParseResult 
+  LetterParseResult,
+  WhoIsOnlineResult
 } from '../services/whoIsOnlineService';
 import { 
   saveRemoteBackup, 
@@ -41,12 +43,7 @@ export const LetterReaderModal: React.FC<LetterReaderModalProps> = ({
 }) => {
   const [letterText, setLetterText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [onlineData, setOnlineData] = useState<{
-    characters: OnlineCharacter[];
-    total: number;
-    timestamp: number;
-    serverTimeBRT: string;
-  } | null>(null);
+  const [onlineData, setOnlineData] = useState<WhoIsOnlineResult | null>(() => getCachedWhoIsOnline());
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   const [parseResult, setParseResult] = useState<LetterParseResult | null>(null);
@@ -78,18 +75,26 @@ export const LetterReaderModal: React.FC<LetterReaderModalProps> = ({
     return () => clearInterval(interval);
   }, [isOpen]);
 
-  // Load online data on modal open
+  // Load online data on modal open (instant from cache, refresh in background)
   useEffect(() => {
     if (isOpen) {
-      loadOnlinePlayers();
+      const cached = getCachedWhoIsOnline();
+      if (cached) {
+        setOnlineData(cached);
+      }
+      loadOnlinePlayers(false);
       setLocalBackups(getLocalBackups());
     }
   }, [isOpen]);
 
   const loadOnlinePlayers = async (force = false) => {
-    try {
+    const cached = getCachedWhoIsOnline();
+    if (!cached || force) {
       setIsLoading(true);
-      setErrorMsg(null);
+    }
+    setErrorMsg(null);
+
+    try {
       const res = await fetchWhoIsOnline(force);
       setOnlineData(res);
       if (letterText.trim() && res.characters.length > 0) {
@@ -98,7 +103,9 @@ export const LetterReaderModal: React.FC<LetterReaderModalProps> = ({
       }
     } catch (err: any) {
       console.error(err);
-      setErrorMsg(err.message || 'Erro ao consultar Who is Online');
+      if (!onlineData && !cached) {
+        setErrorMsg(err.message || 'Erro ao consultar Who is Online');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -108,15 +115,17 @@ export const LetterReaderModal: React.FC<LetterReaderModalProps> = ({
     if (!letterText.trim()) return;
 
     try {
-      setIsLoading(true);
       setErrorMsg(null);
 
-      let currentOnline = onlineData;
+      let currentOnline = onlineData || getCachedWhoIsOnline();
       if (!currentOnline || currentOnline.characters.length === 0) {
-        currentOnline = await fetchWhoIsOnline();
+        setIsLoading(true);
+        currentOnline = await fetchWhoIsOnline(true);
         setOnlineData(currentOnline);
+        setIsLoading(false);
       }
 
+      // Synchronous instant queue parsing
       const result = parseLetterQueue(letterText, currentOnline.characters);
       setParseResult(result);
       setIsInputExpanded(false); // Collapse input to give full focus to results
