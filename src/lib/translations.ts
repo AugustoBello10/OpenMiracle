@@ -400,7 +400,14 @@ export const translations = {
     bm_shielding: "Shielding",
     bm_fullAttack: "Full Attack",
     bm_balanced: "Balanced",
-    bm_fullDefense: "Full Defense"
+    bm_fullDefense: "Full Defense",
+
+    // Poupa Tempo Carta Online
+    letterQueueTitle: "Poupa Tempo Carta Online",
+    letterQueueSubtitle: "Cole o texto da carta do jogo e filtre em segundos quem da fila está online no servidor.",
+    letterQueueBtn: "Verificar Fila da Carta",
+    letterQueueServerTime: "Horário do Servidor (BRT)",
+    letterQueueServerSave: "Server Save Diário (05:00 BRT)"
   },
   en: {
     viewAll: "View All",
@@ -800,6 +807,13 @@ export const translations = {
     bm_shielding: "Shielding",
     bm_fullAttack: "Full Attack",
     bm_balanced: "Balanced",
-    bm_fullDefense: "Full Defense"
+    bm_fullDefense: "Full Defense",
+
+    // Poupa Tempo Carta Online
+    letterQueueTitle: "Online Letter Time Saver",
+    letterQueueSubtitle: "Paste the in-game letter and instantly filter who in the queue is currently online.",
+    letterQueueBtn: "Check Letter Queue",
+    letterQueueServerTime: "Server Time (BRT)",
+    letterQueueServerSave: "Daily Server Save (05:00 BRT)"
   }
 };

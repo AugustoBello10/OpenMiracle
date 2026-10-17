@@ -33,6 +33,7 @@ import { ArcaneGuardianCalculator } from './components/ArcaneGuardianCalculator'
 import { MapModal } from './components/MapModal';
 import MapViewer from './components/MapViewer';
 import { LootOptimizer } from './components/LootOptimizer';
+import { LetterReaderModal } from './components/LetterReaderModal';
 import { supabase } from './lib/supabase';
 
 // --- Dados do Banco de Dados Embutido ---
@@ -947,6 +948,7 @@ export default function App() {
   const [wikiSubTab, setWikiSubTab] = useState<'server' | 'project'>(getInitialWikiSubTab);
   const [wikiMainTab, setWikiMainTab] = useState<'home' | 'updates' | 'library' | 'items' | 'profissoes' | 'cyclopedia' | 'custom_systems'>(getInitialWikiMainTab);
   const [itemsSubTab, setItemsSubTab] = useState<'helmets' | 'armors' | 'legs' | 'boots' | 'shields' | 'swords' | 'clubs' | 'axes' | 'distance' | 'ammo' | 'rings' | 'amulets' | 'reliquias'>(getInitialItemsSubTab);
+  const [isLetterModalOpen, setIsLetterModalOpen] = useState(false);
   
   const navigate = useNavigate();
   const location = useLocation();
@@ -954,6 +956,9 @@ export default function App() {
   // 1. Sync URL to State (initial load & browser nav)
   useEffect(() => {
     const path = location.pathname;
+    if (path.startsWith('/carta-online') || path.startsWith('/fila-online')) {
+      setIsLetterModalOpen(true);
+    }
     
     if (path === '/' || path === '') {
       setActiveTab('home');
@@ -2410,6 +2415,60 @@ export default function App() {
                       </p>
                     </div>
                   </motion.button>
+                </div>
+
+                {/* Botão/Card: Poupa Tempo Carta Online */}
+                <div className="max-w-6xl mx-auto pt-2">
+                  <motion.div
+                    whileHover={{ scale: 1.01, y: -2 }}
+                    whileTap={{ scale: 0.99 }}
+                    onClick={() => setIsLetterModalOpen(true)}
+                    className="group relative cursor-pointer p-5 sm:p-7 rounded-2xl bg-gradient-to-r from-[#121212] via-[#1a1711] to-[#121212] border-2 border-medieval-gold/30 hover:border-medieval-gold shadow-[0_8px_30px_rgba(0,0,0,0.6)] hover:shadow-[0_12px_40px_rgba(197,160,89,0.22)] transition-all overflow-hidden flex flex-col sm:flex-row items-center justify-between gap-6"
+                  >
+                    {/* Atmospheric Glow */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-medieval-gold/10 via-amber-500/5 to-medieval-gold/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                    <div className="flex items-center gap-5 z-10 w-full sm:w-auto">
+                      {/* Letter Gif Avatar Container */}
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-black/80 border border-medieval-gold/40 group-hover:border-medieval-gold flex items-center justify-center p-3 shadow-inner group-hover:scale-105 transition-all duration-300 shrink-0">
+                        <img 
+                          src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1792224845/Letter.gif" 
+                          alt="Carta" 
+                          className="w-full h-full object-contain drop-shadow-[0_0_10px_rgba(197,160,89,0.5)]" 
+                        />
+                      </div>
+
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-2.5 flex-wrap">
+                          <h3 className="text-xl sm:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-medieval-gold via-amber-200 to-medieval-gold uppercase tracking-tight group-hover:from-white group-hover:to-medieval-gold transition-colors">
+                            {language === 'pt' ? 'Poupa Tempo Carta Online' : 'Online Letter Time Saver'}
+                          </h3>
+                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 animate-pulse">
+                            {language === 'pt' ? 'Filtro Rápido' : 'Fast Filter'}
+                          </span>
+                        </div>
+                        <p className="text-medieval-gold/70 text-xs sm:text-sm font-mono leading-relaxed max-w-xl">
+                          {language === 'pt' 
+                            ? 'Cole o texto da carta do jogo e descubra instantaneamente quem da fila está online no servidor com botões de cópia direta.' 
+                            : 'Paste the in-game letter and instantly check who from the queue is online with 1-click copy buttons.'}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Right side CTA & Server Save Info */}
+                    <div className="flex sm:flex-col items-center sm:items-end justify-between w-full sm:w-auto gap-3 z-10 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-medieval-gold/15">
+                      <div className="flex items-center gap-2 text-[11px] font-mono text-medieval-gold/80 bg-black/60 px-3 py-1.5 rounded-lg border border-medieval-gold/20">
+                        <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                        <span>Server Save: 05:00 BRT</span>
+                      </div>
+                      <button 
+                        className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-medieval-gold to-amber-500 group-hover:from-amber-400 group-hover:to-medieval-gold text-black font-black uppercase tracking-wider text-xs shadow-[0_0_15px_rgba(197,160,89,0.3)] flex items-center gap-2 transition-all"
+                      >
+                        <span>{language === 'pt' ? 'Abrir Leitor' : 'Open Reader'}</span>
+                        <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </button>
+                    </div>
+                  </motion.div>
                 </div>
               </motion.div>
             )}
@@ -4574,6 +4633,13 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Poupa Tempo Carta Online Modal */}
+      <LetterReaderModal 
+        isOpen={isLetterModalOpen} 
+        onClose={() => setIsLetterModalOpen(false)} 
+        language={language} 
+      />
     </div>
   );
 }
