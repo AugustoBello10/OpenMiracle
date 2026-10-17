@@ -192,6 +192,17 @@ export const LetterReaderModal: React.FC<LetterReaderModalProps> = ({
     }
   };
 
+  const handleModalClose = () => {
+    setLetterText('');
+    setParseResult(null);
+    setErrorMsg(null);
+    setShowHistory(false);
+    setIsInputExpanded(true);
+    setCopiedId(null);
+    setProofCopied(false);
+    onClose();
+  };
+
   if (!isOpen) return null;
 
   const firstOnline = parseResult?.onlineList[0];
@@ -238,7 +249,7 @@ export const LetterReaderModal: React.FC<LetterReaderModalProps> = ({
               <span>{language === 'pt' ? 'Histórico' : 'History'}</span>
             </button>
             <button
-              onClick={onClose}
+              onClick={handleModalClose}
               className="p-1.5 rounded-lg bg-black/40 hover:bg-red-500/20 text-stone-400 hover:text-red-400 border border-white/10 transition-all"
             >
               <X className="w-4 h-4" />
@@ -679,7 +690,7 @@ export const LetterReaderModal: React.FC<LetterReaderModalProps> = ({
         <div className="px-4 py-2 border-t border-white/10 bg-black/50 flex items-center justify-between text-[11px] text-stone-500 font-mono">
           <span>Miracle 7.4 • Who is Online</span>
           <button 
-            onClick={onClose}
+            onClick={handleModalClose}
             className="px-3 py-1 rounded-lg bg-black/80 hover:bg-white/10 text-stone-300 hover:text-white border border-white/10 transition-colors"
           >
             {language === 'pt' ? 'Fechar' : 'Close'}

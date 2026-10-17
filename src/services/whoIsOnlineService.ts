@@ -74,7 +74,7 @@ export async function fetchWhoIsOnline(forceRefresh = false): Promise<WhoIsOnlin
     return clientCache;
   }
 
-  // 1. Try internal API route (/api/whoisonline)
+  // 1. Try internal Node/Vercel API route (/api/whoisonline)
   try {
     const res = await fetch('/api/whoisonline', { cache: 'no-store' });
     if (res.ok) {
@@ -92,36 +92,28 @@ export async function fetchWhoIsOnline(forceRefresh = false): Promise<WhoIsOnlin
       }
     }
   } catch (err) {
-    console.warn('Direct /api/whoisonline unreachable, attempting CORS proxy fallback...', err);
+    // Continue to PHP / proxy fallback
   }
 
-  // 2. Fallback to public CORS proxies if running on static host
-  const fallbackUrls = [
-    `https://api.allorigins.win/raw?url=${encodeURIComponent('https://miracle74.com/?subtopic=whoisonline')}`,
-    `https://corsproxy.io/?url=${encodeURIComponent('https://miracle74.com/?subtopic=whoisonline')}`
-  ];
-
-  for (const url of fallbackUrls) {
-    try {
-      const proxyRes = await fetch(url, { signal: AbortSignal.timeout(6000) });
-      if (proxyRes.ok) {
-        const html = await proxyRes.text();
-        const chars = parseCharactersFromHtml(html);
-        if (chars.length > 0) {
-          clientCache = {
-            characters: chars,
-            total: chars.length,
-            timestamp: now,
-            serverTimeBRT: getBrasiliaTime(),
-            source: 'proxy',
-          };
-          lastClientFetch = now;
-          return clientCache;
-        }
+  // 2. Try PHP proxy (/api/whoisonline.php) for cPanel / Apache / Nginx setups
+  try {
+    const phpRes = await fetch('/api/whoisonline.php', { cache: 'no-store' });
+    if (phpRes.ok) {
+      const data = await phpRes.json();
+      if (data && Array.isArray(data.characters)) {
+        clientCache = {
+          characters: data.characters,
+          total: data.total || data.characters.length,
+          timestamp: data.timestamp || now,
+          serverTimeBRT: data.serverTimeBRT || getBrasiliaTime(),
+          source: 'api',
+        };
+        lastClientFetch = now;
+        return clientCache;
       }
-    } catch (e) {
-      console.warn(`Proxy ${url} failed`, e);
     }
+  } catch (err) {
+    // Continue to proxy fallback
   }
 
   if (clientCache) return clientCache;
