@@ -2417,7 +2417,8 @@ export default function App() {
                   </motion.button>
                 </div>
 
-                {/* Botão/Card: Poupa Tempo Carta Online */}
+                {/* Botão/Card: Poupa Tempo Carta Online (Ocultado temporariamente) */}
+                {/*
                 <div className="max-w-6xl mx-auto pt-2">
                   <motion.div
                     whileHover={{ scale: 1.01, y: -2 }}
@@ -2425,11 +2426,9 @@ export default function App() {
                     onClick={() => setIsLetterModalOpen(true)}
                     className="group relative cursor-pointer p-5 sm:p-7 rounded-2xl bg-gradient-to-r from-[#121212] via-[#1a1711] to-[#121212] border-2 border-medieval-gold/30 hover:border-medieval-gold shadow-[0_8px_30px_rgba(0,0,0,0.6)] hover:shadow-[0_12px_40px_rgba(197,160,89,0.22)] transition-all overflow-hidden flex flex-col sm:flex-row items-center justify-between gap-6"
                   >
-                    {/* Atmospheric Glow */}
                     <div className="absolute inset-0 bg-gradient-to-r from-medieval-gold/10 via-amber-500/5 to-medieval-gold/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                     <div className="flex items-center gap-5 z-10 w-full sm:w-auto">
-                      {/* Letter Gif Avatar Container */}
                       <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-black/80 border border-medieval-gold/40 group-hover:border-medieval-gold flex items-center justify-center p-3 shadow-inner group-hover:scale-105 transition-all duration-300 shrink-0">
                         <img 
                           src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1792224845/Letter.gif" 
@@ -2455,7 +2454,6 @@ export default function App() {
                       </div>
                     </div>
 
-                    {/* Right side CTA & Server Save Info */}
                     <div className="flex sm:flex-col items-center sm:items-end justify-between w-full sm:w-auto gap-3 z-10 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-medieval-gold/15">
                       <div className="flex items-center gap-2 text-[11px] font-mono text-medieval-gold/80 bg-black/60 px-3 py-1.5 rounded-lg border border-medieval-gold/20">
                         <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
@@ -2470,6 +2468,7 @@ export default function App() {
                     </div>
                   </motion.div>
                 </div>
+                */}
               </motion.div>
             )}
             {activeTab === 'buildmaker' && (
