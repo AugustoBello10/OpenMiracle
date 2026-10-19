@@ -50,7 +50,7 @@ const NON_MAKER_KEYWORDS = new Set([
 ]);
 
 const CLIENT_CACHE_KEY = 'miracle_whoisonline_cache_v2';
-const CLIENT_CACHE_TTL = 30 * 1000; // 30 seconds
+const CLIENT_CACHE_TTL = 60 * 1000; // 60 seconds cache to preserve serverless quota and minimize requests
 
 let clientCache: WhoIsOnlineResult | null = null;
 let lastClientFetch = 0;
@@ -67,9 +67,12 @@ export function getCachedWhoIsOnline(): WhoIsOnlineResult | null {
     if (raw) {
       const data = JSON.parse(raw);
       if (data && Array.isArray(data.characters) && data.characters.length > 0) {
-        clientCache = data;
-        lastClientFetch = data.timestamp || Date.now();
-        return data;
+        const age = Date.now() - (data.timestamp || 0);
+        if (age < CLIENT_CACHE_TTL) {
+          clientCache = data;
+          lastClientFetch = data.timestamp || Date.now();
+          return data;
+        }
       }
     }
   } catch (e) {}
@@ -97,7 +100,7 @@ export function normalizeName(name: string): string {
 
 /**
  * Fetches the live list of online players from Miracle 7.4.
- * Uses persistent cache and Vercel Edge CDN for instant 0ms/fast response.
+ * Uses aggressive client caching and fallback proxies to eliminate server CPU consumption.
  */
 export async function fetchWhoIsOnline(forceRefresh = false): Promise<WhoIsOnlineResult> {
   const cached = getCachedWhoIsOnline();
@@ -107,7 +110,7 @@ export async function fetchWhoIsOnline(forceRefresh = false): Promise<WhoIsOnlin
     return cached;
   }
 
-  // 1. Try internal Node/Vercel API route (/api/whoisonline) with Vercel Edge CDN caching
+  // 1. Try internal backend route (/api/whoisonline) if available
   try {
     const res = await fetch('/api/whoisonline');
     if (res.ok) {
@@ -125,7 +128,7 @@ export async function fetchWhoIsOnline(forceRefresh = false): Promise<WhoIsOnlin
       }
     }
   } catch (err) {
-    // Continue to PHP fallback
+    // Continue to next fallback
   }
 
   // 2. Try PHP proxy (/api/whoisonline.php) for cPanel / Apache / Nginx setups
@@ -146,18 +149,50 @@ export async function fetchWhoIsOnline(forceRefresh = false): Promise<WhoIsOnlin
       }
     }
   } catch (err) {
-    // Continue
+    // Continue to static CORS proxies
   }
 
-  // If network failed but we have any cached data (even slightly older), return it immediately!
+  // 3. Direct browser fallback via public CORS proxies (Works 100% on Cloudflare Pages / Static Hosting with 0 server CPU!)
+  const targetUrl = 'https://miracle74.com/?subtopic=whoisonline';
+  const proxyUrls = [
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`,
+    `https://corsproxy.io/?url=${encodeURIComponent(targetUrl)}`
+  ];
+
+  for (const proxyUrl of proxyUrls) {
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 7000);
+      const pRes = await fetch(proxyUrl, { signal: controller.signal });
+      clearTimeout(timeout);
+
+      if (pRes.ok) {
+        const html = await pRes.text();
+        const characters = parseCharactersFromHtml(html);
+        if (characters.length > 0) {
+          const result: WhoIsOnlineResult = {
+            characters,
+            total: characters.length,
+            timestamp: now,
+            serverTimeBRT: getBrasiliaTime(),
+            source: 'proxy',
+          };
+          saveToClientCache(result);
+          return result;
+        }
+      }
+    } catch (proxyErr) {
+      // Try next proxy
+    }
+  }
+
+  // If network failed but we have any cached data (even older), return it immediately!
   if (clientCache) {
     return clientCache;
   }
 
   const stored = getCachedWhoIsOnline();
   if (stored) return stored;
-
-  if (clientCache) return clientCache;
 
   throw new Error('Não foi possível carregar a lista de Who is Online do Miracle. Tente novamente em alguns segundos.');
 }

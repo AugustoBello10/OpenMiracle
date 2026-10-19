@@ -75,14 +75,15 @@ export const LetterReaderModal: React.FC<LetterReaderModalProps> = ({
     return () => clearInterval(interval);
   }, [isOpen]);
 
-  // Load online data on modal open (instant from cache, refresh in background)
+  // Load online data on modal open (use cache if available; only fetch if empty)
   useEffect(() => {
     if (isOpen) {
       const cached = getCachedWhoIsOnline();
       if (cached) {
         setOnlineData(cached);
+      } else {
+        loadOnlinePlayers(false);
       }
-      loadOnlinePlayers(false);
       setLocalBackups(getLocalBackups());
     }
   }, [isOpen]);
@@ -346,26 +347,34 @@ export const LetterReaderModal: React.FC<LetterReaderModalProps> = ({
                   </span>
                   {searchResults.length === 0 ? (
                     <p className="text-xs text-stone-500 italic">
-                      {language === 'pt' ? 'Nenhuma carta registrada com este jogador.' : 'No recorded letters found containing this player.'}
+                      {language === 'pt' ? 'Nenhuma carta registrada contendo este jogador.' : 'No recorded letters found containing this player.'}
                     </p>
                   ) : (
                     <div className="space-y-1 max-h-36 overflow-y-auto pr-1">
-                      {searchResults.map(b => (
-                        <div key={b.id} className="p-2 bg-black/40 border border-white/10 rounded-lg flex items-center justify-between gap-2 text-xs">
-                          <div className="truncate">
-                            <span className="font-bold text-white mr-1.5">{b.firstQueueName || 'Carta'}</span>
-                            <span className="text-[10px] text-stone-400 font-mono">
-                              {new Date(b.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} • {b.totalParsed} nomes • {b.onlineCount} on
-                            </span>
+                      {searchResults.map(b => {
+                        const cleanHeader = b.headerNote?.replace(/[:\-_]+$/, '').trim();
+                        const time = new Date(b.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                        const title = cleanHeader
+                          ? (language === 'pt' ? `Fila ${cleanHeader} • ${time}` : `Queue ${cleanHeader} • ${time}`)
+                          : (language === 'pt' ? `Carta das ${time}` : `Letter at ${time}`);
+
+                        return (
+                          <div key={b.id} className="p-2 bg-black/40 border border-white/10 rounded-lg flex items-center justify-between gap-2 text-xs">
+                            <div className="truncate">
+                              <span className="font-bold text-white mr-1.5">{title}</span>
+                              <span className="text-[10px] text-stone-400 font-mono">
+                                (contém "{searchNickQuery.trim()}") • {b.totalParsed} {language === 'pt' ? 'nomes' : 'names'} • {b.onlineCount} on
+                              </span>
+                            </div>
+                            <button
+                              onClick={() => handleRestoreBackup(b)}
+                              className="px-2 py-0.5 bg-medieval-gold/20 hover:bg-medieval-gold text-medieval-gold hover:text-black rounded text-[11px] font-bold"
+                            >
+                              {language === 'pt' ? 'Carregar' : 'Load'}
+                            </button>
                           </div>
-                          <button
-                            onClick={() => handleRestoreBackup(b)}
-                            className="px-2 py-0.5 bg-medieval-gold/20 hover:bg-medieval-gold text-medieval-gold hover:text-black rounded text-[11px] font-bold"
-                          >
-                            {language === 'pt' ? 'Carregar' : 'Load'}
-                          </button>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   )}
                 </div>
@@ -382,22 +391,30 @@ export const LetterReaderModal: React.FC<LetterReaderModalProps> = ({
                   </p>
                 ) : (
                   <div className="max-h-36 overflow-y-auto space-y-1 pr-1">
-                    {localBackups.map(b => (
-                      <div key={b.id} className="p-2 bg-black/40 border border-white/5 rounded-lg flex items-center justify-between gap-2 text-xs">
-                        <div className="truncate">
-                          <span className="font-bold text-white mr-1.5">{b.firstQueueName || 'Carta'}</span>
-                          <span className="text-[10px] text-stone-400 font-mono">
-                            {new Date(b.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} • {b.totalParsed} nomes
-                          </span>
+                    {localBackups.map(b => {
+                      const cleanHeader = b.headerNote?.replace(/[:\-_]+$/, '').trim();
+                      const time = new Date(b.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                      const title = cleanHeader
+                        ? (language === 'pt' ? `Fila ${cleanHeader} • ${time}` : `Queue ${cleanHeader} • ${time}`)
+                        : (language === 'pt' ? `Carta das ${time}` : `Letter at ${time}`);
+
+                      return (
+                        <div key={b.id} className="p-2 bg-black/40 border border-white/5 rounded-lg flex items-center justify-between gap-2 text-xs">
+                          <div className="truncate">
+                            <span className="font-bold text-white mr-1.5">{title}</span>
+                            <span className="text-[10px] text-stone-400 font-mono">
+                              • {b.totalParsed} {language === 'pt' ? 'nomes na fila' : 'names in queue'}
+                            </span>
+                          </div>
+                          <button
+                            onClick={() => handleRestoreBackup(b)}
+                            className="px-2 py-0.5 bg-medieval-gold/15 hover:bg-medieval-gold text-medieval-gold hover:text-black rounded text-[11px] font-bold shrink-0"
+                          >
+                            {language === 'pt' ? 'Restaurar' : 'Restore'}
+                          </button>
                         </div>
-                        <button
-                          onClick={() => handleRestoreBackup(b)}
-                          className="px-2 py-0.5 bg-medieval-gold/15 hover:bg-medieval-gold text-medieval-gold hover:text-black rounded text-[11px] font-bold shrink-0"
-                        >
-                          {language === 'pt' ? 'Restaurar' : 'Restore'}
-                        </button>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 )}
               </div>
