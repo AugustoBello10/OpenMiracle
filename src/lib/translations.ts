@@ -299,7 +299,7 @@ export const translations = {
     latestVersion: "Última Versão",
     downloadMinimap: "Minimap do obellao_",
     minimapDownloadDesc: "Baixe o meu arquivo pessoal de minimap com marcações e áreas exploradas.",
-    minimapUpdated: "Atualizado em: 09/04/2026",
+    minimapUpdated: "Atualizado em: 19/10/2026",
     
     // Crafting Categories
     giantGemsRelics: "Gemas Gigantes (Relíquias)",
@@ -706,7 +706,7 @@ export const translations = {
     latestVersion: "Latest Version",
     downloadMinimap: "obellao_'s Minimap",
     minimapDownloadDesc: "Download my personal minimap file with marks and explored areas.",
-    minimapUpdated: "Updated on: 04/09/2026",
+    minimapUpdated: "Updated on: 10/19/2026",
     
     // Crafting Categories
     giantGemsRelics: "Giant Gems (Relics)",
