@@ -336,7 +336,7 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
   };
 
   // -------------------------------------------------------------
-  // 3. EXALTATION FORGE
+  // 3. EXALTATION FORGE (CHANGELOG DISCORD 03/08)
   // -------------------------------------------------------------
   const renderExaltationForge = () => (
     <motion.div
@@ -358,8 +358,8 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
               </h2>
               <p className="text-sm text-medieval-muted/80 font-mono italic">
                 {language === 'pt' 
-                  ? 'Sistema de evolução de equipamentos por Tiers, Fusão, Poeira (Dust), Slivers e bônus de Transcendência.'
-                  : 'Equipment tier evolution, Fusion, Dust, Slivers, and Transcendence enhancements system.'}
+                  ? 'Guia oficial e completo de Tiers, Fusão, Cristais de Proteção, Convergência e Transcendência.'
+                  : 'Official comprehensive guide to Tiers, Fusion, Protection Crystals, Convergence, and Transcendence.'}
               </p>
             </div>
             <img 
@@ -372,74 +372,197 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
           <div className="space-y-6 text-gray-300 leading-relaxed font-sans text-sm sm:text-base">
             <PrerequisitesCard
               language={language}
-              title={language === 'pt' ? 'Requisitos da Forja' : 'Forge Requirements'}
+              title={language === 'pt' ? 'Onde Encontrar e Requisitos' : 'Location & Requirements'}
               items={[
                 {
-                  label: language === 'pt' ? 'Equipamento Elegível' : 'Eligible Item',
-                  value: language === 'pt' ? 'Armas, Armaduras, Elmos e Pernas das Classes 1 a 5' : 'Weapons, Armors, Helmets, Legs in Classes 1-5',
+                  label: language === 'pt' ? 'Objeto da Forja' : 'Forge Object',
+                  value: language === 'pt' ? 'Exaltation Chest (encontrado em Dwacatra ou comprado na Store)' : 'Exaltation Chest (found in Dwacatra or bought in Store)',
                 },
                 {
-                  label: 'Dust & Slivers',
-                  value: language === 'pt' ? 'Obtidos caçando monstros influenciados (Influenced) ou triturando itens' : 'Gained hunting Influenced/Fiendish monsters or melting items',
+                  label: language === 'pt' ? 'Itens Elegíveis' : 'Eligible Items',
+                  value: language === 'pt' ? 'Equipamentos com Classificação (começam no Tier 0)' : 'Classified equipment (starts at Tier 0)',
                 },
                 {
-                  label: language === 'pt' ? 'Taxa em Gold' : 'Gold Fee',
-                  value: language === 'pt' ? 'Variável conforme a Classe e o Tier desejado' : 'Varies according to Class and target Tier',
+                  label: 'Reagent Crystal',
+                  value: language === 'pt' ? 'Obtido minerando Shrine Stones (usado sobre o Exaltation Chest)' : 'Obtained by mining Shrine Stones (used on Exaltation Chest)',
                 },
                 {
-                  label: language === 'pt' ? 'Localização' : 'Location',
-                  value: language === 'pt' ? 'Santuário da Exaltation Forge (Kazordoon)' : 'Exaltation Forge Sanctuary (Kazordoon)',
+                  label: language === 'pt' ? 'Moeda de Troca' : 'Currency',
+                  value: 'Gold Coins + Crests + Exalted Cores',
                 },
               ]}
             />
 
-            <h3 className="text-xl font-bold text-medieval-gold uppercase tracking-wider mt-8 border-b border-medieval-gold/10 pb-2">
-              {language === 'pt' ? 'Pilares do Sistema de Forja' : 'Pillars of the Forge System'}
-            </h3>
+            {/* FUSION */}
+            <div className="space-y-3 pt-2">
+              <h3 className="text-xl font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2 border-b border-amber-500/20 pb-2">
+                <Flame className="w-5 h-5 text-amber-400" />
+                1. {language === 'pt' ? 'Fusão (Fusion) - Subir Tiers' : 'Fusion - Elevating Tiers'}
+              </h3>
+              <p className="text-xs sm:text-sm text-stone-300">
+                {language === 'pt'
+                  ? 'A Fusão é o método para aumentar o Tier de um equipamento através do Exaltation Chest. Quando a fusão é bem-sucedida, um novo item com o próximo Tier é criado. A chance de sucesso e os custos variam conforme a classificação do item.'
+                  : 'Fusion elevates equipment tiers inside the Exaltation Chest. When successful, an item of the next tier is created. Success rate and costs depend on item classification.'}
+              </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-black/60 p-4 rounded-lg border border-white/10 space-y-2">
-                <h4 className="text-amber-400 font-bold uppercase text-xs flex items-center gap-2">
-                  <Flame className="w-4 h-4" /> Fusion (Fusão)
-                </h4>
-                <p className="text-xs text-stone-300">
-                  {language === 'pt'
-                    ? 'Combine 2 itens idênticos do mesmo Tier pagando Dust, Slivers e Gold para avançar para o próximo Tier (Tier 1 ao 5).'
-                    : 'Combine 2 identical items of the same Tier paying Dust, Slivers, and Gold to upgrade to the next Tier.'}
-                </p>
-              </div>
+              <StepList
+                language={language}
+                title={language === 'pt' ? 'Como Realizar a Fusão' : 'How to Perform Fusion'}
+                steps={[
+                  {
+                    step: 1,
+                    title: language === 'pt' ? 'Itens Idênticos' : 'Identical Items',
+                    description: language === 'pt'
+                      ? 'Coloque 2 itens estritamente idênticos (mesmo equipamento e mesmo Tier atual) dentro do Exaltation Chest.'
+                      : 'Place 2 strictly identical items (same equipment and exact same Tier) into the Exaltation Chest.',
+                  },
+                  {
+                    step: 2,
+                    title: language === 'pt' ? 'Recursos Necessários' : 'Required Resources',
+                    description: language === 'pt'
+                      ? 'Junte a quantidade requerida de Gold Coins e Crests dentro do inventário/baú conforme a classe do item.'
+                      : 'Include the required Gold Coins and Crests according to the item class.',
+                  },
+                  {
+                    step: 3,
+                    title: language === 'pt' ? 'Iniciar o Ritual' : 'Trigger the Ritual',
+                    description: language === 'pt'
+                      ? 'Dê "Use" em um Reagent Crystal (minerado em Shrine Stones) e clique diretamente sobre o Exaltation Chest.'
+                      : 'Use a Reagent Crystal (mined from Shrine Stones) directly onto the Exaltation Chest.',
+                  },
+                ]}
+              />
 
-              <div className="bg-black/60 p-4 rounded-lg border border-white/10 space-y-2">
-                <h4 className="text-sky-400 font-bold uppercase text-xs flex items-center gap-2">
-                  <RefreshCw className="w-4 h-4" /> Convergence (Convergência)
-                </h4>
-                <p className="text-xs text-stone-300">
-                  {language === 'pt'
-                    ? 'Disponível para itens de Classe 4 e 5. Permite converter ou transferir tiers entre itens da mesma classe pagando taxas de essência.'
-                    : 'Available for Class 4 & 5 items. Allows tier transfer or conversion within the same class category.'}
-                </p>
-              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+                <div className="bg-black/60 p-3.5 rounded-lg border border-amber-500/30">
+                  <h4 className="text-amber-300 font-bold text-xs uppercase mb-1.5 flex items-center gap-1.5">
+                    <Sparkles className="w-4 h-4 text-amber-400" /> Cristais de Chance de Sucesso
+                  </h4>
+                  <ul className="text-xs space-y-1 text-stone-300">
+                    <li>• <strong>Rare Crystal:</strong> +30% de chance de sucesso de fusão (usar dentro do baú).</li>
+                    <li>• <strong>Prismatic Crystal:</strong> +50% de chance de sucesso de fusão (usar dentro do baú).</li>
+                  </ul>
+                </div>
 
-              <div className="bg-black/60 p-4 rounded-lg border border-white/10 space-y-2">
-                <h4 className="text-purple-400 font-bold uppercase text-xs flex items-center gap-2">
-                  <Sparkles className="w-4 h-4" /> Transcendence (Transcendência)
-                </h4>
-                <p className="text-xs text-stone-300">
-                  {language === 'pt'
-                    ? 'Desbloqueia os Enhancements supremos (Dominion, Bastion, Sorcery, Mastery, Focus e Supremacy).'
-                    : 'Unlocks supreme enhancements (Dominion, Bastion, Sorcery, Mastery, Focus, and Supremacy).'}
-                </p>
+                <div className="bg-black/60 p-3.5 rounded-lg border border-sky-500/30">
+                  <h4 className="text-sky-300 font-bold text-xs uppercase mb-1.5 flex items-center gap-1.5">
+                    <ShieldCheck className="w-4 h-4 text-sky-400" /> Pedras de Proteção de Atributos e Quebra
+                  </h4>
+                  <ul className="text-xs space-y-1 text-stone-300">
+                    <li>• <strong>Earth Stone:</strong> Encanta com <em>Earth Guard</em> (15m). Preserva os atributos já encantados do item para aplicá-los ao novo item do próximo tier.</li>
+                    <li>• <strong>Frozen Stone:</strong> Encanta com <em>Frozen Guard</em> (15m). Se a fusão falhar, o item <strong>não é destruído</strong> (se for Tier 0) e a chance de rebaixar de tier (downgrade) é reduzida em <strong>-50%</strong>.</li>
+                  </ul>
+                </div>
               </div>
             </div>
 
-            <NoticeCard type="tip" title={language === 'pt' ? 'Os 6 Enhancements de Tier' : 'The 6 Tier Enhancements'}>
-              <ul className="list-disc list-inside space-y-1.5 text-xs text-stone-300">
-                <li><strong>Dominion:</strong> {language === 'pt' ? 'Aumenta poder de ataque em armas corpo-a-corpo e paladinos.' : 'Boosts attack power on melee and paladin weapons.'}</li>
-                <li><strong>Bastion:</strong> {language === 'pt' ? 'Ativa mitigação de dano massiva em escudos e armaduras pesadas.' : 'Activates massive damage mitigation on shields and heavy armors.'}</li>
-                <li><strong>Sorcery:</strong> {language === 'pt' ? 'Aumenta poder mágico e dano de feitiços de Magos e Druidas.' : 'Boosts spell damage and magic power for Sorcerers and Druids.'}</li>
-                <li><strong>Mastery, Focus & Supremacy:</strong> {language === 'pt' ? 'Bônus passivos de redução de recarga e chance de ataques duplos.' : 'Passive cooldown reductions and double-trigger chances.'}</li>
-              </ul>
-            </NoticeCard>
+            {/* CONVERGENCE */}
+            <div className="space-y-3 pt-6">
+              <h3 className="text-xl font-bold text-sky-400 uppercase tracking-wider flex items-center gap-2 border-b border-sky-500/20 pb-2">
+                <RefreshCw className="w-5 h-5 text-sky-400" />
+                2. {language === 'pt' ? 'Convergência (Convergence) - Transferência Segura de Tier' : 'Convergence - Tier Transfer'}
+              </h3>
+              <p className="text-xs sm:text-sm text-stone-300">
+                {language === 'pt'
+                  ? 'Itens com Classificação 4 ou superior podem transferir seu Tier para outro item da mesma ou menor classificação através da Convergência. Esse processo tem 100% de taxa de sucesso!'
+                  : 'Items of Classification 4 or higher can transfer their Tier to another item of equal or lower classification. This process has 100% success rate!'}
+              </p>
+
+              <div className="bg-black/60 p-4 rounded-lg border border-sky-500/30 space-y-2 text-xs text-stone-300">
+                <p className="font-bold text-sky-300 text-sm">Regras Obrigatórias da Convergência:</p>
+                <ul className="list-disc list-inside space-y-1">
+                  <li>O baú deve conter <strong>exatamente 2 equipamentos</strong>: um deles deve ser <strong>Tier 0</strong> e o outro deve ter <strong>Tier 2 ou superior</strong>.</li>
+                  <li>Um <strong>Convergence Crystal</strong> deve estar colocado dentro do Exaltation Chest.</li>
+                  <li>Quantidade necessária de <strong>Exalted Cores</strong> e <strong>Gold Coins</strong> (varia conforme classe e tier).</li>
+                  <li>Para iniciar, dê "Use" em um <strong>Reagent Crystal</strong> no Exaltation Chest.</li>
+                  <li><strong>Resultado garantido (100%):</strong> O item de maior tier transfere seu nível de tier menos um (ex: um item Tier 3 transfere Tier 2 para o item de destino).</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* TRANSCENDENCE */}
+            <div className="space-y-3 pt-6">
+              <h3 className="text-xl font-bold text-purple-400 uppercase tracking-wider flex items-center gap-2 border-b border-purple-500/20 pb-2">
+                <Sparkles className="w-5 h-5 text-purple-400" />
+                3. {language === 'pt' ? 'Transcendência (Transcendence) - Quebra de Limites' : 'Transcendence - Breaking Limits'}
+              </h3>
+              <p className="text-xs sm:text-sm text-stone-300">
+                {language === 'pt'
+                  ? 'A Transcendência é um estado supremo em que o equipamento supera seus limites, potencializando os atributos já encantados nele por um período. Quanto maior o Tier do item, mais fortes se tornam esses atributos. Cada equipamento pode ativar no máximo 3 tipos simultâneos de transcendência.'
+                  : 'Transcendence boosts already-enchanted attributes on the item. Each item can activate at most 3 simultaneous types of transcendence.'}
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                {[
+                  {
+                    name: 'Dominion',
+                    color: 'text-red-400',
+                    border: 'border-red-500/30',
+                    gem: 'Red Gem + Small Rubies + Exalted Cores',
+                    desc: 'Aumenta Attack, Life Leech, Burning, Fire Dmg, Armor, Health Regen, Absorb Health, Protect Fire, Reflect Fire, Protect Life Drain.'
+                  },
+                  {
+                    name: 'Bastion',
+                    color: 'text-blue-400',
+                    border: 'border-blue-500/30',
+                    gem: 'Blue Gem + Small Sapphires + Exalted Cores',
+                    desc: 'Aumenta Defense, Mana Leech, Freeze, Ice Dmg, Mana Regen, Absorb Mana, Protect Ice, Reflect Ice.'
+                  },
+                  {
+                    name: 'Sorcery',
+                    color: 'text-purple-400',
+                    border: 'border-purple-500/30',
+                    gem: 'Violet Gem + Small Amethyst + Exalted Cores',
+                    desc: 'Aumenta Magic Level, Electrify, Energy Dmg, Max Mana, Mana Healing, Protect Energy, Reflect Energy, Protect Mana Drain.'
+                  },
+                  {
+                    name: 'Mastery',
+                    color: 'text-emerald-400',
+                    border: 'border-emerald-500/30',
+                    gem: 'Green Gem + Small Emeralds + Exalted Cores',
+                    desc: 'Aumenta Skills (Axe, Club, Sword, Distance, Shielding), Poison, Poison Dmg, Max Health, Healing, Protect Poison, Reflect Poison.'
+                  },
+                  {
+                    name: 'Focus',
+                    color: 'text-yellow-400',
+                    border: 'border-yellow-500/30',
+                    gem: 'Yellow Gem + Small Topaz + Exalted Cores',
+                    desc: 'Aumenta Critical Hit/Spell, Perfuration, Crushing Blow, Attack Interval, Hit Chance, Physical Dmg, Physical Protection, Reflect Physical, Momentum, Mitigation.'
+                  },
+                  {
+                    name: 'Supremacy',
+                    color: 'text-pink-400',
+                    border: 'border-pink-500/30',
+                    gem: 'Rainbow Gem + Small Diamond + Exalted Cores',
+                    desc: 'Aumenta Speed, Dodge, Vibrancy, Double Bash, Bleeding, Berserk, Destruction, Death Dmg, Protect Death, Protect Elements, Reflect Elements.'
+                  }
+                ].map((trans) => (
+                  <div key={trans.name} className={`bg-black/60 p-3.5 rounded-lg border ${trans.border} flex flex-col justify-between`}>
+                    <div className="space-y-1.5">
+                      <div className="flex items-center justify-between">
+                        <span className={`font-black text-sm uppercase tracking-wider ${trans.color}`}>{trans.name}</span>
+                        <Sparkles className={`w-3.5 h-3.5 ${trans.color}`} />
+                      </div>
+                      <p className="text-[11px] text-stone-300 leading-snug">{trans.desc}</p>
+                    </div>
+                    <div className="mt-3 pt-2 border-t border-white/5 text-[10px] text-medieval-gold font-mono">
+                      <strong>Requisitos:</strong> {trans.gem}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="bg-black/80 p-4 rounded-lg border border-red-500/30 space-y-2 mt-4 text-xs text-stone-300">
+                <p className="font-bold text-red-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <AlertTriangle className="w-4 h-4 text-red-400" /> Como Remover ou Perder Transcendências:
+                </p>
+                <ul className="list-disc list-inside space-y-1">
+                  <li><strong>Black Gem:</strong> Remove todas as transcendências do item, mantendo os atributos encantados normais 100% preservados.</li>
+                  <li><strong>Fiery Stone:</strong> Destrói tanto as transcendências quanto todos os atributos encantados do item (reseta completamente).</li>
+                  <li><strong>Morte sem Bless:</strong> Se o personagem morrer sem a bênção <em>The Arcane Guardian</em> e perder os atributos encantados, todas as transcendências ativas serão perdidas instantaneamente.</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -447,7 +570,7 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
   );
 
   // -------------------------------------------------------------
-  // 4. PLAYER SHOP (SHOP IDLE)
+  // 4. PLAYER SHOP (MERCADO OFFLINE - COMPLETO COM PRINTS)
   // -------------------------------------------------------------
   const renderPlayerShop = () => (
     <motion.div
@@ -469,8 +592,8 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
               </h2>
               <p className="text-sm text-medieval-muted/80 font-mono italic">
                 {language === 'pt' 
-                  ? 'Transforme seu personagem em um NPC de comércio fixo no mapa enquanto você estiver deslogado.'
-                  : 'Transform your character into an offline trading vendor on the map while you are away.'}
+                  ? 'Como comprar a licença, configurar a loja in-game e vender itens enquanto estiver deslogado.'
+                  : 'How to buy the license, configure the in-game shop, and sell items while offline.'}
               </p>
             </div>
             <img 
@@ -481,45 +604,112 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
           </header>
 
           <div className="space-y-6 text-gray-300 leading-relaxed font-sans text-sm sm:text-base">
-            <p>
-              {language === 'pt'
-                ? 'O Player Shop é uma mecânica do Miracle que permite criar sua própria loja em áreas comerciais designadas nas cidades. O seu personagem permanece visível no local como um vendedor, atendendo a qualquer jogador que passar e clicar na loja, mesmo com você offline!'
-                : 'The Player Shop allows you to establish your own trade store in designated market zones. Your character remains in the game as a merchant NPC, allowing any passing adventurer to browse and purchase your goods while you are offline!'}
-            </p>
-
-            <StepList
+            <PrerequisitesCard
               language={language}
-              title={language === 'pt' ? 'Como Montar a sua Loja' : 'Setting Up Your Store'}
-              steps={[
+              title={language === 'pt' ? 'Requisitos Obrigatórios' : 'Mandatory Requirements'}
+              items={[
                 {
-                  step: 1,
-                  title: language === 'pt' ? 'Posicione-se em uma Área Comercial' : 'Stand in a Trade Zone',
-                  description: language === 'pt'
-                    ? 'Vá até um dos depósitos ou praças de comércio autorizadas (ex: praça de Thais, Carlin, Edron).'
-                    : 'Navigate to an authorized trading square or depot zone (e.g., Thais, Carlin, Edron market squares).',
+                  label: language === 'pt' ? 'Item de Licença' : 'License Item',
+                  value: 'Private Store Document (10 Miracle Points na Store)',
                 },
                 {
-                  step: 2,
-                  title: language === 'pt' ? 'Abrir a Janela de Loja' : 'Open the Shop Window',
-                  description: language === 'pt'
-                    ? 'Arraste os itens que deseja vender para a interface da loja e defina a quantidade e o preço unitário em gold coins.'
-                    : 'Drag the items you wish to sell into the shop window and set the price and amount in gold coins.',
+                  label: language === 'pt' ? 'Duração da Loja' : 'Shop Duration',
+                  value: '48 horas de funcionamento por documento',
                 },
                 {
-                  step: 3,
-                  title: language === 'pt' ? 'Ativar e Deslogar' : 'Activate & Logout',
-                  description: language === 'pt'
-                    ? 'Confirme a abertura da loja. O seu personagem assumirá a posição de comerciante. Todo o gold arrecadado é transferido com total segurança diretamente para a sua conta no banco do jogo.'
-                    : 'Confirm and activate. Your character assumes vendor mode. All collected gold coins are deposited safely into your bank account.',
+                  label: language === 'pt' ? 'Localização Permitida' : 'Allowed Location',
+                  value: language === 'pt' ? 'Dentro de Protection Zone (PZ) com os 8 SQMs ao redor vazios' : 'Inside Protection Zone (PZ) with 8 adjacent SQMs empty',
+                },
+                {
+                  label: language === 'pt' ? 'Taxa de Transação (Fee)' : 'Transaction Fee',
+                  value: '5% retido pelo servidor sobre cada venda',
                 },
               ]}
             />
 
-            <NoticeCard type="info" title={language === 'pt' ? 'Segurança das Vendas' : 'Trade Safety'}>
-              {language === 'pt'
-                ? 'Os itens colocados na loja ficam protegidos contra roubos ou movimentações externas. Você pode encerrar a loja a qualquer momento simplesmente logando no personagem novamente.'
-                : 'Items placed in the shop are completely protected against theft or unauthorized movement. You can close your store anytime simply by logging back in.'}
-            </NoticeCard>
+            <StepList
+              language={language}
+              title={language === 'pt' ? 'Passo a Passo: Como Abrir sua Loja' : 'Step-by-Step: Opening Your Shop'}
+              steps={[
+                {
+                  step: 1,
+                  title: language === 'pt' ? 'Comprar o Private Store Document' : 'Purchase Private Store Document',
+                  description: language === 'pt'
+                    ? 'No cliente do jogo, clique no botão azul "Store" (localizado abaixo do inventário à direita). Navegue até a categoria "Utilities", selecione o item "Private Store Document" (10 Miracle Points) e clique em "Buy Now!".'
+                    : 'Click the blue "Store" button in the client under inventory. Go to Utilities tab, select "Private Store Document" (10 Points) and buy it.',
+                },
+                {
+                  step: 2,
+                  title: language === 'pt' ? 'Ativar a Licença no Personagem' : 'Activate the Document',
+                  description: language === 'pt'
+                    ? 'Com o documento na sua backpack, clique nele com o botão direito e dê "Use" no seu próprio personagem. Seu personagem agora tem o direito de abrir uma loja de comércio pelas próximas 48 horas.'
+                    : 'Right-click the document in your backpack and use it on your character. Grants the right to open a commerce store for 48 hours.',
+                },
+                {
+                  step: 3,
+                  title: language === 'pt' ? 'Posicionar o Personagem na PZ' : 'Position in Protection Zone',
+                  description: language === 'pt'
+                    ? 'Vá até uma área de Protection Zone (PZ) comercial. Importante: certifique-se de que não haja nenhum objeto, item ou criatura nos 8 SQMs imediatamente em volta do seu personagem.'
+                    : 'Stand in a commercial Protection Zone. Ensure all 8 surrounding SQMs are strictly empty.',
+                },
+                {
+                  step: 4,
+                  title: language === 'pt' ? 'Abrir o Menu "Open Shop"' : 'Right-click Character -> Open Shop',
+                  description: language === 'pt'
+                    ? 'Clique com o botão direito sobre o seu próprio personagem e selecione a opção "Open Shop" no menu de contexto.'
+                    : 'Right-click your own character sprite and select "Open Shop" from the context menu.',
+                },
+                {
+                  step: 5,
+                  title: language === 'pt' ? 'Configurar Itens, Preços e Descrição' : 'Setup Items, Prices and Description',
+                  description: language === 'pt'
+                    ? 'Arraste os itens que deseja vender (eles DEVEM estar na sua backpack, nunca equipados no corpo). Selecione o item, defina a quantidade e o preço unitário (Price un). Clique em "Edit Description" para dar um nome chamativo para sua banca.'
+                    : 'Drag items from your backpack into the shop window. Set price per unit and amount. Use "Edit Description" to name your store.',
+                },
+                {
+                  step: 6,
+                  title: language === 'pt' ? 'Iniciar a Loja e Ativar Idle Shop (Offline)' : 'Start Shop & Idle Mode',
+                  description: language === 'pt'
+                    ? 'Clique no botão "Start Shop". Para que a loja continue vendendo enquanto você está deslogado, ative a opção "Idle Shop". Seu personagem permanecerá visível como um vendedor atendendo aos jogadores!'
+                    : 'Click "Start Shop". Activate "Idle Shop" to keep the store vending while your client is logged off.',
+                },
+              ]}
+            />
+
+            {/* Screenshots do Sistema */}
+            <div className="space-y-3 pt-4">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-medieval-gold">
+                {language === 'pt' ? 'Interface e Telas do Sistema (In-Game)' : 'In-Game System Screenshots'}
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="bg-black/60 p-2.5 rounded-lg border border-white/10 flex flex-col items-center gap-2">
+                  <span className="text-[11px] font-mono text-emerald-400 font-bold">1. Store: Utilities</span>
+                  <img src="/images/miracle/features/store_private_shop.jpg" alt="Store Utilities" className="w-full rounded border border-white/5 object-cover" />
+                </div>
+                <div className="bg-black/60 p-2.5 rounded-lg border border-white/10 flex flex-col items-center gap-2">
+                  <span className="text-[11px] font-mono text-emerald-400 font-bold">2. Menu: Open Shop</span>
+                  <img src="/images/miracle/features/open_shop_menu.png" alt="Open Shop Menu" className="w-full rounded border border-white/5 object-cover" />
+                </div>
+                <div className="bg-black/60 p-2.5 rounded-lg border border-white/10 flex flex-col items-center gap-2">
+                  <span className="text-[11px] font-mono text-emerald-400 font-bold">3. Janela de Vendas</span>
+                  <img src="/images/miracle/features/player_shop_window.jpg" alt="Player Shop Window" className="w-full rounded border border-white/5 object-cover" />
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+              <NoticeCard type="warning" title={language === 'pt' ? 'Regras de Conta & Multi-Clienting' : 'Account & Multi-Client Rules'}>
+                {language === 'pt'
+                  ? 'Enquanto seu personagem estiver em Idle Shop, você NÃO poderá logar outro personagem da MESMA conta. No entanto, é totalmente autorizado jogar normalmente com outra conta secundária (não será considerado MC ilegal).'
+                  : 'While a character is in Idle Shop, you cannot login another character from the same account. However, playing on another separate account is 100% allowed.'}
+              </NoticeCard>
+
+              <NoticeCard type="info" title={language === 'pt' ? 'Server Save & Reinício Diário' : 'Daily Server Save Reset'}>
+                {language === 'pt'
+                  ? 'No Server Save diário o servidor reseta completamente todas as lojas ativas por questões de manutenção. Portanto, após o Server Save, basta logar e clicar novamente em Open Shop para restabelecer suas vendas.'
+                  : 'At daily Server Save, all active shops are automatically closed. Simply log back in after SS and reopen your shop.'}
+              </NoticeCard>
+            </div>
           </div>
         </div>
       </div>
@@ -527,7 +717,7 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
   );
 
   // -------------------------------------------------------------
-  // 5. HOUSES & BED REGENERATION
+  // 5. HOUSES & BED REGENERATION (SISTEMA DE BIDS & MOVE OUT)
   // -------------------------------------------------------------
   const renderHousesLands = () => (
     <motion.div
@@ -548,8 +738,8 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
             </h2>
             <p className="text-sm text-medieval-muted/80 font-mono italic">
               {language === 'pt' 
-                ? 'Regras oficiais de compra de casas, aluguel quinzenal e regeneração passiva em camas.'
-                : 'Official house purchase rates, biweekly rent, and passive bed regeneration mechanics.'}
+                ? 'Como arrematar casas em leilão no site, transferir com segurança pelo Move Out e magias de gerenciamento in-game.'
+                : 'How to bid on houses on the website, transfer securely via Move Out, and in-game house management spells.'}
             </p>
           </header>
 
@@ -559,40 +749,167 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
               title={language === 'pt' ? 'Valores e Tarifas Oficiais' : 'Official Rates & Pricing'}
               items={[
                 {
-                  label: language === 'pt' ? 'Preço de Compra' : 'Purchase Price',
+                  label: language === 'pt' ? 'Preço Base' : 'Base Price',
                   value: '200 gp / sqm + 1.000 gp / cama (bed)',
                 },
                 {
                   label: language === 'pt' ? 'Aluguel (Rent)' : 'Rent Fee',
-                  value: language === 'pt' ? '30% do valor da casa cobrado a cada 15 dias' : '30% of house price every 15 days',
+                  value: language === 'pt' ? '30% do valor da casa debitado da conta bancária a cada 15 dias' : '30% of house price deducted from bank every 15 days',
+                },
+                {
+                  label: language === 'pt' ? 'Duração do Leilão' : 'Auction Duration',
+                  value: language === 'pt' ? '2 dias a partir do 1º lance (encerra no Server Save do 2º dia)' : '2 days from 1st bid (ends at 2nd day Server Save)',
                 },
                 {
                   label: language === 'pt' ? 'Limite por Conta' : 'Account Limit',
-                  value: language === 'pt' ? 'Máximo de 2 personagens dormindo por conta' : 'Maximum of 2 sleepers per account',
+                  value: language === 'pt' ? 'Máximo de 2 personagens dormindo em camas por conta' : 'Maximum of 2 sleepers per account',
                 },
               ]}
             />
 
-            <h3 className="text-xl font-bold text-medieval-gold uppercase tracking-wider mt-8 border-b border-medieval-gold/10 pb-2">
-              {language === 'pt' ? 'Como Funciona a Cama (Bed Regeneration)' : 'How Bed Regeneration Works'}
-            </h3>
+            {/* COMO COMPRAR POR LEILÃO */}
+            <StepList
+              language={language}
+              title={language === 'pt' ? 'Como Comprar uma Casa (Sistema de Bids no Site)' : 'How to Buy a House (Website Bids)'}
+              steps={[
+                {
+                  step: 1,
+                  title: language === 'pt' ? 'Acessar a Página de Casas no Site' : 'Navigate to Houses on Site',
+                  description: language === 'pt'
+                    ? 'Faça login na sua conta no site oficial do Miracle (miracle74.com/?subtopic=houses), filtre pela cidade desejada e localize as casas livres ou que estão em leilão.'
+                    : 'Log in to your account on the official Miracle website, filter by city, and browse free or auctioned houses.',
+                },
+                {
+                  step: 2,
+                  title: language === 'pt' ? 'Realizar o Lance (Bid)' : 'Submit Your Bid',
+                  description: language === 'pt'
+                    ? 'Insira o seu lance em Gold Coins. A partir do primeiro lance dado, o leilão tem duração estrita de 2 dias e encerra exatamente no Server Save do 2º dia. Quem tiver o maior lance fica com a casa.'
+                    : 'Enter your bid in gold coins. The auction lasts 2 days from the first bid, ending strictly at the 2nd day Server Save. Highest bidder wins.',
+                },
+                {
+                  step: 3,
+                  title: language === 'pt' ? 'Obrigatório: Dinheiro no Banco' : 'Mandatory: Funds in Bank',
+                  description: language === 'pt'
+                    ? 'ATENÇÃO: Você DEVE manter o valor total do seu lance mais o valor do primeiro aluguel depositados no BANCO do jogo (não na mochila!). No momento do Server Save, o sistema debita automaticamente do banco. Sem saldo, a compra é cancelada.'
+                    : 'IMPORTANT: You must keep the full bid amount plus the first rent fee in your in-game BANK (not backpack). Debited at Server Save automatically.',
+                },
+              ]}
+            />
 
-            <p>
-              {language === 'pt'
-                ? 'Dormir em uma cama na sua casa permite que seu personagem regenere Vida e Mana enquanto você está deslogado. Isso é essencial para magos e druidas que fazem runas (Bed Making Runes).'
-                : 'Sleeping in a bed inside your house regenerates Health and Mana while offline. Crucial for mages crafting runes overnight (Bed Making Runes).'}
-            </p>
-
-            <NoticeCard type="tip" title={language === 'pt' ? 'Fórmula de Regeneração da Cama' : 'Bed Regeneration Formula'}>
-              <div className="space-y-2 text-xs">
-                <p>
-                  <strong>{language === 'pt' ? 'Taxa:' : 'Rate:'}</strong> {language === 'pt' ? '1 HP e 1 Mana por minuto.' : '1 HP and 1 Mana per minute.'}
-                </p>
-                <p>
-                  <strong>{language === 'pt' ? 'Limite Máximo:' : 'Maximum Limit:'}</strong> {language === 'pt' ? 'Até 5x o tempo da comida consumida antes de dormir. Certifique-se de alimentar bem seu personagem antes de dar "Use" na cama!' : 'Up to 5x the duration of the food eaten before sleeping. Feed your character well before using the bed!'}
-                </p>
+            {/* COMO TRANSFERIR POR MOVE OUT */}
+            <div className="space-y-4 pt-4">
+              <h3 className="text-xl font-bold text-medieval-gold uppercase tracking-wider border-b border-medieval-gold/10 pb-2">
+                {language === 'pt' ? 'Como Vender / Transferir Casas com Segurança (Move Out)' : 'How to Safely Transfer Houses (Move Out)'}
+              </h3>
+              
+              <div className="flex flex-col md:flex-row gap-6 items-center">
+                <div className="space-y-3 flex-1 text-xs sm:text-sm">
+                  <p>
+                    {language === 'pt'
+                      ? 'No Miracle, transferências de casas entre jogadores são feitas com 100% de segurança diretamente pelo site, evitando qualquer golpe ou roubo in-game:'
+                      : 'House transfers between players are handled safely directly on the website, preventing any in-game scams:'}
+                  </p>
+                  <ol className="list-decimal list-inside space-y-2">
+                    <li>O dono da casa faz login no site do Miracle e navega até a página da sua casa.</li>
+                    <li>Clica no botão <strong>"Move Out"</strong>.</li>
+                    <li>Define o <strong>Nick exato do jogador comprador</strong>, o <strong>valor acordado em gold</strong> e confirma com a senha da conta.</li>
+                    <li>O comprador deve ter o dinheiro acordado depositado no <strong>Banco do jogo</strong>. <em>Nunca pague nada em mãos in-game!</em></li>
+                    <li>No próximo Server Save, o sistema transfere a propriedade e credita o gold direto no banco do vendedor.</li>
+                  </ol>
+                </div>
+                <div className="w-full md:w-80 bg-black/60 p-2 rounded-lg border border-medieval-gold/30 shrink-0">
+                  <img src="/images/miracle/features/house_move_out.png" alt="Move Out House Transfer" className="w-full rounded" />
+                  <p className="text-[10px] text-center text-gray-400 mt-1 font-mono">Página da casa com botão Move Out no site</p>
+                </div>
               </div>
-            </NoticeCard>
+            </div>
+
+            {/* MAGIAS DE CASA (SEM COMANDO !) */}
+            <div className="space-y-4 pt-4">
+              <h3 className="text-xl font-bold text-medieval-gold uppercase tracking-wider border-b border-medieval-gold/10 pb-2">
+                {language === 'pt' ? 'Magias e Comandos de Gerenciamento In-Game' : 'In-Game House Spells'}
+              </h3>
+
+              <NoticeCard type="warning" title={language === 'pt' ? 'Comandos com ! Não Existem Mais' : '! Commands No Longer Exist'}>
+                {language === 'pt'
+                  ? 'Comandos legados de chat como !buyhouse, !sellhouse ou !leave não existem mais no Miracle. Toda a gestão de compra e venda é no site, e as permissões de portas e convidados são feitas exclusivamente através das palavras mágicas abaixo:'
+                  : 'Legacy chat commands such as !buyhouse or !leave are obsolete. All purchase/trade is done on site, and door/guest permissions use the magic spells below:'}
+              </NoticeCard>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pt-2">
+                <div className="bg-black/60 p-3.5 rounded-lg border border-white/10">
+                  <span className="font-mono text-medieval-gold font-bold text-sm block mb-1">aleta grav</span>
+                  <p className="text-xs text-stone-300">
+                    {language === 'pt'
+                      ? 'Fique de frente para uma porta e diga a magia para editar a lista de quem pode abrir e fechar aquela porta específica.'
+                      : 'Face a door to edit permissions of who can open and close that specific door.'}
+                  </p>
+                </div>
+
+                <div className="bg-black/60 p-3.5 rounded-lg border border-white/10">
+                  <span className="font-mono text-medieval-gold font-bold text-sm block mb-1">aleta sio</span>
+                  <p className="text-xs text-stone-300">
+                    {language === 'pt'
+                      ? 'Diga dentro da casa para editar a lista de convidados gerais (Guests) autorizados a entrar na sua residência.'
+                      : 'Say inside house to edit the guest list allowed to enter your residence.'}
+                  </p>
+                </div>
+
+                <div className="bg-black/60 p-3.5 rounded-lg border border-white/10">
+                  <span className="font-mono text-medieval-gold font-bold text-sm block mb-1">aleta som</span>
+                  <p className="text-xs text-stone-300">
+                    {language === 'pt'
+                      ? 'Edita a lista de Sub-Donos (Sub-owners), que possuem autorização para invitar outros amigos e modificar portas.'
+                      : 'Edits the Sub-owners list, who can invite others and modify door permissions.'}
+                  </p>
+                </div>
+
+                <div className="bg-black/60 p-3.5 rounded-lg border border-white/10">
+                  <span className="font-mono text-red-400 font-bold text-sm block mb-1">alana grav</span>
+                  <p className="text-xs text-stone-300">
+                    {language === 'pt'
+                      ? 'Expulsa qualquer jogador que estiver pisando exatamente sobre a soleira da porta trancada para o lado de fora.'
+                      : 'Kicks any player standing on the door tile to the outside.'}
+                  </p>
+                </div>
+
+                <div className="bg-black/60 p-3.5 rounded-lg border border-white/10 sm:col-span-2">
+                  <span className="font-mono text-red-400 font-bold text-sm block mb-1">alana sio "NomeDoJogador"</span>
+                  <p className="text-xs text-stone-300">
+                    {language === 'pt'
+                      ? 'Kicka imediatamente um jogador invasor para fora da casa (use o nome entre aspas caso tenha espaços).'
+                      : 'Immediately kicks an unwanted player out of the house (use quotes for names with spaces).'}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* CAMAS */}
+            <div className="space-y-3 pt-4">
+              <h3 className="text-xl font-bold text-medieval-gold uppercase tracking-wider border-b border-medieval-gold/10 pb-2">
+                {language === 'pt' ? 'Como Funciona a Cama (Bed Regeneration)' : 'How Bed Regeneration Works'}
+              </h3>
+
+              <p className="text-xs sm:text-sm">
+                {language === 'pt'
+                  ? 'Dormir em uma cama na sua casa permite que seu personagem regenere Vida e Mana enquanto você está deslogado. Isso é essencial para magos e druidas que fazem runas (Bed Making Runes).'
+                  : 'Sleeping in a bed inside your house regenerates Health and Mana while offline. Crucial for mages crafting runes overnight (Bed Making Runes).'}
+              </p>
+
+              <NoticeCard type="tip" title={language === 'pt' ? 'Fórmula de Regeneração da Cama' : 'Bed Regeneration Formula'}>
+                <div className="space-y-2 text-xs">
+                  <p>
+                    <strong>{language === 'pt' ? 'Taxa:' : 'Rate:'}</strong> {language === 'pt' ? '1 HP e 1 Mana por minuto.' : '1 HP and 1 Mana per minute.'}
+                  </p>
+                  <p>
+                    <strong>{language === 'pt' ? 'Limite Máximo:' : 'Maximum Limit:'}</strong> {language === 'pt' ? 'Até 5x o tempo da comida consumida antes de dormir. Certifique-se de alimentar bem seu personagem antes de dar "Use" na cama!' : 'Up to 5x the duration of the food eaten before sleeping. Feed your character well before using the bed!'}
+                  </p>
+                  <p>
+                    <strong>{language === 'pt' ? 'Limite por Conta:' : 'Account Limit:'}</strong> {language === 'pt' ? 'Máximo de 2 personagens dormindo simultaneamente por conta.' : 'Maximum 2 sleepers per account.'}
+                  </p>
+                </div>
+              </NoticeCard>
+            </div>
           </div>
         </div>
       </div>
@@ -668,25 +985,53 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
                   step: 1,
                   title: language === 'pt' ? 'Adquira a Arma Correspondente' : 'Buy the Matching Weapon',
                   description: language === 'pt'
-                    ? 'Compre a arma de treino voltada para o seu atributo desejado (espada, machado, clava, distância ou magia).'
-                    : 'Purchase the training weapon tailored to your skill (sword, axe, club, distance, or magic).',
+                    ? 'Compre a arma de treino voltada para o seu atributo desejado (espada, machado, clava, distância, escudo ou magia) no NPC Sam em Thais ou através da Store.'
+                    : 'Purchase the training weapon tailored to your skill (sword, axe, club, distance, shield, or magic) from NPC Sam in Thais or via Store.',
                 },
                 {
                   step: 2,
                   title: language === 'pt' ? 'Posicione-se em frente ao Dummy' : 'Stand before an Exercise Dummy',
                   description: language === 'pt'
-                    ? 'Fique adjacente ao boneco de treino na escola de treinamento ou no dummy da sua casa.'
-                    : 'Stand adjacent to an exercise dummy in the training school or inside your house.',
+                    ? 'Fique adjacente ao boneco de treino na área de treinamento público das cidades ou no dummy privado da sua casa.'
+                    : 'Stand adjacent to an exercise dummy in the training area or inside your private house.',
                 },
                 {
                   step: 3,
-                  title: language === 'pt' ? 'Ativar o Treino' : 'Activate Training',
+                  title: language === 'pt' ? 'Ativar o Treino Contínuo' : 'Activate Continuous Training',
                   description: language === 'pt'
-                    ? 'Dê Use na arma de treino e clique sobre o dummy. Seu personagem começará a desferir golpes automaticamente consumindo as cargas da arma.'
-                    : 'Use the training weapon on the dummy. Your character automatically strikes, consuming charges to advance skills.',
+                    ? 'Dê Use na arma de treino e clique sobre o dummy. Seu personagem começará a desferir golpes automaticamente consumindo as cargas da arma e avançando o skill.'
+                    : 'Use the training weapon on the dummy. Your character strikes continuously, consuming charges to advance skills.',
                 },
               ]}
             />
+
+            {/* Categorias e Tiers de Armas de Treino */}
+            <div className="space-y-3 pt-4">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-medieval-gold">
+                {language === 'pt' ? 'Os 5 Tiers de Armas de Treino em Miracle' : 'The 5 Training Weapon Tiers'}
+              </h4>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+                {[
+                  { name: 'Regular', color: 'text-stone-300', border: 'border-white/10', desc: 'Armas convencionais com taxa base de cargas.' },
+                  { name: 'Spark', color: 'text-amber-400', border: 'border-amber-500/30', desc: 'Versão aprimorada com carga elétrica.' },
+                  { name: 'Lightning', color: 'text-sky-400', border: 'border-sky-500/30', desc: 'Maior velocidade e intensidade de treino.' },
+                  { name: 'Inferno', color: 'text-red-400', border: 'border-red-500/30', desc: 'Armas de fogo de alta eficiência para treinos avançados.' },
+                  { name: 'Shadow', color: 'text-purple-400', border: 'border-purple-500/30', desc: 'Tier supremo de treino para máximo rendimento.' },
+                ].map((tier) => (
+                  <div key={tier.name} className={`bg-black/60 p-3 rounded-lg border ${tier.border} flex flex-col justify-between`}>
+                    <span className={`font-bold text-xs uppercase ${tier.color}`}>{tier.name}</span>
+                    <p className="text-[11px] text-stone-400 mt-1">{tier.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <NoticeCard type="tip" title={language === 'pt' ? 'Integração com a Profissão de Alquimia' : 'Alchemy Integration'}>
+              {language === 'pt'
+                ? 'A profissão de Alquimia (Alchemy) produz poções e catalisadores especiais que podem acelerar o ganho de experiência de skills durante o treino, além de preparar essências e óleos utilizados no refino de equipamentos e armas especiais.'
+                : 'Alchemy produces special potions and catalysts boosting skill progression rates during training, as well as refining oils and essences.'}
+            </NoticeCard>
           </div>
         </div>
       </div>
