@@ -57,6 +57,8 @@ export const ItemImage: React.FC<ItemImageProps> = ({ item, className = "w-8 h-8
       src={getUrl()} 
       alt={item.name} 
       className={className} 
+      loading="lazy"
+      decoding="async"
       referrerPolicy="no-referrer"
       onError={handleError}
     />
