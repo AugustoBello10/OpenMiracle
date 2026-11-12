@@ -5,6 +5,8 @@ import {
   Fish, Hammer, FlaskConical, Scissors, Pickaxe, 
   Utensils, Sprout, Axe, Book, ArrowLeft, Image as ImageIcon, ChevronDown, ChevronLeft, ChevronRight, Info, ArrowRight 
 } from 'lucide-react';
+import { MapLink } from './MapLink';
+import { PrerequisitesCard, NoticeCard, NpcDialog } from './Guide';
 
 interface ProfessionsGuideViewProps {
   language: 'pt' | 'en';
@@ -89,22 +91,58 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
             </p>
 
             <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="crafting-acquire">{t('Como Adquirir a Profissão', 'How to Acquire the Profession')}</h4>
+            
+            <PrerequisitesCard
+              language={language}
+              items={[
+                {
+                  label: t('Nível de Skill', 'Skill Level'),
+                  value: t('Skill 20 em Forja (adquirido quebrando itens)', 'Skill 20 in Forging (gained by breaking items)'),
+                },
+                {
+                  label: t('Taxa de Inscrição', 'Enrollment Fee'),
+                  value: t('20.000 gold coins (20k)', '20,000 gold coins (20k)'),
+                },
+                {
+                  label: t('Mestre da Profissão', 'Profession Master'),
+                  value: (
+                    <MapLink x={32698} y={31677} z={2} title="A Sweaty Cyclops" showCoords>
+                      A Sweaty Cyclops (Ab'Dendriel)
+                    </MapLink>
+                  ),
+                },
+                {
+                  label: t('Ferramenta Obrigatória', 'Required Tool'),
+                  value: (
+                    <MapLink x={32644} y={31967} z={12} title="Iron Hammer Quest" showCoords>
+                      Iron Hammer
+                    </MapLink>
+                  ),
+                },
+              ]}
+            />
+
+            <NpcDialog
+              npcName="A Sweaty Cyclops"
+              npcLocation="Ab'Dendriel"
+              lines={[
+                { speaker: 'player', text: 'hi', keyword: 'hi' },
+                { speaker: 'npc', text: 'Hum? Ye... Ah... Hi.' },
+                { speaker: 'player', text: 'blacksmith', keyword: 'blacksmith' },
+                { speaker: 'npc', text: 'You want to become a blacksmith? It will cost you 20000 gold and requires skill 20. Deal?' },
+                { speaker: 'player', text: 'yes', keyword: 'yes' },
+                { speaker: 'npc', text: 'You are now an official blacksmith! Happy hammering!' },
+              ]}
+            />
+
             <div className="bg-black/30 p-4 rounded-lg border border-white/5 space-y-4">
-              <p>
-                {t('Para se tornar um mestre forjador e adquirir a profissão oficialmente, você precisa atender aos seguintes requisitos:', 'To become a master forger and acquire the profession officially, you must meet the following requirements:')}
-              </p>
-              <ul className="list-disc pl-5 space-y-2 text-stone-300">
-                <li><strong className="text-medieval-gold">{t('Nível de Skill:', 'Skill Level:')}</strong> {t('Alcançar o nível 20 de skill (quebrando itens).', 'Reach skill level 20 (by breaking items).')}</li>
-                <li><strong className="text-medieval-gold">{t('Taxa de Inscrição:', 'Enrollment Fee:')}</strong> {t('Pagar 20.000 gps ao NPC chefe da profissão, o', 'Pay 20,000 gps to the profession master NPC,')} <a href="https://www.tibiawiki.com.br/wiki/A_Sweaty_Cyclops#32698,31677,2:2" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 hover:underline font-bold">A Sweaty Cyclops</a>.</li>
-              </ul>
-              
-              <div className="mt-4 border-t border-medieval-gold/20 pt-4">
+              <div className="border-t border-medieval-gold/20 pt-2">
                 <h5 className="font-bold text-medieval-gold mb-3">{t('Vantagens da Profissão:', 'Advantages of the Profession:')}</h5>
                 <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
                   <ul className="list-disc pl-5 space-y-2 flex-1">
-                    <li>{t('Aumento de skill mais rápido.', 'Faster skill increase.')}</li>
-                    <li>{t('Possibilidade de craftar (criar) itens. Sem a profissão, você só pode quebrar equipamentos.', 'Ability to craft (create) items. Without the profession, you can only break equipment.')}</li>
-                    <li>{t('Acesso a um outfit exclusivo de forjador.', 'Access to an exclusive forger outfit.')}</li>
+                    <li>{t('Aumento de skill de forja substancialmente mais rápido.', 'Faster skill progression in forging.')}</li>
+                    <li>{t('Capacidade de craftar e forjar equipamentos (sem a profissão você só pode quebrar itens).', 'Ability to craft equipment (without the profession you can only break items).')}</li>
+                    <li>{t('Acesso ao Outfit exclusivo de Forjador.', 'Access to the exclusive Blacksmith outfit.')}</li>
                   </ul>
                   <div className="flex-shrink-0 text-center">
                     <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784733736/blacksmith_outfit.png" alt="Crafting Outfit" className="w-24 h-auto object-contain mx-auto border border-medieval-gold/20 rounded bg-black/50 p-2" />
@@ -116,32 +154,38 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
 
             <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="crafting-tools">{t('O Ponto de Partida: O Martelo e a Bigorna', 'The Starting Point: Hammer and Anvil')}</h4>
             <p>{t('A prática da forja exige ferramentas específicas. Sem o equipamento adequado, o processo de criação não pode ser iniciado:', 'The practice of forging requires specific tools. Without the proper equipment, the creation process cannot be initiated:')}</p>
-            <ul className="list-disc pl-5 space-y-3 mt-2">
-              <li className="flex items-start gap-3">
-                <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784726106/IRON_HAMMER.gif" alt="Iron Hammer" className="w-8 h-8 object-contain drop-shadow-[0_0_5px_rgba(0,0,0,0.8)]" />
-                <div>
-                  <strong className="text-medieval-gold">Iron Hammer:</strong> {t('Ferramenta indispensável. Pode ser obtida na', 'Indispensable tool. Can be obtained in the')}{' '}
-                  <a href="https://www.tibiawiki.com.br/wiki/Iron_Hammer_Quest" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 hover:underline font-bold">
-                    {t('quest do Iron Hammer', 'Iron Hammer quest')}
-                  </a>{' '}
+            
+            <div className="space-y-4 mt-3">
+              <div className="flex items-start gap-3 bg-black/30 p-4 rounded-lg border border-white/5">
+                <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784726106/IRON_HAMMER.gif" alt="Iron Hammer" className="w-8 h-8 object-contain drop-shadow-[0_0_5px_rgba(0,0,0,0.8)] mt-1" />
+                <div className="flex-1">
+                  <strong className="text-medieval-gold">Iron Hammer:</strong> {t('Ferramenta indispensável para bater o metal na bigorna. Pode ser obtida na', 'Indispensable tool for working metal on anvils. Can be obtained in the')}{' '}
+                  <MapLink x={32644} y={31967} z={12} title="Iron Hammer Quest" showCoords>
+                    {t('Quest do Iron Hammer', 'Iron Hammer Quest')}
+                  </MapLink>{' '}
                   {t('em Minotaur Mountain (Kazordoon).', 'in Minotaur Mountain (Kazordoon).')}
-                  <br />
-                  <span className="text-red-400/80 text-sm mt-1 block">
-                    {t('Atenção: É possível adquirir apenas um por personagem. Em caso de perda, será necessário negociar com outros jogadores ou realizar a quest com um personagem secundário.', 'Attention: Only one can be acquired per character. In case of loss, it will be necessary to trade with other players or complete the quest with a secondary character.')}
-                  </span>
+                  
+                  <NoticeCard type="danger" title={t('Item Único por Personagem', 'Single-Time Character Item')}>
+                    {t('É possível adquirir apenas um martelo por personagem na quest. Em caso de perda, será necessário negociar no trade com outros jogadores ou realizar a quest com um personagem secundário.', 'Only one hammer can be acquired per character from the quest. If lost, you must buy one from other players or use a secondary character.')}
+                  </NoticeCard>
                 </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784726106/Anvil__Small.gif" alt="Anvil" className="w-8 h-8 object-contain drop-shadow-[0_0_5px_rgba(0,0,0,0.8)]" />
-                <div>
-                  <strong className="text-medieval-gold">{t('Bigorna (Anvil):', 'Anvil:')}</strong> {t('O jogador pode utilizar as bigornas públicas distribuídas pelo mapa ou adquirir uma pessoal através do NPC', 'The player can use public anvils distributed across the map or purchase a personal one through the NPC')}{' '}
-                  <a href="https://www.tibiawiki.com.br/wiki/A_Sweaty_Cyclops#32698,31677,2:2" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 hover:underline font-bold">
+              </div>
+
+              <div className="flex items-start gap-3 bg-black/30 p-4 rounded-lg border border-white/5">
+                <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784726106/Anvil__Small.gif" alt="Anvil" className="w-8 h-8 object-contain drop-shadow-[0_0_5px_rgba(0,0,0,0.8)] mt-1" />
+                <div className="flex-1">
+                  <strong className="text-medieval-gold">{t('Bigorna (Anvil):', 'Anvil:')}</strong> {t('O jogador pode utilizar bigornas públicas distribuídas pelo mapa ou comprar uma bigorna pessoal com', 'Players can use public anvils around the world or buy a personal anvil with')}{' '}
+                  <MapLink x={32698} y={31677} z={2} title="A Sweaty Cyclops" showCoords>
                     A Sweaty Cyclops
-                  </a>{' '}
-                  {t('pelo valor de 5.000 gold, permitindo a instalação em sua própria casa.', 'for the value of 5,000 gold, allowing installation in their own house.')}
+                  </MapLink>{' '}
+                  {t('por 5.000 gps.', 'for 5,000 gps.')}
+                  
+                  <NoticeCard type="tip" title={t('Bigorna em Casa', 'Personal Anvil')}>
+                    {t('Comprando a bigorna pessoal por 5k, você pode colocá-la dentro da sua casa e treinar sua forja com total segurança e comodidade.', 'By purchasing a personal anvil for 5k, you can place it inside your house and forge in complete peace and comfort.')}
+                  </NoticeCard>
                 </div>
-              </li>
-            </ul>
+              </div>
+            </div>
 
             <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="crafting-breaking">{t('♻️ Quebrando Equipamentos (Breaking)', '♻️ Breaking Equipment')}</h4>
             <p>{t('A matéria-prima essencial para a forja provém do desmonte (salvaging) de equipamentos dropados.', 'The essential raw material for forging comes from dismantling (salvaging) dropped equipment.')}</p>

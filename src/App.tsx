@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @license
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -35,6 +35,8 @@ const MapViewer = lazy(() => import('./components/MapViewer'));
 import { LootOptimizer } from './components/LootOptimizer';
 import { LetterReaderModal } from './components/LetterReaderModal';
 import { NewHomeModal } from './components/NewHomeModal';
+import { MapProvider } from './context/MapContext';
+import { CommandPalette } from './components/CommandPalette';
 import { supabase } from './lib/supabase';
 
 import BestiaryEditor from './components/BestiaryEditor';
@@ -203,6 +205,65 @@ export default function App() {
   const [wikiMainTab, setWikiMainTab] = useState<'home' | 'updates' | 'library' | 'items' | 'profissoes' | 'cyclopedia' | 'custom_systems'>(getInitialWikiMainTab);
   const [itemsSubTab, setItemsSubTab] = useState<'helmets' | 'armors' | 'legs' | 'boots' | 'shields' | 'swords' | 'clubs' | 'axes' | 'distance' | 'ammo' | 'rings' | 'amulets' | 'reliquias'>(getInitialItemsSubTab);
   const [isLetterModalOpen, setIsLetterModalOpen] = useState(false);
+  const [isPaletteOpen, setIsPaletteOpen] = useState(false);
+
+  // Global Ctrl + K listener
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setIsPaletteOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  const handlePaletteNavigate = (tabId: string, subTab?: string) => {
+    setIsPaletteOpen(false);
+    if (tabId === 'profissoes') {
+      setActiveTab('profissoes');
+      if (subTab) setProfGuideSubTab(subTab);
+      navigate(`/profissoes/${subTab || ''}`);
+    } else if (tabId === 'calculadoras') {
+      setActiveTab('calculadoras');
+      if (subTab) {
+        if (['crafting', 'alchemy', 'farming', 'mining'].includes(subTab)) {
+          setCalcSubTab('professions');
+          setProfSubTab(subTab as any);
+          navigate(`/calculadoras/profissoes/${subTab}`);
+        } else {
+          setCalcSubTab(subTab as any);
+          navigate(`/calculadoras/${subTab}`);
+        }
+      } else {
+        navigate('/calculadoras');
+      }
+    } else if (tabId === 'wiki') {
+      setActiveTab('wiki');
+      if (subTab === 'custom_systems' || subTab === 'sistemas-custom') {
+        setWikiMainTab('custom_systems');
+        navigate('/wiki/sistemas');
+      } else if (subTab) {
+        setWikiMainTab(subTab as any);
+        navigate(`/wiki/${subTab}`);
+      } else {
+        navigate('/wiki');
+      }
+    } else if (tabId === 'mapa') {
+      setActiveTab('mapa');
+      navigate('/mapa');
+    } else if (tabId === 'buildmaker') {
+      setActiveTab('buildmaker');
+      navigate('/buildmaker');
+    } else if (tabId === 'loot') {
+      setActiveTab('loot');
+      navigate('/loot');
+    } else if (tabId === 'home') {
+      setActiveTab('home');
+      navigate('/');
+    }
+  };
   
   const navigate = useNavigate();
   const location = useLocation();
@@ -1365,7 +1426,9 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0f0f0f]">`r`n      <NewHomeModal />
+    <MapProvider>
+      <div className="min-h-screen flex flex-col bg-[#0f0f0f]">
+        <NewHomeModal />
       {/* Navigation Bar */}
       {activeTab !== "home" && (
       <nav className="sticky top-0 z-50 bg-medieval-dark/95 backdrop-blur-md border-b border-medieval-gold/30">
@@ -1400,61 +1463,20 @@ export default function App() {
             </span>
           </button>
 
-          {/* Desktop Global Search Bar */}
-          <div className="hidden lg:flex relative max-w-sm w-full mx-6 items-center gap-2">
-            <div className="relative w-full z-50">
-              <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                <Search className="text-medieval-gold/40 w-4 h-4" />
-              </div>
-              <input 
-                type="text" 
-                value={searchQuery}
-                onChange={(e) => {
-                  handleSearch(e.target.value);
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' && searchResults.length > 0) {
-                    searchResults[0].action();
-                  }
-                }}
-                onFocus={() => {
-                  if (searchQuery.trim() && searchResults.length === 0) {
-                     handleSearch(searchQuery);
-                  }
-                }}
-                placeholder={language === 'pt' ? 'Buscar no site...' : 'Search wiki...'}
-                className="w-full bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm rounded-full py-1.5 pl-9 pr-4 text-medieval-gold placeholder:text-medieval-gold/30 focus:outline-none focus:border-medieval-gold/50 focus:bg-black/60 transition-all text-xs font-mono tracking-wider"
-              />
-              {searchResults.length > 0 && searchQuery && (
-                <>
-                  <div 
-                    className="fixed inset-0 z-[90]" 
-                    onClick={() => {
-                      setSearchResults([]);
-                    }}
-                  />
-                  <div className="absolute top-full mt-2 left-0 w-[400px] max-h-[60vh] overflow-y-auto bg-black/95 border border-medieval-gold/30 shadow-[0_4px_20px_rgba(0,0,0,0.8)] rounded-md flex flex-col z-[100] custom-scrollbar">
-                    {searchResults.map((res) => (
-                      <button
-                        key={res.id}
-                        onClick={res.action}
-                        className="text-left px-4 py-3 hover:bg-medieval-gold/20 transition-colors border-b border-white/5 flex flex-col gap-1 group"
-                      >
-                        <span className="text-medieval-gold font-bold text-sm group-hover:text-yellow-400">{res.label}</span>
-                        <span className="text-white/50 text-[10px] uppercase tracking-wider">{res.type}</span>
-                      </button>
-                    ))}
-                  </div>
-                </>
-              )}
-            </div>
-            <button 
-              onClick={() => {
-                if (searchResults.length > 0) searchResults[0].action();
-              }}
-              className="shrink-0 bg-medieval-gold/10 text-medieval-gold border border-medieval-gold/20 hover:bg-medieval-gold hover:text-black hover:border-medieval-gold px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all z-50"
+          {/* Desktop Global Search Bar Trigger */}
+          <div className="hidden lg:flex relative max-w-sm w-full mx-6 items-center">
+            <button
+              onClick={() => setIsPaletteOpen(true)}
+              className="w-full bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 hover:border-medieval-gold/50 backdrop-blur-sm rounded-full py-1.5 pl-3.5 pr-2.5 text-medieval-gold/60 hover:text-medieval-gold transition-all text-xs font-mono tracking-wider flex items-center justify-between group shadow-inner cursor-pointer"
+              title="Abrir busca rápida (Ctrl + K)"
             >
-              {language === 'pt' ? 'Buscar' : 'Search'}
+              <div className="flex items-center gap-2.5">
+                <Search className="text-medieval-gold/50 group-hover:text-medieval-gold w-4 h-4 transition-colors" />
+                <span>{language === 'pt' ? 'Buscar no site...' : 'Search wiki...'}</span>
+              </div>
+              <kbd className="inline-flex items-center gap-0.5 px-2 py-0.5 text-[10px] font-mono text-medieval-gold/60 bg-black/60 border border-medieval-gold/25 rounded group-hover:border-medieval-gold/50 group-hover:text-medieval-gold">
+                Ctrl K
+              </kbd>
             </button>
           </div>
 
@@ -1494,6 +1516,14 @@ export default function App() {
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 md:hidden">
+            {/* Mobile Search Button */}
+            <button
+              onClick={() => setIsPaletteOpen(true)}
+              className="p-1.5 text-medieval-gold/80 hover:text-medieval-gold bg-black/40 border border-medieval-gold/20 rounded cursor-pointer"
+              title="Buscar (Ctrl + K)"
+            >
+              <Search className="w-4 h-4" />
+            </button>
             {/* Rashid Location Mobile */}
             <div className="flex items-center gap-2 px-2 py-1 bg-black/20 border border-medieval-gold/10 rounded-sm">
               <img 
@@ -3893,6 +3923,15 @@ export default function App() {
         onClose={() => setIsLetterModalOpen(false)} 
         language={language} 
       />
+
+      {/* Global Command Palette (Ctrl + K) */}
+      <CommandPalette
+        isOpen={isPaletteOpen}
+        onClose={() => setIsPaletteOpen(false)}
+        language={language}
+        onNavigateTab={handlePaletteNavigate}
+      />
     </div>
+    </MapProvider>
   );
 }

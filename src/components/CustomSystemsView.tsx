@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronRight, ArrowLeft, ExternalLink, ChevronLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { MapLink } from './MapLink';
+import { PrerequisitesCard, NoticeCard } from './Guide';
 
 interface CustomSystemsViewProps {
   language: 'pt' | 'en';
@@ -60,29 +62,46 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
                 : 'Initially, all slots are locked (indicated by a red color), preventing any relics from being equipped. To unlock them, a combination of payment and completing quests is required.'}
             </p>
 
-            <ul className="list-disc list-inside space-y-2 pl-4 text-gray-300/90">
-              <li><strong>Slot 1:</strong> 1k gold coins</li>
-              <li><strong>Slot 2:</strong> 2k gold coins</li>
-              <li><strong>Slot 3:</strong> 5k gold coins</li>
-              <li><strong>Slot 4:</strong> 15k gold coins</li>
-            </ul>
-
-            <div className="bg-black/40 border border-medieval-gold/10 p-5 rounded-lg my-6">
-              <h4 className="text-medieval-gold font-bold mb-3">{language === 'pt' ? 'Requisitos de Quest' : 'Quest Requirements'}</h4>
-              <p className="mb-2">
-                {language === 'pt' 
-                  ? 'Para ganhar o direito de liberar o primeiro e o segundo slot, é preciso concluir a '
-                  : 'To earn the right to unlock the first and second slots, you must complete '}
-                <a href="https://www.youtube.com/watch?v=FzNUDLaD8go&t=69s" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors underline decoration-blue-500/30 underline-offset-2">
-                  Quest das Notas perdidas de Melchior
-                </a>.
-              </p>
-              <p>
-                {language === 'pt'
-                  ? 'O terceiro e quarto slots ficam disponíveis para compra após a conclusão da Djin Quest.'
-                  : 'The third and fourth slots become available for purchase after completing the Djin Quest.'}
-              </p>
-            </div>
+            <PrerequisitesCard
+              language={language}
+              title={language === 'pt' ? 'Requisitos de Desbloqueio dos Slots' : 'Slot Unlock Requirements'}
+              items={[
+                {
+                  label: 'Slot 1 (1k gold)',
+                  value: (
+                    <a
+                      href="https://www.youtube.com/watch?v=FzNUDLaD8go&t=69s"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sky-400 hover:text-sky-300 underline underline-offset-2"
+                    >
+                      {language === 'pt' ? 'Notas Perdidas de Melchior' : "Melchior's Lost Notes Quest"}
+                    </a>
+                  ),
+                },
+                {
+                  label: 'Slot 2 (2k gold)',
+                  value: (
+                    <a
+                      href="https://www.youtube.com/watch?v=FzNUDLaD8go&t=69s"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sky-400 hover:text-sky-300 underline underline-offset-2"
+                    >
+                      {language === 'pt' ? 'Notas Perdidas de Melchior' : "Melchior's Lost Notes Quest"}
+                    </a>
+                  ),
+                },
+                {
+                  label: 'Slot 3 (5k gold)',
+                  value: language === 'pt' ? 'Conclusão da Djinn Quest' : 'Djinn Quest completion',
+                },
+                {
+                  label: 'Slot 4 (15k gold)',
+                  value: language === 'pt' ? 'Conclusão da Djinn Quest' : 'Djinn Quest completion',
+                },
+              ]}
+            />
 
             <h3 className="text-xl font-bold text-medieval-gold uppercase tracking-wider mt-8 border-b border-medieval-gold/10 pb-2">
               {language === 'pt' ? 'Magia dos Djinns e Timer' : 'Djinn Magic and Timer'}
@@ -94,13 +113,11 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
                 : 'Relic Box slots are temporarily unlocked using Djinn Magic. This magic works with a timer that lasts 48 hours. Note that this time is only consumed while the character is online and in a battle situation (with the battle sign active).'}
             </p>
 
-            <div className="bg-yellow-900/20 border-l-4 border-medieval-gold p-4 my-4">
-              <p className="text-yellow-200/90 text-sm italic">
-                {language === 'pt'
-                  ? 'Para cada novo slot que você destrava, o tempo total é resetado. Por exemplo: você pode jogar com 1 slot aberto por 47 horas. Ao solicitar a magia para abrir o segundo slot (já que o primeiro já está aberto), o tempo de ambos os slots será resetado para 48 horas.'
-                  : 'For each new slot you unlock, the total time is reset. For example: you can play with 1 slot open for 47 hours. When requesting the magic to open the second slot, the time for both slots will be reset to 48 hours.'}
-              </p>
-            </div>
+            <NoticeCard type="tip" title={language === 'pt' ? 'Dica de Renovação do Timer' : 'Timer Renewal Tip'}>
+              {language === 'pt'
+                ? 'Para cada novo slot que você destrava, o tempo total é resetado. Por exemplo: se você jogar com 1 slot aberto por 47 horas e em seguida destravar o segundo slot, o tempo de ambos os slots voltará para as 48 horas completas.'
+                : 'For each new slot you unlock, the total time is reset. For example: you can play with 1 slot open for 47 hours, and upon opening the second slot, both slots reset to a full 48 hours.'}
+            </NoticeCard>
 
             <p>
               {language === 'pt'
@@ -209,9 +226,23 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
             </h3>
             
             <p>
-              {language === 'pt'
-                ? 'A Spawn Essence é um field roxo que você joga no chão para acelerar ainda mais o respawn de uma área. Ela custa 1k gold coins e pode ser comprada no NPC Defeated Whispers em Shadowport (próximo à Bless em Thais).'
-                : 'The Spawn Essence is a purple field you throw on the ground to further accelerate the respawn of an area. It costs 1k gold coins and can be bought at NPC Defeated Whispers in Shadowport (near the Bless in Thais).'}
+              {language === 'pt' ? (
+                <>
+                  A Spawn Essence é um field roxo que você joga no chão para acelerar ainda mais o respawn de uma área. Ela custa 1k gold coins e pode ser comprada no NPC{' '}
+                  <MapLink x={32346} y={32361} z={6} title="Defeated Whispers" showCoords>
+                    Defeated Whispers em Shadowport
+                  </MapLink>{' '}
+                  (próximo à Bless em Thais).
+                </>
+              ) : (
+                <>
+                  The Spawn Essence is a purple field you throw on the ground to further accelerate the respawn of an area. It costs 1k gold coins and can be bought at NPC{' '}
+                  <MapLink x={32346} y={32361} z={6} title="Defeated Whispers" showCoords>
+                    Defeated Whispers in Shadowport
+                  </MapLink>{' '}
+                  (near the Bless in Thais).
+                </>
+              )}
             </p>
 
             <ul className="list-disc list-inside space-y-2 pl-4 text-gray-300/90">
