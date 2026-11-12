@@ -18,8 +18,8 @@ export interface Respawn {
   keyInfo?: string;
 }
 
-import respawnsData from '../../public/respawns.json';
-import predefinedMonstersData from '../../public/predefined_monsters.json';
+import respawnsData from './respawns.json';
+import predefinedMonstersData from './predefined_monsters.json';
 
 export function fixCategories(categories: string[] | undefined, name: string): string[] {
   const lowerName = name.toLowerCase();

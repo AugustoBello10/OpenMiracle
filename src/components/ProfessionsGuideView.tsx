@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CRAFT_ITEMS } from '../App';
+import { CRAFT_ITEMS } from '../data/wikiData';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Fish, Hammer, FlaskConical, Scissors, Pickaxe, 

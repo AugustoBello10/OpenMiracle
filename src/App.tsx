@@ -42,6 +42,7 @@ import { supabase } from './lib/supabase';
 import BestiaryEditor from './components/BestiaryEditor';
 import CyclopediaView from './components/CyclopediaView';
 import { CustomSystemsView } from './components/CustomSystemsView';
+import { ProfessionsGuideView } from './components/ProfessionsGuideView';
 import {
   CRAFT_ITEMS,
   BREAKING_DATA,
