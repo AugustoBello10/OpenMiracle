@@ -1,0 +1,308 @@
+[
+  {
+    "name": "Badgers",
+    "slug": "badgers",
+    "location": "Ab'Dendriel",
+    "type": "Small Raid",
+    "averageInterval": "7 days",
+    "lastExecution": "23.10.2026, 22:38:14",
+    "occurrences": 40
+  },
+  {
+    "name": "Wolfs",
+    "slug": "wolfs",
+    "location": "South of Ab'Dendriel",
+    "type": "Small Raid",
+    "averageInterval": "7 days",
+    "lastExecution": "07.11.2026, 22:10:03",
+    "occurrences": 38
+  },
+  {
+    "name": "Scarabs",
+    "slug": "scarabs",
+    "location": "Northwest, north, and northeast gates of Ankrahmun.",
+    "type": "Big Raid",
+    "averageInterval": "30 days",
+    "lastExecution": "22.08.2026, 13:31:02",
+    "occurrences": 6
+  },
+  {
+    "name": "Orcs",
+    "slug": "orcs",
+    "location": "Femor Hills",
+    "type": "Small Raid",
+    "averageInterval": "14 days",
+    "lastExecution": "10.11.2026, 22:00:14",
+    "occurrences": 22
+  },
+  {
+    "name": "Grorlam",
+    "slug": "grorlam",
+    "location": "Deep in the Mountain Sternum Caves",
+    "type": "Small Raid",
+    "averageInterval": "14 days",
+    "lastExecution": "05.11.2026, 09:49:31",
+    "occurrences": 20
+  },
+  {
+    "name": "Grorlam",
+    "slug": "grorlam",
+    "location": "Deep in the Mountain Sternum Caves",
+    "type": "Small Raid",
+    "averageInterval": "14 days",
+    "lastExecution": "06.11.2026, 14:05:48",
+    "occurrences": 20
+  },
+  {
+    "name": "Grorlam",
+    "slug": "grorlam",
+    "location": "Deep in the Mountain Sternum Caves",
+    "type": "Small Raid",
+    "averageInterval": "14 days",
+    "lastExecution": "18.10.2026, 18:27:58",
+    "occurrences": 22
+  },
+  {
+    "name": "Grorlam",
+    "slug": "grorlam",
+    "location": "Deep in the Mountain Sternum Caves",
+    "type": "Small Raid",
+    "averageInterval": "14 days",
+    "lastExecution": "20.10.2026, 17:13:18",
+    "occurrences": 21
+  },
+  {
+    "name": "Grorlam",
+    "slug": "grorlam",
+    "location": "Deep in the Mountain Sternum Caves",
+    "type": "Small Raid",
+    "averageInterval": "14 days",
+    "lastExecution": "24.10.2026, 17:42:56",
+    "occurrences": 17
+  },
+  {
+    "name": "Grorlam",
+    "slug": "grorlam",
+    "location": "Deep in the Mountain Sternum Caves",
+    "type": "Small Raid",
+    "averageInterval": "14 days",
+    "lastExecution": "16.10.2026, 10:06:05",
+    "occurrences": 18
+  },
+  {
+    "name": "Dwarfs",
+    "slug": "dwarfs",
+    "location": "South and north of Cormaya.",
+    "type": "Small Raid",
+    "averageInterval": "7 days",
+    "lastExecution": "09.11.2026, 23:32:03",
+    "occurrences": 40
+  },
+  {
+    "name": "Undeads",
+    "slug": "undeads",
+    "location": "West of Darashia.",
+    "type": "Big Raid",
+    "averageInterval": "30 days",
+    "lastExecution": "28.10.2026, 22:59:23",
+    "occurrences": 9
+  },
+  {
+    "name": "Wasps",
+    "slug": "wasps",
+    "location": "Darashia",
+    "type": "Group Attack",
+    "averageInterval": "3 days",
+    "lastExecution": "08.11.2026, 14:25:34",
+    "occurrences": 88
+  },
+  {
+    "name": "Dragons",
+    "slug": "dragons",
+    "location": "Draconia",
+    "type": "Group Attack",
+    "averageInterval": "3 days",
+    "lastExecution": "12.11.2026, 17:10:10",
+    "occurrences": 89
+  },
+  {
+    "name": "Necropharus",
+    "slug": "necropharus",
+    "location": "Drefia",
+    "type": "Small Raid",
+    "averageInterval": "14 days",
+    "lastExecution": "03.11.2026, 01:50:27",
+    "occurrences": 22
+  },
+  {
+    "name": "Ghouls",
+    "slug": "ghouls",
+    "location": "Northwest of Stonehome",
+    "type": "Group Attack",
+    "averageInterval": "3 days",
+    "lastExecution": "09.11.2026, 09:32:53",
+    "occurrences": 85
+  },
+  {
+    "name": "Orshabaal",
+    "slug": "orshabaal",
+    "location": "Edron - Stone Circle",
+    "type": "Big Raid",
+    "averageInterval": "90 days",
+    "lastExecution": "08.11.2026, 14:56:09",
+    "occurrences": 6
+  },
+  {
+    "name": "Skunks",
+    "slug": "skunks",
+    "location": "Edron",
+    "type": "Small Raid",
+    "averageInterval": "14 days",
+    "lastExecution": "21.10.2026, 09:09:35",
+    "occurrences": 18
+  },
+  {
+    "name": "Yetis",
+    "slug": "yetis",
+    "location": "Folda",
+    "type": "Group Attack",
+    "averageInterval": "3 days",
+    "lastExecution": "08.11.2026, 23:28:15",
+    "occurrences": 90
+  },
+  {
+    "name": "The Horned Fox",
+    "slug": "the_horned_fox",
+    "location": "Southwest of Kazordoon",
+    "type": "Small Raid",
+    "averageInterval": "14 days",
+    "lastExecution": "08.11.2026, 22:58:03",
+    "occurrences": 23
+  },
+  {
+    "name": "Spiders",
+    "slug": "spiders",
+    "location": "Kazordoon",
+    "type": "Small Raid",
+    "averageInterval": "7 days",
+    "lastExecution": "04.11.2026, 21:28:20",
+    "occurrences": 40
+  },
+  {
+    "name": "General Murius",
+    "slug": "general_murius",
+    "location": "Mintwalin",
+    "type": "Small Raid",
+    "averageInterval": "14 days",
+    "lastExecution": "23.10.2026, 16:12:19",
+    "occurrences": 23
+  },
+  {
+    "name": "Fernfang",
+    "slug": "fernfang",
+    "location": "Isle of the Mists",
+    "type": "Small Raid",
+    "averageInterval": "14 days",
+    "lastExecution": "12.11.2026, 19:30:37",
+    "occurrences": 19
+  },
+  {
+    "name": "The Evil Eye",
+    "slug": "the_evil_eye",
+    "location": "Necropolis",
+    "type": "Small Raid",
+    "averageInterval": "14 days",
+    "lastExecution": "06.10.2026, 21:33:14",
+    "occurrences": 20
+  },
+  {
+    "name": "Outlaws",
+    "slug": "outlaws",
+    "location": "Road between Kazordoon and Ab'Dendriel",
+    "type": "Group Attack",
+    "averageInterval": "3 days",
+    "lastExecution": "09.11.2026, 17:49:09",
+    "occurrences": 93
+  },
+  {
+    "name": "Demodras",
+    "slug": "demodras",
+    "location": "Dragon Lair in the Plains of Havoc",
+    "type": "Small Raid",
+    "averageInterval": "14 days",
+    "lastExecution": "10.11.2026, 11:49:34",
+    "occurrences": 21
+  },
+  {
+    "name": "The Old Widow",
+    "slug": "the_old_widow",
+    "location": "East of the Plains of Havoc",
+    "type": "Small Raid",
+    "averageInterval": "14 days",
+    "lastExecution": "08.11.2026, 15:33:15",
+    "occurrences": 22
+  },
+  {
+    "name": "Rats",
+    "slug": "rats",
+    "location": "Rookgaard",
+    "type": "Small Raid",
+    "averageInterval": "3 days",
+    "lastExecution": "08.11.2026, 22:27:29",
+    "occurrences": 96
+  },
+  {
+    "name": "Dharalion",
+    "slug": "dharalion",
+    "location": "Shadowthorn",
+    "type": "Small Raid",
+    "averageInterval": "14 days",
+    "lastExecution": "17.10.2026, 12:23:11",
+    "occurrences": 16
+  },
+  {
+    "name": "Orcs",
+    "slug": "orcs",
+    "location": "Thais Lighthouse",
+    "type": "Small Raid",
+    "averageInterval": "3 days",
+    "lastExecution": "09.11.2026, 12:11:16",
+    "occurrences": 91
+  },
+  {
+    "name": "Orcs",
+    "slug": "orcs",
+    "location": "Four gates of Thais (south, north, east, southwest)",
+    "type": "Big Raid",
+    "averageInterval": "30 days",
+    "lastExecution": "19.09.2026, 21:56:51",
+    "occurrences": 10
+  },
+  {
+    "name": "Rats",
+    "slug": "rats",
+    "location": "Thais",
+    "type": "Small Raid",
+    "averageInterval": "7 days",
+    "lastExecution": "05.11.2026, 08:47:16",
+    "occurrences": 39
+  },
+  {
+    "name": "Elfs",
+    "slug": "elfs",
+    "location": "Venore (Shipyard, South Gate, West Gate, Northwest Gate)",
+    "type": "Big Raid",
+    "averageInterval": "30 days",
+    "lastExecution": "18.09.2026, 18:12:36",
+    "occurrences": 11
+  },
+  {
+    "name": "Elfs",
+    "slug": "elfs",
+    "location": "Southeast of Venore",
+    "type": "Group Attack",
+    "averageInterval": "3 days",
+    "lastExecution": "11.11.2026, 00:58:40",
+    "occurrences": 91
+  }
+]

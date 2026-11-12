@@ -1,0 +1,902 @@
+[
+  {
+    "id": 1,
+    "name": "Bear Room Quest",
+    "slug": "bear_room_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Rookgaard main cave",
+    "reward": "Chain Armor, Brass Helmet, 12 Arrows and 40 gp"
+  },
+  {
+    "id": 2,
+    "name": "Captain Iglues Treasure Quest",
+    "slug": "captain_iglues_treasure_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Below the Rookgaard Poison Spider tower.",
+    "reward": "Treasure of Captain Iglue (Book) and some Salmon."
+  },
+  {
+    "id": 3,
+    "name": "Combat Knife Quest",
+    "slug": "combat_knife_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Rookgaard",
+    "reward": "Combat Knife"
+  },
+  {
+    "id": 4,
+    "name": "Doublet Quest",
+    "slug": "doublet_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Tom's Stable on Rookgaard",
+    "reward": "Doublet"
+  },
+  {
+    "id": 5,
+    "name": "Dragon Corpse Quest",
+    "slug": "dragon_corpse_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Deep in Rookgaard wilderness.",
+    "reward": "Bag containing Copper Shield and Legion Helmet."
+  },
+  {
+    "id": 6,
+    "name": "Goblin Temple Quest",
+    "slug": "goblin_temple_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Rookgaard Goblin Temple",
+    "reward": "50 gp, 4 Snowballs, 5 Small Stones, Sandals, Pan and a Vial of Milk."
+  },
+  {
+    "id": 7,
+    "name": "Katana Quest",
+    "slug": "katana_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Rookgaard, Rotworm Dungeon under graves",
+    "reward": "Katana, Viking Helmet, Key 4603"
+  },
+  {
+    "id": 8,
+    "name": "Minotaur Hell Quest",
+    "slug": "minotaur_hell_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Rookgaard (Minotaur Hell)",
+    "reward": "Carlin Sword, 4 Poison Arrows, 10 Arrows and a Fishing Rod"
+  },
+  {
+    "id": 9,
+    "name": "Rapier Quest",
+    "slug": "rapier_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Rookgaard sewers",
+    "reward": "Rapier"
+  },
+  {
+    "id": 11,
+    "name": "Sword of Fury Quest",
+    "slug": "sword_of_fury_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Rookgaard.",
+    "reward": "Spike Sword"
+  },
+  {
+    "id": 14,
+    "name": "Antidote Rune Quest",
+    "slug": "antidote_rune_quest",
+    "level": 0,
+    "premium": true,
+    "location": "Premium side of Rookgaard.",
+    "reward": "Antidote Rune"
+  },
+  {
+    "id": 25,
+    "name": "Circle Room Quest",
+    "slug": "circle_room_quest",
+    "level": 32,
+    "premium": false,
+    "location": "Kazordoon, Western Mines",
+    "reward": "Golden Cheese, Life Ring"
+  },
+  {
+    "id": 10,
+    "name": "Pick Quest",
+    "slug": "pick_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Rookgaard.",
+    "reward": "Small Axe that you can exchange for Pick."
+  },
+  {
+    "id": 12,
+    "name": "Present Quest",
+    "slug": "present_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Near the Bear Room Quest.",
+    "reward": "Backpack containing Jug, Plate, Cup and a Present or a Legion Helmet."
+  },
+  {
+    "id": 67,
+    "name": "Purple Tome Quest",
+    "slug": "purple_tome_quest",
+    "level": 60,
+    "premium": false,
+    "location": "Demona",
+    "reward": "Tibia Map (Book), Fields of Glory Map (Book) and Purple Tome."
+  },
+  {
+    "id": 13,
+    "name": "Short Sword Quest",
+    "slug": "short_sword_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Rookgaard.",
+    "reward": "Notebook or Short Sword."
+  },
+  {
+    "id": 15,
+    "name": "Studded Legs Quest",
+    "slug": "studded_legs_quest",
+    "level": 0,
+    "premium": true,
+    "location": "North-west side of Rookgaard.",
+    "reward": "Honey Flower that you can change for Studded Legs"
+  },
+  {
+    "id": 16,
+    "name": "Studded Shield Quest",
+    "slug": "studded_shield_quest",
+    "level": 0,
+    "premium": false,
+    "location": "North-east Rookgaard.",
+    "reward": "Banana which can be traded for a Studded Shield"
+  },
+  {
+    "id": 17,
+    "name": "Adorned UH Rune Quest",
+    "slug": "adorned_uh_rune_quest",
+    "level": 0,
+    "premium": true,
+    "location": "Edron Hero Cave",
+    "reward": "3x Ultimate Healing Rune"
+  },
+  {
+    "id": 18,
+    "name": "Alawar's Vault Quest",
+    "slug": "alawars_vault_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Senja/Folda",
+    "reward": "3 White Pearls, Broadsword, Dark Helmet, 4 Throwing Knives, Blank Rune, 33gp, Key 4501, Key 4502, Key 4503."
+  },
+  {
+    "id": 19,
+    "name": "Barbarian Axe Quest",
+    "slug": "barbarian_axe_quest",
+    "level": 0,
+    "premium": true,
+    "location": "Edron Orc Cave",
+    "reward": "Orcish Axe, Scimitar"
+  },
+  {
+    "id": 20,
+    "name": "Battle Axe Quest",
+    "slug": "battle_axe_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Thais sewers",
+    "reward": "Battle Axe"
+  },
+  {
+    "id": 21,
+    "name": "Behemoth Quest",
+    "slug": "behemoth_quest",
+    "level": 60,
+    "premium": true,
+    "location": "Edron (Cyclopolis)",
+    "reward": "300 Power Bolts, Cyclops Hand, Life Ring, Crystal Ring, 3 Small Diamonds, 4 Small Sapphires"
+  },
+  {
+    "id": 22,
+    "name": "Berserker Treasure Quest",
+    "slug": "berserker_treasure_quest",
+    "level": 0,
+    "premium": true,
+    "location": "Edron Orc Cave",
+    "reward": "3 White Pearls and 175gp."
+  },
+  {
+    "id": 23,
+    "name": "Black Knight Quest",
+    "slug": "black_knight_quest",
+    "level": 50,
+    "premium": false,
+    "location": "Villa Scapula, north of Venore",
+    "reward": "Redemption Scroll, 5 Black Pearls."
+  },
+  {
+    "id": 24,
+    "name": "Blood Herb Quest",
+    "slug": "blood_herb_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Greenclaw Swamp, Near Venore",
+    "reward": "Key 4705"
+  },
+  {
+    "id": 26,
+    "name": "Crusader Helmet Quest",
+    "slug": "crusader_helmet_quest",
+    "level": 35,
+    "premium": false,
+    "location": "Dwarf Mines west of Kazordoon or north of Thais.",
+    "reward": "Platinum Amulet"
+  },
+  {
+    "id": 27,
+    "name": "Crystal Wand Quest",
+    "slug": "crystal_wand_quest",
+    "level": 60,
+    "premium": false,
+    "location": "Demona Warlock area.",
+    "reward": "Crystal Wand, 2x Sudden Death Rune, Twinkiller Rune (Book)"
+  },
+  {
+    "id": 28,
+    "name": "Dark Armor Quest",
+    "slug": "dark_armor_quest",
+    "level": 0,
+    "premium": true,
+    "location": "Edron Orc Cave",
+    "reward": "Dark Armor"
+  },
+  {
+    "id": 29,
+    "name": "Dead Archer Quest",
+    "slug": "dead_archer_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Thais Troll Cave",
+    "reward": "Bow, 5 Poison Arrow, Mana Fluid, Life Fluid"
+  },
+  {
+    "id": 30,
+    "name": "Deeper Fibula Quest",
+    "slug": "deeper_fibula_quest",
+    "level": 50,
+    "premium": false,
+    "location": "Fibula",
+    "reward": "300 Bolts, 100 Power Bolts, Dwarven Ring, Elven Amulet"
+  },
+  {
+    "id": 31,
+    "name": "Demon Helmet Quest",
+    "slug": "demon_helmet_quest",
+    "level": 100,
+    "premium": true,
+    "location": "Edron Hero Cave",
+    "reward": "Demon Helmet, Nightmare Horn, Giant Ruby"
+  },
+  {
+    "id": 32,
+    "name": "Demona Ring Quest",
+    "slug": "demona_ring_quest",
+    "level": 60,
+    "premium": false,
+    "location": "Demona.",
+    "reward": "Energy Ring, Stealth Ring"
+  },
+  {
+    "id": 33,
+    "name": "Devil Helmet Quest",
+    "slug": "devil_helmet_quest",
+    "level": 30,
+    "premium": false,
+    "location": "Thais Ancient Temple",
+    "reward": "10x Sudden Death Rune, Halberd, 4 Small Sapphire"
+  },
+  {
+    "id": 34,
+    "name": "Double Hero Quest",
+    "slug": "double_hero_quest",
+    "level": 0,
+    "premium": true,
+    "location": "Edron Hero Cave",
+    "reward": "Club Ring, Red Gem"
+  },
+  {
+    "id": 35,
+    "name": "Draconia Quest",
+    "slug": "draconia_quest",
+    "level": 25,
+    "premium": false,
+    "location": "Draconia, through Hellgate, near Ab'Dendriel",
+    "reward": "Ice Rapier, Serpent Sword, Stone Skin Amulet and Energy Ring."
+  },
+  {
+    "id": 36,
+    "name": "Dragon Tower Quest",
+    "slug": "dragon_tower_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Shadowthorn, Near Venore",
+    "reward": "2 Small Sapphires, 30 Burst Arrows, 60 Poison Arrows, Bow, 1 Life Fluid, 1 Mana Fluid"
+  },
+  {
+    "id": 37,
+    "name": "Edron Goblin Quest",
+    "slug": "edron_goblin_quest",
+    "level": 0,
+    "premium": true,
+    "location": "Edron Goblin Cave, west of town",
+    "reward": "Steel Shield, Silver Amulet"
+  },
+  {
+    "id": 38,
+    "name": "Elvenbane Quest",
+    "slug": "elvenbane_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Elvenbane Castle, near Ab'Dendriel",
+    "reward": "Morning Star, Dwarven Shield, Mana Fluid, Blank Rune, Spellbook, 2 Small Diamonds and 100 gp."
+  },
+  {
+    "id": 39,
+    "name": "Emperor's Cookies Quest",
+    "slug": "emperors_cookies_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Kazordoon",
+    "reward": "Key 3800, a bag with 20+7 cookies & Key 3801 and Key 3802"
+  },
+  {
+    "id": 40,
+    "name": "Explorer Brooch Quest",
+    "slug": "explorer_brooch_quest",
+    "level": 0,
+    "premium": false,
+    "location": "North side of The Jolly Axeman Tavern in Kazordoon",
+    "reward": "Explorer Brooch"
+  },
+  {
+    "id": 41,
+    "name": "Fanfare Quest",
+    "slug": "fanfare_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Carlin Graveyard",
+    "reward": "Fanfare"
+  },
+  {
+    "id": 42,
+    "name": "Fire Axe Quest",
+    "slug": "fire_axe_quest",
+    "level": 60,
+    "premium": true,
+    "location": "Edron Dragon Lair",
+    "reward": "Dragonbone Sigil, Ring of Healing, Dragon Necklace, 7 Small Diamonds"
+  },
+  {
+    "id": 43,
+    "name": "Geomancer Quest",
+    "slug": "geomancer_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Mount Sternum Undead Cave, vicinity of Thais",
+    "reward": "Small Sapphire, Small Diamond, Dwarven Ring"
+  },
+  {
+    "id": 44,
+    "name": "Ghoul Room Quest",
+    "slug": "ghoul_room_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Thais Ancient Temple",
+    "reward": "Garlic Necklace, Club Ring"
+  },
+  {
+    "id": 45,
+    "name": "Giant Smithhammer Quest",
+    "slug": "giant_smithhammer_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Plains of Havoc",
+    "reward": "Talon, Battle Hammer, 100 gp"
+  },
+  {
+    "id": 46,
+    "name": "Griffin Shield Quest",
+    "slug": "griffin_shield_quest",
+    "level": 30,
+    "premium": false,
+    "location": "Gates of Demona, deep inside the Maze of Lost Souls, Near Carlin and Ab'Dendriel",
+    "reward": "Obsidian Lance, 35 Power Bolts, 4x Sudden Death Rune"
+  },
+  {
+    "id": 47,
+    "name": "Iron Hammer Quest",
+    "slug": "iron_hammer_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Minotaur caves near Kazordoon",
+    "reward": "Iron Hammer"
+  },
+  {
+    "id": 48,
+    "name": "Iron Helmet Quest",
+    "slug": "iron_helmet_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Plains of Havoc",
+    "reward": "Iron Helmet, Sudden Death Rune, Leather Armor, Porgol's Strange Behaviour (Book), Worn Leather Boots, Longsword"
+  },
+  {
+    "id": 49,
+    "name": "Isle of the Mists Quest",
+    "slug": "isle_of_the_mists_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Isle of the Mists, Near Kazordoon and Venore",
+    "reward": "2 Small Emeralds, Book"
+  },
+  {
+    "id": 50,
+    "name": "Kingdom of Kormarak Quest",
+    "slug": "kingdom_of_kormarak_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Thais Ancient Temple",
+    "reward": "Brass Armor, Brass Helmet, Hand Axe and 13 Throwing Stars."
+  },
+  {
+    "id": 51,
+    "name": "Life Ring Quest",
+    "slug": "life_ring_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Thais",
+    "reward": "Life Ring, Dragon Necklace"
+  },
+  {
+    "id": 52,
+    "name": "Longsword Quest",
+    "slug": "longsword_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Dusalk's Troll Clan Cave, near Dwarf Bridge",
+    "reward": "Longsword, Mirror, 3 Blank Runes, Wooden Doll, Wedding Ring, 76 gp"
+  },
+  {
+    "id": 53,
+    "name": "Mad Mage Room Quest",
+    "slug": "mad_mage_room_quest",
+    "level": 40,
+    "premium": false,
+    "location": "Thais Ancient Temple",
+    "reward": "Arcane Orb, Stone Skin Amulet and Star Amulet in Quest boxes. Silver Dagger and some Mana Fluids spawn in another chest in this room."
+  },
+  {
+    "id": 80,
+    "name": "Mana Fluids Quest",
+    "slug": "mana_fluids_quest",
+    "level": 0,
+    "premium": true,
+    "location": "Edron Hero Cave",
+    "reward": "5 Mana Fluids"
+  },
+  {
+    "id": 54,
+    "name": "Medusa Shield Quest",
+    "slug": "medusa_shield_quest",
+    "level": 60,
+    "premium": true,
+    "location": "Drefia west of Darashia",
+    "reward": "Mystic Bag, 2 Backpacks of Ultimate Healing Rune, 2 Backpacks of Heavy Magic Missile Rune"
+  },
+  {
+    "id": 55,
+    "name": "Mintwallin Cyclops Quest",
+    "slug": "mintwallin_cyclops_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Thais Ancient Temple",
+    "reward": "Small Diamond, 2 Mana Fluids, Hatchet, Chain Helmet and a Chain Armor."
+  },
+  {
+    "id": 56,
+    "name": "Naginata Quest",
+    "slug": "naginata_quest",
+    "level": 40,
+    "premium": false,
+    "location": "Thais Dragon Lair",
+    "reward": "Fiery Stone"
+  },
+  {
+    "id": 57,
+    "name": "Noble Armor Quest",
+    "slug": "noble_armor_quest",
+    "level": 35,
+    "premium": false,
+    "location": "Deep in a hidden cave below Mt. Sternum.",
+    "reward": "Astral Rune, 5 Small Diamonds"
+  },
+  {
+    "id": 58,
+    "name": "Orc Fortress Quest",
+    "slug": "orc_fortress_quest",
+    "level": 40,
+    "premium": false,
+    "location": "Orc Fortress, near Ab'Dendriel",
+    "reward": "2 Stone Skin Amulets, Elixir of Souls, 12 Black Pearls, 6 White Pearls"
+  },
+  {
+    "id": 59,
+    "name": "Orc Shaman Quest",
+    "slug": "orc_shaman_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Venore Orc Cave, east of Venore",
+    "reward": "Magic Light Wand, Axe Ring and Blank Rune"
+  },
+  {
+    "id": 60,
+    "name": "Ornamented Shield Quest",
+    "slug": "ornamented_shield_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Plains of Havoc Dragon Lair",
+    "reward": "Brown Bag containing Key 3702, Might Ring, Dragon Necklace, Spike Sword, Devious Dragons (Book), Ornamented Shield, Steel Helmet, Inkwell. Red Bag containing Time Ring, 5 Platinum Coins, Garlic Necklace, Spellbook, Lyre"
+  },
+  {
+    "id": 61,
+    "name": "Panpipe Quest",
+    "slug": "panpipe_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Jakundaf Desert",
+    "reward": "Panpipes, 2 Small Amethysts, Power Ring"
+  },
+  {
+    "id": 62,
+    "name": "Parchment Room Quest",
+    "slug": "parchment_room_quest",
+    "level": 0,
+    "premium": true,
+    "location": "Edron Hero Cave",
+    "reward": "Brown Bag containing Key 6010, Bone, Stealth Ring, 2 Talons, Skull."
+  },
+  {
+    "id": 63,
+    "name": "Plate Armor Quest",
+    "slug": "plate_armor_quest",
+    "level": 0,
+    "premium": true,
+    "location": "Ghostship",
+    "reward": "Plate Armor"
+  },
+  {
+    "id": 64,
+    "name": "Poison Daggers Quest",
+    "slug": "poison_daggers_quest",
+    "level": 0,
+    "premium": true,
+    "location": "Edron Orc Cave",
+    "reward": "2 Poison Daggers, 30 Poison Arrows"
+  },
+  {
+    "id": 65,
+    "name": "Power Bolts Quest",
+    "slug": "power_bolts_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Plains of Havoc",
+    "reward": "5 Power Bolts, 12 Burst Arrows, Two Handed Sword, The Dreammaster (Book), 6 Throwing Stars, Talon."
+  },
+  {
+    "id": 66,
+    "name": "Power Ring Quest",
+    "slug": "power_ring_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Femor Hills",
+    "reward": "Power Ring and Bronze Amulet"
+  },
+  {
+    "id": 68,
+    "name": "Ring Quest",
+    "slug": "ring_quest",
+    "level": 0,
+    "premium": true,
+    "location": "Edron Hero Cave",
+    "reward": "Time Ring, Sword Ring."
+  },
+  {
+    "id": 69,
+    "name": "Scale Armor Quest",
+    "slug": "scale_armor_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Near Thais",
+    "reward": "Scale Armor"
+  },
+  {
+    "id": 70,
+    "name": "Serpentine Tower Quest",
+    "slug": "serpentine_tower_quest",
+    "level": 0,
+    "premium": true,
+    "location": "Ankrahmun",
+    "reward": "?"
+  },
+  {
+    "id": 71,
+    "name": "Shaman Treasure Quest",
+    "slug": "shaman_treasure_quest",
+    "level": 0,
+    "premium": true,
+    "location": "Edron Orc Cave",
+    "reward": "3 Blank Runes"
+  },
+  {
+    "id": 72,
+    "name": "Silver Amulet Quest",
+    "slug": "silver_amulet_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Thais Troll Cave",
+    "reward": "Silver Amulet"
+  },
+  {
+    "id": 73,
+    "name": "Silver Brooch Quest",
+    "slug": "silver_brooch_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Greenclaw Swamp",
+    "reward": "Silver Brooch, 2 Small Rubies, 3 Small Diamonds"
+  },
+  {
+    "id": 74,
+    "name": "Six Rubies Quest",
+    "slug": "six_rubies_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Thais Ancient Temple",
+    "reward": "6 Small Rubies"
+  },
+  {
+    "id": 75,
+    "name": "Skull of Ratha Quest",
+    "slug": "skull_of_ratha_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Venore Amazon Camp",
+    "reward": "White Pearl, 2 Black Pearls, Skull, Wolf Tooth Chain, Dwarven Ring, 100 gp, Crystal Necklace."
+  },
+  {
+    "id": 76,
+    "name": "Small Ruby Quest",
+    "slug": "small_ruby_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Mintwallin",
+    "reward": "Small Ruby"
+  },
+  {
+    "id": 77,
+    "name": "Spike Sword Quest",
+    "slug": "spike_sword_quest",
+    "level": 0,
+    "premium": false,
+    "location": "A few steps north east of Triangle Tower",
+    "reward": "Spike Sword"
+  },
+  {
+    "id": 78,
+    "name": "Stealth Ring Quest",
+    "slug": "stealth_ring_quest",
+    "level": 0,
+    "premium": true,
+    "location": "Minotaur Pyramid north-east of Darashia.",
+    "reward": "Stealth Ring and Protection Amulet."
+  },
+  {
+    "id": 79,
+    "name": "Steel Helmet Quest",
+    "slug": "steel_helmet_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Minotaur Tower west of Kazordoon",
+    "reward": "Steel Helmet, 47gp, 56gp, The Fox Is Out (Book)"
+  },
+  {
+    "id": 81,
+    "name": "Thais Lighthouse Quest",
+    "slug": "thais_lighthouse_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Thais",
+    "reward": "Dark Shield and Battle Hammer"
+  },
+  {
+    "id": 82,
+    "name": "The Ancient Tombs Quest",
+    "slug": "the_ancient_tombs_quest",
+    "level": 75,
+    "premium": true,
+    "location": "Ankrahmun Tombs",
+    "reward": "Helmet of the Ancients"
+  },
+  {
+    "id": 83,
+    "name": "The Annihilator Quest",
+    "slug": "the_annihilator_quest",
+    "level": 100,
+    "premium": true,
+    "location": "Edron Hero Cave",
+    "reward": "One out of four available items: Magic Sword, Demon Armor, Stonecutter Axe, and a Present Box with an Annihilation Bear inside."
+  },
+  {
+    "id": 84,
+    "name": "The Desert Dungeon Quest",
+    "slug": "the_desert_dungeon_quest",
+    "level": 20,
+    "premium": false,
+    "location": "Deep below the Jakundaf Desert.",
+    "reward": "100 Platinum Coins and a Green Bag with: Protection Amulet, Ring Of Healing, Magic Light Wand and Ankh."
+  },
+  {
+    "id": 85,
+    "name": "The Djinn War - Efreet Faction",
+    "slug": "the_djinn_war_-_efreet_faction",
+    "level": 40,
+    "premium": true,
+    "location": "Mal'ouquah (Green Djinn Fortress)",
+    "reward": "600 gp, Gemmed Lamp, permission to trade with Yaman and Alesar, possibility to hunt Marids and Blue Djinns in Ankrahmun."
+  },
+  {
+    "id": 86,
+    "name": "The Djinn War - Marid Faction",
+    "slug": "the_djinn_war_-_marid_faction",
+    "level": 40,
+    "premium": true,
+    "location": "Ashta'daramai (Blue Djinn Fortress)",
+    "reward": "3 Small Sapphires, Gemmed Lamp, the ability to trade with Nah'Bob and Haroun, possibility to hunt Efreet and Green Djinns in Ankrahmun"
+  },
+  {
+    "id": 99,
+    "name": "The Evil Catacombs Quest",
+    "slug": "the_evil_catacombs_quest",
+    "level": 0,
+    "premium": true,
+    "location": "Edron Hero Cave",
+    "reward": "?"
+  },
+  {
+    "id": 100,
+    "name": "The Eye of Aurum Quest",
+    "slug": "the_eye_of_aurum_quest",
+    "level": 0,
+    "premium": true,
+    "location": "Khazad Garum east of Cormaya",
+    "reward": "?"
+  },
+  {
+    "id": 87,
+    "name": "The Outlaw Camp Quest",
+    "slug": "the_outlaw_camp_quest",
+    "level": 45,
+    "premium": false,
+    "location": "Outlaw Camp",
+    "reward": "Red Gem, 2 Backpacks of Ultimate Healing Rune"
+  },
+  {
+    "id": 88,
+    "name": "The Paradox Tower Quest",
+    "slug": "the_paradox_tower_quest",
+    "level": 30,
+    "premium": false,
+    "location": "Paradox Tower near Kazordoon.",
+    "reward": "Up to two of the following: 100 Platinum Coins, Wooden Wand, 32 Talons, Phoenix Egg"
+  },
+  {
+    "id": 89,
+    "name": "The Postman Missions Quest",
+    "slug": "the_postman_missions_quest",
+    "level": 0,
+    "premium": true,
+    "location": "Begins in Kevin's office at the Tibia Postal Service Headquarters, but takes you all over Tibia.",
+    "reward": "Cheaper parcels, letters, boat fares. Use of locked mailboxes, Post Officer's Hat, Post Horn and the achievement Archpostman."
+  },
+  {
+    "id": 90,
+    "name": "The Queen of the Banshees Quest",
+    "slug": "the_queen_of_the_banshees_quest",
+    "level": 60,
+    "premium": false,
+    "location": "Isle of the Kings underground and Ghostland",
+    "reward": "Amulet of Loss, Skull Hunter, Patched Boots, Giant Sapphire, Stealth Ring and Stone Skin Amulet"
+  },
+  {
+    "id": 91,
+    "name": "The White Raven Monastery Quest",
+    "slug": "the_white_raven_monastery_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Near Carlin, (Ghostlands and the Isle of the Kings)",
+    "reward": "Blessed Ankh, Family Brooch, access to the Isle of the Kings"
+  },
+  {
+    "id": 92,
+    "name": "Throwing Star Quest",
+    "slug": "throwing_star_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Thais Ancient Temple",
+    "reward": "10 Throwing Stars"
+  },
+  {
+    "id": 93,
+    "name": "Time Ring Quest",
+    "slug": "time_ring_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Venore, Shadowthorn",
+    "reward": "Time Ring, Elven Amulet, Crystal Ball"
+  },
+  {
+    "id": 94,
+    "name": "Triangle Tower Quest",
+    "slug": "triangle_tower_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Triangle Tower",
+    "reward": "Garlic Necklace, Dwarven Ring and 2 Small Sapphires"
+  },
+  {
+    "id": 95,
+    "name": "Troll Cave Quest",
+    "slug": "troll_cave_quest",
+    "level": 0,
+    "premium": true,
+    "location": "Edron Troll Cave, west of town",
+    "reward": "Brass Legs, Garlic Necklace"
+  },
+  {
+    "id": 96,
+    "name": "Vampire Shield Quest",
+    "slug": "vampire_shield_quest",
+    "level": 70,
+    "premium": true,
+    "location": "Edron Hero Cave",
+    "reward": "Radiance Lamp, 2 Backpacks of Sudden Death Rune"
+  },
+  {
+    "id": 97,
+    "name": "Voodoo Doll Quest",
+    "slug": "voodoo_doll_quest",
+    "level": 0,
+    "premium": false,
+    "location": "Green Claw Swamp",
+    "reward": "Voodoo Doll, Magic Light Wand"
+  },
+  {
+    "id": 98,
+    "name": "Wedding Ring Quest",
+    "slug": "wedding_ring_quest",
+    "level": 0,
+    "premium": true,
+    "location": "Edron Hero Cave",
+    "reward": "Wedding Ring, Dragon Necklace"
+  }
+]

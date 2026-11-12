@@ -1,0 +1,19 @@
+{
+  "categories": [
+    "Client"
+  ],
+  "questions": [
+    {
+      "question": "1. Any issue with the auto-updater",
+      "answer": "If you restarted the client and it does not update automatically, follow the steps: First, close the client. Ensure you have downloaded the latest client . Delete miracle folder from appdata: %appdata%/Miracle 7.4. Check if you have unzipped any file from data.zip, and delete them all (data/modules/layouts/init) from the main game folder. If you unzip data.zip, it won't work. Download client files directly from these links: Data.zip DX Client GL Client Move the data.zip downloaded on 4.1 to main client folder and for %appdata%/Miracle 7.4/Miracle 7.4. Open the game and it may work"
+    },
+    {
+      "question": "2. 0xc0000007b or vcruntime140.dll error when open the client",
+      "answer": "• Please download and install these visual c++ vc_redist from microsoft."
+    },
+    {
+      "question": "3. Sometimes i'm expecting some lags issues (stuttering) in client.",
+      "answer": "• Some video cards have issues with GL client, try to use DX client instaed. If lags persist, go to option -> graphics -> enable walk fps synchronization."
+    }
+  ]
+}
