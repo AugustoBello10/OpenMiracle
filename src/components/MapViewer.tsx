@@ -844,7 +844,9 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
          </div>
        )}
 
-       <MapEditorPanel 
+       {!isModal && import.meta.env.DEV && (
+          <>
+            <MapEditorPanel 
           floor={floor}
           localRespawns={localRespawns}
           setLocalRespawns={setLocalRespawns}
@@ -871,6 +873,8 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
          setIsRouteMode={setIsRouteMode}
          onObstacleWarning={(msg, confirm) => setObstacleWarning({msg, confirm})}
        />
+          </>
+        )}
 
        <div className="absolute top-4 right-4 z-[400] flex flex-col gap-2 max-h-[calc(100%-2rem)]">
          

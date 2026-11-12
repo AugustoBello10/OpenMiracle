@@ -6,7 +6,7 @@ import {
   Utensils, Sprout, Axe, Book, ArrowLeft, Image as ImageIcon, ChevronDown, ChevronLeft, ChevronRight, Info, ArrowRight 
 } from 'lucide-react';
 import { MapLink } from './MapLink';
-import { PrerequisitesCard, NoticeCard, NpcDialog } from './Guide';
+import { PrerequisitesCard, NoticeCard, NpcDialog, StepList } from './Guide';
 
 interface ProfessionsGuideViewProps {
   language: 'pt' | 'en';
@@ -339,23 +339,55 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
             
 
             <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="alchemy-acquire">{t('Como Adquirir a Profissão', 'How to Acquire the Profession')}</h4>
+            
+            <PrerequisitesCard
+              language={language}
+              items={[
+                {
+                  label: t('Nível de Skill', 'Skill Level'),
+                  value: t('Skill 20 em Alquimia (convertendo gold)', 'Skill 20 in Alchemy (by converting gold)'),
+                },
+                {
+                  label: t('Taxa de Inscrição', 'Enrollment Fee'),
+                  value: t('20.000 gold coins (20k)', '20,000 gold coins (20k)'),
+                },
+                {
+                  label: t('Mestre da Profissão', 'Profession Master'),
+                  value: (
+                    <MapLink x={33166} y={31808} z={6} title="Alexander" showCoords>
+                      Alexander (Edron)
+                    </MapLink>
+                  ),
+                },
+                {
+                  label: t('Ferramenta Inicial', 'Starting Tool'),
+                  value: t('Gold Converter (500 gps com Alexander)', 'Gold Converter (500 gps with Alexander)'),
+                },
+              ]}
+            />
+
+            <NpcDialog
+              npcName="Alexander"
+              npcLocation="Edron"
+              lines={[
+                { speaker: 'player', text: 'hi', keyword: 'hi' },
+                { speaker: 'npc', text: 'Hello, adventurer. What can I do for you?' },
+                { speaker: 'player', text: 'alchemist', keyword: 'alchemist' },
+                { speaker: 'npc', text: 'You want to become an official alchemist? That requires skill 20 and 20000 gold. Deal?' },
+                { speaker: 'player', text: 'yes', keyword: 'yes' },
+                { speaker: 'npc', text: 'Welcome to the circle of alchemists! Mix with wisdom.' },
+              ]}
+            />
+
             <div className="bg-black/30 p-4 rounded-lg border border-white/5 space-y-4">
-              <p>
-                {t('Para se tornar um mestre alquimista e adquirir a profissão oficialmente, você precisa atender aos seguintes requisitos:', 'To become a master alchemist and acquire the profession officially, you must meet the following requirements:')}
-              </p>
-              <ul className="list-disc pl-5 space-y-2 text-stone-300">
-                <li><strong className="text-medieval-gold">{t('Nível de Skill:', 'Skill Level:')}</strong> {t('Alcançar o nível 20 de skill (convertendo golds).', 'Reach skill level 20 (by converting golds).')}</li>
-                <li><strong className="text-medieval-gold">{t('Taxa de Inscrição:', 'Enrollment Fee:')}</strong> {t('Pagar 20.000 gps ao NPC chefe da profissão, o', 'Pay 20,000 gps to the profession master NPC,')} <a href="https://www.tibiawiki.com.br/wiki/Alexander" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 hover:underline font-bold">Alexander</a> {t('em Edron.', 'in Edron.')}</li>
-              </ul>
-              
-              <div className="mt-4 border-t border-medieval-gold/20 pt-4">
+              <div className="border-t border-medieval-gold/20 pt-2">
                 <h5 className="font-bold text-medieval-gold mb-3">{t('Vantagens da Profissão:', 'Advantages of the Profession:')}</h5>
                 <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
                   <ul className="list-disc pl-5 space-y-2 flex-1">
-                    <li>{t('Aumento de skill mais rápido.', 'Faster skill increase.')}</li>
+                    <li>{t('Aumento de skill de alquimia mais rápido.', 'Faster alchemy skill progression.')}</li>
                     <li>{t('Possibilidade de criar armas de treino encantadas.', 'Ability to create enchanted training weapons.')}</li>
-                    <li>{t('Possibilidade de sobrecarregar (overcharge) runas exclusivas da profissão para dobrar cargas.', 'Ability to overcharge exclusive runes from the profession to double charges.')}</li>
-                    <li>{t('Acesso a um outfit exclusivo de alquimista.', 'Access to an exclusive alchemist outfit.')}</li>
+                    <li>{t('Possibilidade de sobrecarregar (overcharge) runas exclusivas da profissão para dobrar cargas.', 'Ability to overcharge exclusive runes to double their charges.')}</li>
+                    <li>{t('Acesso ao Outfit exclusivo de Alquimista.', 'Access to the exclusive Alchemist outfit.')}</li>
                   </ul>
                   <div className="flex-shrink-0 text-center">
                     <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784733738/alchemist_outfit.png" alt="Alchemy Outfit" className="w-24 h-auto object-contain mx-auto border border-medieval-gold/20 rounded bg-black/50 p-2" />
@@ -367,23 +399,32 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
 
             <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="alchemy-gold">{t('💰 O Início: Convertendo Gold', '💰 The Beginning: Converting Gold')}</h4>
             <p>{t('A forma mais simples de começar a treinar sua skill é usando o Gold Converter.', 'The simplest way to start training your skill is by using the Gold Converter.')}</p>
+            
+            <NoticeCard type="warning" title={t('Atenção: Ação Irreversível', 'Warning: Irreversible Action')}>
+              {t('O Gold Converter converte Gold para Platinum ou Platinum para Crystal. Essa ação não tem volta! O sucesso começa em 10% e sobe +0.2% a cada ponto de skill de alquimia.', 'The Gold Converter converts Gold to Platinum or Platinum to Crystal. There is no going back! Base success starts at 10% and increases by +0.2% per skill point.')}
+            </NoticeCard>
+
             <ul className="list-disc pl-5 space-y-3 mt-2">
               <li>
-                <strong className="text-medieval-gold">{t('Como funciona:', 'How it works:')}</strong> {t('Você compra o conversor com o NPC', 'You buy the converter from the NPC')} <a href="https://www.tibiawiki.com.br/wiki/Alexander" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 hover:underline font-bold">Alexander</a> {t('em Edron por 500gp (vem com 100 cargas).', 'in Edron for 500gp (comes with 100 charges).')}
+                <strong className="text-medieval-gold">{t('Como adquirir:', 'How to acquire:')}</strong> {t('Compre o Gold Converter com o NPC', 'Buy the Gold Converter from NPC')}{' '}
+                <MapLink x={33166} y={31808} z={6} title="Alexander" showCoords>
+                  Alexander (Edron)
+                </MapLink>{' '}
+                {t('por 500gp (vem com 100 cargas).', 'for 500gp (comes with 100 charges).')}
               </li>
               <li>
-                <strong className="text-medieval-gold">{t('Ação:', 'Action:')}</strong> {t('Ele converte Gold para Platinum ou Platinum para Crystal. Não tem volta!', 'It converts Gold to Platinum or Platinum to Crystal. There is no going back!')}
-              </li>
-              <li>
-                <strong className="text-medieval-gold">{t('Sucesso:', 'Success:')}</strong> {t('Começa em 10% e sobe 0.2% a cada ponto de skill.', 'Starts at 10% and increases 0.2% for each skill point.')}
-              </li>
-              <li>
-                {t('Caçar com alguns desses ainda vai liberando sua cap!', 'Hunting with some of these will also free up your cap!')}
+                <strong className="text-medieval-gold">{t('Utilidade em Hunt:', 'Hunt Utility:')}</strong> {t('Levar alguns conversores para a hunt libera espaço de capacidade (cap) valioso ao converter moedas no chão.', 'Carrying a few converters during hunts saves valuable capacity by converting coins on the fly.')}
               </li>
             </ul>
 
             <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="alchemy-crystals">{t('💎 Encantamentos com Cristais', '💎 Crystal Enchantments')}</h4>
-            <p>{t('Os cristais são usados para dar bônus às suas armas de treino, que podem ser compradas no NPC', 'Crystals are used to give bonuses to your training weapons, which can be purchased from NPC')} <a href="https://www.tibiawiki.com.br/wiki/Sam#32361,32197,7:2" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 hover:underline font-bold">Sam</a> {t('em Thais ou para transformar seus summons em criaturas Elite.', 'in Thais or to transform your summons into Elite creatures.')}</p>
+            <p>
+              {t('Os cristais são usados para dar bônus às suas armas de treino, que podem ser compradas no NPC', 'Crystals are used to give bonuses to your training weapons, which can be purchased from NPC')}{' '}
+              <MapLink x={32361} y={32197} z={7} title="Sam" showCoords>
+                Sam em Thais
+              </MapLink>{' '}
+              {t('ou para transformar seus summons em criaturas Elite.', 'or to transform your summons into Elite creatures.')}
+            </p>
             
             <ul className="list-disc pl-5 space-y-2 mt-4">
               <li>
@@ -511,27 +552,50 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
             </p>
 
             <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="mining-acquire">{t('Como Adquirir a Profissão', 'How to Acquire the Profession')}</h4>
-            <div className="bg-black/30 p-4 rounded-lg border border-white/5 space-y-4">
-              <p>
-                {t('Para usar todas as picaretas e avançar a habilidade mais rápido, você precisa adquirir a profissão de minerador. Visite o NPC:', 'To be able to use all the picks and advance the skill faster, you also need to acquire the miner profession. Visit the NPC:')}
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="flex-shrink-0">
-                   <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/budrik.gif" alt="NPC Budrik" className="w-16 h-16 object-contain rounded border border-medieval-gold/20 bg-black/50 p-1" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
-                </div>
-                <ul className="list-disc pl-5 space-y-2 text-stone-300">
-                  <li><strong className="text-medieval-gold">{t('NPC:', 'NPC:')}</strong> <a href="https://www.tibiawiki.com.br/wiki/Budrik" target="_blank" rel="noopener noreferrer" className="text-blue-400 font-bold hover:underline hover:text-blue-300">Budrik</a></li>
-                  <li><strong className="text-medieval-gold">{t('Localização:', 'Location:')}</strong> {t('Dwarf Mines - perto de Kazordoon.', 'Dwarf Mines - near Kazordoon.')}</li>
-                </ul>
-              </div>
+            
+            <PrerequisitesCard
+              language={language}
+              items={[
+                {
+                  label: t('Nível de Skill', 'Skill Level'),
+                  value: t('Skill 10 em Mineração (minerando lava holes e pedras básicas)', 'Skill 10 in Mining (mining basic rocks/lava holes)'),
+                },
+                {
+                  label: t('Mestre da Profissão', 'Profession Master'),
+                  value: (
+                    <MapLink x={32623} y={31905} z={5} title="Budrik" showCoords>
+                      Budrik (Dwarf Mines - Kazordoon)
+                    </MapLink>
+                  ),
+                },
+                {
+                  label: t('Ferramenta Inicial', 'Starting Tool'),
+                  value: t('Pick básica (vendida em qualquer loja de ferramentas)', 'Basic Pick (bought in any tool shop)'),
+                },
+              ]}
+            />
 
-              <div className="mt-4 border-t border-medieval-gold/20 pt-4">
+            <NpcDialog
+              npcName="Budrik"
+              npcLocation="Dwarf Mines"
+              lines={[
+                { speaker: 'player', text: 'hi', keyword: 'hi' },
+                { speaker: 'npc', text: 'Greetings, deep dweller. Looking for ore and glory?' },
+                { speaker: 'player', text: 'miner', keyword: 'miner' },
+                { speaker: 'npc', text: 'You wish to learn the trade of mining? I can grant you official membership.' },
+                { speaker: 'player', text: 'yes', keyword: 'yes' },
+                { speaker: 'npc', text: 'Strike deep and watch for cave-ins! You are now a miner.' },
+              ]}
+            />
+
+            <div className="bg-black/30 p-4 rounded-lg border border-white/5 space-y-4">
+              <div className="border-t border-medieval-gold/20 pt-2">
                 <h5 className="font-bold text-medieval-gold mb-3">{t('Vantagens da Profissão:', 'Advantages of the Profession:')}</h5>
                 <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
                   <ul className="list-disc pl-5 space-y-2 flex-1">
-                    <li>{t('Aumento de skill mais rápido.', 'Faster skill increase.')}</li>
-                    <li>{t('Permite utilizar picaretas avançadas e forjadas.', 'Allows using advanced and forged pickaxes.')}</li>
-                    <li>{t('Acesso a um outfit exclusivo de minerador.', 'Access to an exclusive miner outfit.')}</li>
+                    <li>{t('Aumento de skill de mineração acelerado.', 'Accelerated mining skill progression.')}</li>
+                    <li>{t('Permite empunhar picaretas avançadas e forjadas (Modified, Advanced, Enhanced).', 'Allows wielding forged and advanced picks (Modified, Advanced, Enhanced).')}</li>
+                    <li>{t('Acesso ao Outfit exclusivo de Minerador.', 'Access to the exclusive Miner outfit.')}</li>
                   </ul>
                   <div className="flex-shrink-0 text-center">
                     <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/miner_outfit.gif" alt="Miner Outfit" className="w-24 h-auto object-contain mx-auto border border-medieval-gold/20 rounded bg-black/50 p-2" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
@@ -542,11 +606,14 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
             </div>
 
             <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="mining-mechanics">{t('⛏️ Mecânicas de Mineração', '⛏️ Mining Mechanics')}</h4>
-            <div className="bg-red-900/20 border border-red-500/30 p-4 rounded-lg mb-4 mt-2">
-              <p className="text-sm text-red-200">
-                <strong>{t('Atenção - Exhaust ao Logar:', 'Attention - Login Exhaust:')}</strong> {t('Ao entrar no jogo (logar), o seu personagem sofrerá um "exhaust" de 15 minutos para mineração. Durante esse período, não será possível extrair minérios. Essa medida serve para evitar abusos.', 'Upon entering the game (logging in), your character will suffer a 15-minute mining "exhaust". During this period, it will not be possible to extract ores. This measure serves to prevent abuse.')}
-              </p>
-            </div>
+            
+            <NoticeCard type="danger" title={t('Atenção: Exhaust de 15 Minutos ao Logar', 'Warning: 15-Minute Login Exhaust')}>
+              {t('Ao entrar no jogo (logar), o personagem sofre um "exhaust" de 15 minutos em que não é possível minerar nenhum bloco. Essa trava técnica existe para prevenir deslogues rápidos e abuso de respawns.', 'Upon logging in, characters suffer a 15-minute mining exhaust. This technical lockout exists to prevent spawn hopping and relog abuse.')}
+            </NoticeCard>
+
+            <NoticeCard type="tip" title={t('Dica de Respawn das Minas', 'Mine Respawn Tip')}>
+              {t('Todas as minas possuem respawn aleatório entre 30 minutos e 2 horas. Assim como no respawn de criaturas, a mina só renasce se não houver nenhum jogador na tela.', 'All mining nodes have a random respawn between 30m and 2h. Just like monster spawns, a node will only regenerate if no player is on screen.')}
+            </NoticeCard>
             <ul className="list-disc pl-5 space-y-3 mt-2">
               <li>
                 <strong className="text-medieval-gold">{t('Iniciando:', 'Getting Started:')}</strong> {t('Para começar, você precisa de uma picareta (pickaxe). Com a picareta regular (Pick), você já poderá minerar lava holes, ice lava holes e mossy stones.', 'To start with mining, first you need a pickaxe. With a regular pick, you\'ll already be able to mine lava holes, ice lava holes, and mossy stones.')}
@@ -748,23 +815,42 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
             </p>
 
             <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="carpentry-acquire">{t('Como Adquirir a Profissão', 'How to Acquire the Profession')}</h4>
-            <div className="bg-black/30 p-4 rounded-lg border border-white/5 space-y-4">
-              <p>
-                {t('Para se tornar um carpinteiro, converse com o NPC Aldren:', 'To become a carpenter, talk to the NPC Aldren:')}
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="flex-shrink-0">
-                   <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/aldren.gif" alt="NPC Aldren" className="w-16 h-16 object-contain rounded border border-medieval-gold/20 bg-black/50 p-1" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
-                </div>
-                <ul className="list-disc pl-5 space-y-2 text-stone-300">
-                  <li><strong className="text-medieval-gold">{t('NPC:', 'NPC:')}</strong> <a href="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784741330/localizacaoNPCcarpintaria.png" target="_blank" rel="noopener noreferrer" className="text-blue-400 font-bold hover:underline hover:text-blue-300">Aldren</a></li>
-                  <li><strong className="text-medieval-gold">{t('Localização:', 'Location:')}</strong> {t('Nivandria Lands.', 'Nivandria Lands.')}</li>
-                  <li><strong className="text-medieval-gold">{t('Preço:', 'Price:')}</strong> {t('20.000 moedas de ouro', '20,000 gold coins')}</li>
-                </ul>
-              </div>
-            </div>
+            
+            <PrerequisitesCard
+              language={language}
+              items={[
+                {
+                  label: t('NPC Mentor', 'Mentor NPC'),
+                  value: t('Aldren (Nivandria Lands)', 'Aldren (Nivandria Lands)'),
+                },
+                {
+                  label: t('Taxa de Inscrição', 'Enrollment Fee'),
+                  value: t('20.000 moedas de ouro (20k)', '20,000 gold coins (20k)'),
+                },
+                {
+                  label: t('Ferramentas Básicas', 'Basic Tools'),
+                  value: t('Hammer (Martelo), Square (Esquadro) e Counter (Bancada)', 'Hammer, Square, and Counter'),
+                },
+              ]}
+            />
+
+            <NpcDialog
+              npcName="Aldren"
+              npcLocation="Nivandria Lands"
+              lines={[
+                { speaker: 'player', text: 'hi', keyword: 'hi' },
+                { speaker: 'npc', text: 'Greetings, builder. Ready to craft structures from timber?' },
+                { speaker: 'player', text: 'carpenter', keyword: 'carpenter' },
+                { speaker: 'npc', text: 'The carpenter profession costs 20000 gold coins. Would you like to join?' },
+                { speaker: 'player', text: 'yes', keyword: 'yes' },
+                { speaker: 'npc', text: 'Take up your square and hammer. Welcome to the carpentry guild!' },
+              ]}
+            />
 
             <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="carpentry-tools">{t('Ferramentas Necessárias', 'Necessary Tools')}</h4>
+            
+            <NoticeCard type="tip" title={t('Dica de Evolução de Skill', 'Skill Evolution Tip')}>
+              {t('Ao quebrar as cercas (fences) das suas lands utilizando o martelo, o seu skill de carpintaria também sobe de acordo com o seu nível de habilidade!', 'When breaking fences on your lands using the hammer, your carpentry skill also increases according to your skill level!')}</NoticeCard>
             <div className="bg-black/30 p-4 rounded-lg border border-white/5 space-y-4">
               <p>
                 {t('Para exercer a carpintaria e evoluir suas habilidades, você precisará das seguintes ferramentas:', 'To practice carpentry and evolve your skills, you will need the following tools:')}
@@ -1169,35 +1255,53 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               {t('A profissão de culinária (Cooking) permite criar alimentos que oferecem bônus especiais aos personagens. Além disso, cozinheiros evoluem sua skill de culinária mais rapidamente. Introduzimos o avanço do skill ao criar pães e hambúrgueres.', 'The cooking profession allows you to create foods that provide special bonuses to characters. In addition, cooks level up their cooking skill faster. We introduced the advancement of the skill when baking bread and burgers.')}
             </p>
 
-            <div className="bg-orange-900/20 border border-orange-500/30 p-4 rounded-lg mb-4 mt-4">
-              <p className="text-sm text-orange-200">
-                <strong>{t('Atenção - Regra de Consumo:', 'Attention - Consumption Rule:')}</strong> {t('Os buffs (efeitos) gerados pela mesma comida não se acumulam (não stacam). Ou seja, comer vários pães de mana não somará a regeneração, apenas renovará a duração. No entanto, é possível estar sob o efeito de dois buffs distintos simultaneamente ao consumir duas comidas diferentes (ex: buff de cura + buff de velocidade).', 'The buffs (effects) generated by the same food do not stack. That is, eating multiple mana breads will not stack the regeneration, it will only renew the duration. However, it is possible to be under the effect of two different buffs simultaneously by consuming two different foods (e.g., healing buff + speed buff).')}
-              </p>
-            </div>
+            <NoticeCard type="info" title={t('Regra de Consumo e Buffs', 'Consumption & Buffs Rule')}>
+              {t('Buffs gerados pela mesma comida não se acumulam (apenas renovam a duração). No entanto, é possível acumular o efeito de duas comidas de categorias diferentes simultaneamente (ex: buff de cura + buff de velocidade/skills).', 'Buffs from the same food do not stack (they only renew the duration). However, you can have active buffs from two different food categories at the same time (e.g. healing + speed/skills).')}
+            </NoticeCard>
 
             <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="cooking-acquire">{t('Como Adquirir a Profissão', 'How to Acquire the Profession')}</h4>
-            <div className="bg-black/30 p-4 rounded-lg border border-white/5 space-y-4">
-              <div className="flex flex-col md:flex-row md:items-start gap-4">
-                <div className="flex-1 space-y-4">
-                  <p>
-                    {t('Para se tornar um cozinheiro, adquirir os benefícios da profissão e suas primeiras receitas, converse com o NPC Bjorn:', 'To become a cook, acquire the profession benefits and your first recipes, talk to the NPC Bjorn:')}
-                  </p>
-                  <ul className="list-disc pl-5 space-y-2 text-stone-300">
-                    <li><strong className="text-medieval-gold">{t('NPC:', 'NPC:')}</strong> <a href="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784746380/localizacaoNPCcooking.png" target="_blank" rel="noopener noreferrer" className="text-blue-400 font-bold hover:underline">Bjorn</a></li>
-                    <li><strong className="text-medieval-gold">{t('Localização:', 'Location:')}</strong> {t('Thais Castle (Castelo de Thais).', 'Thais Castle.')}</li>
-                    <li><strong className="text-medieval-gold">{t('Custo:', 'Cost:')}</strong> {t('20.000 Gold Coins.', '20,000 Gold Coins.')}</li>
-                  </ul>
-                  <p className="text-sm text-stone-400">
-                    {t('Ele também vende Cookbooks (livros de receitas) que podem ser usados para verificar todas as receitas que você já aprendeu.', 'He also sells Cookbooks that can be used to check all the recipes you have learned so far.')}
-                  </p>
-                </div>
-              </div>
+            
+            <PrerequisitesCard
+              language={language}
+              items={[
+                {
+                  label: t('NPC Mentor', 'Mentor NPC'),
+                  value: (
+                    <MapLink x={32370} y={32210} z={6} title="Bjorn" showCoords>
+                      Bjorn (Castelo de Thais)
+                    </MapLink>
+                  ),
+                },
+                {
+                  label: t('Taxa de Inscrição', 'Enrollment Fee'),
+                  value: t('20.000 moedas de ouro (20k)', '20,000 gold coins (20k)'),
+                },
+                {
+                  label: t('Item de Consulta', 'Recipe Reference'),
+                  value: t('Cookbook (vendido por Bjorn para checar receitas aprendidas)', 'Cookbook (sold by Bjorn to view known recipes)'),
+                },
+              ]}
+            />
 
-              <div className="mt-4 border-t border-medieval-gold/20 pt-4">
+            <NpcDialog
+              npcName="Bjorn"
+              npcLocation="Castelo de Thais"
+              lines={[
+                { speaker: 'player', text: 'hi', keyword: 'hi' },
+                { speaker: 'npc', text: 'Welcome to the royal kitchen. Hungry or eager to learn?' },
+                { speaker: 'player', text: 'cook', keyword: 'cook' },
+                { speaker: 'npc', text: 'To join the ranks of royal chefs, you must contribute 20000 gold. Ready?' },
+                { speaker: 'player', text: 'yes', keyword: 'yes' },
+                { speaker: 'npc', text: 'Put on your apron! You are now an official cook.' },
+              ]}
+            />
+
+            <div className="bg-black/30 p-4 rounded-lg border border-white/5 space-y-4">
+              <div className="border-t border-medieval-gold/20 pt-2">
                 <h5 className="font-bold text-medieval-gold mb-3">{t('Vantagens da Profissão:', 'Advantages of the Profession:')}</h5>
                 <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
                   <ul className="list-disc pl-5 space-y-2 flex-1 text-stone-300">
-                    <li>{t('Aumento de skill mais rápido.', 'Faster skill increase.')}</li>
+                    <li>{t('Aumento de skill de culinária acelerado.', 'Accelerated cooking skill progression.')}</li>
                     <li>{t('Permite produzir comidas especiais que oferecem bônus.', 'Allows producing special foods that offer bonuses.')}</li>
                     <li>{t('Acesso a um outfit exclusivo de cozinheiro.', 'Access to an exclusive cook outfit.')}</li>
                   </ul>
@@ -1214,6 +1318,10 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               <p>
                 {t('Fazer pão é a forma mais simples e barata de subir o nível de Cooking.', 'Baking bread is the simplest and cheapest way to level up Cooking.')}
               </p>
+              
+              <NoticeCard type="tip" title={t('Dica de Forno: 1 Massa por Vez', 'Oven Tip: 1 Dough at a Time')}>
+                {t('Asse apenas um Lump of Dough (massa) por vez no forno para garantir o avanço de skill. Assar empilhado não concede múltiplos avanços!', 'Bake only one Lump of Dough at a time in the oven to ensure skill advancement. Stacked baking does not yield multiple tries!')}
+              </NoticeCard>
               
               <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 py-6 overflow-x-auto min-w-max md:min-w-0">
                 <div className="flex flex-col items-center">
@@ -1272,11 +1380,15 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               <div className="mt-4 text-sm space-y-2">
                 <p>
                   <strong className="text-medieval-gold">{t('Dica de Compra:', 'Buying Tip:')}</strong> {t('Você pode comprar trigo por 1gp cada no NPC ', 'You can buy wheat for 1gp each from NPC ')}
-                  <a href="https://www.tibiawiki.com.br/wiki/Donald_McRonald" target="_blank" rel="noopener noreferrer" className="text-blue-400 font-bold hover:underline">Donald McRonald</a>.
+                  <MapLink x={32344} y={32225} z={7} title="Donald McRonald" showCoords>
+                    Donald McRonald (Thais)
+                  </MapLink>.
                 </p>
                 <p>
                   <strong className="text-medieval-gold">{t('Dica de Venda:', 'Selling Tip:')}</strong> {t('Venda os pães prontos por 2gp cada para o NPC ', 'Sell the baked bread for 2gp each to NPC ')}
-                  <a href="https://www.tibiawiki.com.br/wiki/Sherry_McRonald" target="_blank" rel="noopener noreferrer" className="text-blue-400 font-bold hover:underline">Sherry McRonald</a>.
+                  <MapLink x={32344} y={32228} z={7} title="Sherry McRonald" showCoords>
+                    Sherry McRonald (Thais)
+                  </MapLink>.
                 </p>
               </div>
             </div>
@@ -1449,26 +1561,50 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
             </p>
 
             <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="skinning-acquire">{t('Como Adquirir a Profissão', 'How to Acquire the Profession')}</h4>
-            <div className="bg-black/30 p-4 rounded-lg border border-white/5 space-y-4">
-              <p>
-                {t('Para se tornar um Esfolador e adquirir a profissão oficialmente, visite o NPC:', 'To become a Skinner and acquire the profession officially, visit the NPC:')}
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="flex-shrink-0">
-                   <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/kael.gif" alt="NPC Kael" className="w-16 h-16 object-contain rounded border border-medieval-gold/20 bg-black/50 p-1" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
-                </div>
-                <ul className="list-disc pl-5 space-y-2 text-stone-300">
-                  <li><strong className="text-medieval-gold">{t('NPC Mentor:', 'Mentor NPC:')}</strong> <a href="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784736131/localizacaoNPC.png" target="_blank" rel="noopener noreferrer" className="text-blue-400 font-bold hover:underline hover:text-blue-300">Kael</a></li>
-                  <li><strong className="text-medieval-gold">{t('Localização:', 'Location:')}</strong> {t('Norte da cidade de Thais.', 'North of Thais city.')}</li>
-                </ul>
-              </div>
+            
+            <PrerequisitesCard
+              language={language}
+              items={[
+                {
+                  label: t('NPC Mentor', 'Mentor NPC'),
+                  value: (
+                    <MapLink x={32369} y={32145} z={7} title="Kael" showCoords>
+                      Kael (Norte de Thais)
+                    </MapLink>
+                  ),
+                },
+                {
+                  label: t('Ferramenta Inicial', 'Starting Tool'),
+                  value: t("Hunter's Knife (Naginata Quest ou NPC Kael)", "Hunter's Knife (Naginata Quest or NPC Kael)"),
+                },
+                {
+                  label: t('Ferramenta Avançada', 'Advanced Tool'),
+                  value: t('Diamond Knife (Forjada via Blacksmith/Crafting)', 'Diamond Knife (Crafted via Blacksmith)'),
+                },
+              ]}
+            />
 
-              <div className="mt-4 border-t border-medieval-gold/20 pt-4">
+            <NpcDialog
+              npcName="Kael"
+              npcLocation="Norte de Thais"
+              lines={[
+                { speaker: 'player', text: 'hi', keyword: 'hi' },
+                { speaker: 'npc', text: 'Hail, hunter. Looking to master the wilderness?' },
+                { speaker: 'player', text: 'skinner', keyword: 'skinner' },
+                { speaker: 'npc', text: 'I can teach you the craft of skinning beasts and extracting rare hides.' },
+                { speaker: 'player', text: 'yes', keyword: 'yes' },
+                { speaker: 'npc', text: 'Keep your blade sharp and your hands steady. Welcome, skinner!' },
+              ]}
+            />
+
+            <div className="bg-black/30 p-4 rounded-lg border border-white/5 space-y-4">
+              <div className="border-t border-medieval-gold/20 pt-2">
                 <h5 className="font-bold text-medieval-gold mb-3">{t('Vantagens da Profissão:', 'Advantages of the Profession:')}</h5>
                 <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
                   <ul className="list-disc pl-5 space-y-2 flex-1">
-                    <li>{t('Aumento de skill mais rápido.', 'Faster skill increase.')}</li>
-                    <li>{t('Acesso a um outfit exclusivo de esfolador (Skinner Outfit).', 'Access to an exclusive skinner outfit.')}</li>
+                    <li>{t('Aumento de skill de esfolador acelerado.', 'Accelerated skinning skill progression.')}</li>
+                    <li>{t('Acesso ao Outfit exclusivo de Esfolador (Skinner Outfit).', 'Access to the exclusive Skinner Outfit.')}</li>
+                    <li>{t('Possibilidade de obter materiais exclusivos para addons.', 'Ability to extract exclusive materials for addons.')}</li>
                   </ul>
                   <div className="flex-shrink-0 text-center">
                     <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784733738/skinning_outfit.png" alt="Skinner Outfit" className="w-24 h-auto object-contain mx-auto border border-medieval-gold/20 rounded bg-black/50 p-2" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
@@ -1489,12 +1625,9 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 <code className="text-white font-bold text-sm sm:text-base">1% + (0.0149 * skinning skill)</code>
               </div>
 
-              <div className="flex items-start gap-3 mt-4 text-red-400 bg-red-900/10 p-3 rounded border border-red-900/30">
-                <Info className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                <p className="text-sm">
-                  <strong className="text-red-300">{t('Restrições:', 'Restrictions:')}</strong> {t('Não é possível esfolar corpos humanos ou de anões (Dwarvens). Isso é intencional.', 'You cannot skin human corpses or dwarvens. This is intended.')}
-                </p>
-              </div>
+              <NoticeCard type="danger" title={t('Restrições de Esfola', 'Skinning Restrictions')}>
+                {t('Não é possível esfolar corpos humanos nem corpos de anões (Dwarvens). Isso é uma regra intencional do jogo.', 'You cannot skin human corpses or dwarvens. This is an intended gameplay mechanic.')}
+              </NoticeCard>
             </div>
 
             <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="skinning-tools">{t('🗡️ Ferramentas de Skinning (Knives)', '🗡️ Skinning Tools (Knives)')}</h4>
@@ -1523,13 +1656,10 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               <div className="flex-shrink-0">
                 <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784736783/skinning_pouch.png" alt="Skinning Pouch" className="w-16 h-16 object-contain drop-shadow-[0_0_5px_rgba(0,0,0,0.8)]" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
               </div>
-              <div>
-                <p className="mb-2">
-                  {t('Sempre ande com sua Skinning Pouch! Ao esfolar criaturas, as skins obtidas vão automaticamente para dentro desta bolsa e se acumulam (stack) sozinhas.', 'Always carry your Skinning Pouch! As you skin creatures, the skins obtained automatically go inside this bag and stack themselves.')}
-                </p>
-                <p className="text-medieval-gold/90 font-bold text-sm">
-                  {t('Benefício Principal: Reduz o peso de todas as skins guardadas nela em 20%.', 'Main Benefit: Reduces the weight of all skins stored inside it by 20%.')}
-                </p>
+              <div className="flex-1">
+                <NoticeCard type="tip" title={t('Redução de Peso e Auto-Stack', 'Weight Reduction & Auto-Stack')}>
+                  {t('Sempre carregue a Skinning Pouch! Ao esfolar criaturas, as peles e produtos vão automaticamente para dentro dela e se agrupam. Além disso, ela reduz o peso de todas as skins guardadas em 20%.', 'Always carry the Skinning Pouch! When skinning, products automatically go into the pouch and auto-stack, while reducing their total weight by 20%.')}
+                </NoticeCard>
               </div>
             </div>
 
@@ -1572,25 +1702,54 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
             </p>
 
             <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="fishing-acquire">{t('Como Adquirir a Profissão', 'How to Acquire the Profession')}</h4>
+            
+            <PrerequisitesCard
+              language={language}
+              items={[
+                {
+                  label: t('Nível de Skill', 'Skill Level'),
+                  value: t('Skill 20 em Pesca (pescando peixes normais)', 'Skill 20 in Fishing (catching regular fish)'),
+                },
+                {
+                  label: t('Taxa de Inscrição', 'Enrollment Fee'),
+                  value: t('20.000 gold coins (20k)', '20,000 gold coins (20k)'),
+                },
+                {
+                  label: t('Mestre da Profissão', 'Profession Master'),
+                  value: (
+                    <MapLink x={32410} y={32230} z={7} title="Hoggle" showCoords>
+                      Hoggle (Leste de Thais)
+                    </MapLink>
+                  ),
+                },
+                {
+                  label: t('Ferramenta Inicial', 'Starting Tool'),
+                  value: t('Fishing Rod + Worms (comprados em lojas comuns)', 'Fishing Rod + Worms (common shops)'),
+                },
+              ]}
+            />
+
+            <NpcDialog
+              npcName="Hoggle"
+              npcLocation="Thais Leste"
+              lines={[
+                { speaker: 'player', text: 'hi', keyword: 'hi' },
+                { speaker: 'npc', text: 'Hello, water wanderer. Up for some fishing talks?' },
+                { speaker: 'player', text: 'fisherman', keyword: 'fisherman' },
+                { speaker: 'npc', text: 'To become a certified fisherman you must pay 20000 gold and have skill 20. Interested?' },
+                { speaker: 'player', text: 'yes', keyword: 'yes' },
+                { speaker: 'npc', text: 'May the seas be bountiful! You are now a fisherman.' },
+              ]}
+            />
+
             <div className="bg-black/30 p-4 rounded-lg border border-white/5 space-y-4">
-              <p>
-                {t('Para se tornar um Pescador e adquirir a profissão oficialmente, visite o NPC:', 'To become a Fisherman and acquire the profession officially, visit the NPC:')}
-              </p>
-              <div className="flex items-center gap-4">
-                <ul className="list-disc pl-5 space-y-2 text-stone-300">
-                  <li><strong className="text-medieval-gold">{t('NPC:', 'NPC:')}</strong> <a href="https://www.tibiawiki.com.br/wiki/Hoggle" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 hover:underline font-bold">Hoggle</a></li>
-                  <li><strong className="text-medieval-gold">{t('Localização:', 'Location:')}</strong> {t('A leste (direita) da cidade de Thais.', 'East (right) of Thais city.')}</li>
-                  <li><strong className="text-medieval-gold">{t('Custo:', 'Cost:')}</strong> {t('20.000 Gold (20k)', '20,000 Gold (20k)')}</li>
-                  <li><strong className="text-medieval-gold">{t('Requisito:', 'Requirement:')}</strong> {t('Fishing Skill 20', 'Fishing Skill 20')}</li>
-                </ul>
-              </div>
-              
-              <div className="mt-4 border-t border-medieval-gold/20 pt-4">
+              <div className="border-t border-medieval-gold/20 pt-2">
                 <h5 className="font-bold text-medieval-gold mb-3">{t('Vantagens da Profissão:', 'Advantages of the Profession:')}</h5>
                 <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
                   <ul className="list-disc pl-5 space-y-2 flex-1">
-                    <li>{t('Aumento de skill mais rápido.', 'Faster skill increase.')}</li>
-                    <li>{t('Acesso a um outfit exclusivo de pescador.', 'Access to an exclusive fisherman outfit.')}</li>
+                    <li>{t('Aumento de skill de pesca acelerado.', 'Accelerated fishing skill progression.')}</li>
+                    <li>{t('Acesso ao Outfit exclusivo de Pescador.', 'Access to the exclusive Fisherman outfit.')}</li>
+                    <li>{t('Maiores chances de capturar peixes raros e lendários.', 'Higher chances of catching rare and legendary fish.')}</li>
                   </ul>
                   <div className="flex-shrink-0 text-center">
                     <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/fisherman_outfit.gif" alt="Fisherman Outfit" className="w-24 h-auto object-contain mx-auto border border-medieval-gold/20 rounded bg-black/50 p-2" />
@@ -1601,15 +1760,17 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
             </div>
 
             <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="fishing-mechanics">{t('🎣 Mecânicas de Pesca e Fórmulas', '🎣 Fishing Mechanics and Formulas')}</h4>
+            
+            <NoticeCard type="tip" title={t('Dica de Otimização: Fish Baits', 'Optimization Tip: Fish Baits')}>
+              {t('O uso de Fish Baits reduz drasticamente o tempo de respawn do peixe em um tile aquático: de 10 minutos para apenas 2 minutos!', 'Using Fish Baits drastically accelerates water tile fish respawn: from 10 minutes down to just 2 minutes!')}
+            </NoticeCard>
+
             <ul className="list-disc pl-5 space-y-3 mt-2">
               <li>
-                <strong className="text-medieval-gold">{t('Chance de Pesca:', 'Fishing Chance:')}</strong> {t('A chance de pegar um peixe começa com 10% (base) e tem limite máximo de 50% (atingido aproximadamente no skill 77).', 'The chance to catch a fish starts at 10% (base) and has a maximum limit of 50% (reached around skill 77).')}
+                <strong className="text-medieval-gold">{t('Chance de Pesca:', 'Fishing Chance:')}</strong> {t('A chance de pegar um peixe começa em 10% (base) e tem limite máximo de 50% (atingido aproximadamente no skill 77).', 'Chance to catch fish starts at 10% (base) with a maximum cap of 50% (around skill 77).')}
               </li>
               <li>
                 <strong className="text-medieval-gold">{t('Skill Tries (Tentativas de Skill):', 'Skill Tries:')}</strong> {t('Você ganha 1 avanço/tentativa de skill sempre que pesca em um tile de água que contém peixes. Quando o peixe é pego, o tile muda para um estado sem peixe e não concede mais avanços até o peixe dar respawn (embora o efeito visual de "splash" continue aparecendo).', 'You gain 1 skill try whenever you fish on a water tile that contains fish. When a fish is caught, the tile changes to a state without fish and grants no more skill tries until the fish respawns (although the "splash" visual effect still appears).')}
-              </li>
-              <li>
-                <strong className="text-blue-400">Fish Bait (Iscas):</strong> {t('O uso de Fish Baits reduz drasticamente o tempo de respawn do peixe em um tile, passando de 10 minutos para apenas 2 minutos!', 'Using Fish Baits drastically reduces the fish respawn time on a tile, going from 10 minutes to just 2 minutes!')}
               </li>
             </ul>
 
@@ -1620,11 +1781,10 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
             </div>
 
             <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="fishing-rods">{t('🛠️ Varas de Pesca Craftáveis (Craftable Rods)', '🛠️ Craftable Fishing Rods')}</h4>
-            <div className="bg-blue-900/20 border border-blue-500/30 p-4 rounded-lg mb-4">
-              <p className="text-sm text-blue-200">
-                <strong>{t('Importante:', 'Important:')}</strong> {t('Não é necessário possuir uma profissão ou ter um skill de Fishing específico para usar os diversos tipos de varas. Com as novas varas, é possível pescar tipos exclusivos de peixes. Além disso, algumas varas permitem pescar em tiles específicos, como a Volcanic Fishing Rod em Lava e a Golden Fishing Rod em Shiny Water.', 'It is not necessary to have a profession or a specific Fishing skill to use the different types of rods. With the new rods, it is possible to catch exclusive types of fish. In addition, some rods allow you to fish in specific tiles, such as the Volcanic Fishing Rod in Lava and the Golden Fishing Rod in Shiny Water.')}
-              </p>
-            </div>
+            
+            <NoticeCard type="info" title={t('Regra de Uso das Varas', 'Rod Usage Rule')}>
+              {t('Não é obrigatório ter a profissão de pescador para empunhar as varas avançadas. Varas especiais permitem pescar em terrenos únicos, como a Volcanic Fishing Rod na Lava e a Golden Fishing Rod em Shiny Water.', 'The fisherman profession is not required to wield advanced rods. Special rods allow fishing on unique surfaces, such as Volcanic Rod on Lava and Golden Rod on Shiny Water.')}
+            </NoticeCard>
             <p className="mb-4 text-sm">{t('Existem varas raras, necessárias para pegar certos peixes ou pescar em outros tipos de terreno. Veja as receitas (craftadas na bigorna):', 'There are rare rods required to catch certain fishes or fish in other types of terrain. See the recipes (crafted on the anvil):')}</p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
