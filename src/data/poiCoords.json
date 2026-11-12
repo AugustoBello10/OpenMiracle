@@ -1,0 +1,164 @@
+{
+  "sweaty-cyclops": {
+    "id": "sweaty-cyclops",
+    "name": "A Sweaty Cyclops",
+    "category": "Profissões",
+    "city": "Ab'Dendriel",
+    "x": 32698,
+    "y": 31677,
+    "z": 2
+  },
+  "iron-hammer-quest": {
+    "id": "iron-hammer-quest",
+    "name": "Iron Hammer Quest",
+    "category": "Quests",
+    "city": "Kazordoon",
+    "x": 32644,
+    "y": 31967,
+    "z": 12
+  },
+  "alexander": {
+    "id": "alexander",
+    "name": "Alexander (Alquimista)",
+    "category": "Profissões",
+    "city": "Edron",
+    "x": 33166,
+    "y": 31808,
+    "z": 6
+  },
+  "sam": {
+    "id": "sam",
+    "name": "Sam (Armas de Treino)",
+    "category": "NPCs",
+    "city": "Thais",
+    "x": 32361,
+    "y": 32197,
+    "z": 7
+  },
+  "budrik": {
+    "id": "budrik",
+    "name": "Budrik (Minerador)",
+    "category": "Profissões",
+    "city": "Dwarf Mines",
+    "x": 32623,
+    "y": 31905,
+    "z": 5
+  },
+  "kael": {
+    "id": "kael",
+    "name": "Kael (Esfolador)",
+    "category": "Profissões",
+    "city": "Thais Norte",
+    "x": 32369,
+    "y": 32145,
+    "z": 7
+  },
+  "hoggle": {
+    "id": "hoggle",
+    "name": "Hoggle (Pescador)",
+    "category": "Profissões",
+    "city": "Thais Leste",
+    "x": 32410,
+    "y": 32230,
+    "z": 7
+  },
+  "aldren": {
+    "id": "aldren",
+    "name": "Aldren (Carpinteiro)",
+    "category": "Profissões",
+    "city": "Nivandria Lands",
+    "x": 32000,
+    "y": 32000,
+    "z": 7
+  },
+  "bjorn": {
+    "id": "bjorn",
+    "name": "Bjorn (Cozinheiro)",
+    "category": "Profissões",
+    "city": "Castelo de Thais",
+    "x": 32370,
+    "y": 32210,
+    "z": 6
+  },
+  "donald-mcronald": {
+    "id": "donald-mcronald",
+    "name": "Donald McRonald (Trigo)",
+    "category": "NPCs",
+    "city": "Thais",
+    "x": 32344,
+    "y": 32225,
+    "z": 7
+  },
+  "sherry-mcronald": {
+    "id": "sherry-mcronald",
+    "name": "Sherry McRonald (Pão)",
+    "category": "NPCs",
+    "city": "Thais",
+    "x": 32344,
+    "y": 32228,
+    "z": 7
+  },
+  "defeated-whispers": {
+    "id": "defeated-whispers",
+    "name": "Defeated Whispers",
+    "category": "Sistemas",
+    "city": "Shadowport",
+    "x": 32346,
+    "y": 32361,
+    "z": 6
+  },
+  "norf": {
+    "id": "norf",
+    "name": "Norf (Spiritual Bless)",
+    "category": "Blessings",
+    "city": "Thais",
+    "x": 32346,
+    "y": 32361,
+    "z": 6
+  },
+  "humphrey": {
+    "id": "humphrey",
+    "name": "Humphrey (Embrace Bless)",
+    "category": "Blessings",
+    "city": "Carlin",
+    "x": 32359,
+    "y": 31683,
+    "z": 6
+  },
+  "edala": {
+    "id": "edala",
+    "name": "Edala (Fire of the Suns)",
+    "category": "Blessings",
+    "city": "Ab'Dendriel",
+    "x": 32697,
+    "y": 31718,
+    "z": 2
+  },
+  "kawill": {
+    "id": "kawill",
+    "name": "Kawill (Phoenix Spark)",
+    "category": "Blessings",
+    "city": "Kazordoon",
+    "x": 32644,
+    "y": 31967,
+    "z": 12
+  },
+  "pydar": {
+    "id": "pydar",
+    "name": "Pydar (Phoenix Spark)",
+    "category": "Blessings",
+    "city": "Kazordoon",
+    "x": 32651,
+    "y": 31892,
+    "z": 11
+  },
+  "eremo": {
+    "id": "eremo",
+    "name": "Eremo (Wisdom & Arcane)",
+    "category": "Blessings",
+    "city": "Ilha de Eremo",
+    "x": 33322,
+    "y": 31883,
+    "z": 7
+  }
+}

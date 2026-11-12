@@ -1,7 +1,38 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
+import fs from 'fs';
 import {defineConfig, loadEnv, Plugin} from 'vite';
+
+function poiCoordsPlugin(): Plugin {
+  return {
+    name: 'poi-coords-api',
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        if (req.url === '/api/save-poi' && req.method === 'POST') {
+          let body = '';
+          req.on('data', chunk => { body += chunk; });
+          req.on('end', () => {
+            try {
+              const data = JSON.parse(body);
+              const targetPath = path.resolve(__dirname, 'src/data/poiCoords.json');
+              fs.writeFileSync(targetPath, JSON.stringify(data, null, 2), 'utf8');
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ success: true, count: Object.keys(data).length }));
+            } catch (err: any) {
+              console.error('Error saving poiCoords:', err);
+              res.statusCode = 500;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ error: err.message }));
+            }
+          });
+          return;
+        }
+        next();
+      });
+    }
+  };
+}
 
 function whoIsOnlinePlugin(): Plugin {
   let cachedData: any = null;
@@ -104,7 +135,7 @@ function whoIsOnlinePlugin(): Plugin {
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   return {
-    plugins: [react(), tailwindcss(), whoIsOnlinePlugin()],
+    plugins: [react(), tailwindcss(), whoIsOnlinePlugin(), poiCoordsPlugin()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
     },

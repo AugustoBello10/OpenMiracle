@@ -15,6 +15,7 @@ import MapRouteManager, { RouteClickHandler } from './MapRouteManager';
 import MapRoutesLayer from './MapRoutesLayer';
 import { MapRoute } from '../types/mapRoute';
 import { mapAnalyzer } from '../lib/mapAnalyzer';
+import PoiCalibrator, { PoiClickHandler } from './PoiCalibrator';
 
 // Fix for default Leaflet icon paths not resolving in React
 
@@ -471,6 +472,8 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
   const [activeRouteId, setActiveRouteId] = useState<string | null>(null);
   const [isRouteMode, setIsRouteMode] = useState(false);
   const [obstacleWarning, setObstacleWarning] = useState<{msg: string, confirm: () => void} | null>(null);
+  const [isCalibratingPoi, setIsCalibratingPoi] = useState(false);
+  const [calibratorCoord, setCalibratorCoord] = useState<{ x: number; y: number; z: number } | null>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -846,6 +849,17 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
 
        {!isModal && import.meta.env.DEV && (
           <>
+            <PoiCalibrator
+              floor={floor}
+              onFlyTo={(x, y, z) => {
+                setFloor(z);
+                handleFlyTo(x, y, 2);
+              }}
+              isCalibrating={isCalibratingPoi}
+              setIsCalibrating={setIsCalibratingPoi}
+              currentCoord={calibratorCoord}
+              setCurrentCoord={setCalibratorCoord}
+            />
             <MapEditorPanel 
           floor={floor}
           localRespawns={localRespawns}
@@ -1032,6 +1046,22 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
 
             {/* @ts-ignore */}
             {import.meta.env.DEV && <MapClickHandler isActive={brushMode && !pickingTargetForRespawn} onMapClick={handleMapClick} />}
+            {/* @ts-ignore */}
+            {import.meta.env.DEV && (
+              <PoiClickHandler
+                isActive={isCalibratingPoi}
+                onSelectCoords={(x, y) => {
+                  setCalibratorCoord({ x, y, z: floor });
+                }}
+              />
+            )}
+            {calibratorCoord && calibratorCoord.z === floor && (
+              <Marker position={[-calibratorCoord.y, calibratorCoord.x]}>
+                <Popup className="font-sans font-bold text-sky-800">
+                  🎯 Ponto Calibrado: ({calibratorCoord.x}, {calibratorCoord.y}, Z:{calibratorCoord.z})
+                </Popup>
+              </Marker>
+            )}
             <TeleportTargetPickerHandler isActive={Boolean(pickingTargetForRespawn)} onTargetPicked={handleTargetPicked} />
             <RouteClickHandler 
               isActive={isRouteMode} 

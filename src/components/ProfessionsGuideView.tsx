@@ -106,7 +106,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 {
                   label: t('Mestre da Profissão', 'Profession Master'),
                   value: (
-                    <MapLink x={32698} y={31677} z={2} title="A Sweaty Cyclops" showCoords>
+                    <MapLink poiId="sweaty-cyclops" showCoords>
                       A Sweaty Cyclops (Ab'Dendriel)
                     </MapLink>
                   ),
@@ -114,7 +114,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 {
                   label: t('Ferramenta Obrigatória', 'Required Tool'),
                   value: (
-                    <MapLink x={32644} y={31967} z={12} title="Iron Hammer Quest" showCoords>
+                    <MapLink poiId="iron-hammer-quest" showCoords>
                       Iron Hammer
                     </MapLink>
                   ),
@@ -160,7 +160,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784726106/IRON_HAMMER.gif" alt="Iron Hammer" className="w-8 h-8 object-contain drop-shadow-[0_0_5px_rgba(0,0,0,0.8)] mt-1" />
                 <div className="flex-1">
                   <strong className="text-medieval-gold">Iron Hammer:</strong> {t('Ferramenta indispensável para bater o metal na bigorna. Pode ser obtida na', 'Indispensable tool for working metal on anvils. Can be obtained in the')}{' '}
-                  <MapLink x={32644} y={31967} z={12} title="Iron Hammer Quest" showCoords>
+                  <MapLink poiId="iron-hammer-quest" showCoords>
                     {t('Quest do Iron Hammer', 'Iron Hammer Quest')}
                   </MapLink>{' '}
                   {t('em Minotaur Mountain (Kazordoon).', 'in Minotaur Mountain (Kazordoon).')}
@@ -175,7 +175,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784726106/Anvil__Small.gif" alt="Anvil" className="w-8 h-8 object-contain drop-shadow-[0_0_5px_rgba(0,0,0,0.8)] mt-1" />
                 <div className="flex-1">
                   <strong className="text-medieval-gold">{t('Bigorna (Anvil):', 'Anvil:')}</strong> {t('O jogador pode utilizar bigornas públicas distribuídas pelo mapa ou comprar uma bigorna pessoal com', 'Players can use public anvils around the world or buy a personal anvil with')}{' '}
-                  <MapLink x={32698} y={31677} z={2} title="A Sweaty Cyclops" showCoords>
+                  <MapLink poiId="sweaty-cyclops" showCoords>
                     A Sweaty Cyclops
                   </MapLink>{' '}
                   {t('por 5.000 gps.', 'for 5,000 gps.')}
@@ -354,7 +354,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 {
                   label: t('Mestre da Profissão', 'Profession Master'),
                   value: (
-                    <MapLink x={33166} y={31808} z={6} title="Alexander" showCoords>
+                    <MapLink poiId="alexander" showCoords>
                       Alexander (Edron)
                     </MapLink>
                   ),
@@ -407,7 +407,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
             <ul className="list-disc pl-5 space-y-3 mt-2">
               <li>
                 <strong className="text-medieval-gold">{t('Como adquirir:', 'How to acquire:')}</strong> {t('Compre o Gold Converter com o NPC', 'Buy the Gold Converter from NPC')}{' '}
-                <MapLink x={33166} y={31808} z={6} title="Alexander" showCoords>
+                <MapLink poiId="alexander" showCoords>
                   Alexander (Edron)
                 </MapLink>{' '}
                 {t('por 500gp (vem com 100 cargas).', 'for 500gp (comes with 100 charges).')}
@@ -420,7 +420,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
             <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="alchemy-crystals">{t('💎 Encantamentos com Cristais', '💎 Crystal Enchantments')}</h4>
             <p>
               {t('Os cristais são usados para dar bônus às suas armas de treino, que podem ser compradas no NPC', 'Crystals are used to give bonuses to your training weapons, which can be purchased from NPC')}{' '}
-              <MapLink x={32361} y={32197} z={7} title="Sam" showCoords>
+              <MapLink poiId="sam" showCoords>
                 Sam em Thais
               </MapLink>{' '}
               {t('ou para transformar seus summons em criaturas Elite.', 'or to transform your summons into Elite creatures.')}
@@ -563,7 +563,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 {
                   label: t('Mestre da Profissão', 'Profession Master'),
                   value: (
-                    <MapLink x={32623} y={31905} z={5} title="Budrik" showCoords>
+                    <MapLink poiId="budrik" showCoords>
                       Budrik (Dwarf Mines - Kazordoon)
                     </MapLink>
                   ),
@@ -821,7 +821,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               items={[
                 {
                   label: t('NPC Mentor', 'Mentor NPC'),
-                  value: t('Aldren (Nivandria Lands)', 'Aldren (Nivandria Lands)'),
+                  value: <MapLink poiId="aldren" showCoords>Aldren (Nivandria Lands)</MapLink>,
                 },
                 {
                   label: t('Taxa de Inscrição', 'Enrollment Fee'),
@@ -1267,7 +1267,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 {
                   label: t('NPC Mentor', 'Mentor NPC'),
                   value: (
-                    <MapLink x={32370} y={32210} z={6} title="Bjorn" showCoords>
+                    <MapLink poiId="bjorn" showCoords>
                       Bjorn (Castelo de Thais)
                     </MapLink>
                   ),
@@ -1380,13 +1380,13 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               <div className="mt-4 text-sm space-y-2">
                 <p>
                   <strong className="text-medieval-gold">{t('Dica de Compra:', 'Buying Tip:')}</strong> {t('Você pode comprar trigo por 1gp cada no NPC ', 'You can buy wheat for 1gp each from NPC ')}
-                  <MapLink x={32344} y={32225} z={7} title="Donald McRonald" showCoords>
+                  <MapLink poiId="donald-mcronald" showCoords>
                     Donald McRonald (Thais)
                   </MapLink>.
                 </p>
                 <p>
                   <strong className="text-medieval-gold">{t('Dica de Venda:', 'Selling Tip:')}</strong> {t('Venda os pães prontos por 2gp cada para o NPC ', 'Sell the baked bread for 2gp each to NPC ')}
-                  <MapLink x={32344} y={32228} z={7} title="Sherry McRonald" showCoords>
+                  <MapLink poiId="sherry-mcronald" showCoords>
                     Sherry McRonald (Thais)
                   </MapLink>.
                 </p>
@@ -1568,7 +1568,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 {
                   label: t('NPC Mentor', 'Mentor NPC'),
                   value: (
-                    <MapLink x={32369} y={32145} z={7} title="Kael" showCoords>
+                    <MapLink poiId="kael" showCoords>
                       Kael (Norte de Thais)
                     </MapLink>
                   ),
@@ -1717,7 +1717,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 {
                   label: t('Mestre da Profissão', 'Profession Master'),
                   value: (
-                    <MapLink x={32410} y={32230} z={7} title="Hoggle" showCoords>
+                    <MapLink poiId="hoggle" showCoords>
                       Hoggle (Leste de Thais)
                     </MapLink>
                   ),

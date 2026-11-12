@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 
@@ -167,6 +168,19 @@ app.get('/api/whoisonline', rateLimiter, async (req, res) => {
 // Health check para monitoramento na VPS
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', uptime: process.uptime(), timestamp: Date.now() });
+});
+
+// Endpoint para salvar calibração de POIs no disco (DEV / Admin)
+app.post('/api/save-poi', rateLimiter, (req, res) => {
+  try {
+    const data = req.body;
+    const targetPath = path.resolve(__dirname, 'src/data/poiCoords.json');
+    fs.writeFileSync(targetPath, JSON.stringify(data, null, 2), 'utf8');
+    res.json({ success: true, count: Object.keys(data).length });
+  } catch (err: any) {
+    console.error('Erro ao salvar poiCoords:', err);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // Dev or Production Serving

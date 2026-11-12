@@ -229,7 +229,7 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
               {language === 'pt' ? (
                 <>
                   A Spawn Essence é um field roxo que você joga no chão para acelerar ainda mais o respawn de uma área. Ela custa 1k gold coins e pode ser comprada no NPC{' '}
-                  <MapLink x={32346} y={32361} z={6} title="Defeated Whispers" showCoords>
+                  <MapLink poiId="defeated-whispers" showCoords>
                     Defeated Whispers em Shadowport
                   </MapLink>{' '}
                   (próximo à Bless em Thais).
@@ -237,7 +237,7 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
               ) : (
                 <>
                   The Spawn Essence is a purple field you throw on the ground to further accelerate the respawn of an area. It costs 1k gold coins and can be bought at NPC{' '}
-                  <MapLink x={32346} y={32361} z={6} title="Defeated Whispers" showCoords>
+                  <MapLink poiId="defeated-whispers" showCoords>
                     Defeated Whispers in Shadowport
                   </MapLink>{' '}
                   (near the Bless in Thais).
