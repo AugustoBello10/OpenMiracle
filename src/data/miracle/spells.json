@@ -1,0 +1,882 @@
+[
+  {
+    "id": 24,
+    "name": "Animate Dead",
+    "slug": "animate_dead",
+    "words": "adana mort",
+    "type": "conjure",
+    "magicLevel": 7,
+    "mana": 300,
+    "premium": true
+  },
+  {
+    "id": 56,
+    "name": "Antidote",
+    "slug": "antidote",
+    "words": "exana pox",
+    "type": "instant",
+    "magicLevel": 2,
+    "mana": 30,
+    "premium": false
+  },
+  {
+    "id": 20,
+    "name": "Antidote Rune",
+    "slug": "antidote_rune",
+    "words": "adana pox",
+    "type": "conjure",
+    "magicLevel": 5,
+    "mana": 50,
+    "premium": false
+  },
+  {
+    "id": 47,
+    "name": "Berserk",
+    "slug": "berserk",
+    "words": "exori",
+    "type": "instant",
+    "magicLevel": 5,
+    "mana": 0,
+    "premium": true
+  },
+  {
+    "id": 73,
+    "name": "Blood Wrath",
+    "slug": "blood_wrath",
+    "words": "utamo kor",
+    "type": "instant",
+    "magicLevel": 8,
+    "mana": 0,
+    "premium": false
+  },
+  {
+    "id": 82,
+    "name": "Cancel Invisibility",
+    "slug": "cancel_invisibility",
+    "words": "exana ina",
+    "type": "instant",
+    "magicLevel": 12,
+    "mana": 200,
+    "premium": true
+  },
+  {
+    "id": 88,
+    "name": "Cancel Magic Shield",
+    "slug": "cancel_magic_shield",
+    "words": "exana vita",
+    "type": "instant",
+    "magicLevel": 30,
+    "mana": 400,
+    "premium": false
+  },
+  {
+    "id": 63,
+    "name": "Challenge",
+    "slug": "challenge",
+    "words": "exeta res",
+    "type": "instant",
+    "magicLevel": 4,
+    "mana": 60,
+    "premium": true
+  },
+  {
+    "id": 27,
+    "name": "Chameleon",
+    "slug": "chameleon",
+    "words": "adevo ina",
+    "type": "conjure",
+    "magicLevel": 11,
+    "mana": 150,
+    "premium": false
+  },
+  {
+    "id": 31,
+    "name": "Conjure Arrow",
+    "slug": "conjure_arrow",
+    "words": "exevo con",
+    "type": "conjure",
+    "magicLevel": 2,
+    "mana": 40,
+    "premium": false
+  },
+  {
+    "id": 35,
+    "name": "Conjure Bolt",
+    "slug": "conjure_bolt",
+    "words": "exevo con mort",
+    "type": "conjure",
+    "magicLevel": 6,
+    "mana": 70,
+    "premium": true
+  },
+  {
+    "id": 32,
+    "name": "Conjure Hunting Arrow",
+    "slug": "conjure_hunting_arrow",
+    "words": "exevo gran con",
+    "type": "conjure",
+    "magicLevel": 4,
+    "mana": 80,
+    "premium": false
+  },
+  {
+    "id": 23,
+    "name": "Convince Creature",
+    "slug": "convince_creature",
+    "words": "adeta sio",
+    "type": "conjure",
+    "magicLevel": 10,
+    "mana": 100,
+    "premium": false
+  },
+  {
+    "id": 80,
+    "name": "Creature Illusion",
+    "slug": "creature_illusion",
+    "words": "utevo res ina",
+    "type": "instant",
+    "magicLevel": 10,
+    "mana": 100,
+    "premium": false
+  },
+  {
+    "id": 19,
+    "name": "Curse",
+    "slug": "curse",
+    "words": "adevo res vita",
+    "type": "conjure",
+    "magicLevel": 35,
+    "mana": 120,
+    "premium": true
+  },
+  {
+    "id": 72,
+    "name": "Dark Magic",
+    "slug": "dark_magic",
+    "words": "utamo mort",
+    "type": "instant",
+    "magicLevel": 60,
+    "mana": 800,
+    "premium": false
+  },
+  {
+    "id": 87,
+    "name": "Desintegrate",
+    "slug": "desintegrate",
+    "words": "exevo tera",
+    "type": "instant",
+    "magicLevel": 12,
+    "mana": 100,
+    "premium": true
+  },
+  {
+    "id": 25,
+    "name": "Desintegrate Rune",
+    "slug": "desintegrate_rune",
+    "words": "adito tera",
+    "type": "conjure",
+    "magicLevel": 8,
+    "mana": 100,
+    "premium": true
+  },
+  {
+    "id": 26,
+    "name": "Destroy Field",
+    "slug": "destroy_field",
+    "words": "adito grav",
+    "type": "conjure",
+    "magicLevel": 6,
+    "mana": 60,
+    "premium": false
+  },
+  {
+    "id": 76,
+    "name": "Eagle Eye",
+    "slug": "eagle_eye",
+    "words": "utamo tito",
+    "type": "instant",
+    "magicLevel": 10,
+    "mana": 100,
+    "premium": true
+  },
+  {
+    "id": 30,
+    "name": "Enchant Spear",
+    "slug": "enchant_spear",
+    "words": "exeta con",
+    "type": "conjure",
+    "magicLevel": 12,
+    "mana": 120,
+    "premium": true
+  },
+  {
+    "id": 37,
+    "name": "Enchant Staff",
+    "slug": "enchant_staff",
+    "words": "exeta vis",
+    "type": "conjure",
+    "magicLevel": 22,
+    "mana": 80,
+    "premium": true
+  },
+  {
+    "id": 41,
+    "name": "Energy Beam",
+    "slug": "energy_beam",
+    "words": "exevo vis lux",
+    "type": "instant",
+    "magicLevel": 10,
+    "mana": 100,
+    "premium": false
+  },
+  {
+    "id": 7,
+    "name": "Energy Field",
+    "slug": "energy_field",
+    "words": "adevo grav vis",
+    "type": "conjure",
+    "magicLevel": 5,
+    "mana": 80,
+    "premium": false
+  },
+  {
+    "id": 48,
+    "name": "Energy Strike",
+    "slug": "energy_strike",
+    "words": "exori vis",
+    "type": "instant",
+    "magicLevel": 3,
+    "mana": 20,
+    "premium": true
+  },
+  {
+    "id": 9,
+    "name": "Energy Wall",
+    "slug": "energy_wall",
+    "words": "adevo mas grav vis",
+    "type": "conjure",
+    "magicLevel": 18,
+    "mana": 250,
+    "premium": false
+  },
+  {
+    "id": 44,
+    "name": "Energy Wave",
+    "slug": "energy_wave",
+    "words": "exevo mort hur",
+    "type": "instant",
+    "magicLevel": 20,
+    "mana": 250,
+    "premium": true
+  },
+  {
+    "id": 8,
+    "name": "Energybomb",
+    "slug": "energybomb",
+    "words": "adevo mas vis",
+    "type": "conjure",
+    "magicLevel": 18,
+    "mana": 220,
+    "premium": true
+  },
+  {
+    "id": 11,
+    "name": "Envenom",
+    "slug": "envenom",
+    "words": "adevo res pox",
+    "type": "conjure",
+    "magicLevel": 7,
+    "mana": 100,
+    "premium": true
+  },
+  {
+    "id": 17,
+    "name": "Explosion",
+    "slug": "explosion",
+    "words": "adevo mas hur",
+    "type": "conjure",
+    "magicLevel": 12,
+    "mana": 180,
+    "premium": false
+  },
+  {
+    "id": 34,
+    "name": "Explosive Arrow",
+    "slug": "explosive_arrow",
+    "words": "exevo con flam",
+    "type": "conjure",
+    "magicLevel": 10,
+    "mana": 120,
+    "premium": false
+  },
+  {
+    "id": 65,
+    "name": "Find Person",
+    "slug": "find_person",
+    "words": "exiva",
+    "type": "instant",
+    "magicLevel": 0,
+    "mana": 20,
+    "premium": false
+  },
+  {
+    "id": 4,
+    "name": "Fire Field",
+    "slug": "fire_field",
+    "words": "adevo grav flam",
+    "type": "conjure",
+    "magicLevel": 3,
+    "mana": 60,
+    "premium": false
+  },
+  {
+    "id": 6,
+    "name": "Fire Wall",
+    "slug": "fire_wall",
+    "words": "adevo mas grav flam",
+    "type": "conjure",
+    "magicLevel": 13,
+    "mana": 200,
+    "premium": false
+  },
+  {
+    "id": 40,
+    "name": "Fire Wave",
+    "slug": "fire_wave",
+    "words": "exevo flam hur",
+    "type": "instant",
+    "magicLevel": 7,
+    "mana": 80,
+    "premium": false
+  },
+  {
+    "id": 12,
+    "name": "Fireball",
+    "slug": "fireball",
+    "words": "adori flam",
+    "type": "conjure",
+    "magicLevel": 5,
+    "mana": 60,
+    "premium": false
+  },
+  {
+    "id": 5,
+    "name": "Firebomb",
+    "slug": "firebomb",
+    "words": "adevo mas flam",
+    "type": "conjure",
+    "magicLevel": 9,
+    "mana": 150,
+    "premium": false
+  },
+  {
+    "id": 49,
+    "name": "Flame Strike",
+    "slug": "flame_strike",
+    "words": "exori flam",
+    "type": "instant",
+    "magicLevel": 3,
+    "mana": 20,
+    "premium": true
+  },
+  {
+    "id": 61,
+    "name": "Food",
+    "slug": "food",
+    "words": "exevo pan",
+    "type": "instant",
+    "magicLevel": 0,
+    "mana": 30,
+    "premium": false
+  },
+  {
+    "id": 39,
+    "name": "Force Strike",
+    "slug": "force_strike",
+    "words": "exori mort",
+    "type": "instant",
+    "magicLevel": 2,
+    "mana": 20,
+    "premium": true
+  },
+  {
+    "id": 16,
+    "name": "Frost Magic Missile",
+    "slug": "frost_magic_missile",
+    "words": "adori glaci",
+    "type": "conjure",
+    "magicLevel": 30,
+    "mana": 90,
+    "premium": false
+  },
+  {
+    "id": 42,
+    "name": "Great Energy Beam",
+    "slug": "great_energy_beam",
+    "words": "exevo gran vis lux",
+    "type": "instant",
+    "magicLevel": 14,
+    "mana": 200,
+    "premium": false
+  },
+  {
+    "id": 13,
+    "name": "Great Fireball",
+    "slug": "great_fireball",
+    "words": "adori gran flam",
+    "type": "conjure",
+    "magicLevel": 9,
+    "mana": 120,
+    "premium": false
+  },
+  {
+    "id": 70,
+    "name": "Great Light",
+    "slug": "great_light",
+    "words": "utevo gran lux",
+    "type": "instant",
+    "magicLevel": 3,
+    "mana": 60,
+    "premium": false
+  },
+  {
+    "id": 74,
+    "name": "Haste",
+    "slug": "haste",
+    "words": "utani hur",
+    "type": "instant",
+    "magicLevel": 4,
+    "mana": 60,
+    "premium": true
+  },
+  {
+    "id": 51,
+    "name": "Heal Friend",
+    "slug": "heal_friend",
+    "words": "exura sio",
+    "type": "instant",
+    "magicLevel": 7,
+    "mana": 70,
+    "premium": true
+  },
+  {
+    "id": 15,
+    "name": "Heavy Magic Missile",
+    "slug": "heavy_magic_missile",
+    "words": "adori gran",
+    "type": "conjure",
+    "magicLevel": 3,
+    "mana": 70,
+    "premium": false
+  },
+  {
+    "id": 64,
+    "name": "Hide",
+    "slug": "hide",
+    "words": "utana res",
+    "type": "instant",
+    "magicLevel": 8,
+    "mana": 60,
+    "premium": true
+  },
+  {
+    "id": 89,
+    "name": "House Entry Pos",
+    "slug": "house_entry_pos",
+    "words": "aleta kor",
+    "type": "instant",
+    "magicLevel": 0,
+    "mana": 0,
+    "premium": false
+  },
+  {
+    "id": 50,
+    "name": "Ice Strike",
+    "slug": "ice_strike",
+    "words": "exori glaci",
+    "type": "instant",
+    "magicLevel": 6,
+    "mana": 25,
+    "premium": true
+  },
+  {
+    "id": 43,
+    "name": "Ice Wave",
+    "slug": "ice_wave",
+    "words": "exevo glaci hur",
+    "type": "instant",
+    "magicLevel": 40,
+    "mana": 130,
+    "premium": true
+  },
+  {
+    "id": 59,
+    "name": "Intense Healing",
+    "slug": "intense_healing",
+    "words": "exura gran",
+    "type": "instant",
+    "magicLevel": 2,
+    "mana": 40,
+    "premium": false
+  },
+  {
+    "id": 21,
+    "name": "Intense Healing Rune",
+    "slug": "intense_healing_rune",
+    "words": "adura gran",
+    "type": "conjure",
+    "magicLevel": 4,
+    "mana": 60,
+    "premium": false
+  },
+  {
+    "id": 84,
+    "name": "Invisible",
+    "slug": "invisible",
+    "words": "utana vid",
+    "type": "instant",
+    "magicLevel": 15,
+    "mana": 210,
+    "premium": false
+  },
+  {
+    "id": 68,
+    "name": "Levitate",
+    "slug": "levitate",
+    "words": "exani hur",
+    "type": "instant",
+    "magicLevel": 3,
+    "mana": 50,
+    "premium": true
+  },
+  {
+    "id": 66,
+    "name": "Light",
+    "slug": "light",
+    "words": "utevo lux",
+    "type": "instant",
+    "magicLevel": 0,
+    "mana": 20,
+    "premium": false
+  },
+  {
+    "id": 55,
+    "name": "Light Healing",
+    "slug": "light_healing",
+    "words": "exura",
+    "type": "instant",
+    "magicLevel": 1,
+    "mana": 25,
+    "premium": false
+  },
+  {
+    "id": 14,
+    "name": "Light Magic Missile",
+    "slug": "light_magic_missile",
+    "words": "adori",
+    "type": "conjure",
+    "magicLevel": 1,
+    "mana": 40,
+    "premium": false
+  },
+  {
+    "id": 77,
+    "name": "Lord of Destruction",
+    "slug": "lord_of_destruction",
+    "words": "utamo vis tito",
+    "type": "instant",
+    "magicLevel": 50,
+    "mana": 400,
+    "premium": true
+  },
+  {
+    "id": 67,
+    "name": "Magic Rope",
+    "slug": "magic_rope",
+    "words": "exani tera",
+    "type": "instant",
+    "magicLevel": 1,
+    "mana": 20,
+    "premium": true
+  },
+  {
+    "id": 71,
+    "name": "Magic Shield",
+    "slug": "magic_shield",
+    "words": "utamo vita",
+    "type": "instant",
+    "magicLevel": 4,
+    "mana": 50,
+    "premium": false
+  },
+  {
+    "id": 28,
+    "name": "Magic Wall",
+    "slug": "magic_wall",
+    "words": "adevo grav tera",
+    "type": "conjure",
+    "magicLevel": 14,
+    "mana": 250,
+    "premium": true
+  },
+  {
+    "id": 86,
+    "name": "Mass Growth",
+    "slug": "mass_growth",
+    "words": "exevo mas vita",
+    "type": "instant",
+    "magicLevel": 60,
+    "mana": 880,
+    "premium": true
+  },
+  {
+    "id": 54,
+    "name": "Mass Healing",
+    "slug": "mass_healing",
+    "words": "exura gran mas res",
+    "type": "instant",
+    "magicLevel": 19,
+    "mana": 150,
+    "premium": true
+  },
+  {
+    "id": 53,
+    "name": "Mass Purification",
+    "slug": "mass_purification",
+    "words": "utura mas res",
+    "type": "instant",
+    "magicLevel": 36,
+    "mana": 240,
+    "premium": true
+  },
+  {
+    "id": 58,
+    "name": "Mass Revitalize",
+    "slug": "mass_revitalize",
+    "words": "exana mas res",
+    "type": "instant",
+    "magicLevel": 16,
+    "mana": 120,
+    "premium": false
+  },
+  {
+    "id": 29,
+    "name": "Paralyze",
+    "slug": "paralyze",
+    "words": "adana ani",
+    "type": "conjure",
+    "magicLevel": 35,
+    "mana": 600,
+    "premium": true
+  },
+  {
+    "id": 1,
+    "name": "Poison Field",
+    "slug": "poison_field",
+    "words": "adevo grav pox",
+    "type": "conjure",
+    "magicLevel": 2,
+    "mana": 50,
+    "premium": false
+  },
+  {
+    "id": 46,
+    "name": "Poison Storm",
+    "slug": "poison_storm",
+    "words": "exevo gran mas pox",
+    "type": "instant",
+    "magicLevel": 28,
+    "mana": 600,
+    "premium": true
+  },
+  {
+    "id": 3,
+    "name": "Poison Wall",
+    "slug": "poison_wall",
+    "words": "adevo mas grav pox",
+    "type": "conjure",
+    "magicLevel": 11,
+    "mana": 160,
+    "premium": false
+  },
+  {
+    "id": 38,
+    "name": "Poisonbomb",
+    "slug": "poisonbomb",
+    "words": "adevo mas pox",
+    "type": "conjure",
+    "magicLevel": 8,
+    "mana": 130,
+    "premium": true
+  },
+  {
+    "id": 33,
+    "name": "Poisoned Arrow",
+    "slug": "poisoned_arrow",
+    "words": "exevo con pox",
+    "type": "conjure",
+    "magicLevel": 5,
+    "mana": 70,
+    "premium": false
+  },
+  {
+    "id": 36,
+    "name": "Power Bolt",
+    "slug": "power_bolt",
+    "words": "exevo con vis",
+    "type": "conjure",
+    "magicLevel": 14,
+    "mana": 200,
+    "premium": true
+  },
+  {
+    "id": 52,
+    "name": "Purification",
+    "slug": "purification",
+    "words": "utura sio",
+    "type": "instant",
+    "magicLevel": 23,
+    "mana": 70,
+    "premium": true
+  },
+  {
+    "id": 57,
+    "name": "Revitalize",
+    "slug": "revitalize",
+    "words": "exana res",
+    "type": "instant",
+    "magicLevel": 8,
+    "mana": 60,
+    "premium": false
+  },
+  {
+    "id": 10,
+    "name": "Soulfire",
+    "slug": "soulfire",
+    "words": "adevo res flam",
+    "type": "conjure",
+    "magicLevel": 13,
+    "mana": 150,
+    "premium": true
+  },
+  {
+    "id": 75,
+    "name": "Strong Haste",
+    "slug": "strong_haste",
+    "words": "utani gran hur",
+    "type": "instant",
+    "magicLevel": 8,
+    "mana": 100,
+    "premium": true
+  },
+  {
+    "id": 79,
+    "name": "Strong Time Step",
+    "slug": "strong_time_step",
+    "words": "exani gran tempo",
+    "type": "instant",
+    "magicLevel": 56,
+    "mana": 1600,
+    "premium": true
+  },
+  {
+    "id": 18,
+    "name": "Sudden Death",
+    "slug": "sudden_death",
+    "words": "adori vita vis",
+    "type": "conjure",
+    "magicLevel": 25,
+    "mana": 220,
+    "premium": false
+  },
+  {
+    "id": 69,
+    "name": "Summon Call",
+    "slug": "summon_call",
+    "words": "exani res",
+    "type": "instant",
+    "magicLevel": 26,
+    "mana": 0,
+    "premium": true
+  },
+  {
+    "id": 81,
+    "name": "Summon Creature",
+    "slug": "summon_creature",
+    "words": "utevo res",
+    "type": "instant",
+    "magicLevel": 16,
+    "mana": 0,
+    "premium": false
+  },
+  {
+    "id": 78,
+    "name": "Time Step",
+    "slug": "time_step",
+    "words": "exani tempo",
+    "type": "instant",
+    "magicLevel": 18,
+    "mana": 900,
+    "premium": true
+  },
+  {
+    "id": 45,
+    "name": "Ultimate Explosion",
+    "slug": "ultimate_explosion",
+    "words": "exevo gran mas vis",
+    "type": "instant",
+    "magicLevel": 40,
+    "mana": 800,
+    "premium": true
+  },
+  {
+    "id": 60,
+    "name": "Ultimate Healing",
+    "slug": "ultimate_healing",
+    "words": "exura vita",
+    "type": "instant",
+    "magicLevel": 8,
+    "mana": 80,
+    "premium": false
+  },
+  {
+    "id": 22,
+    "name": "Ultimate Healing Rune",
+    "slug": "ultimate_healing_rune",
+    "words": "adura vita",
+    "type": "conjure",
+    "magicLevel": 11,
+    "mana": 100,
+    "premium": false
+  },
+  {
+    "id": 83,
+    "name": "Ultimate Light",
+    "slug": "ultimate_light",
+    "words": "utevo vis lux",
+    "type": "instant",
+    "magicLevel": 12,
+    "mana": 140,
+    "premium": true
+  },
+  {
+    "id": 62,
+    "name": "Undead Legion",
+    "slug": "undead_legion",
+    "words": "exana mas mort",
+    "type": "instant",
+    "magicLevel": 15,
+    "mana": 400,
+    "premium": true
+  },
+  {
+    "id": 85,
+    "name": "Wild Growth",
+    "slug": "wild_growth",
+    "words": "exevo grav vita",
+    "type": "instant",
+    "magicLevel": 13,
+    "mana": 220,
+    "premium": true
+  }
+]

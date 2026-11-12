@@ -1,0 +1,857 @@
+[
+  {
+    "name": "Amazon",
+    "slug": "amazon",
+    "image": "/images/miracle/creatures/amazon.png"
+  },
+  {
+    "name": "Ancient Frozen Dragon",
+    "slug": "ancient_frozen_dragon",
+    "image": "/images/miracle/creatures/ancient_frozen_dragon.png"
+  },
+  {
+    "name": "Ancient Scarab",
+    "slug": "ancient_scarab",
+    "image": "/images/miracle/creatures/ancient_scarab.png"
+  },
+  {
+    "name": "Armored Fire Devil",
+    "slug": "armored_fire_devil",
+    "image": "/images/miracle/creatures/armored_fire_devil.png"
+  },
+  {
+    "name": "Assassin",
+    "slug": "assassin",
+    "image": "/images/miracle/creatures/assassin.png"
+  },
+  {
+    "name": "Azra'Gorath",
+    "slug": "azragorath",
+    "image": "/images/miracle/creatures/azragorath.png"
+  },
+  {
+    "name": "Badger",
+    "slug": "badger",
+    "image": "/images/miracle/creatures/badger.png"
+  },
+  {
+    "name": "Bandit",
+    "slug": "bandit",
+    "image": "/images/miracle/creatures/bandit.png"
+  },
+  {
+    "name": "Banshee",
+    "slug": "banshee",
+    "image": "/images/miracle/creatures/banshee.png"
+  },
+  {
+    "name": "Barbarian",
+    "slug": "barbarian",
+    "image": "/images/miracle/creatures/barbarian.png"
+  },
+  {
+    "name": "Barbarian Berserker",
+    "slug": "barbarian_berserker",
+    "image": "/images/miracle/creatures/barbarian_berserker.png"
+  },
+  {
+    "name": "Barbarian Brute",
+    "slug": "barbarian_brute",
+    "image": "/images/miracle/creatures/barbarian_brute.png"
+  },
+  {
+    "name": "Barbarian Dothraki",
+    "slug": "barbarian_dothraki",
+    "image": "/images/miracle/creatures/barbarian_dothraki.png"
+  },
+  {
+    "name": "Barbarian Guard",
+    "slug": "barbarian_guard",
+    "image": "/images/miracle/creatures/barbarian_guard.png"
+  },
+  {
+    "name": "Bat",
+    "slug": "bat",
+    "image": "/images/miracle/creatures/bat.png"
+  },
+  {
+    "name": "Bear",
+    "slug": "bear",
+    "image": "/images/miracle/creatures/bear.png"
+  },
+  {
+    "name": "Behemoth",
+    "slug": "behemoth",
+    "image": "/images/miracle/creatures/behemoth.png"
+  },
+  {
+    "name": "Beholder",
+    "slug": "beholder",
+    "image": "/images/miracle/creatures/beholder.png"
+  },
+  {
+    "name": "Black Crystal",
+    "slug": "black_crystal",
+    "image": "/images/miracle/creatures/black_crystal.png"
+  },
+  {
+    "name": "Black Knight",
+    "slug": "black_knight",
+    "image": "/images/miracle/creatures/black_knight.png"
+  },
+  {
+    "name": "Black Sheep",
+    "slug": "black_sheep",
+    "image": "/images/miracle/creatures/black_sheep.png"
+  },
+  {
+    "name": "Blue Djinn",
+    "slug": "blue_djinn",
+    "image": "/images/miracle/creatures/blue_djinn.png"
+  },
+  {
+    "name": "Bonebeast",
+    "slug": "bonebeast",
+    "image": "/images/miracle/creatures/bonebeast.png"
+  },
+  {
+    "name": "Bug",
+    "slug": "bug",
+    "image": "/images/miracle/creatures/bug.png"
+  },
+  {
+    "name": "Cave Rat",
+    "slug": "cave_rat",
+    "image": "/images/miracle/creatures/cave_rat.png"
+  },
+  {
+    "name": "Centipede",
+    "slug": "centipede",
+    "image": "/images/miracle/creatures/centipede.png"
+  },
+  {
+    "name": "Cobra",
+    "slug": "cobra",
+    "image": "/images/miracle/creatures/cobra.png"
+  },
+  {
+    "name": "Corrupted Ice Spider",
+    "slug": "corrupted_ice_spider",
+    "image": "/images/miracle/creatures/corrupted_ice_spider.png"
+  },
+  {
+    "name": "Crypt Shambler",
+    "slug": "crypt_shambler",
+    "image": "/images/miracle/creatures/crypt_shambler.png"
+  },
+  {
+    "name": "Cyclops",
+    "slug": "cyclops",
+    "image": "/images/miracle/creatures/cyclops.png"
+  },
+  {
+    "name": "Cyclops Warrior",
+    "slug": "cyclops_warrior",
+    "image": "/images/miracle/creatures/cyclops_warrior.png"
+  },
+  {
+    "name": "Dark Frozen Monk",
+    "slug": "dark_frozen_monk",
+    "image": "/images/miracle/creatures/dark_frozen_monk.png"
+  },
+  {
+    "name": "Dark Magician",
+    "slug": "dark_magician",
+    "image": "/images/miracle/creatures/dark_magician.png"
+  },
+  {
+    "name": "Dark Monk",
+    "slug": "dark_monk",
+    "image": "/images/miracle/creatures/dark_monk.png"
+  },
+  {
+    "name": "Dark Wraith",
+    "slug": "dark_wraith",
+    "image": "/images/miracle/creatures/dark_wraith.png"
+  },
+  {
+    "name": "Death Beholder",
+    "slug": "death_beholder",
+    "image": "/images/miracle/creatures/death_beholder.png"
+  },
+  {
+    "name": "Deathslicer",
+    "slug": "deathslicer",
+    "image": "/images/miracle/creatures/deathslicer.png"
+  },
+  {
+    "name": "Deer",
+    "slug": "deer",
+    "image": "/images/miracle/creatures/deer.png"
+  },
+  {
+    "name": "Demon",
+    "slug": "demon",
+    "image": "/images/miracle/creatures/demon.png"
+  },
+  {
+    "name": "Demon Skeleton",
+    "slug": "demon_skeleton",
+    "image": "/images/miracle/creatures/demon_skeleton.png"
+  },
+  {
+    "name": "Demongoblin",
+    "slug": "demongoblin",
+    "image": "/images/miracle/creatures/demongoblin.png"
+  },
+  {
+    "name": "Dog",
+    "slug": "dog",
+    "image": "/images/miracle/creatures/dog.png"
+  },
+  {
+    "name": "Dragon",
+    "slug": "dragon",
+    "image": "/images/miracle/creatures/dragon.png"
+  },
+  {
+    "name": "Dragon Lord",
+    "slug": "dragon_lord",
+    "image": "/images/miracle/creatures/dragon_lord.png"
+  },
+  {
+    "name": "Dwarf",
+    "slug": "dwarf",
+    "image": "/images/miracle/creatures/dwarf.png"
+  },
+  {
+    "name": "Dwarf Cavebomb",
+    "slug": "dwarf_cavebomb",
+    "image": "/images/miracle/creatures/dwarf_cavebomb.png"
+  },
+  {
+    "name": "Dwarf Geomancer",
+    "slug": "dwarf_geomancer",
+    "image": "/images/miracle/creatures/dwarf_geomancer.png"
+  },
+  {
+    "name": "Dwarf Guard",
+    "slug": "dwarf_guard",
+    "image": "/images/miracle/creatures/dwarf_guard.png"
+  },
+  {
+    "name": "Dwarf Lord",
+    "slug": "dwarf_lord",
+    "image": "/images/miracle/creatures/dwarf_lord.png"
+  },
+  {
+    "name": "Dwarf Miner",
+    "slug": "dwarf_miner",
+    "image": "/images/miracle/creatures/dwarf_miner.png"
+  },
+  {
+    "name": "Dwarf Reaver",
+    "slug": "dwarf_reaver",
+    "image": "/images/miracle/creatures/dwarf_reaver.png"
+  },
+  {
+    "name": "Dwarf Smith",
+    "slug": "dwarf_smith",
+    "image": "/images/miracle/creatures/dwarf_smith.png"
+  },
+  {
+    "name": "Dwarf Soldier",
+    "slug": "dwarf_soldier",
+    "image": "/images/miracle/creatures/dwarf_soldier.png"
+  },
+  {
+    "name": "Dwarf Tyrant",
+    "slug": "dwarf_tyrant",
+    "image": "/images/miracle/creatures/dwarf_tyrant.png"
+  },
+  {
+    "name": "Efreet",
+    "slug": "efreet",
+    "image": "/images/miracle/creatures/efreet.png"
+  },
+  {
+    "name": "Elder Beholder",
+    "slug": "elder_beholder",
+    "image": "/images/miracle/creatures/elder_beholder.png"
+  },
+  {
+    "name": "Elf",
+    "slug": "elf",
+    "image": "/images/miracle/creatures/elf.png"
+  },
+  {
+    "name": "Elf Arcanist",
+    "slug": "elf_arcanist",
+    "image": "/images/miracle/creatures/elf_arcanist.png"
+  },
+  {
+    "name": "Elf Scout",
+    "slug": "elf_scout",
+    "image": "/images/miracle/creatures/elf_scout.png"
+  },
+  {
+    "name": "Enslaved Dwarf",
+    "slug": "enslaved_dwarf",
+    "image": "/images/miracle/creatures/enslaved_dwarf.png"
+  },
+  {
+    "name": "Fire Devil",
+    "slug": "fire_devil",
+    "image": "/images/miracle/creatures/fire_devil.png"
+  },
+  {
+    "name": "Fire Elemental",
+    "slug": "fire_elemental",
+    "image": "/images/miracle/creatures/fire_elemental.png"
+  },
+  {
+    "name": "Flamethrower",
+    "slug": "flamethrower",
+    "image": "/images/miracle/creatures/flamethrower.png"
+  },
+  {
+    "name": "Frost Bug",
+    "slug": "frost_bug",
+    "image": "/images/miracle/creatures/frost_bug.png"
+  },
+  {
+    "name": "Frost Elf Assassin",
+    "slug": "frost_elf_assassin",
+    "image": "/images/miracle/creatures/frost_elf_assassin.png"
+  },
+  {
+    "name": "Frost Elf Sorcerer",
+    "slug": "frost_elf_sorcerer",
+    "image": "/images/miracle/creatures/frost_elf_sorcerer.png"
+  },
+  {
+    "name": "Frost Elf Strider",
+    "slug": "frost_elf_strider",
+    "image": "/images/miracle/creatures/frost_elf_strider.png"
+  },
+  {
+    "name": "Frost Elf Warrior",
+    "slug": "frost_elf_warrior",
+    "image": "/images/miracle/creatures/frost_elf_warrior.png"
+  },
+  {
+    "name": "Frost Spider",
+    "slug": "frost_spider",
+    "image": "/images/miracle/creatures/frost_spider.png"
+  },
+  {
+    "name": "Frost Troll",
+    "slug": "frost_troll",
+    "image": "/images/miracle/creatures/frost_troll.png"
+  },
+  {
+    "name": "Frost Walker Reaper",
+    "slug": "frost_walker_reaper",
+    "image": "/images/miracle/creatures/frost_walker_reaper.png"
+  },
+  {
+    "name": "Frost Walker Savage",
+    "slug": "frost_walker_savage",
+    "image": "/images/miracle/creatures/frost_walker_savage.png"
+  },
+  {
+    "name": "Frost Walker Shaman",
+    "slug": "frost_walker_shaman",
+    "image": "/images/miracle/creatures/frost_walker_shaman.png"
+  },
+  {
+    "name": "Frost Walker Wraith",
+    "slug": "frost_walker_wraith",
+    "image": "/images/miracle/creatures/frost_walker_wraith.png"
+  },
+  {
+    "name": "Frozen Behemoth",
+    "slug": "frozen_behemoth",
+    "image": "/images/miracle/creatures/frozen_behemoth.png"
+  },
+  {
+    "name": "Frozen Overlord",
+    "slug": "frozen_overlord",
+    "image": "/images/miracle/creatures/frozen_overlord.png"
+  },
+  {
+    "name": "Gargoyle",
+    "slug": "gargoyle",
+    "image": "/images/miracle/creatures/gargoyle.png"
+  },
+  {
+    "name": "Gazer",
+    "slug": "gazer",
+    "image": "/images/miracle/creatures/gazer.png"
+  },
+  {
+    "name": "Ghost",
+    "slug": "ghost",
+    "image": "/images/miracle/creatures/ghost.png"
+  },
+  {
+    "name": "Ghoul",
+    "slug": "ghoul",
+    "image": "/images/miracle/creatures/ghoul.png"
+  },
+  {
+    "name": "Giant Crystal Spider",
+    "slug": "giant_crystal_spider",
+    "image": "/images/miracle/creatures/giant_crystal_spider.png"
+  },
+  {
+    "name": "Giant Spider",
+    "slug": "giant_spider",
+    "image": "/images/miracle/creatures/giant_spider.png"
+  },
+  {
+    "name": "Glacial Dragon",
+    "slug": "glacial_dragon",
+    "image": "/images/miracle/creatures/glacial_dragon.png"
+  },
+  {
+    "name": "Goblin",
+    "slug": "goblin",
+    "image": "/images/miracle/creatures/goblin.png"
+  },
+  {
+    "name": "Green Djinn",
+    "slug": "green_djinn",
+    "image": "/images/miracle/creatures/green_djinn.png"
+  },
+  {
+    "name": "Hero",
+    "slug": "hero",
+    "image": "/images/miracle/creatures/hero.png"
+  },
+  {
+    "name": "Hunter",
+    "slug": "hunter",
+    "image": "/images/miracle/creatures/hunter.png"
+  },
+  {
+    "name": "Hyaena",
+    "slug": "hyaena",
+    "image": "/images/miracle/creatures/hyaena.png"
+  },
+  {
+    "name": "Hydra",
+    "slug": "hydra",
+    "image": "/images/miracle/creatures/hydra.png"
+  },
+  {
+    "name": "Ice Colossus",
+    "slug": "ice_colossus",
+    "image": "/images/miracle/creatures/ice_colossus.png"
+  },
+  {
+    "name": "Ice Demon Spider",
+    "slug": "ice_demon_spider",
+    "image": "/images/miracle/creatures/ice_demon_spider.png"
+  },
+  {
+    "name": "Ice Elemental",
+    "slug": "ice_elemental",
+    "image": "/images/miracle/creatures/ice_elemental.png"
+  },
+  {
+    "name": "Ice Golem",
+    "slug": "ice_golem",
+    "image": "/images/miracle/creatures/ice_golem.png"
+  },
+  {
+    "name": "Ice Witch",
+    "slug": "ice_witch",
+    "image": "/images/miracle/creatures/ice_witch.png"
+  },
+  {
+    "name": "Infernalist",
+    "slug": "infernalist",
+    "image": "/images/miracle/creatures/infernalist.png"
+  },
+  {
+    "name": "Kraglin",
+    "slug": "kraglin",
+    "image": "/images/miracle/creatures/kraglin.png"
+  },
+  {
+    "name": "Kraglin Archer",
+    "slug": "kraglin_archer",
+    "image": "/images/miracle/creatures/kraglin_archer.png"
+  },
+  {
+    "name": "Kraglin Berserker",
+    "slug": "kraglin_berserker",
+    "image": "/images/miracle/creatures/kraglin_berserker.png"
+  },
+  {
+    "name": "Kraglin Shaman",
+    "slug": "kraglin_shaman",
+    "image": "/images/miracle/creatures/kraglin_shaman.png"
+  },
+  {
+    "name": "Larva",
+    "slug": "larva",
+    "image": "/images/miracle/creatures/larva.png"
+  },
+  {
+    "name": "Lava Golem",
+    "slug": "lava_golem",
+    "image": "/images/miracle/creatures/lava_golem.png"
+  },
+  {
+    "name": "Lich",
+    "slug": "lich",
+    "image": "/images/miracle/creatures/lich.png"
+  },
+  {
+    "name": "Lion",
+    "slug": "lion",
+    "image": "/images/miracle/creatures/lion.png"
+  },
+  {
+    "name": "Lost Berserker",
+    "slug": "lost_berserker",
+    "image": "/images/miracle/creatures/lost_berserker.png"
+  },
+  {
+    "name": "Magicthrower",
+    "slug": "magicthrower",
+    "image": "/images/miracle/creatures/magicthrower.png"
+  },
+  {
+    "name": "Marid",
+    "slug": "marid",
+    "image": "/images/miracle/creatures/marid.png"
+  },
+  {
+    "name": "Mimic",
+    "slug": "mimic",
+    "image": "/images/miracle/creatures/mimic.png"
+  },
+  {
+    "name": "Minotaur",
+    "slug": "minotaur",
+    "image": "/images/miracle/creatures/minotaur.png"
+  },
+  {
+    "name": "Minotaur Archer",
+    "slug": "minotaur_archer",
+    "image": "/images/miracle/creatures/minotaur_archer.png"
+  },
+  {
+    "name": "Minotaur Champion",
+    "slug": "minotaur_champion",
+    "image": "/images/miracle/creatures/minotaur_champion.png"
+  },
+  {
+    "name": "Minotaur Executioner",
+    "slug": "minotaur_executioner",
+    "image": "/images/miracle/creatures/minotaur_executioner.png"
+  },
+  {
+    "name": "Minotaur Guard",
+    "slug": "minotaur_guard",
+    "image": "/images/miracle/creatures/minotaur_guard.png"
+  },
+  {
+    "name": "Minotaur Mage",
+    "slug": "minotaur_mage",
+    "image": "/images/miracle/creatures/minotaur_mage.png"
+  },
+  {
+    "name": "Monk",
+    "slug": "monk",
+    "image": "/images/miracle/creatures/monk.png"
+  },
+  {
+    "name": "Morgrothar",
+    "slug": "morgrothar",
+    "image": "/images/miracle/creatures/morgrothar.png"
+  },
+  {
+    "name": "Mummy",
+    "slug": "mummy",
+    "image": "/images/miracle/creatures/mummy.png"
+  },
+  {
+    "name": "Necromancer",
+    "slug": "necromancer",
+    "image": "/images/miracle/creatures/necromancer.png"
+  },
+  {
+    "name": "Orc",
+    "slug": "orc",
+    "image": "/images/miracle/creatures/orc.png"
+  },
+  {
+    "name": "Orc Beastmaster",
+    "slug": "orc_beastmaster",
+    "image": "/images/miracle/creatures/orc_beastmaster.png"
+  },
+  {
+    "name": "Orc Berserker",
+    "slug": "orc_berserker",
+    "image": "/images/miracle/creatures/orc_berserker.png"
+  },
+  {
+    "name": "Orc Dragon Rider",
+    "slug": "orc_dragon_rider",
+    "image": "/images/miracle/creatures/orc_dragon_rider.png"
+  },
+  {
+    "name": "Orc Leader",
+    "slug": "orc_leader",
+    "image": "/images/miracle/creatures/orc_leader.png"
+  },
+  {
+    "name": "Orc Pyromancer",
+    "slug": "orc_pyromancer",
+    "image": "/images/miracle/creatures/orc_pyromancer.png"
+  },
+  {
+    "name": "Orc Rider",
+    "slug": "orc_rider",
+    "image": "/images/miracle/creatures/orc_rider.png"
+  },
+  {
+    "name": "Orc Shaman",
+    "slug": "orc_shaman",
+    "image": "/images/miracle/creatures/orc_shaman.png"
+  },
+  {
+    "name": "Orc Spearman",
+    "slug": "orc_spearman",
+    "image": "/images/miracle/creatures/orc_spearman.png"
+  },
+  {
+    "name": "Orc Warlord",
+    "slug": "orc_warlord",
+    "image": "/images/miracle/creatures/orc_warlord.png"
+  },
+  {
+    "name": "Orc Warrior",
+    "slug": "orc_warrior",
+    "image": "/images/miracle/creatures/orc_warrior.png"
+  },
+  {
+    "name": "Pig",
+    "slug": "pig",
+    "image": "/images/miracle/creatures/pig.png"
+  },
+  {
+    "name": "Plaguethrower",
+    "slug": "plaguethrower",
+    "image": "/images/miracle/creatures/plaguethrower.png"
+  },
+  {
+    "name": "Poison Spider",
+    "slug": "poison_spider",
+    "image": "/images/miracle/creatures/poison_spider.png"
+  },
+  {
+    "name": "Polar Bear",
+    "slug": "polar_bear",
+    "image": "/images/miracle/creatures/polar_bear.png"
+  },
+  {
+    "name": "Priestess",
+    "slug": "priestess",
+    "image": "/images/miracle/creatures/priestess.png"
+  },
+  {
+    "name": "Rabbit",
+    "slug": "rabbit",
+    "image": "/images/miracle/creatures/rabbit.png"
+  },
+  {
+    "name": "Rat",
+    "slug": "rat",
+    "image": "/images/miracle/creatures/rat.png"
+  },
+  {
+    "name": "Rotworm",
+    "slug": "rotworm",
+    "image": "/images/miracle/creatures/rotworm.png"
+  },
+  {
+    "name": "Scarab",
+    "slug": "scarab",
+    "image": "/images/miracle/creatures/scarab.png"
+  },
+  {
+    "name": "Scorpion",
+    "slug": "scorpion",
+    "image": "/images/miracle/creatures/scorpion.png"
+  },
+  {
+    "name": "Sealed Golem",
+    "slug": "sealed_golem",
+    "image": "/images/miracle/creatures/sealed_golem.png"
+  },
+  {
+    "name": "Sheep",
+    "slug": "sheep",
+    "image": "/images/miracle/creatures/sheep.png"
+  },
+  {
+    "name": "Shredderthrower",
+    "slug": "shredderthrower",
+    "image": "/images/miracle/creatures/shredderthrower.png"
+  },
+  {
+    "name": "Skeleton",
+    "slug": "skeleton",
+    "image": "/images/miracle/creatures/skeleton.png"
+  },
+  {
+    "name": "Skeleton Archmage",
+    "slug": "skeleton_archmage",
+    "image": "/images/miracle/creatures/skeleton_archmage.png"
+  },
+  {
+    "name": "Skeleton Guard",
+    "slug": "skeleton_guard",
+    "image": "/images/miracle/creatures/skeleton_guard.png"
+  },
+  {
+    "name": "Skunk",
+    "slug": "skunk",
+    "image": "/images/miracle/creatures/skunk.png"
+  },
+  {
+    "name": "Slime",
+    "slug": "slime",
+    "image": "/images/miracle/creatures/slime.png"
+  },
+  {
+    "name": "Smuggler",
+    "slug": "smuggler",
+    "image": "/images/miracle/creatures/smuggler.png"
+  },
+  {
+    "name": "Snake",
+    "slug": "snake",
+    "image": "/images/miracle/creatures/snake.png"
+  },
+  {
+    "name": "Snow Hunter",
+    "slug": "snow_hunter",
+    "image": "/images/miracle/creatures/snow_hunter.png"
+  },
+  {
+    "name": "Spider",
+    "slug": "spider",
+    "image": "/images/miracle/creatures/spider.png"
+  },
+  {
+    "name": "Spiked Hero",
+    "slug": "spiked_hero",
+    "image": "/images/miracle/creatures/spiked_hero.png"
+  },
+  {
+    "name": "Stalker",
+    "slug": "stalker",
+    "image": "/images/miracle/creatures/stalker.png"
+  },
+  {
+    "name": "Stone Golem",
+    "slug": "stone_golem",
+    "image": "/images/miracle/creatures/stone_golem.png"
+  },
+  {
+    "name": "Swamp Troll",
+    "slug": "swamp_troll",
+    "image": "/images/miracle/creatures/swamp_troll.png"
+  },
+  {
+    "name": "Tarantula",
+    "slug": "tarantula",
+    "image": "/images/miracle/creatures/tarantula.png"
+  },
+  {
+    "name": "Troll",
+    "slug": "troll",
+    "image": "/images/miracle/creatures/troll.png"
+  },
+  {
+    "name": "Valkyrie",
+    "slug": "valkyrie",
+    "image": "/images/miracle/creatures/valkyrie.png"
+  },
+  {
+    "name": "Valkyrie Warden",
+    "slug": "valkyrie_warden",
+    "image": "/images/miracle/creatures/valkyrie_warden.png"
+  },
+  {
+    "name": "Vampire",
+    "slug": "vampire",
+    "image": "/images/miracle/creatures/vampire.png"
+  },
+  {
+    "name": "War Wolf",
+    "slug": "war_wolf",
+    "image": "/images/miracle/creatures/war_wolf.png"
+  },
+  {
+    "name": "Warlock",
+    "slug": "warlock",
+    "image": "/images/miracle/creatures/warlock.png"
+  },
+  {
+    "name": "Wasp",
+    "slug": "wasp",
+    "image": "/images/miracle/creatures/wasp.png"
+  },
+  {
+    "name": "White Knight",
+    "slug": "white_knight",
+    "image": "/images/miracle/creatures/white_knight.png"
+  },
+  {
+    "name": "White Lion",
+    "slug": "white_lion",
+    "image": "/images/miracle/creatures/white_lion.png"
+  },
+  {
+    "name": "Wild Warrior",
+    "slug": "wild_warrior",
+    "image": "/images/miracle/creatures/wild_warrior.png"
+  },
+  {
+    "name": "Winter Dragon",
+    "slug": "winter_dragon",
+    "image": "/images/miracle/creatures/winter_dragon.png"
+  },
+  {
+    "name": "Winter War Wolf",
+    "slug": "winter_war_wolf",
+    "image": "/images/miracle/creatures/winter_war_wolf.png"
+  },
+  {
+    "name": "Winter Wolf",
+    "slug": "winter_wolf",
+    "image": "/images/miracle/creatures/winter_wolf.png"
+  },
+  {
+    "name": "Witch",
+    "slug": "witch",
+    "image": "/images/miracle/creatures/witch.png"
+  },
+  {
+    "name": "Wolf",
+    "slug": "wolf",
+    "image": "/images/miracle/creatures/wolf.png"
+  },
+  {
+    "name": "Yeti",
+    "slug": "yeti",
+    "image": "/images/miracle/creatures/yeti.png"
+  }
+]
