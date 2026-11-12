@@ -1,0 +1,3013 @@
+{
+  "attribution": {
+    "key": "attribution",
+    "title": "Attribution System",
+    "url": "https://miracle74.com/?subtopic=gamefeatures&page=attribution",
+    "imagesExtracted": [
+      "/images/miracle/features/attrFrames3.jpg"
+    ],
+    "sections": [
+      {
+        "heading": "Rare Drops",
+        "content": [
+          "All items with clasification level have a chance of being dropped with attributes. More common items have a very low chance of being looted with an attribute, while particularly rare items have a good chance of having an attribute when dropped. Items can even drop with more than 1 attribute, but this is even rarer. This chance also varies depending on the monster that is defeated, e.g.: you have a higher chance of getting an attributed sword as a drop from a dragon than from a rotworm."
+        ]
+      },
+      {
+        "heading": "Enchantments",
+        "content": [
+          "To enchant an item with attributes, you need to gather the specific mystic rune. Each item type requires a different rune, (e.g: weapons are enchanted with ember runes, while armors can be enchanted with molten runes). These special runes can be crafted or acquired through mystic bags (dropped by elite monsters). To procced with the enchantment, you also need arcane orbs (consumable resources acquired through the NPC Alexander in Edron). The chance of a sucessfully enchantment is the average chance of all available attributes for that item. You can also choose to use the grand arcane orb which offers a +50% increase in the final enchantment chance."
+        ]
+      },
+      {
+        "heading": "Attribute Removal",
+        "content": [
+          "Fiery stones could be used to remove the entire enchantment of an item in order to acquire pulverized ores (which are materials for craft mystic runes). The more enchantments an item has, the more ores it can provide when the enchantment is destroyed."
+        ]
+      },
+      {
+        "heading": "Attribute Protection",
+        "content": [
+          "On death, each item equipped on the character has 20% chance to completely break the enchantment. To protect your item enchantments, you need to acquire the \"The Arcane Guardian\" bless from the NPCs Eremo or Humphrey. This bless lasts for 10 days, but the time is only counted while in battle and for each attribute equipped on the character, the time decays 10% faster."
+        ]
+      },
+      {
+        "heading": "Attributes List",
+        "content": [
+          "Name Effect Attack Increase item attack",
+          "Defense Increase item defense",
+          "Armor Increase item armor",
+          "Fist Fighting Increase fist fighting skill",
+          "Sword Fighting Increase sword fighting skill",
+          "Axe Fighting Increase axe fighting skill",
+          "Club Fighting Increase club fighting skill",
+          "Distance Fighting Increase distance fighting skill",
+          "Shielding Increase shielding skill",
+          "Magic Level Increase magic level",
+          "*Only for mages. Max Health Increase character max health",
+          "*/1 for knights, /1.5 for paladins, /3 for mages Max Mana Increase character max mana",
+          "*/1 for mages, /2 for paladins, /6 for knights Health Regen Increase character health regeneration",
+          "Mana Regen Increase character mana regeneration",
+          "Healing Increase character healing amount by items and spells",
+          "Mana Healing Increase character mana healing amount by items",
+          "Absorb Health Convert physical damage taken as health with certain chance",
+          "Absorb Mana Convert some of elemental damage taken as mana with certain chance",
+          "Speed Increase item speed",
+          "Protect Physical Increase character physical protection",
+          "Protect Fire Increase character fire protection",
+          "Protect Energy Increase character energy protection",
+          "Protect Poison Increase character poison protection",
+          "Protect Ice Increase character ice protection",
+          "Protect Death Increase character death protection",
+          "Protect Mana Drain Increase character mana drain protection",
+          "Protect Life Drain Increase character life drain protection",
+          "Protect Elements Increase character fire, energy and poison protection",
+          "Protect All Increase character protection against all damage types",
+          "Reflect Physical Reflect some of physical damage taken with certain chance",
+          "Reflect Fire Reflect some of fire damage taken with certain chance",
+          "Reflect Energy Reflect some of energy damage taken with certain chance",
+          "Reflect Poison Reflect some of poison damage taken with certain chance",
+          "Reflect Ice Reflect some of ice damage taken with certain chance",
+          "Reflect Elements Reflect some of fire, energy or poison damage taken with certain chance",
+          "Damage Physical Increase character physical damage",
+          "Damage Fire Increase character fire damage",
+          "Damage Energy Increase character energy damage",
+          "Damage Poison Increase character poison damage",
+          "Damage Ice Increase character ice damage",
+          "Damage Death Increase character death damage",
+          "Critical Hit Apply more amount of damage on physical hits with certain chance",
+          "Critical Spell Apply more amount of damage on spells with certain chance",
+          "Attack Interval Decrease item attack interval",
+          "Life Leech Convert some amount of damage applied as health with certain chance",
+          "Mana Leech Convert some amount of damage applied as mana with certain chance",
+          "Hitchance Increase item hitchance",
+          "Burning Apply burning status with certain chance on hit (inflict fire damage per turn)",
+          "Poison Apply poison status with certain chance on hit (inflict poison damage per turn)",
+          "Electrify Apply electrify status with certain chance on hit (inflict energy damage per turn)",
+          "Bleeding Apply bleeding status with certain chance on hit (inflict physical damage per turn)",
+          "Freeze Apply freeze status with certain chance on hit (paralyze target for some time)",
+          "Dodge Dodge an attack completely with certain chance",
+          "Arrow Guard Increase character physical protection against ranged attacks",
+          "Perfuration Chance to completely break target armor",
+          "Crushing Blow Chance to completely break target defense",
+          "Double Bash Chance to attack twice in one turn, with the second attack dealing 50% damage.",
+          "Berserk Chance to gain a +10% boost to your total melee skill and +18% to your movement speed for 8 seconds",
+          "Destruction Chance to gain a +10% boost to your total melee, distance and magic level (mages only) for 8 seconds",
+          "Momentum Chance to decrease your exhaust time by 1 second.",
+          "Mitigation Chance to reduce some amount of damage",
+          "Vibrancy Chance to resist to paralyze from monsters",
+          "Weight Decrease item weight"
+        ]
+      }
+    ],
+    "tables": [
+      [
+        [
+          "Name",
+          "Effect"
+        ],
+        [
+          "Attack",
+          "Increase item attack"
+        ],
+        [
+          "Defense",
+          "Increase item defense"
+        ],
+        [
+          "Armor",
+          "Increase item armor"
+        ],
+        [
+          "Fist Fighting",
+          "Increase fist fighting skill"
+        ],
+        [
+          "Sword Fighting",
+          "Increase sword fighting skill"
+        ],
+        [
+          "Axe Fighting",
+          "Increase axe fighting skill"
+        ],
+        [
+          "Club Fighting",
+          "Increase club fighting skill"
+        ],
+        [
+          "Distance Fighting",
+          "Increase distance fighting skill"
+        ],
+        [
+          "Shielding",
+          "Increase shielding skill"
+        ],
+        [
+          "Magic Level",
+          "Increase magic level *Only for mages."
+        ],
+        [
+          "Max Health",
+          "Increase character max health */1 for knights, /1.5 for paladins, /3 for mages"
+        ],
+        [
+          "Max Mana",
+          "Increase character max mana */1 for mages, /2 for paladins, /6 for knights"
+        ],
+        [
+          "Health Regen",
+          "Increase character health regeneration"
+        ],
+        [
+          "Mana Regen",
+          "Increase character mana regeneration"
+        ],
+        [
+          "Healing",
+          "Increase character healing amount by items and spells"
+        ],
+        [
+          "Mana Healing",
+          "Increase character mana healing amount by items"
+        ],
+        [
+          "Absorb Health",
+          "Convert physical damage taken as health with certain chance"
+        ],
+        [
+          "Absorb Mana",
+          "Convert some of elemental damage taken as mana with certain chance"
+        ],
+        [
+          "Speed",
+          "Increase item speed"
+        ],
+        [
+          "Protect Physical",
+          "Increase character physical protection"
+        ],
+        [
+          "Protect Fire",
+          "Increase character fire protection"
+        ],
+        [
+          "Protect Energy",
+          "Increase character energy protection"
+        ],
+        [
+          "Protect Poison",
+          "Increase character poison protection"
+        ],
+        [
+          "Protect Ice",
+          "Increase character ice protection"
+        ],
+        [
+          "Protect Death",
+          "Increase character death protection"
+        ],
+        [
+          "Protect Mana Drain",
+          "Increase character mana drain protection"
+        ],
+        [
+          "Protect Life Drain",
+          "Increase character life drain protection"
+        ],
+        [
+          "Protect Elements",
+          "Increase character fire, energy and poison protection"
+        ],
+        [
+          "Protect All",
+          "Increase character protection against all damage types"
+        ],
+        [
+          "Reflect Physical",
+          "Reflect some of physical damage taken with certain chance"
+        ],
+        [
+          "Reflect Fire",
+          "Reflect some of fire damage taken with certain chance"
+        ],
+        [
+          "Reflect Energy",
+          "Reflect some of energy damage taken with certain chance"
+        ],
+        [
+          "Reflect Poison",
+          "Reflect some of poison damage taken with certain chance"
+        ],
+        [
+          "Reflect Ice",
+          "Reflect some of ice damage taken with certain chance"
+        ],
+        [
+          "Reflect Elements",
+          "Reflect some of fire, energy or poison damage taken with certain chance"
+        ],
+        [
+          "Damage Physical",
+          "Increase character physical damage"
+        ],
+        [
+          "Damage Fire",
+          "Increase character fire damage"
+        ],
+        [
+          "Damage Energy",
+          "Increase character energy damage"
+        ],
+        [
+          "Damage Poison",
+          "Increase character poison damage"
+        ],
+        [
+          "Damage Ice",
+          "Increase character ice damage"
+        ],
+        [
+          "Damage Death",
+          "Increase character death damage"
+        ],
+        [
+          "Critical Hit",
+          "Apply more amount of damage on physical hits with certain chance"
+        ],
+        [
+          "Critical Spell",
+          "Apply more amount of damage on spells with certain chance"
+        ],
+        [
+          "Attack Interval",
+          "Decrease item attack interval"
+        ],
+        [
+          "Life Leech",
+          "Convert some amount of damage applied as health with certain chance"
+        ],
+        [
+          "Mana Leech",
+          "Convert some amount of damage applied as mana with certain chance"
+        ],
+        [
+          "Hitchance",
+          "Increase item hitchance"
+        ],
+        [
+          "Burning",
+          "Apply burning status with certain chance on hit (inflict fire damage per turn)"
+        ],
+        [
+          "Poison",
+          "Apply poison status with certain chance on hit (inflict poison damage per turn)"
+        ],
+        [
+          "Electrify",
+          "Apply electrify status with certain chance on hit (inflict energy damage per turn)"
+        ],
+        [
+          "Bleeding",
+          "Apply bleeding status with certain chance on hit (inflict physical damage per turn)"
+        ],
+        [
+          "Freeze",
+          "Apply freeze status with certain chance on hit (paralyze target for some time)"
+        ],
+        [
+          "Dodge",
+          "Dodge an attack completely with certain chance"
+        ],
+        [
+          "Arrow Guard",
+          "Increase character physical protection against ranged attacks"
+        ],
+        [
+          "Perfuration",
+          "Chance to completely break target armor"
+        ],
+        [
+          "Crushing Blow",
+          "Chance to completely break target defense"
+        ],
+        [
+          "Double Bash",
+          "Chance to attack twice in one turn, with the second attack dealing 50% damage."
+        ],
+        [
+          "Berserk",
+          "Chance to gain a +10% boost to your total melee skill and +18% to your movement speed for 8 seconds"
+        ],
+        [
+          "Destruction",
+          "Chance to gain a +10% boost to your total melee, distance and magic level (mages only) for 8 seconds"
+        ],
+        [
+          "Momentum",
+          "Chance to decrease your exhaust time by 1 second."
+        ],
+        [
+          "Mitigation",
+          "Chance to reduce some amount of damage"
+        ],
+        [
+          "Vibrancy",
+          "Chance to resist to paralyze from monsters"
+        ],
+        [
+          "Weight",
+          "Decrease item weight"
+        ]
+      ]
+    ],
+    "rawTextPreview": "Game Features » Attribution Attribution Different from the natural properties of the items, additional attributes can be added to specific items if they have classification 1 or above. Item classification means how many attributes this item can support, e.g: class 3 items can be enchanted with a max"
+  },
+  "exaltationforge": {
+    "key": "exaltationforge",
+    "title": "Exaltation Forge",
+    "url": "https://miracle74.com/?subtopic=gamefeatures&page=exaltationforge",
+    "imagesExtracted": [
+      "/images/miracle/features/8294.gif",
+      "/images/miracle/features/8293.gif",
+      "/images/miracle/features/8296.gif",
+      "/images/miracle/features/8367.gif",
+      "/images/miracle/features/8368.gif",
+      "/images/miracle/features/8297.gif",
+      "/images/miracle/features/8298.gif",
+      "/images/miracle/features/8179.gif",
+      "/images/miracle/features/8180.gif",
+      "/images/miracle/features/7601.gif",
+      "/images/miracle/features/7602.gif",
+      "/images/miracle/features/7509.gif",
+      "/images/miracle/features/8370.gif",
+      "/images/miracle/features/2156.gif",
+      "/images/miracle/features/2158.gif",
+      "/images/miracle/features/2153.gif",
+      "/images/miracle/features/2155.gif",
+      "/images/miracle/features/2154.gif",
+      "/images/miracle/features/8369.gif",
+      "/images/miracle/features/2147.gif",
+      "/images/miracle/features/2146.gif",
+      "/images/miracle/features/2150.gif",
+      "/images/miracle/features/2149.gif",
+      "/images/miracle/features/9476.gif",
+      "/images/miracle/features/2145.gif"
+    ],
+    "sections": [
+      {
+        "heading": "Fusion",
+        "content": [
+          "Fusion is the main method of increasing an item's tier through the exaltation ritual. It requires two identical items (including the same tier), crests, gold and a reagent crystal. When two items are successfully fused, a new item of the next tier will be created. However, the chance of success and requeriments needed in fusion varies depending on the item's classification.",
+          "To begin the fusion process, you must use a reagent crystal on the item. The target item needs to be inside a container, along with another identical item of the same tier and the respective crests."
+        ]
+      },
+      {
+        "heading": "Class 1",
+        "content": [
+          "Tier Chance Price Items Tier 1 10% 1,000 gp 5x copper crest"
+        ]
+      },
+      {
+        "heading": "Class 2",
+        "content": [
+          "Tier Chance Price Items Tier 1 20% 3,000 gp 5x copper crest",
+          "Tier 2 20% 5,000 gp 5x iron crest"
+        ]
+      },
+      {
+        "heading": "Class 3",
+        "content": [
+          "Tier Chance Price Items Tier 1 30% 10,500 gp 5x copper crest",
+          "Tier 2 30% 16,500 gp 5x iron crest",
+          "Tier 3 30% 22,500 gp 5x gold crest"
+        ]
+      },
+      {
+        "heading": "Class 4",
+        "content": [
+          "Tier Chance Price Items Tier 1 40% 38,000 gp 5x copper crest",
+          "Tier 2 40% 54,000 gp 5x iron crest",
+          "Tier 3 40% 70,000 gp 5x gold crest",
+          "Tier 4 40% 86,000 gp 5x mythan crest"
+        ]
+      },
+      {
+        "heading": "Class 5",
+        "content": [
+          "There are also some specific crystals and stones that could be used to enhance the fusion process:"
+        ]
+      },
+      {
+        "heading": "Effect Items",
+        "content": [
+          "Item Effect Rare Crystal Can be used inside the ritual container to enhance fusion success chance by +30%. Prismatic Crystal Can be used inside the ritual container to enhance fusion success chance by +50%. Earth Stone Enchant an item with \"earth guard\" attribute for 15m. Items enchanted with earth guard will hold it's attributes to apply to the next tiered item in the ritual. Frozen Stone Enchant an item with \"frozen guard\" attribute for 15m. If the fusion fails, items enchanted with frozen guard will be preserved (it will not break if it is tier 0), and the chance of tier downgrading will be decreased by -50%."
+        ]
+      },
+      {
+        "heading": "Convergence",
+        "content": [
+          "If an item is classification 4 or higher, you can transfer it's tier to any other item of the same or lower classification, through convergence. Similar to fusion, this process also requires a reagent crystal to be used on the item. To make the convergence, it is necessary the convergence crystal which must be kept together with the item in the same container, exalted cores and gold.",
+          "Only two equipments inside the container are allowed in the convergence process, 1 of them must be tier 0 and the other with tier 2 or higher. The convergence has 100% success chance and if the requeriments are meet, the higher tier item will transfer it's tier (minus one) to the another item."
+        ]
+      },
+      {
+        "heading": "Class 4",
+        "content": [
+          "Tier Change Price Items Tier 2 &#10145; 1 1,000,000 gp 1x exalted core",
+          "Tier 3 &#10145; 2 2,000,000 gp 2x exalted core",
+          "Tier 4 &#10145; 3 3,000,000 gp 3x exalted core"
+        ]
+      },
+      {
+        "heading": "Class 5",
+        "content": [
+          "Tier Change Price Items Tier 2 &#10145; 1 2,000,000 gp 2x exalted core",
+          "Tier 3 &#10145; 2 4,000,000 gp 3x exalted core",
+          "Tier 4 &#10145; 3 6,000,000 gp 4x exalted core",
+          "Tier 5 &#10145; 4 8,000,000 gp 5x exalted core",
+          "Tier 6 &#10145; 5 15,000,000 gp 10x exalted core",
+          "Tier 7 &#10145; 6 30,000,000 gp 20x exalted core"
+        ]
+      },
+      {
+        "heading": "Transcendence",
+        "content": [
+          "Transcendence is a state in which the item surpasses and break its limits, providing improvements to it's currently enchanted attributes for a period of time. The higher is the item's tier, the stronger will be the attributes that exceed its limit through transcendence. However, the requeriments for activate this state also increase.",
+          "The transcendence only enhances attributes that is currently enchanted on the item, it does not affect basic stats nor add new attributes.",
+          "There are 6 different types of transcendences, each one boosts the power of a specific set of attributes of the item. To transcend your equipment, simply use the corresponding gem on it, and if you have the necessary resources, your equipment will be transcended. Any item can have up to three types of transcendence active simultaneously. If you attempt to transcend with a type that is already active, the duration will just be renewed. The transcendence time is consumed only in battle.",
+          "It's also possible to break and remove all transcendences of an item by using Black gems."
+        ]
+      },
+      {
+        "heading": "Transcendences",
+        "content": [
+          "Name Gem Attributes Duration Dominion Attack, Life Leech, Burn, Damage Fire, Armor, Health Regen, Absorb Health, Protect Fire, Reflect Fire, Protect Life Drain 30m Bastion Defense, Mana Leech, Freeze, Damage Ice, Mana Regen, Absorb Mana, Protect Ice, Reflect Ice 30m Sorcery Magic Level, Electrify, Damage Energy, Max Mana, Mana Healing, Protect Energy, Reflect Energy, Protect Mana Drain 30m Mastery Axe Fighting, Club Fighting, Sword Fighting, Distance Fighting, Shielding, Poison, Damage Poison, Max Health, Healing, Protect Poison, Reflect Poison 30m Focus Critical Hit, Critical Spell, Perfuration, Crushing Blow, Attack Interval, Hitchance, Damage Physical, Protect Physical, Reflect Physical, Momentum, Mitigation 30m Supremacy Speed, Dodge, Vibrancy, Double Bash, Berserk, Destruction, Damage Death, Protect Death, Bleeding, Protect Elements, Reflect Elements 30m"
+        ]
+      },
+      {
+        "heading": "Dominion",
+        "content": [
+          "Dominion is an offensive-focused transcendence that pushes an item's combat capabilities beyond its normal limits. It strengthens direct damage and offensive effects while also improving survivability through increased armor, health regeneration, life leech, and fire protection, making Dominion particularly effective for equipment intended for sustained and aggressive combat."
+        ]
+      },
+      {
+        "heading": "Enhancements",
+        "content": [
+          "Tier Resources Attributes Tier 1 1x exalted core 3x small ruby Attack: +1",
+          "Life Leech: +1% amount, +1% chance",
+          "Burn: +1% amount, +1% chance",
+          "Damage Fire: +1%",
+          "Armor: +1",
+          "Health Regen: -0.5s",
+          "Absorb Health: +1% amount, +1% chance",
+          "Protect Fire: +1%",
+          "Reflect Fire: +1% amount, +1% chance",
+          "Protect Life Drain: +1% Tier 2 2x exalted core 5x small ruby Attack: +2",
+          "Life Leech: +2% amount, +2% chance",
+          "Burn: +2% amount, +2% chance",
+          "Damage Fire: +2%",
+          "Armor: +2",
+          "Health Regen: -1s",
+          "Absorb Health: +2% amount, +2% chance",
+          "Protect Fire: +2%",
+          "Reflect Fire: +2% amount, +2% chance",
+          "Protect Life Drain: +2% Tier 3 3x exalted core 7x small ruby Attack: +3",
+          "Life Leech: +3% amount, +3% chance",
+          "Burn: +3% amount, +3% chance",
+          "Damage Fire: +3%",
+          "Armor: +3",
+          "Health Regen: -1.5s",
+          "Absorb Health: +3% amount, +3% chance",
+          "Protect Fire: +3%",
+          "Reflect Fire: +3% amount, +3% chance",
+          "Protect Life Drain: +3% Tier 4 4x exalted core 9x small ruby Attack: +4",
+          "Life Leech: +4% amount, +4% chance",
+          "Burn: +4% amount, +4% chance",
+          "Damage Fire: +4%",
+          "Armor: +4",
+          "Health Regen: -2s",
+          "Absorb Health: +4% amount, +4% chance",
+          "Protect Fire: +4%",
+          "Reflect Fire: +4% amount, +4% chance",
+          "Protect Life Drain: +4% Tier 5 5x exalted core 12x small ruby Attack: +5",
+          "Life Leech: +5% amount, +5% chance",
+          "Burn: +5% amount, +5% chance",
+          "Damage Fire: +5%",
+          "Armor: +5",
+          "Health Regen: -2.5s",
+          "Absorb Health: +5% amount, +5% chance",
+          "Protect Fire: +5%",
+          "Reflect Fire: +5% amount, +5% chance",
+          "Protect Life Drain: +5% Tier 6 6x exalted core 18x small ruby Attack: +6",
+          "Life Leech: +6% amount, +6% chance",
+          "Burn: +6% amount, +6% chance",
+          "Damage Fire: +6%",
+          "Armor: +6",
+          "Health Regen: -3s",
+          "Absorb Health: +6% amount, +6% chance",
+          "Protect Fire: +6%",
+          "Reflect Fire: +6% amount, +6% chance",
+          "Protect Life Drain: +6% Tier 7 7x exalted core 25x small ruby Attack: +7",
+          "Life Leech: +7% amount, +7% chance",
+          "Burn: +7% amount, +7% chance",
+          "Damage Fire: +7%",
+          "Armor: +7",
+          "Health Regen: -3.5s",
+          "Absorb Health: +7% amount, +7% chance",
+          "Protect Fire: +7%",
+          "Reflect Fire: +7% amount, +7% chance",
+          "Protect Life Drain: +7%"
+        ]
+      },
+      {
+        "heading": "Bastion",
+        "content": [
+          "Bastion is a defensive-focused transcendence that reinforces an item's protective capabilities while improving mana sustain. Its effects increase defense, mana leech and mana regeneration, while strengthening ice-based damage and freezing effects. It also provides additional protection through mana absorption, ice resistance and ice reflection, allowing the wielder to withstand incoming attacks while maintaining resources during prolonged combat."
+        ]
+      },
+      {
+        "heading": "Enhancements",
+        "content": [
+          "Tier Resources Attributes Tier 1 1x exalted core 3x small sapphire Defense: +1",
+          "Mana Leech: +1% amount, +1% chance",
+          "Freeze: +1% amount, +1% chance",
+          "Damage Ice: +1%",
+          "Mana Regen: -0.5s",
+          "Absorb Mana: +1% amount, +1% chance",
+          "Protect Ice: +1%",
+          "Reflect Ice: +1% amount, +1% chance Tier 2 2x exalted core 5x small sapphire Defense: +2",
+          "Mana Leech: +2% amount, +2% chance",
+          "Freeze: +2% amount, +2% chance",
+          "Damage Ice: +2%",
+          "Mana Regen: -1s",
+          "Absorb Mana: +2% amount, +2% chance",
+          "Protect Ice: +2%",
+          "Reflect Ice: +2% amount, +2% chance Tier 3 3x exalted core 7x small sapphire Defense: +3",
+          "Mana Leech: +3% amount, +3% chance",
+          "Freeze: +3% amount, +3% chance",
+          "Damage Ice: +3%",
+          "Mana Regen: -1.5s",
+          "Absorb Mana: +3% amount, +3% chance",
+          "Protect Ice: +3%",
+          "Reflect Ice: +3% amount, +3% chance Tier 4 4x exalted core 9x small sapphire Defense: +4",
+          "Mana Leech: +4% amount, +4% chance",
+          "Freeze: +4% amount, +4% chance",
+          "Damage Ice: +4%",
+          "Mana Regen: -2s",
+          "Absorb Mana: +4% amount, +4% chance",
+          "Protect Ice: +4%",
+          "Reflect Ice: +4% amount, +4% chance Tier 5 5x exalted core 12x small sapphire Defense: +5",
+          "Mana Leech: +5% amount, +5% chance",
+          "Freeze: +5% amount, +5% chance",
+          "Damage Ice: +5%",
+          "Mana Regen: -2.5s",
+          "Absorb Mana: +5% amount, +5% chance",
+          "Protect Ice: +5%",
+          "Reflect Ice: +5% amount, +5% chance Tier 6 6x exalted core 18x small sapphire Defense: +6",
+          "Mana Leech: +6% amount, +6% chance",
+          "Freeze: +6% amount, +6% chance",
+          "Damage Ice: +6%",
+          "Mana Regen: -3s",
+          "Absorb Mana: +6% amount, +6% chance",
+          "Protect Ice: +6%",
+          "Reflect Ice: +6% amount, +6% chance Tier 7 7x exalted core 25x small sapphire Defense: +7",
+          "Mana Leech: +7% amount, +7% chance",
+          "Freeze: +7% amount, +7% chance",
+          "Damage Ice: +7%",
+          "Mana Regen: -3.5s",
+          "Absorb Mana: +7% amount, +7% chance",
+          "Protect Ice: +7%",
+          "Reflect Ice: +7% amount, +7% chance"
+        ]
+      },
+      {
+        "heading": "Sorcery",
+        "content": [
+          "Sorcery is a magic-focused transcendence designed to amplify spellcasting power and mana efficiency. Its effects increase magic level, maximum mana and mana healing, while enhancing energy-based attacks through additional energy damage and electrifying effects. It also strengthens magical defenses by providing protection against energy and mana drain, with the ability to reflect energy damage back at attackers. Sorcery is particularly suited for equipment focused on offensive magic, mana sustain and elemental combat."
+        ]
+      },
+      {
+        "heading": "Enhancements",
+        "content": [
+          "Tier Resources Attributes Tier 1 1x exalted core 3x small amethyst Magic Level: +1",
+          "Electrify: +1% amount, +1% chance",
+          "Damage Energy: +1%",
+          "Max Mana: +10",
+          "Mana Healing: +1%",
+          "Protect Energy: +1%",
+          "Reflect Energy: +1% amount, +1% chance",
+          "Protect Mana Drain: +1% Tier 2 2x exalted core 5x small amethyst Magic Level: +2",
+          "Electrify: +2% amount, +2% chance",
+          "Damage Energy: +2%",
+          "Max Mana: +20",
+          "Mana Healing: +2%",
+          "Protect Energy: +2%",
+          "Reflect Energy: +2% amount, +2% chance",
+          "Protect Mana Drain: +2% Tier 3 3x exalted core 7x small amethyst Magic Level: +3",
+          "Electrify: +3% amount, +3% chance",
+          "Damage Energy: +3%",
+          "Max Mana: +30",
+          "Mana Healing: +3%",
+          "Protect Energy: +3%",
+          "Reflect Energy: +3% amount, +3% chance",
+          "Protect Mana Drain: +3% Tier 4 4x exalted core 9x small amethyst Magic Level: +4",
+          "Electrify: +4% amount, +4% chance",
+          "Damage Energy: +4%",
+          "Max Mana: +40",
+          "Mana Healing: +4%",
+          "Protect Energy: +4%",
+          "Reflect Energy: +4% amount, +4% chance",
+          "Protect Mana Drain: +4% Tier 5 5x exalted core 12x small amethyst Magic Level: +5",
+          "Electrify: +5% amount, +5% chance",
+          "Damage Energy: +5%",
+          "Max Mana: +50",
+          "Mana Healing: +5%",
+          "Protect Energy: +5%",
+          "Reflect Energy: +5% amount, +5% chance",
+          "Protect Mana Drain: +5% Tier 6 6x exalted core 18x small amethyst Magic Level: +6",
+          "Electrify: +6% amount, +6% chance",
+          "Damage Energy: +6%",
+          "Max Mana: +60",
+          "Mana Healing: +6%",
+          "Protect Energy: +6%",
+          "Reflect Energy: +6% amount, +6% chance",
+          "Protect Mana Drain: +6% Tier 7 7x exalted core 25x small amethyst Magic Level: +7",
+          "Electrify: +7% amount, +7% chance",
+          "Damage Energy: +7%",
+          "Max Mana: +70",
+          "Mana Healing: +7%",
+          "Protect Energy: +7%",
+          "Reflect Energy: +7% amount, +7% chance",
+          "Protect Mana Drain: +7%"
+        ]
+      },
+      {
+        "heading": "Mastery",
+        "content": [
+          "Mastery is a combat-focused transcendence designed to enhance physical proficiency, durability and recovery. Its effects improve melee and distance fighting skills as well as shielding, while increasing maximum health and healing effectiveness. It also empowers poison-based attacks through additional poison damage and poisoning effects, while providing protection against poison and the ability to reflect poison effects back at attackers. Mastery is particularly suited for equipment focused on physical combat, survivability and sustained fighting."
+        ]
+      },
+      {
+        "heading": "Enhancements",
+        "content": [
+          "Tier Resources Attributes Tier 1 1x exalted core 3x small emerald Axe Fighting: +1",
+          "Club Fighting: +1",
+          "Sword Fighting: +1",
+          "Distance Fighting: +1",
+          "Shielding: +1",
+          "Poison: +1% amount, +1% chance",
+          "Damage Poison: +1%",
+          "Max Health: +20",
+          "Healing: +1%",
+          "Protect Poison: +1%",
+          "Reflect Poison: +1% amount, +1% chance Tier 2 2x exalted core 5x small emerald Axe Fighting: +2",
+          "Club Fighting: +2",
+          "Sword Fighting: +2",
+          "Distance Fighting: +2",
+          "Shielding: +2",
+          "Poison: +2% amount, +2% chance",
+          "Damage Poison: +2%",
+          "Max Health: +40",
+          "Healing: +2%",
+          "Protect Poison: +2%",
+          "Reflect Poison: +2% amount, +2% chance Tier 3 3x exalted core 7x small emerald Axe Fighting: +3",
+          "Club Fighting: +3",
+          "Sword Fighting: +3",
+          "Distance Fighting: +3",
+          "Shielding: +3",
+          "Poison: +3% amount, +3% chance",
+          "Damage Poison: +3%",
+          "Max Health: +60",
+          "Healing: +3%",
+          "Protect Poison: +3%",
+          "Reflect Poison: +3% amount, +3% chance Tier 4 4x exalted core 9x small emerald Axe Fighting: +4",
+          "Club Fighting: +4",
+          "Sword Fighting: +4",
+          "Distance Fighting: +4",
+          "Shielding: +4",
+          "Poison: +4% amount, +4% chance",
+          "Damage Poison: +4%",
+          "Max Health: +80",
+          "Healing: +4%",
+          "Protect Poison: +4%",
+          "Reflect Poison: +4% amount, +4% chance Tier 5 5x exalted core 12x small emerald Axe Fighting: +5",
+          "Club Fighting: +5",
+          "Sword Fighting: +5",
+          "Distance Fighting: +5",
+          "Shielding: +5",
+          "Poison: +5% amount, +5% chance",
+          "Damage Poison: +5%",
+          "Max Health: +100",
+          "Healing: +5%",
+          "Protect Poison: +5%",
+          "Reflect Poison: +5% amount, +5% chance Tier 6 6x exalted core 18x small emerald Axe Fighting: +6",
+          "Club Fighting: +6",
+          "Sword Fighting: +6",
+          "Distance Fighting: +6",
+          "Shielding: +6",
+          "Poison: +6% amount, +6% chance",
+          "Damage Poison: +6%",
+          "Max Health: +120",
+          "Healing: +6%",
+          "Protect Poison: +6%",
+          "Reflect Poison: +6% amount, +6% chance Tier 7 7x exalted core 25x small emerald Axe Fighting: +7",
+          "Club Fighting: +7",
+          "Sword Fighting: +7",
+          "Distance Fighting: +7",
+          "Shielding: +7",
+          "Poison: +7% amount, +7% chance",
+          "Damage Poison: +7%",
+          "Max Health: +140",
+          "Healing: +7%",
+          "Protect Poison: +7%",
+          "Reflect Poison: +7% amount, +7% chance"
+        ]
+      },
+      {
+        "heading": "Focus",
+        "content": [
+          "Focus is a precision-focused transcendence designed to maximize the effectiveness and consistency of both physical and magical attacks. Its effects enhance critical hits and critical spells, improve hit chance and attack speed, and strengthen physical damage through perfuration and crushing blows. It also provides additional protection against physical damage, with the ability to reflect incoming physical attacks. Focus further enhances combat flow through momentum and mitigation effects, making it particularly suited for equipment focused on precision, critical strikes and offensive performance."
+        ]
+      },
+      {
+        "heading": "Enhancements",
+        "content": [
+          "Tier Resources Attributes Tier 1 1x exalted core 3x small topaz Critical Hit: +1% amount, +1% chance",
+          "Critical Spell: +1% amount, +1% chance",
+          "Perfuration: +1%",
+          "Crushing Blow: +1%",
+          "Attack Interval: -1%",
+          "Hitchance: +1%",
+          "Damage Physical: +1%",
+          "Protect Physical: +1%",
+          "Reflect Physical: +1% amount, +1% chance",
+          "Momentum: +1%",
+          "Mitigation: +1% amount, +1% chance Tier 2 2x exalted core 5x small topaz Critical Hit: +2% amount, +2% chance",
+          "Critical Spell: +2% amount, +2% chance",
+          "Perfuration: +2%",
+          "Crushing Blow: +2%",
+          "Attack Interval: -2%",
+          "Hitchance: +2%",
+          "Damage Physical: +2%",
+          "Protect Physical: +2%",
+          "Reflect Physical: +2% amount, +2% chance",
+          "Momentum: +2%",
+          "Mitigation: +2% amount, +2% chance Tier 3 3x exalted core 7x small topaz Critical Hit: +3% amount, +3% chance",
+          "Critical Spell: +3% amount, +3% chance",
+          "Perfuration: +3%",
+          "Crushing Blow: +3%",
+          "Attack Interval: -3%",
+          "Hitchance: +3%",
+          "Damage Physical: +3%",
+          "Protect Physical: +3%",
+          "Reflect Physical: +3% amount, +3% chance",
+          "Momentum: +3%",
+          "Mitigation: +3% amount, +3% chance Tier 4 4x exalted core 9x small topaz Critical Hit: +4% amount, +4% chance",
+          "Critical Spell: +4% amount, +4% chance",
+          "Perfuration: +4%",
+          "Crushing Blow: +4%",
+          "Attack Interval: -4%",
+          "Hitchance: +4%",
+          "Damage Physical: +4%",
+          "Protect Physical: +4%",
+          "Reflect Physical: +4% amount, +4% chance",
+          "Momentum: +4%",
+          "Mitigation: +4% amount, +4% chance Tier 5 5x exalted core 12x small topaz Critical Hit: +5% amount, +5% chance",
+          "Critical Spell: +5% amount, +5% chance",
+          "Perfuration: +5%",
+          "Crushing Blow: +5%",
+          "Attack Interval: -5%",
+          "Hitchance: +5%",
+          "Damage Physical: +5%",
+          "Protect Physical: +5%",
+          "Reflect Physical: +5% amount, +5% chance",
+          "Momentum: +5%",
+          "Mitigation: +5% amount, +5% chance Tier 6 6x exalted core 18x small topaz Critical Hit: +6% amount, +6% chance",
+          "Critical Spell: +6% amount, +6% chance",
+          "Perfuration: +6%",
+          "Crushing Blow: +6%",
+          "Attack Interval: -6%",
+          "Hitchance: +6%",
+          "Damage Physical: +6%",
+          "Protect Physical: +6%",
+          "Reflect Physical: +6% amount, +6% chance",
+          "Momentum: +6%",
+          "Mitigation: +6% amount, +6% chance Tier 7 7x exalted core 25x small topaz Critical Hit: +7% amount, +7% chance",
+          "Critical Spell: +7% amount, +7% chance",
+          "Perfuration: +7%",
+          "Crushing Blow: +7%",
+          "Attack Interval: -7%",
+          "Hitchance: +7%",
+          "Damage Physical: +7%",
+          "Protect Physical: +7%",
+          "Reflect Physical: +7% amount, +7% chance",
+          "Momentum: +7%",
+          "Mitigation: +7% amount, +7% chance"
+        ]
+      },
+      {
+        "heading": "Supremacy",
+        "content": [
+          "Supremacy is an aggressive transcendence designed to enhance mobility, combat pressure and destructive potential. Its effects increase movement speed while providing abilities such as dodge and vibrancy, alongside powerful offensive bonuses including double bash, berserk and destruction. It also strengthens death and bleeding damage while providing protection against death and other elemental damage, with the ability to reflect elemental effects back at attackers. Supremacy is particularly suited for equipment focused on mobility, relentless aggression and high-impact combat."
+        ]
+      },
+      {
+        "heading": "Enhancements",
+        "content": [
+          "Tier Resources Attributes Tier 1 1x exalted core 3x small diamond Speed: +5",
+          "Dodge: +1%",
+          "Vibrancy: +1%",
+          "Double Bash: +1%",
+          "Berserk: +1%",
+          "Destruction: +1%",
+          "Damage Death: +1%",
+          "Protect Death: +1%",
+          "Bleeding: +1% amount, +1% chance",
+          "Protect Elements: +1%",
+          "Reflect Elements: +1% amount, +1% chance Tier 2 2x exalted core 5x small diamond Speed: +10",
+          "Dodge: +2%",
+          "Vibrancy: +2%",
+          "Double Bash: +2%",
+          "Berserk: +2%",
+          "Destruction: +2%",
+          "Damage Death: +2%",
+          "Protect Death: +2%",
+          "Bleeding: +2% amount, +2% chance",
+          "Protect Elements: +2%",
+          "Reflect Elements: +2% amount, +2% chance Tier 3 3x exalted core 7x small diamond Speed: +15",
+          "Dodge: +3%",
+          "Vibrancy: +3%",
+          "Double Bash: +3%",
+          "Berserk: +3%",
+          "Destruction: +3%",
+          "Damage Death: +3%",
+          "Protect Death: +3%",
+          "Bleeding: +3% amount, +3% chance",
+          "Protect Elements: +3%",
+          "Reflect Elements: +3% amount, +3% chance Tier 4 4x exalted core 9x small diamond Speed: +20",
+          "Dodge: +4%",
+          "Vibrancy: +4%",
+          "Double Bash: +4%",
+          "Berserk: +4%",
+          "Destruction: +4%",
+          "Damage Death: +4%",
+          "Protect Death: +4%",
+          "Bleeding: +4% amount, +4% chance",
+          "Protect Elements: +4%",
+          "Reflect Elements: +4% amount, +4% chance Tier 5 5x exalted core 12x small diamond Speed: +25",
+          "Dodge: +5%",
+          "Vibrancy: +5%",
+          "Double Bash: +5%",
+          "Berserk: +5%",
+          "Destruction: +5%",
+          "Damage Death: +5%",
+          "Protect Death: +5%",
+          "Bleeding: +5% amount, +5% chance",
+          "Protect Elements: +5%",
+          "Reflect Elements: +5% amount, +5% chance Tier 6 6x exalted core 18x small diamond Speed: +30",
+          "Dodge: +6%",
+          "Vibrancy: +6%",
+          "Double Bash: +6%",
+          "Berserk: +6%",
+          "Destruction: +6%",
+          "Damage Death: +6%",
+          "Protect Death: +6%",
+          "Bleeding: +6% amount, +6% chance",
+          "Protect Elements: +6%",
+          "Reflect Elements: +6% amount, +6% chance Tier 7 7x exalted core 25x small diamond Speed: +35",
+          "Dodge: +7%",
+          "Vibrancy: +7%",
+          "Double Bash: +7%",
+          "Berserk: +7%",
+          "Destruction: +7%",
+          "Damage Death: +7%",
+          "Protect Death: +7%",
+          "Bleeding: +7% amount, +7% chance",
+          "Protect Elements: +7%",
+          "Reflect Elements: +7% amount, +7% chance"
+        ]
+      }
+    ],
+    "tables": [
+      [
+        [
+          "Tier",
+          "Chance",
+          "Price",
+          "Items"
+        ],
+        [
+          "Tier 1",
+          "10%",
+          "1,000 gp",
+          "5x copper crest"
+        ]
+      ],
+      [
+        [
+          "Tier",
+          "Chance",
+          "Price",
+          "Items"
+        ],
+        [
+          "Tier 1",
+          "20%",
+          "3,000 gp",
+          "5x copper crest"
+        ],
+        [
+          "Tier 2",
+          "20%",
+          "5,000 gp",
+          "5x iron crest"
+        ]
+      ],
+      [
+        [
+          "Tier",
+          "Chance",
+          "Price",
+          "Items"
+        ],
+        [
+          "Tier 1",
+          "30%",
+          "10,500 gp",
+          "5x copper crest"
+        ],
+        [
+          "Tier 2",
+          "30%",
+          "16,500 gp",
+          "5x iron crest"
+        ],
+        [
+          "Tier 3",
+          "30%",
+          "22,500 gp",
+          "5x gold crest"
+        ]
+      ],
+      [
+        [
+          "Tier",
+          "Chance",
+          "Price",
+          "Items"
+        ],
+        [
+          "Tier 1",
+          "40%",
+          "38,000 gp",
+          "5x copper crest"
+        ],
+        [
+          "Tier 2",
+          "40%",
+          "54,000 gp",
+          "5x iron crest"
+        ],
+        [
+          "Tier 3",
+          "40%",
+          "70,000 gp",
+          "5x gold crest"
+        ],
+        [
+          "Tier 4",
+          "40%",
+          "86,000 gp",
+          "5x mythan crest"
+        ]
+      ],
+      [
+        [
+          "Tier",
+          "Chance",
+          "Price",
+          "Items"
+        ],
+        [
+          "Tier 1",
+          "50%",
+          "127,500 gp",
+          "5x copper crest"
+        ],
+        [
+          "Tier 2",
+          "50%",
+          "167,500 gp",
+          "5x iron crest"
+        ],
+        [
+          "Tier 3",
+          "50%",
+          "207,500 gp",
+          "5x gold crest"
+        ],
+        [
+          "Tier 4",
+          "50%",
+          "247,500 gp",
+          "5x mythan crest"
+        ],
+        [
+          "Tier 5",
+          "50%",
+          "287,500 gp",
+          "5x mystic crest"
+        ],
+        [
+          "Tier 6",
+          "50%",
+          "327,500 gp",
+          "5x platinum crest"
+        ],
+        [
+          "Tier 7",
+          "50%",
+          "367,500 gp",
+          "5x titanium crest"
+        ]
+      ],
+      [
+        [
+          "Item",
+          "",
+          "Effect"
+        ],
+        [
+          "Rare Crystal",
+          "",
+          "Can be used inside the ritual container to enhance fusion success chance by +30%."
+        ],
+        [
+          "Prismatic Crystal",
+          "",
+          "Can be used inside the ritual container to enhance fusion success chance by +50%."
+        ],
+        [
+          "Earth Stone",
+          "",
+          "Enchant an item with \"earth guard\" attribute for 15m. Items enchanted with earth guard will hold it's attributes to apply to the next tiered item in the ritual."
+        ],
+        [
+          "Frozen Stone",
+          "",
+          "Enchant an item with \"frozen guard\" attribute for 15m. If the fusion fails, items enchanted with frozen guard will be preserved (it will not break if it is tier 0), and the chance of tier downgrading will be decreased by -50%."
+        ]
+      ],
+      [
+        [
+          "Tier Change",
+          "Price",
+          "Items"
+        ],
+        [
+          "Tier 2 &#10145; 1",
+          "1,000,000 gp",
+          "1x exalted core"
+        ],
+        [
+          "Tier 3 &#10145; 2",
+          "2,000,000 gp",
+          "2x exalted core"
+        ],
+        [
+          "Tier 4 &#10145; 3",
+          "3,000,000 gp",
+          "3x exalted core"
+        ]
+      ],
+      [
+        [
+          "Tier Change",
+          "Price",
+          "Items"
+        ],
+        [
+          "Tier 2 &#10145; 1",
+          "2,000,000 gp",
+          "2x exalted core"
+        ],
+        [
+          "Tier 3 &#10145; 2",
+          "4,000,000 gp",
+          "3x exalted core"
+        ],
+        [
+          "Tier 4 &#10145; 3",
+          "6,000,000 gp",
+          "4x exalted core"
+        ],
+        [
+          "Tier 5 &#10145; 4",
+          "8,000,000 gp",
+          "5x exalted core"
+        ],
+        [
+          "Tier 6 &#10145; 5",
+          "15,000,000 gp",
+          "10x exalted core"
+        ],
+        [
+          "Tier 7 &#10145; 6",
+          "30,000,000 gp",
+          "20x exalted core"
+        ]
+      ],
+      [
+        [
+          "Name",
+          "Gem",
+          "Attributes",
+          "Duration"
+        ],
+        [
+          "Dominion",
+          "",
+          "Attack, Life Leech, Burn, Damage Fire, Armor, Health Regen, Absorb Health, Protect Fire, Reflect Fire, Protect Life Drain",
+          "30m"
+        ],
+        [
+          "Bastion",
+          "",
+          "Defense, Mana Leech, Freeze, Damage Ice, Mana Regen, Absorb Mana, Protect Ice, Reflect Ice",
+          "30m"
+        ],
+        [
+          "Sorcery",
+          "",
+          "Magic Level, Electrify, Damage Energy, Max Mana, Mana Healing, Protect Energy, Reflect Energy, Protect Mana Drain",
+          "30m"
+        ],
+        [
+          "Mastery",
+          "",
+          "Axe Fighting, Club Fighting, Sword Fighting, Distance Fighting, Shielding, Poison, Damage Poison, Max Health, Healing, Protect Poison, Reflect Poison",
+          "30m"
+        ],
+        [
+          "Focus",
+          "",
+          "Critical Hit, Critical Spell, Perfuration, Crushing Blow, Attack Interval, Hitchance, Damage Physical, Protect Physical, Reflect Physical, Momentum, Mitigation",
+          "30m"
+        ],
+        [
+          "Supremacy",
+          "",
+          "Speed, Dodge, Vibrancy, Double Bash, Berserk, Destruction, Damage Death, Protect Death, Bleeding, Protect Elements, Reflect Elements",
+          "30m"
+        ]
+      ],
+      [
+        [
+          "Tier",
+          "Resources",
+          "Attributes"
+        ],
+        [
+          "Tier 1",
+          "1x exalted core 3x small ruby",
+          "Attack: +1 Life Leech: +1% amount, +1% chance Burn: +1% amount, +1% chance Damage Fire: +1% Armor: +1 Health Regen: -0.5s Absorb Health: +1% amount, +1% chance Protect Fire: +1% Reflect Fire: +1% amount, +1% chance Protect Life Drain: +1%"
+        ],
+        [
+          "Tier 2",
+          "2x exalted core 5x small ruby",
+          "Attack: +2 Life Leech: +2% amount, +2% chance Burn: +2% amount, +2% chance Damage Fire: +2% Armor: +2 Health Regen: -1s Absorb Health: +2% amount, +2% chance Protect Fire: +2% Reflect Fire: +2% amount, +2% chance Protect Life Drain: +2%"
+        ],
+        [
+          "Tier 3",
+          "3x exalted core 7x small ruby",
+          "Attack: +3 Life Leech: +3% amount, +3% chance Burn: +3% amount, +3% chance Damage Fire: +3% Armor: +3 Health Regen: -1.5s Absorb Health: +3% amount, +3% chance Protect Fire: +3% Reflect Fire: +3% amount, +3% chance Protect Life Drain: +3%"
+        ],
+        [
+          "Tier 4",
+          "4x exalted core 9x small ruby",
+          "Attack: +4 Life Leech: +4% amount, +4% chance Burn: +4% amount, +4% chance Damage Fire: +4% Armor: +4 Health Regen: -2s Absorb Health: +4% amount, +4% chance Protect Fire: +4% Reflect Fire: +4% amount, +4% chance Protect Life Drain: +4%"
+        ],
+        [
+          "Tier 5",
+          "5x exalted core 12x small ruby",
+          "Attack: +5 Life Leech: +5% amount, +5% chance Burn: +5% amount, +5% chance Damage Fire: +5% Armor: +5 Health Regen: -2.5s Absorb Health: +5% amount, +5% chance Protect Fire: +5% Reflect Fire: +5% amount, +5% chance Protect Life Drain: +5%"
+        ],
+        [
+          "Tier 6",
+          "6x exalted core 18x small ruby",
+          "Attack: +6 Life Leech: +6% amount, +6% chance Burn: +6% amount, +6% chance Damage Fire: +6% Armor: +6 Health Regen: -3s Absorb Health: +6% amount, +6% chance Protect Fire: +6% Reflect Fire: +6% amount, +6% chance Protect Life Drain: +6%"
+        ],
+        [
+          "Tier 7",
+          "7x exalted core 25x small ruby",
+          "Attack: +7 Life Leech: +7% amount, +7% chance Burn: +7% amount, +7% chance Damage Fire: +7% Armor: +7 Health Regen: -3.5s Absorb Health: +7% amount, +7% chance Protect Fire: +7% Reflect Fire: +7% amount, +7% chance Protect Life Drain: +7%"
+        ]
+      ],
+      [
+        [
+          "Tier",
+          "Resources",
+          "Attributes"
+        ],
+        [
+          "Tier 1",
+          "1x exalted core 3x small sapphire",
+          "Defense: +1 Mana Leech: +1% amount, +1% chance Freeze: +1% amount, +1% chance Damage Ice: +1% Mana Regen: -0.5s Absorb Mana: +1% amount, +1% chance Protect Ice: +1% Reflect Ice: +1% amount, +1% chance"
+        ],
+        [
+          "Tier 2",
+          "2x exalted core 5x small sapphire",
+          "Defense: +2 Mana Leech: +2% amount, +2% chance Freeze: +2% amount, +2% chance Damage Ice: +2% Mana Regen: -1s Absorb Mana: +2% amount, +2% chance Protect Ice: +2% Reflect Ice: +2% amount, +2% chance"
+        ],
+        [
+          "Tier 3",
+          "3x exalted core 7x small sapphire",
+          "Defense: +3 Mana Leech: +3% amount, +3% chance Freeze: +3% amount, +3% chance Damage Ice: +3% Mana Regen: -1.5s Absorb Mana: +3% amount, +3% chance Protect Ice: +3% Reflect Ice: +3% amount, +3% chance"
+        ],
+        [
+          "Tier 4",
+          "4x exalted core 9x small sapphire",
+          "Defense: +4 Mana Leech: +4% amount, +4% chance Freeze: +4% amount, +4% chance Damage Ice: +4% Mana Regen: -2s Absorb Mana: +4% amount, +4% chance Protect Ice: +4% Reflect Ice: +4% amount, +4% chance"
+        ],
+        [
+          "Tier 5",
+          "5x exalted core 12x small sapphire",
+          "Defense: +5 Mana Leech: +5% amount, +5% chance Freeze: +5% amount, +5% chance Damage Ice: +5% Mana Regen: -2.5s Absorb Mana: +5% amount, +5% chance Protect Ice: +5% Reflect Ice: +5% amount, +5% chance"
+        ],
+        [
+          "Tier 6",
+          "6x exalted core 18x small sapphire",
+          "Defense: +6 Mana Leech: +6% amount, +6% chance Freeze: +6% amount, +6% chance Damage Ice: +6% Mana Regen: -3s Absorb Mana: +6% amount, +6% chance Protect Ice: +6% Reflect Ice: +6% amount, +6% chance"
+        ],
+        [
+          "Tier 7",
+          "7x exalted core 25x small sapphire",
+          "Defense: +7 Mana Leech: +7% amount, +7% chance Freeze: +7% amount, +7% chance Damage Ice: +7% Mana Regen: -3.5s Absorb Mana: +7% amount, +7% chance Protect Ice: +7% Reflect Ice: +7% amount, +7% chance"
+        ]
+      ],
+      [
+        [
+          "Tier",
+          "Resources",
+          "Attributes"
+        ],
+        [
+          "Tier 1",
+          "1x exalted core 3x small amethyst",
+          "Magic Level: +1 Electrify: +1% amount, +1% chance Damage Energy: +1% Max Mana: +10 Mana Healing: +1% Protect Energy: +1% Reflect Energy: +1% amount, +1% chance Protect Mana Drain: +1%"
+        ],
+        [
+          "Tier 2",
+          "2x exalted core 5x small amethyst",
+          "Magic Level: +2 Electrify: +2% amount, +2% chance Damage Energy: +2% Max Mana: +20 Mana Healing: +2% Protect Energy: +2% Reflect Energy: +2% amount, +2% chance Protect Mana Drain: +2%"
+        ],
+        [
+          "Tier 3",
+          "3x exalted core 7x small amethyst",
+          "Magic Level: +3 Electrify: +3% amount, +3% chance Damage Energy: +3% Max Mana: +30 Mana Healing: +3% Protect Energy: +3% Reflect Energy: +3% amount, +3% chance Protect Mana Drain: +3%"
+        ],
+        [
+          "Tier 4",
+          "4x exalted core 9x small amethyst",
+          "Magic Level: +4 Electrify: +4% amount, +4% chance Damage Energy: +4% Max Mana: +40 Mana Healing: +4% Protect Energy: +4% Reflect Energy: +4% amount, +4% chance Protect Mana Drain: +4%"
+        ],
+        [
+          "Tier 5",
+          "5x exalted core 12x small amethyst",
+          "Magic Level: +5 Electrify: +5% amount, +5% chance Damage Energy: +5% Max Mana: +50 Mana Healing: +5% Protect Energy: +5% Reflect Energy: +5% amount, +5% chance Protect Mana Drain: +5%"
+        ],
+        [
+          "Tier 6",
+          "6x exalted core 18x small amethyst",
+          "Magic Level: +6 Electrify: +6% amount, +6% chance Damage Energy: +6% Max Mana: +60 Mana Healing: +6% Protect Energy: +6% Reflect Energy: +6% amount, +6% chance Protect Mana Drain: +6%"
+        ],
+        [
+          "Tier 7",
+          "7x exalted core 25x small amethyst",
+          "Magic Level: +7 Electrify: +7% amount, +7% chance Damage Energy: +7% Max Mana: +70 Mana Healing: +7% Protect Energy: +7% Reflect Energy: +7% amount, +7% chance Protect Mana Drain: +7%"
+        ]
+      ],
+      [
+        [
+          "Tier",
+          "Resources",
+          "Attributes"
+        ],
+        [
+          "Tier 1",
+          "1x exalted core 3x small emerald",
+          "Axe Fighting: +1 Club Fighting: +1 Sword Fighting: +1 Distance Fighting: +1 Shielding: +1 Poison: +1% amount, +1% chance Damage Poison: +1% Max Health: +20 Healing: +1% Protect Poison: +1% Reflect Poison: +1% amount, +1% chance"
+        ],
+        [
+          "Tier 2",
+          "2x exalted core 5x small emerald",
+          "Axe Fighting: +2 Club Fighting: +2 Sword Fighting: +2 Distance Fighting: +2 Shielding: +2 Poison: +2% amount, +2% chance Damage Poison: +2% Max Health: +40 Healing: +2% Protect Poison: +2% Reflect Poison: +2% amount, +2% chance"
+        ],
+        [
+          "Tier 3",
+          "3x exalted core 7x small emerald",
+          "Axe Fighting: +3 Club Fighting: +3 Sword Fighting: +3 Distance Fighting: +3 Shielding: +3 Poison: +3% amount, +3% chance Damage Poison: +3% Max Health: +60 Healing: +3% Protect Poison: +3% Reflect Poison: +3% amount, +3% chance"
+        ],
+        [
+          "Tier 4",
+          "4x exalted core 9x small emerald",
+          "Axe Fighting: +4 Club Fighting: +4 Sword Fighting: +4 Distance Fighting: +4 Shielding: +4 Poison: +4% amount, +4% chance Damage Poison: +4% Max Health: +80 Healing: +4% Protect Poison: +4% Reflect Poison: +4% amount, +4% chance"
+        ],
+        [
+          "Tier 5",
+          "5x exalted core 12x small emerald",
+          "Axe Fighting: +5 Club Fighting: +5 Sword Fighting: +5 Distance Fighting: +5 Shielding: +5 Poison: +5% amount, +5% chance Damage Poison: +5% Max Health: +100 Healing: +5% Protect Poison: +5% Reflect Poison: +5% amount, +5% chance"
+        ],
+        [
+          "Tier 6",
+          "6x exalted core 18x small emerald",
+          "Axe Fighting: +6 Club Fighting: +6 Sword Fighting: +6 Distance Fighting: +6 Shielding: +6 Poison: +6% amount, +6% chance Damage Poison: +6% Max Health: +120 Healing: +6% Protect Poison: +6% Reflect Poison: +6% amount, +6% chance"
+        ],
+        [
+          "Tier 7",
+          "7x exalted core 25x small emerald",
+          "Axe Fighting: +7 Club Fighting: +7 Sword Fighting: +7 Distance Fighting: +7 Shielding: +7 Poison: +7% amount, +7% chance Damage Poison: +7% Max Health: +140 Healing: +7% Protect Poison: +7% Reflect Poison: +7% amount, +7% chance"
+        ]
+      ],
+      [
+        [
+          "Tier",
+          "Resources",
+          "Attributes"
+        ],
+        [
+          "Tier 1",
+          "1x exalted core 3x small topaz",
+          "Critical Hit: +1% amount, +1% chance Critical Spell: +1% amount, +1% chance Perfuration: +1% Crushing Blow: +1% Attack Interval: -1% Hitchance: +1% Damage Physical: +1% Protect Physical: +1% Reflect Physical: +1% amount, +1% chance Momentum: +1% Mitigation: +1% amount, +1% chance"
+        ],
+        [
+          "Tier 2",
+          "2x exalted core 5x small topaz",
+          "Critical Hit: +2% amount, +2% chance Critical Spell: +2% amount, +2% chance Perfuration: +2% Crushing Blow: +2% Attack Interval: -2% Hitchance: +2% Damage Physical: +2% Protect Physical: +2% Reflect Physical: +2% amount, +2% chance Momentum: +2% Mitigation: +2% amount, +2% chance"
+        ],
+        [
+          "Tier 3",
+          "3x exalted core 7x small topaz",
+          "Critical Hit: +3% amount, +3% chance Critical Spell: +3% amount, +3% chance Perfuration: +3% Crushing Blow: +3% Attack Interval: -3% Hitchance: +3% Damage Physical: +3% Protect Physical: +3% Reflect Physical: +3% amount, +3% chance Momentum: +3% Mitigation: +3% amount, +3% chance"
+        ],
+        [
+          "Tier 4",
+          "4x exalted core 9x small topaz",
+          "Critical Hit: +4% amount, +4% chance Critical Spell: +4% amount, +4% chance Perfuration: +4% Crushing Blow: +4% Attack Interval: -4% Hitchance: +4% Damage Physical: +4% Protect Physical: +4% Reflect Physical: +4% amount, +4% chance Momentum: +4% Mitigation: +4% amount, +4% chance"
+        ],
+        [
+          "Tier 5",
+          "5x exalted core 12x small topaz",
+          "Critical Hit: +5% amount, +5% chance Critical Spell: +5% amount, +5% chance Perfuration: +5% Crushing Blow: +5% Attack Interval: -5% Hitchance: +5% Damage Physical: +5% Protect Physical: +5% Reflect Physical: +5% amount, +5% chance Momentum: +5% Mitigation: +5% amount, +5% chance"
+        ],
+        [
+          "Tier 6",
+          "6x exalted core 18x small topaz",
+          "Critical Hit: +6% amount, +6% chance Critical Spell: +6% amount, +6% chance Perfuration: +6% Crushing Blow: +6% Attack Interval: -6% Hitchance: +6% Damage Physical: +6% Protect Physical: +6% Reflect Physical: +6% amount, +6% chance Momentum: +6% Mitigation: +6% amount, +6% chance"
+        ],
+        [
+          "Tier 7",
+          "7x exalted core 25x small topaz",
+          "Critical Hit: +7% amount, +7% chance Critical Spell: +7% amount, +7% chance Perfuration: +7% Crushing Blow: +7% Attack Interval: -7% Hitchance: +7% Damage Physical: +7% Protect Physical: +7% Reflect Physical: +7% amount, +7% chance Momentum: +7% Mitigation: +7% amount, +7% chance"
+        ]
+      ],
+      [
+        [
+          "Tier",
+          "Resources",
+          "Attributes"
+        ],
+        [
+          "Tier 1",
+          "1x exalted core 3x small diamond",
+          "Speed: +5 Dodge: +1% Vibrancy: +1% Double Bash: +1% Berserk: +1% Destruction: +1% Damage Death: +1% Protect Death: +1% Bleeding: +1% amount, +1% chance Protect Elements: +1% Reflect Elements: +1% amount, +1% chance"
+        ],
+        [
+          "Tier 2",
+          "2x exalted core 5x small diamond",
+          "Speed: +10 Dodge: +2% Vibrancy: +2% Double Bash: +2% Berserk: +2% Destruction: +2% Damage Death: +2% Protect Death: +2% Bleeding: +2% amount, +2% chance Protect Elements: +2% Reflect Elements: +2% amount, +2% chance"
+        ],
+        [
+          "Tier 3",
+          "3x exalted core 7x small diamond",
+          "Speed: +15 Dodge: +3% Vibrancy: +3% Double Bash: +3% Berserk: +3% Destruction: +3% Damage Death: +3% Protect Death: +3% Bleeding: +3% amount, +3% chance Protect Elements: +3% Reflect Elements: +3% amount, +3% chance"
+        ],
+        [
+          "Tier 4",
+          "4x exalted core 9x small diamond",
+          "Speed: +20 Dodge: +4% Vibrancy: +4% Double Bash: +4% Berserk: +4% Destruction: +4% Damage Death: +4% Protect Death: +4% Bleeding: +4% amount, +4% chance Protect Elements: +4% Reflect Elements: +4% amount, +4% chance"
+        ],
+        [
+          "Tier 5",
+          "5x exalted core 12x small diamond",
+          "Speed: +25 Dodge: +5% Vibrancy: +5% Double Bash: +5% Berserk: +5% Destruction: +5% Damage Death: +5% Protect Death: +5% Bleeding: +5% amount, +5% chance Protect Elements: +5% Reflect Elements: +5% amount, +5% chance"
+        ],
+        [
+          "Tier 6",
+          "6x exalted core 18x small diamond",
+          "Speed: +30 Dodge: +6% Vibrancy: +6% Double Bash: +6% Berserk: +6% Destruction: +6% Damage Death: +6% Protect Death: +6% Bleeding: +6% amount, +6% chance Protect Elements: +6% Reflect Elements: +6% amount, +6% chance"
+        ],
+        [
+          "Tier 7",
+          "7x exalted core 25x small diamond",
+          "Speed: +35 Dodge: +7% Vibrancy: +7% Double Bash: +7% Berserk: +7% Destruction: +7% Damage Death: +7% Protect Death: +7% Bleeding: +7% amount, +7% chance Protect Elements: +7% Reflect Elements: +7% amount, +7% chance"
+        ]
+      ]
+    ],
+    "rawTextPreview": "Game Features » Exaltation Forge Exaltation Forge Equipments with classification 1 or higher have the possibility of increasing it's tiers. Raising your equipment tier allows it to surpass its limits through transcendence, enhancing it's enchanted attributes for a period of time (more details below)"
+  },
+  "relicbox": {
+    "key": "relicbox",
+    "title": "Relic Box System",
+    "url": "https://miracle74.com/?subtopic=gamefeatures&page=relicbox",
+    "imagesExtracted": [
+      "/images/miracle/features/relicbox.png"
+    ],
+    "sections": [
+      {
+        "heading": "Mission 1 - The Notes of Melchior",
+        "content": [
+          "To learn more about the relic box, seek out Melchior in Ankrahmun. He will ask you to find his old notes in the ruins of the north. Completing this quest will allow him to perform the ritual to open the first and second slots for a certain amount of gold. These rituals, however, last for 48 hours (only counted in battle), and this time is always reseted when a new slot is opened."
+        ]
+      },
+      {
+        "heading": "Mission 2 - The Djinn War Quest",
+        "content": [
+          "After completing all missions from the Djinn War Quest in any faction, Gabel or Malor will be able to help you to open all relic slots for certain amount of gold. The djinns's rituals also last for 48 hours."
+        ]
+      }
+    ],
+    "tables": [],
+    "rawTextPreview": "Game Features » Relic Box Relic Box Miracle created the relic box system to offer additional builds for your character. This box is a container attached to your inventory, which only allows relics. Relics are unique artifacts that can be acquired in the game through creature drops or quests. They ha"
+  },
+  "playershop": {
+    "key": "playershop",
+    "title": "Player Shop System",
+    "url": "https://miracle74.com/?subtopic=gamefeatures&page=playershop",
+    "imagesExtracted": [
+      "/images/miracle/features/playershop.png",
+      "/images/miracle/features/9090.gif",
+      "/images/miracle/features/playershop2.jpg"
+    ],
+    "sections": [
+      {
+        "heading": "Setting up your shop",
+        "content": [
+          "For add items to your shop, simply drag and drop the item to the shop window or right-click in the item and click on \"add to shop\" (only items that are in your main backpack and sub-containers can be added; otherwise, you will receive a 'sorry, not possible' message.",
+          "You can then setup your items prices, remove or set a default price for some item, right-clicking on them. Remember that the price is always based on the unit, so if you put 100 bolts up for sale, list them for 5gp (not 500gp!). Edit your shop description or leave it without any, then click in \"start shop\" to start your commerce.",
+          "Now you can just click on \"idle shop\" or exit your client so that your character continues selling items in the game."
+        ]
+      }
+    ],
+    "tables": [],
+    "rawTextPreview": "Game Features » Player Shop Player Shop Player Shop is a new system that Miracle offers that allow players to create their own trade shop in different areas of the game, transforming your character into a 'NPC' that operates in the game even while you are offline, so any player can visit your store "
+  },
+  "crafting": {
+    "key": "crafting",
+    "title": "Crafting Profession",
+    "url": "https://miracle74.com/?subtopic=gamefeatures&page=crafting",
+    "imagesExtracted": [
+      "/images/miracle/features/8215.gif",
+      "/images/miracle/features/10010.gif",
+      "/images/miracle/features/10222.gif",
+      "/images/miracle/features/8980.gif",
+      "/images/miracle/features/8982.gif",
+      "/images/miracle/features/8984.gif",
+      "/images/miracle/features/10319.gif",
+      "/images/miracle/features/7514.gif",
+      "/images/miracle/features/7515.gif",
+      "/images/miracle/features/7512.gif",
+      "/images/miracle/features/7513.gif",
+      "/images/miracle/features/8448.gif",
+      "/images/miracle/features/8449.gif",
+      "/images/miracle/features/8450.gif",
+      "/images/miracle/features/8478.gif",
+      "/images/miracle/features/8479.gif",
+      "/images/miracle/features/10332.gif",
+      "/images/miracle/features/10331.gif",
+      "/images/miracle/features/10437.gif",
+      "/images/miracle/features/8454.gif",
+      "/images/miracle/features/8455.gif",
+      "/images/miracle/features/8456.gif",
+      "/images/miracle/features/8457.gif",
+      "/images/miracle/features/8294.gif",
+      "/images/miracle/features/8293.gif",
+      "/images/miracle/features/8296.gif",
+      "/images/miracle/features/8367.gif",
+      "/images/miracle/features/8368.gif",
+      "/images/miracle/features/8160.gif",
+      "/images/miracle/features/8161.gif",
+      "/images/miracle/features/7611.gif",
+      "/images/miracle/features/8159.gif",
+      "/images/miracle/features/8158.gif",
+      "/images/miracle/features/8157.gif",
+      "/images/miracle/features/8181.gif",
+      "/images/miracle/features/8180.gif",
+      "/images/miracle/features/8350.gif",
+      "/images/miracle/features/7601.gif",
+      "/images/miracle/features/7511.gif",
+      "/images/miracle/features/7602.gif"
+    ],
+    "sections": [
+      {
+        "heading": "Breaking Items",
+        "content": [
+          "To break an equipment, place the item on top of the anvil and use your iron hammer. If you have enough crafting skill to break that item, It will be destroyed and will provide you some materials, such as steels, draconian steels and hell steels. These materials are extremely necessary for crafting. The higher the classification of an item, it will bring you more valuable materials. Breaking equipments also advance your crafting skill, so it is a good option for training. Items bought from NPC's are also made with a special protection on its metals, so you are not able to break them."
+        ]
+      },
+      {
+        "heading": "Craftable Items",
+        "content": [
+          "Only blacksmiths are able to craft items. To acquire this profession, find the blacksmith A Sweaty Cyclops in Ab'dendriel. You need at least 20 crafting skill to be promoted. To start crafting items, gather the necessary materials, place them on top of the anvil, and use your iron hammer. The rate for sucessfully craft is 10% + (crafting skill - 10) * item rate."
+        ]
+      },
+      {
+        "heading": "Distance",
+        "content": [
+          "Name Materials Rate Armored War Bow 1x war bow, 300x steels, 200x draconian steels, 100x hell steels 0.08"
+        ]
+      },
+      {
+        "heading": "Ammunitions",
+        "content": [
+          "Name Materials Rate 10x Steel Bolts 10x bolts, 1x steel 2 10x Onyx Arrows 10x arrows, 1x onyx fragment 2"
+        ]
+      },
+      {
+        "heading": "Relics",
+        "content": [
+          "Name Materials Rate Guardian Gem 10x guardian fragments 2 Marksman Gem 10x marksman fragments 2 Sage Gem 10x sage fragments 2 Spiritualist Gem 10x spiritualist fragments 2 Giant Amethyst 10x small amethysts 2 Giant Emerald 10x small emeralds 2 Giant Ruby 10x small rubys 2 Giant Sapphire 10x small sapphires 2"
+        ]
+      },
+      {
+        "heading": "Tools",
+        "content": [
+          "Name Materials Rate Modified Pick 1x pick, 5x steels 2 Advanced Pick 1x modified pick, 10x steels, 1x draconian steel 1.5 Enhanced Pick 1x advanced pick, 20x steels, 5x draconian steels 1 Reinforced Fishing Rod 1x fishing rod, 5x steels 2 Engineered Fishing Rod 1x fishing rod, 10x steels, 1x draconian steel 1.5 Volcanic Fishing Rod 1x fishing rod, 20x steels, 10x glimmering soils, 5x draconian steels, 3x hell steels 1 Golden Fishing Rod 1x fishing rod, 40x steels, 10x draconian steels, 5x small topazs, 3x hell steels 0.5 Diamond Knife 1x combat knife, 10x small diamonds, 5x hell steels 1 Refined Axe 1x rough axe, 5x steels 2 Superior Axe 1x refined axe, 10x steels, 1x draconian steel 1.5 Masterwork Axe 1x superior axe, 20x steels, 5x draconian steels 1 Grandmaster Axe 1x masterwork axe, 40x steels, 10x draconian steels, 3x hell steels, 3x gold bars 0.8"
+        ]
+      },
+      {
+        "heading": "Valuables",
+        "content": [
+          "Name Materials Rate Copper Crest 5x copper bars 1 Iron Crest 5x iron bars 1 Gold Crest 5x gold bars 1 Mythan Crest 5x mythan bars 1 Mystic Crest 5x mystic bars 1 Aegis Rune 5x aegis fragments, 3x pulverized ores, 1x onyx 1 Astral Rune 5x astral fragments, 3x pulverized ores, 1x onyx 1 Ember Rune 5x ember fragments, 3x pulverized ores, 1x onyx 1 Molten Rune 5x molten fragments, 3x pulverized ores, 1x onyx 1 Obsidian Rune 5x obsidian fragments, 3x pulverized ores, 1x onyx 1 Protector Rune 5x protector fragments, 3x pulverized ores, 1x onyx 1 Convergence Crystal 1x rare crystal, 5x shiny stones 1 Prismatic Crystal 1x rare crystal, 5x prismatic stones 1 Onyx 10x onyx fragments 0.4 Earth Stone 5x natural soils 1 Fiery Stone 5x glimmering soils 1 Frozen Stone 5x frozen ores 1"
+        ]
+      }
+    ],
+    "tables": [
+      [
+        [
+          "Name",
+          "",
+          "Materials",
+          "Rate"
+        ],
+        [
+          "Armored War Bow",
+          "",
+          "1x war bow, 300x steels, 200x draconian steels, 100x hell steels",
+          "0.08"
+        ]
+      ],
+      [
+        [
+          "Name",
+          "",
+          "Materials",
+          "Rate"
+        ],
+        [
+          "10x Steel Bolts",
+          "",
+          "10x bolts, 1x steel",
+          "2"
+        ],
+        [
+          "10x Onyx Arrows",
+          "",
+          "10x arrows, 1x onyx fragment",
+          "2"
+        ]
+      ],
+      [
+        [
+          "Name",
+          "",
+          "Materials",
+          "Rate"
+        ],
+        [
+          "Guardian Gem",
+          "",
+          "10x guardian fragments",
+          "2"
+        ],
+        [
+          "Marksman Gem",
+          "",
+          "10x marksman fragments",
+          "2"
+        ],
+        [
+          "Sage Gem",
+          "",
+          "10x sage fragments",
+          "2"
+        ],
+        [
+          "Spiritualist Gem",
+          "",
+          "10x spiritualist fragments",
+          "2"
+        ],
+        [
+          "Giant Amethyst",
+          "",
+          "10x small amethysts",
+          "2"
+        ],
+        [
+          "Giant Emerald",
+          "",
+          "10x small emeralds",
+          "2"
+        ],
+        [
+          "Giant Ruby",
+          "",
+          "10x small rubys",
+          "2"
+        ],
+        [
+          "Giant Sapphire",
+          "",
+          "10x small sapphires",
+          "2"
+        ]
+      ],
+      [
+        [
+          "Name",
+          "",
+          "Materials",
+          "Rate"
+        ],
+        [
+          "Modified Pick",
+          "",
+          "1x pick, 5x steels",
+          "2"
+        ],
+        [
+          "Advanced Pick",
+          "",
+          "1x modified pick, 10x steels, 1x draconian steel",
+          "1.5"
+        ],
+        [
+          "Enhanced Pick",
+          "",
+          "1x advanced pick, 20x steels, 5x draconian steels",
+          "1"
+        ],
+        [
+          "Reinforced Fishing Rod",
+          "",
+          "1x fishing rod, 5x steels",
+          "2"
+        ],
+        [
+          "Engineered Fishing Rod",
+          "",
+          "1x fishing rod, 10x steels, 1x draconian steel",
+          "1.5"
+        ],
+        [
+          "Volcanic Fishing Rod",
+          "",
+          "1x fishing rod, 20x steels, 10x glimmering soils, 5x draconian steels, 3x hell steels",
+          "1"
+        ],
+        [
+          "Golden Fishing Rod",
+          "",
+          "1x fishing rod, 40x steels, 10x draconian steels, 5x small topazs, 3x hell steels",
+          "0.5"
+        ],
+        [
+          "Diamond Knife",
+          "",
+          "1x combat knife, 10x small diamonds, 5x hell steels",
+          "1"
+        ],
+        [
+          "Refined Axe",
+          "",
+          "1x rough axe, 5x steels",
+          "2"
+        ],
+        [
+          "Superior Axe",
+          "",
+          "1x refined axe, 10x steels, 1x draconian steel",
+          "1.5"
+        ],
+        [
+          "Masterwork Axe",
+          "",
+          "1x superior axe, 20x steels, 5x draconian steels",
+          "1"
+        ],
+        [
+          "Grandmaster Axe",
+          "",
+          "1x masterwork axe, 40x steels, 10x draconian steels, 3x hell steels, 3x gold bars",
+          "0.8"
+        ]
+      ],
+      [
+        [
+          "Name",
+          "",
+          "Materials",
+          "Rate"
+        ],
+        [
+          "Copper Crest",
+          "",
+          "5x copper bars",
+          "1"
+        ],
+        [
+          "Iron Crest",
+          "",
+          "5x iron bars",
+          "1"
+        ],
+        [
+          "Gold Crest",
+          "",
+          "5x gold bars",
+          "1"
+        ],
+        [
+          "Mythan Crest",
+          "",
+          "5x mythan bars",
+          "1"
+        ],
+        [
+          "Mystic Crest",
+          "",
+          "5x mystic bars",
+          "1"
+        ],
+        [
+          "Aegis Rune",
+          "",
+          "5x aegis fragments, 3x pulverized ores, 1x onyx",
+          "1"
+        ],
+        [
+          "Astral Rune",
+          "",
+          "5x astral fragments, 3x pulverized ores, 1x onyx",
+          "1"
+        ],
+        [
+          "Ember Rune",
+          "",
+          "5x ember fragments, 3x pulverized ores, 1x onyx",
+          "1"
+        ],
+        [
+          "Molten Rune",
+          "",
+          "5x molten fragments, 3x pulverized ores, 1x onyx",
+          "1"
+        ],
+        [
+          "Obsidian Rune",
+          "",
+          "5x obsidian fragments, 3x pulverized ores, 1x onyx",
+          "1"
+        ],
+        [
+          "Protector Rune",
+          "",
+          "5x protector fragments, 3x pulverized ores, 1x onyx",
+          "1"
+        ],
+        [
+          "Convergence Crystal",
+          "",
+          "1x rare crystal, 5x shiny stones",
+          "1"
+        ],
+        [
+          "Prismatic Crystal",
+          "",
+          "1x rare crystal, 5x prismatic stones",
+          "1"
+        ],
+        [
+          "Onyx",
+          "",
+          "10x onyx fragments",
+          "0.4"
+        ],
+        [
+          "Earth Stone",
+          "",
+          "5x natural soils",
+          "1"
+        ],
+        [
+          "Fiery Stone",
+          "",
+          "5x glimmering soils",
+          "1"
+        ],
+        [
+          "Frozen Stone",
+          "",
+          "5x frozen ores",
+          "1"
+        ]
+      ]
+    ],
+    "rawTextPreview": "Game Features » Crafting Crafting The art of crafting has emerged as a new opportunity for adventurers to expand their skills beyond combat. It consists on two activities: break items and craft new equipments. To start crafting, you need an iron hammer, which can be acquired through the Iron Hammer "
+  },
+  "mining": {
+    "key": "mining",
+    "title": "Mining Profession",
+    "url": "https://miracle74.com/?subtopic=gamefeatures&page=mining",
+    "imagesExtracted": [
+      "/images/miracle/features/2553.gif",
+      "/images/miracle/features/cross.png",
+      "/images/miracle/features/8448.gif",
+      "/images/miracle/features/tick.png",
+      "/images/miracle/features/8449.gif",
+      "/images/miracle/features/8450.gif",
+      "/images/miracle/features/389.gif",
+      "/images/miracle/features/8170.gif",
+      "/images/miracle/features/9086.gif",
+      "/images/miracle/features/9088.gif",
+      "/images/miracle/features/9084.gif",
+      "/images/miracle/features/8351.gif",
+      "/images/miracle/features/11762.gif",
+      "/images/miracle/features/8353.gif",
+      "/images/miracle/features/9087.gif",
+      "/images/miracle/features/9083.gif",
+      "/images/miracle/features/11742.gif",
+      "/images/miracle/features/11747.gif",
+      "/images/miracle/features/11743.gif",
+      "/images/miracle/features/11748.gif",
+      "/images/miracle/features/11744.gif",
+      "/images/miracle/features/11749.gif",
+      "/images/miracle/features/11745.gif",
+      "/images/miracle/features/11750.gif",
+      "/images/miracle/features/11746.gif",
+      "/images/miracle/features/11751.gif",
+      "/images/miracle/features/1353.gif",
+      "/images/miracle/features/8169.gif",
+      "/images/miracle/features/9085.gif",
+      "/images/miracle/features/1354.gif",
+      "/images/miracle/features/8979.gif",
+      "/images/miracle/features/2146.gif",
+      "/images/miracle/features/2158.gif",
+      "/images/miracle/features/8354.gif",
+      "/images/miracle/features/8183.gif",
+      "/images/miracle/features/8182.gif",
+      "/images/miracle/features/1355.gif",
+      "/images/miracle/features/8983.gif",
+      "/images/miracle/features/2147.gif",
+      "/images/miracle/features/2156.gif",
+      "/images/miracle/features/9285.gif",
+      "/images/miracle/features/2150.gif",
+      "/images/miracle/features/2153.gif",
+      "/images/miracle/features/9286.gif",
+      "/images/miracle/features/10318.gif",
+      "/images/miracle/features/2149.gif",
+      "/images/miracle/features/2155.gif",
+      "/images/miracle/features/11784.gif",
+      "/images/miracle/features/8981.gif",
+      "/images/miracle/features/9476.gif",
+      "/images/miracle/features/2154.gif",
+      "/images/miracle/features/8337.gif",
+      "/images/miracle/features/8343.gif",
+      "/images/miracle/features/2145.gif",
+      "/images/miracle/features/8349.gif",
+      "/images/miracle/features/8338.gif",
+      "/images/miracle/features/8342.gif",
+      "/images/miracle/features/8370.gif"
+    ],
+    "sections": [
+      {
+        "heading": "Pickaxes",
+        "content": [
+          "Name Tier Mines Break Rate Properties Miner Pick 1 0.2% - Modified Pick 1, 2 0.6% Mines Tier 1:",
+          "mine drop multiplier: 1.5",
+          "mine break bonus: +2.5% Advanced Pick 1, 2, 3 1% Mines Tier 1:",
+          "mine drop multiplier: 2",
+          "mine break bonus: +5%",
+          "Mines Tier 2:",
+          "mine drop multiplier: 1.5",
+          "mine break bonus: +2.5% Enhanced Pick 1, 2, 3, 4 1.4% Mines Tier 1:",
+          "mine drop multiplier: 2.5",
+          "mine break bonus: +7.5%",
+          "Mines Tier 2:",
+          "mine drop multiplier: 2",
+          "mine break bonus: +5%",
+          "Mines Tier 3:",
+          "mine drop multiplier: 1.5",
+          "mine break bonus: +2.5%"
+        ]
+      },
+      {
+        "heading": "Mines",
+        "content": [
+          "Name Tier Skill Resources Respawn Lava Hole 1 glimmering soil ember fragment molten fragment obsidian fragment onyx fragment 15-30m Ice Lava Hole 1 frozen ore astral fragment protector fragment obsidian fragment onyx fragment 15-30m Copper Stone 2 20 copper ore 15-60m Iron Stone 2 30 iron ore 15-60m Gold Stone 2 40 gold ore 15-60m Mythan Stone 2 50 mythan ore 15-60m Mystic Stone 2 60 mystic ore 15-60m Mossy Stone 1 natural soil aegis fragment protector fragment 15-30m Blue Shrine Stone 3 20 guardian fragment small sapphire blue gem reagent crystal shiny stone prismatic stone 15-90m Red Shrine Stone 3 20 sage fragment small ruby red gem reagent crystal shiny stone prismatic stone 15-90m Violet Shrine Stone 3 20 guardian fragment small amethyst violet gem reagent crystal shiny stone prismatic stone 15-90m Green Shrine Stone 3 20 spiritualist fragment small emerald green gem reagent crystal shiny stone prismatic stone 15-90m Yellow Shrine Stone 3 20 marksman fragment small topaz yellow gem reagent crystal shiny stone prismatic stone 15-90m Frozen Crystal 4 30 frozen crystal small diamond frozen shard 15-120m Black Crystal 4 30 black crystal small diamond black gem 15-120m"
+        ]
+      }
+    ],
+    "tables": [
+      [
+        [
+          "Name",
+          "",
+          "Tier Mines",
+          "Break Rate",
+          "Properties",
+          "Miner"
+        ],
+        [
+          "Pick",
+          "",
+          "1",
+          "0.2%",
+          "-",
+          ""
+        ],
+        [
+          "Modified Pick",
+          "",
+          "1, 2",
+          "0.6%",
+          "Mines Tier 1: mine drop multiplier: 1.5 mine break bonus: +2.5%",
+          ""
+        ],
+        [
+          "Advanced Pick",
+          "",
+          "1, 2, 3",
+          "1%",
+          "Mines Tier 1: mine drop multiplier: 2 mine break bonus: +5% Mines Tier 2: mine drop multiplier: 1.5 mine break bonus: +2.5%",
+          ""
+        ],
+        [
+          "Enhanced Pick",
+          "",
+          "1, 2, 3, 4",
+          "1.4%",
+          "Mines Tier 1: mine drop multiplier: 2.5 mine break bonus: +7.5% Mines Tier 2: mine drop multiplier: 2 mine break bonus: +5% Mines Tier 3: mine drop multiplier: 1.5 mine break bonus: +2.5%",
+          ""
+        ]
+      ],
+      [
+        [
+          "Name",
+          "",
+          "Tier",
+          "Skill",
+          "Resources",
+          "Respawn"
+        ],
+        [
+          "Lava Hole",
+          "",
+          "1",
+          "",
+          "glimmering soil ember fragment molten fragment obsidian fragment onyx fragment",
+          "15-30m"
+        ],
+        [
+          "Ice Lava Hole",
+          "",
+          "1",
+          "",
+          "frozen ore astral fragment protector fragment obsidian fragment onyx fragment",
+          "15-30m"
+        ],
+        [
+          "Copper Stone",
+          "",
+          "2",
+          "20",
+          "copper ore",
+          "15-60m"
+        ],
+        [
+          "Iron Stone",
+          "",
+          "2",
+          "30",
+          "iron ore",
+          "15-60m"
+        ],
+        [
+          "Gold Stone",
+          "",
+          "2",
+          "40",
+          "gold ore",
+          "15-60m"
+        ],
+        [
+          "Mythan Stone",
+          "",
+          "2",
+          "50",
+          "mythan ore",
+          "15-60m"
+        ],
+        [
+          "Mystic Stone",
+          "",
+          "2",
+          "60",
+          "mystic ore",
+          "15-60m"
+        ],
+        [
+          "Mossy Stone",
+          "",
+          "1",
+          "",
+          "natural soil aegis fragment protector fragment",
+          "15-30m"
+        ],
+        [
+          "Blue Shrine Stone",
+          "",
+          "3",
+          "20",
+          "guardian fragment small sapphire blue gem reagent crystal shiny stone prismatic stone",
+          "15-90m"
+        ],
+        [
+          "Red Shrine Stone",
+          "",
+          "3",
+          "20",
+          "sage fragment small ruby red gem reagent crystal shiny stone prismatic stone",
+          "15-90m"
+        ],
+        [
+          "Violet Shrine Stone",
+          "",
+          "3",
+          "20",
+          "guardian fragment small amethyst violet gem reagent crystal shiny stone prismatic stone",
+          "15-90m"
+        ],
+        [
+          "Green Shrine Stone",
+          "",
+          "3",
+          "20",
+          "spiritualist fragment small emerald green gem reagent crystal shiny stone prismatic stone",
+          "15-90m"
+        ],
+        [
+          "Yellow Shrine Stone",
+          "",
+          "3",
+          "20",
+          "marksman fragment small topaz yellow gem reagent crystal shiny stone prismatic stone",
+          "15-90m"
+        ],
+        [
+          "Frozen Crystal",
+          "",
+          "4",
+          "30",
+          "frozen crystal small diamond frozen shard",
+          "15-120m"
+        ],
+        [
+          "Black Crystal",
+          "",
+          "4",
+          "30",
+          "black crystal small diamond black gem",
+          "15-120m"
+        ]
+      ]
+    ],
+    "rawTextPreview": "Game Features » Mining Mining Mining plays a crucial role in the production chain. Adventurers can explore open areas, caves and mountains to extract valuable ores and rare minerals. These resources serve as the foundation for crafting, allowing players to forge better equipments. To start with mini"
+  },
+  "carpentry": {
+    "key": "carpentry",
+    "title": "Carpentry Profession",
+    "url": "https://miracle74.com/?subtopic=gamefeatures&page=carpentry",
+    "imagesExtracted": [
+      "/images/miracle/features/11984.gif",
+      "/images/miracle/features/11985.gif",
+      "/images/miracle/features/11986.gif",
+      "/images/miracle/features/11987.gif",
+      "/images/miracle/features/11988.gif",
+      "/images/miracle/features/11989.gif",
+      "/images/miracle/features/11990.gif",
+      "/images/miracle/features/11991.gif",
+      "/images/miracle/features/11992.gif",
+      "/images/miracle/features/405.png",
+      "/images/miracle/features/cross.png",
+      "/images/miracle/features/434.png",
+      "/images/miracle/features/435.png",
+      "/images/miracle/features/436.png",
+      "/images/miracle/features/437.png",
+      "/images/miracle/features/438.png",
+      "/images/miracle/features/439.png",
+      "/images/miracle/features/440.png",
+      "/images/miracle/features/441.png",
+      "/images/miracle/features/442.png",
+      "/images/miracle/features/443.png",
+      "/images/miracle/features/444.png",
+      "/images/miracle/features/445.png",
+      "/images/miracle/features/1025.png",
+      "/images/miracle/features/1026.png",
+      "/images/miracle/features/1027.png",
+      "/images/miracle/features/1031.png",
+      "/images/miracle/features/1033.png",
+      "/images/miracle/features/1036.png",
+      "/images/miracle/features/1037.png",
+      "/images/miracle/features/1038.png",
+      "/images/miracle/features/1042.png",
+      "/images/miracle/features/1044.png",
+      "/images/miracle/features/1219.png",
+      "/images/miracle/features/1221.png",
+      "/images/miracle/features/1385.png",
+      "/images/miracle/features/1386.png",
+      "/images/miracle/features/920.png",
+      "/images/miracle/features/921.png",
+      "/images/miracle/features/922.png",
+      "/images/miracle/features/923.png",
+      "/images/miracle/features/11839.png",
+      "/images/miracle/features/tick.png",
+      "/images/miracle/features/11881.png",
+      "/images/miracle/features/101.png",
+      "/images/miracle/features/102.png",
+      "/images/miracle/features/103.png",
+      "/images/miracle/features/104.png"
+    ],
+    "sections": [
+      {
+        "heading": "Refinement",
+        "content": [
+          "The refinement process involves turning woods into planks, boards and beams for use in carpentry. Once you have the necessary types of wood, look for a carpentry's house in Green Village or Nivandria. Place the required wood onto the machine and use it to refine the material."
+        ]
+      },
+      {
+        "heading": "Materials",
+        "content": [
+          "Name Resources Wooden Planks 15x plum logs, 15x pear logs, 5x applewoods Wooden Beams 12x pear logs, 7x palm logs, 3x coconut palm logs Wooden Boards 15x plum logs, 15x pear logs, 10x poplar logs, 10x dead logs Dark Wooden Planks 20x poplar logs, 20x dead logs, 15x cactus woods Dark Wooden Beams 18x plum logs, 6x coconut palm logs, 20x dead branchs Death Wooden Planks 25x dead trunks, 25x dead woods, 15x cactus trunks Death Wooden Beams 10x dead trunks, 12x oak logs, 18x pine logs Elder Wooden Planks 30x sycamore woods, 15x cactus cores, 15x spiked cactus cores, 10x great trunks Elder Wooden Beams 30x pear logs, 12x sycamore woods, 6x great trunks"
+        ]
+      },
+      {
+        "heading": "Building",
+        "content": [
+          "To start building furniture and structures, place the necessary materials on the counter and use your hammer. If you have the required skill, you will have a chance to build. Some structures require the Carpenter profession to be built. To acquire this profession, find Aldren at the Nivandria sawmill."
+        ]
+      },
+      {
+        "heading": "Grounds",
+        "content": [
+          "Name Materials Rate Carpenter Wooden Floor 4x wooden planks, 4x nails 1 Wooden Floor 1x square, 1x wooden planks, 2x nails 1 Wooden Floor 1x square, 1x wooden planks, 2x nails 1 Wooden Floor 1x square, 1x wooden planks, 2x nails 1 Wooden Floor 1x square, 1x wooden planks, 2x nails 1 Wooden Floor 1x square, 2x wooden planks, 3x nails 1 Wooden Floor 1x square, 2x wooden planks, 3x nails 1 Wooden Floor 1x square, 2x wooden planks, 3x nails 1 Wooden Floor 1x square, 2x wooden planks, 3x nails 1 Wooden Floor 1x square, 1x wooden planks, 1x nail 1 Wooden Floor 1x square, 1x wooden planks, 1x nail 1 Wooden Floor 1x square, 1x wooden planks, 1x nail 1 Wooden Floor 1x square, 1x wooden planks, 1x nail 1"
+        ]
+      },
+      {
+        "heading": "Walls",
+        "content": [
+          "Name Materials Rate Carpenter Brick Wall 1x square, 16x bricks, 8x metal sheets, 16x nails 1 Brick Wall 1x square, 16x bricks, 8x metal sheets, 16x nails 1 Brick Wall 8x bricks, 2x metal sheets, 4x nails 1 Brick Wall 1x square, 32x bricks, 16x metal sheets, 32x nails 1 Brick Wall 1x square, 32x bricks, 16x metal sheets, 32x nails 1 Framework Wall 1x square, 8x wooden boards, 8x metal sheets, 4x wooden planks, 16x nails 1 Framework Wall 1x square, 8x wooden boards, 8x metal sheets, 4x wooden planks, 16x nails 1 Framework Wall 2x metal sheets, 4x wooden planks, 4x nails 1 Framework Wall 1x square, 16x wooden boards, 16x metal sheets, 8x wooden planks, 32x nails 1 Framework Wall 1x square, 16x wooden boards, 16x metal sheets, 8x wooden planks, 32x nails 1"
+        ]
+      },
+      {
+        "heading": "Doors",
+        "content": [
+          "Name Materials Rate Carpenter Closed Door 1x square, 1x lock, 8x wooden boards, 8x metal sheets, 4x wooden planks, 16x nails 1 Closed Door 1x square, 1x lock, 8x wooden boards, 8x metal sheets, 4x wooden planks, 16x nails 1"
+        ]
+      },
+      {
+        "heading": "Stairs",
+        "content": [
+          "Name Materials Rate Carpenter Stairs 6x wooden boards, 6x metal sheets, 16x nails 1"
+        ]
+      },
+      {
+        "heading": "Ladders",
+        "content": [
+          "Name Materials Rate Carpenter Ladder 3x wooden planks, 3x wooden beams, 16x nails 1"
+        ]
+      },
+      {
+        "heading": "Roofs",
+        "content": [
+          "Name Materials Rate Carpenter Flat Roof 6x roof tiles, 4x nails, 2x wooden beams, 2x metal sheets 1 Flat Roof 1x square, 2x roof tiles, 1x wooden beams, 1x metal sheets 1 Flat Roof 1x square, 2x roof tiles, 1x wooden beams, 1x metal sheets 1 Flat Roof 1x square, 1x roof tiles, 1x wooden beams, 1x metal sheets 1"
+        ]
+      },
+      {
+        "heading": "Beds",
+        "content": [
+          "Name Materials Rate Carpenter 2x Beds 1x blue blanket, 5x wooden planks, 5x wooden beams, 5x metal sheets, 10x nails 1 2x Cots 1x yellow blanket, 5x wooden planks, 5x wooden beams, 5x metal sheets, 10x nails 1"
+        ]
+      },
+      {
+        "heading": "Bed Kits",
+        "content": [
+          "Name Materials Rate Carpenter Purple Bed 1x purple blanket, 2x wooden planks, 3x dark wooden planks, 2x wooden beams, 3x dark wooden beams, 6x metal sheets, 12x nails 0.6 Red Bed 1x red blanket, 2x wooden planks, 4x dark wooden planks, 3x death wooden planks, 2x wooden beams, 4x dark wooden beams, 3x death wooden beams, 7x metal sheets, 14x nails 0.36 Gray Bed 1x gray blanket, 5x dark wooden planks, 5x death wooden planks, 5x dark wooden beams, 5x death wooden beams, 8x metal sheets, 16x nails 0.216 Black Bed 1x black blanket, 5x death wooden planks, 5x elder wooden planks, 5x death wooden beams, 5x elder wooden beams, 9x metal sheets, 18x nails 0.129"
+        ]
+      }
+    ],
+    "tables": [
+      [
+        [
+          "Name",
+          "",
+          "Resources"
+        ],
+        [
+          "Wooden Planks",
+          "",
+          "15x plum logs, 15x pear logs, 5x applewoods"
+        ],
+        [
+          "Wooden Beams",
+          "",
+          "12x pear logs, 7x palm logs, 3x coconut palm logs"
+        ],
+        [
+          "Wooden Boards",
+          "",
+          "15x plum logs, 15x pear logs, 10x poplar logs, 10x dead logs"
+        ],
+        [
+          "Dark Wooden Planks",
+          "",
+          "20x poplar logs, 20x dead logs, 15x cactus woods"
+        ],
+        [
+          "Dark Wooden Beams",
+          "",
+          "18x plum logs, 6x coconut palm logs, 20x dead branchs"
+        ],
+        [
+          "Death Wooden Planks",
+          "",
+          "25x dead trunks, 25x dead woods, 15x cactus trunks"
+        ],
+        [
+          "Death Wooden Beams",
+          "",
+          "10x dead trunks, 12x oak logs, 18x pine logs"
+        ],
+        [
+          "Elder Wooden Planks",
+          "",
+          "30x sycamore woods, 15x cactus cores, 15x spiked cactus cores, 10x great trunks"
+        ],
+        [
+          "Elder Wooden Beams",
+          "",
+          "30x pear logs, 12x sycamore woods, 6x great trunks"
+        ]
+      ],
+      [
+        [
+          "Name",
+          "",
+          "Materials",
+          "Rate",
+          "Carpenter"
+        ],
+        [
+          "Wooden Floor",
+          "",
+          "4x wooden planks, 4x nails",
+          "1",
+          ""
+        ],
+        [
+          "Wooden Floor",
+          "",
+          "1x square, 1x wooden planks, 2x nails",
+          "1",
+          ""
+        ],
+        [
+          "Wooden Floor",
+          "",
+          "1x square, 1x wooden planks, 2x nails",
+          "1",
+          ""
+        ],
+        [
+          "Wooden Floor",
+          "",
+          "1x square, 1x wooden planks, 2x nails",
+          "1",
+          ""
+        ],
+        [
+          "Wooden Floor",
+          "",
+          "1x square, 1x wooden planks, 2x nails",
+          "1",
+          ""
+        ],
+        [
+          "Wooden Floor",
+          "",
+          "1x square, 2x wooden planks, 3x nails",
+          "1",
+          ""
+        ],
+        [
+          "Wooden Floor",
+          "",
+          "1x square, 2x wooden planks, 3x nails",
+          "1",
+          ""
+        ],
+        [
+          "Wooden Floor",
+          "",
+          "1x square, 2x wooden planks, 3x nails",
+          "1",
+          ""
+        ],
+        [
+          "Wooden Floor",
+          "",
+          "1x square, 2x wooden planks, 3x nails",
+          "1",
+          ""
+        ],
+        [
+          "Wooden Floor",
+          "",
+          "1x square, 1x wooden planks, 1x nail",
+          "1",
+          ""
+        ],
+        [
+          "Wooden Floor",
+          "",
+          "1x square, 1x wooden planks, 1x nail",
+          "1",
+          ""
+        ],
+        [
+          "Wooden Floor",
+          "",
+          "1x square, 1x wooden planks, 1x nail",
+          "1",
+          ""
+        ],
+        [
+          "Wooden Floor",
+          "",
+          "1x square, 1x wooden planks, 1x nail",
+          "1",
+          ""
+        ]
+      ],
+      [
+        [
+          "Name",
+          "",
+          "Materials",
+          "Rate",
+          "Carpenter"
+        ],
+        [
+          "Brick Wall",
+          "",
+          "1x square, 16x bricks, 8x metal sheets, 16x nails",
+          "1",
+          ""
+        ],
+        [
+          "Brick Wall",
+          "",
+          "1x square, 16x bricks, 8x metal sheets, 16x nails",
+          "1",
+          ""
+        ],
+        [
+          "Brick Wall",
+          "",
+          "8x bricks, 2x metal sheets, 4x nails",
+          "1",
+          ""
+        ],
+        [
+          "Brick Wall",
+          "",
+          "1x square, 32x bricks, 16x metal sheets, 32x nails",
+          "1",
+          ""
+        ],
+        [
+          "Brick Wall",
+          "",
+          "1x square, 32x bricks, 16x metal sheets, 32x nails",
+          "1",
+          ""
+        ],
+        [
+          "Framework Wall",
+          "",
+          "1x square, 8x wooden boards, 8x metal sheets, 4x wooden planks, 16x nails",
+          "1",
+          ""
+        ],
+        [
+          "Framework Wall",
+          "",
+          "1x square, 8x wooden boards, 8x metal sheets, 4x wooden planks, 16x nails",
+          "1",
+          ""
+        ],
+        [
+          "Framework Wall",
+          "",
+          "2x metal sheets, 4x wooden planks, 4x nails",
+          "1",
+          ""
+        ],
+        [
+          "Framework Wall",
+          "",
+          "1x square, 16x wooden boards, 16x metal sheets, 8x wooden planks, 32x nails",
+          "1",
+          ""
+        ],
+        [
+          "Framework Wall",
+          "",
+          "1x square, 16x wooden boards, 16x metal sheets, 8x wooden planks, 32x nails",
+          "1",
+          ""
+        ]
+      ],
+      [
+        [
+          "Name",
+          "",
+          "Materials",
+          "Rate",
+          "Carpenter"
+        ],
+        [
+          "Closed Door",
+          "",
+          "1x square, 1x lock, 8x wooden boards, 8x metal sheets, 4x wooden planks, 16x nails",
+          "1",
+          ""
+        ],
+        [
+          "Closed Door",
+          "",
+          "1x square, 1x lock, 8x wooden boards, 8x metal sheets, 4x wooden planks, 16x nails",
+          "1",
+          ""
+        ]
+      ],
+      [
+        [
+          "Name",
+          "",
+          "Materials",
+          "Rate",
+          "Carpenter"
+        ],
+        [
+          "Stairs",
+          "",
+          "6x wooden boards, 6x metal sheets, 16x nails",
+          "1",
+          ""
+        ]
+      ],
+      [
+        [
+          "Name",
+          "",
+          "Materials",
+          "Rate",
+          "Carpenter"
+        ],
+        [
+          "Ladder",
+          "",
+          "3x wooden planks, 3x wooden beams, 16x nails",
+          "1",
+          ""
+        ]
+      ],
+      [
+        [
+          "Name",
+          "",
+          "Materials",
+          "Rate",
+          "Carpenter"
+        ],
+        [
+          "Flat Roof",
+          "",
+          "6x roof tiles, 4x nails, 2x wooden beams, 2x metal sheets",
+          "1",
+          ""
+        ],
+        [
+          "Flat Roof",
+          "",
+          "1x square, 2x roof tiles, 1x wooden beams, 1x metal sheets",
+          "1",
+          ""
+        ],
+        [
+          "Flat Roof",
+          "",
+          "1x square, 2x roof tiles, 1x wooden beams, 1x metal sheets",
+          "1",
+          ""
+        ],
+        [
+          "Flat Roof",
+          "",
+          "1x square, 1x roof tiles, 1x wooden beams, 1x metal sheets",
+          "1",
+          ""
+        ]
+      ],
+      [
+        [
+          "Name",
+          "",
+          "Materials",
+          "Rate",
+          "Carpenter"
+        ],
+        [
+          "2x Beds",
+          "",
+          "1x blue blanket, 5x wooden planks, 5x wooden beams, 5x metal sheets, 10x nails",
+          "1",
+          ""
+        ],
+        [
+          "2x Cots",
+          "",
+          "1x yellow blanket, 5x wooden planks, 5x wooden beams, 5x metal sheets, 10x nails",
+          "1",
+          ""
+        ]
+      ],
+      [
+        [
+          "Name",
+          "",
+          "Materials",
+          "Rate",
+          "Carpenter"
+        ],
+        [
+          "Purple Bed",
+          "",
+          "1x purple blanket, 2x wooden planks, 3x dark wooden planks, 2x wooden beams, 3x dark wooden beams, 6x metal sheets, 12x nails",
+          "0.6",
+          ""
+        ],
+        [
+          "Red Bed",
+          "",
+          "1x red blanket, 2x wooden planks, 4x dark wooden planks, 3x death wooden planks, 2x wooden beams, 4x dark wooden beams, 3x death wooden beams, 7x metal sheets, 14x nails",
+          "0.36",
+          ""
+        ],
+        [
+          "Gray Bed",
+          "",
+          "1x gray blanket, 5x dark wooden planks, 5x death wooden planks, 5x dark wooden beams, 5x death wooden beams, 8x metal sheets, 16x nails",
+          "0.216",
+          ""
+        ],
+        [
+          "Black Bed",
+          "",
+          "1x black blanket, 5x death wooden planks, 5x elder wooden planks, 5x death wooden beams, 5x elder wooden beams, 9x metal sheets, 18x nails",
+          "0.129",
+          ""
+        ]
+      ]
+    ],
+    "rawTextPreview": "Game Features » Carpentry Carpentry Carpentry introduces a new way to interact with the world of Miracle, allowing players to gather materials, refine and turn them into constructions and useful furnitures. The land system allows you to build your own house, and carpentry is an essential step in tha"
+  },
+  "woodcutting": {
+    "key": "woodcutting",
+    "title": "Woodcutting Profession",
+    "url": "https://miracle74.com/?subtopic=gamefeatures&page=woodcutting",
+    "imagesExtracted": [
+      "/images/miracle/features/8453.gif",
+      "/images/miracle/features/cross.png",
+      "/images/miracle/features/8454.gif",
+      "/images/miracle/features/tick.png",
+      "/images/miracle/features/8455.gif",
+      "/images/miracle/features/8456.gif",
+      "/images/miracle/features/8457.gif",
+      "/images/miracle/features/2703.png",
+      "/images/miracle/features/8410.gif",
+      "/images/miracle/features/9482.png",
+      "/images/miracle/features/2705.png",
+      "/images/miracle/features/8411.gif",
+      "/images/miracle/features/11289.png",
+      "/images/miracle/features/2704.png",
+      "/images/miracle/features/8412.gif",
+      "/images/miracle/features/11290.png",
+      "/images/miracle/features/2706.png",
+      "/images/miracle/features/11291.png",
+      "/images/miracle/features/2725.png",
+      "/images/miracle/features/8413.gif",
+      "/images/miracle/features/2726.png",
+      "/images/miracle/features/8414.gif",
+      "/images/miracle/features/2708.png",
+      "/images/miracle/features/8415.gif",
+      "/images/miracle/features/9486.png",
+      "/images/miracle/features/2709.png",
+      "/images/miracle/features/8416.gif",
+      "/images/miracle/features/2710.png",
+      "/images/miracle/features/8417.gif",
+      "/images/miracle/features/2697.png",
+      "/images/miracle/features/2727.png",
+      "/images/miracle/features/8418.gif",
+      "/images/miracle/features/2712.png",
+      "/images/miracle/features/8419.gif",
+      "/images/miracle/features/2720.png",
+      "/images/miracle/features/8420.gif",
+      "/images/miracle/features/7022.png",
+      "/images/miracle/features/2719.png",
+      "/images/miracle/features/8421.gif",
+      "/images/miracle/features/7021.png",
+      "/images/miracle/features/2718.png",
+      "/images/miracle/features/8422.gif",
+      "/images/miracle/features/7020.png",
+      "/images/miracle/features/2723.png",
+      "/images/miracle/features/8423.gif",
+      "/images/miracle/features/2733.png",
+      "/images/miracle/features/2701.png",
+      "/images/miracle/features/8424.gif",
+      "/images/miracle/features/2735.png",
+      "/images/miracle/features/8425.gif",
+      "/images/miracle/features/2724.png",
+      "/images/miracle/features/8426.gif",
+      "/images/miracle/features/2711.png",
+      "/images/miracle/features/8427.gif"
+    ],
+    "sections": [
+      {
+        "heading": "Axes",
+        "content": [
+          "Name Tier Trees Break Rate Properties Lumberjack Rough Axe 1 0.1% - Refined Axe 1, 2 0.2% Trees Tier 1:",
+          "tree break bonus: +2.5% Superior Axe 1, 2, 3 0.4% Trees Tier 1:",
+          "tree break bonus: +5%",
+          "Trees Tier 2:",
+          "tree break bonus: +2.5% Masterwork Axe 1, 2, 3, 4 0.8% Trees Tier 1:",
+          "tree break bonus: +7.5%",
+          "Trees Tier 2:",
+          "tree break bonus: +5%",
+          "Trees Tier 3:",
+          "tree break bonus: +2.5% Grandmaster Axe 1, 2, 3, 4, 5 1.6% Trees Tier 1:",
+          "tree break bonus: +10%",
+          "Trees Tier 2:",
+          "tree break bonus: +7.5%",
+          "Trees Tier 3:",
+          "tree break bonus: +5%",
+          "Trees Tier 4:",
+          "tree break bonus: +2.5%"
+        ]
+      },
+      {
+        "heading": "Trees",
+        "content": [
+          "Name Tier Resource Respawn Plum Tree 1 plum log 15-30m Snow Plum Tree 1 plum log 15-30m Pear 1 pear log 15-30m Snow Pear 1 pear log 15-30m Red Maple 1 applewood 15-30m Snow Red Mapple 1 applewood 15-30m Yellow Maple 1 applewood 15-30m Snow Yellow Mapple 1 applewood 15-30m Palm 1 palm log 15-30m Coconut Palm 1 coconut palm log 15-30m Poplar 2 poplar log 15-60m Snow Poplar 2 poplar log 15-60m Dead Tree 2 dead log 15-60m Dead Tree 2 dead branch 15-60m Snowy Dead Tree 2 dead branch 15-60m Cactus 2 cactus wood 15-60m Pine 3 pine log 15-90m Dead Tree 3 dead trunk 15-90m Snowy Dead Tree 3 dead trunk 15-90m Dead Tree 3 dead wood 15-90m Snowy Dead Tree 3 dead wood 15-90m Dead Tree 3 oak log 15-90m Snowy Dead Tree 3 oak log 15-90m Cactus 3 cactus trunk 15-90m Cactus 3 cactus trunk 15-90m Sycamore 4 sycamore wood 15-120m Cactus 4 cactus core 15-120m Cactus 4 spiked cactus core 15-120m Dwarf Tree 5 great trunk 15-150m"
+        ]
+      }
+    ],
+    "tables": [
+      [
+        [
+          "Name",
+          "",
+          "Tier Trees",
+          "Break Rate",
+          "Properties",
+          "Lumberjack"
+        ],
+        [
+          "Rough Axe",
+          "",
+          "1",
+          "0.1%",
+          "-",
+          ""
+        ],
+        [
+          "Refined Axe",
+          "",
+          "1, 2",
+          "0.2%",
+          "Trees Tier 1: tree break bonus: +2.5%",
+          ""
+        ],
+        [
+          "Superior Axe",
+          "",
+          "1, 2, 3",
+          "0.4%",
+          "Trees Tier 1: tree break bonus: +5% Trees Tier 2: tree break bonus: +2.5%",
+          ""
+        ],
+        [
+          "Masterwork Axe",
+          "",
+          "1, 2, 3, 4",
+          "0.8%",
+          "Trees Tier 1: tree break bonus: +7.5% Trees Tier 2: tree break bonus: +5% Trees Tier 3: tree break bonus: +2.5%",
+          ""
+        ],
+        [
+          "Grandmaster Axe",
+          "",
+          "1, 2, 3, 4, 5",
+          "1.6%",
+          "Trees Tier 1: tree break bonus: +10% Trees Tier 2: tree break bonus: +7.5% Trees Tier 3: tree break bonus: +5% Trees Tier 4: tree break bonus: +2.5%",
+          ""
+        ]
+      ],
+      [
+        [
+          "Name",
+          "",
+          "Tier",
+          "Resource",
+          "Respawn"
+        ],
+        [
+          "Plum Tree",
+          "",
+          "1",
+          "plum log",
+          "15-30m"
+        ],
+        [
+          "Snow Plum Tree",
+          "",
+          "1",
+          "plum log",
+          "15-30m"
+        ],
+        [
+          "Pear",
+          "",
+          "1",
+          "pear log",
+          "15-30m"
+        ],
+        [
+          "Snow Pear",
+          "",
+          "1",
+          "pear log",
+          "15-30m"
+        ],
+        [
+          "Red Maple",
+          "",
+          "1",
+          "applewood",
+          "15-30m"
+        ],
+        [
+          "Snow Red Mapple",
+          "",
+          "1",
+          "applewood",
+          "15-30m"
+        ],
+        [
+          "Yellow Maple",
+          "",
+          "1",
+          "applewood",
+          "15-30m"
+        ],
+        [
+          "Snow Yellow Mapple",
+          "",
+          "1",
+          "applewood",
+          "15-30m"
+        ],
+        [
+          "Palm",
+          "",
+          "1",
+          "palm log",
+          "15-30m"
+        ],
+        [
+          "Coconut Palm",
+          "",
+          "1",
+          "coconut palm log",
+          "15-30m"
+        ],
+        [
+          "Poplar",
+          "",
+          "2",
+          "poplar log",
+          "15-60m"
+        ],
+        [
+          "Snow Poplar",
+          "",
+          "2",
+          "poplar log",
+          "15-60m"
+        ],
+        [
+          "Dead Tree",
+          "",
+          "2",
+          "dead log",
+          "15-60m"
+        ],
+        [
+          "Dead Tree",
+          "",
+          "2",
+          "dead branch",
+          "15-60m"
+        ],
+        [
+          "Snowy Dead Tree",
+          "",
+          "2",
+          "dead branch",
+          "15-60m"
+        ],
+        [
+          "Cactus",
+          "",
+          "2",
+          "cactus wood",
+          "15-60m"
+        ],
+        [
+          "Pine",
+          "",
+          "3",
+          "pine log",
+          "15-90m"
+        ],
+        [
+          "Dead Tree",
+          "",
+          "3",
+          "dead trunk",
+          "15-90m"
+        ],
+        [
+          "Snowy Dead Tree",
+          "",
+          "3",
+          "dead trunk",
+          "15-90m"
+        ],
+        [
+          "Dead Tree",
+          "",
+          "3",
+          "dead wood",
+          "15-90m"
+        ],
+        [
+          "Snowy Dead Tree",
+          "",
+          "3",
+          "dead wood",
+          "15-90m"
+        ],
+        [
+          "Dead Tree",
+          "",
+          "3",
+          "oak log",
+          "15-90m"
+        ],
+        [
+          "Snowy Dead Tree",
+          "",
+          "3",
+          "oak log",
+          "15-90m"
+        ],
+        [
+          "Cactus",
+          "",
+          "3",
+          "cactus trunk",
+          "15-90m"
+        ],
+        [
+          "Cactus",
+          "",
+          "3",
+          "cactus trunk",
+          "15-90m"
+        ],
+        [
+          "Sycamore",
+          "",
+          "4",
+          "sycamore wood",
+          "15-120m"
+        ],
+        [
+          "Cactus",
+          "",
+          "4",
+          "cactus core",
+          "15-120m"
+        ],
+        [
+          "Cactus",
+          "",
+          "4",
+          "spiked cactus core",
+          "15-120m"
+        ],
+        [
+          "Dwarf Tree",
+          "",
+          "5",
+          "great trunk",
+          "15-150m"
+        ]
+      ]
+    ],
+    "rawTextPreview": "Game Features » Woodcutting Woodcutting The forests of Miracle are more than part of the landscape. Many trees found throughout the world can be cut down to obtain different types of wood, providing important resources for carpentry. To start with woodcutting, you must acquire your first rough axe w"
+  }
+}

@@ -1,0 +1,242 @@
+{
+  "key": "serverinfo",
+  "title": "Server Information",
+  "url": "https://miracle74.com/?subtopic=serverinfo",
+  "imagesExtracted": [],
+  "sections": [
+    {
+      "heading": "Miracle 7.4",
+      "content": [
+        "Miracle 7.4 is a long-term hardcore project, based on the cipsoft original files. We aim to build a unique server with our own identity while remaining as faithful as possible to the 7.4 mechanics. All the original quests, items, NPCs and maps are present in the game, including new mysteries to be discovered."
+      ]
+    },
+    {
+      "heading": "General Information",
+      "content": [
+        "World Type: PvP Server Save: 05:00 GMT-3 Map Clean: Monday Host Location: US"
+      ]
+    },
+    {
+      "heading": "Rates",
+      "content": [
+        "Experience: 1x Magic: 1x Skills: 1x Loot: 1x Spawn: 1x"
+      ]
+    },
+    {
+      "heading": "Frag System",
+      "content": [
+        "Kills to Red Skull: 3 daily, 5 weekly, 10 monthly Red Skull Time: 15 days Kills to Banishment: 6 daily, 10 weekly, 20 monthly Banishment Time: 15 days"
+      ]
+    },
+    {
+      "heading": "Houses",
+      "content": [
+        "House Price: 200gp per sqm + 1000gp per bed Rent Info: 30% of house price per 15 days Max Account Sleepers: 2 Bed Regeneration: 1 hp/mana per min until 5 * current food time"
+      ]
+    },
+    {
+      "heading": "Vocations",
+      "content": [
+        "Vocation HP Gain/lvl MP Gain/lvl Cap Gain/lvl HP Regen MP Regen None 5 5 10 1/6 secs 0 Sorcerer 5 30 10 1/12 secs 1/6 secs Master Sorcerer 5 30 10 1/10 secs 1/4 secs Druid 5 30 10 1/12 secs 1/6 secs Elder Druid 5 30 10 1/10 secs 1/4 secs Paladin 10 15 20 1/8 secs 1/8 secs Royal Paladin 10 15 20 1/6 secs 1/6 secs Knight 15 5 25 1/6 secs 1/12 secs Elite Knight 15 5 25 1/4 secs 1/10 secs"
+      ]
+    },
+    {
+      "heading": "Stamina",
+      "content": [
+        "Normal (Until 40:00): 1/5 min online, 1/2.5 min offline Green (After 40:00): 1/10 min online, 1/5 min offline Online stamina regen will start after the character not gain exp for at least 3 minutes.",
+        "For 14 hours of stamina or lower, experience will be reduced in -50% and all creatures won't provide more loot.",
+        "Stamina system does not provide any kind of bonus on green stage."
+      ]
+    },
+    {
+      "heading": "Others",
+      "content": [
+        "Bless Price: 10.000 gold until level 100. After that, +100gp per level Bless Reduction: 0.8%"
+      ]
+    }
+  ],
+  "tables": [
+    [
+      [
+        "World Type:",
+        "PvP"
+      ],
+      [
+        "Server Save:",
+        "05:00 GMT-3"
+      ],
+      [
+        "Map Clean:",
+        "Monday"
+      ],
+      [
+        "Host Location:",
+        "US"
+      ]
+    ],
+    [
+      [
+        "Experience:",
+        "1x"
+      ],
+      [
+        "Magic:",
+        "1x"
+      ],
+      [
+        "Skills:",
+        "1x"
+      ],
+      [
+        "Loot:",
+        "1x"
+      ],
+      [
+        "Spawn:",
+        "1x"
+      ]
+    ],
+    [
+      [
+        "Kills to Red Skull:",
+        "3 daily, 5 weekly, 10 monthly"
+      ],
+      [
+        "Red Skull Time:",
+        "15 days"
+      ],
+      [
+        "Kills to Banishment:",
+        "6 daily, 10 weekly, 20 monthly"
+      ],
+      [
+        "Banishment Time:",
+        "15 days"
+      ]
+    ],
+    [
+      [
+        "House Price:",
+        "200gp per sqm + 1000gp per bed"
+      ],
+      [
+        "Rent Info:",
+        "30% of house price per 15 days"
+      ],
+      [
+        "Max Account Sleepers:",
+        "2"
+      ],
+      [
+        "Bed Regeneration:",
+        "1 hp/mana per min until 5 * current food time"
+      ]
+    ],
+    [
+      [
+        "Vocation",
+        "HP Gain/lvl",
+        "MP Gain/lvl",
+        "Cap Gain/lvl",
+        "HP Regen",
+        "MP Regen"
+      ],
+      [
+        "None",
+        "5",
+        "5",
+        "10",
+        "1/6 secs",
+        "0"
+      ],
+      [
+        "Sorcerer",
+        "5",
+        "30",
+        "10",
+        "1/12 secs",
+        "1/6 secs"
+      ],
+      [
+        "Master Sorcerer",
+        "5",
+        "30",
+        "10",
+        "1/10 secs",
+        "1/4 secs"
+      ],
+      [
+        "Druid",
+        "5",
+        "30",
+        "10",
+        "1/12 secs",
+        "1/6 secs"
+      ],
+      [
+        "Elder Druid",
+        "5",
+        "30",
+        "10",
+        "1/10 secs",
+        "1/4 secs"
+      ],
+      [
+        "Paladin",
+        "10",
+        "15",
+        "20",
+        "1/8 secs",
+        "1/8 secs"
+      ],
+      [
+        "Royal Paladin",
+        "10",
+        "15",
+        "20",
+        "1/6 secs",
+        "1/6 secs"
+      ],
+      [
+        "Knight",
+        "15",
+        "5",
+        "25",
+        "1/6 secs",
+        "1/12 secs"
+      ],
+      [
+        "Elite Knight",
+        "15",
+        "5",
+        "25",
+        "1/4 secs",
+        "1/10 secs"
+      ]
+    ],
+    [
+      [
+        "Normal (Until 40:00):",
+        "1/5 min online, 1/2.5 min offline"
+      ],
+      [
+        "Green (After 40:00):",
+        "1/10 min online, 1/5 min offline"
+      ],
+      [
+        "Online stamina regen will start after the character not gain exp for at least 3 minutes. For 14 hours of stamina or lower, experience will be reduced in -50% and all creatures won't provide more loot. Stamina system does not provide any kind of bonus on green stage."
+      ]
+    ],
+    [
+      [
+        "Bless Price:",
+        "10.000 gold until level 100. After that, +100gp per level"
+      ],
+      [
+        "Bless Reduction:",
+        "0.8%"
+      ]
+    ]
+  ],
+  "rawTextPreview": "Miracle 7.4 Miracle 7.4 is a long-term hardcore project, based on the cipsoft original files. We aim to build a unique server with our own identity while remaining as faithful as possible to the 7.4 mechanics. All the original quests, items, NPCs and maps are present in the game, including new myste"
+}
