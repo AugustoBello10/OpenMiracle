@@ -1,14 +1,64 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || '*';
 
-app.use(express.json());
+// Security Headers Middleware
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  next();
+});
+
+app.use(express.json({ limit: '1mb' }));
+
+// In-memory Rate Limiter para proteção contra spam / DDoS em APIs
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minuto
+const RATE_LIMIT_MAX_REQUESTS = 60; // máx 60 requisições por minuto por IP
+
+function rateLimiter(req: express.Request, res: express.Response, next: express.NextFunction) {
+  const clientIp = (req.headers['x-forwarded-for'] as string)?.split(',')[0].trim() || req.socket.remoteAddress || 'unknown';
+  const now = Date.now();
+
+  const record = rateLimitMap.get(clientIp);
+
+  if (!record || now > record.resetTime) {
+    rateLimitMap.set(clientIp, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
+    return next();
+  }
+
+  record.count += 1;
+  if (record.count > RATE_LIMIT_MAX_REQUESTS) {
+    return res.status(429).json({
+      error: 'Muitas requisições. Aguarde um minuto antes de tentar novamente.',
+      retryAfterSeconds: Math.ceil((record.resetTime - now) / 1000),
+    });
+  }
+
+  next();
+}
+
+// Limpeza periódica do mapa de rate limit a cada 10 minutos
+setInterval(() => {
+  const now = Date.now();
+  for (const [ip, record] of rateLimitMap.entries()) {
+    if (now > record.resetTime) {
+      rateLimitMap.delete(ip);
+    }
+  }
+}, 10 * 60 * 1000);
 
 // In-memory cache for Who is Online
 let cachedData: any = null;
@@ -58,9 +108,9 @@ function parseCharactersFromHtml(html: string) {
   return characters;
 }
 
-// API endpoint for Who is Online proxy
-app.get('/api/whoisonline', async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+// API endpoint for Who is Online proxy com proteção de Rate Limit e Cache
+app.get('/api/whoisonline', rateLimiter, async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', ALLOWED_ORIGIN);
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Cache-Control', 'public, max-age=15, s-maxage=30, stale-while-revalidate=60');
@@ -114,6 +164,11 @@ app.get('/api/whoisonline', async (req, res) => {
   }
 });
 
+// Health check para monitoramento na VPS
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', uptime: process.uptime(), timestamp: Date.now() });
+});
+
 // Dev or Production Serving
 async function startServer() {
   const isProd = process.env.NODE_ENV === 'production';
@@ -129,14 +184,16 @@ async function startServer() {
   } else {
     // In prod: serve built static files from dist
     const distPath = path.resolve(__dirname, 'dist');
-    app.use(express.static(distPath));
+    app.use(express.static(distPath, {
+      maxAge: '1d', // Cache estático de 1 dia para arquivos compilados
+    }));
     app.get('*', (req, res) => {
       res.sendFile(path.resolve(distPath, 'index.html'));
     });
   }
 
   app.listen(PORT, () => {
-    console.log(`Server listening on http://localhost:${PORT} (${isProd ? 'production' : 'development'})`);
+    console.log(`OpenMiracle Server listening on http://localhost:${PORT} (${isProd ? 'production' : 'development'})`);
   });
 }
 

@@ -1,9 +1,26 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    
+    // Marcadores do Mapa: Leitura pública, gravação controlada (não permite apagar)
+    match /map_customizations/{docId} {
+      allow read: if true;
+      allow create, update: if request.resource.data.size() < 1000000; // Máximo 1MB por documento
+      allow delete: if false; // Impede exclusão acidental ou maliciosa
+    }
+
+    // Backup de Cartas do Jogo: Leitura pública e criação permitida, sem edição/exclusão por anônimos
+    match /miracle_letters/{letterId} {
+      allow read: if true;
+      allow create: if request.resource.data.author is string 
+                    && request.resource.data.text is string;
+      allow update, delete: if false;
+    }
+
+    // Regra padrão para qualquer outra coleção: Leitura permitida, escrita bloqueada
     match /{document=**} {
       allow read: if true;
-      allow write: if true;
+      allow write: if false;
     }
   }
 }

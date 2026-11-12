@@ -1,0 +1,38 @@
+# ==============================================================================
+# OpenMiracle - Exemplo de Configuração Nginx para VPS
+# Local recomendado no Ubuntu/Debian: /etc/nginx/sites-available/openmiracle
+# Ative com: sudo ln -s /etc/nginx/sites-available/openmiracle /etc/nginx/sites-enabled/
+# ==============================================================================
+
+server {
+    listen 80;
+    server_name seudominio.com www.seudominio.com; # Substitua pelo seu domínio ou subdomínio
+
+    # Redirecionamento HTTP para HTTPS (Automático após rodar certbot)
+    # return 301 https://$host$request_uri;
+
+    location / {
+        proxy_pass http://127.0.0.1:3000; # Porta da Wiki configurada no ecosystem.config.cjs
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+
+        # Timeouts de proxy
+        proxy_connect_timeout 60s;
+        proxy_send_timeout 60s;
+        proxy_read_timeout 60s;
+    }
+
+    # Cache agressivo para assets estáticos e imagens compiladas
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|webp|woff|woff2|ttf|eot)$ {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_set_header Host $host;
+        expires 30d;
+        add_header Cache-Control "public, no-transform";
+    }
+}
