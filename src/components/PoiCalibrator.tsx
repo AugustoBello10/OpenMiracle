@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Target, Check, Save, Copy, Crosshair, ChevronDown, Plus, ExternalLink, MapPin } from 'lucide-react';
+import { Target, Check, Save, Copy, Crosshair, ChevronDown, ChevronUp, Plus, ExternalLink, MapPin, GripHorizontal, X } from 'lucide-react';
+import { motion, useDragControls } from 'motion/react';
 import { useMapEvents } from 'react-leaflet';
 import { getAllPoiCoords, savePoiCoord, PoiCoord } from '../data/poiCoords';
 
@@ -41,6 +42,8 @@ export function PoiCalibrator({
   setCurrentCoord,
 }: PoiCalibratorProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const dragControls = useDragControls();
   const [poiList, setPoiList] = useState<Record<string, PoiCoord>>({});
   const [selectedId, setSelectedId] = useState<string>('sweaty-cyclops');
   const [saveStatus, setSaveStatus] = useState<string | null>(null);
@@ -104,146 +107,192 @@ export function PoiCalibrator({
 
   if (!isOpen) {
     return (
-      <div className="absolute top-20 left-4 z-[450]">
+      <motion.div 
+        drag
+        dragMomentum={false}
+        dragElastic={0}
+        onPointerDown={(e) => e.stopPropagation()}
+        className="absolute top-4 left-80 z-[450]"
+      >
         <button
           type="button"
-          onClick={() => setIsOpen(true)}
+          onClick={() => {
+            setIsOpen(true);
+            setIsCollapsed(false);
+          }}
           className="bg-black/90 px-3 py-2 rounded-lg border border-sky-400/60 flex items-center gap-2 backdrop-blur-md shadow-[0_0_15px_rgba(56,189,248,0.25)] hover:border-sky-300 text-sky-400 hover:text-white transition-all cursor-pointer group"
-          title="Abrir Calibrador de NPCs e Quests"
+          title="Abrir Calibrador de NPCs e Quests (Arraste para mover)"
         >
+          <GripHorizontal className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100" />
           <Crosshair className="w-4 h-4 text-sky-400 group-hover:rotate-90 transition-transform" />
           <span className="font-bold text-xs uppercase tracking-wider">Calibrar Posições</span>
           <span className="text-[9px] px-1.5 py-0.2 bg-sky-500/20 text-sky-300 rounded font-mono">DEV</span>
         </button>
-      </div>
+      </motion.div>
     );
   }
 
   return (
-    <div className="absolute top-20 left-4 z-[450] flex flex-col gap-2 w-80 max-h-[calc(100%-6rem)]">
-      <div className="bg-[#121212]/95 p-4 rounded-xl border border-sky-500/50 flex flex-col gap-3 backdrop-blur-md shadow-[0_0_20px_rgba(0,0,0,0.85)] text-stone-200 text-xs font-sans">
-        {/* Header */}
-        <div className="flex items-center justify-between border-b border-sky-500/30 pb-2">
-          <div className="flex items-center gap-2 text-sky-400 font-bold uppercase tracking-wider text-xs">
+    <motion.div 
+      drag
+      dragControls={dragControls}
+      dragListener={false}
+      dragMomentum={false}
+      dragElastic={0}
+      onPointerDown={(e) => e.stopPropagation()}
+      className="absolute top-4 left-80 z-[450] flex flex-col gap-2 w-80 max-h-[calc(100%-2rem)] shadow-2xl"
+    >
+      <div className="bg-[#121212]/95 p-3 rounded-xl border border-sky-500/50 flex flex-col gap-3 backdrop-blur-md shadow-[0_0_20px_rgba(0,0,0,0.85)] text-stone-200 text-xs font-sans overflow-hidden">
+        {/* Header - Drag Handle */}
+        <div 
+          onPointerDown={(e) => {
+            e.stopPropagation();
+            dragControls.start(e);
+          }}
+          className="flex items-center justify-between pb-2 border-b border-sky-500/30 cursor-grab active:cursor-grabbing select-none"
+          title="Arraste para mover • Clique no título para retrair/expandir"
+        >
+          <div 
+            onClick={() => setIsCollapsed(!isCollapsed)}
+            className="flex items-center gap-1.5 text-sky-400 font-bold uppercase tracking-wider text-xs cursor-pointer hover:text-sky-300 transition-colors"
+          >
+            <GripHorizontal className="w-4 h-4 text-sky-400/70" />
             <Crosshair className="w-4 h-4" />
             <span>Calibrador de NPCs</span>
           </div>
-          <button
-            type="button"
-            onClick={() => {
-              setIsOpen(false);
-              setIsCalibrating(false);
-            }}
-            className="text-stone-400 hover:text-white transition-colors cursor-pointer"
-          >
-            ✕
-          </button>
+
+          <div className="flex items-center gap-1.5" onPointerDown={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              onClick={() => setIsCollapsed(!isCollapsed)}
+              className="p-1 text-stone-400 hover:text-white hover:bg-white/10 rounded transition-colors cursor-pointer"
+              title={isCollapsed ? "Expandir Calibrador" : "Retrair Calibrador"}
+            >
+              {isCollapsed ? <ChevronDown className="w-4 h-4 text-sky-400" /> : <ChevronUp className="w-4 h-4" />}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setIsOpen(false);
+                setIsCalibrating(false);
+              }}
+              className="p-1 text-stone-400 hover:text-white hover:bg-white/10 rounded transition-colors cursor-pointer"
+              title="Fechar"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
-        {/* POI Selector */}
-        <div>
-          <label className="text-[10px] uppercase font-bold text-sky-400/80 mb-1 block">
-            Selecione o Ponto para Calibrar:
-          </label>
-          <select
-            value={selectedId}
-            onChange={(e) => setSelectedId(e.target.value)}
-            className="w-full bg-black/80 border border-white/10 rounded px-2.5 py-2 text-xs text-stone-200 focus:outline-none focus:border-sky-400 font-sans"
-          >
-            {Object.entries(groupedPois).map(([category, items]) => (
-              <optgroup key={category} label={category} className="bg-[#181818] text-medieval-gold font-bold">
-                {items.map((poi) => (
-                  <option key={poi.id} value={poi.id} className="text-stone-200 font-normal">
-                    {poi.name} {poi.city ? `(${poi.city})` : ''}
-                  </option>
+        {/* Collapsible Body */}
+        {!isCollapsed && (
+          <div className="flex flex-col gap-3 overflow-y-auto max-h-[calc(100vh-140px)] custom-scrollbar pr-1">
+            {/* POI Selector */}
+            <div>
+              <label className="text-[10px] uppercase font-bold text-sky-400/80 mb-1 block">
+                Selecione o Ponto para Calibrar:
+              </label>
+              <select
+                value={selectedId}
+                onChange={(e) => setSelectedId(e.target.value)}
+                className="w-full bg-black/80 border border-white/10 rounded px-2.5 py-2 text-xs text-stone-200 focus:outline-none focus:border-sky-400 font-sans"
+              >
+                {Object.entries(groupedPois).map(([category, items]) => (
+                  <optgroup key={category} label={category} className="bg-[#181818] text-medieval-gold font-bold">
+                    {items.map((poi) => (
+                      <option key={poi.id} value={poi.id} className="text-stone-200 font-normal">
+                        {poi.name} {poi.city ? `(${poi.city})` : ''}
+                      </option>
+                    ))}
+                  </optgroup>
                 ))}
-              </optgroup>
-            ))}
-          </select>
-        </div>
-
-        {/* Current Info */}
-        {selectedPoi && (
-          <div className="bg-black/50 p-2.5 rounded border border-white/5 space-y-1.5 font-mono text-[11px]">
-            <div className="flex justify-between items-center text-stone-400">
-              <span>Posição Salva:</span>
-              <span className="text-white font-bold">
-                ({selectedPoi.x}, {selectedPoi.y}, Z:{selectedPoi.z})
-              </span>
+              </select>
             </div>
-            {currentCoord && (
-              <div className="flex justify-between items-center text-sky-400 font-bold border-t border-white/5 pt-1">
-                <span>Nova Marcação:</span>
-                <span className="text-emerald-400">
-                  ({currentCoord.x}, {currentCoord.y}, Z:{currentCoord.z})
-                </span>
+
+            {/* Current Info */}
+            {selectedPoi && (
+              <div className="bg-black/50 p-2.5 rounded border border-white/5 space-y-1.5 font-mono text-[11px]">
+                <div className="flex justify-between items-center text-stone-400">
+                  <span>Posição Salva:</span>
+                  <span className="text-white font-bold">
+                    ({selectedPoi.x}, {selectedPoi.y}, Z:{selectedPoi.z})
+                  </span>
+                </div>
+                {currentCoord && (
+                  <div className="flex justify-between items-center text-sky-400 font-bold border-t border-white/5 pt-1">
+                    <span>Nova Marcação:</span>
+                    <span className="text-emerald-400">
+                      ({currentCoord.x}, {currentCoord.y}, Z:{currentCoord.z})
+                    </span>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Click Mode Toggle */}
+            <button
+              type="button"
+              onClick={() => setIsCalibrating(!isCalibrating)}
+              className={`w-full py-2 px-3 rounded-lg font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                isCalibrating
+                  ? 'bg-emerald-500 text-black shadow-[0_0_15px_rgba(16,185,129,0.4)] animate-pulse'
+                  : 'bg-sky-500/20 text-sky-300 border border-sky-500/40 hover:bg-sky-500/30'
+              }`}
+            >
+              <Target className="w-4 h-4" />
+              {isCalibrating ? '🎯 MIRA ATIVA: Clique no mapa!' : 'Ativar Mira no Mapa'}
+            </button>
+
+            {isCalibrating && (
+              <p className="text-[10px] text-stone-400 text-center italic">
+                Navegue até o andar correto (Andar {floor}) e clique com o botão esquerdo do mouse sobre o piso exato.
+              </p>
+            )}
+
+            {/* Action Buttons */}
+            <div className="flex gap-2 pt-1 border-t border-white/10">
+              <button
+                type="button"
+                onClick={handleSave}
+                disabled={!currentCoord}
+                className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-1.5 px-2 rounded flex items-center justify-center gap-1.5 transition-colors cursor-pointer disabled:opacity-50"
+                title="Salvar direto no arquivo do projeto"
+              >
+                <Save className="w-3.5 h-3.5" />
+                Salvar
+              </button>
+
+              {onFlyTo && selectedPoi && (
+                <button
+                  type="button"
+                  onClick={() => onFlyTo(selectedPoi.x, selectedPoi.y, selectedPoi.z)}
+                  className="px-2.5 py-1.5 bg-black/60 border border-white/10 hover:border-sky-400 text-stone-300 rounded transition-colors cursor-pointer"
+                  title="Voar até a posição atual no mapa"
+                >
+                  <MapPin className="w-3.5 h-3.5 text-sky-400" />
+                </button>
+              )}
+
+              <button
+                type="button"
+                onClick={handleCopy}
+                className="px-2.5 py-1.5 bg-black/60 border border-white/10 hover:border-sky-400 text-stone-300 rounded transition-colors cursor-pointer"
+                title="Copiar coordenadas"
+              >
+                <Copy className="w-3.5 h-3.5" />
+              </button>
+            </div>
+
+            {/* Status Message */}
+            {saveStatus && (
+              <div className="text-[11px] text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 p-1.5 rounded text-center font-bold">
+                {saveStatus}
               </div>
             )}
           </div>
         )}
-
-        {/* Click Mode Toggle */}
-        <button
-          type="button"
-          onClick={() => setIsCalibrating(!isCalibrating)}
-          className={`w-full py-2 px-3 rounded-lg font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer ${
-            isCalibrating
-              ? 'bg-emerald-500 text-black shadow-[0_0_15px_rgba(16,185,129,0.4)] animate-pulse'
-              : 'bg-sky-500/20 text-sky-300 border border-sky-500/40 hover:bg-sky-500/30'
-          }`}
-        >
-          <Target className="w-4 h-4" />
-          {isCalibrating ? '🎯 MIRA ATIVA: Clique no mapa!' : 'Ativar Mira no Mapa'}
-        </button>
-
-        {isCalibrating && (
-          <p className="text-[10px] text-stone-400 text-center italic">
-            Navegue até o andar correto (Andar {floor}) e clique com o botão esquerdo do mouse sobre o piso exato.
-          </p>
-        )}
-
-        {/* Action Buttons */}
-        <div className="flex gap-2 pt-1 border-t border-white/10">
-          <button
-            type="button"
-            onClick={handleSave}
-            disabled={!currentCoord}
-            className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-1.5 px-2 rounded flex items-center justify-center gap-1.5 transition-colors cursor-pointer disabled:opacity-50"
-            title="Salvar direto no arquivo do projeto"
-          >
-            <Save className="w-3.5 h-3.5" />
-            Salvar
-          </button>
-
-          {onFlyTo && selectedPoi && (
-            <button
-              type="button"
-              onClick={() => onFlyTo(selectedPoi.x, selectedPoi.y, selectedPoi.z)}
-              className="px-2.5 py-1.5 bg-black/60 border border-white/10 hover:border-sky-400 text-stone-300 rounded transition-colors cursor-pointer"
-              title="Voar até a posição atual no mapa"
-            >
-              <MapPin className="w-3.5 h-3.5 text-sky-400" />
-            </button>
-          )}
-
-          <button
-            type="button"
-            onClick={handleCopy}
-            className="px-2.5 py-1.5 bg-black/60 border border-white/10 hover:border-sky-400 text-stone-300 rounded transition-colors cursor-pointer"
-            title="Copiar coordenadas"
-          >
-            <Copy className="w-3.5 h-3.5" />
-          </button>
-        </div>
-
-        {/* Status Message */}
-        {saveStatus && (
-          <div className="text-[11px] text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 p-1.5 rounded text-center font-bold">
-            {saveStatus}
-          </div>
-        )}
       </div>
-    </div>
+    </motion.div>
   );
 }
 

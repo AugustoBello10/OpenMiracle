@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Brush, Copy, Plus, Save, Edit2, Trash2, X, Upload } from 'lucide-react';
+import { Brush, Copy, Plus, Save, Edit2, Trash2, X, Upload, ChevronDown, ChevronUp, GripHorizontal } from 'lucide-react';
+import { motion, useDragControls } from 'motion/react';
 import { Respawn, PREDEFINED_MONSTERS, fixCategories, TeleportTarget } from '../data/respawns';
 import { useMapEvents } from 'react-leaflet';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
@@ -55,6 +56,8 @@ export default function MapEditorPanel({
   onFlyTo
 }: MapEditorPanelProps) {
   const [isPanelOpen, setIsPanelOpen] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const dragControls = useDragControls();
   const [newMonsterName, setNewMonsterName] = useState('');
   const [newMonsterImage, setNewMonsterImage] = useState('');
   const [isAddingNew, setIsAddingNew] = useState(false);
@@ -230,43 +233,89 @@ export default function MapEditorPanel({
 
   if (!isPanelOpen) {
     return (
-      <div className="absolute top-4 left-4 z-[400]">
+      <motion.div 
+        drag 
+        dragMomentum={false}
+        dragElastic={0}
+        onPointerDown={(e) => e.stopPropagation()}
+        className="absolute top-4 left-4 z-[400]"
+      >
         <button 
-          onClick={() => setIsPanelOpen(true)}
-          className="bg-black/90 p-3 rounded-lg border border-red-500/50 flex items-center gap-2 backdrop-blur-sm shadow-[0_0_15px_rgba(255,0,0,0.2)] hover:bg-black text-red-400 hover:text-red-300 transition-colors"
-          title="Abrir Editor de Mapa"
+          onClick={() => {
+            setIsPanelOpen(true);
+            setIsCollapsed(false);
+          }}
+          className="bg-black/90 p-2.5 rounded-lg border border-red-500/50 flex items-center gap-2 backdrop-blur-sm shadow-[0_0_15px_rgba(255,0,0,0.2)] hover:bg-black text-red-400 hover:text-red-300 transition-colors cursor-pointer group"
+          title="Abrir Editor de Mapa (Arraste para mover)"
         >
-          <Edit2 className="w-5 h-5" />
+          <GripHorizontal className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100" />
+          <Edit2 className="w-4 h-4" />
           <span className="font-bold text-xs uppercase tracking-widest hidden sm:inline">Editor</span>
         </button>
-      </div>
+      </motion.div>
     );
   }
 
   return (
-    <div className="absolute top-4 left-4 z-[400] flex flex-col gap-2 w-72 max-h-[calc(100%-2rem)]">
-      <div className="bg-black/90 p-4 rounded-lg border border-red-500/50 flex flex-col gap-4 backdrop-blur-sm shadow-[0_0_15px_rgba(255,0,0,0.2)] overflow-y-auto custom-scrollbar">
-        <div className="flex items-center justify-between border-b border-red-500/30 pb-2">
-          <span className="text-red-400 font-bold text-sm tracking-widest uppercase">Editor de Mapa</span>
-          <div className="flex items-center gap-2">
+    <motion.div 
+      drag
+      dragControls={dragControls}
+      dragListener={false}
+      dragMomentum={false}
+      dragElastic={0}
+      onPointerDown={(e) => e.stopPropagation()}
+      className="absolute top-4 left-4 z-[400] flex flex-col gap-2 w-72 max-h-[calc(100%-2rem)] shadow-2xl"
+    >
+      <div className="bg-black/95 p-3 rounded-xl border border-red-500/50 flex flex-col gap-3 backdrop-blur-md shadow-[0_0_20px_rgba(255,0,0,0.25)] overflow-hidden">
+        {/* Header Bar - Draggable handle & collapse */}
+        <div 
+          onPointerDown={(e) => {
+            e.stopPropagation();
+            dragControls.start(e);
+          }}
+          className="flex items-center justify-between pb-2 border-b border-red-500/30 cursor-grab active:cursor-grabbing select-none"
+          title="Arraste para mover • Clique no título para retrair/expandir"
+        >
+          <div 
+            onClick={() => setIsCollapsed(!isCollapsed)}
+            className="flex items-center gap-1.5 text-red-400 font-bold text-xs tracking-wider uppercase cursor-pointer hover:text-red-300 transition-colors"
+          >
+            <GripHorizontal className="w-4 h-4 text-red-400/70" />
+            <span>Editor de Mapa</span>
+          </div>
+
+          <div className="flex items-center gap-1.5" onPointerDown={(e) => e.stopPropagation()}>
             <button
+              type="button"
               onClick={() => setBrushMode(!brushMode)}
-              className={`p-1.5 rounded transition-colors flex items-center gap-1.5 text-[10px] font-bold ${brushMode ? 'bg-red-500 text-white' : 'bg-red-500/20 text-red-400 hover:bg-red-500/40'}`}
+              className={`px-2 py-1 rounded transition-colors flex items-center gap-1 text-[10px] font-bold cursor-pointer ${brushMode ? 'bg-red-500 text-white shadow-[0_0_10px_rgba(239,68,68,0.5)]' : 'bg-red-500/20 text-red-400 hover:bg-red-500/40'}`}
+              title="Alternar modo pincel"
             >
               <Brush className="w-3 h-3" />
-              {brushMode ? 'Pincel ON' : 'Pincel OFF'}
+              {brushMode ? 'ON' : 'OFF'}
             </button>
             <button
+              type="button"
+              onClick={() => setIsCollapsed(!isCollapsed)}
+              className="p-1 text-gray-400 hover:text-white hover:bg-zinc-800 rounded transition-colors cursor-pointer"
+              title={isCollapsed ? "Expandir Painel" : "Retrair Painel"}
+            >
+              {isCollapsed ? <ChevronDown className="w-4 h-4 text-red-400" /> : <ChevronUp className="w-4 h-4" />}
+            </button>
+            <button
+              type="button"
               onClick={() => setIsPanelOpen(false)}
-              className="p-1.5 text-gray-400 hover:text-white hover:bg-zinc-800 rounded transition-colors"
-              title="Minimizar"
+              className="p-1 text-gray-400 hover:text-white hover:bg-zinc-800 rounded transition-colors cursor-pointer"
+              title="Fechar"
             >
               <X className="w-4 h-4" />
             </button>
           </div>
         </div>
 
-        <div className="flex flex-col gap-3">
+        {/* Collapsible Body */}
+        {!isCollapsed && (
+          <div className="flex flex-col gap-3 overflow-y-auto max-h-[calc(100vh-140px)] custom-scrollbar pr-1">
           {/* Monster Selection */}
           <div className="flex flex-col gap-1">
             <label className="text-xs text-gray-400 font-semibold uppercase">Monstro</label>
@@ -595,7 +644,8 @@ export default function MapEditorPanel({
              <OTMMConverter />
           </div>
         </div>
+        )}
       </div>
-    </div>
+    </motion.div>
   );
 }
