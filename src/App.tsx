@@ -34,6 +34,7 @@ import { MapModal } from './components/MapModal';
 const MapViewer = lazy(() => import('./components/MapViewer'));
 import { LootOptimizer } from './components/LootOptimizer';
 import { LetterReaderModal } from './components/LetterReaderModal';
+import { NewHomeModal } from './components/NewHomeModal';
 import { supabase } from './lib/supabase';
 
 import BestiaryEditor from './components/BestiaryEditor';
@@ -1364,7 +1365,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0f0f0f]">
+    <div className="min-h-screen flex flex-col bg-[#0f0f0f]">`r`n      <NewHomeModal />
       {/* Navigation Bar */}
       {activeTab !== "home" && (
       <nav className="sticky top-0 z-50 bg-medieval-dark/95 backdrop-blur-md border-b border-medieval-gold/30">
