@@ -4,6 +4,7 @@ import { X, Search } from 'lucide-react';
 import { BESTIARY_DB } from '../data/bestiaryDb';
 import { MonsterStage, calculateMonsterStats } from '../types/bestiary';
 import { PREDEFINED_MONSTERS } from '../data/respawns';
+import miracleCreatures from '../data/miracle/creatures.json';
 // import { ITEMS_DB } from '../data/buildItems'; // We could use this to find item images
 
 interface BestiaryModalProps {
@@ -21,8 +22,17 @@ export default function BestiaryModal({ initialMonster, onClose }: BestiaryModal
   const entry = entryKey ? BESTIARY_DB[entryKey] : undefined;
   
   const monsterImage = useMemo(() => {
-    const found = PREDEFINED_MONSTERS.find(m => m.name.toLowerCase() === selectedMonster?.trim().toLowerCase());
-    return found?.image || '';
+    const predefined = PREDEFINED_MONSTERS.find(m => m.name.toLowerCase() === selectedMonster?.trim().toLowerCase());
+    if (predefined?.image) return predefined.image;
+
+    const found = (miracleCreatures as Array<{ name: string; slug: string; image: string }>).find(c => 
+      c.name.toLowerCase() === selectedMonster?.trim().toLowerCase() ||
+      c.slug.replace(/[^a-z0-9]/g, '') === selectedMonster?.trim().toLowerCase().replace(/[^a-z0-9]/g, '')
+    );
+    if (found?.image) return found.image;
+
+    const slug = selectedMonster?.trim().toLowerCase().replace(/'/g, '').replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+    return `/images/miracle/creatures/${slug}.png`;
   }, [selectedMonster]);
 
   const stats = useMemo(() => {
@@ -30,12 +40,15 @@ export default function BestiaryModal({ initialMonster, onClose }: BestiaryModal
     return calculateMonsterStats(entry, stage);
   }, [entry, stage]);
 
-  const allMonsterNames = Array.from(new Set([
-    ...Object.keys(BESTIARY_DB),
-    ...PREDEFINED_MONSTERS
-      .filter(m => m.categories?.includes('Monstros') || m.categories?.includes("Monstros"))
-      .map(m => m.name)
-  ])).sort((a, b) => a.localeCompare(b));
+  const allMonsterNames = useMemo(() => {
+    return Array.from(new Set([
+      ...Object.keys(BESTIARY_DB),
+      ...PREDEFINED_MONSTERS
+        .filter(m => m.categories?.includes('Monstros') || m.categories?.includes("Monstros"))
+        .map(m => m.name),
+      ...miracleCreatures.map(c => c.name)
+    ])).sort((a, b) => a.localeCompare(b));
+  }, []);
 
   const allMonsters = allMonsterNames.filter(m => m.toLowerCase().includes(search.toLowerCase()));
 
