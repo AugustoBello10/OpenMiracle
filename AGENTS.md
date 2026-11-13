@@ -34,8 +34,11 @@ All interactive enhancements, state refinements, and UI optimizations should be 
    - If an in-game mechanic, step, or quest spoiler is not explicitly known or verified in Miracle 7.4 files/Discord, DO NOT invent it. State clearly what is known and request verification from the user.
 2. **100% Bilingual Completeness (PT & EN):**
    - Every single guide, narrative paragraph, step, notice card, table, and item description MUST have full, complete translations for both Portuguese (`language === 'pt'`) and English (`language === 'en'`). Never leave Portuguese body text rendered when the user selects English.
-3. **Clean Editorial Typography (No Header Icons/Emojis):**
-   - NEVER put Lucide icons or emojis inside `<h1>`, `<h2>`, `<h3>`, `<h4>` titles, subtitles, or system button headers. Keep titles purely textual, clean, and professional.
+3. **Clean Editorial Typography (STRICT NO HEADER ICONS / EMOJIS):**
+   - NEVER put Lucide icons, emojis, or decorative symbols inside ANY title, subtitle, card header, system button header, or section label — regardless of whether the HTML tag is `<h1>`, `<h2>`, `<h3>`, `<h4>`, `<h5>`, `<h6>`, `<span>`, `<div>`, or `<button>`.
+   - Titles, card headers, section names, and action buttons MUST remain 100% PURE TEXT, clean, and professional.
+   - Decorative icons in titles look amateur and give an "AI generated" feel. Zero icons in headers across the entire website.
+   - Icons are only permitted as tiny utility indicators inside data rows (e.g. mini health icon next to `Vida (HP):`).
 4. **Ultra-Pedagogical Step-by-Step ("Take by the Hand"):**
    - Write clear, continuous narrative explanations assuming the reader is a complete beginner. Explain where to click, what opens on screen, and what mistakes to avoid.
    - Accompany steps with real in-game screenshots and official sprites for all cited items.

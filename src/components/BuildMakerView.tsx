@@ -178,8 +178,7 @@ export const BuildMakerView: React.FC<BuildMakerViewProps> = ({ language }) => {
         <div className="w-full lg:w-[320px] xl:w-[350px] shrink-0 flex flex-col gap-3 bg-black/35 p-3 rounded-lg border border-medieval-gold/15 h-full overflow-y-auto scrollbar-medieval">
           
           <div className="flex items-center justify-between border-b border-medieval-gold/20 pb-2">
-            <h3 className="text-xs font-bold text-medieval-gold uppercase tracking-widest flex items-center gap-1.5">
-              <Crown size={14} className="text-medieval-gold" />
+            <h3 className="text-xs font-bold text-medieval-gold uppercase tracking-widest">
               {language === 'pt' ? 'Ficha do Personagem' : 'Character Sheet'}
             </h3>
             <span className="text-[9px] font-mono text-medieval-muted bg-medieval-gold/10 px-2 py-0.5 rounded border border-medieval-gold/20">

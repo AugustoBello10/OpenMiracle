@@ -70,10 +70,9 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({
 
         <button
           onClick={() => setShowFormulasModal(true)}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-medieval-gold/10 hover:bg-medieval-gold/20 border border-medieval-gold/30 hover:border-medieval-gold/50 text-medieval-gold text-xs font-bold uppercase tracking-wider transition-all cursor-pointer shadow-sm"
+          className="px-3 py-1.5 rounded-lg bg-medieval-gold/10 hover:bg-medieval-gold/20 border border-medieval-gold/30 hover:border-medieval-gold/50 text-medieval-gold text-xs font-bold uppercase tracking-wider transition-all cursor-pointer shadow-sm"
           title={isPt ? 'Ver Fórmulas Detalhadas (Modo Avançado)' : 'View Detailed Formulas (Advanced Mode)'}
         >
-          <Calculator className="w-3.5 h-3.5" />
           <span className="hidden sm:inline">{isPt ? 'Fórmulas & Detalhes' : 'Formulas & Details'}</span>
           <span className="sm:hidden">{isPt ? 'Fórmulas' : 'Math'}</span>
         </button>
@@ -88,8 +87,7 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({
           {/* CARD 1: VITAIS & REGEN */}
           <div className="bg-black/60 border border-medieval-gold/20 rounded-xl p-4 shadow-lg space-y-3">
             <div className="flex items-center justify-between border-b border-white/5 pb-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-medieval-gold flex items-center gap-1.5">
-                <Heart className="w-3.5 h-3.5 text-red-400" />
+              <span className="text-xs font-bold uppercase tracking-wider text-medieval-gold">
                 {isPt ? 'Atributos Vitais' : 'Vital Attributes'}
               </span>
               <span className="text-[10px] font-mono text-stone-400">{vocation}</span>
@@ -152,8 +150,7 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({
           {/* CARD 2: PODER OFENSIVO (ATAQUE) */}
           <div className="bg-black/60 border border-medieval-gold/20 rounded-xl p-4 shadow-lg space-y-3">
             <div className="flex items-center justify-between border-b border-white/5 pb-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-medieval-gold flex items-center gap-1.5">
-                <Sword className="w-3.5 h-3.5 text-amber-400" />
+              <span className="text-xs font-bold uppercase tracking-wider text-medieval-gold">
                 {isPt ? 'Poder Ofensivo (Ataque)' : 'Offensive Combat (Attack)'}
               </span>
               <span className="text-[10px] font-mono text-medieval-gold/80 bg-medieval-gold/10 px-2 py-0.5 rounded border border-medieval-gold/20">
@@ -227,8 +224,7 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({
         <div className="bg-black/60 border border-medieval-gold/30 rounded-xl p-4 shadow-xl space-y-4">
           <div className="flex items-center justify-between border-b border-medieval-gold/20 pb-2">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-medieval-gold flex items-center gap-1.5">
-                <Shield className="w-4 h-4 text-sky-400" />
+              <span className="text-xs font-bold uppercase tracking-wider text-medieval-gold">
                 {isPt ? 'Sobrevivência & Redução de Dano (Ordem de Resolução)' : 'Survival & Damage Reduction Pipeline'}
               </span>
               <p className="text-[11px] text-stone-400">
@@ -322,8 +318,7 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({
           {/* SIMULADOR INTERATIVO DE DANO RECEBIDO */}
           <div className="bg-black/70 p-4 rounded-xl border border-medieval-gold/25 space-y-3">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-              <span className="text-xs font-bold text-stone-200 uppercase tracking-wider flex items-center gap-1.5">
-                <Activity className="w-3.5 h-3.5 text-medieval-gold" />
+              <span className="text-xs font-bold text-stone-200 uppercase tracking-wider">
                 {isPt ? 'Simulador de Golpe Físico Recebido:' : 'Simulated Incoming Physical Hit:'}
               </span>
 
@@ -400,8 +395,7 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({
         {stats.runes.length > 0 && (
           <div className="bg-black/60 border border-medieval-gold/20 rounded-xl p-4 shadow-lg space-y-3">
             <div className="flex items-center justify-between border-b border-white/5 pb-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-medieval-gold flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-purple-400" />
+              <span className="text-xs font-bold uppercase tracking-wider text-medieval-gold">
                 {isPt ? 'Magias & Runas Principais' : 'Key Spells & Runes'}
               </span>
               <span className="text-[10px] font-mono text-purple-300">
@@ -441,8 +435,7 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({
         <div className="space-y-5 text-stone-300 text-xs sm:text-sm font-sans max-h-[75vh] overflow-y-auto pr-1">
           
           <div className="bg-black/60 p-4 rounded-xl border border-medieval-gold/30 space-y-2">
-            <h4 className="font-bold text-medieval-gold uppercase tracking-wider text-sm flex items-center gap-2">
-              <Shield className="w-4 h-4 text-sky-400" />
+            <h4 className="font-bold text-medieval-gold uppercase tracking-wider text-sm">
               {isPt ? '1. Hierarquia de Dano Recebido' : '1. Incoming Damage Hierarchy'}
             </h4>
             <p className="leading-relaxed">
@@ -458,8 +451,7 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({
           </div>
 
           <div className="bg-black/60 p-4 rounded-xl border border-medieval-gold/30 space-y-2">
-            <h4 className="font-bold text-medieval-gold uppercase tracking-wider text-sm flex items-center gap-2">
-              <Sword className="w-4 h-4 text-amber-400" />
+            <h4 className="font-bold text-medieval-gold uppercase tracking-wider text-sm">
               {isPt ? '2. Fórmulas de Ataque e Bloqueio de Defesa' : '2. Attack & Defense Block Formulas'}
             </h4>
             <div className="bg-black/80 p-3 rounded font-mono text-xs text-yellow-300/90 space-y-2 border border-white/5">
@@ -472,8 +464,7 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({
           </div>
 
           <div className="bg-black/60 p-4 rounded-xl border border-medieval-gold/30 space-y-2">
-            <h4 className="font-bold text-medieval-gold uppercase tracking-wider text-sm flex items-center gap-2">
-              <Shield className="w-4 h-4 text-amber-400" />
+            <h4 className="font-bold text-medieval-gold uppercase tracking-wider text-sm">
               {isPt ? '3. Fórmulas Oficiais da Armadura (Armor)' : '3. Official Armor Formulas'}
             </h4>
             <div className="bg-black/80 p-3 rounded font-mono text-xs text-yellow-300/90 space-y-1.5 border border-white/5">
@@ -484,8 +475,7 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({
           </div>
 
           <div className="bg-black/60 p-4 rounded-xl border border-medieval-gold/30 space-y-2">
-            <h4 className="font-bold text-medieval-gold uppercase tracking-wider text-sm flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-purple-400" />
+            <h4 className="font-bold text-medieval-gold uppercase tracking-wider text-sm">
               {isPt ? '4. Fórmulas de Magias e Runas' : '4. Spells & Runes Formulas'}
             </h4>
             <div className="bg-black/80 p-3 rounded font-mono text-xs text-yellow-300/90 space-y-1.5 border border-white/5">
