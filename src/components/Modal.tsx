@@ -13,6 +13,15 @@ interface ModalProps {
 }
 
 export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children, width = "max-w-md" }) => {
+  React.useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -22,7 +31,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children, 
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/80 backdrop-blur-sm cursor-pointer"
           />
           <motion.div 
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -30,16 +39,17 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children, 
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
             className={cn("medieval-card w-full z-10 flex flex-col max-h-[90vh]", width)}
           >
-            <div className="flex items-center justify-between p-4 border-b border-medieval-gold/20">
+            <div className="flex items-center justify-between p-4 border-b border-medieval-gold/20 relative z-20">
               <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-medieval-gold">{title}</h2>
               <button 
                 onClick={onClose}
-                className="text-medieval-muted hover:text-medieval-gold transition-colors p-1"
+                aria-label="Close modal"
+                className="text-medieval-muted hover:text-medieval-gold transition-colors p-1.5 rounded-lg hover:bg-white/5 cursor-pointer relative z-30"
               >
                 <X size={20} />
               </button>
             </div>
-            <div className="flex-1 overflow-y-auto scrollbar-medieval p-4">
+            <div className="flex-1 overflow-y-auto scrollbar-medieval p-4 relative z-20">
               {children}
             </div>
           </motion.div>

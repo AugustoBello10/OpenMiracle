@@ -436,6 +436,7 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({
         isOpen={showFormulasModal}
         onClose={() => setShowFormulasModal(false)}
         title={isPt ? 'Fórmulas Oficiais & Auditoria Matemática' : 'Official Formulas & Math Audit'}
+        width="max-w-2xl"
       >
         <div className="space-y-5 text-stone-300 text-xs sm:text-sm font-sans max-h-[75vh] overflow-y-auto pr-1">
           
