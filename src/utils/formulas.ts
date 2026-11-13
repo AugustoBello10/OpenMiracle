@@ -34,6 +34,7 @@ export interface CalculatedStats {
   attack: number;
   defense: number;
   minReduction: number;
+  avgReduction: number;
   maxReduction: number;
   maxMelee: number;
   maxDist: number;
@@ -411,8 +412,9 @@ export function calculateStats(build: BuildState): CalculatedStats {
   const avgBlock = Math.floor(((5 * defenseSkillUsed + 50) * defenseValueUsed * stanceMult.def * 99 / 10000) * 1.05);
   const maxBlock = Math.floor(((5 * defenseSkillUsed + 50) * defenseValueUsed * stanceMult.def * 99 / 10000) * 1.1);
 
-  const minReduction = Math.floor(Math.max(0, totalArmor * 0.47));
-  const maxReduction = Math.floor(Math.max(0, totalArmor * 0.94 - 1));
+  const minReduction = Math.floor(Math.max(0, totalArmor * 0.475));
+  const maxReduction = Math.floor(Math.max(0, totalArmor * 0.95 - 1));
+  const avgReduction = Math.floor(Math.max(0, (minReduction + maxReduction) / 2));
 
   const totalHpRegenPerSec = healthRegenList.reduce((acc, current) => acc + current.valPerSec, 0);
   const totalMpRegenPerSec = manaRegenList.reduce((acc, current) => acc + current.valPerSec, 0);
@@ -503,6 +505,7 @@ export function calculateStats(build: BuildState): CalculatedStats {
     attack: weaponAtk,
     defense: defenseValueUsed,
     minReduction,
+    avgReduction,
     maxReduction,
     maxMelee: Math.floor(maxMelee),
     minMelee,
@@ -618,4 +621,50 @@ export function getRarityStyles(count: number): RarityStyle {
       };
   }
 }
+
+export interface DamageTakenStep {
+  incomingDamage: number;
+  blockedByShield: number;
+  damageAfterShield: number;
+  reducedByArmor: number;
+  damageAfterArmor: number;
+  mitigatedByProtections: number;
+  finalDamageTaken: number;
+  totalPercentReduction: number;
+}
+
+/**
+ * Simula a resolução exata de dano físico recebido:
+ * 1º Bloqueio do Escudo / Arma (Defense + Stance)
+ * 2º Redução da Armadura Total (Min / Méd / Max)
+ * 3º Proteções / Mitigações percentuais residuais
+ */
+export function simulateDamageTaken(incomingDamage: number, stats: CalculatedStats): DamageTakenStep {
+  // 1º Passo: Bloqueio do Escudo / Arma (Defense)
+  const blockedByShield = Math.min(incomingDamage, stats.avgBlock);
+  const damageAfterShield = Math.max(0, incomingDamage - blockedByShield);
+
+  // 2º Passo: Redução da Armadura Total
+  const reducedByArmor = Math.min(damageAfterShield, stats.avgReduction);
+  const damageAfterArmor = Math.max(0, damageAfterShield - reducedByArmor);
+
+  // 3º Passo: Proteções & Mitigações Percentuais
+  const physProt = stats.protections['physical'] || 0;
+  const mitProt = (stats.mitigation || 0) / 100;
+  const totalPercentReduction = 1 - (1 - physProt) * (1 - mitProt);
+  const mitigatedByProtections = Math.round(damageAfterArmor * totalPercentReduction);
+  const finalDamageTaken = Math.max(0, damageAfterArmor - mitigatedByProtections);
+
+  return {
+    incomingDamage,
+    blockedByShield,
+    damageAfterShield,
+    reducedByArmor,
+    damageAfterArmor,
+    mitigatedByProtections,
+    finalDamageTaken,
+    totalPercentReduction: Math.round(totalPercentReduction * 100)
+  };
+}
+
 
