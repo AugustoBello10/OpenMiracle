@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { MapLink } from './MapLink';
-import { PrerequisitesCard, NoticeCard, StepList } from './Guide';
+import { PrerequisitesCard, NoticeCard, StepList, ZoomableImage } from './Guide';
 
 interface CustomSystemsViewProps {
   language: 'pt' | 'en';
@@ -60,9 +60,11 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
             </p>
 
             <div className="bg-black/60 p-4 rounded-xl border border-medieval-gold/20 flex flex-col sm:flex-row items-center gap-6">
-              <img 
+              <ZoomableImage 
                 src="/images/miracle/features/relicbox.png" 
                 alt="Relic Box Inventory" 
+                caption={language === 'pt' ? 'Interface da Relic Box com 4 slots dentro do inventário' : 'Relic Box 4-slot container inside character inventory'}
+                language={language}
                 className="max-h-24 object-contain rounded border border-medieval-gold/30 p-1 bg-black/80 shadow-md" 
               />
               <div className="space-y-2 text-xs sm:text-sm text-stone-300">
@@ -539,7 +541,13 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
               </p>
               
               <div className="flex flex-col sm:flex-row items-center gap-4 bg-black/80 p-3 rounded-lg border border-white/10">
-                <img src="/images/miracle/features/store_button_ingame.png" alt="Botão Store in-game" className="h-10 object-contain rounded border border-blue-500/50" />
+                <ZoomableImage 
+                  src="/images/miracle/features/store_button_ingame.png" 
+                  alt={language === 'pt' ? 'Botão Store in-game' : 'In-game Store button'} 
+                  caption={language === 'pt' ? 'Botão azul "Store" localizado no painel direito inferior do cliente' : 'Blue "Store" button located at the bottom-right panel'}
+                  language={language}
+                  className="h-10 object-contain rounded border border-blue-500/50" 
+                />
                 <span className="text-xs text-stone-300">
                   {language === 'pt' ? 'Botão azul "Store" localizado no painel direito do cliente.' : 'Blue "Store" button located on the client right panel.'}
                 </span>
@@ -551,7 +559,13 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
                 <li>{language === 'pt' ? 'Selecione o item "Private Store Document" (10 Miracle Points) e clique em "Buy Now!".' : 'Select "Private Store Document" (10 Miracle Points) and click "Buy Now!".'}</li>
               </ul>
               <div className="mt-2">
-                <img src="/images/miracle/features/store_private_shop.jpg" alt="Store Utilities" className="w-full max-w-lg rounded border border-white/10" />
+                <ZoomableImage 
+                  src="/images/miracle/features/store_private_shop.jpg" 
+                  alt={language === 'pt' ? 'Store Utilities' : 'Store Utilities'} 
+                  caption={language === 'pt' ? 'Janela da Loja: aba Utilities com o Private Store Document (10 Miracle Points)' : 'In-game Store: Utilities tab with Private Store Document (10 Miracle Points)'}
+                  language={language}
+                  className="w-full max-w-lg rounded border border-white/10" 
+                />
               </div>
             </div>
 
@@ -596,7 +610,13 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
                   : 'Positioned properly, right-click your own character sprite and select "Open Shop".'}
               </p>
               <div className="mt-2">
-                <img src="/images/miracle/features/open_shop_menu.png" alt="Menu Open Shop" className="max-w-xs rounded border border-white/10" />
+                <ZoomableImage 
+                  src="/images/miracle/features/open_shop_menu.png" 
+                  alt={language === 'pt' ? 'Menu de Contexto: Open Shop' : 'Context Menu: Open Shop'} 
+                  caption={language === 'pt' ? 'Menu de contexto no personagem: selecione "Open Shop" para configurar sua banca' : 'Character context menu: select "Open Shop" to configure stall'}
+                  language={language}
+                  className="max-w-xs rounded border border-white/10" 
+                />
               </div>
             </div>
 
@@ -612,7 +632,13 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
                 <li>{language === 'pt' ? 'Altere o nome da sua loja em "Edit Description" e note a taxa de 5% ("Fee: 5%") debitada sobre cada venda.' : 'Edit store title in "Edit Description" and note the 5% transaction fee.'}</li>
               </ul>
               <div className="mt-2">
-                <img src="/images/miracle/features/player_shop_window.jpg" alt="Janela da Loja" className="w-full max-w-md rounded border border-white/10" />
+                <ZoomableImage 
+                  src="/images/miracle/features/player_shop_window.jpg" 
+                  alt={language === 'pt' ? 'Janela de Configuração da Loja' : 'Shop Configuration Window'} 
+                  caption={language === 'pt' ? 'Interface da Loja: configure os preços unitários, a quantidade e o título da sua loja' : 'Store interface: set unit price, item amount, and shop description'}
+                  language={language}
+                  className="w-full max-w-md rounded border border-white/10" 
+                />
               </div>
             </div>
 
@@ -706,7 +732,13 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
                 </p>
               </div>
               <div className="w-full md:w-80 bg-black/60 p-2 rounded-lg border border-medieval-gold/30 shrink-0">
-                <img src="/images/miracle/features/house_move_out.png" alt="Move Out" className="w-full rounded" />
+                <ZoomableImage 
+                  src="/images/miracle/features/house_move_out.png" 
+                  alt={language === 'pt' ? 'Interface Move Out de Transferência de Casa' : 'House Move Out Transfer Interface'} 
+                  caption={language === 'pt' ? 'Formulário oficial do site: transfira a titularidade e defina o valor em gold com segurança' : 'Official website form: safely transfer ownership and set price in gold coins'}
+                  language={language}
+                  className="w-full rounded" 
+                />
               </div>
             </div>
 

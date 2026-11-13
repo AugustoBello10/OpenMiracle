@@ -11,3 +11,6 @@ export type { DialogLine } from './NpcDialog';
 
 export { TableOfContents } from './TableOfContents';
 export type { TocItem } from './TableOfContents';
+
+export { ZoomableImage } from './ZoomableImage';
+export type { ZoomableImageProps } from './ZoomableImage';
