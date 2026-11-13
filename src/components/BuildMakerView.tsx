@@ -8,6 +8,9 @@ import { ItemImage } from './ItemImage';
 import { Modal } from './Modal';
 import { ItemSelector } from './BuildMaker/ItemSelector';
 import { AttributeEncoder, getAttributeValueAndDescription } from './BuildMaker/AttributeEncoder';
+import { ImportBuildModal } from './BuildMaker/ImportBuildModal';
+import { BuildMakerTutorialModal } from './BuildMaker/BuildMakerTutorialModal';
+import { ParsedBuildResult } from '../utils/buildImporter';
 import { cn } from '../lib/utils';
 import { ATTRIBUTE_TYPES } from '../data/constants';
 import { 
@@ -42,6 +45,31 @@ export const BuildMakerView: React.FC<BuildMakerViewProps> = ({ language }) => {
     type: 'item' | 'attribute' | 'item-options' | null;
     slotId: SlotId | null;
   }>({ type: null, slotId: null });
+
+  const [isTutorialModalOpen, setIsTutorialModalOpen] = useState(() => {
+    try {
+      return localStorage.getItem('miracle_bm_tutorial_dismissed') !== 'true';
+    } catch (e) {
+      return false;
+    }
+  });
+  const [isImportModalOpen, setIsImportModalOpen] = useState(false);
+
+  const handleApplyImportedBuild = (parsed: ParsedBuildResult) => {
+    setBuildLocal(prev => {
+      const nextEquip = { ...prev.equipment, ...parsed.equipment };
+      const nextAttrs = { ...prev.selectedAttributes, ...parsed.attributes };
+      const nextSkills = { ...prev.skills, ...parsed.skills };
+      return {
+        ...prev,
+        level: parsed.level || prev.level,
+        vocation: parsed.vocation || prev.vocation,
+        skills: nextSkills,
+        equipment: nextEquip,
+        selectedAttributes: nextAttrs
+      };
+    });
+  };
 
   const currentBuild = activeBuild === 1 ? build1 : build2;
   const setBuildLocal = (updater: (prev: BuildState) => BuildState) => {
@@ -153,21 +181,34 @@ export const BuildMakerView: React.FC<BuildMakerViewProps> = ({ language }) => {
           <button 
             onClick={() => setIsComparing(!isComparing)}
             className={cn(
-              "medieval-button-outline px-3 py-1 text-[10px] uppercase font-bold flex items-center gap-1.5",
+              "medieval-button-outline px-3 py-1 text-[10px] uppercase font-bold",
               isComparing && "bg-medieval-gold/20 border-medieval-gold"
             )}
           >
-            <ArrowRightLeft size={12} />
             <span>{t('bm_compare')}</span>
+          </button>
+
+          <button
+            onClick={() => setIsImportModalOpen(true)}
+            className="px-3 py-1 bg-medieval-gold text-black rounded-sm text-[10px] uppercase font-bold hover:bg-yellow-400 transition-colors cursor-pointer shadow-md"
+          >
+            {language === 'pt' ? 'Importar Build' : 'Import Build'}
+          </button>
+
+          <button
+            onClick={() => setIsTutorialModalOpen(true)}
+            className="text-[10px] text-medieval-gold/80 hover:text-medieval-gold px-2.5 py-1 rounded-sm border border-medieval-gold/30 hover:border-medieval-gold/60 uppercase font-bold transition-colors cursor-pointer"
+          >
+            {language === 'pt' ? 'Como Usar' : 'Tutorial'}
           </button>
         </div>
 
         <div className="flex items-center gap-3">
-          <button onClick={resetBuild} className="text-[10px] text-medieval-muted hover:text-red-500 flex items-center gap-1 uppercase tracking-wider transition-colors">
-            <RotateCcw size={12} /> {t('bm_reset')}
+          <button onClick={resetBuild} className="text-[10px] text-medieval-muted hover:text-red-500 uppercase tracking-wider transition-colors cursor-pointer">
+            {t('bm_reset')}
           </button>
-          <button onClick={copyBuild} className="text-[10px] text-medieval-muted hover:text-medieval-gold flex items-center gap-1 uppercase tracking-wider transition-colors">
-            <Layers size={12} /> {t('bm_copyToBuild')}{activeBuild === 1 ? 2 : 1}
+          <button onClick={copyBuild} className="text-[10px] text-medieval-muted hover:text-medieval-gold uppercase tracking-wider transition-colors cursor-pointer">
+            {t('bm_copyToBuild')}{activeBuild === 1 ? 2 : 1}
           </button>
         </div>
       </div>
@@ -457,24 +498,21 @@ export const BuildMakerView: React.FC<BuildMakerViewProps> = ({ language }) => {
                   {item.attributeClass > 0 && (
                     <button 
                       onClick={() => setModalState({ type: 'attribute', slotId: modalState.slotId })}
-                      className="medieval-button flex items-center justify-center gap-2 py-2.5 text-xs font-bold tracking-wider"
+                      className="medieval-button py-2.5 text-xs font-bold tracking-wider cursor-pointer"
                     >
-                      <Sparkles size={14} />
                       {t('bm_customiseAttributes')}
                     </button>
                   )}
                   <button 
                     onClick={() => setModalState({ type: 'item', slotId: modalState.slotId })}
-                    className="medieval-button-outline flex items-center justify-center gap-2 py-2.5 text-xs font-bold tracking-wider"
+                    className="medieval-button-outline py-2.5 text-xs font-bold tracking-wider cursor-pointer"
                   >
-                    <ArrowRightLeft size={14} />
                     {t('bm_changeEquipment')}
                   </button>
                   <button 
                     onClick={handleRemoveItem}
-                    className="medieval-button-outline border-red-900/45 text-red-500 hover:bg-red-500/10 hover:border-red-500 flex items-center justify-center gap-2 py-2.5 text-xs font-bold tracking-wider"
+                    className="medieval-button-outline border-red-900/45 text-red-500 hover:bg-red-500/10 hover:border-red-500 py-2.5 text-xs font-bold tracking-wider cursor-pointer"
                   >
-                    <Trash2 size={14} />
                     {t('bm_removeEquipment')}
                   </button>
                 </div>
@@ -483,6 +521,22 @@ export const BuildMakerView: React.FC<BuildMakerViewProps> = ({ language }) => {
           })()
         )}
       </Modal>
+
+      {/* Auto-Import Build Modal */}
+      <ImportBuildModal
+        isOpen={isImportModalOpen}
+        onClose={() => setIsImportModalOpen(false)}
+        onApplyBuild={handleApplyImportedBuild}
+        language={language}
+      />
+
+      {/* Onboarding Tutorial Modal */}
+      <BuildMakerTutorialModal
+        isOpen={isTutorialModalOpen}
+        onClose={() => setIsTutorialModalOpen(false)}
+        onOpenImporter={() => setIsImportModalOpen(true)}
+        language={language}
+      />
     </div>
   );
 };
