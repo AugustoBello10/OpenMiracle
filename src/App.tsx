@@ -39,6 +39,8 @@ import { MapProvider } from './context/MapContext';
 import { CommandPalette } from './components/CommandPalette';
 import { supabase } from './lib/supabase';
 
+import { ErrorBoundary } from './components/ErrorBoundary';
+import { BuildMakerView } from './components/BuildMakerView';
 import BestiaryEditor from './components/BestiaryEditor';
 import CyclopediaView from './components/CyclopediaView';
 import { CustomSystemsView } from './components/CustomSystemsView';
@@ -1763,7 +1765,9 @@ export default function App() {
               animate={{ opacity: 1, scale: 1 }}
               className="h-full"
             >
-              <BuildMakerView language={language} />
+              <ErrorBoundary fallbackTitle={language === 'pt' ? 'Falha no Build Maker' : 'Build Maker Error'}>
+                <BuildMakerView language={language} />
+              </ErrorBoundary>
             </motion.div>
           )}
 
