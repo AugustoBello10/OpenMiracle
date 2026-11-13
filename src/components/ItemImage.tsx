@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Shield, Sword, Axe, Target, Sparkles, Circle, Heart, Hammer, Zap, Crosshair } from 'lucide-react';
+import { LOCAL_ITEM_IMAGES } from '../data/localItemImages';
 
 interface ItemImageProps {
   item: { img?: string; name: string; category?: string; subCategory?: string };
@@ -22,23 +23,28 @@ export const ItemImage: React.FC<ItemImageProps> = ({ item, className = "w-8 h-8
     return <Sparkles className="w-5 h-5 text-medieval-gold/40" />;
   };
 
-  if (!item.img) {
+  const localFallback = LOCAL_ITEM_IMAGES[item.name.toLowerCase()];
+
+  if (!item.img && !localFallback) {
     return getFallbackIcon();
   }
 
   // Fallbacks:
-  // 0: original URL
-  // 1: replace .gif with .png
-  // 2: lowercased URL .gif
-  // 3: lowercased URL .png
+  // 0: original URL (or localFallback)
+  // 1: localFallback if not used yet
+  // 2: replace .gif with .png
+  // 3: lowercased URL .gif
+  // 4: lowercased URL .png
   
   const getUrl = () => {
-    let url = item.img!;
-    if (errorCount === 1) url = url.replace('.gif', '.png');
-    else if (errorCount === 2) url = url.toLowerCase();
-    else if (errorCount === 3) url = url.toLowerCase().replace('.gif', '.png');
-    else if (errorCount === 4) url = url.replace(/_/g, '%20');
-    else if (errorCount === 5) url = url.replace(/_/g, '%20').replace('.gif', '.png');
+    if (!item.img) return localFallback!;
+    if (errorCount === 1 && localFallback) return localFallback;
+    let url = item.img;
+    if (errorCount === 2) url = url.replace('.gif', '.png');
+    else if (errorCount === 3) url = url.toLowerCase();
+    else if (errorCount === 4) url = url.toLowerCase().replace('.gif', '.png');
+    else if (errorCount === 5) url = url.replace(/_/g, '%20');
+    else if (errorCount === 6) url = url.replace(/_/g, '%20').replace('.gif', '.png');
     return url;
   };
 

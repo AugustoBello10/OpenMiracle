@@ -34,23 +34,17 @@ export const InventorySlot: React.FC<InventorySlotProps> = ({
     >
       {item ? (
         <div className="flex flex-col items-center justify-center p-1 w-full h-full relative">
-          {item.img ? (
-            <ItemImage item={item} className="w-10 h-10 object-contain select-none scale-105" />
-          ) : (
-            <div className="text-medieval-gold text-[10px] text-center font-bold tracking-tight px-1 leading-tight uppercase font-mono max-w-full truncate overflow-hidden">
-              {item.name.substring(0, 8)}
-            </div>
-          )}
+          <ItemImage item={item} className="w-10 h-10 object-contain select-none scale-105" />
           {item.attributeClass > 0 && (
             <div className="absolute top-1 right-1 flex gap-0.5">
               {Array.from({ length: item.attributeClass }).map((_, i) => (
                 <div 
                   key={i} 
                   className={cn(
-                    "w-1 h-1 rounded-full",
+                    "w-1.5 h-1.5 rounded-full transition-colors duration-200",
                     i < activeAttributesCount 
-                      ? "bg-medieval-gold shadow-[0_0_4px_#c5a059]" 
-                      : "bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 backdrop-blur-sm"
+                      ? rarity.dotClassName 
+                      : "bg-black/80 border border-white/10"
                   )}
                 />
               ))}

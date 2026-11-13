@@ -220,103 +220,108 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({
           </div>
         </div>
 
-        {/* ROW 2: SOBREVIVÊNCIA & DEFESA (FLUXO EXATO EM 3 PASSOS) */}
+        {/* ROW 2: SOBREVIVÊNCIA & DEFESA */}
         <div className="bg-black/60 border border-medieval-gold/30 rounded-xl p-4 shadow-xl space-y-4">
           <div className="flex items-center justify-between border-b border-medieval-gold/20 pb-2">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-medieval-gold">
-                {isPt ? 'Sobrevivência & Redução de Dano (Ordem de Resolução)' : 'Survival & Damage Reduction Pipeline'}
-              </span>
-              <p className="text-[11px] text-stone-400">
-                {isPt ? 'A ordem exata em que o dano físico recebido é mitigado pelo seu personagem.' : 'Exact hierarchical sequence in which incoming physical damage is absorbed.'}
-              </p>
-            </div>
+            <span className="text-xs font-bold uppercase tracking-wider text-medieval-gold">
+              {isPt ? 'Sobrevivência & Redução de Dano' : 'Survival & Damage Reduction'}
+            </span>
             <span className="text-[11px] font-mono text-sky-300 bg-sky-950/60 px-2 py-1 rounded border border-sky-500/30">
               Arm {stats.armor} | Def {stats.defense}
             </span>
           </div>
 
-          {/* 3 Step Visual Pipeline */}
+          {/* 3 Metric Cards: Block, Armor, Mitigation */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             
-            {/* PASSO 1: BLOQUEIO DO ESCUDO */}
-            <div className="bg-black/50 p-3 rounded-lg border border-sky-500/30 flex flex-col justify-between space-y-2 relative overflow-hidden">
+            {/* CARD 1: BLOQUEIO DO ESCUDO / ARMA */}
+            <div className="bg-black/50 p-3 rounded-lg border border-sky-500/30 flex flex-col justify-between space-y-2">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-black text-sky-400 uppercase tracking-wide">
-                  {isPt ? '1º Bloqueio do Escudo' : '1st Shield Block'}
+                  {isPt ? 'Bloqueio Físico' : 'Physical Block'}
                 </span>
                 <span className="text-[9px] font-mono text-stone-400 bg-black/60 px-1.5 py-0.5 rounded">
-                  {stats.defenseSource}
+                  {stats.defenseSource} (Def {stats.defense})
                 </span>
               </div>
 
-              <p className="text-[11px] text-stone-300 leading-tight">
-                {isPt 
-                  ? `Redução bruta baseada em ${stats.defenseActiveSkill} (${stats.defenseSkillValue}) e Def ${stats.defense}.`
-                  : `Flat reduction based on ${stats.defenseActiveSkill} (${stats.defenseSkillValue}) and Def ${stats.defense}.`}
-              </p>
-
-              <div className="bg-black/70 p-2 rounded border border-white/5 text-center font-mono">
-                <span className="text-[9px] text-stone-400 uppercase block">{isPt ? 'Bloqueio Médio / Máx' : 'Avg / Max Block'}</span>
-                <span className="text-base font-black text-sky-300">
-                  -{stats.avgBlock} HP <span className="text-xs font-normal text-stone-400">(até -{stats.maxBlock})</span>
-                </span>
+              <div className="grid grid-cols-3 gap-1.5 text-center font-mono pt-1">
+                <div className="bg-black/70 p-1.5 rounded border border-white/5">
+                  <span className="text-[9px] text-stone-400 uppercase block">{isPt ? 'Mín' : 'Min'}</span>
+                  <span className="text-xs font-bold text-stone-300">-{stats.minBlock} HP</span>
+                </div>
+                <div className="bg-black/70 p-1.5 rounded border border-sky-500/30">
+                  <span className="text-[9px] text-sky-400 uppercase block">{isPt ? 'Médio' : 'Avg'}</span>
+                  <span className="text-xs font-black text-sky-300">-{stats.avgBlock} HP</span>
+                </div>
+                <div className="bg-black/70 p-1.5 rounded border border-sky-500/40">
+                  <span className="text-[9px] text-sky-300 uppercase block">{isPt ? 'Máx' : 'Max'}</span>
+                  <span className="text-xs font-black text-white">-{stats.maxBlock} HP</span>
+                </div>
               </div>
             </div>
 
-            {/* PASSO 2: REDUÇÃO DA ARMADURA */}
-            <div className="bg-black/50 p-3 rounded-lg border border-amber-500/30 flex flex-col justify-between space-y-2 relative overflow-hidden">
+            {/* CARD 2: ABSORÇÃO DA ARMADURA */}
+            <div className="bg-black/50 p-3 rounded-lg border border-amber-500/30 flex flex-col justify-between space-y-2">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-black text-amber-400 uppercase tracking-wide">
-                  {isPt ? '2º Redução da Armadura' : '2nd Armor Reduction'}
+                  {isPt ? 'Absorção da Armadura' : 'Armor Absorption'}
                 </span>
                 <span className="text-[9px] font-mono text-stone-400 bg-black/60 px-1.5 py-0.5 rounded">
                   Total Arm: {stats.armor}
                 </span>
               </div>
 
-              <p className="text-[11px] text-stone-300 leading-tight">
-                {isPt 
-                  ? `Fórmula: Min = Arm × 0.475 | Max = (Arm × 0.95) - 1`
-                  : `Formula: Min = Arm × 0.475 | Max = (Arm × 0.95) - 1`}
-              </p>
-
-              <div className="bg-black/70 p-2 rounded border border-white/5 text-center font-mono">
-                <span className="text-[9px] text-stone-400 uppercase block">{isPt ? 'Absorção Média da Armadura' : 'Average Armor Absorption'}</span>
-                <span className="text-base font-black text-amber-300">
-                  -{stats.avgReduction} HP <span className="text-xs font-normal text-stone-400">({stats.minReduction} a {stats.maxReduction})</span>
-                </span>
+              <div className="grid grid-cols-3 gap-1.5 text-center font-mono pt-1">
+                <div className="bg-black/70 p-1.5 rounded border border-white/5">
+                  <span className="text-[9px] text-stone-400 uppercase block">{isPt ? 'Mín' : 'Min'}</span>
+                  <span className="text-xs font-bold text-stone-300">-{stats.minReduction} HP</span>
+                </div>
+                <div className="bg-black/70 p-1.5 rounded border border-amber-500/30">
+                  <span className="text-[9px] text-amber-400 uppercase block">{isPt ? 'Médio' : 'Avg'}</span>
+                  <span className="text-xs font-black text-amber-300">-{stats.avgReduction} HP</span>
+                </div>
+                <div className="bg-black/70 p-1.5 rounded border border-amber-500/40">
+                  <span className="text-[9px] text-amber-300 uppercase block">{isPt ? 'Máx' : 'Max'}</span>
+                  <span className="text-xs font-black text-white">-{stats.maxReduction} HP</span>
+                </div>
               </div>
             </div>
 
-            {/* PASSO 3: MITIGAÇÃO & PROTEÇÃO % */}
-            <div className="bg-black/50 p-3 rounded-lg border border-emerald-500/30 flex flex-col justify-between space-y-2 relative overflow-hidden">
+            {/* CARD 3: MITIGAÇÃO & PROTEÇÃO % */}
+            <div className="bg-black/50 p-3 rounded-lg border border-emerald-500/30 flex flex-col justify-between space-y-2">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-black text-emerald-400 uppercase tracking-wide">
-                  {isPt ? '3º Proteções & Mitigação' : '3rd % Protections'}
+                  {isPt ? 'Mitigação & Proteções' : 'Mitigation & Protections'}
                 </span>
                 <span className="text-[9px] font-mono text-stone-400 bg-black/60 px-1.5 py-0.5 rounded">
-                  {isPt ? 'Percentual Residual' : 'Residual %'}
+                  {isPt ? 'Probabilidade & %' : 'Chance & %'}
                 </span>
               </div>
 
-              <p className="text-[11px] text-stone-300 leading-tight">
-                {isPt 
-                  ? `Proteção Física: ${((stats.protections['physical'] || 0) * 100).toFixed(1)}% | Mitigação: ${stats.mitigation || 0}%`
-                  : `Physical Prot: ${((stats.protections['physical'] || 0) * 100).toFixed(1)}% | Mitigation: ${stats.mitigation || 0}%`}
-              </p>
-
-              <div className="bg-black/70 p-2 rounded border border-white/5 text-center font-mono">
-                <span className="text-[9px] text-stone-400 uppercase block">{isPt ? 'Redução Residual Total' : 'Total Residual Reduction'}</span>
-                <span className="text-base font-black text-emerald-400">
-                  -{simulation.totalPercentReduction}% {isPt ? 'do dano restante' : 'of leftover damage'}
-                </span>
+              <div className="bg-black/70 p-2 rounded border border-white/5 space-y-1 text-[11px] font-mono">
+                <div className="flex justify-between items-center text-stone-300">
+                  <span>{isPt ? 'Proteção Física Fixa:' : 'Fixed Phys Protection:'}</span>
+                  <span className="font-bold text-emerald-400">+{((stats.protections['physical'] || 0) * 100).toFixed(1)}%</span>
+                </div>
+                <div className="flex justify-between items-center text-stone-300">
+                  <span>{isPt ? 'Mitigação (Chance / Redução):' : 'Mitigation (Chance / Amount):'}</span>
+                  <span className="font-bold text-sky-300">
+                    {stats.mitigationChance > 0 ? `${stats.mitigationChance}% | -${stats.mitigationAmount}%` : (stats.mitigation > 0 ? `100% | -${stats.mitigation}%` : '0%')}
+                  </span>
+                </div>
+                <div className="flex justify-between items-center text-stone-400 pt-0.5 border-t border-white/5">
+                  <span className="text-[10px]">{isPt ? 'Impacto Médio Esperado E[Mit]:' : 'Expected Avg Impact E[Mit]:'}</span>
+                  <span className="font-bold text-medieval-gold">
+                    -{((stats.mitigationChance * stats.mitigationAmount) / 100).toFixed(1)}%
+                  </span>
+                </div>
               </div>
             </div>
           </div>
 
           {/* SIMULADOR INTERATIVO DE DANO RECEBIDO */}
-          <div className="bg-black/70 p-4 rounded-xl border border-medieval-gold/25 space-y-3">
+          <div className="bg-black/70 p-3.5 rounded-xl border border-medieval-gold/25 space-y-3">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <span className="text-xs font-bold text-stone-200 uppercase tracking-wider">
                 {isPt ? 'Simulador de Golpe Físico Recebido:' : 'Simulated Incoming Physical Hit:'}
@@ -329,7 +334,7 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({
                     key={val}
                     onClick={() => setSimDamage(val)}
                     className={cn(
-                      "px-2 py-0.5 rounded text-[11px] font-mono font-bold transition-all cursor-pointer border",
+                      "px-2.5 py-0.5 rounded text-[11px] font-mono font-bold transition-all cursor-pointer border",
                       simDamage === val
                         ? "bg-medieval-gold text-black border-medieval-gold shadow"
                         : "bg-black/60 text-stone-300 border-white/10 hover:border-medieval-gold/40"
@@ -342,25 +347,37 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({
             </div>
 
             {/* Visual Resolution Steps Bar */}
-            <div className="grid grid-cols-1 sm:grid-cols-4 gap-2 items-center text-center font-mono">
+            <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 text-center font-mono">
               <div className="bg-black/80 p-2 rounded border border-red-500/30">
                 <span className="text-[9px] text-stone-400 block uppercase">{isPt ? 'Golpe Bruto' : 'Incoming'}</span>
-                <span className="text-sm font-bold text-red-400">{simulation.incomingDamage} HP</span>
+                <span className="text-xs font-bold text-red-400">{simulation.incomingDamage} HP</span>
               </div>
 
               <div className="bg-black/80 p-2 rounded border border-sky-500/30">
-                <span className="text-[9px] text-stone-400 block uppercase">{isPt ? '1º Bloqueado' : '1st Blocked'}</span>
-                <span className="text-sm font-bold text-sky-300">-{simulation.blockedByShield} HP</span>
+                <span className="text-[9px] text-stone-400 block uppercase">{isPt ? 'Escudo' : 'Shield'}</span>
+                <span className="text-xs font-bold text-sky-300">-{simulation.blockedByShield} HP</span>
               </div>
 
               <div className="bg-black/80 p-2 rounded border border-amber-500/30">
-                <span className="text-[9px] text-stone-400 block uppercase">{isPt ? '2º Armadura' : '2nd Armor'}</span>
-                <span className="text-sm font-bold text-amber-300">-{simulation.reducedByArmor} HP</span>
+                <span className="text-[9px] text-stone-400 block uppercase">{isPt ? 'Armadura' : 'Armor'}</span>
+                <span className="text-xs font-bold text-amber-300">-{simulation.reducedByArmor} HP</span>
               </div>
 
-              <div className="bg-emerald-950/40 p-2 rounded border border-emerald-500/40 shadow-inner">
-                <span className="text-[9px] text-emerald-400 block uppercase font-bold">{isPt ? 'Dano Real Sofrido' : 'Final Damage Taken'}</span>
-                <span className="text-base font-black text-emerald-300">{simulation.finalDamageTaken} HP</span>
+              <div className="bg-black/80 p-2 rounded border border-white/10">
+                <span className="text-[9px] text-stone-400 block uppercase">{isPt ? 'Dano Normal' : 'Normal Hit'}</span>
+                <span className="text-xs font-bold text-stone-200">{simulation.damageWithoutMit} HP</span>
+              </div>
+
+              <div className="bg-black/80 p-2 rounded border border-sky-500/30">
+                <span className="text-[9px] text-sky-400 block uppercase">
+                  {isPt ? `Mitigado (${simulation.mitigationChance}%)` : `Mitigated (${simulation.mitigationChance}%)`}
+                </span>
+                <span className="text-xs font-bold text-sky-300">{simulation.damageWithMit} HP</span>
+              </div>
+
+              <div className="bg-emerald-950/40 p-2 rounded border border-emerald-500/40 shadow-inner col-span-2 sm:col-span-1">
+                <span className="text-[9px] text-emerald-400 block uppercase font-bold">{isPt ? 'Média Esperada' : 'Expected Avg'}</span>
+                <span className="text-sm font-black text-emerald-300">{simulation.expectedDamage} HP</span>
               </div>
             </div>
           </div>

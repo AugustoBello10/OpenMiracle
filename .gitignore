@@ -24,3 +24,5 @@ firebase-applet-config.json
 
 # Keep example
 !.env.example
+
+*.traineddata

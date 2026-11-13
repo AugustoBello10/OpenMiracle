@@ -230,8 +230,25 @@ export function parseBuildFromText(rawText: string): ParsedBuildResult {
           if (!result.attributes[currentSlot]) {
             result.attributes[currentSlot] = [];
           }
-          result.attributes[currentSlot].push(enchant);
-          result.summary.attributesFound++;
+
+          // Merge compound attributes (mitigation, leech, crit)
+          const isCompound = mappedType === 'mitigation' || mappedType === 'mana-leech' || mappedType === 'life-leech' || mappedType === 'crit-hit';
+          const existing = isCompound ? result.attributes[currentSlot].find(e => e.type === mappedType) : null;
+
+          if (existing) {
+            if (rawKey.includes('chance')) {
+              existing.chance = amount;
+            } else {
+              existing.amount = amount;
+            }
+          } else {
+            if (rawKey.includes('chance')) {
+              enchant.chance = amount;
+              enchant.amount = 0;
+            }
+            result.attributes[currentSlot].push(enchant);
+            result.summary.attributesFound++;
+          }
         }
       }
       continue;

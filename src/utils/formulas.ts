@@ -65,6 +65,11 @@ export interface CalculatedStats {
   absorbMana: number;
   arrowGuard: number;
   mitigation: number;
+  mitigationChance: number;
+  mitigationAmount: number;
+  minReduction: number;
+  maxReduction: number;
+  avgReduction: number;
   reflectFire: number;
   reflectEnergy: number;
   reflectPhys: number;
@@ -534,6 +539,8 @@ export function calculateStats(build: BuildState): CalculatedStats {
     absorbMana: bonuses['absorb-mana'] || 0,
     arrowGuard: bonuses['arrow-guard'] || 0,
     mitigation: bonuses['mitigation'] || 0,
+    mitigationChance: bonuses['mitigation-chance'] || 0,
+    mitigationAmount: bonuses['mitigation'] || 0,
     reflectFire: bonuses['reflect-fire'] || 0,
     reflectEnergy: bonuses['reflect-energy'] || 0,
     reflectPhys: bonuses['reflect-phys-chance'] || bonuses['reflect-phys'] || 0,
@@ -560,6 +567,7 @@ export interface RarityStyle {
   textClassName: string;
   bgClassName: string;
   glow: string;
+  dotClassName: string;
   label: string;
 }
 
@@ -567,57 +575,63 @@ export function getRarityStyles(count: number): RarityStyle {
   switch (count) {
     case 1:
       return {
-        borderClassName: "border-stone-100/60 shadow-[0_0_8px_rgba(255,255,255,0.15)]",
-        badgeColor: "bg-white/15 text-white border border-white/30",
+        borderClassName: "border-white/80 shadow-[0_0_8px_rgba(255,255,255,0.25)]",
+        badgeColor: "bg-white/15 text-white border border-white/40",
         textClassName: "text-white font-medium",
-        bgClassName: "bg-stone-500/10",
-        glow: "rgba(255, 255, 255, 0.15)",
-        label: "Raro Comum"
+        bgClassName: "bg-white/[0.04]",
+        glow: "rgba(255, 255, 255, 0.25)",
+        dotClassName: "bg-white shadow-[0_0_5px_#ffffff]",
+        label: "1 Atributo"
       };
     case 2:
       return {
-        borderClassName: "border-emerald-500/50 shadow-[0_0_8px_rgba(16,185,129,0.25)]",
-        badgeColor: "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30",
+        borderClassName: "border-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.3)]",
+        badgeColor: "bg-emerald-500/20 text-emerald-400 border border-emerald-500/40",
         textClassName: "text-emerald-400 font-semibold",
         bgClassName: "bg-emerald-950/20",
-        glow: "rgba(16, 185, 129, 0.25)",
-        label: "Incomum"
+        glow: "rgba(16, 185, 129, 0.3)",
+        dotClassName: "bg-emerald-400 shadow-[0_0_5px_#10b981]",
+        label: "2 Atributos"
       };
     case 3:
       return {
-        borderClassName: "border-blue-500/50 shadow-[0_0_8px_rgba(59,130,246,0.25)]",
-        badgeColor: "bg-blue-500/20 text-blue-400 border border-blue-500/30",
-        textClassName: "text-blue-400 font-semibold",
-        bgClassName: "bg-blue-950/20",
-        glow: "rgba(59, 130, 246, 0.25)",
-        label: "Raro"
+        borderClassName: "border-sky-500 shadow-[0_0_8px_rgba(14,165,233,0.3)]",
+        badgeColor: "bg-sky-500/20 text-sky-400 border border-sky-500/40",
+        textClassName: "text-sky-400 font-semibold",
+        bgClassName: "bg-sky-950/20",
+        glow: "rgba(14, 165, 233, 0.3)",
+        dotClassName: "bg-sky-400 shadow-[0_0_5px_#0ea5e9]",
+        label: "3 Atributos"
       };
     case 4:
       return {
-        borderClassName: "border-purple-500/50 shadow-[0_0_8px_rgba(168,85,247,0.25)]",
-        badgeColor: "bg-purple-500/20 text-purple-400 border border-purple-500/30",
+        borderClassName: "border-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.3)]",
+        badgeColor: "bg-purple-500/20 text-purple-400 border border-purple-500/40",
         textClassName: "text-purple-400 font-semibold",
         bgClassName: "bg-purple-950/20",
-        glow: "rgba(168, 85, 247, 0.25)",
-        label: "Épico"
+        glow: "rgba(168, 85, 247, 0.3)",
+        dotClassName: "bg-purple-400 shadow-[0_0_5px_#a855f7]",
+        label: "4 Atributos"
       };
     case 5:
       return {
-        borderClassName: "border-amber-500 shadow-[0_0_12px_rgba(245,158,11,0.4)]",
-        badgeColor: "bg-amber-500/20 text-amber-400 border border-amber-500/30",
-        textClassName: "text-amber-400 font-bold",
-        bgClassName: "bg-amber-950/20",
-        glow: "rgba(245, 158, 11, 0.4)",
-        label: "Lendário"
+        borderClassName: "border-amber-400 shadow-[0_0_12px_rgba(251,191,36,0.4)]",
+        badgeColor: "bg-amber-400/20 text-amber-300 border border-amber-400/40",
+        textClassName: "text-amber-300 font-bold",
+        bgClassName: "bg-amber-950/25",
+        glow: "rgba(251, 191, 36, 0.4)",
+        dotClassName: "bg-amber-300 shadow-[0_0_6px_#f59e0b]",
+        label: "5 Atributos"
       };
     default:
       return {
-        borderClassName: "border-medieval-gold/10",
-        badgeColor: "bg-medieval-gold/5 text-medieval-muted border border-medieval-gold/10",
+        borderClassName: "border-medieval-gold/15",
+        badgeColor: "bg-medieval-gold/5 text-medieval-muted border border-medieval-gold/15",
         textClassName: "text-medieval-muted",
-        bgClassName: "bg-black/40",
+        bgClassName: "bg-black/30",
         glow: "none",
-        label: "Comum"
+        dotClassName: "bg-medieval-gold/20",
+        label: "Sem Atributos"
       };
   }
 }
@@ -628,8 +642,12 @@ export interface DamageTakenStep {
   damageAfterShield: number;
   reducedByArmor: number;
   damageAfterArmor: number;
-  mitigatedByProtections: number;
-  finalDamageTaken: number;
+  damageWithoutMit: number;
+  damageWithMit: number;
+  expectedDamage: number;
+  mitigationChance: number;
+  mitigationAmount: number;
+  physProtPercent: number;
   totalPercentReduction: number;
 }
 
@@ -637,7 +655,7 @@ export interface DamageTakenStep {
  * Simula a resolução exata de dano físico recebido:
  * 1º Bloqueio do Escudo / Arma (Defense + Stance)
  * 2º Redução da Armadura Total (Min / Méd / Max)
- * 3º Proteções / Mitigações percentuais residuais
+ * 3º Proteções passivas e Mitigação com probabilidade de ativação (Chance %)
  */
 export function simulateDamageTaken(incomingDamage: number, stats: CalculatedStats): DamageTakenStep {
   // 1º Passo: Bloqueio do Escudo / Arma (Defense)
@@ -648,12 +666,27 @@ export function simulateDamageTaken(incomingDamage: number, stats: CalculatedSta
   const reducedByArmor = Math.min(damageAfterShield, stats.avgReduction);
   const damageAfterArmor = Math.max(0, damageAfterShield - reducedByArmor);
 
-  // 3º Passo: Proteções & Mitigações Percentuais
+  // 3º Passo: Proteção Física Passiva fixa
   const physProt = stats.protections['physical'] || 0;
-  const mitProt = (stats.mitigation || 0) / 100;
-  const totalPercentReduction = 1 - (1 - physProt) * (1 - mitProt);
-  const mitigatedByProtections = Math.round(damageAfterArmor * totalPercentReduction);
-  const finalDamageTaken = Math.max(0, damageAfterArmor - mitigatedByProtections);
+  const damageAfterPhysProt = Math.max(0, Math.round(damageAfterArmor * (1 - physProt)));
+
+  // Mitigação com Chance de Ativação
+  const mitChance = stats.mitigationChance || (stats.mitigation ? 100 : 0);
+  const mitAmount = (stats.mitigationAmount || stats.mitigation || 0) / 100;
+
+  // Dano se mitigação NÃO ativar
+  const damageWithoutMit = damageAfterPhysProt;
+
+  // Dano se mitigação ATIVAR
+  const damageWithMit = Math.max(0, Math.round(damageAfterPhysProt * (1 - mitAmount)));
+
+  // Dano médio esperado E[Dano] = (1 - P)*SemMit + P*ComMit
+  const p = Math.min(1, Math.max(0, mitChance / 100));
+  const expectedDamage = Math.round((1 - p) * damageWithoutMit + p * damageWithMit);
+
+  const totalPercentReduction = incomingDamage > 0 
+    ? Math.round(((incomingDamage - expectedDamage) / incomingDamage) * 100)
+    : 0;
 
   return {
     incomingDamage,
@@ -661,9 +694,13 @@ export function simulateDamageTaken(incomingDamage: number, stats: CalculatedSta
     damageAfterShield,
     reducedByArmor,
     damageAfterArmor,
-    mitigatedByProtections,
-    finalDamageTaken,
-    totalPercentReduction: Math.round(totalPercentReduction * 100)
+    damageWithoutMit,
+    damageWithMit,
+    expectedDamage,
+    mitigationChance: mitChance,
+    mitigationAmount: Math.round(mitAmount * 100),
+    physProtPercent: Math.round(physProt * 1000) / 10,
+    totalPercentReduction
   };
 }
 

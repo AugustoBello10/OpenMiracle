@@ -1,5 +1,6 @@
 import { GameItem } from '../types/build';
 import { HELMETS_DATA } from './items';
+import { LOCAL_ITEM_IMAGES } from './localItemImages';
 
 export const ALL_ITEM_IMAGES: Record<string, string> = {
   "amazon armor": "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon_Armor.gif",
@@ -1153,10 +1154,12 @@ export const ALL_BUILD_ITEMS: GameItem[] = [
   ...FOODS
 ];
 
-// Enrich ALL_BUILD_ITEMS with images from ALL_ITEM_IMAGES
+// Enrich ALL_BUILD_ITEMS with images from LOCAL_ITEM_IMAGES first, then ALL_ITEM_IMAGES
 ALL_BUILD_ITEMS.forEach(item => {
   const lowerName = item.name.toLowerCase();
-  if (ALL_ITEM_IMAGES[lowerName]) {
+  if (LOCAL_ITEM_IMAGES[lowerName]) {
+    item.img = LOCAL_ITEM_IMAGES[lowerName];
+  } else if (ALL_ITEM_IMAGES[lowerName]) {
     item.img = ALL_ITEM_IMAGES[lowerName];
   } else {
     // Construct default URL: Capitalize words, replace space with underscore
