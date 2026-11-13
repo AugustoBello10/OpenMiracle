@@ -391,7 +391,27 @@ export default function App() {
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
   const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
   const [selectedPatchVersion, setSelectedPatchVersion] = useState(SERVER_PATCH_NOTES[0].version);
-  const [language, setLanguage] = useState<Language>('pt');
+  const [language, setLanguageState] = useState<Language>(() => {
+    try {
+      const saved = localStorage.getItem('miracle_language');
+      if (saved === 'en' || saved === 'pt') return saved;
+      if (typeof navigator !== 'undefined' && navigator.language && navigator.language.startsWith('en')) {
+        return 'en';
+      }
+    } catch (e) {
+      // ignore
+    }
+    return 'pt';
+  });
+
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+    try {
+      localStorage.setItem('miracle_language', lang);
+    } catch (e) {
+      // ignore
+    }
+  };
   const [skill, setSkill] = useState<number>(10);
   const [homeProfMenuOpen, setHomeProfMenuOpen] = useState(false);
   const [homeSkillsMenuOpen, setHomeSkillsMenuOpen] = useState(false);
@@ -1766,7 +1786,7 @@ export default function App() {
               className="h-full"
             >
               <ErrorBoundary fallbackTitle={language === 'pt' ? 'Falha no Build Maker' : 'Build Maker Error'}>
-                <BuildMakerView language={language} />
+                <BuildMakerView language={language} setLanguage={setLanguage} />
               </ErrorBoundary>
             </motion.div>
           )}

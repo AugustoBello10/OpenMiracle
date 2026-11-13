@@ -22,6 +22,7 @@ import { Language, translations } from '../lib/translations';
 
 interface BuildMakerViewProps {
   language: Language;
+  setLanguage?: (lang: Language) => void;
 }
 
 const DEFAULT_BUILD: BuildState = {
@@ -33,7 +34,7 @@ const DEFAULT_BUILD: BuildState = {
   selectedAttributes: {}
 };
 
-export const BuildMakerView: React.FC<BuildMakerViewProps> = ({ language }) => {
+export const BuildMakerView: React.FC<BuildMakerViewProps> = ({ language, setLanguage }) => {
   const t = (key: keyof typeof translations['pt']) => translations[language][key] || key;
 
   const [build1, setBuild1] = useState<BuildState>(JSON.parse(JSON.stringify(DEFAULT_BUILD)));
@@ -201,6 +202,30 @@ export const BuildMakerView: React.FC<BuildMakerViewProps> = ({ language }) => {
           >
             {language === 'pt' ? 'Como Usar' : 'Tutorial'}
           </button>
+
+          {/* Quick Language Switcher */}
+          {setLanguage && (
+            <div className="flex items-center gap-1 bg-black/60 p-0.5 rounded border border-medieval-gold/30">
+              <button
+                onClick={() => setLanguage('pt')}
+                className={cn(
+                  "px-2 py-0.5 text-[10px] font-bold rounded cursor-pointer transition-all",
+                  language === 'pt' ? "bg-medieval-gold text-black shadow" : "text-medieval-gold/50 hover:text-medieval-gold"
+                )}
+              >
+                PT
+              </button>
+              <button
+                onClick={() => setLanguage('en')}
+                className={cn(
+                  "px-2 py-0.5 text-[10px] font-bold rounded cursor-pointer transition-all",
+                  language === 'en' ? "bg-medieval-gold text-black shadow" : "text-medieval-gold/50 hover:text-medieval-gold"
+                )}
+              >
+                EN
+              </button>
+            </div>
+          )}
         </div>
 
         <div className="flex items-center gap-3">
@@ -536,6 +561,7 @@ export const BuildMakerView: React.FC<BuildMakerViewProps> = ({ language }) => {
         onClose={() => setIsTutorialModalOpen(false)}
         onOpenImporter={() => setIsImportModalOpen(true)}
         language={language}
+        onLanguageChange={setLanguage}
       />
     </div>
   );

@@ -7,13 +7,15 @@ interface BuildMakerTutorialModalProps {
   onClose: () => void;
   onOpenImporter?: () => void;
   language: Language;
+  onLanguageChange?: (lang: Language) => void;
 }
 
 export const BuildMakerTutorialModal: React.FC<BuildMakerTutorialModalProps> = ({
   isOpen,
   onClose,
   onOpenImporter,
-  language
+  language,
+  onLanguageChange
 }) => {
   const isPt = language === 'pt';
   const [dontShowAgain, setDontShowAgain] = useState(false);
@@ -33,67 +35,88 @@ export const BuildMakerTutorialModal: React.FC<BuildMakerTutorialModalProps> = (
     <Modal
       isOpen={isOpen}
       onClose={handleDismiss}
-      title={isPt ? 'Como Usar o Build Maker (Guia Rápido)' : 'How to Use Build Maker (Quick Guide)'}
+      title={isPt ? 'Como Usar o Build Maker' : 'How to Use Build Maker'}
       width="max-w-2xl"
     >
-      <div className="space-y-5 text-xs sm:text-sm font-sans text-stone-300">
+      <div className="space-y-4 text-xs sm:text-sm font-sans text-stone-300">
         
+        {/* Language switch bar inside tutorial */}
+        {onLanguageChange && (
+          <div className="flex items-center justify-between bg-black/40 px-3 py-1.5 rounded-lg border border-white/5">
+            <span className="text-[11px] text-stone-400">
+              {isPt ? 'Idioma / Language:' : 'Language / Idioma:'}
+            </span>
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => onLanguageChange('pt')}
+                className={`px-2 py-0.5 text-[10px] font-bold rounded cursor-pointer transition-all ${
+                  language === 'pt' ? 'bg-medieval-gold text-black shadow' : 'text-medieval-gold/50 hover:text-medieval-gold'
+                }`}
+              >
+                Português
+              </button>
+              <button
+                onClick={() => onLanguageChange('en')}
+                className={`px-2 py-0.5 text-[10px] font-bold rounded cursor-pointer transition-all ${
+                  language === 'en' ? 'bg-medieval-gold text-black shadow' : 'text-medieval-gold/50 hover:text-medieval-gold'
+                }`}
+              >
+                English
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Intro */}
-        <p className="text-stone-300 leading-relaxed">
+        <p className="text-stone-300 leading-relaxed text-xs sm:text-sm">
           {isPt
-            ? 'Bem-vindo ao simulador oficial de equipamentos e combate de Miracle 7.4. Aqui você monta sets completos, customiza atributos forjados e prevê com exatidão o dano e a defesa do seu personagem.'
-            : 'Welcome to the official equipment and combat simulator for Miracle 7.4. Assemble full gear sets, customize forged attributes, and accurately forecast your damage and survivability.'}
+            ? 'Guia prático para montar seu set, testar atributos forjados e simular seu poder de combate em 3 passos simples:'
+            : 'Quick guide to assemble your gear set, test forged attributes, and simulate your combat output in 3 simple steps:'}
         </p>
 
-        {/* 4 Steps Guide */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {/* 3 Practical Steps Guide (Game theory suppressed) */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           
           {/* PASSO 1 */}
-          <div className="bg-black/60 p-3.5 rounded-xl border border-medieval-gold/20 space-y-1.5">
-            <span className="text-xs font-bold uppercase tracking-wider text-medieval-gold block">
-              {isPt ? '1. Ficha do Personagem' : '1. Character Setup'}
-            </span>
-            <p className="text-stone-400 text-xs leading-relaxed">
-              {isPt 
-                ? 'No painel esquerdo, defina a Vocação, Level, Postura de Combate (Full Attack, Balanced ou Full Defense) e os valores de Skills.'
-                : 'On the left panel, set Vocation, Level, Combat Stance (Full Attack, Balanced, or Full Defense), and base Skill points.'}
-            </p>
+          <div className="bg-black/60 p-3.5 rounded-xl border border-medieval-gold/20 space-y-1.5 flex flex-col justify-between">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-wider text-medieval-gold block mb-1">
+                {isPt ? '1. Personagem' : '1. Character'}
+              </span>
+              <p className="text-stone-400 text-xs leading-relaxed">
+                {isPt 
+                  ? 'Defina a Vocação, Level, Postura de Combate (Full Attack, Balanced, Full Defense) e seus valores de Skills.'
+                  : 'Set your Vocation, Level, Combat Stance (Full Attack, Balanced, Full Defense), and base Skill points.'}
+              </p>
+            </div>
           </div>
 
           {/* PASSO 2 */}
-          <div className="bg-black/60 p-3.5 rounded-xl border border-medieval-gold/20 space-y-1.5">
-            <span className="text-xs font-bold uppercase tracking-wider text-medieval-gold block">
-              {isPt ? '2. Equipando os Itens' : '2. Equipping Items'}
-            </span>
-            <p className="text-stone-400 text-xs leading-relaxed">
-              {isPt
-                ? 'Você pode clicar em cada slot para escolher o item manualmente, ou usar o botão "IMPORTAR BUILD" no topo para colar o texto do Server Log (Shift + Look no jogo) e preencher tudo em 1 segundo!'
-                : 'Click individual slots to choose gear manually, or use the "IMPORT BUILD" button at the top to paste Server Log text and auto-fill in 1 second!'}
-            </p>
+          <div className="bg-black/60 p-3.5 rounded-xl border border-medieval-gold/20 space-y-1.5 flex flex-col justify-between">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-wider text-medieval-gold block mb-1">
+                {isPt ? '2. Equipamentos' : '2. Equipment'}
+              </span>
+              <p className="text-stone-400 text-xs leading-relaxed">
+                {isPt
+                  ? 'Clique nos slots para escolher itens manualmente, ou use o botão IMPORTAR BUILD no topo para colar o texto do Look (Shift + Look) e preencher tudo em 1 segundo.'
+                  : 'Click slots to pick gear manually, or use the IMPORT BUILD button at the top to paste Look text (Shift + Look) and auto-fill in 1 second.'}
+              </p>
+            </div>
           </div>
 
           {/* PASSO 3 */}
-          <div className="bg-black/60 p-3.5 rounded-xl border border-medieval-gold/20 space-y-1.5">
-            <span className="text-xs font-bold uppercase tracking-wider text-medieval-gold block">
-              {isPt ? '3. Defesa em 3 Etapas' : '3. 3-Step Defense'}
-            </span>
-            <p className="text-stone-400 text-xs leading-relaxed">
-              {isPt
-                ? 'O dano físico recebido é reduzido em ordem oficial: 1º Bloqueio do Escudo/Arma, 2º Redução da Armadura Total, 3º Mitigação e Proteções % residuais. Teste os valores no Simulador Interativo!'
-                : 'Physical damage is resolved in official sequence: 1st Shield/Weapon Block, 2nd Total Armor Reduction, 3rd Residual % Protections. Test hits with the Interactive Simulator!'}
-            </p>
-          </div>
-
-          {/* PASSO 4 */}
-          <div className="bg-black/60 p-3.5 rounded-xl border border-medieval-gold/20 space-y-1.5">
-            <span className="text-xs font-bold uppercase tracking-wider text-medieval-gold block">
-              {isPt ? '4. Comparador de Builds' : '4. Build Comparison'}
-            </span>
-            <p className="text-stone-400 text-xs leading-relaxed">
-              {isPt
-                ? 'Use os botões "Build 1", "Build 2" e "Comparar" no topo para testar trocas de equipamentos e ver exatamente onde sua build ganha ou perde atributos em verde e vermelho.'
-                : 'Use "Build 1", "Build 2", and "Compare" at the top to test gear swaps and see exact attribute gains and losses in green and red badges.'}
-            </p>
+          <div className="bg-black/60 p-3.5 rounded-xl border border-medieval-gold/20 space-y-1.5 flex flex-col justify-between">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-wider text-medieval-gold block mb-1">
+                {isPt ? '3. Comparar Builds' : '3. Compare Builds'}
+              </span>
+              <p className="text-stone-400 text-xs leading-relaxed">
+                {isPt
+                  ? 'Use os botões Build 1, Build 2 e Comparar no topo para testar upgrades de itens e ver os ganhos e perdas destacados em verde e vermelho.'
+                  : 'Use Build 1, Build 2, and Compare at the top to test gear upgrades and view real-time gains and losses highlighted in green and red.'}
+              </p>
+            </div>
           </div>
 
         </div>
