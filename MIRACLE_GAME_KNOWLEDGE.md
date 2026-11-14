@@ -100,6 +100,7 @@
   - **Addon 1 (Fishing Rod):** 1x Iron Hammer, 200x Scarab Pincers, 200x Bone Tails + taxa de 25.000 gold (25k).
   - **Addon 2 (Basket):** 1x Basket, 300x Cobra Tongues + taxa de 25.000 gold (25k).
   - Diálogo de Addon: falar `addon`, selecionar `fishing rod` ou `basket`, e confirmar com `yes`.
+  - **REGRA CRÍTICA DE ORIGEM DOS MATERIAIS DE CRIATURAS:** Produtos de criaturas como *Scarab Pincers*, *Bone Tails* e *Cobra Tongues* **NÃO SÃO DROPS** normais de monstros. Eles são extraídos exclusivamente através da profissão de **Skinning (Esfolamento)**, escalpelando os corpos das criaturas mortas com facas de skinning, ou comprados de outros jogadores. NUNCA classificar esses itens como loot drop!
 
 ---
 

@@ -1864,11 +1864,11 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                     </li>
                     <li className="flex items-center justify-between bg-black/30 px-2.5 py-1.5 rounded">
                       <span>200x Scarab Pincers</span>
-                      <span className="text-stone-400">Scarab drop</span>
+                      <span className="text-amber-400 font-bold">{t('Skinning (Scarab)', 'Skinning (Scarab)')}</span>
                     </li>
                     <li className="flex items-center justify-between bg-black/30 px-2.5 py-1.5 rounded">
                       <span>200x Bone Tails</span>
-                      <span className="text-stone-400">Bonebeast drop</span>
+                      <span className="text-amber-400 font-bold">{t('Skinning (Bonebeast)', 'Skinning (Bonebeast)')}</span>
                     </li>
                     <li className="flex items-center justify-between bg-black/30 px-2.5 py-1.5 rounded">
                       <span>25.000 Gold Coins (25k)</span>
@@ -1909,7 +1909,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                     </li>
                     <li className="flex items-center justify-between bg-black/30 px-2.5 py-1.5 rounded">
                       <span>300x Cobra Tongues</span>
-                      <span className="text-stone-400">Cobra drop</span>
+                      <span className="text-amber-400 font-bold">{t('Skinning (Cobra)', 'Skinning (Cobra)')}</span>
                     </li>
                     <li className="flex items-center justify-between bg-black/30 px-2.5 py-1.5 rounded">
                       <span>25.000 Gold Coins (25k)</span>
@@ -1934,6 +1934,13 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 </div>
               </div>
             </div>
+
+            <NoticeCard type="tip" title={t('Origem dos Materiais: Profissão Skinning (Esfolamento)', 'Material Source: Skinning Profession')}>
+              {t(
+                'Importante: Scarab Pincers, Bone Tails e Cobra Tongues NÃO são drops regulares de monstros! Eles são obtidos exclusivamente escalpelando os corpos das criaturas mortas (Scarab, Bonebeast e Cobra) utilizando facas de Skinning pela profissão de Esfolador, ou comprados de outros jogadores.',
+                'Important: Scarab Pincers, Bone Tails, and Cobra Tongues are NOT regular monster drops! They are obtained exclusively by skinning dead creature corpses (Scarab, Bonebeast, and Cobra) using Skinning knives, or purchased from other players.'
+              )}
+            </NoticeCard>
 
             <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="fishing-mechanics">{t('Mecânicas de Pesca e Fórmulas', 'Fishing Mechanics and Formulas')}</h4>
             
