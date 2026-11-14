@@ -310,6 +310,10 @@ export const translations = {
     mysticRunes: "Mystic Runes",
     ammunition: "Munições",
     others: "Outros",
+    weaponsDistance: "Armas à Distância",
+    stonesCrystals: "Pedras Elementais & Cristais",
+    crests: "Brasões (Crests)",
+    smelting: "Fundição de Barras (Smelting)",
     
     // Footer & Misc
     wikiGeneralSoon: "Wiki Geral em breve",
@@ -717,6 +721,10 @@ export const translations = {
     mysticRunes: "Mystic Runes",
     ammunition: "Ammunition",
     others: "Others",
+    weaponsDistance: "Distance Weapons",
+    stonesCrystals: "Elemental Stones & Crystals",
+    crests: "Crests",
+    smelting: "Smelting (Bars)",
     
     // Footer & Misc
     wikiGeneralSoon: "General Wiki coming soon",

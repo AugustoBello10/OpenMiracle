@@ -50,8 +50,9 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
   const chance = useMemo(() => {
     if (!selectedItem) return 0;
     const skillNum = Number(skill) || 0;
-    // Formula original restaurada: 10 + (skill - 10) * multiplier
-    const baseChance = 10 + (skillNum - 10) * selectedItem.multiplier;
+    // Suporta itens com base min customizada (ex: Armored War Bow min 0%)
+    const baseMin = selectedItem.minChance !== undefined ? selectedItem.minChance : 10;
+    const baseChance = baseMin + (skillNum - 10) * selectedItem.multiplier;
     return Math.min(100, Math.max(0, parseFloat(baseChance.toFixed(1))));
   }, [skill, selectedItem]);
 
