@@ -647,8 +647,7 @@ export const LootOptimizer: React.FC<LootOptimizerProps> = ({ language, rashidCi
     <div className="space-y-8 font-sans text-left">
       {/* HEADER SECTION */}
       <div>
-        <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2 flex items-center gap-3">
-          <Coins className="w-10 h-10 text-medieval-gold animate-pulse" />
+        <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
           {t.title}
         </h1>
         <p className="text-sm text-medieval-text/80 leading-relaxed max-w-3xl">
@@ -663,12 +662,11 @@ export const LootOptimizer: React.FC<LootOptimizerProps> = ({ language, rashidCi
         <div className="medieval-card bg-black/45 border-medieval-gold/15 p-5 rounded-lg flex flex-col justify-between gap-4">
           <div className="space-y-3.5">
             <div className="flex items-center justify-between">
-              <span className="flex items-center gap-2 text-xs font-black text-medieval-gold uppercase tracking-wider">
-                <FileText className="w-4 h-4 text-medieval-gold" />
+              <span className="text-xs font-black text-medieval-gold uppercase tracking-wider">
                 Tibia Parser Log
               </span>
-              <span className="text-[9px] bg-emerald-950/40 text-emerald-400 font-mono px-2 py-0.5 rounded border border-emerald-500/10 flex items-center gap-1">
-                <Sparkles className="w-2.5 h-2.5 animate-pulse" /> Auto-Correct
+              <span className="text-[9px] bg-emerald-950/40 text-emerald-400 font-mono px-2 py-0.5 rounded border border-emerald-500/10">
+                Auto-Correct
               </span>
             </div>
 
@@ -682,9 +680,8 @@ export const LootOptimizer: React.FC<LootOptimizerProps> = ({ language, rashidCi
             <div className="flex gap-2">
               <button
                 onClick={parseLootText}
-                className="flex-1 py-1.5 bg-medieval-gold hover:bg-[#D4AF37] text-black rounded font-black text-[10px] uppercase cursor-pointer tracking-wider transition-colors flex items-center justify-center gap-1"
+                className="flex-1 py-1.5 bg-medieval-gold hover:bg-[#D4AF37] text-black rounded font-black text-[10px] uppercase cursor-pointer tracking-wider transition-colors"
               >
-                <Clipboard className="w-3.5 h-3.5" />
                 {t.pasteBtn}
               </button>
               <button
@@ -693,9 +690,8 @@ export const LootOptimizer: React.FC<LootOptimizerProps> = ({ language, rashidCi
                   setParseLogs([]);
                 }}
                 disabled={selectedItems.length === 0}
-                className="py-1.5 px-3 bg-red-950/15 border border-red-900/25 text-red-400 rounded font-bold text-[10px] uppercase tracking-wider hover:bg-red-950/20 disabled:opacity-30 disabled:cursor-not-allowed transition-colors flex items-center gap-1 cursor-pointer"
+                className="py-1.5 px-3 bg-red-950/15 border border-red-900/25 text-red-400 rounded font-bold text-[10px] uppercase tracking-wider hover:bg-red-950/20 disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
               >
-                <Trash2 className="w-3.5 h-3.5" />
                 {t.clearAll}
               </button>
             </div>
@@ -704,8 +700,7 @@ export const LootOptimizer: React.FC<LootOptimizerProps> = ({ language, rashidCi
           {/* PARSER RECON FILE REPORTS */}
           {parseLogs.length > 0 && (
             <div className="border-t border-medieval-gold/10 pt-3 flex flex-col gap-1.5 max-h-[140px] overflow-y-auto scrollbar-thin pr-1">
-              <span className="text-[9px] font-bold text-medieval-gold/60 uppercase tracking-wide flex items-center gap-1">
-                <AlertCircle className="w-3 h-3" />
+              <span className="text-[9px] font-bold text-medieval-gold/60 uppercase tracking-wide">
                 {language === 'pt' ? 'Relatório de Importação' : 'Import Report'}
               </span>
               <div className="space-y-1">
@@ -748,8 +743,7 @@ export const LootOptimizer: React.FC<LootOptimizerProps> = ({ language, rashidCi
         {/* COLUMN 2: SEARCH MANUAL & QUANTITY AUTOCOMPLETE ADDER */}
         <div className="medieval-card bg-black/45 border-medieval-gold/15 p-5 rounded-lg flex flex-col justify-between gap-4">
           <div className="space-y-3">
-            <span className="flex items-center gap-2 text-xs font-black text-medieval-gold uppercase tracking-wider">
-              <Search className="w-4 h-4 text-medieval-gold" />
+            <span className="text-xs font-black text-medieval-gold uppercase tracking-wider">
               {t.searchManualTitle}
             </span>
 
@@ -877,9 +871,8 @@ export const LootOptimizer: React.FC<LootOptimizerProps> = ({ language, rashidCi
                         setSelectedAutoItem(null);
                         setAutoQuantity(1);
                       }}
-                      className="flex-1 h-8 bg-medieval-gold hover:bg-[#D4AF37] text-black font-black text-[10px] uppercase tracking-wider rounded transition-colors flex items-center justify-center gap-1 pointer-events-auto cursor-pointer"
+                      className="flex-1 h-8 bg-medieval-gold hover:bg-[#D4AF37] text-black font-black text-[10px] uppercase tracking-wider rounded transition-colors flex items-center justify-center pointer-events-auto cursor-pointer"
                     >
-                      <Check className="w-3.5 h-3.5" />
                       {t.autoAddConfirm}
                     </button>
                   </div>
@@ -894,8 +887,7 @@ export const LootOptimizer: React.FC<LootOptimizerProps> = ({ language, rashidCi
 
           {/* QUICK COMMON PRESET SHORTCUTS */}
           <div className="border-t border-medieval-gold/10 pt-3">
-            <span className="block text-[9px] font-black text-medieval-gold/70 uppercase tracking-widest mb-1.5 flex items-center gap-1">
-              <Sparkles className="w-3 h-3 text-medieval-gold" />
+            <span className="block text-[9px] font-black text-medieval-gold/70 uppercase tracking-widest mb-1.5">
               {t.quickPresets}
             </span>
             <div className="flex flex-wrap gap-1.5">
@@ -937,8 +929,7 @@ export const LootOptimizer: React.FC<LootOptimizerProps> = ({ language, rashidCi
         {/* COLUMN 3: STRATEGY CONFIG & RASHID SYNC */}
         <div className="medieval-card bg-black/45 border-medieval-gold/15 p-5 rounded-lg flex flex-col justify-between gap-4">
           <div className="space-y-3.5">
-            <h3 className="text-xs font-black text-medieval-gold uppercase tracking-wider flex items-center gap-2">
-              <Sliders className="w-4 h-4 text-medieval-gold" />
+            <h3 className="text-xs font-black text-medieval-gold uppercase tracking-wider">
               {t.mode}
             </h3>
 
@@ -952,7 +943,7 @@ export const LootOptimizer: React.FC<LootOptimizerProps> = ({ language, rashidCi
                     : 'text-medieval-text/50 hover:text-medieval-gold hover:bg-white/[0.02]'
                 }`}
               >
-                🚀 {language === 'pt' ? 'Otimizar Rotas' : 'Optimize Trips'}
+                {language === 'pt' ? 'Otimizar Rotas' : 'Optimize Trips'}
               </button>
               <button
                 onClick={() => setOptimizerMode('profit')}
@@ -962,7 +953,7 @@ export const LootOptimizer: React.FC<LootOptimizerProps> = ({ language, rashidCi
                     : 'text-medieval-text/50 hover:text-medieval-gold hover:bg-white/[0.02]'
                 }`}
               >
-                💰 {language === 'pt' ? 'Lucro Máximo' : 'Max Profit'}
+                {language === 'pt' ? 'Lucro Máximo' : 'Max Profit'}
               </button>
             </div>
 
@@ -1020,8 +1011,7 @@ export const LootOptimizer: React.FC<LootOptimizerProps> = ({ language, rashidCi
         {/* Loot Sack Content */}
         <div className="lg:col-span-2 space-y-4">
           <div className="flex items-center justify-between border-b border-medieval-gold/15 pb-2">
-            <h2 className="text-xl font-black text-medieval-gold uppercase tracking-tighter flex items-center gap-2">
-              <Clipboard className="w-5 h-5 text-medieval-gold" />
+            <h2 className="text-xl font-black text-medieval-gold uppercase tracking-tighter">
               {t.itemsTitle} ({selectedItems.reduce((acc, curr) => acc + curr.quantity, 0)})
             </h2>
             {selectedItems.length > 0 && (
@@ -1171,8 +1161,7 @@ export const LootOptimizer: React.FC<LootOptimizerProps> = ({ language, rashidCi
 
       {/* DETAILED TRIP BY TRIP DELIVERIES */}
       <div className="medieval-card bg-black/40 border-medieval-gold/15 p-6 rounded-lg space-y-4">
-        <h3 className="text-base font-black text-medieval-gold uppercase tracking-wider border-b border-medieval-gold/15 pb-2 flex items-center gap-2.5">
-          <Navigation className="w-5 h-5 text-medieval-gold" />
+        <h3 className="text-base font-black text-medieval-gold uppercase tracking-wider border-b border-medieval-gold/15 pb-2">
           {t.routesTitle}
         </h3>
 
@@ -1202,8 +1191,7 @@ export const LootOptimizer: React.FC<LootOptimizerProps> = ({ language, rashidCi
 
                     {/* NPC Name + Location info */}
                     <div>
-                      <h4 className="text-sm font-black text-white tracking-tight flex items-center gap-1.5">
-                        <MapPin className="w-3.5 h-3.5 text-medieval-gold" />
+                      <h4 className="text-sm font-black text-white tracking-tight">
                         {cityName}
                       </h4>
                       <p className="text-[10px] text-medieval-text/50 font-mono">
@@ -1244,8 +1232,7 @@ export const LootOptimizer: React.FC<LootOptimizerProps> = ({ language, rashidCi
       {/* ALL PRICE MATRIX SEARCH AND BROWSE TABLE */}
       <div className="space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-medieval-gold/15 pb-2">
-          <h2 className="text-xl font-black text-medieval-gold uppercase tracking-tighter flex items-center gap-2">
-            <Coins className="w-5 h-5 text-medieval-gold" />
+          <h2 className="text-xl font-black text-medieval-gold uppercase tracking-tighter">
             {t.tableTitle}
           </h2>
 

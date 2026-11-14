@@ -374,8 +374,7 @@ export default function SkillCalculator({
   return (
     <div className="space-y-8">
       <header className="text-center mb-12">
-        <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2 flex items-center justify-center gap-3">
-          <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849036/treinodeskils.gif" className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Skills" /> 
+        <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
           {t('skills')}
         </h1>
         <p className="text-medieval-gold/80 font-mono text-sm">

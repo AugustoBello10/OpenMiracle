@@ -452,21 +452,21 @@ export const RuneMakingCalculator = ({ t, language }: any) => {
         <div className="bg-black/60 p-1.5 rounded-lg border border-medieval-gold/20 flex shadow-[0_0_15px_rgba(0,0,0,0.5)]">
           <button
             onClick={() => setCalcMode('online')}
-            className={`flex items-center gap-2 px-6 py-2.5 rounded text-xs font-black uppercase tracking-widest transition-all ${calcMode === 'online' ? 'bg-medieval-gold text-black shadow-[0_0_15px_rgba(197,160,89,0.4)]' : 'text-medieval-gold/40 hover:text-medieval-gold/80'}`}
+            className={`px-6 py-2.5 rounded text-xs font-black uppercase tracking-widest transition-all ${calcMode === 'online' ? 'bg-medieval-gold text-black shadow-[0_0_15px_rgba(197,160,89,0.4)]' : 'text-medieval-gold/40 hover:text-medieval-gold/80'}`}
           >
-            <Zap className="w-4 h-4" /> {language === 'pt' ? 'Online (Ativo)' : 'Online (Active)'}
+            {language === 'pt' ? 'Online (Ativo)' : 'Online (Active)'}
           </button>
           <button
             onClick={() => setCalcMode('offline')}
-            className={`flex items-center gap-2 px-6 py-2.5 rounded text-xs font-black uppercase tracking-widest transition-all ${calcMode === 'offline' ? 'bg-medieval-gold text-black shadow-[0_0_15px_rgba(197,160,89,0.4)]' : 'text-medieval-gold/40 hover:text-medieval-gold/80'}`}
+            className={`px-6 py-2.5 rounded text-xs font-black uppercase tracking-widest transition-all ${calcMode === 'offline' ? 'bg-medieval-gold text-black shadow-[0_0_15px_rgba(197,160,89,0.4)]' : 'text-medieval-gold/40 hover:text-medieval-gold/80'}`}
           >
-            <Bed className="w-4 h-4" /> {language === 'pt' ? 'Bedmaker (Offline)' : 'Bedmaker (Offline)'}
+            {language === 'pt' ? 'Bedmaker (Offline)' : 'Bedmaker (Offline)'}
           </button>
           <button
             onClick={() => setCalcMode('manafluids')}
-            className={`flex items-center gap-2 px-6 py-2.5 rounded text-xs font-black uppercase tracking-widest transition-all ${calcMode === 'manafluids' ? 'bg-medieval-gold text-black shadow-[0_0_15px_rgba(197,160,89,0.4)]' : 'text-medieval-gold/40 hover:text-medieval-gold/80'}`}
+            className={`px-6 py-2.5 rounded text-xs font-black uppercase tracking-widest transition-all ${calcMode === 'manafluids' ? 'bg-medieval-gold text-black shadow-[0_0_15px_rgba(197,160,89,0.4)]' : 'text-medieval-gold/40 hover:text-medieval-gold/80'}`}
           >
-            <FlaskConical className="w-4 h-4" /> {language === 'pt' ? 'Mana Fluids' : 'Mana Fluids'}
+            {language === 'pt' ? 'Mana Fluids' : 'Mana Fluids'}
           </button>
         </div>
       </div>

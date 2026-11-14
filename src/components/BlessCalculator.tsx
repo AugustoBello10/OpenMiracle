@@ -63,8 +63,8 @@ export function BlessCalculator({ t }: BlessCalculatorProps) {
         <div className="medieval-card p-6 sm:p-8">
           <div className="space-y-8">
             <div className="flex flex-col gap-2 max-w-xs">
-              <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest flex items-center gap-2">
-                <TrendingUp className="w-4 h-4" /> {t('characterLevel')}
+              <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest">
+                {t('characterLevel')}
               </label>
               <input
                 type="number"
@@ -120,8 +120,8 @@ export function BlessCalculator({ t }: BlessCalculatorProps) {
         </div>
 
         <div className="medieval-card p-6 sm:p-8">
-          <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest flex items-center gap-2 mb-6">
-            <Info className="w-5 h-5" /> {t('blessDetails')}
+          <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest mb-6">
+            {t('blessDetails')}
           </h3>
           <div className="grid grid-cols-1 gap-x-8 gap-y-4 text-xs sm:text-sm text-medieval-text/70 leading-relaxed font-mono">
             <p>• <span className="text-red-400 font-bold">Penalidade Padrão:</span> A penalidade padrão ao morrer no Miracle é de <span className="text-white font-bold">10%</span> na experiência e skills/magic level.</p>
@@ -135,8 +135,8 @@ export function BlessCalculator({ t }: BlessCalculatorProps) {
 
         {/* Seção de Localizações */}
         <div className="medieval-card p-6 sm:p-8">
-          <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest flex items-center gap-2 mb-6">
-            <Map className="w-5 h-5" /> Localização das Blessings
+          <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest mb-6">
+            Localização das Blessings
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

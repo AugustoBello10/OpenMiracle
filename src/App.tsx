@@ -2037,8 +2037,8 @@ export default function App() {
                             
                             {/* Grid de Categorias */}
                             <div>
-                              <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest flex items-center gap-2 mb-4">
-                                <TableIcon className="w-4 h-4" /> {t('category')}
+                              <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest block mb-4">
+                                {t('category')}
                               </label>
                               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
                                 {Object.keys(ATTRIBUTE_DATA).map(cat => (
@@ -2058,8 +2058,8 @@ export default function App() {
 
                              {/* Seleção de Item */}
                              <div className="flex flex-col gap-2">
-                               <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest flex items-center gap-2">
-                                 <Sword className="w-4 h-4" /> {t('equipment')}
+                               <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest">
+                                 {t('equipment')}
                                </label>
                                <div className="flex gap-4">
                                  <div className="w-16 h-16 bg-black/60 rounded border border-medieval-gold/30 flex items-center justify-center shrink-0 shadow-inner">
@@ -2090,8 +2090,8 @@ export default function App() {
 
                             {/* Atributos Permitidos */}
                             <div className="bg-black/40 p-4 rounded border border-medieval-gold/20">
-                              <p className="text-xs uppercase text-medieval-gold/60 font-bold tracking-tighter mb-3 flex items-center gap-2">
-                                <Info className="w-4 h-4" /> {t('allowedAttributes')}:
+                              <p className="text-xs uppercase text-medieval-gold/60 font-bold tracking-tighter mb-3">
+                                {t('allowedAttributes')}:
                               </p>
                               <div className="flex flex-wrap gap-2">
                                 {ATTRIBUTE_DATA[attrCategory]?.find(i => i.name === attrItemName)?.attributes.map(attr => (
@@ -2119,8 +2119,8 @@ export default function App() {
                         
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
                           <div className="medieval-card p-6 space-y-4 h-full">
-                            <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest flex items-center gap-2">
-                              <TrendingUp className="w-4 h-4" /> {t('understandFormula')}
+                            <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest">
+                              {t('understandFormula')}
                             </h3>
                             <div className="space-y-3 text-xs text-medieval-text/70 leading-relaxed font-mono">
                               <p>1. {t('formulaStep1')}</p>
@@ -2138,7 +2138,7 @@ export default function App() {
 
                           <div className="medieval-card p-6 space-y-4 h-full flex flex-col justify-between">
                             <div>
-                              <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest flex items-center gap-2 mb-4">
+                              <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest mb-4">
                                 Onde adquirir Orbs?
                               </h3>
                               <p className="text-xs text-medieval-text/70 leading-relaxed font-mono">
@@ -2152,9 +2152,8 @@ export default function App() {
                                   setCalcSubTab('professions');
                                   setProfSubTab('alchemy');
                                 }}
-                                className="w-full bg-medieval-gold/10 hover:bg-medieval-gold/20 text-medieval-gold font-bold py-3 px-4 rounded border border-medieval-gold/30 transition-all flex items-center justify-center gap-2 text-xs sm:text-sm uppercase tracking-wider shadow-[0_0_15px_rgba(212,175,55,0.1)] hover:shadow-[0_0_20px_rgba(212,175,55,0.3)]"
+                                className="w-full bg-medieval-gold/10 hover:bg-medieval-gold/20 text-medieval-gold font-bold py-3 px-4 rounded border border-medieval-gold/30 transition-all text-xs sm:text-sm uppercase tracking-wider shadow-[0_0_15px_rgba(212,175,55,0.1)] hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] text-center cursor-pointer"
                               >
-                                <FlaskConical className="w-5 h-5" />
                                 Receitas de Mystic Runes (Alchemy)
                               </button>
                             </div>
@@ -2189,8 +2188,8 @@ export default function App() {
               >
                 <header className="relative flex flex-col md:flex-row md:items-start justify-between gap-6 mb-6 px-1 sm:px-2">
                   <div className="flex-1 text-center md:text-left">
-                    <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2 flex items-center justify-center gap-3">
-                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849033/mapainterativo.gif" className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Mapa" /> {t('mapTitle')}
+                    <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
+                      {t('mapTitle')}
                     </h1>
                     <p className="text-medieval-gold/80 font-mono text-sm mb-4">
                       {t('mapSubtitle')}

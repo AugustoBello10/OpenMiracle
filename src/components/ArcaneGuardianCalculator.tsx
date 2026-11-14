@@ -192,16 +192,13 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
 
         {/* Badges Rápidas */}
         <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-4 pt-4 border-t border-medieval-gold/20 text-[11px] font-mono">
-          <span className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 flex items-center gap-1.5 font-bold">
-            <Clock className="w-3.5 h-3.5 text-amber-400" />
+          <span className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold">
             {language === 'pt' ? 'Base: 7 Dias (168h nominais)' : 'Base: 7 Days (168h nominal)'}
           </span>
-          <span className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 flex items-center gap-1.5 font-bold">
-            <Flame className="w-3.5 h-3.5 text-orange-400" />
+          <span className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold">
             {language === 'pt' ? 'Acelera 10% por Atributo (+10%/attr)' : 'Burns 10% Faster per Attribute'}
           </span>
-          <span className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 flex items-center gap-1.5 font-bold">
-            <Shield className="w-3.5 h-3.5 text-emerald-400" />
+          <span className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold">
             {language === 'pt' ? 'Consumo Apenas em Battle' : 'Drains Only in Battle'}
           </span>
         </div>
@@ -217,8 +214,7 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
             {/* Seção 1: Quantidade de Atributos com Digitação Direta + Steppers + Slider */}
             <div className="space-y-4 pb-6 border-b border-medieval-gold/20">
               <div className="flex items-center justify-between flex-wrap gap-2">
-                <label className="text-xs font-black uppercase tracking-wider text-medieval-gold flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-amber-400" />
+                <label className="text-xs font-black uppercase tracking-wider text-medieval-gold">
                   {language === 'pt' ? 'Total de Atributos no Set' : 'Total Set Attributes'}
                 </label>
 
@@ -231,7 +227,7 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
                     className="w-8 h-8 flex items-center justify-center rounded bg-zinc-800 hover:bg-amber-600 disabled:opacity-30 disabled:hover:bg-zinc-800 text-white font-bold cursor-pointer transition-colors"
                     title="Diminuir 1 atributo"
                   >
-                    <Minus className="w-3.5 h-3.5" />
+                    -
                   </button>
 
                   <div className="relative flex items-center">
@@ -252,7 +248,7 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
                     className="w-8 h-8 flex items-center justify-center rounded bg-zinc-800 hover:bg-amber-600 disabled:opacity-30 disabled:hover:bg-zinc-800 text-white font-bold cursor-pointer transition-colors"
                     title="Aumentar 1 atributo"
                   >
-                    <Plus className="w-3.5 h-3.5" />
+                    +
                   </button>
 
                   <span className="text-[11px] text-zinc-400 font-mono uppercase px-2">
@@ -328,17 +324,15 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
             {/* Seção 2: Tempo Mostrado no Jogo (Travado em 7 dias base com ajuste fino) */}
             <div className="space-y-3 pb-6 border-b border-medieval-gold/20">
               <div className="flex items-center justify-between">
-                <label className="text-xs font-black uppercase tracking-wider text-medieval-gold flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-amber-400" />
+                <label className="text-xs font-black uppercase tracking-wider text-medieval-gold">
                   {language === 'pt' ? 'Tempo Restante no Item (Mostrado no Jogo)' : 'Time Remaining on Item (Shown in Game)'}
                 </label>
                 <button
                   type="button"
                   onClick={handleResetToFull}
-                  className="text-[11px] font-bold text-amber-400/90 hover:text-amber-300 flex items-center gap-1 cursor-pointer bg-amber-950/40 hover:bg-amber-900/50 px-2.5 py-1 rounded-md border border-amber-600/30 transition-all hover:scale-105"
+                  className="text-[11px] font-bold text-amber-400/90 hover:text-amber-300 cursor-pointer bg-amber-950/40 hover:bg-amber-900/50 px-2.5 py-1 rounded-md border border-amber-600/30 transition-all hover:scale-105"
                   title="Restaurar para 7 dias inteiros"
                 >
-                  <RefreshCw className="w-3 h-3" />
                   {language === 'pt' ? 'Resetar (7 Dias)' : 'Reset (7 Days)'}
                 </button>
               </div>
@@ -387,8 +381,7 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
             {/* Seção 3: Informações do Personagem e Rotina de Jogo */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold uppercase tracking-wider text-medieval-gold flex items-center gap-1.5">
-                  <TrendingUp className="w-3.5 h-3.5 text-amber-400" />
+                <label className="text-xs font-bold uppercase tracking-wider text-medieval-gold">
                   {language === 'pt' ? 'Level do Personagem' : 'Character Level'}
                 </label>
                 <input
@@ -406,8 +399,7 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold uppercase tracking-wider text-medieval-gold flex items-center gap-1.5">
-                  <Calendar className="w-3.5 h-3.5 text-amber-400" />
+                <label className="text-xs font-bold uppercase tracking-wider text-medieval-gold">
                   {language === 'pt' ? 'Horas de Hunt / Dia' : 'Hunt Hours / Day'}
                 </label>
                 <div className="flex items-center gap-2">
@@ -452,12 +444,9 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
             <div className="absolute top-0 right-0 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
             <div className="flex items-center justify-between pb-4 border-b border-medieval-gold/20">
-              <div className="flex items-center gap-2">
-                <span className="text-xl">⏱️</span>
-                <span className="text-xs font-black uppercase tracking-wider text-medieval-gold">
-                  {language === 'pt' ? 'Tempo Líquido de Batalha' : 'True Battle Duration'}
-                </span>
-              </div>
+              <span className="text-xs font-black uppercase tracking-wider text-medieval-gold">
+                {language === 'pt' ? 'Tempo Líquido de Batalha' : 'True Battle Duration'}
+              </span>
               <span className="text-xs font-mono font-bold text-amber-400 bg-amber-950/80 border border-amber-600/50 px-2.5 py-0.5 rounded-full shadow-sm">
                 {speedMultiplier.toFixed(1)}x {language === 'pt' ? 'Velocidade' : 'Speed'}
               </span>
@@ -479,15 +468,12 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
 
             {/* Duração no Calendário Real */}
             <div className="p-3.5 bg-black/80 rounded-xl border border-medieval-gold/30 flex items-center justify-between gap-3 shadow-inner">
-              <div className="flex items-center gap-2.5">
-                <Calendar className="w-5 h-5 text-amber-400 shrink-0" />
-                <div>
-                  <div className="text-[11px] font-bold text-white uppercase tracking-wide">
-                    {language === 'pt' ? 'Duração no Calendário' : 'Calendar Duration'}
-                  </div>
-                  <div className="text-[10px] text-zinc-400 font-mono">
-                    {language === 'pt' ? `Jogando ${hoursPerDay}h de battle por dia` : `Playing ${hoursPerDay}h battle/day`}
-                  </div>
+              <div>
+                <div className="text-[11px] font-bold text-white uppercase tracking-wide">
+                  {language === 'pt' ? 'Duração no Calendário' : 'Calendar Duration'}
+                </div>
+                <div className="text-[10px] text-zinc-400 font-mono">
+                  {language === 'pt' ? `Jogando ${hoursPerDay}h de battle por dia` : `Playing ${hoursPerDay}h battle/day`}
                 </div>
               </div>
               <div className="text-right">
@@ -514,16 +500,13 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
           </div>
 
           {/* Dica Prática de Jogo */}
-          <div className="p-4 bg-amber-950/30 border border-amber-600/40 rounded-xl flex items-start gap-3 shadow-md">
-            <Info className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-            <div className="text-xs text-zinc-300 leading-relaxed space-y-1">
-              <strong className="text-amber-300 block">{language === 'pt' ? 'Dica de Economia:' : 'Saving Tip:'}</strong>
-              <p>
-                {language === 'pt'
-                  ? 'Como o tempo da bless só queima enquanto você tiver o símbolo de combate (swords/pzk), desequipar anéis, amuletos e itens com atributos enquanto estiver treinando skills ou em Protection Zone (PZ) evita o desgaste acelerado da sua proteção!'
-                  : 'Since the bless timer only drains while combat swords are active, unequipping rings, amulets and gear with attributes while skill training or in PZ prevents burning your protection quickly!'}
-              </p>
-            </div>
+          <div className="p-4 bg-amber-950/30 border border-amber-600/40 rounded-xl space-y-1 shadow-md text-xs text-zinc-300 leading-relaxed">
+            <strong className="text-amber-300 block">{language === 'pt' ? 'Dica de Economia:' : 'Saving Tip:'}</strong>
+            <p>
+              {language === 'pt'
+                ? 'Como o tempo da bless só queima enquanto você tiver o símbolo de combate (swords/pzk), desequipar anéis, amuletos e itens com atributos enquanto estiver treinando skills ou em Protection Zone (PZ) evita o desgaste acelerado da sua proteção!'
+                : 'Since the bless timer only drains while combat swords are active, unequipping rings, amulets and gear with attributes while skill training or in PZ prevents burning your protection quickly!'}
+            </p>
           </div>
 
         </div>
@@ -533,12 +516,9 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
       {/* Régua / Tabela Comparativa de Atributos */}
       <div className="medieval-card p-6 sm:p-7 space-y-4 border-2 border-medieval-gold/30 bg-black/85">
         <div className="flex items-center justify-between flex-wrap gap-2">
-          <div className="flex items-center gap-2">
-            <Award className="w-5 h-5 text-medieval-gold" />
-            <h3 className="text-sm font-black uppercase tracking-wider text-medieval-gold">
-              {language === 'pt' ? 'Tabela Comparativa de Consumo por Atributos' : 'Attribute Consumption Comparison Table'}
-            </h3>
-          </div>
+          <h3 className="text-sm font-black uppercase tracking-wider text-medieval-gold">
+            {language === 'pt' ? 'Tabela Comparativa de Consumo por Atributos' : 'Attribute Consumption Comparison Table'}
+          </h3>
           <span className="text-xs font-mono text-zinc-400">
             {language === 'pt' ? `Base: ${(nominalMinutes / 60).toFixed(0)}h nominais | ${hoursPerDay}h hunt/dia` : `Base: ${(nominalMinutes / 60).toFixed(0)}h nominal | ${hoursPerDay}h hunt/day`}
           </span>
@@ -593,15 +573,14 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
         </div>
         <p className="text-[10px] text-zinc-500 text-center italic">
           {language === 'pt' 
-            ? '💡 Clique em qualquer linha da tabela para selecionar instantaneamente aquela quantidade de atributos.' 
-            : '💡 Click on any row in the table to instantly select that amount of attributes.'}
+            ? 'Clique em qualquer linha da tabela para selecionar instantaneamente aquela quantidade de atributos.' 
+            : 'Click on any row in the table to instantly select that amount of attributes.'}
         </p>
       </div>
 
       {/* Regras e Informações Oficiais do Jogo */}
       <div className="p-6 bg-black/70 rounded-xl border border-medieval-gold/20 space-y-3">
-        <h4 className="text-xs font-black uppercase tracking-wider text-medieval-gold flex items-center gap-2">
-          <Shield className="w-4 h-4 text-amber-400" />
+        <h4 className="text-xs font-black uppercase tracking-wider text-medieval-gold">
           {language === 'pt' ? 'Como Funciona o Arcane Guardian' : 'How The Arcane Guardian Works'}
         </h4>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-zinc-300 leading-relaxed">
