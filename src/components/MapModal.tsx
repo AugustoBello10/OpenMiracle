@@ -19,7 +19,7 @@ export function MapModal({ isOpen, onClose, targetCoords, title }: MapModalProps
       <div className="bg-[#1a1a1a] border border-medieval-gold/30 rounded-xl w-full max-w-4xl h-[80vh] flex flex-col shadow-2xl overflow-hidden relative">
         <div className="flex items-center justify-between p-4 border-b border-medieval-gold/20 bg-black/40 relative z-10">
           <h3 className="text-medieval-gold font-black uppercase tracking-widest flex items-center gap-2">
-            📍 {title} <span className="text-xs font-mono text-medieval-gold/60 normal-case ml-2">({targetCoords.x}, {targetCoords.y}, {targetCoords.z})</span>
+            {title} <span className="text-xs font-mono text-medieval-gold/60 normal-case ml-2">({targetCoords.x}, {targetCoords.y}, {targetCoords.z})</span>
           </h3>
           <button 
             onClick={onClose}
@@ -31,6 +31,7 @@ export function MapModal({ isOpen, onClose, targetCoords, title }: MapModalProps
         
         <div className="flex-1 w-full h-full relative bg-[#0a0a0a]">
           <MapViewer 
+            key={`map-modal-${targetCoords.x}-${targetCoords.y}-${targetCoords.z}`}
             isModal={true}
             initialX={targetCoords.x}
             initialY={targetCoords.y}

@@ -546,7 +546,18 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
                 ...item,
                 categories: fixCategories(item.categories, item.name || '')
               }));
-              setLocalRespawns(processed);
+
+              // Ensure authoritative local NPCs from RESPAWNS are never lost or overridden by stale Firestore data
+              const authoritativeNpcs = RESPAWNS.filter(r => r.id?.startsWith('npc-') || r.categories?.includes('NPCs'));
+              const authoritativeIds = new Set(authoritativeNpcs.map(n => n.id));
+              const authoritativeNames = new Set(authoritativeNpcs.map(n => n.name.toLowerCase()));
+
+              const filteredFirestore = processed.filter((item: any) => 
+                !authoritativeIds.has(item.id) && 
+                !authoritativeNames.has((item.name || '').toLowerCase())
+              );
+
+              setLocalRespawns([...filteredFirestore, ...authoritativeNpcs]);
             }
           } catch (e) {
             console.error("Failed to parse respawns string from DB:", e);
@@ -573,6 +584,18 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
   const [flyToPos, setFlyToPos] = useState<[number, number] | null>(null);
   const [flyToZoom, setFlyToZoom] = useState<number>(hasInitialPos ? initialZoom : 2);
   const [flyToTrigger, setFlyToTrigger] = useState(0);
+
+  // Synchronize map position and floor when prop coordinates change
+  useEffect(() => {
+    if (propX !== undefined && propY !== undefined) {
+      if (propZ !== undefined && propZ !== floor) {
+        setFloor(propZ);
+      }
+      setFlyToPos([-propY, propX]);
+      setFlyToZoom(propZoom !== undefined ? propZoom : 2);
+      setFlyToTrigger(t => t + 1);
+    }
+  }, [propX, propY, propZ, propZoom]);
 
   // Teleport State
   const [teleportArrival, setTeleportArrival] = useState<TeleportTarget | null>(null);

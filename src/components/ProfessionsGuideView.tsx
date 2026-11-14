@@ -1772,7 +1772,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 {
                   label: t('Mestre da Profissão', 'Profession Master'),
                   value: (
-                    <MapLink poiId="hoggle">
+                    <MapLink poiId="hoggle" x={32537} y={32143} z={6}>
                       Hoggle (Thais)
                     </MapLink>
                   ),
@@ -1825,7 +1825,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               <div className="text-center sm:text-left flex-1">
                 <h5 className="font-bold text-medieval-gold text-base">Hoggle (Mestre Pescador)</h5>
                 <p className="text-xs text-stone-300 mt-0.5">
-                  Localização: <MapLink poiId="hoggle">Hoggle (Thais)</MapLink>
+                  Localização: <MapLink poiId="hoggle" x={32537} y={32143} z={6}>Hoggle (Thais)</MapLink>
                 </p>
                 <p className="text-xs text-stone-400 mt-1 leading-relaxed">
                   {t(

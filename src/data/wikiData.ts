@@ -4,102 +4,102 @@ export const CRAFT_ITEMS = [
   {
     category: "toolsPicks",
     items: [
-      { name: "Modified Pick", multiplier: 2, req: "1x Pick (consumed on success) + 5 Steels", materials: [{ name: "Pick", amount: 1 }, { name: "Steel", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Modified_pick.gif" },
-      { name: "Advanced Pick", multiplier: 1.5, req: "1x Modified Pick (consumed on success) + 1 Draconian Steel + 10 Steels", materials: [{ name: "Modified Pick", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Modified_pick.gif" }, { name: "Draconian Steel", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }, { name: "Steel", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Advanced_pick.gif" },
-      { name: "Enhanced Pick", multiplier: 1, req: "1x Advanced Pick (consumed on success) + 5 Draconian Steels + 20 Steels", materials: [{ name: "Advanced Pick", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Advanced_pick.gif" }, { name: "Draconian Steel", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }, { name: "Steel", amount: 20, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Enchanced_Pick.gif" },
-      { name: "Golden Pick", multiplier: 0.5, req: "1x Enhanced Pick (consumed on success) + 40 Steels + 10 Draconian Steels + 3 Hell Steels + 3 Gold Bars", materials: [{ name: "Enhanced Pick", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Enchanced_Pick.gif" }, { name: "Steel", amount: 40, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }, { name: "Draconian Steel", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }, { name: "Hell Steel", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/hell_steel.gif" }, { name: "Gold Bar", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/goldingot.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Golden_pick.gif" }
+      { name: "Modified Pick", multiplier: 2, req: "1x Pick (consumed on success) + 5 Steels", materials: [{ name: "Pick", amount: 1 }, { name: "Steel", amount: 5, img: "/images/miracle/items/steel_2422.gif" }], img: "/images/miracle/features/8448.gif" },
+      { name: "Advanced Pick", multiplier: 1.5, req: "1x Modified Pick (consumed on success) + 1 Draconian Steel + 10 Steels", materials: [{ name: "Modified Pick", amount: 1, img: "/images/miracle/features/8448.gif" }, { name: "Draconian Steel", amount: 1 }, { name: "Steel", amount: 10, img: "/images/miracle/items/steel_2422.gif" }], img: "/images/miracle/features/8449.gif" },
+      { name: "Enhanced Pick", multiplier: 1, req: "1x Advanced Pick (consumed on success) + 5 Draconian Steels + 20 Steels", materials: [{ name: "Advanced Pick", amount: 1, img: "/images/miracle/features/8449.gif" }, { name: "Draconian Steel", amount: 5 }, { name: "Steel", amount: 20, img: "/images/miracle/items/steel_2422.gif" }], img: "/images/miracle/features/8450.gif" },
+      { name: "Golden Pick", multiplier: 0.5, req: "1x Enhanced Pick (consumed on success) + 40 Steels + 10 Draconian Steels + 3 Hell Steels + 3 Gold Bars", materials: [{ name: "Enhanced Pick", amount: 1, img: "/images/miracle/features/8450.gif" }, { name: "Steel", amount: 40, img: "/images/miracle/items/steel_2422.gif" }, { name: "Draconian Steel", amount: 10 }, { name: "Hell Steel", amount: 3 }, { name: "Gold Bar", amount: 3, img: "/images/miracle/items/gold_bar_11754.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Golden_pick.gif" }
     ]
   },
   {
     category: "rods",
     items: [
-      { name: "Reinforced Rod", multiplier: 2, req: "1 fishing rod + 5 steels", materials: [{ name: "Fishing Rod", amount: 1 }, { name: "Steel", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Reinforced_rod.gif" },
-      { name: "Engineered Rod", multiplier: 1.5, req: "1 fishing rod + 10 steels + 1 draconian steel", materials: [{ name: "Fishing Rod", amount: 1 }, { name: "Steel", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }, { name: "Draconian Steel", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }] },
-      { name: "Volcanic Rod", multiplier: 1, req: "1 fishing rod + 20 steels + 10 glimmering soils + 5 draconian steels + 3 hell steels", materials: [{ name: "Fishing Rod", amount: 1 }, { name: "Steel", amount: 20, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }, { name: "Glimmering Soil", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/glmeringsoil.gif" }, { name: "Draconian Steel", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }, { name: "Hell Steel", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/hell_steel.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Volcanic_rod.gif" },
-      { name: "Golden Rod", multiplier: 0.5, req: "1 fishing rod + 40 steels + 10 draconian steels + 3 gold ingot + 3 hell steels", materials: [{ name: "Fishing Rod", amount: 1 }, { name: "Steel", amount: 40, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }, { name: "Draconian Steel", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }, { name: "Gold Ingot", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/goldingot.gif" }, { name: "Hell Steel", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/hell_steel.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Golden_rod.gif" },
+      { name: "Reinforced Rod", multiplier: 2, req: "1 fishing rod + 5 steels", materials: [{ name: "Fishing Rod", amount: 1 }, { name: "Steel", amount: 5 }], img: "/images/miracle/features/8478.gif" },
+      { name: "Engineered Rod", multiplier: 1.5, req: "1 fishing rod + 10 steels + 1 draconian steel", materials: [{ name: "Fishing Rod", amount: 1 }, { name: "Steel", amount: 10 }, { name: "Draconian Steel", amount: 1 }], img: "/images/miracle/features/8479.gif" },
+      { name: "Volcanic Rod", multiplier: 1, req: "1 fishing rod + 20 steels + 10 glimmering soils + 5 draconian steels + 3 hell steels", materials: [{ name: "Fishing Rod", amount: 1 }, { name: "Steel", amount: 20 }, { name: "Glimmering Soil", amount: 10 }, { name: "Draconian Steel", amount: 5 }, { name: "Hell Steel", amount: 3 }], img: "/images/miracle/features/10332.gif" },
+      { name: "Golden Rod", multiplier: 0.5, req: "1 fishing rod + 40 steels + 10 draconian steels + 3 gold ingot + 3 hell steels", materials: [{ name: "Fishing Rod", amount: 1 }, { name: "Steel", amount: 40 }, { name: "Draconian Steel", amount: 10 }, { name: "Gold Ingot", amount: 3 }, { name: "Hell Steel", amount: 3 }], img: "/images/miracle/features/10331.gif" },
     ]
   },
   {
     category: "weaponsDistance",
     items: [
-      { name: "Armored War Bow", multiplier: 0.08, minChance: 0, req: "1x War Bow (consumed on success) + 300 Steels + 200 Draconian Steels + 100 Hell Steels", materials: [{ name: "War Bow", amount: 1 }, { name: "Steel", amount: 300, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }, { name: "Draconian Steel", amount: 200, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }, { name: "Hell Steel", amount: 100, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/hell_steel.gif" }] }
+      { name: "Armored War Bow", multiplier: 0.08, minChance: 0, req: "1x War Bow (consumed on success) + 300 Steels + 200 Draconian Steels + 100 Hell Steels", materials: [{ name: "War Bow", amount: 1 }, { name: "Steel", amount: 300 }, { name: "Draconian Steel", amount: 200 }, { name: "Hell Steel", amount: 100 }], img: "/images/miracle/features/8215.gif" }
     ]
   },
   {
     category: "skinningKnives",
     items: [
-      { name: "Diamond Knife", multiplier: 1, req: "10 small diamonds + 5 Hell Steels + 1 Combat Knife", materials: [{ name: "Small Diamond", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/smalldiamond.gif" }, { name: "Hell Steel", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/hell_steel.gif" }, { name: "Combat Knife", amount: 1 }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784736439/diamong_knife.gif" },
+      { name: "Diamond Knife", multiplier: 1, req: "10 small diamonds + 5 Hell Steels + 1 Combat Knife", materials: [{ name: "Small Diamond", amount: 10 }, { name: "Hell Steel", amount: 5 }, { name: "Combat Knife", amount: 1 }], img: "/images/miracle/features/10437.gif" },
     ]
   },
   {
     category: "cuttingAxes",
     items: [
-      { name: "Refined Axe", multiplier: 2.0, req: "1x Rough Axe (consumed on success) + 5x Steels", materials: [{ name: "Rough Axe", amount: 1 }, { name: "Steel", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }] },
-      { name: "Superior Axe", multiplier: 1.5, req: "1x Refined Axe (consumed on success) + 10x Steels + 1x Draconian Steel", materials: [{ name: "Refined Axe", amount: 1 }, { name: "Steel", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }, { name: "Draconian Steel", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }] },
-      { name: "Masterwork Axe", multiplier: 1.0, req: "1x Superior Axe (consumed on success) + 20x Steels + 5x Draconian Steels", materials: [{ name: "Superior Axe", amount: 1 }, { name: "Steel", amount: 20, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }, { name: "Draconian Steel", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }] },
-      { name: "Grandmaster Axe", multiplier: 0.8, req: "1x Masterwork Axe (consumed on success) + 40x Steels + 10x Draconian Steels + 3x Gold Bar", materials: [{ name: "Masterwork Axe", amount: 1 }, { name: "Steel", amount: 40, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }, { name: "Draconian Steel", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }, { name: "Gold Bar", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/goldingot.gif" }] },
+      { name: "Refined Axe", multiplier: 2.0, req: "1x Rough Axe (consumed on success) + 5x Steels", materials: [{ name: "Rough Axe", amount: 1 }, { name: "Steel", amount: 5 }], img: "/images/miracle/features/8454.gif" },
+      { name: "Superior Axe", multiplier: 1.5, req: "1x Refined Axe (consumed on success) + 10x Steels + 1x Draconian Steel", materials: [{ name: "Refined Axe", amount: 1 }, { name: "Steel", amount: 10 }, { name: "Draconian Steel", amount: 1 }], img: "/images/miracle/features/8455.gif" },
+      { name: "Masterwork Axe", multiplier: 1.0, req: "1x Superior Axe (consumed on success) + 20x Steels + 5x Draconian Steels", materials: [{ name: "Superior Axe", amount: 1 }, { name: "Steel", amount: 20 }, { name: "Draconian Steel", amount: 5 }], img: "/images/miracle/features/8456.gif" },
+      { name: "Grandmaster Axe", multiplier: 0.8, req: "1x Masterwork Axe (consumed on success) + 40x Steels + 10x Draconian Steels + 3x Gold Bar", materials: [{ name: "Masterwork Axe", amount: 1 }, { name: "Steel", amount: 40 }, { name: "Draconian Steel", amount: 10 }, { name: "Gold Bar", amount: 3, img: "/images/miracle/items/gold_bar_11754.gif" }], img: "/images/miracle/features/8457.gif" },
     ]
   },
   {
     category: "mysticRunes",
     items: [
-      { name: "Ember Rune", multiplier: 1, req: "5 Ember Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Ember Fragment", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/emberfrag.gif" }, { name: "Pulverized Ore", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/pulverizedore.gif" }, { name: "Onyx", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/onyx.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/ember.gif" },
-      { name: "Protector Rune", multiplier: 1, req: "5 Protector Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Protector Fragment", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/protectorfrag.gif" }, { name: "Pulverized Ore", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/pulverizedore.gif" }, { name: "Onyx", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/onyx.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/protector.gif" },
-      { name: "Obsidian Rune", multiplier: 1, req: "5 Obsidian Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Obsidian Fragment", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/obsidianfrag.gif" }, { name: "Pulverized Ore", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/pulverizedore.gif" }, { name: "Onyx", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/onyx.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/obsidian.gif" },
-      { name: "Astral Rune", multiplier: 1, req: "5 Astral Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Astral Fragment", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/astralfrag.gif" }, { name: "Pulverized Ore", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/pulverizedore.gif" }, { name: "Onyx", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/onyx.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/astral.gif" },
-      { name: "Aegis Rune", multiplier: 1, req: "5 Aegis Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Aegis Fragment", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/aegisfrag.gif" }, { name: "Pulverized Ore", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/pulverizedore.gif" }, { name: "Onyx", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/onyx.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/aegis.gif" },
-      { name: "Molten Rune", multiplier: 1, req: "5 Molten Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Molten Fragment", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/moltenfrag.gif" }, { name: "Pulverized Ore", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/pulverizedore.gif" }, { name: "Onyx", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/onyx.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/molten.gif" },
+      { name: "Ember Rune", multiplier: 1, req: "5 Ember Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Ember Fragment", amount: 5 }, { name: "Pulverized Ore", amount: 3 }, { name: "Onyx", amount: 1, img: "/images/miracle/features/8350.gif" }], img: "/images/miracle/features/7611.gif" },
+      { name: "Protector Rune", multiplier: 1, req: "5 Protector Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Protector Fragment", amount: 5 }, { name: "Pulverized Ore", amount: 3 }, { name: "Onyx", amount: 1, img: "/images/miracle/features/8350.gif" }], img: "/images/miracle/features/8157.gif" },
+      { name: "Obsidian Rune", multiplier: 1, req: "5 Obsidian Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Obsidian Fragment", amount: 5 }, { name: "Pulverized Ore", amount: 3 }, { name: "Onyx", amount: 1, img: "/images/miracle/features/8350.gif" }], img: "/images/miracle/features/8158.gif" },
+      { name: "Astral Rune", multiplier: 1, req: "5 Astral Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Astral Fragment", amount: 5 }, { name: "Pulverized Ore", amount: 3 }, { name: "Onyx", amount: 1, img: "/images/miracle/features/8350.gif" }], img: "/images/miracle/features/8161.gif" },
+      { name: "Aegis Rune", multiplier: 1, req: "5 Aegis Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Aegis Fragment", amount: 5 }, { name: "Pulverized Ore", amount: 3 }, { name: "Onyx", amount: 1, img: "/images/miracle/features/8350.gif" }], img: "/images/miracle/features/8160.gif" },
+      { name: "Molten Rune", multiplier: 1, req: "5 Molten Fragments + 3 Pulverized Ores + 1 Onyx", materials: [{ name: "Molten Fragment", amount: 5 }, { name: "Pulverized Ore", amount: 3 }, { name: "Onyx", amount: 1, img: "/images/miracle/features/8350.gif" }], img: "/images/miracle/features/8159.gif" },
     ]
   },
   {
     category: "stonesCrystals",
     items: [
-      { name: "Fiery Stone", multiplier: 1.0, req: "5 Glimmering Soils", materials: [{ name: "Glimmering Soil", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/glmeringsoil.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/fiery.gif" },
-      { name: "Earth Stone", multiplier: 1.0, req: "5 Natural Soils", materials: [{ name: "Natural Soil", amount: 5 }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/earth_stone.gif" },
-      { name: "Frozen Stone", multiplier: 1.0, req: "5 Frozen Ores", materials: [{ name: "Frozen Ore", amount: 5 }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/frozen_stone.gif" },
-      { name: "Onyx", multiplier: 0.5, req: "10 Onyx Fragments", materials: [{ name: "Onyx Fragment", amount: 10 }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/onyx.gif" },
-      { name: "Convergence Crystal", multiplier: 1.0, req: "1 Rare Crystal + 5 Shiny Stones", materials: [{ name: "Rare Crystal", amount: 1 }, { name: "Shiny Stone", amount: 5 }] },
-      { name: "Prismatic Crystal", multiplier: 1.0, req: "1 Rare Crystal + 5 Prismatic Stones", materials: [{ name: "Rare Crystal", amount: 1 }, { name: "Prismatic Stone", amount: 5 }] },
+      { name: "Fiery Stone", multiplier: 1.0, req: "5 Glimmering Soils", materials: [{ name: "Glimmering Soil", amount: 5 }], img: "/images/miracle/features/7511.gif" },
+      { name: "Earth Stone", multiplier: 1.0, req: "5 Natural Soils", materials: [{ name: "Natural Soil", amount: 5 }], img: "/images/miracle/features/7601.gif" },
+      { name: "Frozen Stone", multiplier: 1.0, req: "5 Frozen Ores", materials: [{ name: "Frozen Ore", amount: 5, img: "/images/miracle/items/frozen_ore_8353.gif" }], img: "/images/miracle/features/7602.gif" },
+      { name: "Onyx", multiplier: 0.5, req: "10 Onyx Fragments", materials: [{ name: "Onyx Fragment", amount: 10 }], img: "/images/miracle/features/8350.gif" },
+      { name: "Convergence Crystal", multiplier: 1.0, req: "1 Rare Crystal + 5 Shiny Stones", materials: [{ name: "Rare Crystal", amount: 1 }, { name: "Shiny Stone", amount: 5 }], img: "/images/miracle/features/8181.gif" },
+      { name: "Prismatic Crystal", multiplier: 1.0, req: "1 Rare Crystal + 5 Prismatic Stones", materials: [{ name: "Rare Crystal", amount: 1 }, { name: "Prismatic Stone", amount: 5 }], img: "/images/miracle/features/8180.gif" },
     ]
   },
   {
     category: "crests",
     items: [
-      { name: "Copper Crest", multiplier: 1.0, req: "5 Copper Bars", materials: [{ name: "Copper Bar", amount: 5 }] },
-      { name: "Iron Crest", multiplier: 1.0, req: "5 Iron Bars", materials: [{ name: "Iron Bar", amount: 5 }] },
-      { name: "Gold Crest", multiplier: 1.0, req: "5 Gold Bars", materials: [{ name: "Gold Bar", amount: 5 }] },
-      { name: "Mythan Crest", multiplier: 1.0, req: "5 Mythan Bars", materials: [{ name: "Mythan Bar", amount: 5 }] },
-      { name: "Mystic Crest", multiplier: 1.0, req: "5 Mystic Bars", materials: [{ name: "Mystic Bar", amount: 5 }] },
+      { name: "Copper Crest", multiplier: 1.0, req: "5 Copper Bars", materials: [{ name: "Copper Bar", amount: 5, img: "/images/miracle/items/copper_bar_11752.gif" }], img: "/images/miracle/features/8294.gif" },
+      { name: "Iron Crest", multiplier: 1.0, req: "5 Iron Bars", materials: [{ name: "Iron Bar", amount: 5, img: "/images/miracle/items/iron_bar_11753.gif" }], img: "/images/miracle/features/8293.gif" },
+      { name: "Gold Crest", multiplier: 1.0, req: "5 Gold Bars", materials: [{ name: "Gold Bar", amount: 5, img: "/images/miracle/items/gold_bar_11754.gif" }], img: "/images/miracle/features/8296.gif" },
+      { name: "Mythan Crest", multiplier: 1.0, req: "5 Mythan Bars", materials: [{ name: "Mythan Bar", amount: 5, img: "/images/miracle/items/mythan_bar_11755.gif" }], img: "/images/miracle/features/8367.gif" },
+      { name: "Mystic Crest", multiplier: 1.0, req: "5 Mystic Bars", materials: [{ name: "Mystic Bar", amount: 5, img: "/images/miracle/items/mystic_bar_11756.gif" }], img: "/images/miracle/features/8368.gif" },
     ]
   },
   {
     category: "smelting",
     items: [
-      { name: "Copper Bar", multiplier: 3.0, req: "5 Copper Ores (fundidos em Coal Basin)", materials: [{ name: "Copper Ore", amount: 5 }] },
-      { name: "Iron Bar", multiplier: 2.5, req: "5 Iron Ores (fundidos em Coal Basin)", materials: [{ name: "Iron Ore", amount: 5 }] },
-      { name: "Gold Bar", multiplier: 2.0, req: "5 Gold Ores (fundidos em Coal Basin)", materials: [{ name: "Gold Ore", amount: 5 }] },
-      { name: "Mythan Bar", multiplier: 1.5, req: "5 Mythan Ores (fundidos em Coal Basin)", materials: [{ name: "Mythan Ore", amount: 5 }] },
-      { name: "Mystic Bar", multiplier: 1.0, req: "5 Mystic Ores (fundidos em Coal Basin)", materials: [{ name: "Mystic Ore", amount: 5 }] },
+      { name: "Copper Bar", multiplier: 3.0, req: "5 Copper Ores (fundidos em Coal Basin)", materials: [{ name: "Copper Ore", amount: 5 }], img: "/images/miracle/items/copper_bar_11752.gif" },
+      { name: "Iron Bar", multiplier: 2.5, req: "5 Iron Ores (fundidos em Coal Basin)", materials: [{ name: "Iron Ore", amount: 5 }], img: "/images/miracle/items/iron_bar_11753.gif" },
+      { name: "Gold Bar", multiplier: 2.0, req: "5 Gold Ores (fundidos em Coal Basin)", materials: [{ name: "Gold Ore", amount: 5 }], img: "/images/miracle/items/gold_bar_11754.gif" },
+      { name: "Mythan Bar", multiplier: 1.5, req: "5 Mythan Ores (fundidos em Coal Basin)", materials: [{ name: "Mythan Ore", amount: 5 }], img: "/images/miracle/items/mythan_bar_11755.gif" },
+      { name: "Mystic Bar", multiplier: 1.0, req: "5 Mystic Ores (fundidos em Coal Basin)", materials: [{ name: "Mystic Ore", amount: 5 }], img: "/images/miracle/items/mystic_bar_11756.gif" },
     ]
   },
   {
     category: "giantGemsRelics",
     items: [
-      { name: "Giant Ruby", multiplier: 2, req: "10 Small Rubys", materials: [{ name: "Small Ruby", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/smallruby.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/giant_ruby.gif" },
-      { name: "Giant Emerald", multiplier: 2, req: "10 Small Emeralds", materials: [{ name: "Small Emerald", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/smallemerald.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/giant_emerald.gif" },
-      { name: "Giant Sapphire", multiplier: 2, req: "10 Small Sapphires", materials: [{ name: "Small Sapphire", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/smallsaphire.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/giant_saphire.gif" },
-      { name: "Giant Amethyst", multiplier: 2, req: "10 Small Amethysts", materials: [{ name: "Small Amethyst", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/smallamethyst.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/giant_amethyst.gif" },
-      { name: "Spiritualist Gem", multiplier: 2, req: "10 Small Spiritualist Gems", materials: [{ name: "Small Spiritualist Gem", amount: 10 }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/spiritualist_gem.gif" },
-      { name: "Marksman Gem", multiplier: 2, req: "10 Small Marksman Gems", materials: [{ name: "Small Marksman Gem", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/marksmanfrag.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/marksman_gem.gif" },
-      { name: "Sage Gem", multiplier: 2, req: "10 Small Sage Gems", materials: [{ name: "Small Sage Gem", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/sagefrag.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Sage_gem.gif" },
-      { name: "Guardian Gem", multiplier: 2, req: "10 Small Guardian Gems", materials: [{ name: "Small Guardian Gem", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/guardianfrag.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/guardian_gem.gif" },
+      { name: "Giant Ruby", multiplier: 2, req: "10 Small Rubys", materials: [{ name: "Small Ruby", amount: 10 }], img: "/images/miracle/features/7512.gif" },
+      { name: "Giant Emerald", multiplier: 2, req: "10 Small Emeralds", materials: [{ name: "Small Emerald", amount: 10 }], img: "/images/miracle/features/7515.gif" },
+      { name: "Giant Sapphire", multiplier: 2, req: "10 Small Sapphires", materials: [{ name: "Small Sapphire", amount: 10 }], img: "/images/miracle/features/7513.gif" },
+      { name: "Giant Amethyst", multiplier: 2, req: "10 Small Amethysts", materials: [{ name: "Small Amethyst", amount: 10 }], img: "/images/miracle/features/7514.gif" },
+      { name: "Spiritualist Gem", multiplier: 2, req: "10 Small Spiritualist Gems", materials: [{ name: "Small Spiritualist Gem", amount: 10 }], img: "/images/miracle/features/10319.gif" },
+      { name: "Marksman Gem", multiplier: 2, req: "10 Small Marksman Gems", materials: [{ name: "Small Marksman Gem", amount: 10 }], img: "/images/miracle/features/8982.gif" },
+      { name: "Sage Gem", multiplier: 2, req: "10 Small Sage Gems", materials: [{ name: "Small Sage Gem", amount: 10 }], img: "/images/miracle/features/8984.gif" },
+      { name: "Guardian Gem", multiplier: 2, req: "10 Small Guardian Gems", materials: [{ name: "Small Guardian Gem", amount: 10 }], img: "/images/miracle/features/8980.gif" },
     ]
   },
   {
     category: "ammunition",
     items: [
-      { name: "10x Steel Bolts", multiplier: 2.0, req: "10 bolt + 1 steel", materials: [{ name: "Bolt", amount: 10 }, { name: "Steel", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }] },
-      { name: "10x Onyx Arrows", multiplier: 2.0, req: "10 arrows + 1 onyx fragment", materials: [{ name: "Arrow", amount: 10 }, { name: "Onyx Fragment", amount: 1 }] },
+      { name: "10x Steel Bolts", multiplier: 2.0, req: "10 bolt + 1 steel", materials: [{ name: "Bolt", amount: 10 }, { name: "Steel", amount: 1, img: "/images/miracle/items/steel_2422.gif" }], img: "/images/miracle/features/10010.gif" },
+      { name: "10x Onyx Arrows", multiplier: 2.0, req: "10 arrows + 1 onyx fragment", materials: [{ name: "Arrow", amount: 10 }, { name: "Onyx Fragment", amount: 1 }], img: "/images/miracle/features/10222.gif" },
     ]
   }
 ];

@@ -23,15 +23,21 @@ export function getAllPoiCoords(): PoiDictionary {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         overrides = JSON.parse(stored);
+        // Clear any stale overrides that might conflict with official POI definitions
+        if (overrides['hoggle']) {
+          delete overrides['hoggle'];
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(overrides));
+        }
       }
     } catch (e) {
       console.warn('Erro ao carregar poi coords overrides do localStorage', e);
     }
   }
 
+  // initialPoiData is authoritative for all official entries
   return {
-    ...(initialPoiData as PoiDictionary),
     ...overrides,
+    ...(initialPoiData as PoiDictionary),
   };
 }
 
