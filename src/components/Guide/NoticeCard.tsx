@@ -57,14 +57,11 @@ export const NoticeCard: React.FC<NoticeCardProps> = ({
     <div
       className={`border-l-4 ${current.border} ${current.bg} border-y border-r border-white/5 rounded-r-xl p-4 my-4 ${className}`}
     >
-      <div className="flex items-start gap-3">
-        {current.icon}
-        <div className="flex-1 text-sm font-sans leading-relaxed">
-          <h5 className={`font-bold uppercase tracking-wider text-xs mb-1 ${current.titleColor}`}>
-            {title || current.defaultTitle}
-          </h5>
-          <div className={`${current.text} text-stone-300`}>{children}</div>
-        </div>
+      <div className="text-sm font-sans leading-relaxed">
+        <h5 className={`font-bold uppercase tracking-wider text-xs mb-1.5 ${current.titleColor}`}>
+          {title || current.defaultTitle}
+        </h5>
+        <div className={`${current.text} text-stone-300`}>{children}</div>
       </div>
     </div>
   );

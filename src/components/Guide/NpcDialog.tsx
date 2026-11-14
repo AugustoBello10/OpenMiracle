@@ -30,7 +30,6 @@ export const NpcDialog: React.FC<NpcDialogProps> = ({
     <div className="bg-[#101010] border border-medieval-gold/25 rounded-xl overflow-hidden my-5 shadow-xl">
       <div className="bg-black/60 px-4 py-2.5 border-b border-medieval-gold/20 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <MessageSquare className="w-4 h-4 text-medieval-gold" />
           <span className="text-xs font-bold uppercase tracking-wider text-medieval-gold">
             Diálogo com {npcName}
           </span>

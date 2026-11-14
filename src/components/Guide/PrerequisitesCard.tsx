@@ -22,8 +22,7 @@ export const PrerequisitesCard: React.FC<PrerequisitesCardProps> = ({
 
   return (
     <div className="bg-[#141210] border-l-4 border-amber-500 border-y border-r border-amber-500/20 rounded-r-xl p-5 my-6 shadow-lg">
-      <div className="flex items-center gap-2.5 mb-3 text-amber-400">
-        <ShieldAlert className="w-5 h-5 shrink-0" />
+      <div className="mb-3 text-amber-400">
         <h4 className="font-bold uppercase tracking-wider text-sm font-sans">
           {title || defaultTitle}
         </h4>

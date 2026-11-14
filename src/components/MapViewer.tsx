@@ -551,11 +551,17 @@ export default function MapViewer({ initialX: propX, initialY: propY, initialZ: 
               const authoritativeNpcs = RESPAWNS.filter(r => r.id?.startsWith('npc-') || r.categories?.includes('NPCs'));
               const authoritativeIds = new Set(authoritativeNpcs.map(n => n.id));
               const authoritativeNames = new Set(authoritativeNpcs.map(n => n.name.toLowerCase()));
+              const authoritativeKeywords = ['hoggle', 'budrik', 'alexander', 'sweaty cyclops', 'donald mcronald', 'sherry mcronald', 'kael', 'aldren', 'bjorn', 'sam'];
 
-              const filteredFirestore = processed.filter((item: any) => 
-                !authoritativeIds.has(item.id) && 
-                !authoritativeNames.has((item.name || '').toLowerCase())
-              );
+              const filteredFirestore = processed.filter((item: any) => {
+                if (authoritativeIds.has(item.id)) return false;
+                const itemName = (item.name || '').toLowerCase();
+                if (authoritativeNames.has(itemName)) return false;
+                if (authoritativeKeywords.some(kw => itemName.includes(kw))) return false;
+                // Exclude any obsolete coords for Hoggle
+                if (item.x === 32410 && item.y === 32230) return false;
+                return true;
+              });
 
               setLocalRespawns([...filteredFirestore, ...authoritativeNpcs]);
             }

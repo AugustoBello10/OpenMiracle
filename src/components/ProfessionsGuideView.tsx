@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CRAFT_ITEMS } from '../data/wikiData';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
@@ -26,6 +27,7 @@ interface ProfessionInfo {
 }
 
 export function ProfessionsGuideView({ language, onNavigateToCalculator, selectedProf, onSelectProf }: ProfessionsGuideViewProps) {
+  const navigate = useNavigate();
   const [expandedRecipeCat, setExpandedRecipeCat] = useState<string | null>(null);
   const [cookingRecipeIndex, setCookingRecipeIndex] = useState(0);
 
@@ -1562,25 +1564,139 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               <h4 className="text-medieval-gold font-bold mb-2 uppercase text-sm tracking-wider">{t('Índice', 'Table of Contents')}</h4>
               <ul className="flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-4 text-sm">
                 <li><button onClick={() => document.getElementById('farming-intro')?.scrollIntoView({ behavior: 'smooth' })} className="text-medieval-gold/70 hover:text-medieval-gold hover:underline">1. {t('Apresentação', 'Introduction')}</button></li>
-                <li><button onClick={() => document.getElementById('farming-stages')?.scrollIntoView({ behavior: 'smooth' })} className="text-medieval-gold/70 hover:text-medieval-gold hover:underline">2. {t('Estágios e Tempo', 'Stages and Time')}</button></li>
+                <li><button onClick={() => document.getElementById('farming-mentors')?.scrollIntoView({ behavior: 'smooth' })} className="text-medieval-gold/70 hover:text-medieval-gold hover:underline">2. {t('Mestres da Fazenda', 'Farm Mentors')}</button></li>
+                <li><button onClick={() => document.getElementById('farming-stages')?.scrollIntoView({ behavior: 'smooth' })} className="text-medieval-gold/70 hover:text-medieval-gold hover:underline">3. {t('Estágios e Cultivo', 'Stages and Cultivation')}</button></li>
+                <li><button onClick={() => document.getElementById('farming-calc-link')?.scrollIntoView({ behavior: 'smooth' })} className="text-medieval-gold/70 hover:text-medieval-gold hover:underline">4. {t('Calculadora de Farming', 'Farming Calculator')}</button></li>
               </ul>
             </div>
 
-            <p>{t('Fazenda (Farming) envolve o plantio, cultivo e colheita de sementes para gerar ervas mágicas, grãos e ingredientes vitais.', 'Farming involves planting, growing, and harvesting seeds to generate magical herbs, grains, and vital ingredients.')}</p>
+            <p>
+              {t(
+                'A profissão de Fazendeiro (Farming) envolve o plantio, irrigação, cultivo e colheita de sementes nos solos agrícolas de Miracle 7.4. Produz grãos essenciais (trigo, cevada, cana-de-açúcar) para a Culinária e ervas mágicas raras para a Alquimia.',
+                'The Farming profession involves planting, watering, cultivating, and harvesting seeds across Miracle 7.4 agricultural soils. It produces vital grains (wheat, barley, sugar cane) for Cooking and rare magical herbs for Alchemy.'
+              )}
+            </p>
 
-            <div className="flex items-center justify-center p-8 bg-black/40 border border-medieval-gold/20 rounded-xl my-6">
-               <div className="text-center space-y-3">
-                  <Sprout className="w-12 h-12 mx-auto text-medieval-gold/40" />
-                  <p className="text-xs text-medieval-gold/60 uppercase">[{t('Imagem: Plantação e Estágios de Crescimento', 'Image: Plantation and Growth Stages')}]</p>
-               </div>
+            <PrerequisitesCard
+              language={language}
+              items={[
+                {
+                  label: t('Requisito Inicial', 'Starting Requirement'),
+                  value: t('Pás e Regador (Watering Can)', 'Shovels and Watering Can'),
+                },
+                {
+                  label: t('Mestres Agricultores', 'Farming Mentors'),
+                  value: (
+                    <span>
+                      <MapLink poiId="donald-mcronald" x={32344} y={32225} z={7}>Donald McRonald</MapLink> &{' '}
+                      <MapLink poiId="sherry-mcronald" x={32344} y={32228} z={7}>Sherry McRonald</MapLink> (Thais Farm)
+                    </span>
+                  ),
+                },
+                {
+                  label: t('Principais Solos', 'Main Soils'),
+                  value: t('Fazenda de Thais, Greenshore e Terrenos Próprios (Lands)', 'Thais Farm, Greenshore, and Player Lands'),
+                },
+              ]}
+            />
+
+            {/* NPC Mentors: Donald & Sherry McRonald */}
+            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="farming-mentors">
+              {t('Mestres Agricultores de Thais', 'Agricultural Mentors in Thais')}
+            </h4>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+              {/* Donald McRonald */}
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 bg-black/40 border border-medieval-gold/30 rounded-xl p-4">
+                <img 
+                  src="/images/miracle/npcs/donald_mcronald.png" 
+                  alt="Donald McRonald" 
+                  className="w-16 h-16 object-contain rounded border border-medieval-gold/20 bg-black/50 p-1 shrink-0"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = "/images/miracle/npcs/donald_mcronald.gif";
+                  }}
+                />
+                <div className="text-center sm:text-left flex-1">
+                  <h5 className="font-bold text-medieval-gold text-base">Donald McRonald</h5>
+                  <p className="text-xs text-stone-300 mt-0.5">
+                    {t('Localização:', 'Location:')} <MapLink poiId="donald-mcronald" x={32344} y={32225} z={7}>Thais Farm (32344, 32225, 7)</MapLink>
+                  </p>
+                  <p className="text-xs text-stone-400 mt-1 leading-relaxed">
+                    {t(
+                      'Fazendeiro veterano responsável pelos campos de trigo e cevada de Thais. Comercializa sementes básicas e ensina as técnicas essenciais de arar e regar o solo.',
+                      'Veteran farmer tending the wheat and barley fields of Thais. Trades basic seeds and instructs on essential soil tilling and watering methods.'
+                    )}
+                  </p>
+                </div>
+              </div>
+
+              {/* Sherry McRonald */}
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 bg-black/40 border border-medieval-gold/30 rounded-xl p-4">
+                <img 
+                  src="/images/miracle/npcs/sherry_mcronald.png" 
+                  alt="Sherry McRonald" 
+                  className="w-16 h-16 object-contain rounded border border-medieval-gold/20 bg-black/50 p-1 shrink-0"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = "/images/miracle/npcs/sherry_mcronald.gif";
+                  }}
+                />
+                <div className="text-center sm:text-left flex-1">
+                  <h5 className="font-bold text-medieval-gold text-base">Sherry McRonald</h5>
+                  <p className="text-xs text-stone-300 mt-0.5">
+                    {t('Localização:', 'Location:')} <MapLink poiId="sherry-mcronald" x={32344} y={32228} z={7}>Thais Farm (32344, 32228, 7)</MapLink>
+                  </p>
+                  <p className="text-xs text-stone-400 mt-1 leading-relaxed">
+                    {t(
+                      'Padeira e agricultora de Thais. Compra a colheita dos fazendeiros e orienta sobre o processamento de grãos em farinha e pães artesanais.',
+                      'Baker and cultivator in Thais. Purchases fresh harvests and guides adventurers on processing raw grains into flour and artisan loaves.'
+                    )}
+                  </p>
+                </div>
+              </div>
             </div>
 
-            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="farming-stages">{t('Estágios e Tempo', 'Stages and Time')}</h4>
-            <ul className="list-disc pl-5 space-y-2">
-              <li>{t('Sementes têm tempos de crescimento que variam de horas a dias reais.', 'Seeds have growth times ranging from real hours to days.')}</li>
-              <li>{t('É necessário regar e proteger as plantas para maximizar o rendimento da colheita.', 'Watering and protecting the plants is required to maximize harvest yield.')}</li>
-              <li>{t('Sua skill de Farming aumenta a chance de obter sementes de volta e multiplicar a colheita.', 'Your Farming skill increases the chance of getting seeds back and multiplying the harvest.')}</li>
+            <NpcDialog
+              npcName="Donald McRonald"
+              npcLocation="Thais Farm"
+              lines={[
+                { speaker: 'player', text: 'hi', keyword: 'hi' },
+                { speaker: 'player', text: 'profession', keyword: 'profession' },
+                { speaker: 'player', text: 'yes', keyword: 'yes' },
+              ]}
+            />
+
+            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="farming-stages">{t('Estágios e Cultivo', 'Stages and Cultivation')}</h4>
+            <ul className="list-disc pl-5 space-y-3">
+              <li>
+                <strong className="text-medieval-gold">{t('Ciclo de Crescimento:', 'Growth Cycle:')}</strong>{' '}
+                {t('As plantações passam por estágios sequenciais (Semente → Broto → Planta Madura → Colheita). O tempo varia dependendo da raridade da planta.', 'Crops progress through sequential stages (Seed → Sprout → Mature Plant → Ready for Harvest). Growth times scale with plant rarity.')}
+              </li>
+              <li>
+                <strong className="text-medieval-gold">{t('Irrigação Contínua:', 'Regular Irrigation:')}</strong>{' '}
+                {t('Manter o solo devidamente regado previne a perda da lavoura e garante o rendimento máximo de sementes e produtos na colheita.', 'Keeping the soil properly watered prevents crop withering and guarantees maximum yield upon harvesting.')}
+              </li>
+              <li>
+                <strong className="text-medieval-gold">{t('Avanço de Skill:', 'Skill Advancement:')}</strong>{' '}
+                {t('Cada colheita bem-sucedida avança sua habilidade em Farming, aumentando a probabilidade de obter sementes raras e multiplicar os itens colhidos.', 'Every successful harvest advances your Farming skill, improving your chance of recovering rare seeds and bonus yield.')}
+              </li>
             </ul>
+
+            <div id="farming-calc-link" className="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 bg-emerald-950/20 border border-emerald-500/30 rounded-xl my-6">
+              <div className="text-xs text-stone-300 text-center sm:text-left">
+                <span className="font-bold text-emerald-400 block text-sm mb-1">{t('Calculadora de Farming & Colheita', 'Farming & Harvest Calculator')}</span>
+                {t('Simule tempo de crescimento, retorno de sementes e estimativas de lucro para todas as espécies cultiváveis.', 'Simulate growth cycles, seed retrieval odds, and profit forecasts across all crops.')}
+              </div>
+              {onNavigateToCalculator && (
+                <button
+                  onClick={() => onNavigateToCalculator('farming')}
+                  className="px-5 py-2.5 bg-gradient-to-r from-emerald-600 to-green-700 hover:from-emerald-500 hover:to-green-600 text-white font-bold text-xs uppercase tracking-wider rounded shadow-lg transition-all transform hover:scale-[1.02] whitespace-nowrap cursor-pointer"
+                >
+                  {t('Abrir Calculadora de Farming', 'Open Farming Calculator')}
+                </button>
+              )}
+            </div>
           </div>
         );
       
@@ -2027,12 +2143,15 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 <span className="font-bold text-sky-400 block mb-1">{t('Catálogo Completo de Peixes na Wiki', 'Complete Fish Catalog in Wiki')}</span>
                 {t('Consulte a lista com atributos, pesos, regeneração e raridades de todas as espécies marinhas, de água doce e de lava.', 'View details, attributes, weight, food time and rarity of all sea, freshwater and lava fish species.')}
               </div>
-              <a
-                href="/#/wiki?category=foods"
+              <button
+                onClick={() => {
+                  navigate('/wiki/server/itens/foods');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
                 className="px-4 py-2 bg-gradient-to-r from-sky-600 to-blue-700 hover:from-sky-500 hover:to-blue-600 text-white font-bold text-xs rounded shadow-lg transition-all transform hover:scale-[1.02] whitespace-nowrap cursor-pointer"
               >
                 {t('Ver Todos os Peixes na Wiki', 'View All Fishes in Wiki')}
-              </a>
+              </button>
             </div>
 
             <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="fishing-net">{t('Utilitário Indispensável: Fishing Net', 'Indispensable Utility: Fishing Net')}</h4>
