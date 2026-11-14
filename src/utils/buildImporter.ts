@@ -177,7 +177,7 @@ export function parseBuildFromText(rawText: string): ParsedBuildResult {
         else if (foundItem.category === 'left-hand') targetSlot = 'left-hand';
         else if (foundItem.category === 'right-hand') targetSlot = 'right-hand';
         else if (foundItem.category === 'relic') {
-          if (relicSlotCounter <= 4) {
+          if (relicSlotCounter <= 6) {
             targetSlot = `relic-${relicSlotCounter}` as SlotId;
             relicSlotCounter++;
           }

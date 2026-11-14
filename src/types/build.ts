@@ -6,7 +6,7 @@ export type StanceType = 'Full Attack' | 'Balanced' | 'Full Defense';
 export type SlotId = 
   | 'head' | 'necklace' | 'armor' | 'right-hand' | 'left-hand' | 'legs' 
   | 'feet' | 'ring' | 'ammo' | 'backpack' 
-  | 'relic-1' | 'relic-2' | 'relic-3' | 'relic-4'
+  | 'relic-1' | 'relic-2' | 'relic-3' | 'relic-4' | 'relic-5' | 'relic-6'
   | 'food-1' | 'food-2' | 'food-3' | 'food-4';
 
 export interface Attribute {

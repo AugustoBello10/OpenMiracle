@@ -55,15 +55,15 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
           <div className="space-y-6 text-gray-300 leading-relaxed font-sans text-sm sm:text-base">
             <p>
               {language === 'pt'
-                ? 'No Miracle 7.4, todo personagem possui uma caixa mágica chamada Relic Box dentro do seu inventário. Ela funciona como uma extensão do seu equipamento, contendo 4 slots exclusivos para relíquias que você encontra em baús secretos, missões ou caçando criaturas pelo mapa.'
-                : 'In Miracle 7.4, every character carries a magical Relic Box inside their inventory. It acts as an equipment extension with 4 exclusive slots for relics discovered in secret chests, quests, or hunting.'}
+                ? 'No Miracle 7.4, todo personagem possui uma caixa mágica chamada Relic Box dentro do seu inventário. Ela funciona como uma extensão do seu equipamento, contendo até 6 slots exclusivos para relíquias que você encontra em baús secretos, missões ou caçando criaturas pelo mapa.'
+                : 'In Miracle 7.4, every character carries a magical Relic Box inside their inventory. It acts as an equipment extension with up to 6 exclusive slots for relics discovered in secret chests, quests, or hunting.'}
             </p>
 
             <div className="bg-black/60 p-4 rounded-xl border border-medieval-gold/20 flex flex-col sm:flex-row items-center gap-6">
               <ZoomableImage 
                 src="/images/miracle/features/relicbox.png" 
                 alt="Relic Box Inventory" 
-                caption={language === 'pt' ? 'Interface da Relic Box com 4 slots dentro do inventário' : 'Relic Box 4-slot container inside character inventory'}
+                caption={language === 'pt' ? 'Interface da Relic Box dentro do inventário do personagem' : 'Relic Box container interface inside character inventory'}
                 language={language}
                 className="max-h-24 object-contain rounded border border-medieval-gold/30 p-1 bg-black/80 shadow-md" 
               />
@@ -73,19 +73,21 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
                 </p>
                 <p>
                   {language === 'pt'
-                    ? 'Para equipar uma relíquia, basta arrastá-la da sua mochila para um dos 4 slots da Relic Box. Importante: você só pode equipar uma relíquia de cada tipo por vez (não é permitido equipar duas relíquias idênticas para duplicar o bônus).'
-                    : 'To equip a relic, drag it from your backpack into one of the 4 Relic Box slots. You can only equip one relic of each type at any given time.'}
+                    ? 'Para equipar uma relíquia, basta arrastá-la da sua mochila para um dos slots desbloqueados da Relic Box. Importante: você só pode equipar uma relíquia de cada tipo por vez (não é permitido equipar duas relíquias idênticas para duplicar o mesmo bônus).'
+                    : 'To equip a relic, drag it from your backpack into one of the unlocked Relic Box slots. You can only equip one relic of each type at any given time (duplicate relics of the exact same type are prohibited).'}
                 </p>
               </div>
             </div>
 
             <PrerequisitesCard
               language={language}
-              title={language === 'pt' ? 'Estrutura dos Slots da Relic Box' : 'Relic Box Slot Structure'}
+              title={language === 'pt' ? 'Estrutura e Desbloqueio dos 6 Slots da Relic Box' : 'Relic Box 6-Slot Unlock Structure'}
               items={[
                 {
-                  label: language === 'pt' ? 'Slots Iniciais' : 'Initial Slots',
-                  value: language === 'pt' ? '2 slots desbloqueados por padrão na criação do personagem' : '2 slots unlocked by default upon character creation',
+                  label: language === 'pt' ? '1º e 2º Slots (Iniciais)' : '1st & 2nd Slots (Initial)',
+                  value: language === 'pt' 
+                    ? 'Desbloqueados com o NPC Melchior em Ankrahmun. Fale sobre "notes" para receber as instruções e iniciar a quest.' 
+                    : 'Unlocked with NPC Melchior in Ankrahmun. Talk to him about "notes" to get guided about the quest.',
                 },
                 {
                   label: language === 'pt' ? 'Desbloqueio do 3º Slot' : '3rd Slot Unlock',
@@ -96,16 +98,20 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
                   value: language === 'pt' ? 'Requer completar a Missão 2 da Relic Quest' : 'Requires completing Mission 2 of Relic Quest',
                 },
                 {
-                  label: language === 'pt' ? 'Recarga de Poder (Djinn Magic)' : 'Djinn Magic Cooldown',
-                  value: language === 'pt' ? 'Tempo de recarga de 48 horas entre ativações especiais' : '48-hour cooldown between special activations',
+                  label: language === 'pt' ? 'Desbloqueio do 5º Slot (Novo)' : '5th Slot Unlock (New)',
+                  value: language === 'pt' ? 'Preço de desbloqueio: 30.000 gold (30k)' : 'Unlock price: 30,000 gold (30k)',
+                },
+                {
+                  label: language === 'pt' ? 'Desbloqueio do 6º Slot (Novo)' : '6th Slot Unlock (New)',
+                  value: language === 'pt' ? 'Preço de desbloqueio: 60.000 gold (60k)' : 'Unlock price: 60,000 gold (60k)',
                 },
               ]}
             />
 
-            <NoticeCard type="info" title={language === 'pt' ? 'Status das Missões de Desbloqueio' : 'Unlock Missions Status'}>
+            <NoticeCard type="info" title={language === 'pt' ? 'Guia Rápido: NPC Melchior em Ankrahmun' : 'Quick Guide: NPC Melchior in Ankrahmun'}>
               {language === 'pt'
-                ? 'O spoiler completo, localização dos NPCs e passos detalhados da Missão 1 e Missão 2 da Relic Quest estão sendo documentados junto à comunidade e serão disponibilizados aqui assim que confirmados.'
-                : 'The full quest walkthrough, NPC locations, and step-by-step spoilers for Mission 1 and Mission 2 of the Relic Quest are being documented with the community and will be available once verified.'}
+                ? 'Para liberar seus primeiros slots de relíquia, viaje até Ankrahmun e encontre o sábio cego Melchior. Inicie a conversa dizendo "hi", em seguida fale "notes". Ele entregará as pistas necessárias para a missão de abertura do 1º e do 2º slots.'
+                : 'To unlock your initial relic slots, travel to Ankrahmun and locate the blind sage Melchior. Greet him with "hi", then say "notes". He will provide guidance and quest clues to unlock the 1st and 2nd slots.'}
             </NoticeCard>
           </div>
         </div>

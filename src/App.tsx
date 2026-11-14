@@ -1476,62 +1476,62 @@ export default function App() {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+        <div className="w-full max-w-[1550px] mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between gap-4">
           <button 
             onClick={() => setActiveTab('home')}
-            className="flex items-center gap-3 hover:opacity-80 transition-opacity shrink-0"
+            className="flex items-center gap-2.5 hover:opacity-80 transition-opacity shrink-0 cursor-pointer"
           >
-            <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784748006/logowiki.png" alt="Wiki Logo" className="h-12 w-auto object-contain" />
-            <span className="text-medieval-gold font-black uppercase tracking-tighter text-lg hidden sm:inline">
+            <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784748006/logowiki.png" alt="Wiki Logo" className="h-11 w-auto object-contain" />
+            <span className="text-medieval-gold font-black uppercase tracking-tight text-base sm:text-lg hidden sm:inline whitespace-nowrap">
               Miracle Wiki Tools
             </span>
           </button>
 
           {/* Desktop Global Search Bar Trigger */}
-          <div className="hidden lg:flex relative max-w-sm w-full mx-6 items-center">
+          <div className="hidden md:flex relative flex-1 max-w-sm lg:max-w-md mx-2 items-center">
             <button
               onClick={() => setIsPaletteOpen(true)}
-              className="w-full bg-gradient-to-br from-black/60 to-black/90 border border-medieval-gold/20 hover:border-medieval-gold/50 backdrop-blur-sm rounded-full py-1.5 pl-3.5 pr-2.5 text-medieval-gold/60 hover:text-medieval-gold transition-all text-xs font-mono tracking-wider flex items-center justify-between group shadow-inner cursor-pointer"
+              className="w-full bg-gradient-to-br from-black/70 to-black/90 border border-medieval-gold/25 hover:border-medieval-gold/60 backdrop-blur-sm rounded-full py-2 pl-4 pr-3 text-medieval-gold/70 hover:text-medieval-gold transition-all text-xs font-mono tracking-wider flex items-center justify-between group shadow-inner cursor-pointer"
               title="Abrir busca rápida (Ctrl + K)"
             >
               <div className="flex items-center gap-2.5">
                 <Search className="text-medieval-gold/50 group-hover:text-medieval-gold w-4 h-4 transition-colors" />
                 <span>{language === 'pt' ? 'Buscar no site...' : 'Search wiki...'}</span>
               </div>
-              <kbd className="inline-flex items-center gap-0.5 px-2 py-0.5 text-[10px] font-mono text-medieval-gold/60 bg-black/60 border border-medieval-gold/25 rounded group-hover:border-medieval-gold/50 group-hover:text-medieval-gold">
+              <kbd className="inline-flex items-center gap-0.5 px-2 py-0.5 text-[10px] font-mono text-medieval-gold/70 bg-black/70 border border-medieval-gold/30 rounded group-hover:border-medieval-gold/60 group-hover:text-medieval-gold">
                 Ctrl K
               </kbd>
             </button>
           </div>
 
           {/* Desktop Tabs */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-1.5 shrink-0">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as Tab)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-sm text-xs uppercase tracking-widest transition-all duration-300 ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-sm text-xs uppercase tracking-wider whitespace-nowrap transition-all duration-200 cursor-pointer ${
                   activeTab === tab.id 
                     ? 'bg-medieval-gold text-black shadow-[0_2px_0_#8b7326] font-black' 
                     : 'text-medieval-gold/60 hover:text-medieval-gold hover:bg-white/5 font-semibold'
                 }`}
               >
                 {tab.icon}
-                {tab.label}
+                <span>{tab.label}</span>
               </button>
             ))}
             
             {/* Language Switcher Desktop */}
-            <div className="ml-4 flex items-center gap-2 border-l border-medieval-gold/20 pl-4">
+            <div className="ml-2 flex items-center gap-1.5 border-l border-medieval-gold/20 pl-3 shrink-0">
               <button 
                 onClick={() => setLanguage('pt')}
-                className={`text-[10px] font-bold px-2 py-1 rounded transition-colors ${language === 'pt' ? 'bg-medieval-gold text-black' : 'text-medieval-gold/40 hover:text-medieval-gold'}`}
+                className={`text-[10px] font-bold px-2 py-1 rounded transition-colors cursor-pointer ${language === 'pt' ? 'bg-medieval-gold text-black' : 'text-medieval-gold/40 hover:text-medieval-gold'}`}
               >
                 PT
               </button>
               <button 
                 onClick={() => setLanguage('en')}
-                className={`text-[10px] font-bold px-2 py-1 rounded transition-colors ${language === 'en' ? 'bg-medieval-gold text-black' : 'text-medieval-gold/40 hover:text-medieval-gold'}`}
+                className={`text-[10px] font-bold px-2 py-1 rounded transition-colors cursor-pointer ${language === 'en' ? 'bg-medieval-gold text-black' : 'text-medieval-gold/40 hover:text-medieval-gold'}`}
               >
                 EN
               </button>

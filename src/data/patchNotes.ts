@@ -13,6 +13,37 @@ export interface PatchNote {
 
 export const PROJECT_PATCH_NOTES: PatchNote[] = [
   {
+    version: "1.6.0",
+    date: "2026-11-13",
+    title: { pt: "Miracle 7.4 Update - Expansão da Relic Box & Melchior Quest", en: "Miracle 7.4 Update - Relic Box Expansion & Melchior Quest" },
+    changes: {
+      added: {
+        pt: [
+          "Adicionados 2 novos slots para a Relic Box, expandindo a capacidade máxima para até 6 relíquias simultâneas.",
+          "Nova missão com o sábio Melchior em Ankrahmun: agora o 1º e 2º slots da Relic Box podem ser abertos conversando com ele sobre 'notes'.",
+          "Integração de 6 slots de relíquias e importador de builds atualizado no Build Maker."
+        ],
+        en: [
+          "Added 2 new slots for the Relic Box, expanding the container capacity to up to 6 simultaneous relics.",
+          "New quest path with sage Melchior in Ankrahmun: the 1st and 2nd Relic Box slots can now be unlocked by speaking to him about 'notes'.",
+          "Integration of 6 relic slots and updated build importer in the Build Maker."
+        ]
+      },
+      changed: {
+        pt: [
+          "Redução nos preços de abertura dos slots da Relic Box:",
+          "• 5º slot: Reduzido de 40.000 para 30.000 gold (30k).",
+          "• 6º slot: Reduzido de 115.000 para 60.000 gold (60k)."
+        ],
+        en: [
+          "Price reductions to unlock the Relic Box slots:",
+          "• 5th slot: Reduced from 40,000 to 30,000 gold (30k).",
+          "• 6th slot: Reduced from 115,000 to 60,000 gold (60k)."
+        ]
+      }
+    }
+  },
+  {
     version: "1.5.0",
     date: "2026-05-25",
     title: { pt: "Projeto Wiki v1.5.0 - Build Maker & Simulador de Caça", en: "Wiki Project v1.5.0 - Build Maker & Hunting Simulator" },

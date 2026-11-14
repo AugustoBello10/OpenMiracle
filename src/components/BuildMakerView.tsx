@@ -331,7 +331,7 @@ export const BuildMakerView: React.FC<BuildMakerViewProps> = ({ language, setLan
                           const val = Math.min(200, Math.max(0, parseInt(e.target.value) || 0));
                           setBuildLocal(prev => ({ ...prev, skills: { ...prev.skills, [sk]: val } }));
                         }}
-                        className="bg-transparent text-center font-mono font-bold text-xs text-medieval-gold w-8 focus:outline-none"
+                        className="bg-transparent text-center font-mono font-bold text-xs text-medieval-gold w-9 sm:w-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none px-0.5 focus:outline-none"
                       />
                       <button
                         onClick={() => {
@@ -376,11 +376,11 @@ export const BuildMakerView: React.FC<BuildMakerViewProps> = ({ language, setLan
             </div>
           </div>
 
-          {/* Actionbar-Style Relics row */}
+          {/* Actionbar-Style Relics row (6 slots) */}
           <div className="border-t border-medieval-gold/10 pt-2 shrink-0">
-            <span className="text-[8px] uppercase font-bold text-medieval-gold/50 mb-1 block tracking-wider text-center">{t('bm_relics')}</span>
-            <div className="flex gap-1.5 justify-center">
-              {[1, 2, 3, 4].map(idx => {
+            <span className="text-[8px] uppercase font-bold text-medieval-gold/50 mb-1 block tracking-wider text-center">{t('bm_relics')} (6)</span>
+            <div className="grid grid-cols-6 gap-1 justify-center max-w-[240px] mx-auto">
+              {[1, 2, 3, 4, 5, 6].map(idx => {
                 const relicId = `relic-${idx}` as SlotId;
                 return (
                   <InventorySlot key={idx} id={relicId} label={t('bm_slotRelic')} icon={Sparkles} item={currentBuild.equipment[relicId]} activeAttributesCount={getAttrCount(currentBuild, relicId)} onClick={createSlotClickHandler(activeBuild)} onRightClick={createSlotRightClickHandler(activeBuild)} />

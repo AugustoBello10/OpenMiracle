@@ -145,6 +145,8 @@ Attributes: (dodge: +2%, vibrancy: +10%).
 18:46 You see a giant sapphire (Arm:1, faster regeneration).
 18:46 You see a demon's heart (faster regeneration, healing +3%).
 18:46 You see an eye of aurum (destruction +3%).
+18:46 You see an abyssal core.
+18:46 You see a giant ruby (faster regeneration).
 
 Level: 153
 Magic Level: 8
