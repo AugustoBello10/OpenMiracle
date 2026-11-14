@@ -2841,7 +2841,7 @@ export default function App() {
                     exit={{ opacity: 0, y: -20 }}
                     className="w-full"
                   >
-                    <CyclopediaView />
+                    <CyclopediaView language={language} />
                   </motion.div>
                 )}
 

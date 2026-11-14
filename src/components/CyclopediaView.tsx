@@ -7,7 +7,7 @@ import { Search, PenTool, Sparkles } from 'lucide-react';
 import BestiaryModal from './BestiaryModal';
 import BestiaryEditor from './BestiaryEditor';
 
-export default function CyclopediaView() {
+export default function CyclopediaView({ language = 'pt' }: { language?: 'pt' | 'en' }) {
   const [search, setSearch] = useState('');
   const [selectedMonster, setSelectedMonster] = useState<string | null>(null);
   const [showEditor, setShowEditor] = useState(false);
@@ -69,7 +69,9 @@ export default function CyclopediaView() {
           Cyclopedia
         </h1>
         <p className="text-gray-400 max-w-2xl mx-auto text-sm">
-          Catálogo oficial de criaturas de Miracle 7.4. Explore atributos, fraquezas e recompensas de cada criatura do servidor.
+          {language === 'pt' 
+            ? 'Catálogo oficial de criaturas de Miracle 7.4. Explore atributos, fraquezas e recompensas de cada criatura do servidor.'
+            : 'Official Miracle 7.4 creature catalog. Explore attributes, weaknesses, and drops for every server creature.'}
         </p>
       </header>
 
@@ -77,7 +79,7 @@ export default function CyclopediaView() {
         <div className="relative w-full sm:w-96">
           <input 
             type="text" 
-            placeholder="Buscar criatura..." 
+            placeholder={language === 'pt' ? 'Buscar criatura...' : 'Search creature...'} 
             value={search}
             onChange={e => setSearch(e.target.value)}
             className="w-full bg-black/60 border border-medieval-gold/20 rounded-lg pl-10 pr-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-medieval-gold/50"
@@ -87,15 +89,14 @@ export default function CyclopediaView() {
 
         <div className="flex items-center gap-3">
           <span className="text-xs font-mono text-medieval-gold/70 bg-black/60 px-3 py-1.5 rounded-lg border border-medieval-gold/20">
-            {allMonsters.length} criaturas
+            {allMonsters.length} {language === 'pt' ? 'criaturas' : 'creatures'}
           </span>
           {/* @ts-ignore */}
           {import.meta.env.DEV && (
             <button 
               onClick={() => setShowEditor(true)}
-              className="flex items-center gap-2 bg-blue-600/20 hover:bg-blue-600/40 text-blue-400 border border-blue-500/30 px-4 py-2 rounded-lg transition-colors font-bold text-sm cursor-pointer"
+              className="bg-blue-600/20 hover:bg-blue-600/40 text-blue-400 border border-blue-500/30 px-4 py-2 rounded-lg transition-colors font-bold text-sm cursor-pointer"
             >
-              <PenTool className="w-4 h-4" />
               Bestiary Editor (Dev)
             </button>
           )}
@@ -146,7 +147,7 @@ export default function CyclopediaView() {
 
       {allMonsters.length === 0 && (
         <div className="text-center py-20 text-gray-500">
-          <p>Nenhuma criatura encontrada.</p>
+          <p>{language === 'pt' ? 'Nenhuma criatura encontrada.' : 'No creatures found.'}</p>
         </div>
       )}
 
