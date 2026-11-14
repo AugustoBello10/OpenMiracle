@@ -410,11 +410,8 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               npcLocation="Edron"
               lines={[
                 { speaker: 'player', text: 'hi', keyword: 'hi' },
-                { speaker: 'npc', text: 'Hello, adventurer. What can I do for you?' },
-                { speaker: 'player', text: 'alchemist', keyword: 'alchemist' },
-                { speaker: 'npc', text: 'You want to become an official alchemist? That requires skill 20 and 20000 gold. Deal?' },
+                { speaker: 'player', text: 'profession', keyword: 'profession' },
                 { speaker: 'player', text: 'yes', keyword: 'yes' },
-                { speaker: 'npc', text: 'Welcome to the circle of alchemists! Mix with wisdom.' },
               ]}
             />
 
@@ -459,7 +456,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
             <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="alchemy-crystals">{t('Encantamentos com Cristais', 'Crystal Enchantments')}</h4>
             <p>
               {t('Os cristais são usados para dar bônus às suas armas de treino, que podem ser compradas no NPC', 'Crystals are used to give bonuses to your training weapons, which can be purchased from NPC')}{' '}
-              <MapLink poiId="sam" showCoords>
+              <MapLink poiId="sam">
                 Sam em Thais
               </MapLink>{' '}
               {t('ou para transformar seus summons em criaturas Elite.', 'or to transform your summons into Elite creatures.')}
@@ -851,7 +848,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
         );
             case 'carpentry':
         return (
-          <div className="space-y-8 text-left text-stone-300 font-sans text-base leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <div className="space-y-8 text-left text-stone-300 font-sans text-base leading-relaxed ">
             <h3 className="text-2xl font-black text-medieval-gold uppercase mb-4" id="carpentry-intro">{t('Mecânicas Principais', 'Core Mechanics')}</h3>
             
             <div className="bg-black/40 border border-medieval-gold/20 rounded-lg p-4 mb-8">
@@ -894,11 +891,8 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               npcLocation="Nivandria Lands"
               lines={[
                 { speaker: 'player', text: 'hi', keyword: 'hi' },
-                { speaker: 'npc', text: 'Greetings, builder. Ready to craft structures from timber?' },
-                { speaker: 'player', text: 'carpenter', keyword: 'carpenter' },
-                { speaker: 'npc', text: 'The carpenter profession costs 20000 gold coins. Would you like to join?' },
+                { speaker: 'player', text: 'profession', keyword: 'profession' },
                 { speaker: 'player', text: 'yes', keyword: 'yes' },
-                { speaker: 'npc', text: 'Take up your square and hammer. Welcome to the carpentry guild!' },
               ]}
             />
 
@@ -1292,7 +1286,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
         const currentCookingRecipe = cookingRecipesList[cookingRecipeIndex];
 
         return (
-          <div className="space-y-8 text-left text-stone-300 font-sans text-base leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <div className="space-y-8 text-left text-stone-300 font-sans text-base leading-relaxed ">
             <h3 className="text-2xl font-black text-medieval-gold uppercase mb-4" id="cooking-intro">{t('Mecânicas Principais', 'Core Mechanics')}</h3>
             
             <div className="bg-black/40 border border-medieval-gold/20 rounded-lg p-4 mb-8">
@@ -1343,11 +1337,8 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               npcLocation="Castelo de Thais"
               lines={[
                 { speaker: 'player', text: 'hi', keyword: 'hi' },
-                { speaker: 'npc', text: 'Welcome to the royal kitchen. Hungry or eager to learn?' },
-                { speaker: 'player', text: 'cook', keyword: 'cook' },
-                { speaker: 'npc', text: 'To join the ranks of royal chefs, you must contribute 20000 gold. Ready?' },
+                { speaker: 'player', text: 'profession', keyword: 'profession' },
                 { speaker: 'player', text: 'yes', keyword: 'yes' },
-                { speaker: 'npc', text: 'Put on your apron! You are now an official cook.' },
               ]}
             />
 
@@ -1644,11 +1635,8 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               npcLocation="Norte de Thais"
               lines={[
                 { speaker: 'player', text: 'hi', keyword: 'hi' },
-                { speaker: 'npc', text: 'Hail, hunter. Looking to master the wilderness?' },
-                { speaker: 'player', text: 'skinner', keyword: 'skinner' },
-                { speaker: 'npc', text: 'I can teach you the craft of skinning beasts and extracting rare hides.' },
+                { speaker: 'player', text: 'profession', keyword: 'profession' },
                 { speaker: 'player', text: 'yes', keyword: 'yes' },
-                { speaker: 'npc', text: 'Keep your blade sharp and your hands steady. Welcome, skinner!' },
               ]}
             />
 
@@ -2133,12 +2121,9 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
             ))}
           </motion.div>
         ) : (
-          <motion.div 
-            key="detail"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="bg-black/60 border border-medieval-gold/20 rounded-2xl p-6 lg:p-10 relative overflow-hidden"
+          <div 
+            key={`detail-${selectedProf}`}
+            className="bg-black/60 border border-medieval-gold/20 rounded-2xl p-6 lg:p-10 relative overflow-hidden transition-all duration-300"
           >
             <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
               {professions.find(p => p.id === selectedProf)?.icon}
@@ -2164,7 +2149,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
 
             {renderContent()}
 
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </div>

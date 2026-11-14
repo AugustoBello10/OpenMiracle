@@ -38,8 +38,8 @@ export function ItemsWikiView({ language }: ItemsWikiViewProps) {
         { id: 'swords', label: language === 'pt' ? 'Espadas' : 'Swords', icon: '/images/miracle/items/magic_sword_2400.gif' },
         { id: 'axes', label: language === 'pt' ? 'Machados' : 'Axes', icon: '/images/miracle/items/stonecutter_axe_2431.gif' },
         { id: 'clubs', label: language === 'pt' ? 'Clavas / Maças' : 'Clubs', icon: '/images/miracle/items/thunder_hammer_2421.gif' },
-        { id: 'distance', label: language === 'pt' ? 'Distância' : 'Distance', icon: '/images/miracle/items/royal_crossbow_8851.gif' },
-        { id: 'quivers', label: language === 'pt' ? 'Aljavas' : 'Quivers', icon: '/images/miracle/items/quiver_7489.gif' },
+        { id: 'distance', label: language === 'pt' ? 'Distância' : 'Distance', icon: '/images/miracle/items/royal_crossbow_8209.gif' },
+        { id: 'quivers', label: language === 'pt' ? 'Aljavas' : 'Quivers', icon: '/images/miracle/items/quiver_7577.gif' },
         { id: 'ammunition', label: language === 'pt' ? 'Munições' : 'Ammunition', icon: '/images/miracle/items/power_bolt_2547.gif' },
       ],
     },
@@ -62,7 +62,7 @@ export function ItemsWikiView({ language }: ItemsWikiViewProps) {
       categories: [
         { id: 'amulets', label: language === 'pt' ? 'Amuletos' : 'Amulets', icon: '/images/miracle/items/platinum_amulet_2171.gif' },
         { id: 'rings', label: language === 'pt' ? 'Anéis' : 'Rings', icon: '/images/miracle/items/ring_of_the_sky_2123.gif' },
-        { id: 'relics', label: language === 'pt' ? 'Relíquias' : 'Relics', icon: '/images/miracle/items/ancient_amulet_2138.gif' },
+        { id: 'relics', label: language === 'pt' ? 'Relíquias' : 'Relics', icon: '/images/miracle/items/ancient_whisper_7518.gif' },
         { id: 'training', label: language === 'pt' ? 'Armas de Treino' : 'Training Weapons', icon: '/images/miracle/items/training_sword_7481.gif' },
       ],
     },
@@ -130,15 +130,10 @@ export function ItemsWikiView({ language }: ItemsWikiViewProps) {
   return (
     <div className="space-y-8 text-left">
       <header className="text-center relative py-6">
-        <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2 flex items-center justify-center gap-3">
-          <img 
-            src="/images/miracle/items/magic_sword_2400.gif" 
-            alt="Wiki Itens" 
-            className="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" 
-          />
+        <h1 className="text-3xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2 text-center">
           {language === 'pt' ? 'Catálogo Oficial de Itens' : 'Official Items Encyclopedia'}
         </h1>
-        <p className="text-medieval-gold/70 font-mono text-xs max-w-2xl mx-auto italic tracking-wide">
+        <p className="text-stone-300 font-sans text-xs max-w-2xl mx-auto tracking-wide">
           {language === 'pt' 
             ? 'Enciclopédia com 627 itens oficiais do Miracle 7.4 divididos em 4 blocos organizados com imagens locais e atributos.'
             : 'Encyclopedia with 627 official Miracle 7.4 items partitioned into 4 structured blocks with local sprites and attributes.'}
@@ -156,14 +151,13 @@ export function ItemsWikiView({ language }: ItemsWikiViewProps) {
                 setSelectedBlock(block.id as any);
                 setSelectedCategory(block.categories[0].id);
               }}
-              className={`p-3.5 rounded-xl border flex items-center gap-2.5 transition-all duration-200 cursor-pointer ${
+              className={`p-3.5 rounded-xl border flex items-center justify-center transition-all duration-200 cursor-pointer ${
                 isSelected
                   ? 'bg-gradient-to-r from-medieval-gold to-yellow-600 text-black border-medieval-gold shadow-[0_0_15px_rgba(197,160,89,0.3)] font-black scale-102'
                   : 'bg-black/60 text-stone-300 border-medieval-gold/20 hover:border-medieval-gold/50 hover:bg-black/80'
               }`}
             >
-              {block.icon}
-              <span className="text-xs uppercase tracking-wider line-clamp-1">{block.label}</span>
+              <span className="text-xs uppercase tracking-wider font-bold text-center line-clamp-1">{block.label}</span>
             </button>
           );
         })}
@@ -213,7 +207,7 @@ export function ItemsWikiView({ language }: ItemsWikiViewProps) {
           <span className="text-[10px] font-mono uppercase text-stone-400 mr-1 flex items-center gap-1">
             <Filter className="w-3 h-3" /> {language === 'pt' ? 'Classe:' : 'Class:'}
           </span>
-          {(['all', 1, 2, 3, 4] as const).map((cls) => (
+          {(['all', 1, 2, 3, 4, 5] as const).map((cls) => (
             <button
               key={cls}
               onClick={() => setSelectedClass(cls)}
@@ -335,7 +329,7 @@ export function ItemsWikiView({ language }: ItemsWikiViewProps) {
                             </span>
                           ))
                         ) : (
-                          <span className="text-[10px] text-stone-600 font-mono italic">
+                          <span className="text-[10px] text-stone-400 font-mono italic">
                             {language === 'pt' ? 'Sem atributos místicos' : 'No mystic attributes'}
                           </span>
                         )}
