@@ -17,30 +17,73 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
   const [attrFilter, setAttrFilter] = useState('');
   const navigate = useNavigate();
 
-  const renderBackBtn = () => (
-    <button 
-      onClick={() => setSelectedSystem(null)}
-      className="flex items-center gap-2 text-medieval-gold/70 hover:text-medieval-gold transition-colors font-bold uppercase text-xs tracking-wider mb-8 bg-black/40 px-4 py-2 rounded-lg border border-medieval-gold/20 hover:border-medieval-gold/40 w-fit cursor-pointer"
-    >
-      <ArrowLeft className="w-4 h-4" /> {language === 'pt' ? 'Voltar para Sistemas' : 'Back to Systems'}
-    </button>
+  const renderNavHeader = (action?: { label: string; to: string }) => (
+    <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-8 bg-black/40 p-3 rounded-xl border border-medieval-gold/20">
+      <button 
+        onClick={() => {
+          setSelectedSystem(null);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+        className="text-medieval-gold/80 hover:text-yellow-200 transition-colors font-bold uppercase text-xs tracking-wider px-3.5 py-2 rounded-lg border border-medieval-gold/20 hover:border-medieval-gold/50 bg-black/60 cursor-pointer text-center"
+      >
+        {language === 'pt' ? 'Voltar para Todos os Sistemas' : 'Back to All Systems'}
+      </button>
+      {action && (
+        <button
+          onClick={() => {
+            navigate(action.to);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          className="text-medieval-gold hover:text-yellow-200 transition-colors font-bold uppercase text-xs tracking-wider px-3.5 py-2 rounded-lg border border-medieval-gold/40 hover:border-medieval-gold bg-medieval-gold/10 hover:bg-medieval-gold/20 cursor-pointer text-center"
+        >
+          {action.label}
+        </button>
+      )}
+    </div>
+  );
+
+  const renderNavFooter = (action?: { label: string; to: string }) => (
+    <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mt-8 pt-6 border-t border-medieval-gold/20">
+      <button 
+        onClick={() => {
+          setSelectedSystem(null);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+        className="text-medieval-gold/80 hover:text-yellow-200 transition-colors font-bold uppercase text-xs tracking-wider px-4 py-2.5 rounded-lg border border-medieval-gold/20 hover:border-medieval-gold/50 bg-black/60 cursor-pointer text-center"
+      >
+        {language === 'pt' ? 'Voltar para Todos os Sistemas' : 'Back to All Systems'}
+      </button>
+      {action && (
+        <button
+          onClick={() => {
+            navigate(action.to);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          className="text-medieval-gold hover:text-yellow-200 transition-colors font-bold uppercase text-xs tracking-wider px-4 py-2.5 rounded-lg border border-medieval-gold/40 hover:border-medieval-gold bg-medieval-gold/10 hover:bg-medieval-gold/20 cursor-pointer text-center"
+        >
+          {action.label}
+        </button>
+      )}
+    </div>
   );
 
   // -------------------------------------------------------------
   // 1. RELIC BOX
   // -------------------------------------------------------------
-  const renderRelicBox = () => (
-    <motion.div
-      key="relic-box-content"
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -20 }}
-      className="space-y-6 text-left"
-    >
-      {renderBackBtn()}
+  const renderRelicBox = () => {
+    const action = { label: language === 'pt' ? 'Ver Catálogo de Relíquias' : 'View Relics Catalog', to: '/wiki/server/itens/reliquias' };
+    return (
+      <motion.div
+        key="relic-box-content"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -20 }}
+        className="space-y-6 text-left"
+      >
+        {renderNavHeader(action)}
 
-      <div className="bg-gradient-to-br from-black/80 to-black/90 border border-medieval-gold/20 rounded-xl p-6 sm:p-8 relative overflow-hidden shadow-2xl">
-        <div className="relative z-10 space-y-8">
+        <div className="bg-gradient-to-br from-black/80 to-black/90 border border-medieval-gold/20 rounded-xl p-6 sm:p-8 relative overflow-hidden shadow-2xl">
+          <div className="relative z-10 space-y-8">
           <header className="border-b border-medieval-gold/20 pb-6 mb-6">
             <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-2">
               {language === 'pt' ? 'Sistema de Relic Box' : 'Relic Box System'}
@@ -114,98 +157,106 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
                 : 'To unlock your initial relic slots, travel to Ankrahmun and locate the blind sage Melchior. Greet him with "hi", then say "notes". He will provide guidance and quest clues to unlock the 1st and 2nd slots.'}
             </NoticeCard>
           </div>
+          {renderNavFooter(action)}
         </div>
       </div>
     </motion.div>
   );
+};
 
   // -------------------------------------------------------------
   // 2. ATTRIBUTION SYSTEM
   // -------------------------------------------------------------
-  const renderAttributionSystem = () => (
-    <motion.div
-      key="attribution-content"
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -20 }}
-      className="space-y-6 text-left"
-    >
-      {renderBackBtn()}
+  const renderAttributionSystem = () => {
+    const action = { label: language === 'pt' ? 'Calculadora de Atributos' : 'Attributes Calculator', to: '/calculadoras/atributos' };
+    return (
+      <motion.div
+        key="attribution-content"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -20 }}
+        className="space-y-6 text-left"
+      >
+        {renderNavHeader(action)}
 
-      <div className="bg-gradient-to-br from-black/80 to-black/90 border border-medieval-gold/20 rounded-xl p-6 sm:p-8 relative overflow-hidden shadow-2xl">
-        <div className="relative z-10 space-y-8">
-          <header className="border-b border-medieval-gold/20 pb-6 mb-6">
-            <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-2">
-              {language === 'pt' ? 'Sistema de Atributos & Mystic Runes' : 'Attribution & Mystic Runes System'}
-            </h2>
-            <p className="text-sm text-medieval-muted/80 font-mono italic">
-              {language === 'pt' 
-                ? 'Como encantar equipamentos com atributos especiais, itens necessários e proteção contra perdas.'
-                : 'How to enchant equipment with special attributes, required items, and loss protection.'}
-            </p>
-          </header>
+        <div className="bg-gradient-to-br from-black/80 to-black/90 border border-medieval-gold/20 rounded-xl p-6 sm:p-8 relative overflow-hidden shadow-2xl">
+          <div className="relative z-10 space-y-8">
+            <header className="border-b border-medieval-gold/20 pb-6 mb-6">
+              <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-2">
+                {language === 'pt' ? 'Sistema de Atributos & Mystic Runes' : 'Attribution & Mystic Runes System'}
+              </h2>
+              <p className="text-sm text-medieval-muted/80 font-mono italic">
+                {language === 'pt' 
+                  ? 'Como encantar equipamentos com atributos especiais, itens necessários e proteção contra perdas.'
+                  : 'How to enchant equipment with special attributes, required items, and loss protection.'}
+              </p>
+            </header>
 
-          <div className="space-y-6 text-gray-300 leading-relaxed font-sans text-sm sm:text-base">
-            <p>
-              {language === 'pt'
-                ? 'No Miracle 7.4, monstros podem dropar itens com atributos místicos únicos ou você mesmo pode adicionar atributos aos seus equipamentos utilizando runas e orbes especiais.'
-                : 'In Miracle 7.4, monsters can drop gear with unique mystic attributes, or you can enchant them yourself using special runes and orbs.'}
-            </p>
+            <div className="space-y-6 text-gray-300 leading-relaxed font-sans text-sm sm:text-base">
+              <p>
+                {language === 'pt'
+                  ? 'No Miracle 7.4, monstros podem dropar itens com atributos místicos únicos ou você mesmo pode adicionar atributos aos seus equipamentos utilizando runas e orbes especiais.'
+                  : 'In Miracle 7.4, monsters can drop gear with unique mystic attributes, or you can enchant them yourself using special runes and orbs.'}
+              </p>
 
-            <StepList
-              language={language}
-              title={language === 'pt' ? 'Passo a Passo: Como Encantar um Equipamento' : 'Step-by-Step: Enchanting Equipment'}
-              steps={[
-                {
-                  step: 1,
-                  title: language === 'pt' ? 'Obter uma Mystic Rune' : 'Acquire a Mystic Rune',
-                  description: language === 'pt'
-                    ? 'Consiga uma Mystic Rune através do drop de criaturas, baús ou negociando com outros jogadores no Player Shop.'
-                    : 'Obtain a Mystic Rune from monster drops, chests, or purchasing from other players.',
-                },
-                {
-                  step: 2,
-                  title: language === 'pt' ? 'Adicionar Arcane Orbs' : 'Add Arcane Orbs',
-                  description: language === 'pt'
-                    ? 'Compre Arcane Orbs no NPC Alexander em Edron para aumentar suas chances. O Grand Arcane Orb aumenta a chance de sucesso em +50%.'
-                    : 'Buy Arcane Orbs from NPC Alexander in Edron. The Grand Arcane Orb boosts success rate by +50%.',
-                },
-                {
-                  step: 3,
-                  title: language === 'pt' ? 'Aplicar o Encantamento' : 'Apply the Enchantment',
-                  description: language === 'pt'
-                    ? 'Dê Use na runa ou orbe e clique sobre a arma ou armadura elegível. Se tiver sucesso, o atributo será gravado no item.'
-                    : 'Use the rune or orb onto the eligible equipment. On success, the attribute is permanently etched onto the gear.',
-                },
-              ]}
-            />
+              <StepList
+                language={language}
+                title={language === 'pt' ? 'Passo a Passo: Como Encantar um Equipamento' : 'Step-by-Step: Enchanting Equipment'}
+                steps={[
+                  {
+                    step: 1,
+                    title: language === 'pt' ? 'Obter uma Mystic Rune' : 'Acquire a Mystic Rune',
+                    description: language === 'pt'
+                      ? 'Consiga uma Mystic Rune através do drop de criaturas, baús ou negociando com outros jogadores no Player Shop.'
+                      : 'Obtain a Mystic Rune from monster drops, chests, or purchasing from other players.',
+                  },
+                  {
+                    step: 2,
+                    title: language === 'pt' ? 'Adicionar Arcane Orbs' : 'Add Arcane Orbs',
+                    description: language === 'pt'
+                      ? 'Compre Arcane Orbs no NPC Alexander em Edron para aumentar suas chances. O Grand Arcane Orb aumenta a chance de sucesso em +50%.'
+                      : 'Buy Arcane Orbs from NPC Alexander in Edron. The Grand Arcane Orb boosts success rate by +50%.',
+                  },
+                  {
+                    step: 3,
+                    title: language === 'pt' ? 'Aplicar o Encantamento' : 'Apply the Enchantment',
+                    description: language === 'pt'
+                      ? 'Dê Use na runa ou orbe e clique sobre a arma ou armadura elegível. Se tiver sucesso, o atributo será gravado no item.'
+                      : 'Use the rune or orb onto the eligible equipment. On success, the attribute is permanently etched onto the gear.',
+                  },
+                ]}
+              />
 
-            <NoticeCard type="warning" title={language === 'pt' ? 'Regra de Morte: Perda de Atributos (20%)' : 'Death Rule: 20% Attribute Loss'}>
-              {language === 'pt'
-                ? 'Ao morrer no jogo, existe 20% de chance de que um atributo encantado se quebre e seja perdido. Para se proteger totalmente contra essa perda, você deve comprar a 6ª bênção chamada "The Arcane Guardian" com o NPC Humphrey em Carlin ou com Eremo.'
-                : 'Upon death, there is a 20% chance an enchanted attribute will break. Protect your items by acquiring the 6th blessing "The Arcane Guardian" from NPC Humphrey in Carlin or Eremo.'}
-            </NoticeCard>
+              <NoticeCard type="warning" title={language === 'pt' ? 'Regra de Morte: Perda de Atributos (20%)' : 'Death Rule: 20% Attribute Loss'}>
+                {language === 'pt'
+                  ? 'Ao morrer no jogo, existe 20% de chance de que um atributo encantado se quebre e seja perdido. Para se proteger totalmente contra essa perda, você deve comprar a 6ª bênção chamada "The Arcane Guardian" com o NPC Humphrey em Carlin ou com Eremo.'
+                  : 'Upon death, there is a 20% chance an enchanted attribute will break. Protect your items by acquiring the 6th blessing "The Arcane Guardian" from NPC Humphrey in Carlin or Eremo.'}
+              </NoticeCard>
+            </div>
+            {renderNavFooter(action)}
           </div>
         </div>
-      </div>
-    </motion.div>
-  );
+      </motion.div>
+    );
+  };
 
   // -------------------------------------------------------------
   // 3. EXALTATION FORGE
   // -------------------------------------------------------------
-  const renderExaltationForge = () => (
-    <motion.div
-      key="forge-content"
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -20 }}
-      className="space-y-6 text-left"
-    >
-      {renderBackBtn()}
+  const renderExaltationForge = () => {
+    const action = { label: language === 'pt' ? 'Calculadora de Crafting' : 'Crafting Calculator', to: '/calculadoras/profissoes/crafting' };
+    return (
+      <motion.div
+        key="forge-content"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -20 }}
+        className="space-y-6 text-left"
+      >
+        {renderNavHeader(action)}
 
-      <div className="bg-gradient-to-br from-black/80 to-black/90 border border-medieval-gold/20 rounded-xl p-6 sm:p-8 relative overflow-hidden shadow-2xl">
-        <div className="relative z-10 space-y-8">
+        <div className="bg-gradient-to-br from-black/80 to-black/90 border border-medieval-gold/20 rounded-xl p-6 sm:p-8 relative overflow-hidden shadow-2xl">
+          <div className="relative z-10 space-y-8">
           <header className="border-b border-medieval-gold/20 pb-6 mb-6">
             <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-2">
               Exaltation Forge
@@ -493,10 +544,12 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
               </div>
             </div>
           </div>
+          {renderNavFooter(action)}
         </div>
       </div>
     </motion.div>
-  );
+    );
+  };
 
   // -------------------------------------------------------------
   // 4. PLAYER SHOP (MERCADO OFFLINE)
@@ -509,7 +562,7 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
       exit={{ opacity: 0, x: -20 }}
       className="space-y-6 text-left"
     >
-      {renderBackBtn()}
+      {renderNavHeader()}
 
       <div className="bg-gradient-to-br from-black/80 to-black/90 border border-medieval-gold/20 rounded-xl p-6 sm:p-8 relative overflow-hidden shadow-2xl">
         <div className="relative z-10 space-y-8">
@@ -683,6 +736,7 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
                 </p>
               </div>
             </div>
+            {renderNavFooter()}
           </div>
         </div>
       </div>
@@ -692,23 +746,25 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
   // -------------------------------------------------------------
   // 5. HOUSES & BED REGENERATION
   // -------------------------------------------------------------
-  const renderHousesLands = () => (
-    <motion.div
-      key="houses-content"
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -20 }}
-      className="space-y-6 text-left"
-    >
-      {renderBackBtn()}
+  const renderHousesLands = () => {
+    const action = { label: language === 'pt' ? 'Abrir Mapa Interativo' : 'Open Interactive Map', to: '/mapa' };
+    return (
+      <motion.div
+        key="houses-content"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -20 }}
+        className="space-y-6 text-left"
+      >
+        {renderNavHeader(action)}
 
-      <div className="bg-gradient-to-br from-black/80 to-black/90 border border-medieval-gold/20 rounded-xl p-6 sm:p-8 relative overflow-hidden shadow-2xl">
-        <div className="relative z-10 space-y-8">
-          <header className="border-b border-medieval-gold/20 pb-6 mb-6">
-            <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-2">
-              {language === 'pt' ? 'Casas & Terrenos' : 'Houses & Lands'}
-            </h2>
-            <p className="text-sm text-medieval-muted/80 font-mono italic">
+        <div className="bg-gradient-to-br from-black/80 to-black/90 border border-medieval-gold/20 rounded-xl p-6 sm:p-8 relative overflow-hidden shadow-2xl">
+          <div className="relative z-10 space-y-8">
+            <header className="border-b border-medieval-gold/20 pb-6 mb-6">
+              <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-2">
+                {language === 'pt' ? 'Casas & Terrenos' : 'Houses & Lands'}
+              </h2>
+              <p className="text-sm text-medieval-muted/80 font-mono italic">
               {language === 'pt' 
                 ? 'Como arrematar casas em leilão no site, transferir com segurança pelo Move Out e magias in-game.'
                 : 'How to bid on houses on the site, transfer safely via Move Out, and house spells.'}
@@ -773,32 +829,36 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
                 <p>{language === 'pt' ? 'Kicka imediatamente um jogador invasor para fora da casa.' : 'Immediately kicks an unwanted player out of the house.'}</p>
               </div>
             </div>
+            {renderNavFooter(action)}
           </div>
         </div>
       </div>
     </motion.div>
   );
+};
 
   // -------------------------------------------------------------
   // 6. BED MAKER (GUIA ESTRATÉGICO DE RUNAGEM EM CAMAS)
   // -------------------------------------------------------------
-  const renderBedMaker = () => (
-    <motion.div
-      key="bedmaker-content"
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -20 }}
-      className="space-y-6 text-left"
-    >
-      {renderBackBtn()}
+  const renderBedMaker = () => {
+    const action = { label: language === 'pt' ? 'Calculadora de Runas & Bed Maker' : 'Rune & Bed Maker Calculator', to: '/calculadoras/runas' };
+    return (
+      <motion.div
+        key="bedmaker-content"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -20 }}
+        className="space-y-6 text-left"
+      >
+        {renderNavHeader(action)}
 
-      <div className="bg-gradient-to-br from-black/80 to-black/90 border border-medieval-gold/20 rounded-xl p-6 sm:p-8 relative overflow-hidden shadow-2xl">
-        <div className="relative z-10 space-y-8">
-          <header className="border-b border-medieval-gold/20 pb-6 mb-6">
-            <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-2">
-              {language === 'pt' ? 'Guia do Bed Maker (Runando em Camas)' : 'Bed Maker Guide (Rune Crafting in Beds)'}
-            </h2>
-            <p className="text-sm text-medieval-muted/80 font-mono italic">
+        <div className="bg-gradient-to-br from-black/80 to-black/90 border border-medieval-gold/20 rounded-xl p-6 sm:p-8 relative overflow-hidden shadow-2xl">
+          <div className="relative z-10 space-y-8">
+            <header className="border-b border-medieval-gold/20 pb-6 mb-6">
+              <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-2">
+                {language === 'pt' ? 'Guia do Bed Maker (Runando em Camas)' : 'Bed Maker Guide (Rune Crafting in Beds)'}
+              </h2>
+              <p className="text-sm text-medieval-muted/80 font-mono italic">
               {language === 'pt' 
                 ? 'A matemática exata do ciclo de regeneração de camas, comida e timing para magos e druidas.'
                 : 'Exact math of bed regeneration cycle, food duration, and optimal timing for mages and druids.'}
@@ -879,31 +939,35 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
               ]}
             />
           </div>
+          {renderNavFooter(action)}
         </div>
       </div>
     </motion.div>
   );
+};
 
   // -------------------------------------------------------------
   // 7. ARMAS DE TREINO (INTERVALO DE ATAQUE REDUZIDO)
   // -------------------------------------------------------------
-  const renderTrainingWeapons = () => (
-    <motion.div
-      key="training-content"
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -20 }}
-      className="space-y-6 text-left"
-    >
-      {renderBackBtn()}
+  const renderTrainingWeapons = () => {
+    const action = { label: language === 'pt' ? 'Calculadora de Skills' : 'Skills Calculator', to: '/calculadoras/skills' };
+    return (
+      <motion.div
+        key="training-content"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -20 }}
+        className="space-y-6 text-left"
+      >
+        {renderNavHeader(action)}
 
-      <div className="bg-gradient-to-br from-black/80 to-black/90 border border-medieval-gold/20 rounded-xl p-6 sm:p-8 relative overflow-hidden shadow-2xl">
-        <div className="relative z-10 space-y-8">
-          <header className="border-b border-medieval-gold/20 pb-6 mb-6">
-            <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-2">
-              {language === 'pt' ? 'Armas de Treino (Intervalo Reduzido)' : 'Training Weapons (Reduced Attack Interval)'}
-            </h2>
-            <p className="text-sm text-medieval-muted/80 font-mono italic">
+        <div className="bg-gradient-to-br from-black/80 to-black/90 border border-medieval-gold/20 rounded-xl p-6 sm:p-8 relative overflow-hidden shadow-2xl">
+          <div className="relative z-10 space-y-8">
+            <header className="border-b border-medieval-gold/20 pb-6 mb-6">
+              <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-2">
+                {language === 'pt' ? 'Armas de Treino (Intervalo Reduzido)' : 'Training Weapons (Reduced Attack Interval)'}
+              </h2>
+              <p className="text-sm text-medieval-muted/80 font-mono italic">
               {language === 'pt' 
                 ? 'Como funcionam as armas de treino, redução real de intervalo de ataque e cargas por tier.'
                 : 'How training weapons function, reduced attack intervals, and charges per tier.'}
@@ -1038,79 +1102,85 @@ export function CustomSystemsView({ language }: CustomSystemsViewProps) {
                 ))}
               </div>
             </div>
+            {renderNavFooter(action)}
           </div>
         </div>
       </div>
     </motion.div>
   );
+};
 
   // -------------------------------------------------------------
   // 8. SPAWN & DEMONIC ESSENCES
   // -------------------------------------------------------------
-  const renderSpawnDemonic = () => (
-    <motion.div
-      key="spawn-demonic-content"
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -20 }}
-      className="space-y-6 text-left"
-    >
-      {renderBackBtn()}
+  const renderSpawnDemonic = () => {
+    const action = { label: language === 'pt' ? 'Abrir Mapa Interativo' : 'Open Interactive Map', to: '/mapa' };
+    return (
+      <motion.div
+        key="spawn-demonic-content"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -20 }}
+        className="space-y-6 text-left"
+      >
+        {renderNavHeader(action)}
 
-      <div className="bg-gradient-to-br from-black/80 to-black/90 border border-medieval-gold/20 rounded-xl p-6 sm:p-8 relative overflow-hidden shadow-2xl">
-        <div className="relative z-10 space-y-8">
-          <header className="border-b border-medieval-gold/20 pb-6 mb-6">
-            <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-2">
-              Spawn & Demonic Essences
-            </h2>
-            <p className="text-sm text-medieval-muted/80 font-mono italic">
-              {language === 'pt' 
-                ? 'Dinâmica dos campos de spawn roxos e vermelhos e evolução com Demonic Essences.'
-                : 'Dynamics of purple and red spawn fields and demonic essence upgrades.'}
-            </p>
-          </header>
+        <div className="bg-gradient-to-br from-black/80 to-black/90 border border-medieval-gold/20 rounded-xl p-6 sm:p-8 relative overflow-hidden shadow-2xl">
+          <div className="relative z-10 space-y-8">
+            <header className="border-b border-medieval-gold/20 pb-6 mb-6">
+              <h2 className="text-3xl font-black text-medieval-gold uppercase tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-2">
+                Spawn & Demonic Essences
+              </h2>
+              <p className="text-sm text-medieval-muted/80 font-mono italic">
+                {language === 'pt' 
+                  ? 'Dinâmica dos campos de spawn roxos e vermelhos e evolução com Demonic Essences.'
+                  : 'Dynamics of purple and red spawn fields and demonic essence upgrades.'}
+              </p>
+            </header>
 
-          <div className="space-y-6 text-gray-300 leading-relaxed font-sans text-sm sm:text-base">
-            <p>
-              {language === 'pt'
-                ? 'Ao redor do mapa de Miracle 7.4 você encontrará áreas de caça com campos mágicos coloridos no chão que afetam o comportamento e os atributos dos monstros gerados:'
-                : 'Around Miracle 7.4 world map you will encounter hunting grounds featuring magical colored ground fields that modify monster behavior and attributes:'}
-            </p>
+            <div className="space-y-6 text-gray-300 leading-relaxed font-sans text-sm sm:text-base">
+              <p>
+                {language === 'pt'
+                  ? 'Ao redor do mapa de Miracle 7.4 você encontrará áreas de caça com campos mágicos coloridos no chão que afetam o comportamento e os atributos dos monstros gerados:'
+                  : 'Around Miracle 7.4 world map you will encounter hunting grounds featuring magical colored ground fields that modify monster behavior and attributes:'}
+              </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="bg-black/60 p-4 rounded-xl border border-purple-500/30 space-y-2">
-                <span className="font-bold text-purple-400 uppercase text-xs block">
-                  {language === 'pt' ? 'Campos Roxos (Respawn Acelerado)' : 'Purple Fields (Fast Respawn)'}
-                </span>
-                <p className="text-xs text-stone-300">
-                  {language === 'pt'
-                    ? 'Reduzem o intervalo de tempo para que as criaturas renasçam no respawn (-10s a -2.5s), permitindo caçadas contínuas de alta densidade sem pausas.'
-                    : 'Reduces monster respawn interval (-10s to -2.5s), allowing uninterrupted high-density hunting.'}
-                </p>
-              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="bg-black/60 p-4 rounded-xl border border-purple-500/30 space-y-2">
+                  <span className="font-bold text-purple-400 uppercase text-xs block">
+                    {language === 'pt' ? 'Campos Roxos (Respawn Acelerado)' : 'Purple Fields (Fast Respawn)'}
+                  </span>
+                  <p className="text-xs text-stone-300">
+                    {language === 'pt'
+                      ? 'Reduzem o intervalo de tempo para que as criaturas renasçam no respawn (-10s a -2.5s), permitindo caçadas contínuas de alta densidade sem pausas.'
+                      : 'Reduces monster respawn interval (-10s to -2.5s), allowing uninterrupted high-density hunting.'}
+                  </p>
+                </div>
 
-              <div className="bg-black/60 p-4 rounded-xl border border-red-500/30 space-y-2">
-                <span className="font-bold text-red-400 uppercase text-xs block">
-                  {language === 'pt' ? 'Campos Vermelhos (Monstros Fortificados)' : 'Red Fields (Empowered Monsters)'}
-                </span>
-                <p className="text-xs text-stone-300">
-                  {language === 'pt'
-                    ? 'Concedem um bônus de +2% a +10% de atributos, pontos de experiência e chance de loot às criaturas que nascem sobre eles.'
-                    : 'Grants +2% to +10% bonus attributes, experience points, and loot drop chance to monsters spawned upon them.'}
-                </p>
+                <div className="bg-black/60 p-4 rounded-xl border border-red-500/30 space-y-2">
+                  <span className="font-bold text-red-400 uppercase text-xs block">
+                    {language === 'pt' ? 'Campos Vermelhos (Monstros Fortificados)' : 'Red Fields (Empowered Monsters)'}
+                  </span>
+                  <p className="text-xs text-stone-300">
+                    {language === 'pt'
+                      ? 'Concedem um bônus de +2% a +10% de atributos, pontos de experiência e chance de loot às criaturas que nascem sobre eles.'
+                      : 'Grants +2% to +10% bonus attributes, experience points, and loot drop chance to monsters spawned upon them.'}
+                  </p>
+                </div>
               </div>
             </div>
+            {renderNavFooter(action)}
           </div>
         </div>
-      </div>
-    </motion.div>
-  );
+      </motion.div>
+    );
+  };
 
   const systems = [
     {
       id: 'relic_box',
       name: language === 'pt' ? 'Relic Box' : 'Relic Box',
-      desc: language === 'pt' ? 'Container exclusivo de 4 slots para relíquias mágicas e Djinn Magic.' : 'Exclusive 4-slot container for magical relics and Djinn Magic.',
+      desc: language === 'pt' ? 'Container exclusivo de até 6 slots para relíquias mágicas e atributos únicos.' : 'Exclusive container with up to 6 slots for magical relics and unique attributes.',
       icon: '/images/miracle/features/relicbox.png'
     },
     {

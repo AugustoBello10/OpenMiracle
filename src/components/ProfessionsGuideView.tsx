@@ -57,9 +57,9 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
     { id: 'skinning', name: { pt: 'ESFOLADOR (SKINNING)', en: 'SKINNER (SKINNING)' }, icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784733738/skinning_outfit.png" className="w-20 h-20 object-contain" alt="Skinning" onError={(e) => { e.currentTarget.style.display = 'none'; }} />, isImplemented: true, color: 'from-amber-900 to-amber-700' },
     { id: 'mining', name: { pt: 'MINERADOR (MINING)', en: 'MINER (MINING)' }, icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/miner_outfit.gif" className="w-20 h-20 object-contain scale-[1.3]" alt="Mining" />, isImplemented: true, color: 'from-stone-700 to-stone-500' },
     { id: 'cooking', name: { pt: 'Culinária (Cooking)', en: 'Cooking' }, icon: <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/chef_outfit.gif" className="w-20 h-20 object-contain scale-[1.3]" alt="Cooking" onError={(e) => { e.currentTarget.style.display = 'none'; }} />, isImplemented: true, color: 'from-red-900 to-red-600' },
-    { id: 'farming', name: { pt: 'Fazenda (Farming)', en: 'Farming' }, icon: <Sprout className="w-8 h-8" />, isImplemented: false, color: 'from-emerald-900 to-emerald-600' },
+    { id: 'farming', name: { pt: 'Fazenda (Farming)', en: 'Farming' }, icon: <Sprout className="w-8 h-8" />, isImplemented: true, color: 'from-emerald-900 to-emerald-600' },
     { id: 'carpentry', name: { pt: 'Carpintaria (Carpentry)', en: 'Carpentry' }, icon: <Hammer className="w-8 h-8" />, isImplemented: true, color: 'from-yellow-900 to-yellow-600' }, // using hammer again or something else
-    { id: 'woodcutting', name: { pt: 'Lenhador (Woodcutting)', en: 'Woodcutting' }, icon: <Axe className="w-8 h-8" />, isImplemented: false, color: 'from-green-900 to-green-700' },
+    { id: 'woodcutting', name: { pt: 'Lenhador (Woodcutting)', en: 'Woodcutting' }, icon: <Axe className="w-8 h-8" />, isImplemented: true, color: 'from-green-900 to-green-700' },
   ];
 
   const t = (pt: string, en: string) => language === 'pt' ? pt : en;
@@ -2059,6 +2059,26 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
             </div>
           </div>
         );
+      case 'woodcutting':
+        return (
+          <div className="space-y-6 text-left text-stone-300 font-sans text-base leading-relaxed">
+            <h3 className="text-2xl font-black text-medieval-gold uppercase mb-4">
+              {t('Mecânica & Detalhes da Profissão', 'Mechanics & Profession Details')}
+            </h3>
+            <p>
+              {t(
+                'A profissão de Lenhador (Woodcutting) é uma profissão de coleta primária projetada para a extração de madeiras e troncos específicos de árvores no mapa de Miracle 7.4.',
+                'The Woodcutting profession is a primary gathering trade designed for harvesting specialized lumber and timber from trees across the Miracle 7.4 map.'
+              )}
+            </p>
+            <NoticeCard type="info" title={t('Integração com Carpintaria & Status Oficial', 'Carpentry Integration & Server Status')}>
+              {t(
+                'Os recursos obtidos por Lenhadores são utilizados na fabricação de camas, construções de terras (Lands) e mobílias na Carpintaria. Esta profissão está em fase de balanceamento e ativação de machados no servidor. Todas as fórmulas, tipos de madeira e locais exatos serão documentados integralmente nesta página.',
+                'Resources gathered by Woodcutters supply the crafting of beds, land constructions, and furniture in Carpentry. This profession is currently undergoing balancing and axe deployment on the server. All formulas, wood tiers, and tree spawn spots will be thoroughly documented here.'
+              )}
+            </NoticeCard>
+          </div>
+        );
       default:
         return (
            <div className="flex flex-col items-center justify-center py-20 text-center space-y-6">
@@ -2129,12 +2149,23 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               {professions.find(p => p.id === selectedProf)?.icon}
             </div>
             
-            <button 
-              onClick={() => onSelectProf(null)}
-              className="flex items-center gap-2 text-medieval-gold/60 hover:text-medieval-gold transition-colors font-bold uppercase text-xs tracking-wider mb-8 bg-black/40 px-4 py-2 rounded-lg border border-medieval-gold/10 hover:border-medieval-gold/30 w-fit"
-            >
-              <ArrowLeft className="w-4 h-4" /> {t('Voltar para o Menu', 'Back to Menu')}
-            </button>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-8 pb-4 border-b border-medieval-gold/15">
+              <button 
+                onClick={() => onSelectProf(null)}
+                className="text-medieval-gold/80 hover:text-medieval-gold transition-all font-bold uppercase text-xs tracking-wider bg-black/60 px-4 py-2.5 rounded-lg border border-medieval-gold/20 hover:border-medieval-gold/50 cursor-pointer w-fit text-center"
+              >
+                {t('Voltar para Todas as Profissões', 'Back to All Professions')}
+              </button>
+
+              {onNavigateToCalculator && ['crafting', 'alchemy', 'mining', 'farming'].includes(selectedProf) && (
+                <button
+                  onClick={() => onNavigateToCalculator(selectedProf as any)}
+                  className="text-sky-400 hover:text-sky-300 font-bold uppercase text-xs tracking-wider bg-sky-950/40 hover:bg-sky-950/70 px-4 py-2.5 rounded-lg border border-sky-500/30 hover:border-sky-400 transition-all cursor-pointer w-fit text-center"
+                >
+                  {t('Abrir Calculadora Desta Profissão', 'Open Profession Calculator')}
+                </button>
+              )}
+            </div>
 
             <div className="flex items-center gap-4 mb-8 pb-8 border-b border-medieval-gold/10">
                <div className="p-4 bg-black border border-medieval-gold/30 rounded-xl">
@@ -2148,6 +2179,31 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
             </div>
 
             {renderContent()}
+
+            {/* Bottom Return Bar */}
+            <div className="mt-12 pt-6 border-t border-medieval-gold/15 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <button 
+                onClick={() => {
+                  onSelectProf(null);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="text-medieval-gold/80 hover:text-medieval-gold font-bold uppercase text-xs tracking-wider bg-black/40 px-4 py-2.5 rounded-lg border border-medieval-gold/20 hover:border-medieval-gold/40 cursor-pointer w-fit text-center"
+              >
+                {t('Voltar para Todas as Profissões', 'Back to All Professions')}
+              </button>
+
+              {onNavigateToCalculator && ['crafting', 'alchemy', 'mining', 'farming'].includes(selectedProf) && (
+                <button
+                  onClick={() => {
+                    onNavigateToCalculator(selectedProf as any);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="text-sky-400 hover:text-sky-300 font-bold uppercase text-xs tracking-wider bg-sky-950/40 hover:bg-sky-950/70 px-4 py-2.5 rounded-lg border border-sky-500/30 hover:border-sky-400 transition-all cursor-pointer w-fit text-center"
+                >
+                  {t('Abrir Calculadora Desta Profissão', 'Open Profession Calculator')}
+                </button>
+              )}
+            </div>
 
           </div>
         )}

@@ -1959,6 +1959,35 @@ export default function App() {
                       </button>
                     </div>
 
+                    {/* Cross-navigation bar linking to the full profession guide */}
+                    <div className="bg-medieval-gold/5 border border-medieval-gold/20 rounded-xl p-3.5 mb-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-left">
+                      <div>
+                        <div className="text-xs uppercase font-bold text-medieval-gold tracking-wider">
+                          {language === 'pt' ? 'Guia & Fórmulas Oficiais' : 'Official Guide & Formulas'}
+                        </div>
+                        <div className="text-xs text-stone-300">
+                          {profSubTab === 'crafting'
+                            ? (language === 'pt' ? 'Consulte drops de desmonte, multiplicadores e taxas de quebra no Guia Completo de Crafting.' : 'Check salvaging drops, skill multipliers, and break chances in the Complete Crafting Guide.')
+                            : profSubTab === 'alchemy'
+                            ? (language === 'pt' ? 'Consulte locais dos cristais elementais e orbes no Guia Completo de Alquimia.' : 'Check elemental crystal spawns and orb details in the Complete Alchemy Guide.')
+                            : profSubTab === 'farming'
+                            ? (language === 'pt' ? 'Consulte o ciclo de crescimento e adubos no Guia Completo de Fazenda.' : 'Check growth cycles and fertilizers in the Complete Farming Guide.')
+                            : (language === 'pt' ? 'Consulte tiers de pedras, picaretas e bônus no Guia Completo de Mineração.' : 'Check stone tiers, picks, and mining bonuses in the Complete Mining Guide.')}
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => {
+                          setActiveTab('profissoes');
+                          setProfGuideSubTab(profSubTab);
+                          navigate(`/profissoes/${profSubTab}`);
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                        className="whitespace-nowrap px-4 py-2 bg-medieval-gold/20 hover:bg-medieval-gold/30 border border-medieval-gold/40 hover:border-medieval-gold text-medieval-gold hover:text-yellow-200 text-xs font-bold uppercase tracking-wider rounded-lg transition-all cursor-pointer"
+                      >
+                        {language === 'pt' ? 'Abrir Guia da Profissão' : 'Open Profession Guide'}
+                      </button>
+                    </div>
+
                     {profSubTab === 'crafting' ? (
                       <CraftingCalculator 
                         t={t} 
