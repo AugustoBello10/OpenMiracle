@@ -2,6 +2,11 @@
 
 Please adhere strictly to these rules to preserve the stable and working modules of the **Miracle Wiki Tools** project:
 
+## 📚 Mandatory Context References
+Whenever starting a new session or after context compaction, ALWAYS consult:
+1. `PROJECT_RULES.md` — Engineering & UI/UX Standards (No icons in headers, rarity colors, 100% bilingual, 3-step defense pipeline).
+2. `MIRACLE_GAME_KNOWLEDGE.md` — Complete Official Lore & Mechanics of Miracle 7.4 (Relic Box 6 slots, Melchior quest, Training Weapons, Bed Maker cycle, Player Shop rules, Exaltation Forge Class 1-5).
+
 ## 🛡️ Protected Modules (DO NOT ALTER UNLESS EXPLICITLY REQUESTED)
 The following files and features are fully functional and stable. Do not modify, refactor, or optimize them unless the user explicitly asks for changes in these features:
 - **Calculators**: 
@@ -24,10 +29,6 @@ All interactive enhancements, state refinements, and UI optimizations should be 
 - `src/types/build.ts`
 - `src/utils/formulas.ts`
 
-## 🧩 Coordination rules
-- Do not remove or alter existing tabs in the main navigation bar.
-- Do not perform wide-reaching refactoring or formatting across the entire codebase that might break the existing styling of components.
-
 ## 📜 Standard Operating Guidelines for Wiki & Guides (STRICT & MANDATORY)
 1. **Zero Hallucination & Zero Invented Mechanics:**
    - NEVER assume or invent mechanics from global Tibia or other OTServers (e.g., NO exercise dummies, NO auto-striking on dummies, "praças" are NOT PZ, etc.).
@@ -39,10 +40,15 @@ All interactive enhancements, state refinements, and UI optimizations should be 
    - Titles, card headers, section names, and action buttons MUST remain 100% PURE TEXT, clean, and professional.
    - Decorative icons in titles look amateur and give an "AI generated" feel. Zero icons in headers across the entire website.
    - Icons are only permitted as tiny utility indicators inside data rows (e.g. mini health icon next to `Vida (HP):`).
-4. **Ultra-Pedagogical Step-by-Step ("Take by the Hand"):**
-   - Write clear, continuous narrative explanations assuming the reader is a complete beginner. Explain where to click, what opens on screen, and what mistakes to avoid.
-   - Accompany steps with real in-game screenshots and official sprites for all cited items.
+4. **Item Rarity Colors (Build Maker):**
+   - 0 attributes: Neutral / Sem cor (`border-medieval-gold/15 bg-black/30`)
+   - 1 attribute: White (`border-white/80`)
+   - 2 attributes: Green (`border-emerald-500`)
+   - 3 attributes: Blue (`border-sky-500`)
+   - 4 attributes: Purple (`border-purple-500`)
+   - 5 attributes: Gold (`border-amber-400`)
 5. **Exact Game Formulas & Limits:**
    - Classification range is strictly Class 1 to Class 5 (Class 5 is the maximum).
    - Training Weapons work via **Reduced Attack Interval** (Normal: 0%, Spark: -10%, Lightning: -15%, Inferno: -20%, Shadow: -20%) and finite charges (from 3,600 to 43,200), equipped and used in normal combat training against creatures.
    - Bed Maker cycle: Premium Account required, max 2 sleepers/account, full food of 39m59s (5x multiplier = 200 min = 3h20m), regenerating max 200 mana (1 MP/min). Cycle: log in every 3h20m, cast runes, eat to 39m59s, sleep again.
+   - Relic Box: 6 slots. Slots 1 & 2 via Melchior in Ankrahmun (talk about "notes"). Slots 3 & 4 via Relic Quest. Slot 5 costs 30.000 gold. Slot 6 costs 60.000 gold.
