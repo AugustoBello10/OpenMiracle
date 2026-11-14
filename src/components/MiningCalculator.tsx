@@ -6,10 +6,11 @@ interface MiningCalculatorProps {
 }
 
 const PICKS = [
-  { name: 'Pick', minSkill: 10, mineBonus: 0, dropMultiplier: 1.0, fragility: 0.5 },
-  { name: 'Modified Pick', minSkill: 20, mineBonus: 2.5, dropMultiplier: 1.5, fragility: 1.0 },
-  { name: 'Advanced Pick', minSkill: 30, mineBonus: 5.0, dropMultiplier: 2.0, fragility: 2.0 },
-  { name: 'Enhanced Pick', minSkill: 40, mineBonus: 7.5, dropMultiplier: 2.5, fragility: 3.0 },
+  { name: 'Pick', minSkill: 10, mineBonus: 0, dropMultiplier: 1.0, fragility: 0.2, tiers: 'Tier 1' },
+  { name: 'Modified Pick', minSkill: 20, mineBonus: 2.5, dropMultiplier: 1.5, fragility: 0.6, tiers: 'Tier 1-2' },
+  { name: 'Advanced Pick', minSkill: 30, mineBonus: 5.0, dropMultiplier: 2.0, fragility: 1.0, tiers: 'Tier 1-3' },
+  { name: 'Enhanced Pick', minSkill: 40, mineBonus: 7.5, dropMultiplier: 2.5, fragility: 1.4, tiers: 'Tier 1-4' },
+  { name: 'Golden Pick', minSkill: 50, mineBonus: 10.0, dropMultiplier: 3.0, fragility: 1.8, tiers: 'Tier 1-4' },
 ];
 
 export function MiningCalculator({ t }: MiningCalculatorProps) {
@@ -197,6 +198,9 @@ export function MiningCalculator({ t }: MiningCalculatorProps) {
                   <span className="text-[9px] px-2 py-0.5 bg-medieval-gold/10 border border-medieval-gold/20 text-medieval-gold rounded font-bold uppercase">
                     {stats.fragility}% Fragility
                   </span>
+                  <span className="text-[9px] px-2 py-0.5 bg-cyan-900/40 border border-cyan-500/30 text-cyan-300 rounded font-bold uppercase">
+                    {(selectedPick as any).tiers || 'Tier 1'}
+                  </span>
                 </div>
               </div>
 
@@ -207,7 +211,7 @@ export function MiningCalculator({ t }: MiningCalculatorProps) {
                   <span>Atualização de Mineração (Chance por Tentativa)</span>
                 </div>
                 <p className="text-[10.5px] text-medieval-text/80 leading-relaxed font-mono font-sans">
-                  Agora, cada batida (tentativa) na rocha tem uma chance independente de extrair itens, mesmo sem quebrar a rocha por inteiro. O rendimento médio saltou de <span className="text-medieval-gold font-bold">6.6</span> para cerca de <span className="text-emerald-400 font-bold">16 itens</span> por picareta (com 50 skill & Enhanced Pick).
+                  Agora, cada batida (tentativa) na rocha tem uma chance independente de extrair itens, mesmo sem quebrar a rocha por inteiro. O rendimento médio saltou de <span className="text-medieval-gold font-bold">6.6</span> para cerca de <span className="text-emerald-400 font-bold">16 itens</span> por picareta (com 50 skill & Enhanced Pick). <span className="text-red-400 font-bold block mt-1">Aviso Oficial: O Tools Kit não pode mais ser utilizado para mineração.</span>
                 </p>
               </div>
             </div>

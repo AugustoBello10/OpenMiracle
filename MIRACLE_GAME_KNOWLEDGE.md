@@ -86,3 +86,50 @@
 
 ## 7. 🔨 Exaltation Forge
 * **Classificação de Itens:** O limite máximo de classificação de equipamentos é estritamente **Classe 5** (Classe 1 até Classe 5). Nunca referenciar "Classe 6" ou "Classe 4+".
+
+---
+
+## 8. 📜 Profissões & Mestres (Diálogo Padronizado & Addons)
+* **Diálogo Universal de Iniciação:** O diálogo padrão para se tornar membro oficial em qualquer profissão segue estritamente a sequência:
+  1. `hi`
+  2. `profession`
+  3. `yes`
+  *(Taxa de 20.000 gold + skill mínimo requerido na atividade).*
+* **NPC Hoggle (Mestre Pescador):**
+  - **Localização:** Sul de Thais (`x: 32537, y: 32143, z: 6`).
+  - **Addon 1 (Fishing Rod):** 1x Iron Hammer, 200x Scarab Pincers, 200x Bone Tails + taxa de 25.000 gold (25k).
+  - **Addon 2 (Basket):** 1x Basket, 300x Cobra Tongues + taxa de 25.000 gold (25k).
+  - Diálogo de Addon: falar `addon`, selecionar `fishing rod` ou `basket`, e confirmar com `yes`.
+
+---
+
+## 9. ⚒️ Forja, Fundição & Desmonte (Blacksmith Update 03/08/2026 & 13/04/2026)
+* **Localização do Iron Hammer Quest:** Kazordoon Minotaur Mountain (`x: 32434, y: 31938, z: 8`).
+* **Sistema de Fundição (Smelting em Coal Basins):**
+  - Minérios brutos são fundidos em barras utilizando bacias de carvão acesas (*coal basins*).
+  - Todo o stack de minérios é convertido automaticamente em lotes de 5 minérios.
+  - A fundição concede avanço de skill de forja e tem chance de êxito calculada pela skill:
+    - **Copper Bar:** 5x Copper Ores (multiplicador 3.0)
+    - **Iron Bar:** 5x Iron Ores (multiplicador 2.5)
+    - **Gold Bar:** 5x Gold Ores (multiplicador 2.0)
+    - **Mythan Bar:** 5x Mythan Ores (multiplicador 1.5)
+    - **Mystic Bar:** 5x Mystic Ores (multiplicador 1.0)
+* **Novas Receitas de Crafting (03/08/2026):**
+  - **Armored War Bow:** 1x War Bow (consumido), 300 Steels, 200 Draconian Steels, 100 Hell Steels (mult 0.08, min chance 0%).
+  - **10x Onyx Arrows:** 10 Arrows, 1 Onyx Fragment (mult 2.0).
+  - **Golden Pick:** 1x Enhanced Pick (consumido), 40 Steels, 10 Draconian Steels, 3 Hell Steels, 3 Gold Bars.
+  - **Machados de Corte:** Refined Axe (mult 2.0, 5 steels), Superior Axe (mult 1.5, 10 steels, 1 drac), Masterwork Axe (mult 1.0, 20 steels, 5 drac), Grandmaster Axe (mult 0.8, 40 steels, 10 drac, 3 gold bars).
+  - **Pedras & Brasões:** Earth Stone (5 natural soil), Frozen Stone (5 frozen ore), Fiery Stone (mult 1.0), Onyx (10 onyx fragments, mult 0.5), Brasões de Cobre, Ferro, Ouro, Mythan e Mystic (5 barras cada, mult 1.0).
+* **Desmonte de Equipamentos (Breaking 13/04/2026):**
+  - Scythe (1 steel, 100%), Dark Shield (5 steels), Soldier Helmet (1 steel), Studded Helmet (16%), Legion Helmet (66%), Scale Armor (6 steels), Chain Legs (2 steels), Wooden Shield (41% de 1 steel), Copper Shield (83% de 1 steel), Knife/Combat Knife (8.3%), Dagger (16%), Machete (50%), Hand Axe (33%), Axe (58%).
+
+---
+
+## 10. ⛏️ Mineração & Picaretas (Balanceamento 03/08/2026)
+* **Proibição Absoluta do Tools Kit:** O item *Tools Kit* foi desabilitado e **NÃO** pode mais ser utilizado para minerar rochas.
+* **Tiers de Rochas & Picaretas:**
+  - **Pick (Básica):** Minera pedras de **Tier 1**. Agora dropa fragmentos em lava holes, ice holes e mossy stones. Chance de quebra: **0.2%** (anteriormente 0%).
+  - **Modified Pick:** Minera pedras de **Tier 1 e 2**. Chance de quebra: **0.6%** (anteriormente 0.5%). Bônus em Tier 1: **+2.5% chance de quebra no alvo, +50% de drop**.
+  - **Advanced Pick:** Minera pedras de **Tier 1 a 3**. Chance de quebra: **1.0%**. Bônus: Tier 1 (+5% quebra, +100% drop) e Tier 2 (+2.5% quebra, +50% drop).
+  - **Enhanced Pick:** Minera pedras de **Tier 1 a 4**. Chance de quebra: **1.4%** (reduzida de 1.5%). Bônus: Tier 1 (+7.5% qb, +150% dp), Tier 2 (+5% qb, +100% dp), Tier 3 (+2.5% qb, +50% dp).
+  - **Golden Pick:** Minera pedras de **Tier 1 a 4**. Chance de quebra: **1.8%**. Bônus: Tier 1 (+10% qb, +200% dp), Tier 2 (+7.5% qb, +150% dp), Tier 3 (+5% qb, +100% dp), Tier 4 (+2.5% qb, +50% dp).

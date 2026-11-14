@@ -13,6 +13,96 @@ export interface PatchNote {
 
 export const PROJECT_PATCH_NOTES: PatchNote[] = [
   {
+    version: "1.7.0",
+    date: "2026-08-03",
+    title: { pt: "Miracle 7.4 Update - Sistema de Fundição, Novas Picaretas & Balanceamento de Crafting", en: "Miracle 7.4 Update - Smelting System, New Picks & Crafting Rebalance" },
+    changes: {
+      added: {
+        pt: [
+          "Sistema de Fundição de Barras (Smelting): agora é possível fundir minérios em barras utilizando bacias de carvão acesas (coal basins). Converte automaticamente stacks inteiros de 5 em 5 minérios, com chance de sucesso e avanço de skill de forja.",
+          "Novas receitas de fundição: Copper Bar (mult 3.0), Iron Bar (mult 2.5), Gold Bar (mult 2.0), Mythan Bar (mult 1.5) e Mystic Bar (mult 1.0).",
+          "Golden Pick (Nova Picareta): quebra pedras de Tier 1 a 4 com chance de quebra de 1.8% e bônus de até +10% no alvo e +200% de drop.",
+          "Armored War Bow: nova arma à distância craftada na bigorna (300 steels, 200 draconian steels, 100 hell steels, mult 0.08).",
+          "10x Onyx Arrows: nova munição forjada com 10x arrows e 1x onyx fragment (mult 2.0).",
+          "Novos Brasões (Crests): Copper, Iron, Gold, Mythan e Mystic Crests (5 barras cada, mult 1.0).",
+          "Novas Pedras & Cristais: Earth Stone (5 natural soils), Frozen Stone (5 frozen ores), Onyx (10 onyx fragments), Convergence Crystal e Prismatic Crystal.",
+          "Addons do Pescador: NPC Hoggle em Thais agora confecciona a Vara de Pesca (Fishing Rod) e o Cesto de Pesca (Basket)."
+        ],
+        en: [
+          "Smelting System: ores can now be smelted into bars using active coal basins. Automatically converts ore stacks in batches of 5, scaling with Crafting skill and granting skill advancement.",
+          "New smelting recipes: Copper Bar (mult 3.0), Iron Bar (mult 2.5), Gold Bar (mult 2.0), Mythan Bar (mult 1.5), and Mystic Bar (mult 1.0).",
+          "Golden Pick (New Pick): mines Tier 1-4 stones with 1.8% break rate and up to +10% target break chance and +200% drop chance.",
+          "Armored War Bow: new distance weapon crafted on anvil (300 steels, 200 draconian steels, 100 hell steels, mult 0.08).",
+          "10x Onyx Arrows: new ammunition crafted with 10x arrows and 1x onyx fragment (mult 2.0).",
+          "New Crests: Copper, Iron, Gold, Mythan, and Mystic Crests (5 bars each, mult 1.0).",
+          "New Stones & Crystals: Earth Stone, Frozen Stone, Onyx, Convergence Crystal, and Prismatic Crystal.",
+          "Fisherman Addons: NPC Hoggle in Thais now crafts the Fishing Rod and Fishing Basket addons."
+        ]
+      },
+      changed: {
+        pt: [
+          "Rebalanceamento de Picaretas: Pick básica agora possui 0.2% de chance de quebra e dropa fragmentos em lava holes, ice holes e mossy stones.",
+          "Modified Pick: chance de quebra ajustada para 0.6% e novos bônus para Tier 1 (+2.5% alvo, +50% drop).",
+          "Enhanced Pick: chance de quebra reduzida de 1.5% para 1.4% com bônus expandidos até Tier 3.",
+          "Receitas de Picaretas: agora consomem a picareta do nível anterior no sucesso.",
+          "Machados de Corte: Refined Axe (mult 1 -> 2, draconian steel removido), Superior Axe (mult 0.8 -> 1.5), Masterwork Axe (mult 0.6 -> 1.0) e Grandmaster Axe (mult 0.4 -> 0.8, requer 3 gold bars).",
+          "Fiery Stone: multiplicador aumentado de 0.5 para 1.0."
+        ],
+        en: [
+          "Pick Rebalance: basic Pick now has 0.2% break chance and drops fragments from lava holes, ice holes and mossy stones.",
+          "Modified Pick: break chance adjusted to 0.6% with Tier 1 bonuses (+2.5% target, +50% drop).",
+          "Enhanced Pick: break chance reduced from 1.5% to 1.4% with bonuses up to Tier 3.",
+          "Pick Recipes: now consume previous tier pick on success.",
+          "Cutting Axes: Refined Axe (mult 1 -> 2), Superior Axe (mult 0.8 -> 1.5), Masterwork Axe (mult 0.6 -> 1.0), Grandmaster Axe (mult 0.4 -> 0.8, requires 3 gold bars).",
+          "Fiery Stone: multiplier increased from 0.5 to 1.0."
+        ]
+      },
+      removed: {
+        pt: [
+          "Tools Kit: não pode mais ser utilizado para mineração."
+        ],
+        en: [
+          "Tools Kit: can no longer be used for mining."
+        ]
+      }
+    }
+  },
+  {
+    version: "1.5.5",
+    date: "2026-04-13",
+    title: { pt: "Miracle 7.4 Update - Balanceamento de Desmonte de Equipamentos (Breaking)", en: "Miracle 7.4 Update - Equipment Salvaging Rebalance (Breaking)" },
+    changes: {
+      added: {
+        pt: [
+          "Novos itens quebraveis na bigorna: Scythe (1 steel, 100% chance) e Dark Shield (5 steels).",
+          "Inclusão de Studded Helmet (16% chance) e Legion Helmet (66% chance)."
+        ],
+        en: [
+          "New breakable items on anvil: Scythe (1 steel, 100% chance) and Dark Shield (5 steels).",
+          "Inclusion of Studded Helmet (16% chance) and Legion Helmet (66% chance)."
+        ]
+      },
+      changed: {
+        pt: [
+          "Soldier Helmet: rendimento de desmonte ajustado de 6 steels para 1 steel.",
+          "Scale Armor: rendimento ajustado de 8 para 6 steels.",
+          "Chain Legs: rendimento ajustado de 1 para 2 steels.",
+          "Wooden Shield: chance de extração de 1 steel ajustada de 82% para 41%.",
+          "Copper Shield: chance de extração ajustada para 83% de 1 steel (anteriormente 4 steels).",
+          "Hand Axe (33% chance, era 82%) e Axe comum (58% chance, era 82%)."
+        ],
+        en: [
+          "Soldier Helmet: yield adjusted from 6 steels to 1 steel.",
+          "Scale Armor: yield adjusted from 8 to 6 steels.",
+          "Chain Legs: yield adjusted from 1 to 2 steels.",
+          "Wooden Shield: steel extraction chance adjusted from 82% to 41%.",
+          "Copper Shield: extraction chance adjusted to 83% of 1 steel (was 4 steels).",
+          "Hand Axe (33% chance, was 82%) and regular Axe (58% chance, was 82%)."
+        ]
+      }
+    }
+  },
+  {
     version: "1.6.0",
     date: "2026-11-13",
     title: { pt: "Miracle 7.4 Update - Expansão da Relic Box & Melchior Quest", en: "Miracle 7.4 Update - Relic Box Expansion & Melchior Quest" },

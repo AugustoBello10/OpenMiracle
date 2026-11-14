@@ -13,9 +13,9 @@
     "name": "Iron Hammer Quest",
     "category": "Quests",
     "city": "Kazordoon",
-    "x": 32644,
-    "y": 31967,
-    "z": 12
+    "x": 32434,
+    "y": 31938,
+    "z": 8
   },
   "alexander": {
     "id": "alexander",
@@ -57,10 +57,10 @@
     "id": "hoggle",
     "name": "Hoggle (Pescador)",
     "category": "Profissões",
-    "city": "Thais Leste",
-    "x": 32410,
-    "y": 32230,
-    "z": 7
+    "city": "Thais",
+    "x": 32537,
+    "y": 32143,
+    "z": 6
   },
   "aldren": {
     "id": "aldren",

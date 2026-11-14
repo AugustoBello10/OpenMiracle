@@ -43,7 +43,7 @@ const createMonsterIcon = (image: string, count: number, hasTeleport: boolean = 
     html: `
       <div style="position: relative; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 0 2px rgba(0,0,0,0.8));">
         <div style="position: relative; display: inline-flex;">
-          <img src="${image}" style="max-width: 48px; max-height: 48px; object-fit: contain;" />
+          <img src="${image}" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'36\\' height=\\'36\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\' stroke=\\'%23d4af37\\' stroke-width=\\'2\\' stroke-linecap=\\'round\\' stroke-linejoin=\\'round\\'><circle cx=\\'12\\' cy=\\'8\\' r=\\'5\\'/><path d=\\'M20 21a8 8 0 1 0-16 0\\'/></svg>'; this.style.opacity='0.85';" style="max-width: 48px; max-height: 48px; object-fit: contain;" />
           ${keyInfo ? `
             <div style="position: absolute; top: -6px; left: -6px; background: rgba(217, 119, 6, 0.95); border: 1.5px solid #fef08a; color: #ffffff; font-size: 10px; font-weight: bold; border-radius: 9999px; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 8px rgba(245, 158, 11, 0.9); z-index: 12;" title="Trancado - ${keyInfo.replace(/"/g, '&quot;')}">
               🔑
@@ -54,9 +54,7 @@ const createMonsterIcon = (image: string, count: number, hasTeleport: boolean = 
               ✦
             </div>
           ` : ''}
-          <div style="position: absolute; bottom: -6px; right: -6px; background: rgba(0,0,0,0.9); border: 1px solid #c8aa6e; color: #c8aa6e; font-size: 11px; font-weight: bold; border-radius: 4px; padding: 1px 4px; line-height: 1.2; box-shadow: 0 0 4px rgba(0,0,0,1); font-family: monospace; z-index: 10;">
-            ${count}
-          </div>
+          ${count > 1 ? `<div style="position: absolute; bottom: -6px; right: -6px; background: rgba(0,0,0,0.9); border: 1px solid #c8aa6e; color: #c8aa6e; font-size: 11px; font-weight: bold; border-radius: 4px; padding: 1px 4px; line-height: 1.2; box-shadow: 0 0 4px rgba(0,0,0,1); font-family: monospace; z-index: 10;">${count}</div>` : ''}
         </div>
       </div>
     `,

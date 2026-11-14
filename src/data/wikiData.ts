@@ -4,9 +4,10 @@ export const CRAFT_ITEMS = [
   {
     category: "toolsPicks",
     items: [
-      { name: "Modified Pick", multiplier: 2, req: "1 Pick + 5 Steels", materials: [{ name: "Pick", amount: 1 }, { name: "Steel", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Modified_pick.gif" },
-      { name: "Advanced Pick", multiplier: 1.5, req: "1 Pick + 1 Draconian Steel + 10 Steels", materials: [{ name: "Pick", amount: 1 }, { name: "Draconian Steel", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }, { name: "Steel", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Advanced_pick.gif" },
-      { name: "Enhanced Pick", multiplier: 1, req: "1 Pick + 5 Draconian Steels + 20 Steels", materials: [{ name: "Pick", amount: 1 }, { name: "Draconian Steel", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }, { name: "Steel", amount: 20, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Enchanced_Pick.gif" },
+      { name: "Modified Pick", multiplier: 2, req: "1x Pick (consumed on success) + 5 Steels", materials: [{ name: "Pick", amount: 1 }, { name: "Steel", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Modified_pick.gif" },
+      { name: "Advanced Pick", multiplier: 1.5, req: "1x Modified Pick (consumed on success) + 1 Draconian Steel + 10 Steels", materials: [{ name: "Modified Pick", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Modified_pick.gif" }, { name: "Draconian Steel", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }, { name: "Steel", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Advanced_pick.gif" },
+      { name: "Enhanced Pick", multiplier: 1, req: "1x Advanced Pick (consumed on success) + 5 Draconian Steels + 20 Steels", materials: [{ name: "Advanced Pick", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Advanced_pick.gif" }, { name: "Draconian Steel", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }, { name: "Steel", amount: 20, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Enchanced_Pick.gif" },
+      { name: "Golden Pick", multiplier: 0.5, req: "1x Enhanced Pick (consumed on success) + 40 Steels + 10 Draconian Steels + 3 Hell Steels + 3 Gold Bars", materials: [{ name: "Enhanced Pick", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Enchanced_Pick.gif" }, { name: "Steel", amount: 40, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }, { name: "Draconian Steel", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }, { name: "Hell Steel", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/hell_steel.gif" }, { name: "Gold Bar", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/goldingot.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Golden_pick.gif" }
     ]
   },
   {
@@ -19,6 +20,12 @@ export const CRAFT_ITEMS = [
     ]
   },
   {
+    category: "weaponsDistance",
+    items: [
+      { name: "Armored War Bow", multiplier: 0.08, minChance: 0, req: "1x War Bow (consumed on success) + 300 Steels + 200 Draconian Steels + 100 Hell Steels", materials: [{ name: "War Bow", amount: 1 }, { name: "Steel", amount: 300, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }, { name: "Draconian Steel", amount: 200, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }, { name: "Hell Steel", amount: 100, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/hell_steel.gif" }] }
+    ]
+  },
+  {
     category: "skinningKnives",
     items: [
       { name: "Diamond Knife", multiplier: 1, req: "10 small diamonds + 5 Hell Steels + 1 Combat Knife", materials: [{ name: "Small Diamond", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/smalldiamond.gif" }, { name: "Hell Steel", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/hell_steel.gif" }, { name: "Combat Knife", amount: 1 }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784736439/diamong_knife.gif" },
@@ -27,10 +34,10 @@ export const CRAFT_ITEMS = [
   {
     category: "cuttingAxes",
     items: [
-      { name: "Refined Axe", multiplier: 1, req: "1x rough axe (consumed on success), 10x steels, 1x draconian steel", materials: [{ name: "Rough Axe", amount: 1 }, { name: "Steel", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }, { name: "Draconian Steel", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }] },
-      { name: "Superior Axe", multiplier: 0.8, req: "1x refined axe (consumed on success), 20x steels, 5x draconian steels", materials: [{ name: "Refined Axe", amount: 1 }, { name: "Steel", amount: 20, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }, { name: "Draconian Steel", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }] },
-      { name: "Masterwork Axe", multiplier: 0.6, req: "1x superior axe (consumed on success), 40x steels, 10x draconian steels", materials: [{ name: "Superior Axe", amount: 1 }, { name: "Steel", amount: 40, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }, { name: "Draconian Steel", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }] },
-      { name: "Grandmaster Axe", multiplier: 0.4, req: "1x masterwork axe (consumed on success), 80x steels, 20x draconian steels, 3x hell steel, 5x small topaz", materials: [{ name: "Masterwork Axe", amount: 1 }, { name: "Steel", amount: 80, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }, { name: "Draconian Steel", amount: 20, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }, { name: "Hell Steel", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/hell_steel.gif" }, { name: "Small Topaz", amount: 5 }] },
+      { name: "Refined Axe", multiplier: 2.0, req: "1x Rough Axe (consumed on success) + 5x Steels", materials: [{ name: "Rough Axe", amount: 1 }, { name: "Steel", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }] },
+      { name: "Superior Axe", multiplier: 1.5, req: "1x Refined Axe (consumed on success) + 10x Steels + 1x Draconian Steel", materials: [{ name: "Refined Axe", amount: 1 }, { name: "Steel", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }, { name: "Draconian Steel", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }] },
+      { name: "Masterwork Axe", multiplier: 1.0, req: "1x Superior Axe (consumed on success) + 20x Steels + 5x Draconian Steels", materials: [{ name: "Superior Axe", amount: 1 }, { name: "Steel", amount: 20, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }, { name: "Draconian Steel", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }] },
+      { name: "Grandmaster Axe", multiplier: 0.8, req: "1x Masterwork Axe (consumed on success) + 40x Steels + 10x Draconian Steels + 3x Gold Bar", materials: [{ name: "Masterwork Axe", amount: 1 }, { name: "Steel", amount: 40, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }, { name: "Draconian Steel", amount: 10, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Draconian_Steel.gif" }, { name: "Gold Bar", amount: 3, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/goldingot.gif" }] },
     ]
   },
   {
@@ -45,9 +52,34 @@ export const CRAFT_ITEMS = [
     ]
   },
   {
-    category: "others",
+    category: "stonesCrystals",
     items: [
-      { name: "Fiery Stone", multiplier: 0.5, req: "5 Glimmering Soils", materials: [{ name: "Glimmering Soil", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/glmeringsoil.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/fiery.gif" },
+      { name: "Fiery Stone", multiplier: 1.0, req: "5 Glimmering Soils", materials: [{ name: "Glimmering Soil", amount: 5, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/glmeringsoil.gif" }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/fiery.gif" },
+      { name: "Earth Stone", multiplier: 1.0, req: "5 Natural Soils", materials: [{ name: "Natural Soil", amount: 5 }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/earth_stone.gif" },
+      { name: "Frozen Stone", multiplier: 1.0, req: "5 Frozen Ores", materials: [{ name: "Frozen Ore", amount: 5 }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/frozen_stone.gif" },
+      { name: "Onyx", multiplier: 0.5, req: "10 Onyx Fragments", materials: [{ name: "Onyx Fragment", amount: 10 }], img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/onyx.gif" },
+      { name: "Convergence Crystal", multiplier: 1.0, req: "1 Rare Crystal + 5 Shiny Stones", materials: [{ name: "Rare Crystal", amount: 1 }, { name: "Shiny Stone", amount: 5 }] },
+      { name: "Prismatic Crystal", multiplier: 1.0, req: "1 Rare Crystal + 5 Prismatic Stones", materials: [{ name: "Rare Crystal", amount: 1 }, { name: "Prismatic Stone", amount: 5 }] },
+    ]
+  },
+  {
+    category: "crests",
+    items: [
+      { name: "Copper Crest", multiplier: 1.0, req: "5 Copper Bars", materials: [{ name: "Copper Bar", amount: 5 }] },
+      { name: "Iron Crest", multiplier: 1.0, req: "5 Iron Bars", materials: [{ name: "Iron Bar", amount: 5 }] },
+      { name: "Gold Crest", multiplier: 1.0, req: "5 Gold Bars", materials: [{ name: "Gold Bar", amount: 5 }] },
+      { name: "Mythan Crest", multiplier: 1.0, req: "5 Mythan Bars", materials: [{ name: "Mythan Bar", amount: 5 }] },
+      { name: "Mystic Crest", multiplier: 1.0, req: "5 Mystic Bars", materials: [{ name: "Mystic Bar", amount: 5 }] },
+    ]
+  },
+  {
+    category: "smelting",
+    items: [
+      { name: "Copper Bar", multiplier: 3.0, req: "5 Copper Ores (fundidos em Coal Basin)", materials: [{ name: "Copper Ore", amount: 5 }] },
+      { name: "Iron Bar", multiplier: 2.5, req: "5 Iron Ores (fundidos em Coal Basin)", materials: [{ name: "Iron Ore", amount: 5 }] },
+      { name: "Gold Bar", multiplier: 2.0, req: "5 Gold Ores (fundidos em Coal Basin)", materials: [{ name: "Gold Ore", amount: 5 }] },
+      { name: "Mythan Bar", multiplier: 1.5, req: "5 Mythan Ores (fundidos em Coal Basin)", materials: [{ name: "Mythan Ore", amount: 5 }] },
+      { name: "Mystic Bar", multiplier: 1.0, req: "5 Mystic Ores (fundidos em Coal Basin)", materials: [{ name: "Mystic Ore", amount: 5 }] },
     ]
   },
   {
@@ -66,7 +98,8 @@ export const CRAFT_ITEMS = [
   {
     category: "ammunition",
     items: [
-      { name: "10x Steel Bolts", multiplier: 2, req: "10 bolt + 1 steel", materials: [{ name: "Bolt", amount: 10 }, { name: "Steel", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }] },
+      { name: "10x Steel Bolts", multiplier: 2.0, req: "10 bolt + 1 steel", materials: [{ name: "Bolt", amount: 10 }, { name: "Steel", amount: 1, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Piece_of_Steel.gif" }] },
+      { name: "10x Onyx Arrows", multiplier: 2.0, req: "10 arrows + 1 onyx fragment", materials: [{ name: "Arrow", amount: 10 }, { name: "Onyx Fragment", amount: 1 }] },
     ]
   }
 ];
@@ -133,6 +166,9 @@ export const BREAKING_DATA = [
     category: "helmets",
     items: [
       { item: "Leather Helmet", max: 1, min: 0, mathAvg: "0.2 Steels", practicalAvg: "20% chance", verdict: "UPAR SKILL", minSkill: 10 },
+      { item: "Studded Helmet", max: 1, min: 0, mathAvg: "0.16 Steels", practicalAvg: "16% chance", verdict: "UPAR SKILL", minSkill: 10 },
+      { item: "Legion Helmet", max: 1, min: 0, mathAvg: "0.66 Steels", practicalAvg: "66% chance", verdict: "UPAR SKILL", minSkill: 10 },
+      { item: "Soldier Helmet", max: 1, min: 0, mathAvg: "1 Steel", practicalAvg: "1.00 Steel (was 6)", verdict: "UPAR SKILL", minSkill: 10 },
       { item: "Chain Helmet", max: 2, min: 0, mathAvg: "1 Steel", practicalAvg: "1.00 Steel", verdict: "Vender NPC", minSkill: 10 },
       { item: "Brass Helmet", max: 2, min: 0, mathAvg: "1 Steel", practicalAvg: "1.00 Steel", verdict: "Vender NPC", minSkill: 10 },
       { item: "Iron Helmet", max: 4, min: 0, mathAvg: "2 Steels", practicalAvg: "2.00 Steels", verdict: "Vender NPC", minSkill: 10 },
@@ -145,7 +181,7 @@ export const BREAKING_DATA = [
       { item: "Leather Armor", max: 1, min: 0, mathAvg: "0.2 Steels", practicalAvg: "20% chance", verdict: "UPAR SKILL", minSkill: 10 },
       { item: "Chain Armor", max: 4, min: 0, mathAvg: "2 Steels", practicalAvg: "1.85 Steels", verdict: "Vender NPC", minSkill: 10 },
       { item: "Brass Armor", max: 4, min: 0, mathAvg: "2 Steels", practicalAvg: "1.85 Steels", verdict: "Vender NPC", minSkill: 10 },
-      { item: "Scale Armor", max: 4, min: 0, mathAvg: "2 Steels", practicalAvg: "1.85 Steels", verdict: "Vender NPC", minSkill: 10 },
+      { item: "Scale Armor", max: 6, min: 0, mathAvg: "3 Steels", practicalAvg: "6 Steels (was 8)", verdict: "Vender NPC", minSkill: 10 },
       { item: "Plate Armor", max: 8, min: 0, mathAvg: "4 Steels", practicalAvg: "3.75 Steels", verdict: "Vender NPC", minSkill: 10 },
     ]
   },
@@ -153,7 +189,7 @@ export const BREAKING_DATA = [
     category: "legs",
     items: [
       { item: "Leather Legs", max: 1, min: 0, mathAvg: "0.2 Steels", practicalAvg: "20% chance", verdict: "UPAR SKILL", minSkill: 10 },
-      { item: "Chain Legs", max: 2, min: 0, mathAvg: "1 Steel", practicalAvg: "1.00 Steel", verdict: "Vender NPC", minSkill: 10 },
+      { item: "Chain Legs", max: 2, min: 0, mathAvg: "1 Steel", practicalAvg: "2 Steels (was 1)", verdict: "Vender NPC", minSkill: 10 },
       { item: "Brass Legs", max: 2, min: 0, mathAvg: "1 Steel", practicalAvg: "1.00 Steel", verdict: "Vender NPC", minSkill: 10 },
       { item: "Plate Legs", max: 4, min: 0, mathAvg: "2 Steels", practicalAvg: "1.85 Steels", verdict: "Vender NPC", minSkill: 10 },
     ]
@@ -161,17 +197,21 @@ export const BREAKING_DATA = [
   {
     category: "shields",
     items: [
-      { item: "Wooden Shield", max: 1, min: 0, mathAvg: "0.2 Steels", practicalAvg: "20% chance", verdict: "UPAR SKILL", minSkill: 10 },
+      { item: "Wooden Shield", max: 1, min: 0, mathAvg: "0.41 Steels", practicalAvg: "41% chance (was 82%)", verdict: "UPAR SKILL", minSkill: 10 },
+      { item: "Copper Shield", max: 1, min: 0, mathAvg: "0.83 Steels", practicalAvg: "83% chance (was 4)", verdict: "UPAR SKILL", minSkill: 10 },
       { item: "Steel Shield", max: 4, min: 0, mathAvg: "2 Steels", practicalAvg: "1.85 Steels", verdict: "Vender NPC", minSkill: 10 },
       { item: "Battle Shield", max: 4, min: 0, mathAvg: "2 Steels", practicalAvg: "1.85 Steels", verdict: "Vender NPC", minSkill: 10 },
+      { item: "Dark Shield", max: 5, min: 0, mathAvg: "2.5 Steels", practicalAvg: "5 Steels", verdict: "QUEBRAR", minSkill: 20 },
     ]
   },
   {
     category: "smallBlades",
     items: [
+      { item: "Knife", max: 1, min: 0, mathAvg: "0.083 Steels", practicalAvg: "8.3% chance", verdict: "UPAR SKILL", minSkill: 10 },
       { item: "Combat Knife", max: 1, min: 0, mathAvg: "0.083 Steels", practicalAvg: "8.3% chance", verdict: "UPAR SKILL", minSkill: 10 },
       { item: "Dagger", max: 1, min: 0, mathAvg: "0.16 Steels", practicalAvg: "16% chance", verdict: "UPAR SKILL", minSkill: 10 },
       { item: "Machete", max: 1, min: 0, mathAvg: "0.5 Steels", practicalAvg: "50% chance", verdict: "QUEBRAR", minSkill: 10 },
+      { item: "Scythe", max: 1, min: 0, mathAvg: "1 Steel", practicalAvg: "100% chance", verdict: "QUEBRAR", minSkill: 10 },
     ]
   }
 ];

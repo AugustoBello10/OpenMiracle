@@ -35,10 +35,14 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
     const names = {
       giantGemsRelics: { pt: "Gemas Gigantes (Relíquias)", en: "Giant Gems (Relics)" },
       toolsPicks: { pt: "Ferramentas & Picks", en: "Tools & Picks" },
-      rods: { pt: "Rods", en: "Rods" },
+      rods: { pt: "Rods de Pesca", en: "Fishing Rods" },
+      weaponsDistance: { pt: "Armas à Distância", en: "Distance Weapons" },
       skinningKnives: { pt: "Skinning Knives", en: "Skinning Knives" },
       cuttingAxes: { pt: "Machados de Corte (Cutting Axes)", en: "Cutting Axes" },
       mysticRunes: { pt: "Mystic Runes", en: "Mystic Runes" },
+      stonesCrystals: { pt: "Pedras Elementais & Cristais", en: "Elemental Stones & Crystals" },
+      crests: { pt: "Brasões (Crests)", en: "Crests" },
+      smelting: { pt: "Fundição de Barras (Smelting)", en: "Smelting Bars" },
       ammunition: { pt: "Munições", en: "Ammunition" },
       others: { pt: "Outros", en: "Others" }
     };
@@ -106,7 +110,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 {
                   label: t('Mestre da Profissão', 'Profession Master'),
                   value: (
-                    <MapLink poiId="sweaty-cyclops" showCoords>
+                    <MapLink poiId="sweaty-cyclops">
                       A Sweaty Cyclops (Ab'Dendriel)
                     </MapLink>
                   ),
@@ -114,8 +118,8 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 {
                   label: t('Ferramenta Obrigatória', 'Required Tool'),
                   value: (
-                    <MapLink poiId="iron-hammer-quest" showCoords>
-                      Iron Hammer
+                    <MapLink poiId="iron-hammer-quest">
+                      Iron Hammer (Kazordoon)
                     </MapLink>
                   ),
                 },
@@ -127,11 +131,8 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               npcLocation="Ab'Dendriel"
               lines={[
                 { speaker: 'player', text: 'hi', keyword: 'hi' },
-                { speaker: 'npc', text: 'Hum? Ye... Ah... Hi.' },
-                { speaker: 'player', text: 'blacksmith', keyword: 'blacksmith' },
-                { speaker: 'npc', text: 'You want to become a blacksmith? It will cost you 20000 gold and requires skill 20. Deal?' },
+                { speaker: 'player', text: 'profession', keyword: 'profession' },
                 { speaker: 'player', text: 'yes', keyword: 'yes' },
-                { speaker: 'npc', text: 'You are now an official blacksmith! Happy hammering!' },
               ]}
             />
 
@@ -160,7 +161,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784726106/IRON_HAMMER.gif" alt="Iron Hammer" className="w-8 h-8 object-contain drop-shadow-[0_0_5px_rgba(0,0,0,0.8)] mt-1" />
                 <div className="flex-1">
                   <strong className="text-medieval-gold">Iron Hammer:</strong> {t('Ferramenta indispensável para bater o metal na bigorna. Pode ser obtida na', 'Indispensable tool for working metal on anvils. Can be obtained in the')}{' '}
-                  <MapLink poiId="iron-hammer-quest" showCoords>
+                  <MapLink poiId="iron-hammer-quest">
                     {t('Quest do Iron Hammer', 'Iron Hammer Quest')}
                   </MapLink>{' '}
                   {t('em Minotaur Mountain (Kazordoon).', 'in Minotaur Mountain (Kazordoon).')}
@@ -175,7 +176,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784726106/Anvil__Small.gif" alt="Anvil" className="w-8 h-8 object-contain drop-shadow-[0_0_5px_rgba(0,0,0,0.8)] mt-1" />
                 <div className="flex-1">
                   <strong className="text-medieval-gold">{t('Bigorna (Anvil):', 'Anvil:')}</strong> {t('O jogador pode utilizar bigornas públicas distribuídas pelo mapa ou comprar uma bigorna pessoal com', 'Players can use public anvils around the world or buy a personal anvil with')}{' '}
-                  <MapLink poiId="sweaty-cyclops" showCoords>
+                  <MapLink poiId="sweaty-cyclops">
                     A Sweaty Cyclops
                   </MapLink>{' '}
                   {t('por 5.000 gps.', 'for 5,000 gps.')}
@@ -187,7 +188,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               </div>
             </div>
 
-            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="crafting-breaking">{t('♻️ Quebrando Equipamentos (Breaking)', '♻️ Breaking Equipment')}</h4>
+            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="crafting-breaking">{t('Quebrando Equipamentos (Breaking)', 'Breaking Equipment')}</h4>
             <p>{t('A matéria-prima essencial para a forja provém do desmonte (salvaging) de equipamentos dropados.', 'The essential raw material for forging comes from dismantling (salvaging) dropped equipment.')}</p>
             <ul className="list-disc pl-5 space-y-4 mt-4">
               <li>
@@ -227,7 +228,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               </a>
             </div>
 
-            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="crafting-blacksmith">{t('⚒️ Processo de Forja (Blacksmith)', '⚒️ Forging Process (Blacksmith)')}</h4>
+            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="crafting-blacksmith">{t('Processo de Forja (Blacksmith)', 'Forging Process (Blacksmith)')}</h4>
             <ul className="list-disc pl-5 space-y-2">
               <li>
                 <strong className="text-medieval-gold">{t('A Execução:', 'The Execution:')}</strong> {t('Disponha os materiais requeridos na quantidade exata sobre a bigorna e acione o martelo.', 'Arrange the required materials in the exact quantity on the anvil and activate the hammer.')}
@@ -244,6 +245,44 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               >
                 {t('Acessar Calculadora de Crafting', 'Access Crafting Calculator')}
               </button>
+            </div>
+
+            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="smelting">
+              {t('Fundição de Barras (Smelting)', 'Smelting (Bars from Ores)')}
+            </h4>
+            <NoticeCard type="info" title={t('Fundição em Bacias de Carvão (Coal Basins)', 'Smelting at Coal Basins')}>
+              {t(
+                'Minérios brutos são fundidos em barras utilizando bacias de carvão acesas (coal basins). A fundição é impactada diretamente pela sua skill de crafting, concede avanço de skill e possui chance de sucesso. Todo o stack de minérios é automaticamente processado de 5 em 5 unidades.',
+                'Raw ores are smelted into bars using lit coal basins. Smelting is directly impacted by your crafting skill, advances your skill and has a chance to succeed. All ore stacks are automatically converted in batches of 5 ores.'
+              )}
+            </NoticeCard>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 my-4">
+              <div className="bg-black/40 border border-white/5 rounded-lg p-3">
+                <span className="font-bold text-amber-500 text-sm block">Copper Bar</span>
+                <span className="text-xs text-stone-400 block mt-1">{t('Requer: 5x Copper Ores', 'Requires: 5x Copper Ores')}</span>
+                <span className="text-xs text-emerald-400 font-mono block mt-0.5">{t('Multiplicador Skill: 3.0', 'Skill Multiplier: 3.0')}</span>
+              </div>
+              <div className="bg-black/40 border border-white/5 rounded-lg p-3">
+                <span className="font-bold text-zinc-300 text-sm block">Iron Bar</span>
+                <span className="text-xs text-stone-400 block mt-1">{t('Requer: 5x Iron Ores', 'Requires: 5x Iron Ores')}</span>
+                <span className="text-xs text-emerald-400 font-mono block mt-0.5">{t('Multiplicador Skill: 2.5', 'Skill Multiplier: 2.5')}</span>
+              </div>
+              <div className="bg-black/40 border border-white/5 rounded-lg p-3">
+                <span className="font-bold text-yellow-400 text-sm block">Gold Bar</span>
+                <span className="text-xs text-stone-400 block mt-1">{t('Requer: 5x Gold Ores', 'Requires: 5x Gold Ores')}</span>
+                <span className="text-xs text-emerald-400 font-mono block mt-0.5">{t('Multiplicador Skill: 2.0', 'Skill Multiplier: 2.0')}</span>
+              </div>
+              <div className="bg-black/40 border border-white/5 rounded-lg p-3">
+                <span className="font-bold text-cyan-400 text-sm block">Mythan Bar</span>
+                <span className="text-xs text-stone-400 block mt-1">{t('Requer: 5x Mythan Ores', 'Requires: 5x Mythan Ores')}</span>
+                <span className="text-xs text-emerald-400 font-mono block mt-0.5">{t('Multiplicador Skill: 1.5', 'Skill Multiplier: 1.5')}</span>
+              </div>
+              <div className="bg-black/40 border border-white/5 rounded-lg p-3">
+                <span className="font-bold text-purple-400 text-sm block">Mystic Bar</span>
+                <span className="text-xs text-stone-400 block mt-1">{t('Requer: 5x Mystic Ores', 'Requires: 5x Mystic Ores')}</span>
+                <span className="text-xs text-emerald-400 font-mono block mt-0.5">{t('Multiplicador Skill: 1.0', 'Skill Multiplier: 1.0')}</span>
+              </div>
             </div>
 
             <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="crafting-recipes">{t('Receitas e Aprimoramentos', 'Recipes and Enhancements')}</h4>
@@ -289,7 +328,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
 
             <div className="mt-8 p-6 bg-gradient-to-r from-black/80 to-stone-900/80 border-l-4 border-medieval-gold rounded-r-xl" id="crafting-tips">
               <h4 className="text-xl font-black text-medieval-gold mb-3 flex items-center gap-2">
-                <span className="text-2xl">📈</span> {t('Táticas de Evolução', "Evolution Tactics")}
+                {t('Táticas de Evolução', "Evolution Tactics")}
               </h4>
               <p className="text-sm text-stone-300 leading-relaxed">
                 {t('Para maximizar o ganho de experiência em Crafting, priorize o desmonte de equipamentos de baixo custo (como Hand Axe, Axe e Hatchet), pois o ganho de skill rate é constante. Otimize a retenção de Steels; as receitas de alto nível exigem reservas massivas deste recurso fundamental.', 'To maximize Crafting experience gain, prioritize dismantling low-cost equipment (like Hand Axe, Axe, and Hatchet), as the skill rate gain is constant. Optimize Steel retention; high-level recipes require massive reserves of this fundamental resource.')}
@@ -354,7 +393,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 {
                   label: t('Mestre da Profissão', 'Profession Master'),
                   value: (
-                    <MapLink poiId="alexander" showCoords>
+                    <MapLink poiId="alexander">
                       Alexander (Edron)
                     </MapLink>
                   ),
@@ -397,7 +436,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               </div>
             </div>
 
-            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="alchemy-gold">{t('💰 O Início: Convertendo Gold', '💰 The Beginning: Converting Gold')}</h4>
+            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="alchemy-gold">{t('O Início: Convertendo Gold', 'The Beginning: Converting Gold')}</h4>
             <p>{t('A forma mais simples de começar a treinar sua skill é usando o Gold Converter.', 'The simplest way to start training your skill is by using the Gold Converter.')}</p>
             
             <NoticeCard type="warning" title={t('Atenção: Ação Irreversível', 'Warning: Irreversible Action')}>
@@ -407,7 +446,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
             <ul className="list-disc pl-5 space-y-3 mt-2">
               <li>
                 <strong className="text-medieval-gold">{t('Como adquirir:', 'How to acquire:')}</strong> {t('Compre o Gold Converter com o NPC', 'Buy the Gold Converter from NPC')}{' '}
-                <MapLink poiId="alexander" showCoords>
+                <MapLink poiId="alexander">
                   Alexander (Edron)
                 </MapLink>{' '}
                 {t('por 500gp (vem com 100 cargas).', 'for 500gp (comes with 100 charges).')}
@@ -417,7 +456,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               </li>
             </ul>
 
-            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="alchemy-crystals">{t('💎 Encantamentos com Cristais', '💎 Crystal Enchantments')}</h4>
+            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="alchemy-crystals">{t('Encantamentos com Cristais', 'Crystal Enchantments')}</h4>
             <p>
               {t('Os cristais são usados para dar bônus às suas armas de treino, que podem ser compradas no NPC', 'Crystals are used to give bonuses to your training weapons, which can be purchased from NPC')}{' '}
               <MapLink poiId="sam" showCoords>
@@ -467,7 +506,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               </div>
             </div>
 
-            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="alchemy-weapons">{t('⚔️ Armas de Treino (Training Weapons)', '⚔️ Training Weapons')}</h4>
+            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="alchemy-weapons">{t('Armas de Treino (Training Weapons)', 'Training Weapons')}</h4>
             <div className="flex gap-4 justify-center mb-6">
                <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/training_sword.gif" alt="Training Sword" className="w-8 h-8 object-contain" />
                <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/training_spear.gif" alt="Training Spear" className="w-8 h-8 object-contain" />
@@ -479,7 +518,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               <li><strong className="text-red-500">Inferno:</strong> {t('Intervalo de ataque -20% | Shielding +20%.', 'Attack interval -20% | Shielding +20%.')}</li>
             </ul>
 
-            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="alchemy-overcharge">{t('🧙‍♂️ Rune Overcharging (Cargas em Dobro)', '🧙‍♂️ Rune Overcharging (Double Charges)')}</h4>
+            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="alchemy-overcharge">{t('Rune Overcharging (Cargas em Dobro)', 'Rune Overcharging (Double Charges)')}</h4>
             <div className="flex flex-col sm:flex-row gap-6 items-start">
               <div className="flex-1 space-y-4">
                 <p>
@@ -511,7 +550,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               </button>
             </div>
 
-            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="alchemy-tips">{t('📈 Dica para Evoluir', '📈 Evolution Tip')}</h4>
+            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="alchemy-tips">{t('Dica para Evoluir', 'Evolution Tip')}</h4>
             <div className="bg-black/30 p-5 rounded-lg border border-medieval-gold/20 space-y-4 text-sm leading-relaxed">
               <p>
                 {t('Para começar, deve-se usar o Gold Converter, pois é a forma mais simples e barata de upar os primeiros níveis de skill.', 'To begin, one should use the Gold Converter, as it is the simplest and cheapest way to level up the first skill levels.')}
@@ -563,7 +602,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 {
                   label: t('Mestre da Profissão', 'Profession Master'),
                   value: (
-                    <MapLink poiId="budrik" showCoords>
+                    <MapLink poiId="budrik">
                       Budrik (Dwarf Mines - Kazordoon)
                     </MapLink>
                   ),
@@ -580,11 +619,8 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               npcLocation="Dwarf Mines"
               lines={[
                 { speaker: 'player', text: 'hi', keyword: 'hi' },
-                { speaker: 'npc', text: 'Greetings, deep dweller. Looking for ore and glory?' },
-                { speaker: 'player', text: 'miner', keyword: 'miner' },
-                { speaker: 'npc', text: 'You wish to learn the trade of mining? I can grant you official membership.' },
+                { speaker: 'player', text: 'profession', keyword: 'profession' },
                 { speaker: 'player', text: 'yes', keyword: 'yes' },
-                { speaker: 'npc', text: 'Strike deep and watch for cave-ins! You are now a miner.' },
               ]}
             />
 
@@ -605,7 +641,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               </div>
             </div>
 
-            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="mining-mechanics">{t('⛏️ Mecânicas de Mineração', '⛏️ Mining Mechanics')}</h4>
+            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="mining-mechanics">{t('Mecânicas de Mineração', 'Mining Mechanics')}</h4>
             
             <NoticeCard type="danger" title={t('Atenção: Exhaust de 15 Minutos ao Logar', 'Warning: 15-Minute Login Exhaust')}>
               {t('Ao entrar no jogo (logar), o personagem sofre um "exhaust" de 15 minutos em que não é possível minerar nenhum bloco. Essa trava técnica existe para prevenir deslogues rápidos e abuso de respawns.', 'Upon logging in, characters suffer a 15-minute mining exhaust. This technical lockout exists to prevent spawn hopping and relog abuse.')}
@@ -629,17 +665,22 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               </li>
             </ul>
 
-            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="mining-tools">{t('🛠️ Ferramentas de Mineração (Pickaxes)', '🛠️ Mining Tools (Pickaxes)')}</h4>
+            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="mining-tools">{t('Ferramentas de Mineração (Pickaxes)', 'Mining Tools (Pickaxes)')}</h4>
             <p className="mb-4 text-sm">{t('Diferentes picaretas oferecem bônus na extração, dependendo da sua skill de Mining.', 'Different pickaxes offer extraction bonuses, depending on your Mining skill.')}</p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <NoticeCard type="danger" title={t('Aviso Oficial: Tools Kit Proibido na Mineração', 'Official Notice: Tools Kit Forbidden in Mining')}>
+              {t('O Tools Kit não pode mais ser utilizado para mineração sob nenhuma circunstância. Utilize apenas as picaretas dedicadas (Pick, Modified, Advanced, Enhanced e Golden Pick).', 'The Tools Kit can no longer be used for mining under any circumstance. Use only dedicated pickaxes (Pick, Modified, Advanced, Enhanced and Golden Pick).')}
+            </NoticeCard>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
               <div className="bg-black/40 border border-white/5 rounded-lg p-4 flex flex-col items-center text-center">
                 <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/pick.gif" alt="Pick" className="w-12 h-12 object-contain drop-shadow-[0_0_5px_rgba(0,0,0,0.8)] mb-2" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
                 <h5 className="font-bold text-gray-300 mb-2">Pick</h5>
                 <ul className="text-sm space-y-1 text-left inline-block w-full">
                   <li><strong className="text-medieval-gold">{t('Mining Skill:', 'Mining Skill:')}</strong> 10</li>
-                  <li><strong className="text-red-400">{t('Break Rate:', 'Break Rate:')}</strong> 0</li>
-                  <li><strong className="text-blue-300">{t('Properties:', 'Properties:')}</strong> -</li>
+                  <li><strong className="text-red-400">{t('Break Rate:', 'Break Rate:')}</strong> 0.2%</li>
+                  <li><strong className="text-cyan-300">{t('Pedras Elegíveis:', 'Target Stones:')}</strong> Tier 1</li>
+                  <li className="text-[11px] text-stone-400">{t('Extrai fragmentos de lava holes, ice holes e mossy stones.', 'Drops fragments from lava holes, ice holes and mossy stones.')}</li>
                 </ul>
               </div>
 
@@ -648,33 +689,47 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 <h5 className="font-bold text-green-300 mb-2">Modified Pick</h5>
                 <ul className="text-sm space-y-1 text-left inline-block w-full">
                   <li><strong className="text-medieval-gold">{t('Mining Skill:', 'Mining Skill:')}</strong> 20</li>
-                  <li><strong className="text-red-400">{t('Break Rate:', 'Break Rate:')}</strong> 0</li>
-                  <li><strong className="text-blue-300">{t('Properties:', 'Properties:')}</strong> <br/>- mine drop multiplier: 1.5 <br/>- mine break bonus: +2.5%</li>
+                  <li><strong className="text-red-400">{t('Break Rate:', 'Break Rate:')}</strong> 0.6%</li>
+                  <li><strong className="text-cyan-300">{t('Pedras Elegíveis:', 'Target Stones:')}</strong> Tier 1-2</li>
+                  <li className="text-[11px] text-blue-300">Tier 1: +2.5% break, +50% drop</li>
                 </ul>
               </div>
 
               <div className="bg-black/40 border border-white/5 rounded-lg p-4 flex flex-col items-center text-center">
                 <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/advanced_pick.gif" alt="Advanced Pick" className="w-12 h-12 object-contain drop-shadow-[0_0_5px_rgba(0,0,0,0.8)] mb-2" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
-                <h5 className="font-bold text-purple-300 mb-2">Advanced Pick</h5>
+                <h5 className="font-bold text-sky-300 mb-2">Advanced Pick</h5>
                 <ul className="text-sm space-y-1 text-left inline-block w-full">
                   <li><strong className="text-medieval-gold">{t('Mining Skill:', 'Mining Skill:')}</strong> 30</li>
-                  <li><strong className="text-red-400">{t('Break Rate:', 'Break Rate:')}</strong> 0</li>
-                  <li><strong className="text-blue-300">{t('Properties:', 'Properties:')}</strong> <br/>- mine drop multiplier: 2 <br/>- mine break bonus: +5%</li>
+                  <li><strong className="text-red-400">{t('Break Rate:', 'Break Rate:')}</strong> 1.0%</li>
+                  <li><strong className="text-cyan-300">{t('Pedras Elegíveis:', 'Target Stones:')}</strong> Tier 1-3</li>
+                  <li className="text-[11px] text-blue-300">Tier 1: +5% break, +100% drop<br/>Tier 2: +2.5% break, +50% drop</li>
                 </ul>
               </div>
 
               <div className="bg-black/40 border border-white/5 rounded-lg p-4 flex flex-col items-center text-center">
                 <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/Enchanted_Pick.gif" alt="Enhanced Pick" className="w-12 h-12 object-contain drop-shadow-[0_0_5px_rgba(0,0,0,0.8)] mb-2" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
-                <h5 className="font-bold text-yellow-300 mb-2">Enhanced Pick</h5>
+                <h5 className="font-bold text-purple-300 mb-2">Enhanced Pick</h5>
                 <ul className="text-sm space-y-1 text-left inline-block w-full">
                   <li><strong className="text-medieval-gold">{t('Mining Skill:', 'Mining Skill:')}</strong> 40</li>
-                  <li><strong className="text-red-400">{t('Break Rate:', 'Break Rate:')}</strong> 0</li>
-                  <li><strong className="text-blue-300">{t('Properties:', 'Properties:')}</strong> <br/>- mine drop multiplier: 2.5 <br/>- mine break bonus: +7.5%</li>
+                  <li><strong className="text-red-400">{t('Break Rate:', 'Break Rate:')}</strong> 1.4%</li>
+                  <li><strong className="text-cyan-300">{t('Pedras Elegíveis:', 'Target Stones:')}</strong> Tier 1-4</li>
+                  <li className="text-[11px] text-blue-300">Tier 1: +7.5% break, +150% drop<br/>Tier 2: +5% break, +100% drop<br/>Tier 3: +2.5% break, +50% drop</li>
+                </ul>
+              </div>
+
+              <div className="bg-black/40 border border-amber-500/20 rounded-lg p-4 flex flex-col items-center text-center">
+                <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/Golden_pick.gif" alt="Golden Pick" className="w-12 h-12 object-contain drop-shadow-[0_0_8px_rgba(251,191,36,0.5)] mb-2" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                <h5 className="font-bold text-amber-400 mb-2">Golden Pick</h5>
+                <ul className="text-sm space-y-1 text-left inline-block w-full">
+                  <li><strong className="text-medieval-gold">{t('Mining Skill:', 'Mining Skill:')}</strong> 50</li>
+                  <li><strong className="text-red-400">{t('Break Rate:', 'Break Rate:')}</strong> 1.8%</li>
+                  <li><strong className="text-cyan-300">{t('Pedras Elegíveis:', 'Target Stones:')}</strong> Tier 1-4</li>
+                  <li className="text-[11px] text-amber-300">Tier 1: +10% break, +200% drop<br/>Tier 2: +7.5% break, +150% drop<br/>Tier 3: +5% break, +100% drop<br/>Tier 4: +2.5% break, +50% drop</li>
                 </ul>
               </div>
             </div>
 
-            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="mining-locations">{t('💎 Tipos de Minas e Recursos', '💎 Types of Mines and Resources')}</h4>
+            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="mining-locations">{t('Tipos de Minas e Recursos', 'Types of Mines and Resources')}</h4>
             <div className="bg-black/40 border border-white/5 rounded-lg overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left">
@@ -1267,7 +1322,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 {
                   label: t('NPC Mentor', 'Mentor NPC'),
                   value: (
-                    <MapLink poiId="bjorn" showCoords>
+                    <MapLink poiId="bjorn">
                       Bjorn (Castelo de Thais)
                     </MapLink>
                   ),
@@ -1380,7 +1435,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               <div className="mt-4 text-sm space-y-2">
                 <p>
                   <strong className="text-medieval-gold">{t('Dica de Compra:', 'Buying Tip:')}</strong> {t('Você pode comprar trigo por 1gp cada no NPC ', 'You can buy wheat for 1gp each from NPC ')}
-                  <MapLink poiId="donald-mcronald" showCoords>
+                  <MapLink poiId="donald-mcronald">
                     Donald McRonald (Thais)
                   </MapLink>.
                 </p>
@@ -1568,7 +1623,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 {
                   label: t('NPC Mentor', 'Mentor NPC'),
                   value: (
-                    <MapLink poiId="kael" showCoords>
+                    <MapLink poiId="kael">
                       Kael (Norte de Thais)
                     </MapLink>
                   ),
@@ -1614,7 +1669,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               </div>
             </div>
 
-            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="skinning-mechanics">{t('⚙️ Mecânicas de Esfola e Fórmulas', '⚙️ Skinning Mechanics and Formulas')}</h4>
+            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="skinning-mechanics">{t('Mecânicas de Esfola e Fórmulas', 'Skinning Mechanics and Formulas')}</h4>
             <div className="bg-black/30 p-4 rounded-lg border border-white/5 space-y-4">
               <p>
                 {t('A maioria dos corpos de criaturas pode ser esfolada para obter produtos e avançar na sua skill de Skinning. A chance de sucesso é influenciada diretamente pelo nível da sua skill.', 'Many creature corpses can be skinned to obtain products and advance your Skinning skill. The success chance is directly influenced by your skill level.')}
@@ -1630,7 +1685,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               </NoticeCard>
             </div>
 
-            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="skinning-tools">{t('🗡️ Ferramentas de Skinning (Knives)', '🗡️ Skinning Tools (Knives)')}</h4>
+            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="skinning-tools">{t('Ferramentas de Skinning (Knives)', 'Skinning Tools (Knives)')}</h4>
             <p className="mb-4">
               {t('Para realizar a esfola, você precisará de uma faca apropriada. Foram adicionadas 2 novas facas ao jogo:', 'To perform skinning, you will need an appropriate knife. 2 new knives have been added to the game:')}
             </p>
@@ -1651,7 +1706,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               </div>
             </div>
 
-            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="skinning-pouch">{t('🧰 Utilitário: Skinning Pouch', '🧰 Utility: Skinning Pouch')}</h4>
+            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="skinning-pouch">{t('Utilitário: Skinning Pouch', 'Utility: Skinning Pouch')}</h4>
             <div className="bg-black/30 p-4 rounded-lg border border-white/5 flex flex-col sm:flex-row gap-4 items-center sm:items-start">
               <div className="flex-shrink-0">
                 <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1784736783/skinning_pouch.png" alt="Skinning Pouch" className="w-16 h-16 object-contain drop-shadow-[0_0_5px_rgba(0,0,0,0.8)]" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
@@ -1663,7 +1718,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               </div>
             </div>
 
-            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="skinning-addons">{t('👕 Addons e Outfits', '👕 Addons and Outfits')}</h4>
+            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="skinning-addons">{t('Addons e Outfits', 'Addons and Outfits')}</h4>
             <div className="bg-black/30 p-4 rounded-lg border border-white/5 space-y-4">
               <p>
                 {t('Addons para os novos outfits de classe (incluindo o Outfit de Esfolador) podem ser fabricados utilizando itens obtidos através da esfola (skinning), da quebra de equipamentos e ouro.', 'Addons for the new outfits (including the Skinner Outfit) can be crafted using items acquired through skinning, breaking equipments, and gold.')}
@@ -1717,8 +1772,8 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 {
                   label: t('Mestre da Profissão', 'Profession Master'),
                   value: (
-                    <MapLink poiId="hoggle" showCoords>
-                      Hoggle (Leste de Thais)
+                    <MapLink poiId="hoggle">
+                      Hoggle (Thais)
                     </MapLink>
                   ),
                 },
@@ -1734,11 +1789,8 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               npcLocation="Thais Leste"
               lines={[
                 { speaker: 'player', text: 'hi', keyword: 'hi' },
-                { speaker: 'npc', text: 'Hello, water wanderer. Up for some fishing talks?' },
-                { speaker: 'player', text: 'fisherman', keyword: 'fisherman' },
-                { speaker: 'npc', text: 'To become a certified fisherman you must pay 20000 gold and have skill 20. Interested?' },
+                { speaker: 'player', text: 'profession', keyword: 'profession' },
                 { speaker: 'player', text: 'yes', keyword: 'yes' },
-                { speaker: 'npc', text: 'May the seas be bountiful! You are now a fisherman.' },
               ]}
             />
 
@@ -1759,7 +1811,131 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               </div>
             </div>
 
-            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="fishing-mechanics">{t('🎣 Mecânicas de Pesca e Fórmulas', '🎣 Fishing Mechanics and Formulas')}</h4>
+            {/* Perfil do Mestre Hoggle */}
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 bg-black/40 border border-medieval-gold/30 rounded-xl p-4 my-6">
+              <img 
+                src="/images/miracle/npcs/hoggle.gif" 
+                alt="Hoggle" 
+                className="w-16 h-16 object-contain rounded border border-medieval-gold/20 bg-black/50 p-1 shrink-0"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' fill='none' stroke='%23d4af37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='8' r='5'/><path d='M20 21a8 8 0 1 0-16 0'/></svg>";
+                }}
+              />
+              <div className="text-center sm:text-left flex-1">
+                <h5 className="font-bold text-medieval-gold text-base">Hoggle (Mestre Pescador)</h5>
+                <p className="text-xs text-stone-300 mt-0.5">
+                  Localização: <MapLink poiId="hoggle">Hoggle (Thais)</MapLink>
+                </p>
+                <p className="text-xs text-stone-400 mt-1 leading-relaxed">
+                  {t(
+                    'Pescador veterano situado em sua cabana ao sul de Thais. Ensina a profissão de Pescador e fabrica os dois addons da vestimenta: a Vara de Pesca (Fishing Rod) e o Cesto de Peixes (Basket).',
+                    'Veteran fisherman located in his cottage south of Thais. Teaches the Fisherman profession and crafts both outfit addons: the Fishing Rod and the Fish Basket.'
+                  )}
+                </p>
+              </div>
+            </div>
+
+            {/* Addons da Profissão */}
+            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="fishing-addons">
+              {t('Addons de Pescador (Hoggle)', 'Fisherman Addons (Hoggle)')}
+            </h4>
+            <p className="mb-4 text-sm text-stone-300">
+              {t(
+                'Cada NPC de profissão ensina como forjar seus respectivos addons caso você mencione a palavra "addon". Hoggle oferece a confecção da Vara de Pesca e do Cesto.',
+                'Each profession NPC teaches how to craft their respective addons when speaking about "addon". Hoggle crafts the Fishing Rod and the Basket.'
+              )}
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+              {/* Addon 1: Fishing Rod */}
+              <div className="bg-black/40 border border-white/10 rounded-xl p-4 flex flex-col justify-between">
+                <div>
+                  <h5 className="font-bold text-medieval-gold text-sm uppercase tracking-wide border-b border-medieval-gold/20 pb-2 mb-3">
+                    {t('Addon 1: Fishing Rod (Vara de Pesca)', 'Addon 1: Fishing Rod')}
+                  </h5>
+                  <p className="text-xs text-stone-400 mb-3">
+                    {t('Requisitos e materiais necessários entregues ao NPC Hoggle:', 'Required materials delivered to NPC Hoggle:')}
+                  </p>
+                  <ul className="text-xs space-y-1.5 text-stone-300 font-mono">
+                    <li className="flex items-center justify-between bg-black/30 px-2.5 py-1.5 rounded">
+                      <span>1x Iron Hammer</span>
+                      <span className="text-emerald-400 font-bold">{t('Quest ou Trade', 'Quest or Trade')}</span>
+                    </li>
+                    <li className="flex items-center justify-between bg-black/30 px-2.5 py-1.5 rounded">
+                      <span>200x Scarab Pincers</span>
+                      <span className="text-stone-400">Scarab drop</span>
+                    </li>
+                    <li className="flex items-center justify-between bg-black/30 px-2.5 py-1.5 rounded">
+                      <span>200x Bone Tails</span>
+                      <span className="text-stone-400">Bonebeast drop</span>
+                    </li>
+                    <li className="flex items-center justify-between bg-black/30 px-2.5 py-1.5 rounded">
+                      <span>25.000 Gold Coins (25k)</span>
+                      <span className="text-medieval-gold font-bold">{t('Taxa de Serviço', 'Service Fee')}</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-white/5">
+                  <span className="text-[10px] font-mono uppercase text-medieval-gold/70 block mb-1">
+                    {t('Diálogo Oficial:', 'Official Dialogue:')}
+                  </span>
+                  <div className="text-[11px] font-mono bg-black/60 p-2.5 rounded border border-white/5 space-y-1 text-stone-300">
+                    <p><span className="text-emerald-400 font-bold">Player:</span> hi</p>
+                    <p><span className="text-medieval-gold font-bold">Hoggle:</span> Welcome to my humble home!</p>
+                    <p><span className="text-emerald-400 font-bold">Player:</span> addon</p>
+                    <p><span className="text-medieval-gold font-bold">Hoggle:</span> I can make for you the fishing rod and the basket. Which one do you want?</p>
+                    <p><span className="text-emerald-400 font-bold">Player:</span> fishing rod</p>
+                    <p><span className="text-medieval-gold font-bold">Hoggle:</span> For the fishing rod, you need to bring me an iron hammer, 200 scarab pincers and 200 bone tails. Additionally, I charge a fee of 25000 gold to make this equipment. Are you interested?</p>
+                    <p><span className="text-emerald-400 font-bold">Player:</span> yes</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Addon 2: Basket */}
+              <div className="bg-black/40 border border-white/10 rounded-xl p-4 flex flex-col justify-between">
+                <div>
+                  <h5 className="font-bold text-medieval-gold text-sm uppercase tracking-wide border-b border-medieval-gold/20 pb-2 mb-3">
+                    {t('Addon 2: Basket (Cesto de Pesca)', 'Addon 2: Fishing Basket')}
+                  </h5>
+                  <p className="text-xs text-stone-400 mb-3">
+                    {t('Requisitos e materiais necessários entregues ao NPC Hoggle:', 'Required materials delivered to NPC Hoggle:')}
+                  </p>
+                  <ul className="text-xs space-y-1.5 text-stone-300 font-mono">
+                    <li className="flex items-center justify-between bg-black/30 px-2.5 py-1.5 rounded">
+                      <span>1x Basket</span>
+                      <span className="text-emerald-400 font-bold">{t('Comprado em Loja', 'Shop bought')}</span>
+                    </li>
+                    <li className="flex items-center justify-between bg-black/30 px-2.5 py-1.5 rounded">
+                      <span>300x Cobra Tongues</span>
+                      <span className="text-stone-400">Cobra drop</span>
+                    </li>
+                    <li className="flex items-center justify-between bg-black/30 px-2.5 py-1.5 rounded">
+                      <span>25.000 Gold Coins (25k)</span>
+                      <span className="text-medieval-gold font-bold">{t('Taxa de Serviço', 'Service Fee')}</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-white/5">
+                  <span className="text-[10px] font-mono uppercase text-medieval-gold/70 block mb-1">
+                    {t('Diálogo Oficial:', 'Official Dialogue:')}
+                  </span>
+                  <div className="text-[11px] font-mono bg-black/60 p-2.5 rounded border border-white/5 space-y-1 text-stone-300">
+                    <p><span className="text-emerald-400 font-bold">Player:</span> hi</p>
+                    <p><span className="text-medieval-gold font-bold">Hoggle:</span> Welcome to my humble home!</p>
+                    <p><span className="text-emerald-400 font-bold">Player:</span> addon</p>
+                    <p><span className="text-medieval-gold font-bold">Hoggle:</span> I can make for you the fishing rod and the basket. Which one do you want?</p>
+                    <p><span className="text-emerald-400 font-bold">Player:</span> basket</p>
+                    <p><span className="text-medieval-gold font-bold">Hoggle:</span> For the basket, you need to bring me a basket and 300 cobra tongues. Additionally, I charge a fee of 25000 gold to make this tool. Are you interested?</p>
+                    <p><span className="text-emerald-400 font-bold">Player:</span> yes</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="fishing-mechanics">{t('Mecânicas de Pesca e Fórmulas', 'Fishing Mechanics and Formulas')}</h4>
             
             <NoticeCard type="tip" title={t('Dica de Otimização: Fish Baits', 'Optimization Tip: Fish Baits')}>
               {t('O uso de Fish Baits reduz drasticamente o tempo de respawn do peixe em um tile aquático: de 10 minutos para apenas 2 minutos!', 'Using Fish Baits drastically accelerates water tile fish respawn: from 10 minutes down to just 2 minutes!')}
@@ -1780,7 +1956,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               <p className="text-xs text-stone-400 mt-2">{t('Limitado ao máximo de 50%.', 'Capped at a maximum of 50%.')}</p>
             </div>
 
-            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="fishing-rods">{t('🛠️ Varas de Pesca Craftáveis (Craftable Rods)', '🛠️ Craftable Fishing Rods')}</h4>
+            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="fishing-rods">{t('Varas de Pesca Craftáveis (Craftable Rods)', 'Craftable Fishing Rods')}</h4>
             
             <NoticeCard type="info" title={t('Regra de Uso das Varas', 'Rod Usage Rule')}>
               {t('Não é obrigatório ter a profissão de pescador para empunhar as varas avançadas. Varas especiais permitem pescar em terrenos únicos, como a Volcanic Fishing Rod na Lava e a Golden Fishing Rod em Shiny Water.', 'The fisherman profession is not required to wield advanced rods. Special rods allow fishing on unique surfaces, such as Volcanic Rod on Lava and Golden Rod on Shiny Water.')}
@@ -1834,7 +2010,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               </div>
             </div>
 
-            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="fishing-biomes">{t('🌍 Biomas e Variedade de Peixes', '🌍 Biomes and Fish Variety')}</h4>
+            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="fishing-biomes">{t('Biomas e Variedade de Peixes', 'Biomes and Fish Variety')}</h4>
             <p>{t('Dezenas de novos peixes foram introduzidos, mas a localização (e o tipo de vara) importam muito!', 'Dozens of new fishes were introduced, but location (and rod type) matter a lot!')}</p>
             
             <div className="flex flex-wrap gap-4 justify-center my-6">
@@ -1851,7 +2027,20 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               <li><strong className="text-medieval-gold">{t('Lava e Stone Fish:', 'Lava and Stone Fish:')}</strong> {t('Requer varas específicas de lava (como a Volcanic Fishing Rod).', 'Require specific lava rods (such as the Volcanic Fishing Rod).')}</li>
             </ul>
 
-            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="fishing-net">{t('🎒 Utilitário Indispensável: Fishing Net', '🎒 Indispensable Utility: Fishing Net')}</h4>
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-sky-950/20 border border-sky-500/30 rounded-xl my-5">
+              <div className="text-xs text-stone-300 text-center sm:text-left">
+                <span className="font-bold text-sky-400 block mb-1">{t('Catálogo Completo de Peixes na Wiki', 'Complete Fish Catalog in Wiki')}</span>
+                {t('Consulte a lista com atributos, pesos, regeneração e raridades de todas as espécies marinhas, de água doce e de lava.', 'View details, attributes, weight, food time and rarity of all sea, freshwater and lava fish species.')}
+              </div>
+              <a
+                href="/#/wiki?category=foods"
+                className="px-4 py-2 bg-gradient-to-r from-sky-600 to-blue-700 hover:from-sky-500 hover:to-blue-600 text-white font-bold text-xs rounded shadow-lg transition-all transform hover:scale-[1.02] whitespace-nowrap cursor-pointer"
+              >
+                {t('Ver Todos os Peixes na Wiki', 'View All Fishes in Wiki')}
+              </a>
+            </div>
+
+            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="fishing-net">{t('Utilitário Indispensável: Fishing Net', 'Indispensable Utility: Fishing Net')}</h4>
             <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start bg-blue-900/10 p-5 rounded-lg border border-blue-500/20">
               <div className="flex-shrink-0">
                 <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/fishing_net.gif" alt="Fishing Net" className="w-16 h-16 object-contain drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
@@ -1868,7 +2057,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
             </div>
 
             <div className="bg-black/30 p-5 rounded-lg border border-medieval-gold/20 space-y-4 text-sm leading-relaxed mt-8">
-              <h4 className="text-xl font-bold text-medieval-gold mt-2 mb-2">{t('📈 Dica para Pescadores', '📈 Tip for Fishermen')}</h4>
+              <h4 className="text-xl font-bold text-medieval-gold mt-2 mb-2">{t('Dica para Pescadores', 'Tip for Fishermen')}</h4>
               <p>
                 {t('Sempre ande com sua Fishing Net e Fish Baits. A redução de 10 min para 2 min de respawn com a isca acelera significativamente o processo de pesca.', 'Always carry your Fishing Net and Fish Baits. The reduction from 10 min to 2 min respawn with bait significantly speeds up the fishing process.')}
               </p>
