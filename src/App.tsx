@@ -2256,8 +2256,8 @@ export default function App() {
                           </div>
                         </div>
                         
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                          <div className="medieval-card p-6 space-y-4 h-full">
+                        <div className="mt-8 max-w-3xl mx-auto">
+                          <div className="medieval-card p-6 space-y-4">
                             <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest">
                               {t('understandFormula')}
                             </h3>
@@ -2272,29 +2272,6 @@ export default function App() {
                               <p className="text-[10px] text-medieval-text/60 italic uppercase tracking-tighter">
                                 Atenção: Atributos com menos níveis que a classe do item (ex: ML) usam apenas seus níveis disponíveis no cálculo.
                               </p>
-                            </div>
-                          </div>
-
-                          <div className="medieval-card p-6 space-y-4 h-full flex flex-col justify-between">
-                            <div>
-                              <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest mb-4">
-                                Onde adquirir Orbs?
-                              </h3>
-                              <p className="text-xs text-medieval-text/70 leading-relaxed font-mono">
-                                Normal Orbs e Grand Arcane Orbs podem ser obtidos derrotando criaturas <strong className="text-medieval-gold">Bosses</strong>, completando <strong className="text-medieval-gold">Tasks</strong> ou através do sistema de <strong className="text-medieval-gold">Alchemy</strong> craftando Mystic Runes.
-                              </p>
-                            </div>
-                            
-                            <div className="mt-6">
-                              <button 
-                                onClick={() => {
-                                  setCalcSubTab('professions');
-                                  setProfSubTab('alchemy');
-                                }}
-                                className="w-full bg-medieval-gold/10 hover:bg-medieval-gold/20 text-medieval-gold font-bold py-3 px-4 rounded border border-medieval-gold/30 transition-all text-xs sm:text-sm uppercase tracking-wider shadow-[0_0_15px_rgba(212,175,55,0.1)] hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] text-center cursor-pointer"
-                              >
-                                Receitas de Mystic Runes (Alchemy)
-                              </button>
                             </div>
                           </div>
                         </div>
