@@ -1,0 +1,90 @@
+[
+  {
+    "name": "Burst Arrow",
+    "attack": 0,
+    "weight": 0.9,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/2546.gif"
+  },
+  {
+    "name": "Poison Arrow",
+    "attack": 22,
+    "weight": 0.8,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/2545.gif"
+  },
+  {
+    "name": "Arrow",
+    "attack": 25,
+    "weight": 0.7,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/2544.gif"
+  },
+  {
+    "name": "Hunting Arrow",
+    "attack": 28,
+    "weight": 0.9,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/8206.gif"
+  },
+  {
+    "name": "Frozen Arrow",
+    "attack": 30,
+    "weight": 1.0,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/10128.gif"
+  },
+  {
+    "name": "Piercing Arrow",
+    "attack": 32,
+    "weight": 1.0,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/7364.gif"
+  },
+  {
+    "name": "Onyx Arrow",
+    "attack": 36,
+    "weight": 1.2,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/10222.gif"
+  },
+  {
+    "name": "Bolt",
+    "attack": 30,
+    "weight": 0.8,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/2543.gif"
+  },
+  {
+    "name": "Steel Bolt",
+    "attack": 34,
+    "weight": 1.1,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/10010.gif"
+  },
+  {
+    "name": "Power Bolt",
+    "attack": 40,
+    "weight": 0.9,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/2547.gif"
+  },
+  {
+    "name": "Infernal Bolt",
+    "attack": 43,
+    "weight": 1.0,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/8204.gif"
+  }
+]

@@ -661,40 +661,6 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Protect Fire"
       ]
     },
-    {
-      "name": "Helmet Of The Ancients (Empty)",
-      "class": 5,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Axe Fighting",
-        "Max Health",
-        "Club Fighting",
-        "Distance Fighting",
-        "Sword Fighting",
-        "Health Regen",
-        "Protect Fire",
-        "Shielding",
-        "Protect Physical"
-      ]
-    },
-    {
-      "name": "Helmet Of The Ancients (Full)",
-      "class": 5,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Axe Fighting",
-        "Max Health",
-        "Club Fighting",
-        "Distance Fighting",
-        "Sword Fighting",
-        "Health Regen",
-        "Protect Fire",
-        "Shielding",
-        "Protect Physical"
-      ]
-    }
   ],
   "Armors": [
     {
@@ -1603,20 +1569,6 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       ]
     },
     {
-      "name": "Foil",
-      "class": 1,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Sword Fighting",
-        "Critical Hit",
-        "Crushing Blow",
-        "Double Bash",
-        "Attack Interval"
-      ]
-    },
-    {
       "name": "Rapier",
       "class": 1,
       "attributes": [
@@ -1847,23 +1799,6 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       ]
     },
     {
-      "name": "Miracle Sword",
-      "class": 5,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Sword Fighting",
-        "Critical Hit",
-        "Crushing Blow",
-        "Life Leech",
-        "Mana Leech",
-        "Double Bash",
-        "Magic Level",
-        "Attack Interval"
-      ]
-    },
-    {
       "name": "Warlord Sword",
       "class": 4,
       "attributes": [
@@ -1891,21 +1826,6 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Critical Spell"
       ]
     },
-    {
-      "name": "Hunter's Knife",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Diamond Knife",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Ice Rapier",
-      "class": 0,
-      "attributes": []
-    }
   ],
   "Axes": [
     {
@@ -2375,18 +2295,6 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       ]
     },
     {
-      "name": "Sapphire Hammer",
-      "class": 5,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Club Fighting",
-        "Critical Hit",
-        "Crushing Blow"
-      ]
-    },
-    {
       "name": "Thunder Hammer",
       "class": 5,
       "attributes": [
@@ -2424,28 +2332,6 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Magic Level"
       ]
     },
-    {
-      "name": "Mythic Hammer",
-      "class": 4,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Club Fighting",
-        "Critical Hit",
-        "Crushing Blow"
-      ]
-    },
-    {
-      "name": "Staff",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Enchanted Staff",
-      "class": 0,
-      "attributes": []
-    }
   ],
   "Distance": [
     {
@@ -2600,56 +2486,6 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Attack Interval"
       ]
     },
-    {
-      "name": "Snowball",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Small Stone",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Ice Small Stone",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Throwing Star",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Throwing Knife",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Spear",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Hunting Spear",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Royal Spear",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Enchanted Spear",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Glacial Spear",
-      "class": 0,
-      "attributes": []
-    }
   ],
   "Quivers": [
     {
@@ -2733,61 +2569,6 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
     }
   ],
   "Ammo": [
-    {
-      "name": "Burst Arrow",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Poison Arrow",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Arrow",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Hunting Arrow",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Frozen Arrow",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Piercing Arrow",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Onyx Arrow",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Bolt",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Steel Bolt",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Power Bolt",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Infernal Bolt",
-      "class": 0,
-      "attributes": []
-    }
   ]
 };
 

@@ -384,11 +384,30 @@ export function ItemsWikiView({ language, initialCategory, onCategoryChange }: I
                               <span className="text-amber-400 font-bold">Arm: {item.armor}</span>
                             )}
                           </div>
+                        ) : item.category === 'quivers' ? (
+                          <div className="flex flex-col items-center gap-0.5 text-xs">
+                            <span className="text-red-400 font-bold">
+                              Atk: {item.attack && item.attack > 0 ? `+${item.attack}` : '0'}
+                            </span>
+                            {item.armor !== null && item.armor !== undefined && item.armor > 0 && (
+                              <span className="text-amber-400 font-bold">Arm: {item.armor}</span>
+                            )}
+                            {item.hitPercent && item.hitPercent !== '-' && item.hitPercent !== '0%' && (
+                              <span className="text-sky-400 font-bold">
+                                {language === 'pt' ? 'Acerto' : 'Hit'}: +{item.hitPercent}
+                              </span>
+                            )}
+                            {item.size !== null && item.size !== undefined && item.size > 0 && (
+                              <span className="text-purple-400 text-[10px] font-bold">
+                                {language === 'pt' ? 'Slots' : 'Cap'}: {item.size}
+                              </span>
+                            )}
+                          </div>
                         ) : (
                           <>
                             {item.attack !== null && item.attack !== undefined && item.attack > 0 && (
                               <span className="text-red-400 font-bold">
-                                Atk: {item.category === 'quivers' ? `+${item.attack}` : item.attack}
+                                Atk: {item.attack}
                               </span>
                             )}
                             {item.defense !== null && item.defense !== undefined && item.defense > 0 && (

@@ -1,0 +1,332 @@
+[
+  {
+    "name": "Knife",
+    "attack": 7,
+    "defense": 5,
+    "hands": 1,
+    "weight": 4.2,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2403.gif"
+  },
+  {
+    "name": "Dagger",
+    "attack": 8,
+    "defense": 6,
+    "hands": 1,
+    "weight": 9.5,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2379.gif"
+  },
+  {
+    "name": "Combat Knife",
+    "attack": 8,
+    "defense": 6,
+    "hands": 1,
+    "weight": 8.69,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2404.gif"
+  },
+  {
+    "name": "Silver Dagger",
+    "attack": 8,
+    "defense": 7,
+    "hands": 1,
+    "weight": 10.19,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2402.gif"
+  },
+  {
+    "name": "Foil",
+    "attack": 9,
+    "defense": 11,
+    "hands": 1,
+    "weight": 15,
+    "class": 1,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/2438.gif"
+  },
+  {
+    "name": "Rapier",
+    "attack": 10,
+    "defense": 8,
+    "hands": 1,
+    "weight": 15,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2384.gif"
+  },
+  {
+    "name": "Hunter's Knife",
+    "attack": 11,
+    "defense": 6,
+    "hands": 1,
+    "weight": 15,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/8779.gif"
+  },
+  {
+    "name": "Short Sword",
+    "attack": 11,
+    "defense": 11,
+    "hands": 1,
+    "weight": 35,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2406.gif"
+  },
+  {
+    "name": "Sabre",
+    "attack": 12,
+    "defense": 10,
+    "hands": 1,
+    "weight": 25,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2385.gif"
+  },
+  {
+    "name": "Sword",
+    "attack": 14,
+    "defense": 12,
+    "hands": 1,
+    "weight": 35,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2376.gif"
+  },
+  {
+    "name": "Bone Sword",
+    "attack": 14,
+    "defense": 10,
+    "hands": 1,
+    "weight": 19,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2450.gif"
+  },
+  {
+    "name": "Diamond Knife",
+    "attack": 15,
+    "defense": 7,
+    "hands": 1,
+    "weight": 20,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/10437.gif"
+  },
+  {
+    "name": "Carlin Sword",
+    "attack": 15,
+    "defense": 13,
+    "hands": 1,
+    "weight": 40,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2395.gif"
+  },
+  {
+    "name": "Heavy Machete",
+    "attack": 16,
+    "defense": 10,
+    "hands": 1,
+    "weight": 18.39,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2442.gif"
+  },
+  {
+    "name": "Katana",
+    "attack": 16,
+    "defense": 12,
+    "hands": 1,
+    "weight": 31,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2412.gif"
+  },
+  {
+    "name": "Longsword",
+    "attack": 17,
+    "defense": 14,
+    "hands": 1,
+    "weight": 42,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2397.gif"
+  },
+  {
+    "name": "Poison Dagger",
+    "attack": 18,
+    "defense": 8,
+    "hands": 1,
+    "weight": 8.8,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2411.gif"
+  },
+  {
+    "name": "Scimitar",
+    "attack": 19,
+    "defense": 13,
+    "hands": 1,
+    "weight": 29,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2419.gif"
+  },
+  {
+    "name": "Spike Sword",
+    "attack": 24,
+    "defense": 21,
+    "hands": 1,
+    "weight": 50,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2383.gif"
+  },
+  {
+    "name": "Broadsword",
+    "attack": 26,
+    "defense": 23,
+    "hands": 2,
+    "weight": 52.5,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2413.gif"
+  },
+  {
+    "name": "Serpent Sword",
+    "attack": 26,
+    "defense": 15,
+    "hands": 1,
+    "weight": 41,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2409.gif"
+  },
+  {
+    "name": "Two Handed Sword",
+    "attack": 30,
+    "defense": 25,
+    "hands": 2,
+    "weight": 70,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2377.gif"
+  },
+  {
+    "name": "Fire Sword",
+    "attack": 35,
+    "defense": 20,
+    "hands": 1,
+    "weight": 23,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2392.gif"
+  },
+  {
+    "name": "Bright Sword",
+    "attack": 36,
+    "defense": 30,
+    "hands": 1,
+    "weight": 29,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2407.gif"
+  },
+  {
+    "name": "Crystal Sword",
+    "attack": 38,
+    "defense": 26,
+    "hands": 1,
+    "weight": 69,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/10062.gif"
+  },
+  {
+    "name": "Djinn Blade",
+    "attack": 40,
+    "defense": 22,
+    "hands": 1,
+    "weight": 24.5,
+    "class": 4,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2451.gif"
+  },
+  {
+    "name": "Pharaoh Sword",
+    "attack": 44,
+    "defense": 23,
+    "hands": 1,
+    "weight": 190,
+    "class": 4,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2446.gif"
+  },
+  {
+    "name": "Giant Sword",
+    "attack": 46,
+    "defense": 22,
+    "hands": 2,
+    "weight": 180,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2393.gif"
+  },
+  {
+    "name": "Magic Sword",
+    "attack": 48,
+    "defense": 35,
+    "hands": 1,
+    "weight": 42,
+    "class": 5,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2400.gif"
+  },
+  {
+    "name": "Miracle Sword",
+    "attack": 50,
+    "defense": 30,
+    "hands": 1,
+    "weight": 42,
+    "class": 5,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/10143.gif"
+  },
+  {
+    "name": "Warlord Sword",
+    "attack": 53,
+    "defense": 38,
+    "hands": 2,
+    "weight": 64,
+    "class": 4,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2408.gif"
+  },
+  {
+    "name": "Magic Longsword",
+    "attack": 55,
+    "defense": 40,
+    "hands": 2,
+    "weight": 43,
+    "class": 5,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2390.gif"
+  },
+  {
+    "name": "Ice Rapier",
+    "attack": 100,
+    "defense": 1,
+    "hands": 1,
+    "weight": 15,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/2396.gif"
+  }
+]
