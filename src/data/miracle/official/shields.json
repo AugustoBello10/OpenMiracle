@@ -1,0 +1,290 @@
+[
+  {
+    "name": "Wooden Shield",
+    "defense": 14,
+    "weight": 40,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2512.gif"
+  },
+  {
+    "name": "Studded Shield",
+    "defense": 15,
+    "weight": 59,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2526.gif"
+  },
+  {
+    "name": "Brass Shield",
+    "defense": 16,
+    "weight": 60,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2511.gif"
+  },
+  {
+    "name": "Plate Shield",
+    "defense": 17,
+    "weight": 65,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2510.gif"
+  },
+  {
+    "name": "Black Shield",
+    "defense": 18,
+    "weight": 42,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2529.gif"
+  },
+  {
+    "name": "Copper Shield",
+    "defense": 19,
+    "weight": 63,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2530.gif"
+  },
+  {
+    "name": "Bone Shield",
+    "defense": 20,
+    "weight": 55,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2541.gif"
+  },
+  {
+    "name": "Steel Shield",
+    "defense": 21,
+    "weight": 69,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2509.gif"
+  },
+  {
+    "name": "Viking Shield",
+    "defense": 22,
+    "weight": 66,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2531.gif"
+  },
+  {
+    "name": "Ornamented Shield",
+    "defense": 22,
+    "weight": 67,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2524.gif"
+  },
+  {
+    "name": "Battle Shield",
+    "defense": 23,
+    "weight": 62,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2513.gif"
+  },
+  {
+    "name": "Scarab Shield",
+    "defense": 25,
+    "weight": 47,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2540.gif"
+  },
+  {
+    "name": "Dark Shield",
+    "defense": 25,
+    "weight": 52,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2521.gif"
+  },
+  {
+    "name": "Dwarven Shield",
+    "defense": 26,
+    "weight": 55,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2525.gif"
+  },
+  {
+    "name": "Rose Shield",
+    "defense": 27,
+    "weight": 52,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2527.gif"
+  },
+  {
+    "name": "Ancient Shield",
+    "defense": 27,
+    "weight": 61,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2532.gif"
+  },
+  {
+    "name": "Castle Shield",
+    "defense": 28,
+    "weight": 49,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2535.gif"
+  },
+  {
+    "name": "Beholder Shield",
+    "defense": 28,
+    "weight": 47,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2518.gif"
+  },
+  {
+    "name": "Griffin Shield",
+    "defense": 29,
+    "weight": 50,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2533.gif"
+  },
+  {
+    "name": "Guardian Shield",
+    "defense": 30,
+    "weight": 55,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2515.gif"
+  },
+  {
+    "name": "Eagle Shield",
+    "defense": 30,
+    "weight": 60,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2538.gif"
+  },
+  {
+    "name": "Dragon Shield",
+    "defense": 31,
+    "weight": 60,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2516.gif"
+  },
+  {
+    "name": "Frozen Shield",
+    "defense": 32,
+    "weight": 62,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/11573.gif"
+  },
+  {
+    "name": "Amazon Shield",
+    "defense": 32,
+    "weight": 62,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2537.gif"
+  },
+  {
+    "name": "Crown Shield",
+    "defense": 32,
+    "weight": 62,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2519.gif"
+  },
+  {
+    "name": "Tower Shield",
+    "defense": 32,
+    "weight": 82,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2528.gif"
+  },
+  {
+    "name": "Shield Of Honour",
+    "defense": 33,
+    "weight": 54,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2517.gif"
+  },
+  {
+    "name": "Medusa Shield",
+    "defense": 33,
+    "weight": 58,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2536.gif"
+  },
+  {
+    "name": "Vampire Shield",
+    "defense": 34,
+    "weight": 38,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2534.gif"
+  },
+  {
+    "name": "Phoenix Shield",
+    "defense": 34,
+    "weight": 35,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2539.gif"
+  },
+  {
+    "name": "Demon Shield",
+    "defense": 35,
+    "weight": 26,
+    "class": 4,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2520.gif"
+  },
+  {
+    "name": "Tempest Shield",
+    "defense": 36,
+    "weight": 51,
+    "class": 4,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2542.gif"
+  },
+  {
+    "name": "Mastermind Shield",
+    "defense": 37,
+    "weight": 57,
+    "class": 4,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2514.gif"
+  },
+  {
+    "name": "Great Shield",
+    "defense": 38,
+    "weight": 84,
+    "class": 4,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2522.gif"
+  },
+  {
+    "name": "Spectral Shield",
+    "defense": 39,
+    "weight": 57,
+    "class": 4,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/10020.gif"
+  },
+  {
+    "name": "Blessed Shield",
+    "defense": 40,
+    "weight": 68,
+    "class": 5,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2523.gif"
+  }
+]

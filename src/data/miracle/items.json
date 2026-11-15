@@ -36,7 +36,7 @@
     "attack": null,
     "defense": null,
     "hands": null,
-    "weight": 24,
+    "weight": 24.5,
     "tierClass": null,
     "attributes": [],
     "armor": 2
@@ -658,7 +658,7 @@
       "Protect Fire",
       "Protect Physical"
     ],
-    "armor": 8
+    "armor": 12
   },
   {
     "id": 2343,
@@ -697,14 +697,7 @@
     "hands": null,
     "weight": 30,
     "tierClass": 5,
-    "attributes": [
-      "Armor",
-      "Weight",
-      "Max Health",
-      "Protect Physical",
-      "Protect Elements",
-      "Mitigation"
-    ],
+    "attributes": [],
     "armor": 12
   },
   {
@@ -768,16 +761,9 @@
     "attack": null,
     "defense": null,
     "hands": null,
-    "weight": 43,
+    "weight": 43.5,
     "tierClass": 5,
-    "attributes": [
-      "Armor",
-      "Weight",
-      "Max Health",
-      "Protect Physical",
-      "Protect Elements",
-      "Mitigation"
-    ],
+    "attributes": [],
     "armor": 13
   },
   {
@@ -791,14 +777,7 @@
     "hands": null,
     "weight": 65,
     "tierClass": 5,
-    "attributes": [
-      "Armor",
-      "Weight",
-      "Max Health",
-      "Protect Physical",
-      "Protect Elements",
-      "Mitigation"
-    ],
+    "attributes": [],
     "armor": 13
   },
   {
@@ -810,16 +789,9 @@
     "attack": null,
     "defense": null,
     "hands": null,
-    "weight": 43,
+    "weight": 43.5,
     "tierClass": 5,
-    "attributes": [
-      "Armor",
-      "Weight",
-      "Max Health",
-      "Protect Physical",
-      "Protect Elements",
-      "Mitigation"
-    ],
+    "attributes": [],
     "armor": 14
   },
   {
@@ -1028,15 +1000,8 @@
     "defense": null,
     "hands": null,
     "weight": 48,
-    "tierClass": 1,
-    "attributes": [
-      "Armor",
-      "Weight",
-      "Max Health",
-      "Protect Physical",
-      "Protect Elements",
-      "Mitigation"
-    ],
+    "tierClass": null,
+    "attributes": [],
     "armor": 6
   },
   {
@@ -1461,14 +1426,7 @@
     "hands": null,
     "weight": 85,
     "tierClass": 5,
-    "attributes": [
-      "Armor",
-      "Weight",
-      "Max Health",
-      "Protect Physical",
-      "Protect Elements",
-      "Mitigation"
-    ],
+    "attributes": [],
     "armor": 18
   },
   {
@@ -1482,14 +1440,7 @@
     "hands": null,
     "weight": 85,
     "tierClass": 5,
-    "attributes": [
-      "Armor",
-      "Weight",
-      "Max Health",
-      "Protect Physical",
-      "Protect Elements",
-      "Mitigation"
-    ],
+    "attributes": [],
     "armor": 18
   },
   {
@@ -1503,14 +1454,7 @@
     "hands": null,
     "weight": 85,
     "tierClass": 5,
-    "attributes": [
-      "Armor",
-      "Weight",
-      "Max Health",
-      "Protect Physical",
-      "Protect Elements",
-      "Mitigation"
-    ],
+    "attributes": [],
     "armor": 19
   },
   {
@@ -1537,7 +1481,7 @@
     "defense": null,
     "hands": null,
     "weight": 26,
-    "tierClass": 1,
+    "tierClass": null,
     "attributes": [],
     "armor": 2
   },
@@ -1692,7 +1636,7 @@
     "attack": null,
     "defense": null,
     "hands": null,
-    "weight": 56,
+    "weight": 54,
     "tierClass": 3,
     "attributes": [
       "Armor",
@@ -1717,7 +1661,7 @@
     "attack": null,
     "defense": null,
     "hands": null,
-    "weight": 35,
+    "weight": 54,
     "tierClass": 4,
     "attributes": [
       "Armor",
@@ -1736,7 +1680,7 @@
       "Magic Level",
       "Protect Physical"
     ],
-    "armor": 10
+    "armor": 9
   },
   {
     "id": 10218,
@@ -1793,13 +1737,7 @@
     "hands": null,
     "weight": 54,
     "tierClass": 5,
-    "attributes": [
-      "Armor",
-      "Weight",
-      "Max Health",
-      "Protect Physical",
-      "Protect Elements"
-    ],
+    "attributes": [],
     "armor": 11
   },
   {
@@ -1813,13 +1751,7 @@
     "hands": null,
     "weight": 54,
     "tierClass": 5,
-    "attributes": [
-      "Armor",
-      "Weight",
-      "Max Health",
-      "Protect Physical",
-      "Protect Elements"
-    ],
+    "attributes": [],
     "armor": 11
   },
   {
@@ -1833,13 +1765,7 @@
     "hands": null,
     "weight": 54,
     "tierClass": 5,
-    "attributes": [
-      "Armor",
-      "Weight",
-      "Max Health",
-      "Protect Physical",
-      "Protect Elements"
-    ],
+    "attributes": [],
     "armor": 12
   },
   {
@@ -1873,7 +1799,7 @@
     "weight": 6,
     "tierClass": null,
     "attributes": [],
-    "armor": null
+    "armor": 0
   },
   {
     "id": 2644,
@@ -1884,7 +1810,7 @@
     "attack": null,
     "defense": null,
     "hands": null,
-    "weight": 6,
+    "weight": 12,
     "tierClass": 2,
     "attributes": [
       "Armor",
@@ -1922,14 +1848,14 @@
     "attack": null,
     "defense": null,
     "hands": null,
-    "weight": 8.5,
+    "weight": 9,
     "tierClass": 2,
     "attributes": [
       "Armor",
       "Speed",
       "Vibrancy"
     ],
-    "armor": 1
+    "armor": 2
   },
   {
     "id": 11736,
@@ -1942,13 +1868,7 @@
     "hands": null,
     "weight": 16,
     "tierClass": 2,
-    "attributes": [
-      "Armor",
-      "Weight",
-      "Speed",
-      "Protect Physical",
-      "Mitigation"
-    ],
+    "attributes": [],
     "armor": 2
   },
   {
@@ -1979,7 +1899,7 @@
     "attack": null,
     "defense": null,
     "hands": null,
-    "weight": 25,
+    "weight": 9,
     "tierClass": 3,
     "attributes": [
       "Armor",
@@ -1988,7 +1908,7 @@
       "Speed",
       "Magic Level"
     ],
-    "armor": 2
+    "armor": 3
   },
   {
     "id": 2646,
@@ -2037,7 +1957,7 @@
     "attack": null,
     "defense": 15,
     "hands": null,
-    "weight": 46,
+    "weight": 59,
     "tierClass": 1,
     "attributes": [
       "Weight",
@@ -2091,7 +2011,7 @@
     "attack": null,
     "defense": 18,
     "hands": null,
-    "weight": 45,
+    "weight": 42,
     "tierClass": 1,
     "attributes": [
       "Weight",
@@ -2127,7 +2047,7 @@
     "attack": null,
     "defense": 20,
     "hands": null,
-    "weight": 40,
+    "weight": 55,
     "tierClass": 2,
     "attributes": [
       "Weight",
@@ -2146,7 +2066,7 @@
     "attack": null,
     "defense": 21,
     "hands": null,
-    "weight": 68,
+    "weight": 69,
     "tierClass": 2,
     "attributes": [
       "Weight",
@@ -2165,7 +2085,7 @@
     "attack": null,
     "defense": 22,
     "hands": null,
-    "weight": 82,
+    "weight": 66,
     "tierClass": 2,
     "attributes": [
       "Weight",
@@ -2185,7 +2105,7 @@
     "attack": null,
     "defense": 22,
     "hands": null,
-    "weight": 60,
+    "weight": 67,
     "tierClass": 2,
     "attributes": [
       "Weight",
@@ -2204,7 +2124,7 @@
     "attack": null,
     "defense": 23,
     "hands": null,
-    "weight": 85,
+    "weight": 62,
     "tierClass": 2,
     "attributes": [
       "Weight",
@@ -2224,7 +2144,7 @@
     "attack": null,
     "defense": 25,
     "hands": null,
-    "weight": 52,
+    "weight": 47,
     "tierClass": 2,
     "attributes": [
       "Weight",
@@ -2242,7 +2162,7 @@
     "attack": null,
     "defense": 25,
     "hands": null,
-    "weight": 55,
+    "weight": 52,
     "tierClass": 2,
     "attributes": [
       "Weight",
@@ -2280,7 +2200,7 @@
     "attack": null,
     "defense": 27,
     "hands": null,
-    "weight": 51,
+    "weight": 52,
     "tierClass": 2,
     "attributes": [
       "Weight",
@@ -2300,7 +2220,7 @@
     "attack": null,
     "defense": 27,
     "hands": null,
-    "weight": 65,
+    "weight": 61,
     "tierClass": 2,
     "attributes": [
       "Weight",
@@ -2319,7 +2239,7 @@
     "attack": null,
     "defense": 28,
     "hands": null,
-    "weight": 72,
+    "weight": 49,
     "tierClass": 2,
     "attributes": [
       "Weight",
@@ -2338,7 +2258,7 @@
     "attack": null,
     "defense": 28,
     "hands": null,
-    "weight": 40,
+    "weight": 47,
     "tierClass": 2,
     "attributes": [
       "Weight",
@@ -2358,7 +2278,7 @@
     "attack": null,
     "defense": 29,
     "hands": null,
-    "weight": 58,
+    "weight": 50,
     "tierClass": 2,
     "attributes": [
       "Weight",
@@ -2376,7 +2296,7 @@
     "attack": null,
     "defense": 30,
     "hands": null,
-    "weight": 60,
+    "weight": 55,
     "tierClass": 3,
     "attributes": [
       "Weight",
@@ -2397,7 +2317,7 @@
     "attack": null,
     "defense": 30,
     "hands": null,
-    "weight": 48,
+    "weight": 60,
     "tierClass": 3,
     "attributes": [
       "Weight",
@@ -2440,7 +2360,7 @@
     "attack": null,
     "defense": 32,
     "hands": null,
-    "weight": 65,
+    "weight": 62,
     "tierClass": 3,
     "attributes": [
       "Weight",
@@ -2466,7 +2386,7 @@
     "attack": null,
     "defense": 32,
     "hands": null,
-    "weight": 55,
+    "weight": 62,
     "tierClass": 3,
     "attributes": [
       "Weight",
@@ -2515,7 +2435,7 @@
     "attack": null,
     "defense": 32,
     "hands": null,
-    "weight": 83,
+    "weight": 82,
     "tierClass": 3,
     "attributes": [
       "Weight",
@@ -2536,7 +2456,7 @@
     "attack": null,
     "defense": 33,
     "hands": null,
-    "weight": 46,
+    "weight": 54,
     "tierClass": 3,
     "attributes": [
       "Weight",
@@ -2600,7 +2520,7 @@
     "attack": null,
     "defense": 34,
     "hands": null,
-    "weight": 45,
+    "weight": 35,
     "tierClass": 3,
     "attributes": [
       "Weight",
@@ -2645,7 +2565,7 @@
     "attack": null,
     "defense": 36,
     "hands": null,
-    "weight": 36,
+    "weight": 51,
     "tierClass": 4,
     "attributes": [
       "Weight",
@@ -2719,16 +2639,9 @@
     "attack": null,
     "defense": 39,
     "hands": null,
-    "weight": 50,
+    "weight": 57,
     "tierClass": 4,
-    "attributes": [
-      "Defense",
-      "Weight",
-      "Shielding",
-      "Mitigation",
-      "Protect Physical",
-      "Protect Elements"
-    ],
+    "attributes": [],
     "armor": null
   },
   {

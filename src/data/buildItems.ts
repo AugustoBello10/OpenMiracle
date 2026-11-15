@@ -662,18 +662,6 @@ const ATTRIBUTE_DATA_STUB: Record<string, { name: string; class: number; attribu
       ]
     },
     {
-      "name": "Helmet Of The Frozen Soul",
-      "class": 5,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Protect Elements",
-        "Mitigation"
-      ]
-    },
-    {
       "name": "Golden Helmet",
       "class": 5,
       "attributes": [
@@ -705,42 +693,6 @@ const ATTRIBUTE_DATA_STUB: Record<string, { name: string; class: number; attribu
         "Max Health",
         "Sword Fighting",
         "Protect Fire"
-      ]
-    },
-    {
-      "name": "Anubis Helmet",
-      "class": 5,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Protect Elements",
-        "Mitigation"
-      ]
-    },
-    {
-      "name": "Spectral Helmet",
-      "class": 5,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Protect Elements",
-        "Mitigation"
-      ]
-    },
-    {
-      "name": "Pharaoh Helmet",
-      "class": 5,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Protect Elements",
-        "Mitigation"
       ]
     },
     {
@@ -779,18 +731,6 @@ const ATTRIBUTE_DATA_STUB: Record<string, { name: string; class: number; attribu
     }
   ],
   "Armors": [
-    {
-      "name": "Ranger's Cloak",
-      "class": 1,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Protect Elements",
-        "Mitigation"
-      ]
-    },
     {
       "name": "Brass Armor",
       "class": 1,
@@ -1026,117 +966,6 @@ const ATTRIBUTE_DATA_STUB: Record<string, { name: string; class: number; attribu
         "Shielding"
       ]
     },
-    {
-      "name": "Spectral Armor",
-      "class": 5,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Protect Elements",
-        "Mitigation"
-      ]
-    },
-    {
-      "name": "Anubis Armor",
-      "class": 5,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Protect Elements",
-        "Mitigation"
-      ]
-    },
-    {
-      "name": "Pharaoh Armor",
-      "class": 5,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Protect Elements",
-        "Mitigation"
-      ]
-    },
-    {
-      "name": "Spectral Dress",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Ball Gown",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "White Dress",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Simple Dress",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Cape",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Green Tunic",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Coat",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Jacket",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Doublet",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Red Tunic",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Pirate Shirt",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Leather Armor",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Studded Armor",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Chain Armor",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Native Armor",
-      "class": 0,
-      "attributes": []
-    }
   ],
   "Legs": [
     {
@@ -1281,49 +1110,6 @@ const ATTRIBUTE_DATA_STUB: Record<string, { name: string; class: number; attribu
         "Protect Fire"
       ]
     },
-    {
-      "name": "Spectral Legs",
-      "class": 5,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Protect Elements"
-      ]
-    },
-    {
-      "name": "Anubis Legs",
-      "class": 5,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Protect Elements"
-      ]
-    },
-    {
-      "name": "Pharaoh Legs",
-      "class": 5,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Protect Elements"
-      ]
-    },
-    {
-      "name": "Leather Legs",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Studded Legs",
-      "class": 1,
-      "attributes": []
-    }
   ],
   "Boots": [
     {
@@ -1363,17 +1149,6 @@ const ATTRIBUTE_DATA_STUB: Record<string, { name: string; class: number; attribu
         "Armor",
         "Speed",
         "Vibrancy"
-      ]
-    },
-    {
-      "name": "Snow Boots",
-      "class": 2,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Speed",
-        "Protect Physical",
-        "Mitigation"
       ]
     },
     {
@@ -1802,18 +1577,6 @@ const ATTRIBUTE_DATA_STUB: Record<string, { name: string; class: number; attribu
         "Club Fighting",
         "Mitigation",
         "Shielding"
-      ]
-    },
-    {
-      "name": "Spectral Shield",
-      "class": 4,
-      "attributes": [
-        "Defense",
-        "Weight",
-        "Shielding",
-        "Mitigation",
-        "Protect Physical",
-        "Protect Elements"
       ]
     },
     {
@@ -3073,7 +2836,7 @@ const ITEM_BASE_STATS: Record<string, { armor?: number; attack?: number; defense
   },
   "Studded Helmet": {
     "armor": 2,
-    "weight": 24
+    "weight": 24.5
   },
   "Chain Helmet": {
     "armor": 2,
@@ -3205,7 +2968,7 @@ const ITEM_BASE_STATS: Record<string, { armor?: number; attack?: number; defense
   },
   "Anubis Helmet": {
     "armor": 13,
-    "weight": 43
+    "weight": 43.5
   },
   "Spectral Helmet": {
     "armor": 13,
@@ -3213,7 +2976,7 @@ const ITEM_BASE_STATS: Record<string, { armor?: number; attack?: number; defense
   },
   "Pharaoh Helmet": {
     "armor": 14,
-    "weight": 43
+    "weight": 43.5
   },
   "Spectral Dress": {
     "armor": 0,
@@ -3401,11 +3164,11 @@ const ITEM_BASE_STATS: Record<string, { armor?: number; attack?: number; defense
   },
   "Golden Legs": {
     "armor": 9,
-    "weight": 56
+    "weight": 54
   },
   "Demon Legs": {
-    "armor": 10,
-    "weight": 35
+    "armor": 9,
+    "weight": 54
   },
   "Frozen Legs": {
     "armor": 9,
@@ -3432,19 +3195,20 @@ const ITEM_BASE_STATS: Record<string, { armor?: number; attack?: number; defense
     "weight": 7.5
   },
   "Sandals": {
+    "armor": 0,
     "weight": 6
   },
   "Bunnyslippers": {
     "armor": 0,
-    "weight": 6
+    "weight": 12
   },
   "Leather Boots": {
     "armor": 1,
     "weight": 9
   },
   "Patched Boots": {
-    "armor": 1,
-    "weight": 8.5
+    "armor": 2,
+    "weight": 9
   },
   "Snow Boots": {
     "armor": 2,
@@ -3455,8 +3219,8 @@ const ITEM_BASE_STATS: Record<string, { armor?: number; attack?: number; defense
     "weight": 29
   },
   "Frozen Boots": {
-    "armor": 2,
-    "weight": 25
+    "armor": 3,
+    "weight": 9
   },
   "Golden Boots": {
     "armor": 4,
@@ -3468,7 +3232,7 @@ const ITEM_BASE_STATS: Record<string, { armor?: number; attack?: number; defense
   },
   "Studded Shield": {
     "defense": 15,
-    "weight": 46
+    "weight": 59
   },
   "Brass Shield": {
     "defense": 16,
@@ -3480,7 +3244,7 @@ const ITEM_BASE_STATS: Record<string, { armor?: number; attack?: number; defense
   },
   "Black Shield": {
     "defense": 18,
-    "weight": 45
+    "weight": 42
   },
   "Copper Shield": {
     "defense": 19,
@@ -3488,31 +3252,31 @@ const ITEM_BASE_STATS: Record<string, { armor?: number; attack?: number; defense
   },
   "Bone Shield": {
     "defense": 20,
-    "weight": 40
+    "weight": 55
   },
   "Steel Shield": {
     "defense": 21,
-    "weight": 68
+    "weight": 69
   },
   "Viking Shield": {
     "defense": 22,
-    "weight": 82
+    "weight": 66
   },
   "Ornamented Shield": {
     "defense": 22,
-    "weight": 60
+    "weight": 67
   },
   "Battle Shield": {
     "defense": 23,
-    "weight": 85
+    "weight": 62
   },
   "Scarab Shield": {
     "defense": 25,
-    "weight": 52
+    "weight": 47
   },
   "Dark Shield": {
     "defense": 25,
-    "weight": 55
+    "weight": 52
   },
   "Dwarven Shield": {
     "defense": 26,
@@ -3520,31 +3284,31 @@ const ITEM_BASE_STATS: Record<string, { armor?: number; attack?: number; defense
   },
   "Rose Shield": {
     "defense": 27,
-    "weight": 51
+    "weight": 52
   },
   "Ancient Shield": {
     "defense": 27,
-    "weight": 65
+    "weight": 61
   },
   "Castle Shield": {
     "defense": 28,
-    "weight": 72
+    "weight": 49
   },
   "Beholder Shield": {
     "defense": 28,
-    "weight": 40
+    "weight": 47
   },
   "Griffin Shield": {
     "defense": 29,
-    "weight": 58
+    "weight": 50
   },
   "Guardian Shield": {
     "defense": 30,
-    "weight": 60
+    "weight": 55
   },
   "Eagle Shield": {
     "defense": 30,
-    "weight": 48
+    "weight": 60
   },
   "Dragon Shield": {
     "defense": 31,
@@ -3552,11 +3316,11 @@ const ITEM_BASE_STATS: Record<string, { armor?: number; attack?: number; defense
   },
   "Frozen Shield": {
     "defense": 32,
-    "weight": 65
+    "weight": 62
   },
   "Amazon Shield": {
     "defense": 32,
-    "weight": 55
+    "weight": 62
   },
   "Crown Shield": {
     "defense": 32,
@@ -3564,11 +3328,11 @@ const ITEM_BASE_STATS: Record<string, { armor?: number; attack?: number; defense
   },
   "Tower Shield": {
     "defense": 32,
-    "weight": 83
+    "weight": 82
   },
   "Shield Of Honour": {
     "defense": 33,
-    "weight": 46
+    "weight": 54
   },
   "Medusa Shield": {
     "defense": 33,
@@ -3580,7 +3344,7 @@ const ITEM_BASE_STATS: Record<string, { armor?: number; attack?: number; defense
   },
   "Phoenix Shield": {
     "defense": 34,
-    "weight": 45
+    "weight": 35
   },
   "Demon Shield": {
     "defense": 35,
@@ -3588,7 +3352,7 @@ const ITEM_BASE_STATS: Record<string, { armor?: number; attack?: number; defense
   },
   "Tempest Shield": {
     "defense": 36,
-    "weight": 36
+    "weight": 51
   },
   "Mastermind Shield": {
     "defense": 37,
@@ -3600,7 +3364,7 @@ const ITEM_BASE_STATS: Record<string, { armor?: number; attack?: number; defense
   },
   "Spectral Shield": {
     "defense": 39,
-    "weight": 50
+    "weight": 57
   },
   "Blessed Shield": {
     "defense": 40,
@@ -4294,62 +4058,221 @@ const CATEGORY_MAP: Record<string, string> = {
 };
 
 const ARMOR_ID_IMAGE_MAP: Record<string, { id: number; img: string }> = {
-  "Spectral Dress": { id: 4847, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Spectral_Dress.gif" },
-  "Ball Gown": { id: 2659, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ball_Gown.gif" },
-  "White Dress": { id: 2658, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/White_Dress.gif" },
-  "Simple Dress": { id: 2657, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Simple_Dress.gif" },
-  "Cape": { id: 2654, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Cape.gif" },
-  "Green Tunic": { id: 2652, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Green_Tunic.gif" },
-  "Coat": { id: 2651, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Coat.gif" },
-  "Jacket": { id: 2650, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Jacket.gif" },
-  "Doublet": { id: 2485, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Doublet.gif" },
-  "Red Tunic": { id: 2653, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Red_Tunic.gif" },
-  "Pirate Shirt": { id: 6095, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Pirate_Shirt.gif" },
-  "Leather Armor": { id: 2467, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Leather_Armor.gif" },
-  "Studded Armor": { id: 2484, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Studded_Armor.gif" },
-  "Chain Armor": { id: 2464, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Chain_Armor.gif" },
-  "Ranger's Cloak": { id: 2660, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Ranger's_Cloak.gif" },
-  "Native Armor": { id: 2508, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Native_Armor.gif" },
-  "Brass Armor": { id: 2465, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Brass_Armor.gif" },
-  "Red Robe": { id: 2655, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Red_Robe.gif" },
-  "Scale Armor": { id: 2483, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Scale_Armor.gif" },
-  "Elven Mail": { id: 2505, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Elven_Mail.gif" },
-  "Plate Armor": { id: 2463, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Plate_Armor.gif" },
-  "Dwarven Armor": { id: 2503, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dwarven_Armor.gif" },
-  "Dark Armor": { id: 2489, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dark_Armor.gif" },
-  "Noble Armor": { id: 2486, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Noble_Armor.gif" },
-  "Blue Robe": { id: 2656, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Blue_Robe.gif" },
-  "Knight Armor": { id: 2476, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Knight_Armor.gif" },
-  "Crown Armor": { id: 2487, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Crown_Armor.gif" },
-  "Amazon Armor": { id: 2500, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Amazon_Armor.gif" },
-  "Golden Armor": { id: 2466, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Golden_Armor.gif" },
-  "Spectral Robe": { id: 10129, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Spectral_Robe.gif" },
-  "Dragon Scale Mail": { id: 2492, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dragon_Scale_Mail.gif" },
-  "Frozen Mail": { id: 10217, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Frozen_Mail.gif" },
-  "Demon Armor": { id: 2494, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Demon_Armor.gif" },
-  "Magic Plate Armor": { id: 2472, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Magic_Plate_Armor.gif" },
-  "Spectral Armor": { id: 9962, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Spectral_Armor.gif" },
-  "Anubis Armor": { id: 10036, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Anubis_Armor.gif" },
-  "Pharaoh Armor": { id: 10040, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Pharaoh_Armor.gif" }
+  "Spectral Dress": {
+    "armor": 0,
+    "weight": 10
+  },
+  "Ball Gown": {
+    "armor": 0,
+    "weight": 25
+  },
+  "White Dress": {
+    "armor": 0,
+    "weight": 24
+  },
+  "Simple Dress": {
+    "armor": 1,
+    "weight": 24
+  },
+  "Cape": {
+    "armor": 1,
+    "weight": 32
+  },
+  "Green Tunic": {
+    "armor": 1,
+    "weight": 9.3
+  },
+  "Coat": {
+    "armor": 1,
+    "weight": 27
+  },
+  "Jacket": {
+    "armor": 1,
+    "weight": 24
+  },
+  "Doublet": {
+    "armor": 2,
+    "weight": 25
+  },
+  "Red Tunic": {
+    "armor": 2,
+    "weight": 30
+  },
+  "Pirate Shirt": {
+    "armor": 3,
+    "weight": 20
+  },
+  "Leather Armor": {
+    "armor": 4,
+    "weight": 60
+  },
+  "Studded Armor": {
+    "armor": 5,
+    "weight": 71
+  },
+  "Chain Armor": {
+    "armor": 6,
+    "weight": 100
+  },
+  "Ranger's Cloak": {
+    "armor": 6,
+    "weight": 48
+  },
+  "Native Armor": {
+    "armor": 7,
+    "weight": 80
+  },
+  "Brass Armor": {
+    "armor": 8,
+    "weight": 80
+  },
+  "Red Robe": {
+    "armor": 8,
+    "weight": 26
+  },
+  "Scale Armor": {
+    "armor": 9,
+    "weight": 105
+  },
+  "Elven Mail": {
+    "armor": 10,
+    "weight": 90
+  },
+  "Plate Armor": {
+    "armor": 10,
+    "weight": 120
+  },
+  "Dwarven Armor": {
+    "armor": 10,
+    "weight": 130
+  },
+  "Dark Armor": {
+    "armor": 10,
+    "weight": 120
+  },
+  "Noble Armor": {
+    "armor": 11,
+    "weight": 120
+  },
+  "Blue Robe": {
+    "armor": 11,
+    "weight": 22
+  },
+  "Knight Armor": {
+    "armor": 12,
+    "weight": 120
+  },
+  "Crown Armor": {
+    "armor": 13,
+    "weight": 99
+  },
+  "Amazon Armor": {
+    "armor": 13,
+    "weight": 99
+  },
+  "Golden Armor": {
+    "armor": 14,
+    "weight": 80
+  },
+  "Spectral Robe": {
+    "armor": 14,
+    "weight": 22
+  },
+  "Dragon Scale Mail": {
+    "armor": 15,
+    "weight": 114
+  },
+  "Frozen Mail": {
+    "armor": 15,
+    "weight": 114
+  },
+  "Demon Armor": {
+    "armor": 16,
+    "weight": 80
+  },
+  "Magic Plate Armor": {
+    "armor": 17,
+    "weight": 85
+  },
+  "Spectral Armor": {
+    "armor": 18,
+    "weight": 85
+  },
+  "Anubis Armor": {
+    "armor": 18,
+    "weight": 85
+  },
+  "Pharaoh Armor": {
+    "armor": 19,
+    "weight": 85
+  }
 };
 
 const LEGS_ID_IMAGE_MAP: Record<string, { id: number; img: string }> = {
-  "Leather Legs": { id: 2649, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Leather_Legs.gif" },
-  "Studded Legs": { id: 2468, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Studded_Legs.gif" },
-  "Chain Legs": { id: 2648, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Chain_Legs.gif" },
-  "Elven Legs": { id: 2507, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Elven_Legs.gif" },
-  "Brass Legs": { id: 2478, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Brass_Legs.gif" },
-  "Dwarven Legs": { id: 2504, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dwarven_Legs.gif" },
-  "Plate Legs": { id: 2647, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Plate_Legs.gif" },
-  "Knight Legs": { id: 2477, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Knight_Legs.gif" },
-  "Crown Legs": { id: 2488, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Crown_Legs.gif" },
-  "Golden Legs": { id: 2470, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Golden_Legs.gif" },
-  "Demon Legs": { id: 2495, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Demon_Legs.gif" },
-  "Frozen Legs": { id: 10218, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Frozen_Legs.gif" },
-  "Dragon Scale Legs": { id: 2469, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Dragon_Scale_Legs.gif" },
-  "Spectral Legs": { id: 9963, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Spectral_Legs.gif" },
-  "Anubis Legs": { id: 10037, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Anubis_Legs.gif" },
-  "Pharaoh Legs": { id: 10041, img: "https://res.cloudinary.com/dc4nkbnkg/image/upload/Pharaoh_Legs.gif" }
+  "Leather Legs": {
+    "armor": 1,
+    "weight": 18
+  },
+  "Studded Legs": {
+    "armor": 2,
+    "weight": 26
+  },
+  "Chain Legs": {
+    "armor": 3,
+    "weight": 35
+  },
+  "Elven Legs": {
+    "armor": 4,
+    "weight": 33
+  },
+  "Brass Legs": {
+    "armor": 5,
+    "weight": 38
+  },
+  "Dwarven Legs": {
+    "armor": 7,
+    "weight": 49
+  },
+  "Plate Legs": {
+    "armor": 7,
+    "weight": 50
+  },
+  "Knight Legs": {
+    "armor": 8,
+    "weight": 70
+  },
+  "Crown Legs": {
+    "armor": 8,
+    "weight": 65
+  },
+  "Golden Legs": {
+    "armor": 9,
+    "weight": 54
+  },
+  "Demon Legs": {
+    "armor": 9,
+    "weight": 54
+  },
+  "Frozen Legs": {
+    "armor": 9,
+    "weight": 58
+  },
+  "Dragon Scale Legs": {
+    "armor": 10,
+    "weight": 48
+  },
+  "Spectral Legs": {
+    "armor": 11,
+    "weight": 54
+  },
+  "Anubis Legs": {
+    "armor": 11,
+    "weight": 54
+  },
+  "Pharaoh Legs": {
+    "armor": 12,
+    "weight": 54
+  }
 };
 
 // Generate list of items from ATTRIBUTE_DATA

@@ -1,0 +1,298 @@
+[
+  {
+    "name": "Spectral Dress",
+    "armor": 0,
+    "weight": 10,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/4847.gif"
+  },
+  {
+    "name": "Ball Gown",
+    "armor": 0,
+    "weight": 25,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/2659.gif"
+  },
+  {
+    "name": "White Dress",
+    "armor": 0,
+    "weight": 24,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/2658.gif"
+  },
+  {
+    "name": "Simple Dress",
+    "armor": 1,
+    "weight": 24,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/2657.gif"
+  },
+  {
+    "name": "Cape",
+    "armor": 1,
+    "weight": 32,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/2654.gif"
+  },
+  {
+    "name": "Green Tunic",
+    "armor": 1,
+    "weight": 9.3,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/2652.gif"
+  },
+  {
+    "name": "Coat",
+    "armor": 1,
+    "weight": 27,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/2651.gif"
+  },
+  {
+    "name": "Jacket",
+    "armor": 1,
+    "weight": 24,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/2650.gif"
+  },
+  {
+    "name": "Doublet",
+    "armor": 2,
+    "weight": 25,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/2485.gif"
+  },
+  {
+    "name": "Red Tunic",
+    "armor": 2,
+    "weight": 30,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/2653.gif"
+  },
+  {
+    "name": "Pirate Shirt",
+    "armor": 3,
+    "weight": 20,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/6095.gif"
+  },
+  {
+    "name": "Leather Armor",
+    "armor": 4,
+    "weight": 60,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/2467.gif"
+  },
+  {
+    "name": "Studded Armor",
+    "armor": 5,
+    "weight": 71,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/2484.gif"
+  },
+  {
+    "name": "Chain Armor",
+    "armor": 6,
+    "weight": 100,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/2464.gif"
+  },
+  {
+    "name": "Ranger's Cloak",
+    "armor": 6,
+    "weight": 48,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/2660.gif"
+  },
+  {
+    "name": "Native Armor",
+    "armor": 7,
+    "weight": 80,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/2508.gif"
+  },
+  {
+    "name": "Brass Armor",
+    "armor": 8,
+    "weight": 80,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2465.gif"
+  },
+  {
+    "name": "Red Robe",
+    "armor": 8,
+    "weight": 26,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2655.gif"
+  },
+  {
+    "name": "Scale Armor",
+    "armor": 9,
+    "weight": 105,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2483.gif"
+  },
+  {
+    "name": "Elven Mail",
+    "armor": 10,
+    "weight": 90,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2505.gif"
+  },
+  {
+    "name": "Plate Armor",
+    "armor": 10,
+    "weight": 120,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2463.gif"
+  },
+  {
+    "name": "Dwarven Armor",
+    "armor": 10,
+    "weight": 130,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2503.gif"
+  },
+  {
+    "name": "Dark Armor",
+    "armor": 10,
+    "weight": 120,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2489.gif"
+  },
+  {
+    "name": "Noble Armor",
+    "armor": 11,
+    "weight": 120,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2486.gif"
+  },
+  {
+    "name": "Blue Robe",
+    "armor": 11,
+    "weight": 22,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2656.gif"
+  },
+  {
+    "name": "Knight Armor",
+    "armor": 12,
+    "weight": 120,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2476.gif"
+  },
+  {
+    "name": "Crown Armor",
+    "armor": 13,
+    "weight": 99,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2487.gif"
+  },
+  {
+    "name": "Amazon Armor",
+    "armor": 13,
+    "weight": 99,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2500.gif"
+  },
+  {
+    "name": "Golden Armor",
+    "armor": 14,
+    "weight": 80,
+    "class": 4,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2466.gif"
+  },
+  {
+    "name": "Spectral Robe",
+    "armor": 14,
+    "weight": 22,
+    "class": 4,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/10129.gif"
+  },
+  {
+    "name": "Dragon Scale Mail",
+    "armor": 15,
+    "weight": 114,
+    "class": 4,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2492.gif"
+  },
+  {
+    "name": "Frozen Mail",
+    "armor": 15,
+    "weight": 114,
+    "class": 4,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/10217.gif"
+  },
+  {
+    "name": "Demon Armor",
+    "armor": 16,
+    "weight": 80,
+    "class": 5,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2494.gif"
+  },
+  {
+    "name": "Magic Plate Armor",
+    "armor": 17,
+    "weight": 85,
+    "class": 5,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2472.gif"
+  },
+  {
+    "name": "Spectral Armor",
+    "armor": 18,
+    "weight": 85,
+    "class": 5,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/9962.gif"
+  },
+  {
+    "name": "Anubis Armor",
+    "armor": 18,
+    "weight": 85,
+    "class": 5,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/10036.gif"
+  },
+  {
+    "name": "Pharaoh Armor",
+    "armor": 19,
+    "weight": 85,
+    "class": 5,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/10040.gif"
+  }
+]

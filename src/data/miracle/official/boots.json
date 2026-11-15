@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Boots Of Haste",
+    "armor": 0,
+    "weight": 7.5,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2195.gif"
+  },
+  {
+    "name": "Sandals",
+    "armor": 0,
+    "weight": 6,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/2642.gif"
+  },
+  {
+    "name": "Bunnyslippers",
+    "armor": 0,
+    "weight": 12,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2644.gif"
+  },
+  {
+    "name": "Leather Boots",
+    "armor": 1,
+    "weight": 9,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2643.gif"
+  },
+  {
+    "name": "Patched Boots",
+    "armor": 2,
+    "weight": 9,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2641.gif"
+  },
+  {
+    "name": "Snow Boots",
+    "armor": 2,
+    "weight": 16,
+    "class": 2,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/11736.gif"
+  },
+  {
+    "name": "Steel Boots",
+    "armor": 3,
+    "weight": 29,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2645.gif"
+  },
+  {
+    "name": "Frozen Boots",
+    "armor": 3,
+    "weight": 9,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/10219.gif"
+  },
+  {
+    "name": "Golden Boots",
+    "armor": 4,
+    "weight": 32,
+    "class": 4,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2646.gif"
+  }
+]

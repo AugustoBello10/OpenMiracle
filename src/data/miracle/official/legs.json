@@ -1,0 +1,130 @@
+[
+  {
+    "name": "Leather Legs",
+    "armor": 1,
+    "weight": 18,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/2649.gif"
+  },
+  {
+    "name": "Studded Legs",
+    "armor": 2,
+    "weight": 26,
+    "class": null,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/2468.gif"
+  },
+  {
+    "name": "Chain Legs",
+    "armor": 3,
+    "weight": 35,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2648.gif"
+  },
+  {
+    "name": "Elven Legs",
+    "armor": 4,
+    "weight": 33,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2507.gif"
+  },
+  {
+    "name": "Brass Legs",
+    "armor": 5,
+    "weight": 38,
+    "class": 1,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2478.gif"
+  },
+  {
+    "name": "Dwarven Legs",
+    "armor": 7,
+    "weight": 49,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2504.gif"
+  },
+  {
+    "name": "Plate Legs",
+    "armor": 7,
+    "weight": 50,
+    "class": 2,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2647.gif"
+  },
+  {
+    "name": "Knight Legs",
+    "armor": 8,
+    "weight": 70,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2477.gif"
+  },
+  {
+    "name": "Crown Legs",
+    "armor": 8,
+    "weight": 65,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2488.gif"
+  },
+  {
+    "name": "Golden Legs",
+    "armor": 9,
+    "weight": 54,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2470.gif"
+  },
+  {
+    "name": "Demon Legs",
+    "armor": 9,
+    "weight": 54,
+    "class": 4,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2495.gif"
+  },
+  {
+    "name": "Frozen Legs",
+    "armor": 9,
+    "weight": 58,
+    "class": 3,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/10218.gif"
+  },
+  {
+    "name": "Dragon Scale Legs",
+    "armor": 10,
+    "weight": 48,
+    "class": 4,
+    "hasEmberRune": true,
+    "image": "https://miracle74.com/images/items/2469.gif"
+  },
+  {
+    "name": "Spectral Legs",
+    "armor": 11,
+    "weight": 54,
+    "class": 5,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/9963.gif"
+  },
+  {
+    "name": "Anubis Legs",
+    "armor": 11,
+    "weight": 54,
+    "class": 5,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/10037.gif"
+  },
+  {
+    "name": "Pharaoh Legs",
+    "armor": 12,
+    "weight": 54,
+    "class": 5,
+    "hasEmberRune": false,
+    "image": "https://miracle74.com/images/items/10041.gif"
+  }
+]

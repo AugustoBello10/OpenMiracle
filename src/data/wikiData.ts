@@ -628,18 +628,6 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       ]
     },
     {
-      "name": "Helmet Of The Frozen Soul",
-      "class": 5,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Protect Elements",
-        "Mitigation"
-      ]
-    },
-    {
       "name": "Golden Helmet",
       "class": 5,
       "attributes": [
@@ -671,42 +659,6 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Max Health",
         "Sword Fighting",
         "Protect Fire"
-      ]
-    },
-    {
-      "name": "Anubis Helmet",
-      "class": 5,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Protect Elements",
-        "Mitigation"
-      ]
-    },
-    {
-      "name": "Spectral Helmet",
-      "class": 5,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Protect Elements",
-        "Mitigation"
-      ]
-    },
-    {
-      "name": "Pharaoh Helmet",
-      "class": 5,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Protect Elements",
-        "Mitigation"
       ]
     },
     {
@@ -745,18 +697,6 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
     }
   ],
   "Armors": [
-    {
-      "name": "Ranger's Cloak",
-      "class": 1,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Protect Elements",
-        "Mitigation"
-      ]
-    },
     {
       "name": "Brass Armor",
       "class": 1,
@@ -992,117 +932,6 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Shielding"
       ]
     },
-    {
-      "name": "Spectral Armor",
-      "class": 5,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Protect Elements",
-        "Mitigation"
-      ]
-    },
-    {
-      "name": "Anubis Armor",
-      "class": 5,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Protect Elements",
-        "Mitigation"
-      ]
-    },
-    {
-      "name": "Pharaoh Armor",
-      "class": 5,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Protect Elements",
-        "Mitigation"
-      ]
-    },
-    {
-      "name": "Spectral Dress",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Ball Gown",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "White Dress",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Simple Dress",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Cape",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Green Tunic",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Coat",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Jacket",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Doublet",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Red Tunic",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Pirate Shirt",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Leather Armor",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Studded Armor",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Chain Armor",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Native Armor",
-      "class": 0,
-      "attributes": []
-    }
   ],
   "Legs": [
     {
@@ -1247,49 +1076,6 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Protect Fire"
       ]
     },
-    {
-      "name": "Spectral Legs",
-      "class": 5,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Protect Elements"
-      ]
-    },
-    {
-      "name": "Anubis Legs",
-      "class": 5,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Protect Elements"
-      ]
-    },
-    {
-      "name": "Pharaoh Legs",
-      "class": 5,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Protect Elements"
-      ]
-    },
-    {
-      "name": "Leather Legs",
-      "class": 0,
-      "attributes": []
-    },
-    {
-      "name": "Studded Legs",
-      "class": 1,
-      "attributes": []
-    }
   ],
   "Boots": [
     {
@@ -1329,17 +1115,6 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Armor",
         "Speed",
         "Vibrancy"
-      ]
-    },
-    {
-      "name": "Snow Boots",
-      "class": 2,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Speed",
-        "Protect Physical",
-        "Mitigation"
       ]
     },
     {
@@ -1768,18 +1543,6 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Club Fighting",
         "Mitigation",
         "Shielding"
-      ]
-    },
-    {
-      "name": "Spectral Shield",
-      "class": 4,
-      "attributes": [
-        "Defense",
-        "Weight",
-        "Shielding",
-        "Mitigation",
-        "Protect Physical",
-        "Protect Elements"
       ]
     },
     {
