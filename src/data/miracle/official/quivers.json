@@ -1,0 +1,83 @@
+{
+  "category": "quivers",
+  "sourceUrl": "https://miracle74.com/?subtopic=items&category=quivers",
+  "items": [
+    {
+      "id": 7577,
+      "name": "Quiver",
+      "slug": "quiver",
+      "attack": 0,
+      "hitPercent": null,
+      "armor": 0,
+      "weight": 17.00,
+      "size": 2,
+      "tierClass": 1
+    },
+    {
+      "id": 8203,
+      "name": "Iron Quiver",
+      "slug": "iron_quiver",
+      "attack": 0,
+      "hitPercent": null,
+      "armor": 1,
+      "weight": 20.00,
+      "size": 2,
+      "tierClass": 1
+    },
+    {
+      "id": 7584,
+      "name": "Dragon Quiver",
+      "slug": "dragon_quiver",
+      "attack": 1,
+      "hitPercent": null,
+      "armor": 1,
+      "weight": 22.00,
+      "size": 4,
+      "tierClass": 2
+    },
+    {
+      "id": 7653,
+      "name": "Imperial Quiver",
+      "slug": "imperial_quiver",
+      "attack": 1,
+      "hitPercent": null,
+      "armor": 2,
+      "weight": 26.00,
+      "size": 4,
+      "tierClass": 2
+    },
+    {
+      "id": 8200,
+      "name": "Blazing Quiver",
+      "slug": "blazing_quiver",
+      "attack": 2,
+      "hitPercent": null,
+      "armor": 0,
+      "weight": 24.00,
+      "size": 6,
+      "tierClass": 3
+    },
+    {
+      "id": 7583,
+      "name": "Deadly Quiver",
+      "slug": "deadly_quiver",
+      "attack": 2,
+      "hitPercent": null,
+      "armor": 0,
+      "weight": 24.00,
+      "size": 6,
+      "tierClass": 3
+    },
+    {
+      "id": 8202,
+      "name": "Quiver Of Valor",
+      "slug": "quiver_of_valor",
+      "attack": 2,
+      "hitPercent": "1%",
+      "armor": 1,
+      "weight": 26.00,
+      "size": 6,
+      "tierClass": 3
+    }
+  ]
+}

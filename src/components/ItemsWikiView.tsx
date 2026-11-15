@@ -20,6 +20,10 @@ interface ItemRecord {
   defense?: number | null;
   armor?: number | null;
   hands?: number | null;
+  range?: number | null;
+  hitPercent?: string | null;
+  breakChance?: string | null;
+  size?: number | null;
   weight?: number;
   tierClass?: number | null;
   attributes?: string[] | Array<{ name: string; value: string }>;
@@ -354,11 +358,37 @@ export function ItemsWikiView({ language, initialCategory, onCategoryChange }: I
                           ) : (
                             <span className="text-stone-600">-</span>
                           )
+                        ) : item.category === 'distance' ? (
+                          <div className="flex flex-col items-center gap-0.5 text-xs">
+                            {item.attack !== null && item.attack !== undefined && (
+                              <span className="text-red-400 font-bold">
+                                Atk: {(item.name.toLowerCase().includes('bow') || item.name.toLowerCase().includes('crossbow')) ? `+${item.attack}` : item.attack}
+                              </span>
+                            )}
+                            {item.range !== null && item.range !== undefined && (
+                              <span className="text-emerald-400 font-bold">
+                                {language === 'pt' ? 'Alcance' : 'Range'}: {item.range}
+                              </span>
+                            )}
+                            {item.hitPercent && item.hitPercent !== '0%' && (
+                              <span className="text-sky-400 font-bold">
+                                {language === 'pt' ? 'Acerto' : 'Hit'}: +{item.hitPercent}
+                              </span>
+                            )}
+                            {item.breakChance && item.breakChance !== '0%' && (
+                              <span className="text-stone-400 text-[10px]">
+                                {language === 'pt' ? 'Quebra' : 'Break'}: {item.breakChance}
+                              </span>
+                            )}
+                            {item.armor !== null && item.armor !== undefined && item.armor > 0 && (
+                              <span className="text-amber-400 font-bold">Arm: {item.armor}</span>
+                            )}
+                          </div>
                         ) : (
                           <>
                             {item.attack !== null && item.attack !== undefined && item.attack > 0 && (
                               <span className="text-red-400 font-bold">
-                                Atk: {item.category === 'quivers' ? `+${item.attack}` : (item.category === 'distance' && item.attack > 0 && (item.name.toLowerCase().includes('bow') || item.name.toLowerCase().includes('crossbow')) ? `+${item.attack}` : item.attack)}
+                                Atk: {item.category === 'quivers' ? `+${item.attack}` : item.attack}
                               </span>
                             )}
                             {item.defense !== null && item.defense !== undefined && item.defense > 0 && (

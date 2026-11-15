@@ -4677,13 +4677,16 @@
     "slug": "snowball",
     "category": "distance",
     "image": "/images/miracle/items/snowball_2111.gif",
-    "attack": 1,
+    "attack": 0,
     "defense": null,
     "hands": 1,
-    "weight": 0.5,
+    "weight": 0.8,
     "tierClass": null,
     "attributes": [],
-    "armor": null
+    "armor": null,
+    "range": 7,
+    "hitPercent": null,
+    "breakChance": "10%"
   },
   {
     "id": 1294,
@@ -4691,13 +4694,16 @@
     "slug": "small_stone",
     "category": "distance",
     "image": "/images/miracle/items/small_stone_1294.gif",
-    "attack": 10,
+    "attack": 5,
     "defense": null,
     "hands": 1,
-    "weight": 1,
+    "weight": 1.8,
     "tierClass": 1,
     "attributes": [],
-    "armor": null
+    "armor": null,
+    "range": 7,
+    "hitPercent": null,
+    "breakChance": "10%"
   },
   {
     "id": 11572,
@@ -4705,13 +4711,16 @@
     "slug": "ice_small_stone",
     "category": "distance",
     "image": "/images/miracle/items/ice_small_stone_11572.gif",
-    "attack": 15,
+    "attack": 5,
     "defense": null,
     "hands": 1,
-    "weight": 1,
+    "weight": 1.9,
     "tierClass": 1,
     "attributes": [],
-    "armor": null
+    "armor": null,
+    "range": 7,
+    "hitPercent": null,
+    "breakChance": "7%"
   },
   {
     "id": 2399,
@@ -4719,13 +4728,16 @@
     "slug": "throwing_star",
     "category": "distance",
     "image": "/images/miracle/items/throwing_star_2399.gif",
-    "attack": 18,
+    "attack": 25,
     "defense": null,
     "hands": 1,
     "weight": 2,
     "tierClass": 2,
     "attributes": [],
-    "armor": null
+    "armor": null,
+    "range": 7,
+    "hitPercent": null,
+    "breakChance": "7%"
   },
   {
     "id": 2410,
@@ -4733,13 +4745,16 @@
     "slug": "throwing_knife",
     "category": "distance",
     "image": "/images/miracle/items/throwing_knife_2410.gif",
-    "attack": 25,
+    "attack": 30,
     "defense": null,
     "hands": 1,
-    "weight": 1,
+    "weight": 5,
     "tierClass": 5,
     "attributes": [],
-    "armor": null
+    "armor": null,
+    "range": 7,
+    "hitPercent": null,
+    "breakChance": "15%"
   },
   {
     "id": 2389,
@@ -4747,13 +4762,16 @@
     "slug": "spear",
     "category": "distance",
     "image": "/images/miracle/items/spear_2389.gif",
-    "attack": 25,
+    "attack": 30,
     "defense": null,
     "hands": 1,
     "weight": 20,
     "tierClass": null,
     "attributes": [],
-    "armor": null
+    "armor": null,
+    "range": 7,
+    "hitPercent": null,
+    "breakChance": "0%"
   },
   {
     "id": 3965,
@@ -4761,13 +4779,16 @@
     "slug": "hunting_spear",
     "category": "distance",
     "image": "/images/miracle/items/hunting_spear_3965.gif",
-    "attack": 27,
+    "attack": 32,
     "defense": null,
     "hands": 1,
     "weight": 22,
-    "tierClass": null,
+    "tierClass": 1,
     "attributes": [],
-    "armor": null
+    "armor": null,
+    "range": 6,
+    "hitPercent": null,
+    "breakChance": "3%"
   },
   {
     "id": 7378,
@@ -4775,13 +4796,16 @@
     "slug": "royal_spear",
     "category": "distance",
     "image": "/images/miracle/items/royal_spear_7378.gif",
-    "attack": 35,
+    "attack": 34,
     "defense": null,
     "hands": 1,
-    "weight": 25,
-    "tierClass": null,
+    "weight": 22,
+    "tierClass": 2,
     "attributes": [],
-    "armor": null
+    "armor": null,
+    "range": 5,
+    "hitPercent": null,
+    "breakChance": "2%"
   },
   {
     "id": 7367,
@@ -4789,13 +4813,16 @@
     "slug": "enchanted_spear",
     "category": "distance",
     "image": "/images/miracle/items/enchanted_spear_7367.gif",
-    "attack": 38,
+    "attack": 36,
     "defense": null,
     "hands": 1,
-    "weight": 20,
-    "tierClass": null,
+    "weight": 22,
+    "tierClass": 2,
     "attributes": [],
-    "armor": null
+    "armor": null,
+    "range": 4,
+    "hitPercent": null,
+    "breakChance": "1%"
   },
   {
     "id": 8207,
@@ -4803,13 +4830,16 @@
     "slug": "glacial_spear",
     "category": "distance",
     "image": "/images/miracle/items/glacial_spear_8207.gif",
-    "attack": 42,
+    "attack": 38,
     "defense": null,
     "hands": 1,
-    "weight": 25,
-    "tierClass": null,
+    "weight": 26,
+    "tierClass": 3,
     "attributes": [],
-    "armor": null
+    "armor": null,
+    "range": 7,
+    "hitPercent": null,
+    "breakChance": "2%"
   },
   {
     "id": 2456,
@@ -4829,7 +4859,10 @@
       "Attack Interval",
       "Critical Hit"
     ],
-    "armor": null
+    "armor": 0,
+    "range": 6,
+    "hitPercent": "0%",
+    "breakChance": null
   },
   {
     "id": 10221,
@@ -4849,7 +4882,10 @@
       "Attack Interval",
       "Critical Hit"
     ],
-    "armor": null
+    "armor": 0,
+    "range": 6,
+    "hitPercent": "1%",
+    "breakChance": null
   },
   {
     "id": 8214,
@@ -4869,7 +4905,10 @@
       "Attack Interval",
       "Critical Hit"
     ],
-    "armor": null
+    "armor": 0,
+    "range": 6,
+    "hitPercent": "0%",
+    "breakChance": null
   },
   {
     "id": 8218,
@@ -4889,7 +4928,10 @@
       "Attack Interval",
       "Critical Hit"
     ],
-    "armor": null
+    "armor": 0,
+    "range": 6,
+    "hitPercent": "1%",
+    "breakChance": null
   },
   {
     "id": 8215,
@@ -4909,7 +4951,10 @@
       "Attack Interval",
       "Critical Hit"
     ],
-    "armor": null
+    "armor": 2,
+    "range": 6,
+    "hitPercent": "1%",
+    "breakChance": null
   },
   {
     "id": 10060,
@@ -4929,7 +4974,10 @@
       "Attack Interval",
       "Critical Hit"
     ],
-    "armor": null
+    "armor": 0,
+    "range": 7,
+    "hitPercent": "2%",
+    "breakChance": null
   },
   {
     "id": 10059,
@@ -4948,7 +4996,10 @@
       "Distance Fighting",
       "Attack Interval"
     ],
-    "armor": null
+    "armor": 0,
+    "range": 6,
+    "hitPercent": "2%",
+    "breakChance": null
   },
   {
     "id": 2455,
@@ -4968,7 +5019,10 @@
       "Attack Interval",
       "Critical Hit"
     ],
-    "armor": null
+    "armor": 0,
+    "range": 5,
+    "hitPercent": "0%",
+    "breakChance": null
   },
   {
     "id": 10220,
@@ -4988,7 +5042,10 @@
       "Attack Interval",
       "Critical Hit"
     ],
-    "armor": null
+    "armor": 0,
+    "range": 5,
+    "hitPercent": "0%",
+    "breakChance": null
   },
   {
     "id": 10215,
@@ -5008,7 +5065,10 @@
       "Attack Interval",
       "Critical Hit"
     ],
-    "armor": null
+    "armor": 0,
+    "range": 4,
+    "hitPercent": "0%",
+    "breakChance": null
   },
   {
     "id": 9970,
@@ -5028,7 +5088,10 @@
       "Attack Interval",
       "Critical Hit"
     ],
-    "armor": null
+    "armor": 0,
+    "range": 5,
+    "hitPercent": "0%",
+    "breakChance": null
   },
   {
     "id": 8209,
@@ -5048,7 +5111,10 @@
       "Attack Interval",
       "Critical Hit"
     ],
-    "armor": null
+    "armor": 0,
+    "range": 5,
+    "hitPercent": "1%",
+    "breakChance": null
   },
   {
     "id": 8213,
@@ -5068,7 +5134,10 @@
       "Attack Interval",
       "Critical Hit"
     ],
-    "armor": null
+    "armor": 0,
+    "range": 5,
+    "hitPercent": "0%",
+    "breakChance": null
   },
   {
     "id": 8212,
@@ -5087,7 +5156,10 @@
       "Distance Fighting",
       "Attack Interval"
     ],
-    "armor": null
+    "armor": 0,
+    "range": 5,
+    "hitPercent": "1%",
+    "breakChance": null
   },
   {
     "id": 2546,
