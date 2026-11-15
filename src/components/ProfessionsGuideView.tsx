@@ -110,6 +110,14 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                   value: t('20.000 gold coins (20k)', '20,000 gold coins (20k)'),
                 },
                 {
+                  label: t('Mestre da Profissão', 'Profession Master'),
+                  value: (
+                    <MapLink poiId="sweaty-cyclops">
+                      A Sweaty Cyclops (Ab'Dendriel)
+                    </MapLink>
+                  ),
+                },
+                {
                   label: t('Ferramenta Obrigatória', 'Required Tool'),
                   value: (
                     <MapLink poiId="iron-hammer-quest">
@@ -117,6 +125,16 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                     </MapLink>
                   ),
                 },
+              ]}
+            />
+
+            <NpcDialog
+              npcName="A Sweaty Cyclops"
+              npcLocation="Ab'Dendriel"
+              lines={[
+                { speaker: 'player', text: 'hi', keyword: 'hi' },
+                { speaker: 'player', text: 'profession', keyword: 'profession' },
+                { speaker: 'player', text: 'yes', keyword: 'yes' },
               ]}
             />
 
@@ -375,9 +393,27 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                   value: t('20.000 gold coins (20k)', '20,000 gold coins (20k)'),
                 },
                 {
+                  label: t('Mestre da Profissão', 'Profession Master'),
+                  value: (
+                    <MapLink poiId="alexander">
+                      Alexander (Edron)
+                    </MapLink>
+                  ),
+                },
+                {
                   label: t('Ferramenta Inicial', 'Starting Tool'),
                   value: t('Gold Converter (500 gps com Alexander)', 'Gold Converter (500 gps with Alexander)'),
                 },
+              ]}
+            />
+
+            <NpcDialog
+              npcName="Alexander"
+              npcLocation="Edron"
+              lines={[
+                { speaker: 'player', text: 'hi', keyword: 'hi' },
+                { speaker: 'player', text: 'profession', keyword: 'profession' },
+                { speaker: 'player', text: 'yes', keyword: 'yes' },
               ]}
             />
 
@@ -563,9 +599,27 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                   value: t('Skill 10 em Mineração (minerando lava holes e pedras básicas)', 'Skill 10 in Mining (mining basic rocks/lava holes)'),
                 },
                 {
+                  label: t('Mestre da Profissão', 'Profession Master'),
+                  value: (
+                    <MapLink poiId="budrik">
+                      Budrik (Dwarf Mines - Kazordoon)
+                    </MapLink>
+                  ),
+                },
+                {
                   label: t('Ferramenta Inicial', 'Starting Tool'),
                   value: t('Pick básica (vendida em qualquer loja de ferramentas)', 'Basic Pick (bought in any tool shop)'),
                 },
+              ]}
+            />
+
+            <NpcDialog
+              npcName="Budrik"
+              npcLocation="Dwarf Mines"
+              lines={[
+                { speaker: 'player', text: 'hi', keyword: 'hi' },
+                { speaker: 'player', text: 'profession', keyword: 'profession' },
+                { speaker: 'player', text: 'yes', keyword: 'yes' },
               ]}
             />
 

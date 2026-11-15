@@ -2084,7 +2084,18 @@ export default function App() {
                                     }}
                                     className={`py-3 px-4 rounded-lg font-bold text-[10px] sm:text-xs uppercase tracking-wider transition-all border ${attrCategory === cat ? 'bg-medieval-gold/20 border-medieval-gold text-medieval-gold shadow-[0_0_15px_rgba(212,175,55,0.2)]' : 'bg-black/40 border-medieval-gold/20 text-medieval-gold/60 hover:bg-medieval-gold/10 hover:border-medieval-gold/40'}`}
                                   >
-                                    {cat}
+                                    {language === 'pt' ? ({
+                                      Helmets: 'Capacetes',
+                                      Armors: 'Armaduras',
+                                      Legs: 'Calças',
+                                      Boots: 'Botas',
+                                      Shields: 'Escudos',
+                                      Swords: 'Espadas',
+                                      Axes: 'Machados',
+                                      Clubs: 'Clavas',
+                                      Distance: 'Distância',
+                                      Quivers: 'Aljavas'
+                                    }[cat] || cat) : cat}
                                   </button>
                                 ))}
                               </div>
@@ -2113,7 +2124,7 @@ export default function App() {
                                  >
                                    {ATTRIBUTE_DATA[attrCategory]?.map(item => (
                                      <option key={item.name} value={item.name}>
-                                       {item.name} (Classe {item.class})
+                                       {item.name} ({language === 'pt' ? 'Classe' : 'Class'} {item.class})
                                      </option>
                                    ))}
                                  </select>
