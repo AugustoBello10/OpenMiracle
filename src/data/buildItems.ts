@@ -3146,283 +3146,1221 @@ const ATTRIBUTE_DATA_STUB: Record<string, { name: string; class: number; attribu
   ]
 };
 
-const ITEM_BASE_STATS: Record<string, { armor?: number; attack?: number; defense?: number; weight: number }> = {
-  // Helmets
-  "Mystic Turban": { armor: 2, weight: 8.5 },
-  "Legion Helmet": { armor: 4, weight: 31.0 },
-  "Viking Helmet": { armor: 4, weight: 39.0 },
-  "Iron Helmet": { armor: 5, weight: 30.0 },
-  "Soldier Helmet": { armor: 5, weight: 32.0 },
-  "Hat Of The Mad": { armor: 4, weight: 7.0 },
-  "Wood Cape": { armor: 4, weight: 11.0 },
-  "Dwarven Helmet": { armor: 6, weight: 42.0 },
-  "Dark Helmet": { armor: 6, weight: 46.0 },
-  "Steel Helmet": { armor: 6, weight: 46.0 },
-  "Strange Helmet": { armor: 6, weight: 46.0 },
-  "Amazon Helmet": { armor: 7, weight: 29.5 },
-  "Crown Helmet": { armor: 7, weight: 29.5 },
-  "Beholder Helmet": { armor: 7, weight: 46.0 },
-  "Devil Helmet": { armor: 7, weight: 50.0 },
-  "Ancient Tiara": { armor: 6, weight: 4.5 },
-  "Magician Hat": { armor: 6, weight: 7.5 },
-  "Ceremonial Mask": { armor: 6, weight: 12.0 },
-  "Black Hat": { armor: 7, weight: 7.50 },
-  "Crusader Helmet": { armor: 8, weight: 52.0 },
-  "Warrior Helmet": { armor: 8, weight: 68.0 },
-  "Frozen Helmet": { armor: 9, weight: 46.0 },
-  "Royal Helmet": { armor: 9, weight: 48.0 },
-  "Winged Helmet": { armor: 10, weight: 12.0 },
-  "Demon Helmet": { armor: 10, weight: 29.5 },
-  "Dragon Scale Helmet": { armor: 10, weight: 60.0 },
-  "Helmet Of The Ancients": { armor: 11, weight: 27.6 },
-  "Helmet Of The Ancients (Empty)": { armor: 8, weight: 27.6 },
-  "Helmet Of The Ancients (Full)": { armor: 12, weight: 27.6 },
-  "Horned Helmet": { armor: 12, weight: 51.0 },
-  "Golden Helmet": { armor: 12, weight: 32.0 },
-
-  // Armors
-  "Spectral Dress": { armor: 0, weight: 10.00 },
-  "Ball Gown": { armor: 0, weight: 25.00 },
-  "White Dress": { armor: 0, weight: 24.00 },
-  "Simple Dress": { armor: 1, weight: 24.00 },
-  "Cape": { armor: 1, weight: 32.00 },
-  "Green Tunic": { armor: 1, weight: 9.30 },
-  "Coat": { armor: 1, weight: 27.00 },
-  "Jacket": { armor: 1, weight: 24.00 },
-  "Doublet": { armor: 2, weight: 25.00 },
-  "Red Tunic": { armor: 2, weight: 30.00 },
-  "Pirate Shirt": { armor: 3, weight: 20.00 },
-  "Leather Armor": { armor: 4, weight: 60.00 },
-  "Studded Armor": { armor: 5, weight: 71.00 },
-  "Chain Armor": { armor: 6, weight: 100.00 },
-  "Ranger's Cloak": { armor: 6, weight: 48.00 },
-  "Native Armor": { armor: 7, weight: 80.00 },
-  "Brass Armor": { armor: 8, weight: 80.00 },
-  "Red Robe": { armor: 8, weight: 26.00 },
-  "Scale Armor": { armor: 9, weight: 105.00 },
-  "Elven Mail": { armor: 10, weight: 90.00 },
-  "Plate Armor": { armor: 10, weight: 120.00 },
-  "Dwarven Armor": { armor: 10, weight: 130.00 },
-  "Dark Armor": { armor: 10, weight: 120.00 },
-  "Noble Armor": { armor: 11, weight: 120.00 },
-  "Blue Robe": { armor: 11, weight: 22.00 },
-  "Knight Armor": { armor: 12, weight: 120.00 },
-  "Crown Armor": { armor: 13, weight: 99.00 },
-  "Amazon Armor": { armor: 13, weight: 99.00 },
-  "Golden Armor": { armor: 14, weight: 80.00 },
-  "Spectral Robe": { armor: 14, weight: 22.00 },
-  "Dragon Scale Mail": { armor: 15, weight: 114.00 },
-  "Frozen Mail": { armor: 15, weight: 114.00 },
-  "Demon Armor": { armor: 16, weight: 80.00 },
-  "Magic Plate Armor": { armor: 17, weight: 85.00 },
-  "Spectral Armor": { armor: 18, weight: 85.00 },
-  "Anubis Armor": { armor: 18, weight: 85.00 },
-  "Pharaoh Armor": { armor: 19, weight: 85.00 },
-
-  // Legs
-  "Leather Legs": { armor: 1, weight: 18.00 },
-  "Studded Legs": { armor: 2, weight: 26.00 },
-  "Chain Legs": { armor: 3, weight: 35.00 },
-  "Elven Legs": { armor: 4, weight: 33.00 },
-  "Brass Legs": { armor: 5, weight: 38.00 },
-  "Dwarven Legs": { armor: 7, weight: 49.00 },
-  "Plate Legs": { armor: 7, weight: 50.00 },
-  "Knight Legs": { armor: 8, weight: 70.00 },
-  "Crown Legs": { armor: 8, weight: 65.00 },
-  "Golden Legs": { armor: 9, weight: 56.00 },
-  "Demon Legs": { armor: 10, weight: 35.00 },
-  "Frozen Legs": { armor: 9, weight: 58.00 },
-  "Dragon Scale Legs": { armor: 10, weight: 48.00 },
-  "Spectral Legs": { armor: 11, weight: 54.00 },
-  "Anubis Legs": { armor: 11, weight: 54.00 },
-  "Pharaoh Legs": { armor: 12, weight: 54.00 },
-
-  // Boots
-  "Boots Of Haste": { armor: 0, weight: 7.5 },
-  "Bunnyslippers": { armor: 0, weight: 6.0 },
-  "Leather Boots": { armor: 1, weight: 9.0 },
-  "Patched Boots": { armor: 1, weight: 8.5 },
-  "Steel Boots": { armor: 3, weight: 29.0 },
-  "Frozen Boots": { armor: 2, weight: 25.0 },
-  "Golden Boots": { armor: 4, weight: 32.0 },
-  "Soft Boots": { armor: 0, weight: 8.0 },
-
-  // Shields
-  "Wooden Shield": { defense: 14, weight: 40.0 },
-  "Studded Shield": { defense: 15, weight: 46.0 },
-  "Brass Shield": { defense: 16, weight: 60.0 },
-  "Plate Shield": { defense: 17, weight: 65.0 },
-  "Black Shield": { defense: 18, weight: 45.0 },
-  "Copper Shield": { defense: 19, weight: 63.0 },
-  "Bone Shield": { defense: 20, weight: 40.0 },
-  "Steel Shield": { defense: 21, weight: 68.0 },
-  "Viking Shield": { defense: 22, weight: 82.0 },
-  "Ornamented Shield": { defense: 22, weight: 60.0 },
-  "Battle Shield": { defense: 23, weight: 85.0 },
-  "Scarab Shield": { defense: 25, weight: 52.0 },
-  "Dark Shield": { defense: 25, weight: 55.0 },
-  "Dwarven Shield": { defense: 26, weight: 55.0 },
-  "Rose Shield": { defense: 27, weight: 51.0 },
-  "Ancient Shield": { defense: 27, weight: 65.0 },
-  "Castle Shield": { defense: 28, weight: 72.0 },
-  "Beholder Shield": { defense: 28, weight: 40.0 },
-  "Griffin Shield": { defense: 29, weight: 58.0 },
-  "Guardian Shield": { defense: 30, weight: 60.0 },
-  "Eagle Shield": { defense: 30, weight: 48.0 },
-  "Dragon Shield": { defense: 31, weight: 60.0 },
-  "Frozen Shield": { defense: 32, weight: 65.0 },
-  "Amazon Shield": { defense: 32, weight: 55.0 },
-  "Crown Shield": { defense: 32, weight: 62.0 },
-  "Tower Shield": { defense: 32, weight: 83.0 },
-  "Shield Of Honour": { defense: 33, weight: 46.0 },
-  "Medusa Shield": { defense: 33, weight: 58.0 },
-  "Vampire Shield": { defense: 34, weight: 38.0 },
-  "Phoenix Shield": { defense: 34, weight: 45.0 },
-  "Demon Shield": { defense: 35, weight: 26.0 },
-  "Tempest Shield": { defense: 36, weight: 36.0 },
-  "Mastermind Shield": { defense: 37, weight: 57.0 },
-  "Great Shield": { defense: 38, weight: 84.0 },
-  "Spectral Shield": { defense: 39, weight: 50.0 },
-  "Blessed Shield": { defense: 40, weight: 68.0 },
-
-  // Quivers
-  "Quiver": { attack: 0, armor: 0, weight: 17.0 },
-  "Iron Quiver": { attack: 0, armor: 1, weight: 20.0 },
-  "Dragon Quiver": { attack: 1, armor: 1, weight: 22.0 },
-  "Imperial Quiver": { attack: 1, armor: 2, weight: 26.0 },
-  "Blazing Quiver": { attack: 2, armor: 0, weight: 24.0 },
-  "Deadly Quiver": { attack: 2, armor: 0, weight: 24.0 },
-  "Quiver Of Valor": { attack: 2, armor: 1, weight: 26.0 },
-
-  // Axes
-  "Sickle": { attack: 5, defense: 3, weight: 8.0 },
-  "Hand Axe": { attack: 15, defense: 12, weight: 18.0 },
-  "Axe": { attack: 21, defense: 14, weight: 25.0 },
-  "Golden Sickle": { attack: 12, defense: 10, weight: 6.0 },
-  "Hatchet": { attack: 15, defense: 12, weight: 15.0 },
-  "Daramanian Axe": { attack: 18, defense: 15, weight: 20.0 },
-  "Orcish Axe": { attack: 25, defense: 18, weight: 28.0 },
-  "Battle Axe": { attack: 25, defense: 10, weight: 50.0 },
-  "Barbarian Axe": { attack: 28, defense: 18, weight: 35.0 },
-  "Dwarven Axe": { attack: 31, defense: 20, weight: 45.0 },
-  "Knight Axe": { attack: 33, defense: 21, weight: 38.0 },
-  "Obsidian Lance": { attack: 39, defense: 12, weight: 60.0 },
-  "Double Axe": { attack: 35, defense: 12, weight: 70.0 },
-  "Halberd": { attack: 35, defense: 14, weight: 90.0 },
-  "Crystal Axe": { attack: 38, defense: 25, weight: 50.0 },
-  "Fire Axe": { attack: 38, defense: 16, weight: 40.0 },
-  "Daramanian Waraxe": { attack: 39, defense: 15, weight: 80.0 },
-  "Naginata": { attack: 39, defense: 15, weight: 85.0 },
-  "Twin Axe": { attack: 40, defense: 18, weight: 65.0 },
-  "Guardian Halberd": { attack: 42, defense: 20, weight: 90.0 },
-  "Dragon Lance": { attack: 47, defense: 16, weight: 80.0 },
-  "War Axe": { attack: 48, defense: 22, weight: 75.0 },
-  "Ravager's Axe": { attack: 49, defense: 24, weight: 82.0 },
-  "Stonecutter Axe": { attack: 50, defense: 30, weight: 95.0 },
-  "Darksteel Axe": { attack: 50, defense: 25, weight: 60.0 },
-  "Great Axe": { attack: 52, defense: 22, weight: 90.0 },
-  "Demonwing Axe": { attack: 53, defense: 21, weight: 95.0 },
-
-  // Swords
-  "Knife": { attack: 5, defense: 5, weight: 5.0 },
-  "Dagger": { attack: 8, defense: 6, weight: 9.0 },
-  "Combat Knife": { attack: 8, defense: 7, weight: 8.0 },
-  "Silver Dagger": { attack: 10, defense: 8, weight: 10.0 },
-  "Rapier": { attack: 10, defense: 8, weight: 15.0 },
-  "Short Sword": { attack: 11, defense: 11, weight: 35.0 },
-  "Foil": { attack: 9, defense: 11, weight: 15.00 },
-  "Hunter's Knife": { attack: 11, defense: 6, weight: 15.00 },
-  "Sabre": { attack: 12, defense: 10, weight: 25.0 },
-  "Sword": { attack: 14, defense: 12, weight: 35.0 },
-  "Diamond Knife": { attack: 15, defense: 7, weight: 20.00 },
-  "Bone Sword": { attack: 15, defense: 12, weight: 19.0 },
-  "Carlin Sword": { attack: 15, defense: 13, weight: 40.0 },
-  "Heavy Machete": { attack: 16, defense: 10, weight: 18.39 },
-  "Katana": { attack: 16, defense: 12, weight: 31.0 },
-  "Longsword": { attack: 17, defense: 14, weight: 41.0 },
-  "Poison Dagger": { attack: 18, defense: 10, weight: 14.0 },
-  "Scimitar": { attack: 19, defense: 13, weight: 29.0 },
-  "Spike Sword": { attack: 24, defense: 20, weight: 50.0 },
-  "Broadsword": { attack: 26, defense: 23, weight: 52.50 },
-  "Serpent Sword": { attack: 26, defense: 15, weight: 41.0 },
-  "Two Handed Sword": { attack: 30, defense: 25, weight: 70.00 },
-  "Fire Sword": { attack: 35, defense: 20, weight: 23.0 },
-  "Bright Sword": { attack: 36, defense: 30, weight: 29.0 },
-  "Crystal Sword": { attack: 38, defense: 26, weight: 69.00 },
-  "Djinn Blade": { attack: 40, defense: 22, weight: 24.50 },
-  "Pharaoh Sword": { attack: 44, defense: 23, weight: 190.00 },
-  "Giant Sword": { attack: 46, defense: 22, weight: 180.0 },
-  "Magic Sword": { attack: 48, defense: 35, weight: 42.0 },
-  "Miracle Sword": { attack: 50, defense: 30, weight: 42.00 },
-  "Warlord Sword": { attack: 53, defense: 38, weight: 64.00 },
-  "Magic Longsword": { attack: 55, defense: 40, weight: 43.00 },
-  "Ice Rapier": { attack: 100, defense: 1, weight: 15.00 },
-
-  // Clubs
-  "Club": { attack: 7, defense: 7, weight: 25.0 },
-  "Studded Club": { attack: 9, defense: 8, weight: 35.0 },
-  "Staff": { attack: 8, defense: 10, weight: 38.00 },
-  "Bone Club": { attack: 12, defense: 8, weight: 39.0 },
-  "Golden Mace": { attack: 15, defense: 12, weight: 26.0 },
-  "Mace": { attack: 16, defense: 11, weight: 45.0 },
-  "Iron Hammer": { attack: 16, defense: 10, weight: 50.0 },
-  "Daramanian Mace": { attack: 21, defense: 15, weight: 30.0 },
-  "Battle Hammer": { attack: 24, defense: 14, weight: 68.0 },
-  "Giant Smithhammer": { attack: 25, defense: 15, weight: 70.0 },
-  "Morning Star": { attack: 25, defense: 15, weight: 55.0 },
-  "Clerical Mace": { attack: 28, defense: 15, weight: 58.0 },
-  "Dragon Hammer": { attack: 32, defense: 20, weight: 97.0 },
-  "Skull Staff": { attack: 36, defense: 12, weight: 17.5 },
-  "Enchanted Staff": { attack: 37, defense: 15, weight: 18.00 },
-  "Silver Mace": { attack: 40, defense: 30, weight: 45.0 },
-  "Crystal Mace": { attack: 38, defense: 16, weight: 43.0 },
-  "War Hammer": { attack: 45, defense: 10, weight: 85.0 },
-  "Dragonbone Hammer": { attack: 46, defense: 23, weight: 45.00 },
-  "Hammer Of Wrath": { attack: 48, defense: 12, weight: 90.0 },
-  "Sapphire Hammer": { attack: 45, defense: 32, weight: 45.00 },
-  "Thunder Hammer": { attack: 49, defense: 35, weight: 55.0 },
-  "Heavy Mace": { attack: 49, defense: 15, weight: 100.00 },
-  "Arcane Staff": { attack: 50, defense: 30, weight: 40.0 },
-  "Mythic Hammer": { attack: 53, defense: 35, weight: 60.00 },
-
-  // Distance
-  "Bow": { attack: 0, defense: 0, weight: 31.0 },
-  "Elvish Bow": { attack: 1, defense: 0, weight: 27.0 },
-  "War Bow": { attack: 2, defense: 0, weight: 36.0 },
-  "Frozen Bow": { attack: 3, defense: 0, weight: 40.0 },
-  "Armored War Bow": { attack: 3, defense: 0, weight: 60.0 },
-  "Sapphire Bow": { attack: 3, defense: 0, weight: 42.0 },
-  "Hellforged Bow": { attack: 4, defense: 0, weight: 46.0 },
-  "Crossbow": { attack: 0, defense: 0, weight: 40.0 },
-  "Steel Crossbow": { attack: 1, defense: 0, weight: 40.0 },
-  "Bone Crossbow": { attack: 2, defense: 0, weight: 65.0 },
-  "Crystallized Crossbow": { attack: 3, defense: 0, weight: 40.0 },
-  "Royal Crossbow": { attack: 3, defense: 0, weight: 40.0 },
-  "Evil Crossbow": { attack: 4, defense: 0, weight: 60.0 },
-  "Hellforged Crossbow": { attack: 5, defense: 0, weight: 60.0 },
-  "Snowball": { attack: 1, defense: 0, weight: 0.5 },
-  "Small Stone": { attack: 10, defense: 0, weight: 1.0 },
-  "Ice Small Stone": { attack: 15, defense: 0, weight: 1.0 },
-  "Throwing Star": { attack: 18, defense: 0, weight: 2.0 },
-  "Throwing Knife": { attack: 25, defense: 0, weight: 1.0 },
-  "Spear": { attack: 25, defense: 0, weight: 20.0 },
-  "Hunting Spear": { attack: 27, defense: 0, weight: 22.0 },
-  "Royal Spear": { attack: 35, defense: 0, weight: 25.0 },
-  "Enchanted Spear": { attack: 38, defense: 0, weight: 20.0 },
-  "Glacial Spear": { attack: 42, defense: 0, weight: 25.0 },
-
-  // Ammunition
-  "Burst Arrow": { attack: 27, defense: 0, weight: 0.8 },
-  "Poison Arrow": { attack: 22, defense: 0, weight: 0.7 },
-  "Arrow": { attack: 25, defense: 0, weight: 0.7 },
-  "Hunting Arrow": { attack: 25, defense: 0, weight: 0.7 },
-  "Frozen Arrow": { attack: 30, defense: 0, weight: 0.7 },
-  "Piercing Arrow": { attack: 33, defense: 0, weight: 0.7 },
-  "Onyx Arrow": { attack: 38, defense: 0, weight: 0.7 },
-  "Bolt": { attack: 30, defense: 0, weight: 0.8 },
-  "Steel Bolt": { attack: 35, defense: 0, weight: 0.8 },
-  "Power Bolt": { attack: 40, defense: 0, weight: 0.85 },
-  "Infernal Bolt": { attack: 55, defense: 0, weight: 0.9 }
+const ITEM_BASE_STATS: Record<string, { armor?: number; attack?: number; defense?: number; range?: number; weight: number }> = {
+  "Post Officers Hat": {
+    "armor": 1,
+    "weight": 7
+  },
+  "Leather Helmet": {
+    "armor": 1,
+    "weight": 22
+  },
+  "Studded Helmet": {
+    "armor": 2,
+    "weight": 24
+  },
+  "Chain Helmet": {
+    "armor": 2,
+    "weight": 42
+  },
+  "Brass Helmet": {
+    "armor": 3,
+    "weight": 27
+  },
+  "Mystic Turban": {
+    "armor": 2,
+    "weight": 8.5
+  },
+  "Legion Helmet": {
+    "armor": 4,
+    "weight": 31
+  },
+  "Viking Helmet": {
+    "armor": 4,
+    "weight": 39
+  },
+  "Iron Helmet": {
+    "armor": 5,
+    "weight": 30
+  },
+  "Soldier Helmet": {
+    "armor": 5,
+    "weight": 32
+  },
+  "Hat Of The Mad": {
+    "armor": 4,
+    "weight": 7
+  },
+  "Wood Cape": {
+    "armor": 4,
+    "weight": 11
+  },
+  "Dwarven Helmet": {
+    "armor": 6,
+    "weight": 42
+  },
+  "Dark Helmet": {
+    "armor": 6,
+    "weight": 46
+  },
+  "Steel Helmet": {
+    "armor": 6,
+    "weight": 46
+  },
+  "Strange Helmet": {
+    "armor": 6,
+    "weight": 46
+  },
+  "Amazon Helmet": {
+    "armor": 7,
+    "weight": 29.5
+  },
+  "Crown Helmet": {
+    "armor": 7,
+    "weight": 29.5
+  },
+  "Beholder Helmet": {
+    "armor": 7,
+    "weight": 46
+  },
+  "Devil Helmet": {
+    "armor": 7,
+    "weight": 50
+  },
+  "Ancient Tiara": {
+    "armor": 6,
+    "weight": 4.5
+  },
+  "Magician Hat": {
+    "armor": 6,
+    "weight": 7.5
+  },
+  "Ceremonial Mask": {
+    "armor": 6,
+    "weight": 12
+  },
+  "Black Hat": {
+    "armor": 7,
+    "weight": 7.5
+  },
+  "Crusader Helmet": {
+    "armor": 8,
+    "weight": 52
+  },
+  "Warrior Helmet": {
+    "armor": 8,
+    "weight": 68
+  },
+  "Frozen Helmet": {
+    "armor": 9,
+    "weight": 46
+  },
+  "Royal Helmet": {
+    "armor": 9,
+    "weight": 48
+  },
+  "Winged Helmet": {
+    "armor": 10,
+    "weight": 12
+  },
+  "Demon Helmet": {
+    "armor": 10,
+    "weight": 29.5
+  },
+  "Dragon Scale Helmet": {
+    "armor": 10,
+    "weight": 60
+  },
+  "Helmet Of The Ancients": {
+    "armor": 12,
+    "weight": 27.6
+  },
+  "Helmet Of The Frozen Soul": {
+    "armor": 12,
+    "weight": 30
+  },
+  "Golden Helmet": {
+    "armor": 12,
+    "weight": 32
+  },
+  "Horned Helmet": {
+    "armor": 12,
+    "weight": 51
+  },
+  "Anubis Helmet": {
+    "armor": 13,
+    "weight": 43
+  },
+  "Spectral Helmet": {
+    "armor": 13,
+    "weight": 65
+  },
+  "Pharaoh Helmet": {
+    "armor": 14,
+    "weight": 43
+  },
+  "Spectral Dress": {
+    "armor": 0,
+    "weight": 10
+  },
+  "Ball Gown": {
+    "armor": 0,
+    "weight": 25
+  },
+  "White Dress": {
+    "armor": 0,
+    "weight": 24
+  },
+  "Simple Dress": {
+    "armor": 1,
+    "weight": 24
+  },
+  "Cape": {
+    "armor": 1,
+    "weight": 32
+  },
+  "Green Tunic": {
+    "armor": 1,
+    "weight": 9.3
+  },
+  "Coat": {
+    "armor": 1,
+    "weight": 27
+  },
+  "Jacket": {
+    "armor": 1,
+    "weight": 24
+  },
+  "Doublet": {
+    "armor": 2,
+    "weight": 25
+  },
+  "Red Tunic": {
+    "armor": 2,
+    "weight": 30
+  },
+  "Pirate Shirt": {
+    "armor": 3,
+    "weight": 20
+  },
+  "Leather Armor": {
+    "armor": 4,
+    "weight": 60
+  },
+  "Studded Armor": {
+    "armor": 5,
+    "weight": 71
+  },
+  "Chain Armor": {
+    "armor": 6,
+    "weight": 100
+  },
+  "Ranger's Cloak": {
+    "armor": 6,
+    "weight": 48
+  },
+  "Native Armor": {
+    "armor": 7,
+    "weight": 80
+  },
+  "Brass Armor": {
+    "armor": 8,
+    "weight": 80
+  },
+  "Red Robe": {
+    "armor": 8,
+    "weight": 26
+  },
+  "Scale Armor": {
+    "armor": 9,
+    "weight": 105
+  },
+  "Elven Mail": {
+    "armor": 10,
+    "weight": 90
+  },
+  "Plate Armor": {
+    "armor": 10,
+    "weight": 120
+  },
+  "Dwarven Armor": {
+    "armor": 10,
+    "weight": 130
+  },
+  "Dark Armor": {
+    "armor": 10,
+    "weight": 120
+  },
+  "Noble Armor": {
+    "armor": 11,
+    "weight": 120
+  },
+  "Blue Robe": {
+    "armor": 11,
+    "weight": 22
+  },
+  "Knight Armor": {
+    "armor": 12,
+    "weight": 120
+  },
+  "Crown Armor": {
+    "armor": 13,
+    "weight": 99
+  },
+  "Amazon Armor": {
+    "armor": 13,
+    "weight": 99
+  },
+  "Golden Armor": {
+    "armor": 14,
+    "weight": 80
+  },
+  "Spectral Robe": {
+    "armor": 14,
+    "weight": 22
+  },
+  "Dragon Scale Mail": {
+    "armor": 15,
+    "weight": 114
+  },
+  "Frozen Mail": {
+    "armor": 15,
+    "weight": 114
+  },
+  "Demon Armor": {
+    "armor": 16,
+    "weight": 80
+  },
+  "Magic Plate Armor": {
+    "armor": 17,
+    "weight": 85
+  },
+  "Spectral Armor": {
+    "armor": 18,
+    "weight": 85
+  },
+  "Anubis Armor": {
+    "armor": 18,
+    "weight": 85
+  },
+  "Pharaoh Armor": {
+    "armor": 19,
+    "weight": 85
+  },
+  "Leather Legs": {
+    "armor": 1,
+    "weight": 18
+  },
+  "Studded Legs": {
+    "armor": 2,
+    "weight": 26
+  },
+  "Chain Legs": {
+    "armor": 3,
+    "weight": 35
+  },
+  "Elven Legs": {
+    "armor": 4,
+    "weight": 33
+  },
+  "Brass Legs": {
+    "armor": 5,
+    "weight": 38
+  },
+  "Dwarven Legs": {
+    "armor": 7,
+    "weight": 49
+  },
+  "Plate Legs": {
+    "armor": 7,
+    "weight": 50
+  },
+  "Knight Legs": {
+    "armor": 8,
+    "weight": 70
+  },
+  "Crown Legs": {
+    "armor": 8,
+    "weight": 65
+  },
+  "Golden Legs": {
+    "armor": 9,
+    "weight": 56
+  },
+  "Demon Legs": {
+    "armor": 10,
+    "weight": 35
+  },
+  "Frozen Legs": {
+    "armor": 9,
+    "weight": 58
+  },
+  "Dragon Scale Legs": {
+    "armor": 10,
+    "weight": 48
+  },
+  "Spectral Legs": {
+    "armor": 11,
+    "weight": 54
+  },
+  "Anubis Legs": {
+    "armor": 11,
+    "weight": 54
+  },
+  "Pharaoh Legs": {
+    "armor": 12,
+    "weight": 54
+  },
+  "Boots Of Haste": {
+    "armor": 0,
+    "weight": 7.5
+  },
+  "Sandals": {
+    "weight": 6
+  },
+  "Bunnyslippers": {
+    "armor": 0,
+    "weight": 6
+  },
+  "Leather Boots": {
+    "armor": 1,
+    "weight": 9
+  },
+  "Patched Boots": {
+    "armor": 1,
+    "weight": 8.5
+  },
+  "Snow Boots": {
+    "armor": 2,
+    "weight": 16
+  },
+  "Steel Boots": {
+    "armor": 3,
+    "weight": 29
+  },
+  "Frozen Boots": {
+    "armor": 2,
+    "weight": 25
+  },
+  "Golden Boots": {
+    "armor": 4,
+    "weight": 32
+  },
+  "Wooden Shield": {
+    "defense": 14,
+    "weight": 40
+  },
+  "Studded Shield": {
+    "defense": 15,
+    "weight": 46
+  },
+  "Brass Shield": {
+    "defense": 16,
+    "weight": 60
+  },
+  "Plate Shield": {
+    "defense": 17,
+    "weight": 65
+  },
+  "Black Shield": {
+    "defense": 18,
+    "weight": 45
+  },
+  "Copper Shield": {
+    "defense": 19,
+    "weight": 63
+  },
+  "Bone Shield": {
+    "defense": 20,
+    "weight": 40
+  },
+  "Steel Shield": {
+    "defense": 21,
+    "weight": 68
+  },
+  "Viking Shield": {
+    "defense": 22,
+    "weight": 82
+  },
+  "Ornamented Shield": {
+    "defense": 22,
+    "weight": 60
+  },
+  "Battle Shield": {
+    "defense": 23,
+    "weight": 85
+  },
+  "Scarab Shield": {
+    "defense": 25,
+    "weight": 52
+  },
+  "Dark Shield": {
+    "defense": 25,
+    "weight": 55
+  },
+  "Dwarven Shield": {
+    "defense": 26,
+    "weight": 55
+  },
+  "Rose Shield": {
+    "defense": 27,
+    "weight": 51
+  },
+  "Ancient Shield": {
+    "defense": 27,
+    "weight": 65
+  },
+  "Castle Shield": {
+    "defense": 28,
+    "weight": 72
+  },
+  "Beholder Shield": {
+    "defense": 28,
+    "weight": 40
+  },
+  "Griffin Shield": {
+    "defense": 29,
+    "weight": 58
+  },
+  "Guardian Shield": {
+    "defense": 30,
+    "weight": 60
+  },
+  "Eagle Shield": {
+    "defense": 30,
+    "weight": 48
+  },
+  "Dragon Shield": {
+    "defense": 31,
+    "weight": 60
+  },
+  "Frozen Shield": {
+    "defense": 32,
+    "weight": 65
+  },
+  "Amazon Shield": {
+    "defense": 32,
+    "weight": 55
+  },
+  "Crown Shield": {
+    "defense": 32,
+    "weight": 62
+  },
+  "Tower Shield": {
+    "defense": 32,
+    "weight": 83
+  },
+  "Shield Of Honour": {
+    "defense": 33,
+    "weight": 46
+  },
+  "Medusa Shield": {
+    "defense": 33,
+    "weight": 58
+  },
+  "Vampire Shield": {
+    "defense": 34,
+    "weight": 38
+  },
+  "Phoenix Shield": {
+    "defense": 34,
+    "weight": 45
+  },
+  "Demon Shield": {
+    "defense": 35,
+    "weight": 26
+  },
+  "Tempest Shield": {
+    "defense": 36,
+    "weight": 36
+  },
+  "Mastermind Shield": {
+    "defense": 37,
+    "weight": 57
+  },
+  "Great Shield": {
+    "defense": 38,
+    "weight": 84
+  },
+  "Spectral Shield": {
+    "defense": 39,
+    "weight": 50
+  },
+  "Blessed Shield": {
+    "defense": 40,
+    "weight": 68
+  },
+  "Quiver": {
+    "armor": 0,
+    "attack": 0,
+    "weight": 17
+  },
+  "Iron Quiver": {
+    "armor": 1,
+    "attack": 0,
+    "weight": 20
+  },
+  "Dragon Quiver": {
+    "armor": 1,
+    "attack": 1,
+    "weight": 22
+  },
+  "Imperial Quiver": {
+    "armor": 2,
+    "attack": 1,
+    "weight": 26
+  },
+  "Blazing Quiver": {
+    "armor": 0,
+    "attack": 2,
+    "weight": 24
+  },
+  "Deadly Quiver": {
+    "armor": 0,
+    "attack": 2,
+    "weight": 24
+  },
+  "Quiver Of Valor": {
+    "armor": 1,
+    "attack": 2,
+    "weight": 26
+  },
+  "Sickle": {
+    "attack": 7,
+    "defense": 4,
+    "weight": 10.5
+  },
+  "Hand Axe": {
+    "attack": 10,
+    "defense": 5,
+    "weight": 18
+  },
+  "Axe": {
+    "attack": 12,
+    "defense": 6,
+    "weight": 40
+  },
+  "Golden Sickle": {
+    "attack": 13,
+    "defense": 6,
+    "weight": 19.5
+  },
+  "Rough Axe": {
+    "attack": 14,
+    "defense": 9,
+    "weight": 42
+  },
+  "Hatchet": {
+    "attack": 15,
+    "defense": 8,
+    "weight": 35
+  },
+  "Daramanian Axe": {
+    "attack": 16,
+    "defense": 8,
+    "weight": 41
+  },
+  "Refined Axe": {
+    "attack": 18,
+    "defense": 10,
+    "weight": 48
+  },
+  "Superior Axe": {
+    "attack": 22,
+    "defense": 10,
+    "weight": 54
+  },
+  "Masterwork Axe": {
+    "attack": 22,
+    "defense": 12,
+    "weight": 58
+  },
+  "Orcish Axe": {
+    "attack": 23,
+    "defense": 12,
+    "weight": 45
+  },
+  "Battle Axe": {
+    "attack": 25,
+    "defense": 10,
+    "weight": 50
+  },
+  "Grandmaster Axe": {
+    "attack": 26,
+    "defense": 16,
+    "weight": 62
+  },
+  "Barbarian Axe": {
+    "attack": 28,
+    "defense": 18,
+    "weight": 51
+  },
+  "Dwarven Axe": {
+    "attack": 31,
+    "defense": 19,
+    "weight": 82
+  },
+  "Knight Axe": {
+    "attack": 33,
+    "defense": 21,
+    "weight": 59
+  },
+  "Obsidian Lance": {
+    "attack": 34,
+    "defense": 10,
+    "weight": 80
+  },
+  "Double Axe": {
+    "attack": 35,
+    "defense": 12,
+    "weight": 70
+  },
+  "Halberd": {
+    "attack": 35,
+    "defense": 14,
+    "weight": 90
+  },
+  "Crystal Axe": {
+    "attack": 36,
+    "defense": 20,
+    "weight": 64
+  },
+  "Fire Axe": {
+    "attack": 38,
+    "defense": 16,
+    "weight": 40
+  },
+  "Daramanian Waraxe": {
+    "attack": 39,
+    "defense": 15,
+    "weight": 52.5
+  },
+  "Naginata": {
+    "attack": 39,
+    "defense": 25,
+    "weight": 78
+  },
+  "Twin Axe": {
+    "attack": 45,
+    "defense": 24,
+    "weight": 64
+  },
+  "Guardian Halberd": {
+    "attack": 46,
+    "defense": 15,
+    "weight": 110
+  },
+  "Dragon Lance": {
+    "attack": 47,
+    "defense": 16,
+    "weight": 67
+  },
+  "War Axe": {
+    "attack": 48,
+    "defense": 10,
+    "weight": 61.5
+  },
+  "Ravager's Axe": {
+    "attack": 49,
+    "defense": 14,
+    "weight": 52.5
+  },
+  "Stonecutter Axe": {
+    "attack": 50,
+    "defense": 30,
+    "weight": 99
+  },
+  "Darksteel Axe": {
+    "attack": 51,
+    "defense": 18,
+    "weight": 110
+  },
+  "Great Axe": {
+    "attack": 52,
+    "defense": 22,
+    "weight": 90
+  },
+  "Demonwing Axe": {
+    "attack": 53,
+    "defense": 20,
+    "weight": 120
+  },
+  "Knife": {
+    "attack": 7,
+    "defense": 5,
+    "weight": 4.2
+  },
+  "Dagger": {
+    "attack": 8,
+    "defense": 6,
+    "weight": 9.5
+  },
+  "Combat Knife": {
+    "attack": 8,
+    "defense": 6,
+    "weight": 8.69
+  },
+  "Silver Dagger": {
+    "attack": 8,
+    "defense": 7,
+    "weight": 10.19
+  },
+  "Foil": {
+    "attack": 9,
+    "defense": 11,
+    "weight": 15
+  },
+  "Rapier": {
+    "attack": 10,
+    "defense": 8,
+    "weight": 15
+  },
+  "Hunter's Knife": {
+    "attack": 11,
+    "defense": 6,
+    "weight": 15
+  },
+  "Short Sword": {
+    "attack": 11,
+    "defense": 11,
+    "weight": 35
+  },
+  "Sabre": {
+    "attack": 12,
+    "defense": 10,
+    "weight": 25
+  },
+  "Sword": {
+    "attack": 14,
+    "defense": 12,
+    "weight": 35
+  },
+  "Bone Sword": {
+    "attack": 14,
+    "defense": 10,
+    "weight": 19
+  },
+  "Diamond Knife": {
+    "attack": 15,
+    "defense": 7,
+    "weight": 20
+  },
+  "Carlin Sword": {
+    "attack": 15,
+    "defense": 13,
+    "weight": 40
+  },
+  "Heavy Machete": {
+    "attack": 16,
+    "defense": 10,
+    "weight": 18.39
+  },
+  "Katana": {
+    "attack": 16,
+    "defense": 12,
+    "weight": 31
+  },
+  "Longsword": {
+    "attack": 17,
+    "defense": 14,
+    "weight": 42
+  },
+  "Poison Dagger": {
+    "attack": 18,
+    "defense": 8,
+    "weight": 8.8
+  },
+  "Scimitar": {
+    "attack": 19,
+    "defense": 13,
+    "weight": 29
+  },
+  "Spike Sword": {
+    "attack": 24,
+    "defense": 21,
+    "weight": 50
+  },
+  "Broadsword": {
+    "attack": 26,
+    "defense": 23,
+    "weight": 52.5
+  },
+  "Serpent Sword": {
+    "attack": 26,
+    "defense": 15,
+    "weight": 41
+  },
+  "Two Handed Sword": {
+    "attack": 30,
+    "defense": 25,
+    "weight": 70
+  },
+  "Fire Sword": {
+    "attack": 35,
+    "defense": 20,
+    "weight": 23
+  },
+  "Bright Sword": {
+    "attack": 36,
+    "defense": 30,
+    "weight": 29
+  },
+  "Crystal Sword": {
+    "attack": 38,
+    "defense": 26,
+    "weight": 69
+  },
+  "Djinn Blade": {
+    "attack": 40,
+    "defense": 22,
+    "weight": 24.5
+  },
+  "Pharaoh Sword": {
+    "attack": 44,
+    "defense": 23,
+    "weight": 190
+  },
+  "Giant Sword": {
+    "attack": 46,
+    "defense": 22,
+    "weight": 180
+  },
+  "Magic Sword": {
+    "attack": 48,
+    "defense": 35,
+    "weight": 42
+  },
+  "Miracle Sword": {
+    "attack": 50,
+    "defense": 30,
+    "weight": 42
+  },
+  "Warlord Sword": {
+    "attack": 53,
+    "defense": 38,
+    "weight": 64
+  },
+  "Magic Longsword": {
+    "attack": 55,
+    "defense": 40,
+    "weight": 43
+  },
+  "Ice Rapier": {
+    "attack": 100,
+    "defense": 1,
+    "weight": 15
+  },
+  "Club": {
+    "attack": 7,
+    "defense": 7,
+    "weight": 25
+  },
+  "Studded Club": {
+    "attack": 9,
+    "defense": 8,
+    "weight": 35
+  },
+  "Staff": {
+    "attack": 10,
+    "defense": 25,
+    "weight": 38
+  },
+  "Bone Club": {
+    "attack": 12,
+    "defense": 8,
+    "weight": 39
+  },
+  "Golden Mace": {
+    "attack": 14,
+    "defense": 9,
+    "weight": 50
+  },
+  "Mace": {
+    "attack": 16,
+    "defense": 11,
+    "weight": 28
+  },
+  "Iron Hammer": {
+    "attack": 18,
+    "defense": 10,
+    "weight": 66
+  },
+  "Daramanian Mace": {
+    "attack": 21,
+    "defense": 12,
+    "weight": 68
+  },
+  "Battle Hammer": {
+    "attack": 24,
+    "defense": 14,
+    "weight": 68
+  },
+  "Giant Smithhammer": {
+    "attack": 24,
+    "defense": 14,
+    "weight": 68
+  },
+  "Morning Star": {
+    "attack": 25,
+    "defense": 11,
+    "weight": 54
+  },
+  "Clerical Mace": {
+    "attack": 28,
+    "defense": 15,
+    "weight": 58
+  },
+  "Dragon Hammer": {
+    "attack": 32,
+    "defense": 20,
+    "weight": 97
+  },
+  "Skull Staff": {
+    "attack": 36,
+    "defense": 12,
+    "weight": 17
+  },
+  "Enchanted Staff": {
+    "attack": 39,
+    "defense": 45,
+    "weight": 38
+  },
+  "Silver Mace": {
+    "attack": 40,
+    "defense": 30,
+    "weight": 67
+  },
+  "Crystal Mace": {
+    "attack": 43,
+    "defense": 16,
+    "weight": 80
+  },
+  "War Hammer": {
+    "attack": 45,
+    "defense": 10,
+    "weight": 85
+  },
+  "Dragonbone Hammer": {
+    "attack": 46,
+    "defense": 22,
+    "weight": 110
+  },
+  "Hammer Of Wrath": {
+    "attack": 48,
+    "defense": 12,
+    "weight": 70
+  },
+  "Sapphire Hammer": {
+    "attack": 48,
+    "defense": 28,
+    "weight": 21
+  },
+  "Thunder Hammer": {
+    "attack": 49,
+    "defense": 35,
+    "weight": 125
+  },
+  "Heavy Mace": {
+    "attack": 50,
+    "defense": 15,
+    "weight": 110
+  },
+  "Arcane Staff": {
+    "attack": 50,
+    "defense": 30,
+    "weight": 40
+  },
+  "Mythic Hammer": {
+    "attack": 52,
+    "defense": 22,
+    "weight": 240
+  },
+  "Snowball": {
+    "attack": 0,
+    "range": 7,
+    "weight": 0.8
+  },
+  "Small Stone": {
+    "attack": 5,
+    "range": 7,
+    "weight": 1.8
+  },
+  "Ice Small Stone": {
+    "attack": 5,
+    "range": 7,
+    "weight": 1.9
+  },
+  "Throwing Star": {
+    "attack": 25,
+    "range": 7,
+    "weight": 2
+  },
+  "Throwing Knife": {
+    "attack": 30,
+    "range": 7,
+    "weight": 5
+  },
+  "Spear": {
+    "attack": 30,
+    "range": 7,
+    "weight": 20
+  },
+  "Hunting Spear": {
+    "attack": 32,
+    "range": 6,
+    "weight": 22
+  },
+  "Royal Spear": {
+    "attack": 34,
+    "range": 5,
+    "weight": 22
+  },
+  "Enchanted Spear": {
+    "attack": 36,
+    "range": 4,
+    "weight": 22
+  },
+  "Glacial Spear": {
+    "attack": 38,
+    "range": 7,
+    "weight": 26
+  },
+  "Bow": {
+    "armor": 0,
+    "attack": 0,
+    "range": 6,
+    "weight": 31
+  },
+  "Elvish Bow": {
+    "armor": 0,
+    "attack": 1,
+    "range": 6,
+    "weight": 27
+  },
+  "War Bow": {
+    "armor": 0,
+    "attack": 2,
+    "range": 6,
+    "weight": 36
+  },
+  "Frozen Bow": {
+    "armor": 0,
+    "attack": 3,
+    "range": 6,
+    "weight": 40
+  },
+  "Armored War Bow": {
+    "armor": 2,
+    "attack": 3,
+    "range": 6,
+    "weight": 60
+  },
+  "Sapphire Bow": {
+    "armor": 0,
+    "attack": 3,
+    "range": 7,
+    "weight": 42
+  },
+  "Hellforged Bow": {
+    "armor": 0,
+    "attack": 4,
+    "range": 6,
+    "weight": 46
+  },
+  "Crossbow": {
+    "armor": 0,
+    "attack": 0,
+    "range": 5,
+    "weight": 40
+  },
+  "Steel Crossbow": {
+    "armor": 0,
+    "attack": 1,
+    "range": 5,
+    "weight": 40
+  },
+  "Bone Crossbow": {
+    "armor": 0,
+    "attack": 2,
+    "range": 4,
+    "weight": 65
+  },
+  "Crystallized Crossbow": {
+    "armor": 0,
+    "attack": 3,
+    "range": 5,
+    "weight": 40
+  },
+  "Royal Crossbow": {
+    "armor": 0,
+    "attack": 3,
+    "range": 5,
+    "weight": 40
+  },
+  "Evil Crossbow": {
+    "armor": 0,
+    "attack": 4,
+    "range": 5,
+    "weight": 60
+  },
+  "Hellforged Crossbow": {
+    "armor": 0,
+    "attack": 5,
+    "range": 5,
+    "weight": 60
+  },
+  "Burst Arrow": {
+    "attack": 27,
+    "weight": 0.8
+  },
+  "Poison Arrow": {
+    "attack": 22,
+    "weight": 0.7
+  },
+  "Arrow": {
+    "attack": 25,
+    "weight": 0.7
+  },
+  "Hunting Arrow": {
+    "attack": 25,
+    "weight": 0.7
+  },
+  "Frozen Arrow": {
+    "attack": 30,
+    "weight": 0.7
+  },
+  "Piercing Arrow": {
+    "attack": 33,
+    "weight": 0.7
+  },
+  "Onyx Arrow": {
+    "attack": 38,
+    "weight": 0.7
+  },
+  "Bolt": {
+    "attack": 30,
+    "weight": 0.8
+  },
+  "Steel Bolt": {
+    "attack": 35,
+    "weight": 0.8
+  },
+  "Power Bolt": {
+    "attack": 40,
+    "weight": 0.85
+  },
+  "Infernal Bolt": {
+    "attack": 55,
+    "weight": 0.9
+  },
+  "Helmet Of The Ancients (Empty)": {
+    "armor": 8,
+    "weight": 27.6
+  },
+  "Helmet Of The Ancients (Full)": {
+    "armor": 12,
+    "weight": 27.6
+  }
 };
 
 const CATEGORY_MAP: Record<string, string> = {
