@@ -316,278 +316,2833 @@ const ATTRIBUTE_MAP: Record<string, string> = {
 
 const ATTRIBUTE_DATA_STUB: Record<string, { name: string; class: number; attributes: string[] }[]> = {
   "Helmets": [
-    { "name": "Mystic Turban", "class": 1, "attributes": ["Max Mana", "Magic Level", "Mana Healing"] },
-    { "name": "Legion Helmet", "class": 1, "attributes": ["Armor", "Weight", "Max Health"] },
-    { "name": "Viking Helmet", "class": 1, "attributes": ["Armor", "Weight", "Axe Fighting", "Club Fighting", "Distance Fighting", "Sword Fighting"] },
-    { "name": "Iron Helmet", "class": 1, "attributes": ["Armor", "Weight", "Max Health"] },
-    { "name": "Soldier Helmet", "class": 1, "attributes": ["Armor", "Weight", "Max Health"] },
-    { "name": "Hat Of The Mad", "class": 2, "attributes": ["Max Mana", "Mana Regen", "Magic Level", "Mana Healing"] },
-    { "name": "Wood Cape", "class": 2, "attributes": ["Speed", "Max Health", "Distance Fighting", "Protect Poison", "Attack Interval"] },
-    { "name": "Dwarven Helmet", "class": 2, "attributes": ["Armor", "Weight", "Max Health", "Protect Fire", "Protect Physical"] },
-    { "name": "Dark Helmet", "class": 2, "attributes": ["Armor", "Weight", "Max Mana", "Protect Physical"] },
-    { "name": "Steel Helmet", "class": 2, "attributes": ["Armor", "Weight", "Max Health", "Protect Physical"] },
-    { "name": "Strange Helmet", "class": 2, "attributes": ["Armor", "Weight", "Max Mana", "Magic Level"] },
-    { "name": "Amazon Helmet", "class": 2, "attributes": ["Armor", "Speed", "Weight", "Healing", "Max Health", "Distance Fighting", "Protect Energy", "Protect Physical"] },
-    { "name": "Crown Helmet", "class": 2, "attributes": ["Armor", "Weight", "Max Health", "Health Regen", "Protect Physical"] },
-    { "name": "Beholder Helmet", "class": 2, "attributes": ["Armor", "Weight", "Max Mana", "Mana Regen", "Magic Level", "Protect Mana Drain"] },
-    { "name": "Devil Helmet", "class": 2, "attributes": ["Armor", "Speed", "Weight", "Max Health", "Magic Level", "Protect Mana Drain"] },
-    { "name": "Ancient Tiara", "class": 3, "attributes": ["Armor", "Healing", "Max Mana", "Momentum", "Mana Regen", "Magic Level", "Health Regen", "Protect Fire", "Protect Mana Drain"] },
-    { "name": "Magician Hat", "class": 3, "attributes": ["Max Mana", "Momentum", "Mana Regen", "Magic Level", "Mana Healing", "Protect Energy", "Protect Mana Drain"] },
-    { "name": "Ceremonial Mask", "class": 3, "attributes": ["Speed", "Max Health", "Distance Fighting", "Magic Level", "Protect Fire", "Attack Interval"] },
-    { "name": "Black Hat", "class": 3, "attributes": ["Speed", "Max Mana", "Momentum", "Mana Regen", "Magic Level", "Destruction", "Mana Healing", "Protect Fire", "Protect Death", "Critical Spell", "Protect Life Drain", "Protect Mana Drain"] },
-    { "name": "Crusader Helmet", "class": 3, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Protect Physical"] },
-    { "name": "Warrior Helmet", "class": 3, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Sword Fighting", "Shielding", "Protect Physical"] },
-    { "name": "Frozen Helmet", "class": 3, "attributes": ["Armor", "Speed", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Protect Ice", "Sword Fighting", "Health Regen"] },
-    { "name": "Royal Helmet", "class": 3, "attributes": ["Armor", "Speed", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Protect Physical"] },
-    { "name": "Winged Helmet", "class": 4, "attributes": ["Armor", "Speed", "Weight", "Healing", "Max Health", "Distance Fighting", "Health Regen", "Shielding", "Protect Energy", "Protect Physical"] },
-    { "name": "Demon Helmet", "class": 4, "attributes": ["Armor", "Speed", "Weight", "Max Mana", "Momentum", "Axe Fighting", "Mana Regen", "Max Health", "Club Fighting", "Distance Fighting", "Magic Level", "Sword Fighting", "Health Regen", "Protect Fire", "Protect Energy"] },
-    { "name": "Dragon Scale Helmet", "class": 4, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Protect Fire", "Shielding", "Protect Physical"] },
-    { "name": "Helmet Of The Ancients (Empty)", "class": 5, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Protect Fire", "Shielding", "Protect Physical"] },
-    { "name": "Helmet Of The Ancients (Full)", "class": 5, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Protect Fire", "Shielding", "Protect Physical"] },
-    { "name": "Horned Helmet", "class": 5, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Protect Fire", "Shielding", "Protect Physical"] },
-    { "name": "Golden Helmet", "class": 5, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Shielding", "Protect Elements", "Protect Physical"] }
+    {
+      "name": "Mystic Turban",
+      "class": 1,
+      "attributes": [
+        "Max Mana",
+        "Magic Level",
+        "Mana Healing"
+      ]
+    },
+    {
+      "name": "Legion Helmet",
+      "class": 1,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health"
+      ]
+    },
+    {
+      "name": "Viking Helmet",
+      "class": 1,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Axe Fighting",
+        "Distance Fighting",
+        "Sword Fighting",
+        "Club Fighting"
+      ]
+    },
+    {
+      "name": "Iron Helmet",
+      "class": 1,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health"
+      ]
+    },
+    {
+      "name": "Soldier Helmet",
+      "class": 1,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health"
+      ]
+    },
+    {
+      "name": "Hat Of The Mad",
+      "class": 2,
+      "attributes": [
+        "Max Mana",
+        "Mana Regen",
+        "Magic Level",
+        "Mana Healing"
+      ]
+    },
+    {
+      "name": "Wood Cape",
+      "class": 2,
+      "attributes": [
+        "Speed",
+        "Max Health",
+        "Distance Fighting",
+        "Attack Interval",
+        "Protect Poison"
+      ]
+    },
+    {
+      "name": "Dwarven Helmet",
+      "class": 2,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health",
+        "Protect Physical",
+        "Protect Fire"
+      ]
+    },
+    {
+      "name": "Dark Helmet",
+      "class": 2,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Mana",
+        "Protect Physical"
+      ]
+    },
+    {
+      "name": "Steel Helmet",
+      "class": 2,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health",
+        "Protect Physical"
+      ]
+    },
+    {
+      "name": "Strange Helmet",
+      "class": 2,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Mana",
+        "Magic Level"
+      ]
+    },
+    {
+      "name": "Amazon Helmet",
+      "class": 2,
+      "attributes": [
+        "Armor",
+        "Speed",
+        "Weight",
+        "Max Health",
+        "Distance Fighting",
+        "Protect Physical",
+        "Healing",
+        "Protect Energy"
+      ]
+    },
+    {
+      "name": "Crown Helmet",
+      "class": 2,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health",
+        "Protect Physical",
+        "Health Regen"
+      ]
+    },
+    {
+      "name": "Beholder Helmet",
+      "class": 2,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Mana",
+        "Magic Level",
+        "Protect Mana Drain",
+        "Mana Regen"
+      ]
+    },
+    {
+      "name": "Devil Helmet",
+      "class": 2,
+      "attributes": [
+        "Armor",
+        "Speed",
+        "Weight",
+        "Magic Level",
+        "Protect Mana Drain",
+        "Max Health"
+      ]
+    },
+    {
+      "name": "Ancient Tiara",
+      "class": 3,
+      "attributes": [
+        "Armor",
+        "Healing",
+        "Max Mana",
+        "Mana Regen",
+        "Magic Level",
+        "Protect Fire",
+        "Protect Mana Drain",
+        "Momentum",
+        "Health Regen"
+      ]
+    },
+    {
+      "name": "Magician Hat",
+      "class": 3,
+      "attributes": [
+        "Max Mana",
+        "Momentum",
+        "Mana Regen",
+        "Mana Healing",
+        "Protect Energy",
+        "Magic Level",
+        "Protect Mana Drain"
+      ]
+    },
+    {
+      "name": "Ceremonial Mask",
+      "class": 3,
+      "attributes": [
+        "Speed",
+        "Max Health",
+        "Distance Fighting",
+        "Protect Fire",
+        "Attack Interval",
+        "Magic Level"
+      ]
+    },
+    {
+      "name": "Black Hat",
+      "class": 3,
+      "attributes": [
+        "Speed",
+        "Max Mana",
+        "Momentum",
+        "Magic Level",
+        "Destruction",
+        "Protect Fire",
+        "Protect Death",
+        "Protect Life Drain",
+        "Protect Mana Drain",
+        "Mana Regen",
+        "Mana Healing",
+        "Critical Spell"
+      ]
+    },
+    {
+      "name": "Crusader Helmet",
+      "class": 3,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
+        "Protect Physical",
+        "Max Health",
+        "Sword Fighting"
+      ]
+    },
+    {
+      "name": "Warrior Helmet",
+      "class": 3,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Axe Fighting",
+        "Club Fighting",
+        "Sword Fighting",
+        "Protect Physical",
+        "Max Health",
+        "Shielding"
+      ]
+    },
+    {
+      "name": "Frozen Helmet",
+      "class": 3,
+      "attributes": [
+        "Armor",
+        "Speed",
+        "Weight",
+        "Max Health",
+        "Club Fighting",
+        "Protect Ice",
+        "Sword Fighting",
+        "Axe Fighting",
+        "Distance Fighting",
+        "Health Regen"
+      ]
+    },
+    {
+      "name": "Royal Helmet",
+      "class": 3,
+      "attributes": [
+        "Armor",
+        "Speed",
+        "Weight",
+        "Max Health",
+        "Club Fighting",
+        "Sword Fighting",
+        "Health Regen",
+        "Axe Fighting",
+        "Distance Fighting",
+        "Protect Physical"
+      ]
+    },
+    {
+      "name": "Winged Helmet",
+      "class": 4,
+      "attributes": [
+        "Armor",
+        "Speed",
+        "Weight",
+        "Max Health",
+        "Distance Fighting",
+        "Shielding",
+        "Protect Energy",
+        "Healing",
+        "Health Regen",
+        "Protect Physical"
+      ]
+    },
+    {
+      "name": "Demon Helmet",
+      "class": 4,
+      "attributes": [
+        "Armor",
+        "Speed",
+        "Weight",
+        "Momentum",
+        "Axe Fighting",
+        "Max Health",
+        "Club Fighting",
+        "Magic Level",
+        "Sword Fighting",
+        "Protect Fire",
+        "Protect Energy",
+        "Max Mana",
+        "Mana Regen",
+        "Distance Fighting",
+        "Health Regen"
+      ]
+    },
+    {
+      "name": "Dragon Scale Helmet",
+      "class": 4,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
+        "Health Regen",
+        "Protect Fire",
+        "Protect Physical",
+        "Max Health",
+        "Sword Fighting",
+        "Shielding"
+      ]
+    },
+    {
+      "name": "Helmet Of The Ancients",
+      "class": 5,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
+        "Health Regen",
+        "Protect Fire",
+        "Protect Physical"
+      ]
+    },
+    {
+      "name": "Helmet Of The Frozen Soul",
+      "class": 5,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health",
+        "Protect Physical",
+        "Protect Elements",
+        "Mitigation"
+      ]
+    },
+    {
+      "name": "Golden Helmet",
+      "class": 5,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
+        "Health Regen",
+        "Shielding",
+        "Protect Physical",
+        "Max Health",
+        "Sword Fighting",
+        "Protect Elements"
+      ]
+    },
+    {
+      "name": "Horned Helmet",
+      "class": 5,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
+        "Health Regen",
+        "Shielding",
+        "Protect Physical",
+        "Max Health",
+        "Sword Fighting",
+        "Protect Fire"
+      ]
+    },
+    {
+      "name": "Anubis Helmet",
+      "class": 5,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health",
+        "Protect Physical",
+        "Protect Elements",
+        "Mitigation"
+      ]
+    },
+    {
+      "name": "Spectral Helmet",
+      "class": 5,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health",
+        "Protect Physical",
+        "Protect Elements",
+        "Mitigation"
+      ]
+    },
+    {
+      "name": "Pharaoh Helmet",
+      "class": 5,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health",
+        "Protect Physical",
+        "Protect Elements",
+        "Mitigation"
+      ]
+    },
+    {
+      "name": "Helmet Of The Ancients (Empty)",
+      "class": 5,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Axe Fighting",
+        "Max Health",
+        "Club Fighting",
+        "Distance Fighting",
+        "Sword Fighting",
+        "Health Regen",
+        "Protect Fire",
+        "Shielding",
+        "Protect Physical"
+      ]
+    },
+    {
+      "name": "Helmet Of The Ancients (Full)",
+      "class": 5,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Axe Fighting",
+        "Max Health",
+        "Club Fighting",
+        "Distance Fighting",
+        "Sword Fighting",
+        "Health Regen",
+        "Protect Fire",
+        "Shielding",
+        "Protect Physical"
+      ]
+    }
   ],
   "Armors": [
-    { "name": "Spectral Dress", "class": 0, "attributes": [] },
-    { "name": "Ball Gown", "class": 0, "attributes": [] },
-    { "name": "White Dress", "class": 0, "attributes": [] },
-    { "name": "Simple Dress", "class": 0, "attributes": [] },
-    { "name": "Cape", "class": 0, "attributes": [] },
-    { "name": "Green Tunic", "class": 0, "attributes": [] },
-    { "name": "Coat", "class": 0, "attributes": [] },
-    { "name": "Jacket", "class": 0, "attributes": [] },
-    { "name": "Doublet", "class": 0, "attributes": [] },
-    { "name": "Red Tunic", "class": 0, "attributes": [] },
-    { "name": "Pirate Shirt", "class": 0, "attributes": [] },
-    { "name": "Leather Armor", "class": 0, "attributes": [] },
-    { "name": "Studded Armor", "class": 0, "attributes": [] },
-    { "name": "Chain Armor", "class": 0, "attributes": [] },
-    { "name": "Ranger's Cloak", "class": 1, "attributes": [] },
-    { "name": "Native Armor", "class": 0, "attributes": [] },
-    { "name": "Brass Armor", "class": 1, "attributes": ["Armor", "Weight", "Max Health"] },
-    { "name": "Red Robe", "class": 2, "attributes": ["Max Mana", "Magic Level", "Health Regen", "Protect Fire"] },
-    { "name": "Scale Armor", "class": 1, "attributes": ["Armor", "Weight", "Max Health"] },
-    { "name": "Elven Mail", "class": 2, "attributes": ["Armor", "Weight", "Max Mana", "Mana Regen", "Magic Level", "Protect Mana Drain"] },
-    { "name": "Plate Armor", "class": 2, "attributes": ["Armor", "Weight", "Max Health", "Protect Physical"] },
-    { "name": "Dwarven Armor", "class": 2, "attributes": ["Armor", "Weight", "Max Health", "Protect Fire", "Protect Physical"] },
-    { "name": "Dark Armor", "class": 2, "attributes": ["Armor", "Weight", "Max Mana", "Protect Physical"] },
-    { "name": "Noble Armor", "class": 2, "attributes": ["Armor", "Weight", "Max Health", "Protect Physical"] },
-    { "name": "Blue Robe", "class": 3, "attributes": ["Speed", "Max Mana", "Mana Regen", "Absorb Mana", "Magic Level"] },
-    { "name": "Knight Armor", "class": 3, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Sword Fighting", "Shielding", "Protect Physical"] },
-    { "name": "Crown Armor", "class": 3, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Shielding", "Protect Physical"] },
-    { "name": "Amazon Armor", "class": 3, "attributes": ["Armor", "Speed", "Weight", "Healing", "Max Health", "Distance Fighting", "Protect Energy", "Protect Physical"] },
-    { "name": "Golden Armor", "class": 4, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Shielding", "Protect Energy", "Protect Physical"] },
-    { "name": "Spectral Robe", "class": 4, "attributes": ["Speed", "Max Mana", "Mana Regen", "Absorb Mana", "Magic Level", "Protect Physical"] },
-    { "name": "Dragon Scale Mail", "class": 4, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Shielding", "Protect Fire", "Protect Physical"] },
-    { "name": "Frozen Mail", "class": 4, "attributes": [] },
-    { "name": "Demon Armor", "class": 5, "attributes": ["Armor", "Speed", "Weight", "Max Mana", "Axe Fighting", "Mana Regen", "Max Health", "Club Fighting", "Distance Fighting", "Magic Level", "Sword Fighting", "Health Regen", "Protect Fire", "Protect Energy", "Protect Mana Drain"] },
-    { "name": "Magic Plate Armor", "class": 5, "attributes": ["Armor", "Weight", "Healing", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Shielding", "Protect Physical"] },
-    { "name": "Spectral Armor", "class": 5, "attributes": [] },
-    { "name": "Anubis Armor", "class": 5, "attributes": [] },
-    { "name": "Pharaoh Armor", "class": 5, "attributes": [] }
+    {
+      "name": "Ranger's Cloak",
+      "class": 1,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health",
+        "Protect Physical",
+        "Protect Elements",
+        "Mitigation"
+      ]
+    },
+    {
+      "name": "Brass Armor",
+      "class": 1,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health"
+      ]
+    },
+    {
+      "name": "Red Robe",
+      "class": 2,
+      "attributes": [
+        "Max Mana",
+        "Magic Level",
+        "Health Regen",
+        "Protect Fire"
+      ]
+    },
+    {
+      "name": "Scale Armor",
+      "class": 1,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health"
+      ]
+    },
+    {
+      "name": "Elven Mail",
+      "class": 2,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Mana",
+        "Magic Level",
+        "Protect Mana Drain",
+        "Mana Regen"
+      ]
+    },
+    {
+      "name": "Plate Armor",
+      "class": 2,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health",
+        "Protect Physical"
+      ]
+    },
+    {
+      "name": "Dwarven Armor",
+      "class": 2,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health",
+        "Protect Physical",
+        "Protect Fire"
+      ]
+    },
+    {
+      "name": "Dark Armor",
+      "class": 2,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Mana",
+        "Protect Physical"
+      ]
+    },
+    {
+      "name": "Noble Armor",
+      "class": 2,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health",
+        "Protect Physical"
+      ]
+    },
+    {
+      "name": "Blue Robe",
+      "class": 3,
+      "attributes": [
+        "Speed",
+        "Max Mana",
+        "Mana Regen",
+        "Magic Level",
+        "Absorb Mana"
+      ]
+    },
+    {
+      "name": "Knight Armor",
+      "class": 3,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Axe Fighting",
+        "Club Fighting",
+        "Sword Fighting",
+        "Protect Physical",
+        "Max Health",
+        "Shielding"
+      ]
+    },
+    {
+      "name": "Crown Armor",
+      "class": 3,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
+        "Health Regen",
+        "Shielding",
+        "Max Health",
+        "Sword Fighting",
+        "Protect Physical"
+      ]
+    },
+    {
+      "name": "Amazon Armor",
+      "class": 3,
+      "attributes": [
+        "Armor",
+        "Speed",
+        "Weight",
+        "Max Health",
+        "Distance Fighting",
+        "Protect Physical",
+        "Healing",
+        "Protect Energy"
+      ]
+    },
+    {
+      "name": "Golden Armor",
+      "class": 4,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
+        "Health Regen",
+        "Shielding",
+        "Protect Physical",
+        "Max Health",
+        "Sword Fighting",
+        "Protect Energy"
+      ]
+    },
+    {
+      "name": "Spectral Robe",
+      "class": 4,
+      "attributes": [
+        "Speed",
+        "Max Mana",
+        "Mana Regen",
+        "Magic Level",
+        "Protect Physical",
+        "Absorb Mana"
+      ]
+    },
+    {
+      "name": "Dragon Scale Mail",
+      "class": 4,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
+        "Health Regen",
+        "Protect Fire",
+        "Protect Physical",
+        "Max Health",
+        "Sword Fighting",
+        "Shielding"
+      ]
+    },
+    {
+      "name": "Frozen Mail",
+      "class": 4,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
+        "Sword Fighting",
+        "Health Regen",
+        "Protect Physical"
+      ]
+    },
+    {
+      "name": "Demon Armor",
+      "class": 5,
+      "attributes": [
+        "Armor",
+        "Speed",
+        "Weight",
+        "Axe Fighting",
+        "Mana Regen",
+        "Club Fighting",
+        "Distance Fighting",
+        "Sword Fighting",
+        "Health Regen",
+        "Protect Energy",
+        "Protect Mana Drain",
+        "Max Mana",
+        "Max Health",
+        "Magic Level",
+        "Protect Fire"
+      ]
+    },
+    {
+      "name": "Magic Plate Armor",
+      "class": 5,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Healing",
+        "Max Health",
+        "Club Fighting",
+        "Sword Fighting",
+        "Health Regen",
+        "Protect Elements",
+        "Protect Physical",
+        "Axe Fighting",
+        "Distance Fighting",
+        "Shielding"
+      ]
+    },
+    {
+      "name": "Spectral Armor",
+      "class": 5,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health",
+        "Protect Physical",
+        "Protect Elements",
+        "Mitigation"
+      ]
+    },
+    {
+      "name": "Anubis Armor",
+      "class": 5,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health",
+        "Protect Physical",
+        "Protect Elements",
+        "Mitigation"
+      ]
+    },
+    {
+      "name": "Pharaoh Armor",
+      "class": 5,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health",
+        "Protect Physical",
+        "Protect Elements",
+        "Mitigation"
+      ]
+    },
+    {
+      "name": "Spectral Dress",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Ball Gown",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "White Dress",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Simple Dress",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Cape",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Green Tunic",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Coat",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Jacket",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Doublet",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Red Tunic",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Pirate Shirt",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Leather Armor",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Studded Armor",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Chain Armor",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Native Armor",
+      "class": 0,
+      "attributes": []
+    }
   ],
   "Legs": [
-    { "name": "Leather Legs", "class": 0, "attributes": [] },
-    { "name": "Studded Legs", "class": 1, "attributes": [] },
-    { "name": "Chain Legs", "class": 0, "attributes": [] },
-    { "name": "Elven Legs", "class": 1, "attributes": ["Armor", "Weight", "Max Mana", "Mana Regen", "Magic Level", "Protect Mana Drain"] },
-    { "name": "Brass Legs", "class": 1, "attributes": ["Armor", "Weight", "Max Health"] },
-    { "name": "Dwarven Legs", "class": 2, "attributes": ["Armor", "Weight", "Max Health", "Protect Fire", "Protect Physical"] },
-    { "name": "Plate Legs", "class": 2, "attributes": ["Armor", "Weight", "Max Health", "Protect Physical"] },
-    { "name": "Knight Legs", "class": 3, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Sword Fighting", "Protect Physical"] },
-    { "name": "Crown Legs", "class": 3, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Protect Physical"] },
-    { "name": "Golden Legs", "class": 3, "attributes": ["Armor", "Weight", "Axe Fighting", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Health Regen", "Protect Energy", "Protect Physical"] },
-    { "name": "Frozen Legs", "class": 3, "attributes": [] },
-    { "name": "Dragon Scale Legs", "class": 4, "attributes": [] },
-    { "name": "Demon Legs", "class": 4, "attributes": ["Armor", "Speed", "Weight", "Max Mana", "Axe Fighting", "Mana Regen", "Max Health", "Club Fighting", "Distance Fighting", "Sword Fighting", "Magic Level", "Protect Physical"] },
-    { "name": "Spectral Legs", "class": 5, "attributes": [] },
-    { "name": "Anubis Legs", "class": 5, "attributes": [] },
-    { "name": "Pharaoh Legs", "class": 5, "attributes": [] }
+    {
+      "name": "Chain Legs",
+      "class": 1,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health"
+      ]
+    },
+    {
+      "name": "Elven Legs",
+      "class": 1,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Mana",
+        "Magic Level",
+        "Protect Mana Drain",
+        "Mana Regen"
+      ]
+    },
+    {
+      "name": "Brass Legs",
+      "class": 1,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health"
+      ]
+    },
+    {
+      "name": "Dwarven Legs",
+      "class": 2,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health",
+        "Protect Physical",
+        "Protect Fire"
+      ]
+    },
+    {
+      "name": "Plate Legs",
+      "class": 2,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health",
+        "Protect Physical"
+      ]
+    },
+    {
+      "name": "Knight Legs",
+      "class": 3,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Axe Fighting",
+        "Club Fighting",
+        "Sword Fighting",
+        "Max Health",
+        "Protect Physical"
+      ]
+    },
+    {
+      "name": "Crown Legs",
+      "class": 3,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
+        "Health Regen",
+        "Protect Physical",
+        "Max Health",
+        "Sword Fighting"
+      ]
+    },
+    {
+      "name": "Golden Legs",
+      "class": 3,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
+        "Health Regen",
+        "Protect Energy",
+        "Max Health",
+        "Sword Fighting",
+        "Protect Physical"
+      ]
+    },
+    {
+      "name": "Demon Legs",
+      "class": 4,
+      "attributes": [
+        "Armor",
+        "Speed",
+        "Weight",
+        "Axe Fighting",
+        "Mana Regen",
+        "Club Fighting",
+        "Distance Fighting",
+        "Sword Fighting",
+        "Health Regen",
+        "Protect Energy",
+        "Protect Mana Drain",
+        "Max Mana",
+        "Max Health",
+        "Magic Level",
+        "Protect Physical"
+      ]
+    },
+    {
+      "name": "Frozen Legs",
+      "class": 3,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
+        "Sword Fighting",
+        "Health Regen"
+      ]
+    },
+    {
+      "name": "Dragon Scale Legs",
+      "class": 4,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
+        "Health Regen",
+        "Protect Fire"
+      ]
+    },
+    {
+      "name": "Spectral Legs",
+      "class": 5,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health",
+        "Protect Physical",
+        "Protect Elements"
+      ]
+    },
+    {
+      "name": "Anubis Legs",
+      "class": 5,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health",
+        "Protect Physical",
+        "Protect Elements"
+      ]
+    },
+    {
+      "name": "Pharaoh Legs",
+      "class": 5,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Max Health",
+        "Protect Physical",
+        "Protect Elements"
+      ]
+    },
+    {
+      "name": "Leather Legs",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Studded Legs",
+      "class": 1,
+      "attributes": []
+    }
   ],
   "Boots": [
-    { "name": "Leather Boots", "class": 1, "attributes": ["Armor", "Speed", "Vibrancy"] },
-    { "name": "Boots Of Haste", "class": 2, "attributes": ["Armor", "Dodge", "Speed", "Vibrancy"] },
-    { "name": "Bunnyslippers", "class": 2, "attributes": ["Armor", "Mana Regen", "Magic Level", "Protect Ice", "Health Regen"] },
-    { "name": "Patched Boots", "class": 2, "attributes": ["Armor", "Speed", "Vibrancy"] },
-    { "name": "Steel Boots", "class": 3, "attributes": ["Armor", "Vibrancy", "Protect Fire", "Protect Physical"] },
-    { "name": "Frozen Boots", "class": 3, "attributes": ["Armor", "Speed", "Magic Level", "Protect Ice"] }
+    {
+      "name": "Boots Of Haste",
+      "class": 2,
+      "attributes": [
+        "Armor",
+        "Dodge",
+        "Speed",
+        "Vibrancy"
+      ]
+    },
+    {
+      "name": "Bunnyslippers",
+      "class": 2,
+      "attributes": [
+        "Armor",
+        "Mana Regen",
+        "Magic Level",
+        "Health Regen",
+        "Protect Ice"
+      ]
+    },
+    {
+      "name": "Leather Boots",
+      "class": 1,
+      "attributes": [
+        "Armor",
+        "Speed",
+        "Vibrancy"
+      ]
+    },
+    {
+      "name": "Patched Boots",
+      "class": 2,
+      "attributes": [
+        "Armor",
+        "Speed",
+        "Vibrancy"
+      ]
+    },
+    {
+      "name": "Snow Boots",
+      "class": 2,
+      "attributes": [
+        "Armor",
+        "Weight",
+        "Speed",
+        "Protect Physical",
+        "Mitigation"
+      ]
+    },
+    {
+      "name": "Steel Boots",
+      "class": 3,
+      "attributes": [
+        "Armor",
+        "Vibrancy",
+        "Protect Fire",
+        "Protect Physical"
+      ]
+    },
+    {
+      "name": "Frozen Boots",
+      "class": 3,
+      "attributes": [
+        "Armor",
+        "Vibrancy",
+        "Protect Ice",
+        "Speed",
+        "Magic Level"
+      ]
+    },
+    {
+      "name": "Golden Boots",
+      "class": 4,
+      "attributes": [
+        "Armor",
+        "Healing",
+        "Vibrancy",
+        "Protect Energy",
+        "Protect Physical"
+      ]
+    }
   ],
   "Shields": [
-    { "name": "Wooden Shield", "class": 1, "attributes": ["Weight", "Defense", "Arrow Guard"] },
-    { "name": "Studded Shield", "class": 1, "attributes": ["Weight", "Defense", "Arrow Guard"] },
-    { "name": "Brass Shield", "class": 1, "attributes": ["Weight", "Defense", "Arrow Guard"] },
-    { "name": "Plate Shield", "class": 1, "attributes": ["Weight", "Defense", "Arrow Guard"] },
-    { "name": "Black Shield", "class": 1, "attributes": ["Weight", "Defense", "Arrow Guard"] },
-    { "name": "Copper Shield", "class": 1, "attributes": ["Weight", "Defense", "Arrow Guard"] },
-    { "name": "Bone Shield", "class": 2, "attributes": ["Weight", "Defense", "Arrow Guard", "Shielding"] },
-    { "name": "Steel Shield", "class": 2, "attributes": ["Weight", "Defense", "Arrow Guard", "Shielding"] },
-    { "name": "Viking Shield", "class": 2, "attributes": ["Weight", "Defense", "Axe Fighting", "Club Fighting", "Sword Fighting"] },
-    { "name": "Ornamented Shield", "class": 2, "attributes": ["Weight", "Defense", "Arrow Guard", "Shielding"] },
-    { "name": "Battle Shield", "class": 2, "attributes": ["Weight", "Defense", "Axe Fighting", "Club Fighting", "Sword Fighting"] },
-    { "name": "Scarab Shield", "class": 2, "attributes": ["Weight", "Defense", "Arrow Guard"] },
-    { "name": "Dark Shield", "class": 2, "attributes": ["Weight", "Defense", "Arrow Guard", "Shielding"] },
-    { "name": "Dwarven Shield", "class": 2, "attributes": ["Weight", "Defense", "Arrow Guard", "Shielding"] },
-    { "name": "Rose Shield", "class": 2, "attributes": ["Weight", "Defense", "Healing", "Arrow Guard", "Shielding"] },
-    { "name": "Ancient Shield", "class": 2, "attributes": ["Weight", "Defense", "Arrow Guard", "Shielding"] },
-    { "name": "Castle Shield", "class": 2, "attributes": ["Weight", "Defense", "Arrow Guard", "Shielding"] },
-    { "name": "Beholder Shield", "class": 2, "attributes": ["Weight", "Defense", "Magic Level", "Protect Poison", "Protect Mana Drain"] },
-    { "name": "Griffin Shield", "class": 2, "attributes": ["Weight", "Defense", "Distance Fighting"] },
-    { "name": "Guardian Shield", "class": 3, "attributes": ["Weight", "Defense", "Arrow Guard", "Mitigation", "Shielding", "Protect Physical"] },
-    { "name": "Eagle Shield", "class": 3, "attributes": ["Weight", "Defense", "Distance Fighting", "Arrow Guard", "Mitigation", "Shielding"] },
-    { "name": "Dragon Shield", "class": 3, "attributes": ["Weight", "Defense", "Arrow Guard", "Mitigation", "Protect Fire", "Shielding", "Protect Physical"] },
-    { "name": "Frozen Shield", "class": 3, "attributes": ["Weight", "Defense", "Axe Fighting", "Club Fighting", "Distance Fighting", "Arrow Guard", "Mitigation", "Protect Ice", "Sword Fighting", "Shielding", "Protect Physical"] },
-    { "name": "Amazon Shield", "class": 3, "attributes": ["Weight", "Defense", "Healing", "Distance Fighting", "Arrow Guard", "Mitigation", "Shielding", "Protect Energy", "Protect Physical"] },
-    { "name": "Crown Shield", "class": 3, "attributes": ["Weight", "Defense", "Axe Fighting", "Club Fighting", "Distance Fighting", "Arrow Guard", "Mitigation", "Sword Fighting", "Shielding", "Protect Physical"] },
-    { "name": "Tower Shield", "class": 3, "attributes": ["Weight", "Defense", "Arrow Guard", "Mitigation", "Shielding", "Protect Physical"] },
-    { "name": "Shield Of Honour", "class": 3, "attributes": ["Weight", "Defense", "Arrow Guard", "Mitigation", "Shielding", "Protect Physical"] },
-    { "name": "Medusa Shield", "class": 3, "attributes": ["Weight", "Defense", "Arrow Guard", "Magic Level", "Mitigation", "Shielding", "Protect Mana Drain"] },
-    { "name": "Vampire Shield", "class": 3, "attributes": ["Weight", "Defense", "Arrow Guard", "Mitigation", "Shielding", "Absorb Health"] },
-    { "name": "Phoenix Shield", "class": 3, "attributes": ["Weight", "Defense", "Arrow Guard", "Mitigation", "Protect Fire", "Reflect Fire", "Shielding"] },
-    { "name": "Demon Shield", "class": 4, "attributes": ["Weight", "Defense", "Absorb Mana", "Arrow Guard", "Magic Level", "Protect Fire", "Shielding", "Protect Mana Drain"] },
-    { "name": "Tempest Shield", "class": 4, "attributes": ["Weight", "Defense", "Arrow Guard", "Mitigation", "Shielding", "Protect Energy", "Reflect Energy"] },
-    { "name": "Mastermind Shield", "class": 4, "attributes": ["Weight", "Defense", "Axe Fighting", "Club Fighting", "Distance Fighting", "Arrow Guard", "Mitigation", "Sword Fighting", "Shielding", "Protect Physical"] },
-    { "name": "Great Shield", "class": 4, "attributes": ["Weight", "Defense", "Axe Fighting", "Club Fighting", "Distance Fighting", "Arrow Guard", "Mitigation", "Sword Fighting", "Protect Fire", "Shielding", "Protect Physical", "Reflect Physical"] },
-    { "name": "Spectral Shield", "class": 4, "attributes": [] },
-    { "name": "Blessed Shield", "class": 5, "attributes": ["Weight", "Defense", "Axe Fighting", "Club Fighting", "Distance Fighting", "Arrow Guard", "Mitigation", "Sword Fighting", "Shielding", "Protect Elements", "Protect Physical", "Reflect Elements", "Reflect Physical"] }
-  ],
-  "Quivers": [
-    { "name": "Quiver", "class": 1, "attributes": ["Distance Fighting", "Attack Interval"] },
-    { "name": "Iron Quiver", "class": 1, "attributes": ["Armor", "Distance Fighting", "Attack Interval"] },
-    { "name": "Dragon Quiver", "class": 2, "attributes": ["Armor", "Attack", "Hitchance", "Distance Fighting", "Critical Hit", "Attack Interval"] },
-    { "name": "Imperial Quiver", "class": 2, "attributes": ["Armor", "Attack", "Hitchance", "Distance Fighting", "Critical Hit", "Attack Interval", "Protect Physical"] },
-    { "name": "Blazing Quiver", "class": 3, "attributes": ["Attack", "Burning", "Hitchance", "Distance Fighting", "Critical Hit", "Attack Interval"] },
-    { "name": "Deadly Quiver", "class": 3, "attributes": ["Attack", "Hitchance", "Life Leech", "Distance Fighting", "Magic Level", "Critical Hit", "Attack Interval"] },
-    { "name": "Quiver Of Valor", "class": 3, "attributes": ["Armor", "Hitchance", "Distance Fighting", "Critical Hit", "Attack Interval", "Protect Physical"] }
-  ],
-  "Axes": [
-    { "name": "Sickle", "class": 1, "attributes": ["Attack", "Perfuration", "Attack Interval"] },
-    { "name": "Hand Axe", "class": 1, "attributes": ["Attack", "Perfuration", "Attack Interval"] },
-    { "name": "Axe", "class": 1, "attributes": ["Attack", "Perfuration", "Attack Interval"] },
-    { "name": "Golden Sickle", "class": 1, "attributes": ["Attack", "Perfuration", "Attack Interval"] },
-    { "name": "Hatchet", "class": 1, "attributes": ["Attack", "Perfuration", "Attack Interval"] },
-    { "name": "Daramanian Axe", "class": 1, "attributes": ["Attack", "Perfuration", "Attack Interval"] },
-    { "name": "Orcish Axe", "class": 2, "attributes": ["Attack", "Axe Fighting", "Perfuration", "Attack Interval"] },
-    { "name": "Battle Axe", "class": 1, "attributes": ["Attack", "Weight", "Critical Hit", "Perfuration"] },
-    { "name": "Barbarian Axe", "class": 2, "attributes": ["Attack", "Axe Fighting", "Perfuration", "Attack Interval"] },
-    { "name": "Dwarven Axe", "class": 3, "attributes": ["Attack", "Axe Fighting", "Perfuration", "Attack Interval"] },
-    { "name": "Knight Axe", "class": 3, "attributes": ["Attack", "Berserk", "Axe Fighting", "Life Leech", "Perfuration", "Attack Interval"] },
-    { "name": "Obsidian Lance", "class": 2, "attributes": ["Attack", "Weight", "Bleeding", "Axe Fighting", "Critical Hit", "Perfuration"] },
-    { "name": "Double Axe", "class": 2, "attributes": ["Attack", "Weight", "Axe Fighting", "Critical Hit", "Perfuration"] },
-    { "name": "Halberd", "class": 2, "attributes": ["Attack", "Weight", "Axe Fighting", "Critical Hit", "Perfuration"] },
-    { "name": "Crystal Axe", "class": 3, "attributes": ["Attack", "Freeze", "Berserk", "Axe Fighting", "Life Leech", "Perfuration", "Attack Interval"] },
-    { "name": "Fire Axe", "class": 3, "attributes": ["Attack", "Berserk", "Burning", "Axe Fighting", "Life Leech", "Perfuration", "Attack Interval"] },
-    { "name": "Daramanian Waraxe", "class": 2, "attributes": ["Attack", "Weight", "Axe Fighting", "Critical Hit", "Perfuration"] },
-    { "name": "Naginata", "class": 2, "attributes": ["Attack", "Weight", "Bleeding", "Axe Fighting", "Critical Hit", "Perfuration"] },
-    { "name": "Twin Axe", "class": 3, "attributes": ["Attack", "Weight", "Berserk", "Axe Fighting", "Life Leech", "Critical Hit", "Perfuration"] },
-    { "name": "Guardian Halberd", "class": 3, "attributes": ["Attack", "Weight", "Berserk", "Defense", "Axe Fighting", "Life Leech", "Critical Hit", "Perfuration"] },
-    { "name": "Dragon Lance", "class": 3, "attributes": ["Attack", "Weight", "Berserk", "Bleeding", "Axe Fighting", "Life Leech", "Critical Hit", "Perfuration"] },
-    { "name": "War Axe", "class": 3, "attributes": ["Attack", "Weight", "Berserk", "Axe Fighting", "Life Leech", "Critical Hit", "Perfuration"] },
-    { "name": "Ravager's Axe", "class": 3, "attributes": ["Attack", "Weight", "Berserk", "Axe Fighting", "Life Leech", "Critical Hit", "Perfuration"] },
-    { "name": "Stonecutter Axe", "class": 5, "attributes": ["Attack", "Berserk", "Axe Fighting", "Life Leech", "Perfuration", "Attack Interval"] },
-    { "name": "Darksteel Axe", "class": 0, "attributes": [] },
-    { "name": "Great Axe", "class": 4, "attributes": ["Attack", "Weight", "Berserk", "Axe Fighting", "Life Leech", "Critical Hit", "Perfuration"] },
-    { "name": "Demonwing Axe", "class": 0, "attributes": [] }
+    {
+      "name": "Wooden Shield",
+      "class": 1,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard"
+      ]
+    },
+    {
+      "name": "Studded Shield",
+      "class": 1,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard"
+      ]
+    },
+    {
+      "name": "Brass Shield",
+      "class": 1,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard"
+      ]
+    },
+    {
+      "name": "Plate Shield",
+      "class": 1,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard"
+      ]
+    },
+    {
+      "name": "Black Shield",
+      "class": 1,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard"
+      ]
+    },
+    {
+      "name": "Copper Shield",
+      "class": 1,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard"
+      ]
+    },
+    {
+      "name": "Bone Shield",
+      "class": 2,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard",
+        "Shielding"
+      ]
+    },
+    {
+      "name": "Steel Shield",
+      "class": 2,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard",
+        "Shielding"
+      ]
+    },
+    {
+      "name": "Viking Shield",
+      "class": 2,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Axe Fighting",
+        "Sword Fighting",
+        "Club Fighting"
+      ]
+    },
+    {
+      "name": "Ornamented Shield",
+      "class": 2,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard",
+        "Shielding"
+      ]
+    },
+    {
+      "name": "Battle Shield",
+      "class": 2,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Axe Fighting",
+        "Sword Fighting",
+        "Club Fighting"
+      ]
+    },
+    {
+      "name": "Scarab Shield",
+      "class": 2,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard"
+      ]
+    },
+    {
+      "name": "Dark Shield",
+      "class": 2,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard",
+        "Shielding"
+      ]
+    },
+    {
+      "name": "Dwarven Shield",
+      "class": 2,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard",
+        "Shielding"
+      ]
+    },
+    {
+      "name": "Rose Shield",
+      "class": 2,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Healing",
+        "Shielding",
+        "Arrow Guard"
+      ]
+    },
+    {
+      "name": "Ancient Shield",
+      "class": 2,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard",
+        "Shielding"
+      ]
+    },
+    {
+      "name": "Castle Shield",
+      "class": 2,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard",
+        "Shielding"
+      ]
+    },
+    {
+      "name": "Beholder Shield",
+      "class": 2,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Magic Level",
+        "Protect Mana Drain",
+        "Protect Poison"
+      ]
+    },
+    {
+      "name": "Griffin Shield",
+      "class": 2,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Distance Fighting"
+      ]
+    },
+    {
+      "name": "Guardian Shield",
+      "class": 3,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard",
+        "Shielding",
+        "Protect Physical",
+        "Mitigation"
+      ]
+    },
+    {
+      "name": "Eagle Shield",
+      "class": 3,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Distance Fighting",
+        "Mitigation",
+        "Shielding",
+        "Arrow Guard"
+      ]
+    },
+    {
+      "name": "Dragon Shield",
+      "class": 3,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard",
+        "Protect Fire",
+        "Shielding",
+        "Mitigation",
+        "Protect Physical"
+      ]
+    },
+    {
+      "name": "Frozen Shield",
+      "class": 3,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Axe Fighting",
+        "Distance Fighting",
+        "Arrow Guard",
+        "Protect Ice",
+        "Sword Fighting",
+        "Protect Physical",
+        "Club Fighting",
+        "Mitigation",
+        "Shielding"
+      ]
+    },
+    {
+      "name": "Amazon Shield",
+      "class": 3,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Healing",
+        "Arrow Guard",
+        "Mitigation",
+        "Protect Energy",
+        "Protect Physical",
+        "Distance Fighting",
+        "Shielding"
+      ]
+    },
+    {
+      "name": "Crown Shield",
+      "class": 3,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Axe Fighting",
+        "Distance Fighting",
+        "Arrow Guard",
+        "Sword Fighting",
+        "Shielding",
+        "Club Fighting",
+        "Mitigation",
+        "Protect Physical"
+      ]
+    },
+    {
+      "name": "Tower Shield",
+      "class": 3,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard",
+        "Shielding",
+        "Protect Physical",
+        "Mitigation"
+      ]
+    },
+    {
+      "name": "Shield Of Honour",
+      "class": 3,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard",
+        "Shielding",
+        "Protect Physical",
+        "Mitigation"
+      ]
+    },
+    {
+      "name": "Medusa Shield",
+      "class": 3,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard",
+        "Mitigation",
+        "Shielding",
+        "Magic Level",
+        "Protect Mana Drain"
+      ]
+    },
+    {
+      "name": "Vampire Shield",
+      "class": 3,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard",
+        "Shielding",
+        "Absorb Health",
+        "Mitigation"
+      ]
+    },
+    {
+      "name": "Phoenix Shield",
+      "class": 3,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard",
+        "Protect Fire",
+        "Reflect Fire",
+        "Mitigation",
+        "Shielding"
+      ]
+    },
+    {
+      "name": "Demon Shield",
+      "class": 4,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Absorb Mana",
+        "Magic Level",
+        "Protect Fire",
+        "Protect Mana Drain",
+        "Arrow Guard",
+        "Shielding"
+      ]
+    },
+    {
+      "name": "Tempest Shield",
+      "class": 4,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard",
+        "Shielding",
+        "Protect Energy",
+        "Mitigation",
+        "Reflect Energy"
+      ]
+    },
+    {
+      "name": "Mastermind Shield",
+      "class": 4,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Axe Fighting",
+        "Distance Fighting",
+        "Arrow Guard",
+        "Sword Fighting",
+        "Shielding",
+        "Club Fighting",
+        "Mitigation",
+        "Protect Physical"
+      ]
+    },
+    {
+      "name": "Great Shield",
+      "class": 4,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Axe Fighting",
+        "Distance Fighting",
+        "Arrow Guard",
+        "Sword Fighting",
+        "Protect Fire",
+        "Protect Physical",
+        "Reflect Physical",
+        "Club Fighting",
+        "Mitigation",
+        "Shielding"
+      ]
+    },
+    {
+      "name": "Spectral Shield",
+      "class": 4,
+      "attributes": [
+        "Defense",
+        "Weight",
+        "Shielding",
+        "Mitigation",
+        "Protect Physical",
+        "Protect Elements"
+      ]
+    },
+    {
+      "name": "Blessed Shield",
+      "class": 5,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Axe Fighting",
+        "Distance Fighting",
+        "Arrow Guard",
+        "Sword Fighting",
+        "Shielding",
+        "Protect Physical",
+        "Reflect Elements",
+        "Club Fighting",
+        "Mitigation",
+        "Protect Elements",
+        "Reflect Physical"
+      ]
+    }
   ],
   "Swords": [
-    { "name": "Knife", "class": 1, "attributes": ["Attack", "Defense", "Attack Interval"] },
-    { "name": "Dagger", "class": 1, "attributes": ["Attack", "Defense", "Attack Interval"] },
-    { "name": "Combat Knife", "class": 1, "attributes": ["Attack", "Defense", "Attack Interval"] },
-    { "name": "Silver Dagger", "class": 1, "attributes": ["Attack", "Defense", "Attack Interval"] },
-    { "name": "Rapier", "class": 1, "attributes": ["Attack", "Defense", "Attack Interval"] },
-    { "name": "Short Sword", "class": 1, "attributes": ["Attack", "Defense", "Attack Interval"] },
-    { "name": "Foil", "class": 1, "attributes": ["Attack", "Double Bash", "Sword Fighting", "Attack Interval"] },
-    { "name": "Hunter's Knife", "class": 0, "attributes": [] },
-    { "name": "Sabre", "class": 1, "attributes": ["Attack", "Defense", "Attack Interval"] },
-    { "name": "Sword", "class": 1, "attributes": ["Attack", "Defense", "Attack Interval"] },
-    { "name": "Diamond Knife", "class": 0, "attributes": [] },
-    { "name": "Bone Sword", "class": 1, "attributes": ["Attack", "Defense", "Attack Interval"] },
-    { "name": "Carlin Sword", "class": 1, "attributes": ["Attack", "Defense", "Attack Interval"] },
-    { "name": "Heavy Machete", "class": 1, "attributes": ["Attack", "Defense", "Attack Interval"] },
-    { "name": "Katana", "class": 1, "attributes": ["Attack", "Defense", "Attack Interval"] },
-    { "name": "Longsword", "class": 1, "attributes": ["Attack", "Defense", "Attack Interval"] },
-    { "name": "Poison Dagger", "class": 1, "attributes": ["Attack", "Poison", "Defense", "Attack Interval"] },
-    { "name": "Scimitar", "class": 1, "attributes": ["Attack", "Defense", "Attack Interval"] },
-    { "name": "Spike Sword", "class": 2, "attributes": ["Attack", "Defense", "Sword Fighting", "Perfuration", "Attack Interval"] },
-    { "name": "Broadsword", "class": 1, "attributes": ["Attack", "Weight", "Defense", "Critical Hit"] },
-    { "name": "Serpent Sword", "class": 2, "attributes": ["Attack", "Poison", "Defense", "Sword Fighting", "Attack Interval"] },
-    { "name": "Two Handed Sword", "class": 2, "attributes": ["Attack", "Weight", "Defense", "Sword Fighting", "Critical Hit"] },
-    { "name": "Fire Sword", "class": 3, "attributes": ["Attack", "Burning", "Defense", "Life Leech", "Double Bash", "Sword Fighting", "Attack Interval"] },
-    { "name": "Bright Sword", "class": 3, "attributes": ["Attack", "Defense", "Life Leech", "Double Bash", "Sword Fighting", "Attack Interval"] },
-    { "name": "Crystal Sword", "class": 3, "attributes": ["Attack", "Defense", "Life Leech", "Double Bash", "Sword Fighting", "Attack Interval"] },
-    { "name": "Djinn Blade", "class": 4, "attributes": ["Attack", "Defense", "Life Leech", "Double Bash", "Sword Fighting", "Attack Interval"] },
-    { "name": "Pharaoh Sword", "class": 4, "attributes": ["Attack", "Defense", "Life Leech", "Double Bash", "Sword Fighting", "Attack Interval"] },
-    { "name": "Giant Sword", "class": 3, "attributes": ["Attack", "Weight", "Defense", "Life Leech", "Sword Fighting", "Critical Hit"] },
-    { "name": "Magic Sword", "class": 5, "attributes": ["Attack", "Defense", "Life Leech", "Mana Leech", "Double Bash", "Magic Level", "Sword Fighting", "Attack Interval"] },
-    { "name": "Miracle Sword", "class": 5, "attributes": ["Attack", "Defense", "Life Leech", "Mana Leech", "Double Bash", "Magic Level", "Sword Fighting", "Attack Interval"] },
-    { "name": "Warlord Sword", "class": 4, "attributes": ["Attack", "Weight", "Defense", "Life Leech", "Sword Fighting", "Critical Hit"] },
-    { "name": "Magic Longsword", "class": 5, "attributes": ["Attack", "Weight", "Defense", "Life Leech", "Mana Leech", "Magic Level", "Sword Fighting", "Critical Hit", "Perfuration", "Critical Spell"] },
-    { "name": "Ice Rapier", "class": 0, "attributes": [] }
+    {
+      "name": "Knife",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Dagger",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Combat Knife",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Silver Dagger",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Foil",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Weight",
+        "Sword Fighting",
+        "Critical Hit",
+        "Crushing Blow",
+        "Double Bash",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Rapier",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Short Sword",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Sabre",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Sword",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Bone Sword",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Carlin Sword",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Heavy Machete",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Katana",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Longsword",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Poison Dagger",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Poison",
+        "Defense",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Scimitar",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Spike Sword",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Sword Fighting",
+        "Attack Interval",
+        "Perfuration"
+      ]
+    },
+    {
+      "name": "Broadsword",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Weight",
+        "Defense",
+        "Critical Hit"
+      ]
+    },
+    {
+      "name": "Serpent Sword",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Poison",
+        "Defense",
+        "Attack Interval",
+        "Sword Fighting"
+      ]
+    },
+    {
+      "name": "Two Handed Sword",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Weight",
+        "Defense",
+        "Critical Hit",
+        "Sword Fighting"
+      ]
+    },
+    {
+      "name": "Fire Sword",
+      "class": 3,
+      "attributes": [
+        "Burning",
+        "Attack",
+        "Defense",
+        "Double Bash",
+        "Sword Fighting",
+        "Life Leech",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Bright Sword",
+      "class": 3,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Life Leech",
+        "Sword Fighting",
+        "Attack Interval",
+        "Double Bash"
+      ]
+    },
+    {
+      "name": "Crystal Sword",
+      "class": 3,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Life Leech",
+        "Sword Fighting",
+        "Attack Interval",
+        "Double Bash"
+      ]
+    },
+    {
+      "name": "Djinn Blade",
+      "class": 4,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Life Leech",
+        "Sword Fighting",
+        "Attack Interval",
+        "Double Bash"
+      ]
+    },
+    {
+      "name": "Pharaoh Sword",
+      "class": 4,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Life Leech",
+        "Sword Fighting",
+        "Attack Interval",
+        "Double Bash"
+      ]
+    },
+    {
+      "name": "Giant Sword",
+      "class": 3,
+      "attributes": [
+        "Attack",
+        "Weight",
+        "Defense",
+        "Sword Fighting",
+        "Critical Hit",
+        "Life Leech"
+      ]
+    },
+    {
+      "name": "Magic Sword",
+      "class": 5,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Life Leech",
+        "Double Bash",
+        "Magic Level",
+        "Attack Interval",
+        "Mana Leech",
+        "Sword Fighting"
+      ]
+    },
+    {
+      "name": "Miracle Sword",
+      "class": 5,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Weight",
+        "Sword Fighting",
+        "Critical Hit",
+        "Crushing Blow",
+        "Life Leech",
+        "Mana Leech",
+        "Double Bash",
+        "Magic Level",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Warlord Sword",
+      "class": 4,
+      "attributes": [
+        "Attack",
+        "Weight",
+        "Defense",
+        "Sword Fighting",
+        "Critical Hit",
+        "Life Leech"
+      ]
+    },
+    {
+      "name": "Magic Longsword",
+      "class": 5,
+      "attributes": [
+        "Attack",
+        "Weight",
+        "Defense",
+        "Mana Leech",
+        "Magic Level",
+        "Critical Hit",
+        "Perfuration",
+        "Life Leech",
+        "Sword Fighting",
+        "Critical Spell"
+      ]
+    },
+    {
+      "name": "Hunter's Knife",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Diamond Knife",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Ice Rapier",
+      "class": 0,
+      "attributes": []
+    }
+  ],
+  "Axes": [
+    {
+      "name": "Sickle",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Perfuration",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Hand Axe",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Perfuration",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Axe",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Perfuration",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Golden Sickle",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Perfuration",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Rough Axe",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Weight",
+        "Axe Fighting",
+        "Critical Hit",
+        "Crushing Blow"
+      ]
+    },
+    {
+      "name": "Hatchet",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Perfuration",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Daramanian Axe",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Perfuration",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Refined Axe",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Weight",
+        "Axe Fighting",
+        "Critical Hit",
+        "Crushing Blow"
+      ]
+    },
+    {
+      "name": "Superior Axe",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Weight",
+        "Axe Fighting",
+        "Critical Hit",
+        "Crushing Blow"
+      ]
+    },
+    {
+      "name": "Masterwork Axe",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Weight",
+        "Axe Fighting",
+        "Critical Hit",
+        "Crushing Blow"
+      ]
+    },
+    {
+      "name": "Orcish Axe",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Axe Fighting",
+        "Perfuration",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Battle Axe",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Weight",
+        "Critical Hit",
+        "Perfuration"
+      ]
+    },
+    {
+      "name": "Grandmaster Axe",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Weight",
+        "Axe Fighting",
+        "Critical Hit",
+        "Crushing Blow"
+      ]
+    },
+    {
+      "name": "Barbarian Axe",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Axe Fighting",
+        "Perfuration",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Dwarven Axe",
+      "class": 3,
+      "attributes": [
+        "Attack",
+        "Axe Fighting",
+        "Perfuration",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Knight Axe",
+      "class": 3,
+      "attributes": [
+        "Attack",
+        "Berserk",
+        "Axe Fighting",
+        "Perfuration",
+        "Attack Interval",
+        "Life Leech"
+      ]
+    },
+    {
+      "name": "Obsidian Lance",
+      "class": 2,
+      "attributes": [
+        "Bleeding",
+        "Attack",
+        "Weight",
+        "Critical Hit",
+        "Perfuration",
+        "Axe Fighting"
+      ]
+    },
+    {
+      "name": "Double Axe",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Weight",
+        "Axe Fighting",
+        "Perfuration",
+        "Critical Hit"
+      ]
+    },
+    {
+      "name": "Halberd",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Weight",
+        "Axe Fighting",
+        "Perfuration",
+        "Critical Hit"
+      ]
+    },
+    {
+      "name": "Crystal Axe",
+      "class": 3,
+      "attributes": [
+        "Attack",
+        "Freeze",
+        "Berserk",
+        "Life Leech",
+        "Perfuration",
+        "Axe Fighting",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Fire Axe",
+      "class": 3,
+      "attributes": [
+        "Burning",
+        "Attack",
+        "Berserk",
+        "Life Leech",
+        "Perfuration",
+        "Axe Fighting",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Daramanian Waraxe",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Weight",
+        "Axe Fighting",
+        "Perfuration",
+        "Critical Hit"
+      ]
+    },
+    {
+      "name": "Naginata",
+      "class": 2,
+      "attributes": [
+        "Bleeding",
+        "Attack",
+        "Weight",
+        "Critical Hit",
+        "Perfuration",
+        "Axe Fighting"
+      ]
+    },
+    {
+      "name": "Twin Axe",
+      "class": 3,
+      "attributes": [
+        "Attack",
+        "Weight",
+        "Berserk",
+        "Life Leech",
+        "Critical Hit",
+        "Axe Fighting",
+        "Perfuration"
+      ]
+    },
+    {
+      "name": "Guardian Halberd",
+      "class": 3,
+      "attributes": [
+        "Attack",
+        "Weight",
+        "Berserk",
+        "Axe Fighting",
+        "Life Leech",
+        "Perfuration",
+        "Defense",
+        "Critical Hit"
+      ]
+    },
+    {
+      "name": "Dragon Lance",
+      "class": 3,
+      "attributes": [
+        "Bleeding",
+        "Attack",
+        "Weight",
+        "Axe Fighting",
+        "Life Leech",
+        "Perfuration",
+        "Berserk",
+        "Critical Hit"
+      ]
+    },
+    {
+      "name": "War Axe",
+      "class": 3,
+      "attributes": [
+        "Attack",
+        "Weight",
+        "Berserk",
+        "Life Leech",
+        "Critical Hit",
+        "Axe Fighting",
+        "Perfuration"
+      ]
+    },
+    {
+      "name": "Ravager's Axe",
+      "class": 3,
+      "attributes": [
+        "Attack",
+        "Weight",
+        "Berserk",
+        "Life Leech",
+        "Critical Hit",
+        "Axe Fighting",
+        "Perfuration"
+      ]
+    },
+    {
+      "name": "Stonecutter Axe",
+      "class": 5,
+      "attributes": [
+        "Attack",
+        "Berserk",
+        "Axe Fighting",
+        "Perfuration",
+        "Attack Interval",
+        "Life Leech"
+      ]
+    },
+    {
+      "name": "Darksteel Axe",
+      "class": 5,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Weight",
+        "Axe Fighting",
+        "Critical Hit",
+        "Crushing Blow"
+      ]
+    },
+    {
+      "name": "Great Axe",
+      "class": 4,
+      "attributes": [
+        "Attack",
+        "Weight",
+        "Berserk",
+        "Life Leech",
+        "Critical Hit",
+        "Axe Fighting",
+        "Perfuration"
+      ]
+    },
+    {
+      "name": "Demonwing Axe",
+      "class": 4,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Weight",
+        "Axe Fighting",
+        "Critical Hit",
+        "Crushing Blow"
+      ]
+    }
   ],
   "Clubs": [
-    { "name": "Club", "class": 1, "attributes": ["Attack", "Crushing Blow", "Attack Interval"] },
-    { "name": "Studded Club", "class": 1, "attributes": ["Attack", "Crushing Blow", "Attack Interval"] },
-    { "name": "Staff", "class": 0, "attributes": [] },
-    { "name": "Bone Club", "class": 1, "attributes": ["Attack", "Crushing Blow", "Attack Interval"] },
-    { "name": "Golden Mace", "class": 1, "attributes": ["Attack", "Crushing Blow", "Attack Interval"] },
-    { "name": "Mace", "class": 1, "attributes": ["Attack", "Crushing Blow", "Attack Interval"] },
-    { "name": "Iron Hammer", "class": 1, "attributes": ["Attack", "Crushing Blow", "Attack Interval"] },
-    { "name": "Daramanian Mace", "class": 2, "attributes": ["Attack", "Club Fighting", "Crushing Blow", "Attack Interval"] },
-    { "name": "Battle Hammer", "class": 2, "attributes": ["Attack", "Club Fighting", "Crushing Blow", "Attack Interval"] },
-    { "name": "Giant Smithhammer", "class": 2, "attributes": ["Attack", "Club Fighting", "Crushing Blow", "Attack Interval"] },
-    { "name": "Morning Star", "class": 2, "attributes": ["Attack", "Club Fighting", "Crushing Blow", "Attack Interval"] },
-    { "name": "Clerical Mace", "class": 2, "attributes": ["Attack", "Club Fighting", "Crushing Blow", "Attack Interval"] },
-    { "name": "Dragon Hammer", "class": 3, "attributes": ["Attack", "Life Leech", "Club Fighting", "Crushing Blow", "Attack Interval"] },
-    { "name": "Skull Staff", "class": 3, "attributes": ["Attack", "Mana Leech", "Club Fighting", "Magic Level", "Attack Interval"] },
-    { "name": "Enchanted Staff", "class": 0, "attributes": [] },
-    { "name": "Silver Mace", "class": 4, "attributes": ["Attack", "Life Leech", "Club Fighting", "Crushing Blow", "Attack Interval"] },
-    { "name": "Crystal Mace", "class": 4, "attributes": ["Attack", "Life Leech", "Club Fighting", "Crushing Blow", "Attack Interval"] },
-    { "name": "War Hammer", "class": 3, "attributes": ["Attack", "Weight", "Life Leech", "Club Fighting", "Critical Hit", "Crushing Blow"] },
-    { "name": "Dragonbone Hammer", "class": 3, "attributes": ["Attack", "Life Leech", "Club Fighting", "Crushing Blow", "Attack Interval"] },
-    { "name": "Hammer Of Wrath", "class": 3, "attributes": ["Attack", "Weight", "Life Leech", "Club Fighting", "Critical Hit", "Crushing Blow"] },
-    { "name": "Sapphire Hammer", "class": 0, "attributes": [] },
-    { "name": "Thunder Hammer", "class": 5, "attributes": ["Attack", "Electrify", "Life Leech", "Mana Leech", "Club Fighting", "Magic Level", "Crushing Blow", "Attack Interval"] },
-    { "name": "Heavy Mace", "class": 4, "attributes": ["Attack", "Weight", "Life Leech", "Club Fighting", "Critical Hit", "Crushing Blow", "Perfuration"] },
-    { "name": "Arcane Staff", "class": 4, "attributes": ["Attack", "Mana Leech", "Club Fighting", "Magic Level", "Critical Spell"] },
-    { "name": "Mythic Hammer", "class": 0, "attributes": [] }
+    {
+      "name": "Club",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Crushing Blow",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Studded Club",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Crushing Blow",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Bone Club",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Crushing Blow",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Golden Mace",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Crushing Blow",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Mace",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Crushing Blow",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Iron Hammer",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Crushing Blow",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Daramanian Mace",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Club Fighting",
+        "Crushing Blow",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Battle Hammer",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Club Fighting",
+        "Crushing Blow",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Giant Smithhammer",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Club Fighting",
+        "Crushing Blow",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Morning Star",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Club Fighting",
+        "Crushing Blow",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Clerical Mace",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Club Fighting",
+        "Crushing Blow",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Dragon Hammer",
+      "class": 3,
+      "attributes": [
+        "Attack",
+        "Life Leech",
+        "Club Fighting",
+        "Attack Interval",
+        "Crushing Blow"
+      ]
+    },
+    {
+      "name": "Skull Staff",
+      "class": 3,
+      "attributes": [
+        "Attack",
+        "Mana Leech",
+        "Club Fighting",
+        "Attack Interval",
+        "Magic Level"
+      ]
+    },
+    {
+      "name": "Silver Mace",
+      "class": 4,
+      "attributes": [
+        "Attack",
+        "Life Leech",
+        "Club Fighting",
+        "Attack Interval",
+        "Crushing Blow"
+      ]
+    },
+    {
+      "name": "Crystal Mace",
+      "class": 4,
+      "attributes": [
+        "Attack",
+        "Life Leech",
+        "Club Fighting",
+        "Attack Interval",
+        "Crushing Blow"
+      ]
+    },
+    {
+      "name": "War Hammer",
+      "class": 3,
+      "attributes": [
+        "Attack",
+        "Weight",
+        "Life Leech",
+        "Critical Hit",
+        "Crushing Blow",
+        "Club Fighting"
+      ]
+    },
+    {
+      "name": "Dragonbone Hammer",
+      "class": 5,
+      "attributes": [
+        "Attack",
+        "Life Leech",
+        "Club Fighting",
+        "Attack Interval",
+        "Crushing Blow"
+      ]
+    },
+    {
+      "name": "Hammer Of Wrath",
+      "class": 3,
+      "attributes": [
+        "Attack",
+        "Weight",
+        "Life Leech",
+        "Critical Hit",
+        "Crushing Blow",
+        "Club Fighting"
+      ]
+    },
+    {
+      "name": "Sapphire Hammer",
+      "class": 5,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Weight",
+        "Club Fighting",
+        "Critical Hit",
+        "Crushing Blow"
+      ]
+    },
+    {
+      "name": "Thunder Hammer",
+      "class": 5,
+      "attributes": [
+        "Attack",
+        "Electrify",
+        "Life Leech",
+        "Club Fighting",
+        "Magic Level",
+        "Attack Interval",
+        "Mana Leech",
+        "Crushing Blow"
+      ]
+    },
+    {
+      "name": "Heavy Mace",
+      "class": 4,
+      "attributes": [
+        "Attack",
+        "Weight",
+        "Life Leech",
+        "Critical Hit",
+        "Perfuration",
+        "Club Fighting",
+        "Crushing Blow"
+      ]
+    },
+    {
+      "name": "Arcane Staff",
+      "class": 4,
+      "attributes": [
+        "Attack",
+        "Mana Leech",
+        "Club Fighting",
+        "Critical Spell",
+        "Magic Level"
+      ]
+    },
+    {
+      "name": "Mythic Hammer",
+      "class": 4,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Weight",
+        "Club Fighting",
+        "Critical Hit",
+        "Crushing Blow"
+      ]
+    },
+    {
+      "name": "Staff",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Enchanted Staff",
+      "class": 0,
+      "attributes": []
+    }
   ],
   "Distance": [
-    { "name": "Bow", "class": 1, "attributes": ["Attack", "Hitchance", "Distance Fighting", "Critical Hit", "Attack Interval"] },
-    { "name": "Elvish Bow", "class": 1, "attributes": ["Attack", "Hitchance", "Distance Fighting", "Critical Hit", "Attack Interval"] },
-    { "name": "War Bow", "class": 2, "attributes": ["Attack", "Hitchance", "Distance Fighting", "Critical Hit", "Attack Interval"] },
-    { "name": "Frozen Bow", "class": 2, "attributes": ["Attack", "Hitchance", "Distance Fighting", "Critical Hit", "Attack Interval"] },
-    { "name": "Armored War Bow", "class": 2, "attributes": ["Attack", "Hitchance", "Distance Fighting", "Critical Hit", "Attack Interval"] },
-    { "name": "Sapphire Bow", "class": 3, "attributes": ["Attack", "Hitchance", "Distance Fighting", "Critical Hit", "Attack Interval"] },
-    { "name": "Hellforged Bow", "class": 0, "attributes": [] },
-    { "name": "Crossbow", "class": 1, "attributes": ["Attack", "Hitchance", "Distance Fighting", "Critical Hit", "Attack Interval"] },
-    { "name": "Steel Crossbow", "class": 1, "attributes": ["Attack", "Hitchance", "Distance Fighting", "Critical Hit", "Attack Interval"] },
-    { "name": "Bone Crossbow", "class": 2, "attributes": ["Attack", "Hitchance", "Distance Fighting", "Critical Hit", "Attack Interval"] },
-    { "name": "Crystallized Crossbow", "class": 2, "attributes": ["Attack", "Hitchance", "Distance Fighting", "Critical Hit", "Attack Interval"] },
-    { "name": "Royal Crossbow", "class": 2, "attributes": ["Attack", "Hitchance", "Distance Fighting", "Critical Hit", "Attack Interval"] },
-    { "name": "Evil Crossbow", "class": 3, "attributes": ["Attack", "Hitchance", "Distance Fighting", "Critical Hit", "Attack Interval"] },
-    { "name": "Hellforged Crossbow", "class": 0, "attributes": [] },
-    { "name": "Snowball", "class": 0, "attributes": [] },
-    { "name": "Small Stone", "class": 0, "attributes": [] },
-    { "name": "Ice Small Stone", "class": 0, "attributes": [] },
-    { "name": "Throwing Star", "class": 0, "attributes": [] },
-    { "name": "Throwing Knife", "class": 0, "attributes": [] },
-    { "name": "Spear", "class": 0, "attributes": [] },
-    { "name": "Hunting Spear", "class": 0, "attributes": [] },
-    { "name": "Royal Spear", "class": 0, "attributes": [] },
-    { "name": "Enchanted Spear", "class": 0, "attributes": [] },
-    { "name": "Glacial Spear", "class": 0, "attributes": [] }
+    {
+      "name": "Bow",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Hitchance",
+        "Distance Fighting",
+        "Attack Interval",
+        "Critical Hit"
+      ]
+    },
+    {
+      "name": "Elvish Bow",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Hitchance",
+        "Distance Fighting",
+        "Attack Interval",
+        "Critical Hit"
+      ]
+    },
+    {
+      "name": "War Bow",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Hitchance",
+        "Distance Fighting",
+        "Attack Interval",
+        "Critical Hit"
+      ]
+    },
+    {
+      "name": "Frozen Bow",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Hitchance",
+        "Distance Fighting",
+        "Attack Interval",
+        "Critical Hit"
+      ]
+    },
+    {
+      "name": "Armored War Bow",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Hitchance",
+        "Distance Fighting",
+        "Attack Interval",
+        "Critical Hit"
+      ]
+    },
+    {
+      "name": "Sapphire Bow",
+      "class": 3,
+      "attributes": [
+        "Attack",
+        "Hitchance",
+        "Distance Fighting",
+        "Attack Interval",
+        "Critical Hit"
+      ]
+    },
+    {
+      "name": "Hellforged Bow",
+      "class": 3,
+      "attributes": [
+        "Attack",
+        "Hitchance",
+        "Distance Fighting",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Crossbow",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Hitchance",
+        "Distance Fighting",
+        "Attack Interval",
+        "Critical Hit"
+      ]
+    },
+    {
+      "name": "Steel Crossbow",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Hitchance",
+        "Distance Fighting",
+        "Attack Interval",
+        "Critical Hit"
+      ]
+    },
+    {
+      "name": "Bone Crossbow",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Hitchance",
+        "Distance Fighting",
+        "Attack Interval",
+        "Critical Hit"
+      ]
+    },
+    {
+      "name": "Crystallized Crossbow",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Hitchance",
+        "Distance Fighting",
+        "Attack Interval",
+        "Critical Hit"
+      ]
+    },
+    {
+      "name": "Royal Crossbow",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Hitchance",
+        "Distance Fighting",
+        "Attack Interval",
+        "Critical Hit"
+      ]
+    },
+    {
+      "name": "Evil Crossbow",
+      "class": 3,
+      "attributes": [
+        "Attack",
+        "Hitchance",
+        "Distance Fighting",
+        "Attack Interval",
+        "Critical Hit"
+      ]
+    },
+    {
+      "name": "Hellforged Crossbow",
+      "class": 3,
+      "attributes": [
+        "Attack",
+        "Hitchance",
+        "Distance Fighting",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Snowball",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Small Stone",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Ice Small Stone",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Throwing Star",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Throwing Knife",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Spear",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Hunting Spear",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Royal Spear",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Enchanted Spear",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Glacial Spear",
+      "class": 0,
+      "attributes": []
+    }
+  ],
+  "Quivers": [
+    {
+      "name": "Quiver",
+      "class": 1,
+      "attributes": [
+        "Distance Fighting",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Iron Quiver",
+      "class": 1,
+      "attributes": [
+        "Armor",
+        "Distance Fighting",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Dragon Quiver",
+      "class": 2,
+      "attributes": [
+        "Armor",
+        "Attack",
+        "Hitchance",
+        "Critical Hit",
+        "Attack Interval",
+        "Distance Fighting"
+      ]
+    },
+    {
+      "name": "Imperial Quiver",
+      "class": 2,
+      "attributes": [
+        "Armor",
+        "Attack",
+        "Hitchance",
+        "Critical Hit",
+        "Attack Interval",
+        "Distance Fighting",
+        "Protect Physical"
+      ]
+    },
+    {
+      "name": "Blazing Quiver",
+      "class": 3,
+      "attributes": [
+        "Burning",
+        "Attack",
+        "Hitchance",
+        "Critical Hit",
+        "Attack Interval",
+        "Distance Fighting"
+      ]
+    },
+    {
+      "name": "Deadly Quiver",
+      "class": 3,
+      "attributes": [
+        "Attack",
+        "Hitchance",
+        "Life Leech",
+        "Magic Level",
+        "Critical Hit",
+        "Distance Fighting",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Quiver Of Valor",
+      "class": 3,
+      "attributes": [
+        "Armor",
+        "Hitchance",
+        "Distance Fighting",
+        "Attack Interval",
+        "Protect Physical",
+        "Critical Hit"
+      ]
+    }
   ],
   "Ammo": [
-    { "name": "Burst Arrow", "class": 0, "attributes": [] },
-    { "name": "Poison Arrow", "class": 0, "attributes": [] },
-    { "name": "Arrow", "class": 0, "attributes": [] },
-    { "name": "Hunting Arrow", "class": 0, "attributes": [] },
-    { "name": "Frozen Arrow", "class": 0, "attributes": [] },
-    { "name": "Piercing Arrow", "class": 0, "attributes": [] },
-    { "name": "Onyx Arrow", "class": 0, "attributes": [] },
-    { "name": "Bolt", "class": 0, "attributes": [] },
-    { "name": "Steel Bolt", "class": 0, "attributes": [] },
-    { "name": "Power Bolt", "class": 0, "attributes": [] },
-    { "name": "Infernal Bolt", "class": 0, "attributes": [] }
+    {
+      "name": "Burst Arrow",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Poison Arrow",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Arrow",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Hunting Arrow",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Frozen Arrow",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Piercing Arrow",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Onyx Arrow",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Bolt",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Steel Bolt",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Power Bolt",
+      "class": 0,
+      "attributes": []
+    },
+    {
+      "name": "Infernal Bolt",
+      "class": 0,
+      "attributes": []
+    }
   ]
 };
 

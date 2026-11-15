@@ -19,10 +19,10 @@ interface ItemRecord {
   attack?: number | null;
   defense?: number | null;
   armor?: number | null;
-  hands?: number;
+  hands?: number | null;
   weight?: number;
   tierClass?: number | null;
-  attributes?: Array<{ name: string; value: string }>;
+  attributes?: string[] | Array<{ name: string; value: string }>;
 }
 
 export function ItemsWikiView({ language, initialCategory, onCategoryChange }: ItemsWikiViewProps) {
@@ -109,23 +109,31 @@ export function ItemsWikiView({ language, initialCategory, onCategoryChange }: I
   const isCategoryInBlock = currentBlockObj.categories.some(c => c.id === selectedCategory);
   const activeCategory = isCategoryInBlock ? selectedCategory : currentBlockObj.categories[0].id;
 
-  // Resolve attributes from ATTRIBUTE_DATA
-  const getAttributesForItem = (itemName: string): string[] => {
+  const WEAPON_CATEGORIES = ['swords', 'axes', 'clubs', 'distance', 'training'];
+  const showHands = WEAPON_CATEGORIES.includes(activeCategory);
+
+  // Resolve attributes from item record or ATTRIBUTE_DATA
+  const getAttributesForItem = (item: ItemRecord): string[] => {
+    if (Array.isArray(item.attributes) && item.attributes.length > 0) {
+      if (typeof item.attributes[0] === 'string') {
+        return item.attributes as string[];
+      }
+    }
     for (const group of Object.values(ATTRIBUTE_DATA)) {
-      const found = group.find((i: any) => i.name.toLowerCase() === itemName.toLowerCase());
+      const found = group.find((i: any) => i.name.toLowerCase() === item.name.toLowerCase());
       if (found && found.attributes) return found.attributes;
     }
     return [];
   };
 
-  // Resolve item class from ATTRIBUTE_DATA or itemsData
+  // Resolve item class from item or ATTRIBUTE_DATA
   const getItemClass = (item: ItemRecord): number | null => {
-    for (const group of Object.values(ATTRIBUTE_DATA)) {
-      const found = group.find((i: any) => i.name.toLowerCase() === item.name.toLowerCase());
-      if (found && typeof found.class === 'number') return found.class;
-    }
     if (item.tierClass !== null && item.tierClass !== undefined && item.tierClass >= 1 && item.tierClass <= 5) {
       return item.tierClass;
+    }
+    for (const group of Object.values(ATTRIBUTE_DATA)) {
+      const found = group.find((i: any) => i.name.toLowerCase() === item.name.toLowerCase());
+      if (found && typeof found.class === 'number' && found.class >= 1 && found.class <= 5) return found.class;
     }
     return null;
   };
@@ -144,7 +152,7 @@ export function ItemsWikiView({ language, initialCategory, onCategoryChange }: I
       if (search.trim()) {
         const query = search.toLowerCase();
         const matchesName = item.name.toLowerCase().includes(query);
-        const attrs = getAttributesForItem(item.name);
+        const attrs = getAttributesForItem(item);
         const matchesAttr = attrs.some(a => a.toLowerCase().includes(query));
         if (!matchesName && !matchesAttr) return false;
       }
@@ -285,7 +293,9 @@ export function ItemsWikiView({ language, initialCategory, onCategoryChange }: I
               <tr className="bg-black/90 border-b border-medieval-gold/20 text-[10px] font-black uppercase tracking-widest text-medieval-gold">
                 <th className="p-3.5">{language === 'pt' ? 'Item' : 'Item'}</th>
                 <th className="p-3.5 text-center">{language === 'pt' ? 'Atributos Base' : 'Base Stats'}</th>
-                <th className="p-3.5 text-center whitespace-nowrap min-w-[90px]">{language === 'pt' ? 'Mãos' : 'Hands'}</th>
+                {showHands && (
+                  <th className="p-3.5 text-center whitespace-nowrap min-w-[90px]">{language === 'pt' ? 'Mãos' : 'Hands'}</th>
+                )}
                 <th className="p-3.5 text-center whitespace-nowrap min-w-[85px]">{language === 'pt' ? 'Peso' : 'Weight'}</th>
                 <th className="p-3.5 text-center whitespace-nowrap min-w-[105px]">{language === 'pt' ? 'Classe' : 'Class'}</th>
                 <th className="p-3.5">{language === 'pt' ? 'Atributos Místicos (Mystic Runes)' : 'Mystic Attributes'}</th>
@@ -294,7 +304,7 @@ export function ItemsWikiView({ language, initialCategory, onCategoryChange }: I
             <tbody className="divide-y divide-white/5 text-xs text-stone-300">
               {filteredItems.map((item) => {
                 const itemClass = getItemClass(item);
-                const attrs = getAttributesForItem(item.name);
+                const attrs = getAttributesForItem(item);
 
                 return (
                   <tr key={`${item.category}-${item.id}-${item.slug}`} className="hover:bg-white/5 transition-colors group">
@@ -332,29 +342,51 @@ export function ItemsWikiView({ language, initialCategory, onCategoryChange }: I
                     {/* BASE STATS (ATK, DEF, ARM) */}
                     <td className="p-3.5 text-center font-mono">
                       <div className="flex flex-col items-center gap-0.5 text-xs">
-                        {item.attack !== null && item.attack !== undefined && item.attack > 0 && (
-                          <span className="text-red-400 font-bold">Atk: {item.attack}</span>
-                        )}
-                        {item.defense !== null && item.defense !== undefined && item.defense > 0 && (
-                          <span className="text-sky-400 font-bold">Def: {item.defense}</span>
-                        )}
-                        {item.armor !== null && item.armor !== undefined && item.armor > 0 && (
-                          <span className="text-amber-400 font-bold">Arm: {item.armor}</span>
-                        )}
-                        {(!item.attack && !item.defense && !item.armor) && (
-                          <span className="text-stone-600">-</span>
+                        {['helmets', 'armors', 'legs', 'boots'].includes(item.category) ? (
+                          item.armor !== null && item.armor !== undefined ? (
+                            <span className="text-amber-400 font-bold">Arm: {item.armor}</span>
+                          ) : (
+                            <span className="text-stone-600">-</span>
+                          )
+                        ) : item.category === 'shields' ? (
+                          item.defense !== null && item.defense !== undefined ? (
+                            <span className="text-sky-400 font-bold">Def: {item.defense}</span>
+                          ) : (
+                            <span className="text-stone-600">-</span>
+                          )
+                        ) : (
+                          <>
+                            {item.attack !== null && item.attack !== undefined && (
+                              <span className="text-red-400 font-bold">
+                                Atk: {item.category === 'distance' && item.attack > 0 && (item.name.toLowerCase().includes('bow') || item.name.toLowerCase().includes('crossbow')) ? `+${item.attack}` : item.attack}
+                              </span>
+                            )}
+                            {item.defense !== null && item.defense !== undefined && item.defense > 0 && (
+                              <span className="text-sky-400 font-bold">Def: {item.defense}</span>
+                            )}
+                            {item.armor !== null && item.armor !== undefined && item.armor > 0 && (
+                              <span className="text-amber-400 font-bold">Arm: {item.armor}</span>
+                            )}
+                            {(!item.attack && !item.defense && !item.armor) && (
+                              <span className="text-stone-600">-</span>
+                            )}
+                          </>
                         )}
                       </div>
                     </td>
 
-                    {/* HANDS */}
-                    <td className="p-3.5 text-center font-mono text-[11px] text-stone-400 whitespace-nowrap min-w-[90px]">
-                      {item.hands === 2 ? (
-                        <span className="inline-block px-2 py-0.5 rounded bg-red-950/40 text-red-300 border border-red-500/20 whitespace-nowrap">2-handed</span>
-                      ) : (
-                        <span className="inline-block px-2 py-0.5 rounded bg-zinc-800 text-stone-400 whitespace-nowrap">1-handed</span>
-                      )}
-                    </td>
+                    {/* HANDS (ONLY FOR WEAPONS) */}
+                    {showHands && (
+                      <td className="p-3.5 text-center font-mono text-[11px] text-stone-400 whitespace-nowrap min-w-[90px]">
+                        {item.hands === 2 ? (
+                          <span className="inline-block px-2 py-0.5 rounded bg-red-950/40 text-red-300 border border-red-500/20 whitespace-nowrap">2-handed</span>
+                        ) : item.hands === 1 ? (
+                          <span className="inline-block px-2 py-0.5 rounded bg-zinc-800 text-stone-400 whitespace-nowrap">1-handed</span>
+                        ) : (
+                          <span className="text-stone-600">-</span>
+                        )}
+                      </td>
+                    )}
 
                     {/* WEIGHT */}
                     <td className="p-3.5 text-center font-mono text-xs text-stone-400 whitespace-nowrap min-w-[85px]">
