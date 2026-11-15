@@ -120,10 +120,12 @@ export function ItemsWikiView({ language, initialCategory, onCategoryChange }: I
 
   // Resolve item class from ATTRIBUTE_DATA or itemsData
   const getItemClass = (item: ItemRecord): number | null => {
-    if (item.tierClass !== null && item.tierClass !== undefined) return item.tierClass;
     for (const group of Object.values(ATTRIBUTE_DATA)) {
       const found = group.find((i: any) => i.name.toLowerCase() === item.name.toLowerCase());
       if (found && typeof found.class === 'number') return found.class;
+    }
+    if (item.tierClass !== null && item.tierClass !== undefined && item.tierClass >= 1 && item.tierClass <= 5) {
+      return item.tierClass;
     }
     return null;
   };
@@ -260,9 +262,9 @@ export function ItemsWikiView({ language, initialCategory, onCategoryChange }: I
               <tr className="bg-black/90 border-b border-medieval-gold/20 text-[10px] font-black uppercase tracking-widest text-medieval-gold">
                 <th className="p-3.5">{language === 'pt' ? 'Item' : 'Item'}</th>
                 <th className="p-3.5 text-center">{language === 'pt' ? 'Atributos Base' : 'Base Stats'}</th>
-                <th className="p-3.5 text-center">{language === 'pt' ? 'Mãos' : 'Hands'}</th>
-                <th className="p-3.5 text-center">{language === 'pt' ? 'Peso' : 'Weight'}</th>
-                <th className="p-3.5 text-center">{language === 'pt' ? 'Classe' : 'Class'}</th>
+                <th className="p-3.5 text-center whitespace-nowrap min-w-[90px]">{language === 'pt' ? 'Mãos' : 'Hands'}</th>
+                <th className="p-3.5 text-center whitespace-nowrap min-w-[85px]">{language === 'pt' ? 'Peso' : 'Weight'}</th>
+                <th className="p-3.5 text-center whitespace-nowrap min-w-[105px]">{language === 'pt' ? 'Classe' : 'Class'}</th>
                 <th className="p-3.5">{language === 'pt' ? 'Atributos Místicos (Mystic Runes)' : 'Mystic Attributes'}</th>
               </tr>
             </thead>
@@ -316,29 +318,30 @@ export function ItemsWikiView({ language, initialCategory, onCategoryChange }: I
                     </td>
 
                     {/* HANDS */}
-                    <td className="p-3.5 text-center font-mono text-[11px] text-stone-400">
+                    <td className="p-3.5 text-center font-mono text-[11px] text-stone-400 whitespace-nowrap min-w-[90px]">
                       {item.hands === 2 ? (
-                        <span className="px-1.5 py-0.5 rounded bg-red-950/40 text-red-300 border border-red-500/20">2-handed</span>
+                        <span className="inline-block px-2 py-0.5 rounded bg-red-950/40 text-red-300 border border-red-500/20 whitespace-nowrap">2-handed</span>
                       ) : (
-                        <span className="px-1.5 py-0.5 rounded bg-zinc-800 text-stone-400">1-handed</span>
+                        <span className="inline-block px-2 py-0.5 rounded bg-zinc-800 text-stone-400 whitespace-nowrap">1-handed</span>
                       )}
                     </td>
 
                     {/* WEIGHT */}
-                    <td className="p-3.5 text-center font-mono text-xs text-stone-400">
+                    <td className="p-3.5 text-center font-mono text-xs text-stone-400 whitespace-nowrap min-w-[85px]">
                       {item.weight ? `${item.weight.toFixed(1)} oz` : '-'}
                     </td>
 
                     {/* CLASS */}
-                    <td className="p-3.5 text-center">
-                      {itemClass !== null ? (
-                        <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-wider ${
+                    <td className="p-3.5 text-center whitespace-nowrap min-w-[105px]">
+                      {itemClass !== null && itemClass >= 1 ? (
+                        <span className={`inline-block px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-wider whitespace-nowrap ${
                           itemClass === 1 ? 'bg-green-950/60 text-green-400 border border-green-500/30' :
                           itemClass === 2 ? 'bg-blue-950/60 text-blue-400 border border-blue-500/30' :
                           itemClass === 3 ? 'bg-purple-950/60 text-purple-400 border border-purple-500/30' :
-                          'bg-amber-950/60 text-amber-400 border border-amber-500/30 shadow-[0_0_8px_rgba(245,158,11,0.2)]'
+                          itemClass === 4 ? 'bg-amber-950/60 text-amber-400 border border-amber-500/30' :
+                          'bg-amber-500/20 text-yellow-300 border border-amber-400 shadow-[0_0_8px_rgba(245,158,11,0.3)]'
                         }`}>
-                          Classe {itemClass}
+                          {language === 'pt' ? 'Classe' : 'Class'} {itemClass}
                         </span>
                       ) : (
                         <span className="text-stone-600 font-mono text-[10px]">-</span>

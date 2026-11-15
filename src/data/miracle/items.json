@@ -74,7 +74,7 @@
     "defense": 8,
     "hands": 1,
     "weight": 1,
-    "tierClass": null,
+    "tierClass": 1,
     "attributes": []
   },
   {
@@ -87,7 +87,7 @@
     "defense": 31,
     "hands": 1,
     "weight": 1,
-    "tierClass": null,
+    "tierClass": 1,
     "attributes": []
   },
   {
@@ -100,7 +100,7 @@
     "defense": 39,
     "hands": 1,
     "weight": 1,
-    "tierClass": null,
+    "tierClass": 1,
     "attributes": []
   },
   {
@@ -113,7 +113,7 @@
     "defense": 30,
     "hands": 1,
     "weight": 1,
-    "tierClass": null,
+    "tierClass": 1,
     "attributes": []
   },
   {
@@ -126,7 +126,7 @@
     "defense": 32,
     "hands": 1,
     "weight": 1,
-    "tierClass": null,
+    "tierClass": 1,
     "attributes": []
   },
   {
@@ -139,7 +139,7 @@
     "defense": 7,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -152,7 +152,7 @@
     "defense": 11,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -165,7 +165,7 @@
     "defense": 42,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -178,7 +178,7 @@
     "defense": 46,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -191,7 +191,7 @@
     "defense": 46,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -204,7 +204,7 @@
     "defense": 46,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -217,7 +217,7 @@
     "defense": 29,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -230,7 +230,7 @@
     "defense": 29,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -243,7 +243,7 @@
     "defense": 46,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -256,7 +256,7 @@
     "defense": 50,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -269,7 +269,7 @@
     "defense": 4,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -282,7 +282,7 @@
     "defense": 7,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -295,7 +295,7 @@
     "defense": 12,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -308,7 +308,7 @@
     "defense": 7,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -321,7 +321,7 @@
     "defense": 52,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -334,7 +334,7 @@
     "defense": 68,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -347,7 +347,7 @@
     "defense": 46,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -360,7 +360,7 @@
     "defense": 48,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -373,7 +373,7 @@
     "defense": 12,
     "hands": 1,
     "weight": 4,
-    "tierClass": null,
+    "tierClass": 4,
     "attributes": []
   },
   {
@@ -386,7 +386,7 @@
     "defense": 29,
     "hands": 1,
     "weight": 4,
-    "tierClass": null,
+    "tierClass": 4,
     "attributes": []
   },
   {
@@ -399,7 +399,7 @@
     "defense": 60,
     "hands": 1,
     "weight": 4,
-    "tierClass": null,
+    "tierClass": 4,
     "attributes": []
   },
   {
@@ -412,7 +412,7 @@
     "defense": 27,
     "hands": 1,
     "weight": 5,
-    "tierClass": null,
+    "tierClass": 5,
     "attributes": []
   },
   {
@@ -425,7 +425,7 @@
     "defense": 27,
     "hands": 1,
     "weight": 5,
-    "tierClass": null,
+    "tierClass": 5,
     "attributes": []
   },
   {
@@ -438,7 +438,7 @@
     "defense": 30,
     "hands": 1,
     "weight": 5,
-    "tierClass": null,
+    "tierClass": 5,
     "attributes": []
   },
   {
@@ -451,7 +451,7 @@
     "defense": 32,
     "hands": 1,
     "weight": 5,
-    "tierClass": null,
+    "tierClass": 5,
     "attributes": []
   },
   {
@@ -464,7 +464,7 @@
     "defense": 51,
     "hands": 1,
     "weight": 5,
-    "tierClass": null,
+    "tierClass": 5,
     "attributes": []
   },
   {
@@ -477,7 +477,7 @@
     "defense": 43,
     "hands": 1,
     "weight": 5,
-    "tierClass": null,
+    "tierClass": 5,
     "attributes": []
   },
   {
@@ -490,7 +490,7 @@
     "defense": 65,
     "hands": 1,
     "weight": 5,
-    "tierClass": null,
+    "tierClass": 5,
     "attributes": []
   },
   {
@@ -503,7 +503,7 @@
     "defense": 43,
     "hands": 1,
     "weight": 5,
-    "tierClass": null,
+    "tierClass": 5,
     "attributes": []
   },
   {
@@ -698,7 +698,7 @@
     "defense": 48,
     "hands": 1,
     "weight": 1,
-    "tierClass": null,
+    "tierClass": 1,
     "attributes": []
   },
   {
@@ -724,7 +724,7 @@
     "defense": 80,
     "hands": 1,
     "weight": 1,
-    "tierClass": null,
+    "tierClass": 1,
     "attributes": []
   },
   {
@@ -737,7 +737,7 @@
     "defense": 26,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -750,7 +750,7 @@
     "defense": 105,
     "hands": 1,
     "weight": 1,
-    "tierClass": null,
+    "tierClass": 1,
     "attributes": []
   },
   {
@@ -763,7 +763,7 @@
     "defense": 90,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -776,7 +776,7 @@
     "defense": 120,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -789,7 +789,7 @@
     "defense": 130,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -802,7 +802,7 @@
     "defense": 120,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -815,7 +815,7 @@
     "defense": 120,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -828,7 +828,7 @@
     "defense": 22,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -841,7 +841,7 @@
     "defense": 120,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -854,7 +854,7 @@
     "defense": 99,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -867,7 +867,7 @@
     "defense": 99,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -880,7 +880,7 @@
     "defense": 80,
     "hands": 1,
     "weight": 4,
-    "tierClass": null,
+    "tierClass": 4,
     "attributes": []
   },
   {
@@ -893,7 +893,7 @@
     "defense": 22,
     "hands": 1,
     "weight": 4,
-    "tierClass": null,
+    "tierClass": 4,
     "attributes": []
   },
   {
@@ -906,7 +906,7 @@
     "defense": 114,
     "hands": 1,
     "weight": 4,
-    "tierClass": null,
+    "tierClass": 4,
     "attributes": []
   },
   {
@@ -919,7 +919,7 @@
     "defense": 114,
     "hands": 1,
     "weight": 4,
-    "tierClass": null,
+    "tierClass": 4,
     "attributes": []
   },
   {
@@ -932,7 +932,7 @@
     "defense": 80,
     "hands": 1,
     "weight": 5,
-    "tierClass": null,
+    "tierClass": 5,
     "attributes": []
   },
   {
@@ -945,7 +945,7 @@
     "defense": 85,
     "hands": 1,
     "weight": 5,
-    "tierClass": null,
+    "tierClass": 5,
     "attributes": []
   },
   {
@@ -958,7 +958,7 @@
     "defense": 85,
     "hands": 1,
     "weight": 5,
-    "tierClass": null,
+    "tierClass": 5,
     "attributes": []
   },
   {
@@ -971,7 +971,7 @@
     "defense": 85,
     "hands": 1,
     "weight": 5,
-    "tierClass": null,
+    "tierClass": 5,
     "attributes": []
   },
   {
@@ -984,7 +984,7 @@
     "defense": 85,
     "hands": 1,
     "weight": 5,
-    "tierClass": null,
+    "tierClass": 5,
     "attributes": []
   },
   {
@@ -1023,7 +1023,7 @@
     "defense": 35,
     "hands": 1,
     "weight": 1,
-    "tierClass": null,
+    "tierClass": 1,
     "attributes": []
   },
   {
@@ -1036,7 +1036,7 @@
     "defense": 33,
     "hands": 1,
     "weight": 1,
-    "tierClass": null,
+    "tierClass": 1,
     "attributes": []
   },
   {
@@ -1049,7 +1049,7 @@
     "defense": 38,
     "hands": 1,
     "weight": 1,
-    "tierClass": null,
+    "tierClass": 1,
     "attributes": []
   },
   {
@@ -1062,7 +1062,7 @@
     "defense": 49,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -1075,7 +1075,7 @@
     "defense": 50,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -1088,7 +1088,7 @@
     "defense": 70,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -1101,7 +1101,7 @@
     "defense": 65,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -1114,7 +1114,7 @@
     "defense": 54,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -1127,7 +1127,7 @@
     "defense": 54,
     "hands": 1,
     "weight": 4,
-    "tierClass": null,
+    "tierClass": 4,
     "attributes": []
   },
   {
@@ -1140,7 +1140,7 @@
     "defense": 58,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -1153,7 +1153,7 @@
     "defense": 48,
     "hands": 1,
     "weight": 4,
-    "tierClass": null,
+    "tierClass": 4,
     "attributes": []
   },
   {
@@ -1166,7 +1166,7 @@
     "defense": 54,
     "hands": 1,
     "weight": 5,
-    "tierClass": null,
+    "tierClass": 5,
     "attributes": []
   },
   {
@@ -1179,7 +1179,7 @@
     "defense": 54,
     "hands": 1,
     "weight": 5,
-    "tierClass": null,
+    "tierClass": 5,
     "attributes": []
   },
   {
@@ -1192,7 +1192,7 @@
     "defense": 54,
     "hands": 1,
     "weight": 5,
-    "tierClass": null,
+    "tierClass": 5,
     "attributes": []
   },
   {
@@ -1205,7 +1205,7 @@
     "defense": 7,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -1231,7 +1231,7 @@
     "defense": 12,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -1244,7 +1244,7 @@
     "defense": 9,
     "hands": 1,
     "weight": 1,
-    "tierClass": null,
+    "tierClass": 1,
     "attributes": []
   },
   {
@@ -1257,7 +1257,7 @@
     "defense": 9,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -1270,7 +1270,7 @@
     "defense": 16,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -1283,7 +1283,7 @@
     "defense": 29,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -1296,7 +1296,7 @@
     "defense": 9,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -1309,7 +1309,7 @@
     "defense": 32,
     "hands": 1,
     "weight": 4,
-    "tierClass": null,
+    "tierClass": 4,
     "attributes": []
   },
   {
@@ -1322,7 +1322,7 @@
     "defense": 40,
     "hands": 1,
     "weight": 1,
-    "tierClass": null,
+    "tierClass": 1,
     "attributes": []
   },
   {
@@ -1335,7 +1335,7 @@
     "defense": 59,
     "hands": 1,
     "weight": 1,
-    "tierClass": null,
+    "tierClass": 1,
     "attributes": []
   },
   {
@@ -1348,7 +1348,7 @@
     "defense": 60,
     "hands": 1,
     "weight": 1,
-    "tierClass": null,
+    "tierClass": 1,
     "attributes": []
   },
   {
@@ -1361,7 +1361,7 @@
     "defense": 65,
     "hands": 1,
     "weight": 1,
-    "tierClass": null,
+    "tierClass": 1,
     "attributes": []
   },
   {
@@ -1374,7 +1374,7 @@
     "defense": 42,
     "hands": 1,
     "weight": 1,
-    "tierClass": null,
+    "tierClass": 1,
     "attributes": []
   },
   {
@@ -1387,7 +1387,7 @@
     "defense": 63,
     "hands": 1,
     "weight": 1,
-    "tierClass": null,
+    "tierClass": 1,
     "attributes": []
   },
   {
@@ -1400,7 +1400,7 @@
     "defense": 55,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -1413,7 +1413,7 @@
     "defense": 69,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -1426,7 +1426,7 @@
     "defense": 66,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -1439,7 +1439,7 @@
     "defense": 67,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -1452,7 +1452,7 @@
     "defense": 62,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -1465,7 +1465,7 @@
     "defense": 47,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -1478,7 +1478,7 @@
     "defense": 52,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -1491,7 +1491,7 @@
     "defense": 55,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -1504,7 +1504,7 @@
     "defense": 52,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -1517,7 +1517,7 @@
     "defense": 61,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -1530,7 +1530,7 @@
     "defense": 49,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -1543,7 +1543,7 @@
     "defense": 47,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -1556,7 +1556,7 @@
     "defense": 50,
     "hands": 1,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -1569,7 +1569,7 @@
     "defense": 55,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -1582,7 +1582,7 @@
     "defense": 60,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -1595,7 +1595,7 @@
     "defense": 60,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -1608,7 +1608,7 @@
     "defense": 62,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -1621,7 +1621,7 @@
     "defense": 62,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -1634,7 +1634,7 @@
     "defense": 62,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -1647,7 +1647,7 @@
     "defense": 82,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -1660,7 +1660,7 @@
     "defense": 54,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -1673,7 +1673,7 @@
     "defense": 58,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -1686,7 +1686,7 @@
     "defense": 38,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -1699,7 +1699,7 @@
     "defense": 35,
     "hands": 1,
     "weight": 3,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -1712,7 +1712,7 @@
     "defense": 26,
     "hands": 1,
     "weight": 4,
-    "tierClass": null,
+    "tierClass": 4,
     "attributes": []
   },
   {
@@ -1725,7 +1725,7 @@
     "defense": 51,
     "hands": 1,
     "weight": 4,
-    "tierClass": null,
+    "tierClass": 4,
     "attributes": []
   },
   {
@@ -1738,7 +1738,7 @@
     "defense": 57,
     "hands": 1,
     "weight": 4,
-    "tierClass": null,
+    "tierClass": 4,
     "attributes": []
   },
   {
@@ -1751,7 +1751,7 @@
     "defense": 84,
     "hands": 1,
     "weight": 4,
-    "tierClass": null,
+    "tierClass": 4,
     "attributes": []
   },
   {
@@ -1764,7 +1764,7 @@
     "defense": 57,
     "hands": 1,
     "weight": 4,
-    "tierClass": null,
+    "tierClass": 4,
     "attributes": []
   },
   {
@@ -1777,7 +1777,7 @@
     "defense": 68,
     "hands": 1,
     "weight": 5,
-    "tierClass": null,
+    "tierClass": 5,
     "attributes": []
   },
   {
@@ -1790,7 +1790,7 @@
     "defense": null,
     "hands": 1,
     "weight": 17,
-    "tierClass": 2,
+    "tierClass": 1,
     "attributes": []
   },
   {
@@ -1803,7 +1803,7 @@
     "defense": null,
     "hands": 1,
     "weight": 20,
-    "tierClass": 2,
+    "tierClass": 1,
     "attributes": []
   },
   {
@@ -1816,7 +1816,7 @@
     "defense": null,
     "hands": 1,
     "weight": 22,
-    "tierClass": 4,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -1829,7 +1829,7 @@
     "defense": null,
     "hands": 2,
     "weight": 26,
-    "tierClass": 4,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -1842,7 +1842,7 @@
     "defense": null,
     "hands": 1,
     "weight": 24,
-    "tierClass": 6,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -1855,7 +1855,7 @@
     "defense": null,
     "hands": 1,
     "weight": 24,
-    "tierClass": 6,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -1868,7 +1868,7 @@
     "defense": 1,
     "hands": 1,
     "weight": 26,
-    "tierClass": 6,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -3181,7 +3181,7 @@
     "defense": 6,
     "hands": 2,
     "weight": 0,
-    "tierClass": null,
+    "tierClass": 1,
     "attributes": []
   },
   {
@@ -3194,7 +3194,7 @@
     "defense": 6,
     "hands": 2,
     "weight": 1,
-    "tierClass": null,
+    "tierClass": 1,
     "attributes": []
   },
   {
@@ -3207,7 +3207,7 @@
     "defense": 6,
     "hands": 2,
     "weight": 0,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -3220,7 +3220,7 @@
     "defense": 6,
     "hands": 2,
     "weight": 1,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -3246,7 +3246,7 @@
     "defense": 7,
     "hands": 2,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -3259,7 +3259,7 @@
     "defense": 6,
     "hands": 2,
     "weight": 2,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -3272,7 +3272,7 @@
     "defense": 5,
     "hands": 2,
     "weight": 0,
-    "tierClass": null,
+    "tierClass": 1,
     "attributes": []
   },
   {
@@ -3285,7 +3285,7 @@
     "defense": 5,
     "hands": 2,
     "weight": 0,
-    "tierClass": null,
+    "tierClass": 1,
     "attributes": []
   },
   {
@@ -3298,7 +3298,7 @@
     "defense": 4,
     "hands": 2,
     "weight": 0,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -3311,7 +3311,7 @@
     "defense": 5,
     "hands": 2,
     "weight": 0,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -3324,7 +3324,7 @@
     "defense": 5,
     "hands": 2,
     "weight": 1,
-    "tierClass": null,
+    "tierClass": 2,
     "attributes": []
   },
   {
@@ -3337,7 +3337,7 @@
     "defense": 5,
     "hands": 2,
     "weight": 0,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
@@ -3350,7 +3350,7 @@
     "defense": 5,
     "hands": 2,
     "weight": 1,
-    "tierClass": null,
+    "tierClass": 3,
     "attributes": []
   },
   {
