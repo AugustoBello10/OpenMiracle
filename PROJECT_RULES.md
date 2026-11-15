@@ -99,3 +99,14 @@ Sempre que um novo patch ou mecânica for implementado:
    - Bloco 3: Wiki, Guias e Patch Notes
 3. **Auditoria por Bloco:** Validar cada bloco com `npm run build` e testes no navegador antes de avançar.
 4. **Atualização da Base de Conhecimento:** Registrar os novos fatos no arquivo `MIRACLE_GAME_KNOWLEDGE.md`.
+
+---
+
+## 8. 🌿 Controle de Versão, Branches & Segurança de Reversão
+
+* **Regra de Ouro para Experimentos e Mudanças Incertas:**
+  > *"Quando for fazer algo que não sabe se vai dar bom, pede para a i.a fazer uma branch (tipo linha do tempo paralela a original). Se tu não gostar, só pedir para excluir a branch que a main (original) não é nem tocada."*
+* **Procedimento Operacional:**
+  1. Para qualquer grande refatoração visual, mecânica experimental ou reestruturação incerta: criar branch paralela (`git checkout -b feature/nome-do-teste`).
+  2. Nunca aplicar mudanças arriscadas diretamente na branch `main`.
+  3. Caso o usuário queira descartar ou ajustar, basta alternar (`git checkout main`) e deletar a branch experimental (`git branch -D ...`), preservando 100% da integridade da linha original sem qualquer resíduo ou risco.

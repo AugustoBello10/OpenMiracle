@@ -52,3 +52,12 @@ All interactive enhancements, state refinements, and UI optimizations should be 
    - Training Weapons work via **Reduced Attack Interval** (Normal: 0%, Spark: -10%, Lightning: -15%, Inferno: -20%, Shadow: -20%) and finite charges (from 3,600 to 43,200), equipped and used in normal combat training against creatures.
    - Bed Maker cycle: Premium Account required, max 2 sleepers/account, full food of 39m59s (5x multiplier = 200 min = 3h20m), regenerating max 200 mana (1 MP/min). Cycle: log in every 3h20m, cast runes, eat to 39m59s, sleep again.
    - Relic Box: 6 slots. Slots 1 & 2 via Melchior in Ankrahmun (talk about "notes"). Slots 3 & 4 via Relic Quest. Slot 5 costs 30.000 gold. Slot 6 costs 60.000 gold.
+
+## 🌿 Version Control & Safety Workflow (Branching de Segurança)
+> **Dica e Diretriz Obrigatória de Segurança:**
+> *"Quando tu for fazer algo que não sabe se vai dar bom, pede para a i.a fazer uma branch (tipo linha do tempo paralela a original). Se tu não gostar, só pedir para excluir a branch que a main (original) não é nem tocada."*
+- **Aplicações práticas obrigatórias:**
+  1. **Experimentos e Grandes Refatorações:** Antes de realizar qualquer alteração arriscada, teste de novo layout ou refatoração profunda de componentes, crie uma branch isolada (`git checkout -b feature/...` ou `git checkout -b exp/...`).
+  2. **Tranquilidade e Zero Risco:** O usuário pode avaliar a branch no ambiente de teste.
+  3. **Reversão Imediata e Limpa:** Se o usuário não gostar da abordagem, basta retornar à `main` (`git checkout main`) e deletar a branch de teste (`git branch -D ...`), mantendo o código estável intacto.
+  4. **Integração Segura:** Apenas faça merge para a `main` após validação e aprovação do usuário.
