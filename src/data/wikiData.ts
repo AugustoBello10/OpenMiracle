@@ -2182,18 +2182,6 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       ]
     },
     {
-      "name": "Rough Axe",
-      "class": 1,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting",
-        "Critical Hit",
-        "Crushing Blow"
-      ]
-    },
-    {
       "name": "Hatchet",
       "class": 1,
       "attributes": [
@@ -2209,42 +2197,6 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Attack",
         "Perfuration",
         "Attack Interval"
-      ]
-    },
-    {
-      "name": "Refined Axe",
-      "class": 1,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting",
-        "Critical Hit",
-        "Crushing Blow"
-      ]
-    },
-    {
-      "name": "Superior Axe",
-      "class": 1,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting",
-        "Critical Hit",
-        "Crushing Blow"
-      ]
-    },
-    {
-      "name": "Masterwork Axe",
-      "class": 2,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting",
-        "Critical Hit",
-        "Crushing Blow"
       ]
     },
     {
@@ -2265,18 +2217,6 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Weight",
         "Critical Hit",
         "Perfuration"
-      ]
-    },
-    {
-      "name": "Grandmaster Axe",
-      "class": 2,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting",
-        "Critical Hit",
-        "Crushing Blow"
       ]
     },
     {
@@ -2474,18 +2414,6 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       ]
     },
     {
-      "name": "Darksteel Axe",
-      "class": 5,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting",
-        "Critical Hit",
-        "Crushing Blow"
-      ]
-    },
-    {
       "name": "Great Axe",
       "class": 4,
       "attributes": [
@@ -2496,18 +2424,6 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Critical Hit",
         "Axe Fighting",
         "Perfuration"
-      ]
-    },
-    {
-      "name": "Demonwing Axe",
-      "class": 4,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting",
-        "Critical Hit",
-        "Crushing Blow"
       ]
     }
   ],

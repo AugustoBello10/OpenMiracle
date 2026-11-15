@@ -2984,14 +2984,7 @@
     "hands": 1,
     "weight": 42,
     "tierClass": 1,
-    "attributes": [
-      "Attack",
-      "Defense",
-      "Weight",
-      "Axe Fighting",
-      "Critical Hit",
-      "Crushing Blow"
-    ],
+    "attributes": [],
     "armor": null
   },
   {
@@ -3041,14 +3034,7 @@
     "hands": 1,
     "weight": 48,
     "tierClass": 1,
-    "attributes": [
-      "Attack",
-      "Defense",
-      "Weight",
-      "Axe Fighting",
-      "Critical Hit",
-      "Crushing Blow"
-    ],
+    "attributes": [],
     "armor": null
   },
   {
@@ -3062,14 +3048,7 @@
     "hands": 1,
     "weight": 54,
     "tierClass": 1,
-    "attributes": [
-      "Attack",
-      "Defense",
-      "Weight",
-      "Axe Fighting",
-      "Critical Hit",
-      "Crushing Blow"
-    ],
+    "attributes": [],
     "armor": null
   },
   {
@@ -3083,14 +3062,7 @@
     "hands": 1,
     "weight": 58,
     "tierClass": 2,
-    "attributes": [
-      "Attack",
-      "Defense",
-      "Weight",
-      "Axe Fighting",
-      "Critical Hit",
-      "Crushing Blow"
-    ],
+    "attributes": [],
     "armor": null
   },
   {
@@ -3142,14 +3114,7 @@
     "hands": 1,
     "weight": 62,
     "tierClass": 2,
-    "attributes": [
-      "Attack",
-      "Defense",
-      "Weight",
-      "Axe Fighting",
-      "Critical Hit",
-      "Crushing Blow"
-    ],
+    "attributes": [],
     "armor": null
   },
   {
@@ -3501,14 +3466,7 @@
     "hands": 1,
     "weight": 110,
     "tierClass": 5,
-    "attributes": [
-      "Attack",
-      "Defense",
-      "Weight",
-      "Axe Fighting",
-      "Critical Hit",
-      "Crushing Blow"
-    ],
+    "attributes": [],
     "armor": null
   },
   {
@@ -3544,14 +3502,7 @@
     "hands": 2,
     "weight": 120,
     "tierClass": 4,
-    "attributes": [
-      "Attack",
-      "Defense",
-      "Weight",
-      "Axe Fighting",
-      "Critical Hit",
-      "Crushing Blow"
-    ],
+    "attributes": [],
     "armor": null
   },
   {

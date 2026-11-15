@@ -2216,18 +2216,6 @@ const ATTRIBUTE_DATA_STUB: Record<string, { name: string; class: number; attribu
       ]
     },
     {
-      "name": "Rough Axe",
-      "class": 1,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting",
-        "Critical Hit",
-        "Crushing Blow"
-      ]
-    },
-    {
       "name": "Hatchet",
       "class": 1,
       "attributes": [
@@ -2243,42 +2231,6 @@ const ATTRIBUTE_DATA_STUB: Record<string, { name: string; class: number; attribu
         "Attack",
         "Perfuration",
         "Attack Interval"
-      ]
-    },
-    {
-      "name": "Refined Axe",
-      "class": 1,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting",
-        "Critical Hit",
-        "Crushing Blow"
-      ]
-    },
-    {
-      "name": "Superior Axe",
-      "class": 1,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting",
-        "Critical Hit",
-        "Crushing Blow"
-      ]
-    },
-    {
-      "name": "Masterwork Axe",
-      "class": 2,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting",
-        "Critical Hit",
-        "Crushing Blow"
       ]
     },
     {
@@ -2299,18 +2251,6 @@ const ATTRIBUTE_DATA_STUB: Record<string, { name: string; class: number; attribu
         "Weight",
         "Critical Hit",
         "Perfuration"
-      ]
-    },
-    {
-      "name": "Grandmaster Axe",
-      "class": 2,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting",
-        "Critical Hit",
-        "Crushing Blow"
       ]
     },
     {
@@ -2508,18 +2448,6 @@ const ATTRIBUTE_DATA_STUB: Record<string, { name: string; class: number; attribu
       ]
     },
     {
-      "name": "Darksteel Axe",
-      "class": 5,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting",
-        "Critical Hit",
-        "Crushing Blow"
-      ]
-    },
-    {
       "name": "Great Axe",
       "class": 4,
       "attributes": [
@@ -2530,18 +2458,6 @@ const ATTRIBUTE_DATA_STUB: Record<string, { name: string; class: number; attribu
         "Critical Hit",
         "Axe Fighting",
         "Perfuration"
-      ]
-    },
-    {
-      "name": "Demonwing Axe",
-      "class": 4,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting",
-        "Critical Hit",
-        "Crushing Blow"
       ]
     }
   ],
