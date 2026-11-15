@@ -356,9 +356,9 @@ export function ItemsWikiView({ language, initialCategory, onCategoryChange }: I
                           )
                         ) : (
                           <>
-                            {item.attack !== null && item.attack !== undefined && (
+                            {item.attack !== null && item.attack !== undefined && item.attack > 0 && (
                               <span className="text-red-400 font-bold">
-                                Atk: {item.category === 'distance' && item.attack > 0 && (item.name.toLowerCase().includes('bow') || item.name.toLowerCase().includes('crossbow')) ? `+${item.attack}` : item.attack}
+                                Atk: {item.category === 'quivers' ? `+${item.attack}` : (item.category === 'distance' && item.attack > 0 && (item.name.toLowerCase().includes('bow') || item.name.toLowerCase().includes('crossbow')) ? `+${item.attack}` : item.attack)}
                               </span>
                             )}
                             {item.defense !== null && item.defense !== undefined && item.defense > 0 && (

@@ -3286,13 +3286,13 @@ const ITEM_BASE_STATS: Record<string, { armor?: number; attack?: number; defense
   "Blessed Shield": { defense: 40, weight: 68.0 },
 
   // Quivers
-  "Quiver": { weight: 15.0 },
-  "Iron Quiver": { armor: 1, weight: 25.0 },
-  "Dragon Quiver": { armor: 1, attack: 1, weight: 22.0 },
-  "Imperial Quiver": { armor: 2, attack: 2, weight: 20.0 },
-  "Blazing Quiver": { attack: 3, weight: 18.0 },
-  "Deadly Quiver": { attack: 4, weight: 15.0 },
-  "Quiver Of Valor": { armor: 3, weight: 12.0 },
+  "Quiver": { attack: 0, armor: 0, weight: 17.0 },
+  "Iron Quiver": { attack: 0, armor: 1, weight: 20.0 },
+  "Dragon Quiver": { attack: 1, armor: 1, weight: 22.0 },
+  "Imperial Quiver": { attack: 1, armor: 2, weight: 26.0 },
+  "Blazing Quiver": { attack: 2, armor: 0, weight: 24.0 },
+  "Deadly Quiver": { attack: 2, armor: 0, weight: 24.0 },
+  "Quiver Of Valor": { attack: 2, armor: 1, weight: 26.0 },
 
   // Axes
   "Sickle": { attack: 5, defense: 3, weight: 8.0 },
