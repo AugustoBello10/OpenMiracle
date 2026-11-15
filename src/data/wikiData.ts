@@ -264,6 +264,9 @@ export const ATTRIBUTE_CHANCES: Record<string, number[]> = {
   "Poison": [6, 4],
   "Mana Leech": [6, 4, 2, 1, 0.5],
   "Critical Spell": [6, 4, 2, 1, 0.5],
+  "Destruction": [6, 4, 2, 1],
+  "Protect Death": [6, 4, 2, 1, 0.5],
+  "Protect Life Drain": [6, 4, 2, 1, 0.5],
   "Crushing Blow": [10, 8, 6, 4, 2],
   "Electrify": [6, 4, 2, 1, 0.5]
 };
@@ -282,8 +285,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Max Mana",
         "Magic Level",
-        "Mana Healing",
-        "Mana Regen"
+        "Mana Healing"
       ]
     },
     {
@@ -292,8 +294,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
-        "Protect Physical"
+        "Max Health"
       ]
     },
     {
@@ -303,10 +304,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Armor",
         "Weight",
         "Axe Fighting",
-        "Club Fighting",
-        "Sword Fighting",
         "Distance Fighting",
-        "Max Health"
+        "Sword Fighting"
       ]
     },
     {
@@ -315,8 +314,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
-        "Protect Physical"
+        "Max Health"
       ]
     },
     {
@@ -325,8 +323,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
-        "Protect Physical"
+        "Max Health"
       ]
     },
     {
@@ -334,9 +331,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 2,
       "attributes": [
         "Max Mana",
-        "Magic Level",
-        "Mana Healing",
-        "Mana Regen"
+        "Mana Regen",
+        "Magic Level"
       ]
     },
     {
@@ -346,7 +342,6 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Speed",
         "Max Health",
         "Distance Fighting",
-        "Protect Elements",
         "Attack Interval"
       ]
     },
@@ -366,8 +361,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
-        "Protect Fire"
+        "Max Mana"
       ]
     },
     {
@@ -376,8 +370,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
-        "Protect Physical"
+        "Max Health"
       ]
     },
     {
@@ -386,8 +379,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
-        "Protect Elements"
+        "Max Mana"
       ]
     },
     {
@@ -395,9 +387,11 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 2,
       "attributes": [
         "Armor",
+        "Speed",
         "Weight",
+        "Max Health",
         "Distance Fighting",
-        "Protect Elements"
+        "Protect Physical"
       ]
     },
     {
@@ -407,7 +401,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Armor",
         "Weight",
         "Max Health",
-        "Health Regen"
+        "Protect Physical"
       ]
     },
     {
@@ -417,7 +411,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Armor",
         "Weight",
         "Max Mana",
-        "Protect Elements"
+        "Magic Level",
+        "Protect Mana Drain"
       ]
     },
     {
@@ -425,19 +420,23 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 2,
       "attributes": [
         "Armor",
+        "Speed",
         "Weight",
-        "Max Health",
-        "Protect Fire"
+        "Magic Level",
+        "Protect Mana Drain"
       ]
     },
     {
       "name": "Ancient Tiara",
       "class": 3,
       "attributes": [
+        "Armor",
+        "Healing",
         "Max Mana",
+        "Mana Regen",
         "Magic Level",
-        "Mana Healing",
-        "Mana Regen"
+        "Protect Fire",
+        "Protect Mana Drain"
       ]
     },
     {
@@ -445,19 +444,21 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 3,
       "attributes": [
         "Max Mana",
-        "Magic Level",
+        "Momentum",
+        "Mana Regen",
         "Mana Healing",
-        "Mana Regen"
+        "Protect Energy"
       ]
     },
     {
       "name": "Ceremonial Mask",
       "class": 3,
       "attributes": [
-        "Max Mana",
-        "Magic Level",
-        "Mana Healing",
-        "Mana Regen"
+        "Speed",
+        "Max Health",
+        "Distance Fighting",
+        "Protect Fire",
+        "Attack Interval"
       ]
     },
     {
@@ -467,11 +468,12 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Speed",
         "Max Mana",
         "Momentum",
-        "Mana Regen",
         "Magic Level",
-        "Mana Healing",
+        "Destruction",
         "Protect Fire",
-        "Protect Elements"
+        "Protect Death",
+        "Protect Life Drain",
+        "Protect Mana Drain"
       ]
     },
     {
@@ -480,7 +482,9 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
         "Protect Physical"
       ]
     },
@@ -493,8 +497,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Axe Fighting",
         "Club Fighting",
         "Sword Fighting",
-        "Distance Fighting",
-        "Max Health"
+        "Protect Physical"
       ]
     },
     {
@@ -502,9 +505,12 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 3,
       "attributes": [
         "Armor",
+        "Speed",
         "Weight",
         "Max Health",
-        "Protect Elements"
+        "Club Fighting",
+        "Protect Ice",
+        "Sword Fighting"
       ]
     },
     {
@@ -512,11 +518,12 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 3,
       "attributes": [
         "Armor",
+        "Speed",
         "Weight",
         "Max Health",
-        "Health Regen",
-        "Protect Fire",
-        "Protect Physical"
+        "Club Fighting",
+        "Sword Fighting",
+        "Health Regen"
       ]
     },
     {
@@ -524,9 +531,12 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 4,
       "attributes": [
         "Armor",
-        "Weight",
         "Speed",
-        "Mitigation"
+        "Weight",
+        "Max Health",
+        "Distance Fighting",
+        "Shielding",
+        "Protect Energy"
       ]
     },
     {
@@ -534,10 +544,16 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 4,
       "attributes": [
         "Armor",
+        "Speed",
         "Weight",
+        "Momentum",
+        "Axe Fighting",
         "Max Health",
+        "Club Fighting",
+        "Magic Level",
+        "Sword Fighting",
         "Protect Fire",
-        "Protect Physical"
+        "Protect Energy"
       ]
     },
     {
@@ -546,7 +562,10 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
+        "Health Regen",
         "Protect Fire",
         "Protect Physical"
       ]
@@ -559,12 +578,10 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Weight",
         "Axe Fighting",
         "Club Fighting",
-        "Sword Fighting",
         "Distance Fighting",
-        "Max Health",
-        "Shielding",
-        "Protect Physical",
-        "Protect Elements"
+        "Health Regen",
+        "Protect Fire",
+        "Protect Physical"
       ]
     },
     {
@@ -574,8 +591,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Armor",
         "Weight",
         "Max Health",
-        "Protect Elements",
         "Protect Physical",
+        "Protect Elements",
         "Mitigation"
       ]
     },
@@ -585,10 +602,12 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
         "Health Regen",
-        "Protect Physical",
-        "Mitigation"
+        "Shielding",
+        "Protect Physical"
       ]
     },
     {
@@ -597,9 +616,12 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Mitigation"
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
+        "Health Regen",
+        "Shielding",
+        "Protect Physical"
       ]
     },
     {
@@ -610,8 +632,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Weight",
         "Max Health",
         "Protect Physical",
-        "Mitigation",
-        "Protect Elements"
+        "Protect Elements",
+        "Mitigation"
       ]
     },
     {
@@ -622,8 +644,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Weight",
         "Max Health",
         "Protect Physical",
-        "Mitigation",
-        "Protect Elements"
+        "Protect Elements",
+        "Mitigation"
       ]
     },
     {
@@ -634,61 +656,22 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Weight",
         "Max Health",
         "Protect Physical",
-        "Mitigation",
-        "Protect Elements"
+        "Protect Elements",
+        "Mitigation"
       ]
     }
   ],
   "Armors": [
-    {
-      "name": "Leather Armor",
-      "class": 1,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical"
-      ]
-    },
-    {
-      "name": "Studded Armor",
-      "class": 1,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical"
-      ]
-    },
-    {
-      "name": "Chain Armor",
-      "class": 1,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical"
-      ]
-    },
     {
       "name": "Ranger's Cloak",
       "class": 1,
       "attributes": [
         "Armor",
         "Weight",
-        "Distance Fighting",
-        "Speed",
-        "Protect Elements"
-      ]
-    },
-    {
-      "name": "Native Armor",
-      "class": 1,
-      "attributes": [
-        "Armor",
-        "Weight",
         "Max Health",
-        "Protect Physical"
+        "Protect Physical",
+        "Protect Elements",
+        "Mitigation"
       ]
     },
     {
@@ -697,19 +680,16 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
-        "Protect Physical"
+        "Max Health"
       ]
     },
     {
       "name": "Red Robe",
-      "class": 1,
+      "class": 2,
       "attributes": [
         "Max Mana",
         "Magic Level",
-        "Mana Healing",
-        "Mana Regen",
-        "Protect Elements"
+        "Health Regen"
       ]
     },
     {
@@ -718,8 +698,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
-        "Protect Physical"
+        "Max Health"
       ]
     },
     {
@@ -728,9 +707,9 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Distance Fighting",
-        "Speed",
-        "Protect Elements"
+        "Max Mana",
+        "Magic Level",
+        "Protect Mana Drain"
       ]
     },
     {
@@ -739,8 +718,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
-        "Protect Physical"
+        "Max Health"
       ]
     },
     {
@@ -759,8 +737,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
-        "Protect Fire"
+        "Max Mana"
       ]
     },
     {
@@ -769,28 +746,28 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
-        "Health Regen"
+        "Max Health"
       ]
     },
     {
       "name": "Blue Robe",
-      "class": 2,
+      "class": 3,
       "attributes": [
+        "Speed",
         "Max Mana",
-        "Magic Level",
-        "Mana Healing",
         "Mana Regen",
-        "Protect Elements"
+        "Magic Level"
       ]
     },
     {
       "name": "Knight Armor",
-      "class": 2,
+      "class": 3,
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
+        "Axe Fighting",
+        "Club Fighting",
+        "Sword Fighting",
         "Protect Physical"
       ]
     },
@@ -800,8 +777,11 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
-        "Health Regen"
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
+        "Health Regen",
+        "Shielding"
       ]
     },
     {
@@ -809,75 +789,96 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 3,
       "attributes": [
         "Armor",
-        "Weight",
-        "Distance Fighting",
         "Speed",
-        "Protect Elements"
+        "Weight",
+        "Max Health",
+        "Distance Fighting",
+        "Protect Physical"
       ]
     },
     {
       "name": "Golden Armor",
-      "class": 3,
+      "class": 4,
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
+        "Health Regen",
+        "Shielding",
         "Protect Physical"
       ]
     },
     {
       "name": "Spectral Robe",
-      "class": 3,
+      "class": 4,
       "attributes": [
+        "Speed",
         "Max Mana",
-        "Magic Level",
-        "Mana Healing",
         "Mana Regen",
-        "Protect Elements"
+        "Magic Level",
+        "Protect Physical"
       ]
     },
     {
       "name": "Dragon Scale Mail",
-      "class": 3,
+      "class": 4,
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
-        "Protect Fire"
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
+        "Health Regen",
+        "Protect Fire",
+        "Protect Physical"
       ]
     },
     {
       "name": "Frozen Mail",
-      "class": 3,
+      "class": 4,
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
-        "Protect Elements"
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
+        "Sword Fighting",
+        "Health Regen",
+        "Protect Physical"
       ]
     },
     {
       "name": "Demon Armor",
-      "class": 4,
+      "class": 5,
       "attributes": [
         "Armor",
+        "Speed",
         "Weight",
-        "Max Health",
-        "Protect Fire",
-        "Protect Physical",
-        "Protect Elements"
+        "Axe Fighting",
+        "Mana Regen",
+        "Club Fighting",
+        "Distance Fighting",
+        "Sword Fighting",
+        "Health Regen",
+        "Protect Energy",
+        "Protect Mana Drain"
       ]
     },
     {
       "name": "Magic Plate Armor",
-      "class": 4,
+      "class": 5,
       "attributes": [
         "Armor",
         "Weight",
+        "Healing",
         "Max Health",
-        "Protect Physical",
+        "Club Fighting",
+        "Sword Fighting",
+        "Health Regen",
         "Protect Elements",
-        "Mitigation"
+        "Protect Physical"
       ]
     },
     {
@@ -924,9 +925,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Health Regen"
+        "Max Health"
       ]
     },
     {
@@ -935,8 +934,9 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Distance Fighting",
-        "Speed"
+        "Max Mana",
+        "Magic Level",
+        "Protect Mana Drain"
       ]
     },
     {
@@ -945,9 +945,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Health Regen"
+        "Max Health"
       ]
     },
     {
@@ -957,8 +955,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Armor",
         "Weight",
         "Max Health",
-        "Protect Physical",
-        "Health Regen"
+        "Protect Physical"
       ]
     },
     {
@@ -967,20 +964,18 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Health Regen"
+        "Max Health"
       ]
     },
     {
       "name": "Knight Legs",
-      "class": 2,
+      "class": 3,
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Health Regen"
+        "Axe Fighting",
+        "Club Fighting",
+        "Sword Fighting"
       ]
     },
     {
@@ -989,8 +984,11 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
-        "Health Regen"
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
+        "Health Regen",
+        "Protect Physical"
       ]
     },
     {
@@ -999,9 +997,28 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Health Regen"
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
+        "Health Regen",
+        "Protect Energy"
+      ]
+    },
+    {
+      "name": "Demon Legs",
+      "class": 4,
+      "attributes": [
+        "Armor",
+        "Speed",
+        "Weight",
+        "Axe Fighting",
+        "Mana Regen",
+        "Club Fighting",
+        "Distance Fighting",
+        "Sword Fighting",
+        "Health Regen",
+        "Protect Energy",
+        "Protect Mana Drain"
       ]
     },
     {
@@ -1010,20 +1027,11 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
-        "Protect Elements"
-      ]
-    },
-    {
-      "name": "Demon Legs",
-      "class": 4,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Max Health",
-        "Protect Physical",
-        "Protect Fire",
-        "Protect Elements"
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
+        "Sword Fighting",
+        "Health Regen"
       ]
     },
     {
@@ -1032,7 +1040,10 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Armor",
         "Weight",
-        "Max Health",
+        "Axe Fighting",
+        "Club Fighting",
+        "Distance Fighting",
+        "Health Regen",
         "Protect Fire"
       ]
     },
@@ -1044,7 +1055,6 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Weight",
         "Max Health",
         "Protect Physical",
-        "Protect Fire",
         "Protect Elements"
       ]
     },
@@ -1056,7 +1066,6 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Weight",
         "Max Health",
         "Protect Physical",
-        "Protect Fire",
         "Protect Elements"
       ]
     },
@@ -1068,42 +1077,57 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Weight",
         "Max Health",
         "Protect Physical",
-        "Protect Fire",
         "Protect Elements"
       ]
     }
   ],
   "Boots": [
     {
+      "name": "Boots Of Haste",
+      "class": 2,
+      "attributes": [
+        "Armor",
+        "Dodge",
+        "Speed"
+      ]
+    },
+    {
+      "name": "Bunnyslippers",
+      "class": 2,
+      "attributes": [
+        "Armor",
+        "Mana Regen",
+        "Magic Level",
+        "Health Regen"
+      ]
+    },
+    {
       "name": "Leather Boots",
       "class": 1,
       "attributes": [
         "Armor",
-        "Weight",
         "Speed",
-        "Protect Physical",
-        "Health Regen"
+        "Vibrancy"
       ]
     },
     {
       "name": "Patched Boots",
-      "class": 1,
+      "class": 2,
+      "attributes": [
+        "Armor",
+        "Speed",
+        "Vibrancy"
+      ]
+    },
+    {
+      "name": "Snow Boots",
+      "class": 2,
       "attributes": [
         "Armor",
         "Weight",
         "Speed",
         "Protect Physical",
-        "Health Regen"
-      ]
-    },
-    {
-      "name": "Snow Boots",
-      "class": 1,
-      "attributes": [
-        "Armor",
-        "Weight",
-        "Speed",
-        "Protect Elements"
+        "Mitigation"
       ]
     },
     {
@@ -1111,9 +1135,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 3,
       "attributes": [
         "Armor",
-        "Weight",
-        "Protect Physical",
-        "Mitigation"
+        "Vibrancy",
+        "Protect Fire"
       ]
     },
     {
@@ -1121,17 +1144,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 3,
       "attributes": [
         "Armor",
-        "Weight",
-        "Speed",
-        "Protect Elements"
-      ]
-    },
-    {
-      "name": "Boots Of Haste",
-      "class": 3,
-      "attributes": [
-        "Speed",
-        "Weight"
+        "Vibrancy",
+        "Protect Ice"
       ]
     },
     {
@@ -1139,272 +1153,302 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 4,
       "attributes": [
         "Armor",
-        "Weight",
-        "Speed",
-        "Protect Physical",
-        "Mitigation"
+        "Healing",
+        "Vibrancy",
+        "Protect Energy",
+        "Protect Physical"
       ]
     }
   ],
   "Shields": [
     {
+      "name": "Wooden Shield",
+      "class": 1,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard"
+      ]
+    },
+    {
+      "name": "Studded Shield",
+      "class": 1,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard"
+      ]
+    },
+    {
+      "name": "Brass Shield",
+      "class": 1,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard"
+      ]
+    },
+    {
+      "name": "Plate Shield",
+      "class": 1,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Arrow Guard"
+      ]
+    },
+    {
       "name": "Black Shield",
       "class": 1,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding"
+        "Defense",
+        "Arrow Guard"
       ]
     },
     {
       "name": "Copper Shield",
       "class": 1,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding"
+        "Defense",
+        "Arrow Guard"
       ]
     },
     {
       "name": "Bone Shield",
-      "class": 1,
+      "class": 2,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding"
+        "Defense",
+        "Arrow Guard"
       ]
     },
     {
       "name": "Steel Shield",
-      "class": 1,
+      "class": 2,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding"
+        "Defense",
+        "Arrow Guard"
       ]
     },
     {
       "name": "Viking Shield",
-      "class": 1,
+      "class": 2,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding"
+        "Defense",
+        "Axe Fighting",
+        "Sword Fighting"
       ]
     },
     {
       "name": "Ornamented Shield",
-      "class": 1,
+      "class": 2,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding"
+        "Defense",
+        "Arrow Guard"
       ]
     },
     {
       "name": "Battle Shield",
-      "class": 1,
+      "class": 2,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding"
+        "Defense",
+        "Axe Fighting",
+        "Sword Fighting"
       ]
     },
     {
       "name": "Scarab Shield",
       "class": 2,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding",
-        "Mitigation",
-        "Arrow Guard",
-        "Protect Elements"
+        "Defense",
+        "Arrow Guard"
       ]
     },
     {
       "name": "Dark Shield",
       "class": 2,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding",
-        "Protect Fire"
+        "Defense",
+        "Arrow Guard"
       ]
     },
     {
       "name": "Dwarven Shield",
       "class": 2,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding",
-        "Mitigation",
-        "Arrow Guard",
-        "Protect Elements"
+        "Defense",
+        "Arrow Guard"
       ]
     },
     {
       "name": "Rose Shield",
       "class": 2,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding",
-        "Mitigation",
-        "Arrow Guard",
-        "Protect Elements"
+        "Defense",
+        "Healing",
+        "Shielding"
       ]
     },
     {
       "name": "Ancient Shield",
       "class": 2,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding",
-        "Mitigation",
-        "Arrow Guard",
-        "Protect Elements"
+        "Defense",
+        "Arrow Guard"
       ]
     },
     {
       "name": "Castle Shield",
       "class": 2,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding",
-        "Mitigation",
-        "Arrow Guard",
-        "Protect Elements"
+        "Defense",
+        "Arrow Guard"
       ]
     },
     {
       "name": "Beholder Shield",
       "class": 2,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding",
-        "Protect Elements"
+        "Defense",
+        "Magic Level",
+        "Protect Mana Drain"
       ]
     },
     {
       "name": "Griffin Shield",
       "class": 2,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding",
-        "Mitigation",
-        "Arrow Guard",
-        "Protect Elements"
+        "Defense",
+        "Distance Fighting"
       ]
     },
     {
       "name": "Guardian Shield",
-      "class": 2,
+      "class": 3,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding",
-        "Mitigation",
+        "Defense",
         "Arrow Guard",
-        "Protect Elements"
+        "Shielding",
+        "Protect Physical"
       ]
     },
     {
       "name": "Eagle Shield",
-      "class": 2,
+      "class": 3,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding",
+        "Defense",
+        "Distance Fighting",
         "Mitigation",
-        "Arrow Guard",
-        "Protect Elements"
+        "Shielding"
       ]
     },
     {
       "name": "Dragon Shield",
-      "class": 2,
+      "class": 3,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding",
-        "Protect Fire"
+        "Defense",
+        "Arrow Guard",
+        "Protect Fire",
+        "Shielding"
       ]
     },
     {
       "name": "Frozen Shield",
-      "class": 2,
+      "class": 3,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding",
-        "Protect Elements"
+        "Defense",
+        "Axe Fighting",
+        "Distance Fighting",
+        "Arrow Guard",
+        "Protect Ice",
+        "Sword Fighting",
+        "Protect Physical"
       ]
     },
     {
       "name": "Amazon Shield",
-      "class": 2,
+      "class": 3,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding",
-        "Protect Elements"
+        "Defense",
+        "Healing",
+        "Arrow Guard",
+        "Mitigation",
+        "Protect Energy",
+        "Protect Physical"
       ]
     },
     {
       "name": "Crown Shield",
-      "class": 2,
+      "class": 3,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding",
-        "Health Regen"
+        "Defense",
+        "Axe Fighting",
+        "Distance Fighting",
+        "Arrow Guard",
+        "Sword Fighting",
+        "Shielding"
       ]
     },
     {
       "name": "Tower Shield",
-      "class": 2,
+      "class": 3,
       "attributes": [
-        "Defense",
         "Weight",
+        "Defense",
+        "Arrow Guard",
         "Shielding",
-        "Arrow Guard"
+        "Protect Physical"
       ]
     },
     {
       "name": "Shield Of Honour",
       "class": 3,
       "attributes": [
-        "Defense",
         "Weight",
+        "Defense",
+        "Arrow Guard",
         "Shielding",
-        "Mitigation",
-        "Protect Physical",
-        "Protect Elements",
-        "Absorb Health"
+        "Protect Physical"
       ]
     },
     {
       "name": "Medusa Shield",
       "class": 3,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding",
-        "Protect Poison"
+        "Defense",
+        "Arrow Guard",
+        "Mitigation",
+        "Shielding"
       ]
     },
     {
       "name": "Vampire Shield",
       "class": 3,
       "attributes": [
-        "Defense",
         "Weight",
+        "Defense",
+        "Arrow Guard",
         "Shielding",
         "Absorb Health"
       ]
@@ -1413,48 +1457,66 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "name": "Phoenix Shield",
       "class": 3,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding",
-        "Protect Fire"
+        "Defense",
+        "Arrow Guard",
+        "Protect Fire",
+        "Reflect Fire"
       ]
     },
     {
       "name": "Demon Shield",
-      "class": 3,
+      "class": 4,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding",
-        "Protect Fire"
+        "Defense",
+        "Absorb Mana",
+        "Magic Level",
+        "Protect Fire",
+        "Protect Mana Drain"
       ]
     },
     {
       "name": "Tempest Shield",
-      "class": 3,
+      "class": 4,
       "attributes": [
-        "Defense",
         "Weight",
+        "Defense",
+        "Arrow Guard",
         "Shielding",
-        "Mitigation",
-        "Protect Physical",
-        "Protect Elements",
-        "Absorb Health"
+        "Protect Energy"
       ]
     },
     {
       "name": "Mastermind Shield",
       "class": 4,
       "attributes": [
-        "Defense",
         "Weight",
-        "Shielding",
-        "Magic Level",
-        "Protect Elements"
+        "Defense",
+        "Axe Fighting",
+        "Distance Fighting",
+        "Arrow Guard",
+        "Sword Fighting",
+        "Shielding"
       ]
     },
     {
       "name": "Great Shield",
+      "class": 4,
+      "attributes": [
+        "Weight",
+        "Defense",
+        "Axe Fighting",
+        "Distance Fighting",
+        "Arrow Guard",
+        "Sword Fighting",
+        "Protect Fire",
+        "Protect Physical",
+        "Reflect Physical"
+      ]
+    },
+    {
+      "name": "Spectral Shield",
       "class": 4,
       "attributes": [
         "Defense",
@@ -1462,34 +1524,22 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Shielding",
         "Mitigation",
         "Protect Physical",
-        "Protect Elements",
-        "Absorb Health"
-      ]
-    },
-    {
-      "name": "Spectral Shield",
-      "class": 5,
-      "attributes": [
-        "Defense",
-        "Weight",
-        "Shielding",
-        "Mitigation",
-        "Protect Physical",
-        "Protect Elements",
-        "Absorb Health"
+        "Protect Elements"
       ]
     },
     {
       "name": "Blessed Shield",
       "class": 5,
       "attributes": [
-        "Defense",
         "Weight",
+        "Defense",
+        "Axe Fighting",
+        "Distance Fighting",
+        "Arrow Guard",
+        "Sword Fighting",
         "Shielding",
-        "Mitigation",
         "Protect Physical",
-        "Protect Elements",
-        "Absorb Health"
+        "Reflect Elements"
       ]
     }
   ],
@@ -1500,8 +1550,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Attack",
         "Defense",
-        "Weight",
-        "Sword Fighting"
+        "Attack Interval"
       ]
     },
     {
@@ -1510,8 +1559,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Attack",
         "Defense",
-        "Weight",
-        "Sword Fighting"
+        "Attack Interval"
       ]
     },
     {
@@ -1520,8 +1568,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Attack",
         "Defense",
-        "Weight",
-        "Sword Fighting"
+        "Attack Interval"
       ]
     },
     {
@@ -1530,8 +1577,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Attack",
         "Defense",
-        "Weight",
-        "Sword Fighting"
+        "Attack Interval"
       ]
     },
     {
@@ -1541,7 +1587,9 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Attack",
         "Defense",
         "Weight",
-        "Sword Fighting"
+        "Sword Fighting",
+        "Critical Hit",
+        "Crushing Blow"
       ]
     },
     {
@@ -1550,8 +1598,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Attack",
         "Defense",
-        "Weight",
-        "Sword Fighting"
+        "Attack Interval"
       ]
     },
     {
@@ -1560,8 +1607,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Attack",
         "Defense",
-        "Weight",
-        "Sword Fighting"
+        "Attack Interval"
       ]
     },
     {
@@ -1570,8 +1616,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Attack",
         "Defense",
-        "Weight",
-        "Sword Fighting"
+        "Attack Interval"
       ]
     },
     {
@@ -1580,8 +1625,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Attack",
         "Defense",
-        "Weight",
-        "Sword Fighting"
+        "Attack Interval"
       ]
     },
     {
@@ -1590,8 +1634,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Attack",
         "Defense",
-        "Weight",
-        "Sword Fighting"
+        "Attack Interval"
       ]
     },
     {
@@ -1600,8 +1643,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Attack",
         "Defense",
-        "Weight",
-        "Sword Fighting"
+        "Attack Interval"
       ]
     },
     {
@@ -1610,8 +1652,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Attack",
         "Defense",
-        "Weight",
-        "Sword Fighting"
+        "Attack Interval"
       ]
     },
     {
@@ -1620,8 +1661,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Attack",
         "Defense",
-        "Weight",
-        "Sword Fighting"
+        "Attack Interval"
       ]
     },
     {
@@ -1630,8 +1670,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Attack",
         "Defense",
-        "Weight",
-        "Sword Fighting"
+        "Attack Interval"
       ]
     },
     {
@@ -1639,10 +1678,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 1,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
-        "Sword Fighting",
-        "Poison"
+        "Poison",
+        "Defense"
       ]
     },
     {
@@ -1651,18 +1688,7 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Attack",
         "Defense",
-        "Weight",
-        "Sword Fighting"
-      ]
-    },
-    {
-      "name": "Broadsword",
-      "class": 1,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Sword Fighting"
+        "Attack Interval"
       ]
     },
     {
@@ -1671,10 +1697,17 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Attack",
         "Defense",
-        "Weight",
         "Sword Fighting",
-        "Critical Hit",
-        "Crushing Blow"
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Broadsword",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Weight",
+        "Defense"
       ]
     },
     {
@@ -1682,10 +1715,9 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 2,
       "attributes": [
         "Attack",
+        "Poison",
         "Defense",
-        "Weight",
-        "Sword Fighting",
-        "Poison"
+        "Attack Interval"
       ]
     },
     {
@@ -1693,23 +1725,20 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 2,
       "attributes": [
         "Attack",
-        "Defense",
         "Weight",
-        "Sword Fighting",
-        "Critical Hit",
-        "Crushing Blow"
+        "Defense",
+        "Critical Hit"
       ]
     },
     {
       "name": "Fire Sword",
       "class": 3,
       "attributes": [
+        "Burning",
         "Attack",
         "Defense",
-        "Weight",
-        "Sword Fighting",
-        "Burning",
-        "Critical Hit"
+        "Double Bash",
+        "Sword Fighting"
       ]
     },
     {
@@ -1718,10 +1747,9 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Attack",
         "Defense",
-        "Weight",
+        "Life Leech",
         "Sword Fighting",
-        "Critical Hit",
-        "Crushing Blow"
+        "Attack Interval"
       ]
     },
     {
@@ -1730,24 +1758,9 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Attack",
         "Defense",
-        "Weight",
+        "Life Leech",
         "Sword Fighting",
-        "Critical Hit",
-        "Crushing Blow"
-      ]
-    },
-    {
-      "name": "Giant Sword",
-      "class": 3,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Sword Fighting",
-        "Critical Hit",
-        "Crushing Blow",
-        "Berserk",
-        "Life Leech"
+        "Attack Interval"
       ]
     },
     {
@@ -1756,12 +1769,9 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Attack",
         "Defense",
-        "Weight",
+        "Life Leech",
         "Sword Fighting",
-        "Critical Hit",
-        "Crushing Blow",
-        "Berserk",
-        "Life Leech"
+        "Attack Interval"
       ]
     },
     {
@@ -1770,26 +1780,20 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Attack",
         "Defense",
-        "Weight",
+        "Life Leech",
         "Sword Fighting",
-        "Critical Hit",
-        "Crushing Blow",
-        "Berserk",
-        "Life Leech"
+        "Attack Interval"
       ]
     },
     {
-      "name": "Warlord Sword",
-      "class": 4,
+      "name": "Giant Sword",
+      "class": 3,
       "attributes": [
         "Attack",
-        "Defense",
         "Weight",
+        "Defense",
         "Sword Fighting",
-        "Critical Hit",
-        "Crushing Blow",
-        "Berserk",
-        "Life Leech"
+        "Critical Hit"
       ]
     },
     {
@@ -1798,12 +1802,10 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Attack",
         "Defense",
-        "Weight",
-        "Sword Fighting",
-        "Critical Hit",
-        "Crushing Blow",
-        "Berserk",
-        "Life Leech"
+        "Life Leech",
+        "Double Bash",
+        "Magic Level",
+        "Attack Interval"
       ]
     },
     {
@@ -1815,9 +1817,18 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Weight",
         "Sword Fighting",
         "Critical Hit",
-        "Crushing Blow",
-        "Berserk",
-        "Life Leech"
+        "Crushing Blow"
+      ]
+    },
+    {
+      "name": "Warlord Sword",
+      "class": 4,
+      "attributes": [
+        "Attack",
+        "Weight",
+        "Defense",
+        "Sword Fighting",
+        "Critical Hit"
       ]
     },
     {
@@ -1825,13 +1836,12 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 5,
       "attributes": [
         "Attack",
-        "Defense",
         "Weight",
-        "Sword Fighting",
+        "Defense",
+        "Mana Leech",
+        "Magic Level",
         "Critical Hit",
-        "Crushing Blow",
-        "Berserk",
-        "Life Leech"
+        "Perfuration"
       ]
     }
   ],
@@ -1841,9 +1851,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 1,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting"
+        "Perfuration",
+        "Attack Interval"
       ]
     },
     {
@@ -1851,9 +1860,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 1,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting"
+        "Perfuration",
+        "Attack Interval"
       ]
     },
     {
@@ -1861,9 +1869,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 1,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting"
+        "Perfuration",
+        "Attack Interval"
       ]
     },
     {
@@ -1871,9 +1878,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 1,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting"
+        "Perfuration",
+        "Attack Interval"
       ]
     },
     {
@@ -1883,7 +1889,9 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Attack",
         "Defense",
         "Weight",
-        "Axe Fighting"
+        "Axe Fighting",
+        "Critical Hit",
+        "Crushing Blow"
       ]
     },
     {
@@ -1891,9 +1899,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 1,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting"
+        "Perfuration",
+        "Attack Interval"
       ]
     },
     {
@@ -1901,9 +1908,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 1,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting"
+        "Perfuration",
+        "Attack Interval"
       ]
     },
     {
@@ -1913,7 +1919,9 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Attack",
         "Defense",
         "Weight",
-        "Axe Fighting"
+        "Axe Fighting",
+        "Critical Hit",
+        "Crushing Blow"
       ]
     },
     {
@@ -1923,17 +1931,9 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Attack",
         "Defense",
         "Weight",
-        "Axe Fighting"
-      ]
-    },
-    {
-      "name": "Battle Axe",
-      "class": 1,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting"
+        "Axe Fighting",
+        "Critical Hit",
+        "Crushing Blow"
       ]
     },
     {
@@ -1944,8 +1944,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Defense",
         "Weight",
         "Axe Fighting",
-        "Bleeding",
-        "Critical Hit"
+        "Critical Hit",
+        "Crushing Blow"
       ]
     },
     {
@@ -1953,10 +1953,16 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 2,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
         "Axe Fighting",
-        "Bleeding",
+        "Perfuration"
+      ]
+    },
+    {
+      "name": "Battle Axe",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Weight",
         "Critical Hit"
       ]
     },
@@ -1968,8 +1974,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Defense",
         "Weight",
         "Axe Fighting",
-        "Bleeding",
-        "Critical Hit"
+        "Critical Hit",
+        "Crushing Blow"
       ]
     },
     {
@@ -1977,71 +1983,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 2,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
         "Axe Fighting",
-        "Bleeding",
-        "Critical Hit"
-      ]
-    },
-    {
-      "name": "Obsidian Lance",
-      "class": 2,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting",
-        "Bleeding",
-        "Critical Hit"
-      ]
-    },
-    {
-      "name": "Double Axe",
-      "class": 2,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting",
-        "Bleeding",
-        "Critical Hit"
-      ]
-    },
-    {
-      "name": "Halberd",
-      "class": 2,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting",
-        "Bleeding",
-        "Critical Hit"
-      ]
-    },
-    {
-      "name": "Daramanian Waraxe",
-      "class": 2,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting",
-        "Bleeding",
-        "Critical Hit"
-      ]
-    },
-    {
-      "name": "Naginata",
-      "class": 2,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting",
-        "Bleeding",
-        "Critical Hit"
+        "Perfuration"
       ]
     },
     {
@@ -2049,11 +1992,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 3,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
         "Axe Fighting",
-        "Bleeding",
-        "Critical Hit"
+        "Perfuration"
       ]
     },
     {
@@ -2061,11 +2001,41 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 3,
       "attributes": [
         "Attack",
-        "Defense",
+        "Berserk",
+        "Axe Fighting",
+        "Perfuration",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Obsidian Lance",
+      "class": 2,
+      "attributes": [
+        "Bleeding",
+        "Attack",
+        "Weight",
+        "Critical Hit",
+        "Perfuration"
+      ]
+    },
+    {
+      "name": "Double Axe",
+      "class": 2,
+      "attributes": [
+        "Attack",
         "Weight",
         "Axe Fighting",
-        "Bleeding",
-        "Critical Hit"
+        "Perfuration"
+      ]
+    },
+    {
+      "name": "Halberd",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Weight",
+        "Axe Fighting",
+        "Perfuration"
       ]
     },
     {
@@ -2073,23 +2043,42 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 3,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting",
-        "Bleeding",
-        "Critical Hit"
+        "Freeze",
+        "Berserk",
+        "Life Leech",
+        "Perfuration"
       ]
     },
     {
       "name": "Fire Axe",
       "class": 3,
       "attributes": [
+        "Burning",
         "Attack",
-        "Defense",
+        "Berserk",
+        "Life Leech",
+        "Perfuration"
+      ]
+    },
+    {
+      "name": "Daramanian Waraxe",
+      "class": 2,
+      "attributes": [
+        "Attack",
         "Weight",
         "Axe Fighting",
-        "Burning",
-        "Critical Hit"
+        "Perfuration"
+      ]
+    },
+    {
+      "name": "Naginata",
+      "class": 2,
+      "attributes": [
+        "Bleeding",
+        "Attack",
+        "Weight",
+        "Critical Hit",
+        "Perfuration"
       ]
     },
     {
@@ -2097,13 +2086,10 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 3,
       "attributes": [
         "Attack",
-        "Defense",
         "Weight",
-        "Axe Fighting",
-        "Critical Hit",
-        "Crushing Blow",
         "Berserk",
-        "Bleeding"
+        "Life Leech",
+        "Critical Hit"
       ]
     },
     {
@@ -2111,27 +2097,23 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 3,
       "attributes": [
         "Attack",
-        "Defense",
         "Weight",
-        "Axe Fighting",
-        "Critical Hit",
-        "Crushing Blow",
         "Berserk",
-        "Bleeding"
+        "Axe Fighting",
+        "Life Leech",
+        "Perfuration"
       ]
     },
     {
       "name": "Dragon Lance",
       "class": 3,
       "attributes": [
+        "Bleeding",
         "Attack",
-        "Defense",
         "Weight",
         "Axe Fighting",
-        "Critical Hit",
-        "Crushing Blow",
-        "Berserk",
-        "Bleeding"
+        "Life Leech",
+        "Perfuration"
       ]
     },
     {
@@ -2139,13 +2121,10 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 3,
       "attributes": [
         "Attack",
-        "Defense",
         "Weight",
-        "Axe Fighting",
-        "Critical Hit",
-        "Crushing Blow",
         "Berserk",
-        "Bleeding"
+        "Life Leech",
+        "Critical Hit"
       ]
     },
     {
@@ -2153,41 +2132,10 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 3,
       "attributes": [
         "Attack",
-        "Defense",
         "Weight",
-        "Axe Fighting",
-        "Critical Hit",
-        "Crushing Blow",
         "Berserk",
-        "Bleeding"
-      ]
-    },
-    {
-      "name": "Great Axe",
-      "class": 4,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting",
-        "Critical Hit",
-        "Crushing Blow",
-        "Berserk",
-        "Bleeding"
-      ]
-    },
-    {
-      "name": "Demonwing Axe",
-      "class": 4,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting",
-        "Critical Hit",
-        "Crushing Blow",
-        "Berserk",
-        "Bleeding"
+        "Life Leech",
+        "Critical Hit"
       ]
     },
     {
@@ -2195,13 +2143,10 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 5,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
-        "Axe Fighting",
-        "Critical Hit",
-        "Crushing Blow",
         "Berserk",
-        "Bleeding"
+        "Axe Fighting",
+        "Perfuration",
+        "Attack Interval"
       ]
     },
     {
@@ -2213,9 +2158,30 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Weight",
         "Axe Fighting",
         "Critical Hit",
-        "Crushing Blow",
+        "Crushing Blow"
+      ]
+    },
+    {
+      "name": "Great Axe",
+      "class": 4,
+      "attributes": [
+        "Attack",
+        "Weight",
         "Berserk",
-        "Bleeding"
+        "Life Leech",
+        "Critical Hit"
+      ]
+    },
+    {
+      "name": "Demonwing Axe",
+      "class": 4,
+      "attributes": [
+        "Attack",
+        "Defense",
+        "Weight",
+        "Axe Fighting",
+        "Critical Hit",
+        "Crushing Blow"
       ]
     }
   ],
@@ -2225,9 +2191,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 1,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
-        "Club Fighting"
+        "Crushing Blow",
+        "Attack Interval"
       ]
     },
     {
@@ -2235,9 +2200,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 1,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
-        "Club Fighting"
+        "Crushing Blow",
+        "Attack Interval"
       ]
     },
     {
@@ -2245,9 +2209,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 1,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
-        "Club Fighting"
+        "Crushing Blow",
+        "Attack Interval"
       ]
     },
     {
@@ -2255,9 +2218,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 1,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
-        "Club Fighting"
+        "Crushing Blow",
+        "Attack Interval"
       ]
     },
     {
@@ -2265,9 +2227,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 1,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
-        "Club Fighting"
+        "Crushing Blow",
+        "Attack Interval"
       ]
     },
     {
@@ -2275,9 +2236,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 1,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
-        "Club Fighting"
+        "Crushing Blow",
+        "Attack Interval"
       ]
     },
     {
@@ -2285,11 +2245,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 2,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
         "Club Fighting",
-        "Crushing Blow",
-        "Double Bash"
+        "Crushing Blow"
       ]
     },
     {
@@ -2297,11 +2254,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 2,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
         "Club Fighting",
-        "Crushing Blow",
-        "Double Bash"
+        "Crushing Blow"
       ]
     },
     {
@@ -2309,11 +2263,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 2,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
         "Club Fighting",
-        "Crushing Blow",
-        "Double Bash"
+        "Crushing Blow"
       ]
     },
     {
@@ -2321,11 +2272,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 2,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
         "Club Fighting",
-        "Crushing Blow",
-        "Double Bash"
+        "Crushing Blow"
       ]
     },
     {
@@ -2333,10 +2281,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 2,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
         "Club Fighting",
-        "Mana Healing"
+        "Crushing Blow"
       ]
     },
     {
@@ -2344,10 +2290,9 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 3,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
+        "Life Leech",
         "Club Fighting",
-        "Burning"
+        "Attack Interval"
       ]
     },
     {
@@ -2355,38 +2300,9 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 3,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
+        "Mana Leech",
         "Club Fighting",
-        "Magic Level"
-      ]
-    },
-    {
-      "name": "War Hammer",
-      "class": 3,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Club Fighting",
-        "Electrify",
-        "Crushing Blow",
-        "Double Bash",
-        "Life Leech"
-      ]
-    },
-    {
-      "name": "Hammer Of Wrath",
-      "class": 3,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Club Fighting",
-        "Electrify",
-        "Crushing Blow",
-        "Double Bash",
-        "Life Leech"
+        "Attack Interval"
       ]
     },
     {
@@ -2394,13 +2310,9 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 4,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
+        "Life Leech",
         "Club Fighting",
-        "Electrify",
-        "Crushing Blow",
-        "Double Bash",
-        "Life Leech"
+        "Attack Interval"
       ]
     },
     {
@@ -2408,55 +2320,20 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 4,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
+        "Life Leech",
         "Club Fighting",
-        "Electrify",
-        "Crushing Blow",
-        "Double Bash",
-        "Life Leech"
+        "Attack Interval"
       ]
     },
     {
-      "name": "Heavy Mace",
-      "class": 4,
+      "name": "War Hammer",
+      "class": 3,
       "attributes": [
         "Attack",
-        "Defense",
         "Weight",
-        "Club Fighting",
-        "Electrify",
-        "Crushing Blow",
-        "Double Bash",
-        "Life Leech"
-      ]
-    },
-    {
-      "name": "Arcane Staff",
-      "class": 4,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Club Fighting",
-        "Electrify",
-        "Crushing Blow",
-        "Double Bash",
-        "Life Leech"
-      ]
-    },
-    {
-      "name": "Mythic Hammer",
-      "class": 4,
-      "attributes": [
-        "Attack",
-        "Defense",
-        "Weight",
-        "Club Fighting",
-        "Electrify",
-        "Crushing Blow",
-        "Double Bash",
-        "Life Leech"
+        "Life Leech",
+        "Critical Hit",
+        "Crushing Blow"
       ]
     },
     {
@@ -2464,13 +2341,20 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 5,
       "attributes": [
         "Attack",
-        "Defense",
-        "Weight",
+        "Life Leech",
         "Club Fighting",
-        "Electrify",
-        "Crushing Blow",
-        "Double Bash",
-        "Life Leech"
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Hammer Of Wrath",
+      "class": 3,
+      "attributes": [
+        "Attack",
+        "Weight",
+        "Life Leech",
+        "Critical Hit",
+        "Crushing Blow"
       ]
     },
     {
@@ -2481,10 +2365,8 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Defense",
         "Weight",
         "Club Fighting",
-        "Electrify",
-        "Crushing Blow",
-        "Double Bash",
-        "Life Leech"
+        "Critical Hit",
+        "Crushing Blow"
       ]
     },
     {
@@ -2492,66 +2374,86 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "class": 5,
       "attributes": [
         "Attack",
+        "Electrify",
+        "Life Leech",
+        "Club Fighting",
+        "Magic Level",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Heavy Mace",
+      "class": 4,
+      "attributes": [
+        "Attack",
+        "Weight",
+        "Life Leech",
+        "Critical Hit",
+        "Perfuration"
+      ]
+    },
+    {
+      "name": "Arcane Staff",
+      "class": 4,
+      "attributes": [
+        "Attack",
+        "Mana Leech",
+        "Club Fighting",
+        "Critical Spell"
+      ]
+    },
+    {
+      "name": "Mythic Hammer",
+      "class": 4,
+      "attributes": [
+        "Attack",
         "Defense",
         "Weight",
         "Club Fighting",
-        "Electrify",
-        "Crushing Blow",
-        "Double Bash",
-        "Life Leech"
+        "Critical Hit",
+        "Crushing Blow"
       ]
     }
   ],
   "Distance": [
-    {
-      "name": "Small Stone",
-      "class": 1,
-      "attributes": [
-        "Attack",
-        "Hitchance",
-        "Weight",
-        "Distance Fighting"
-      ]
-    },
-    {
-      "name": "Ice Small Stone",
-      "class": 1,
-      "attributes": [
-        "Attack",
-        "Hitchance",
-        "Weight",
-        "Distance Fighting"
-      ]
-    },
     {
       "name": "Bow",
       "class": 1,
       "attributes": [
         "Attack",
         "Hitchance",
-        "Weight",
-        "Distance Fighting"
+        "Distance Fighting",
+        "Attack Interval"
       ]
     },
     {
-      "name": "Crossbow",
+      "name": "Elvish Bow",
       "class": 1,
       "attributes": [
         "Attack",
         "Hitchance",
-        "Weight",
-        "Distance Fighting"
+        "Distance Fighting",
+        "Attack Interval"
       ]
     },
     {
-      "name": "Throwing Star",
+      "name": "War Bow",
       "class": 2,
       "attributes": [
         "Attack",
         "Hitchance",
-        "Weight",
         "Distance Fighting",
-        "Perfuration"
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Frozen Bow",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Hitchance",
+        "Distance Fighting",
+        "Attack Interval"
       ]
     },
     {
@@ -2560,225 +2462,172 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
       "attributes": [
         "Attack",
         "Hitchance",
-        "Weight",
         "Distance Fighting",
-        "Perfuration"
-      ]
-    },
-    {
-      "name": "Steel Crossbow",
-      "class": 2,
-      "attributes": [
-        "Attack",
-        "Hitchance",
-        "Weight",
-        "Distance Fighting",
-        "Perfuration"
-      ]
-    },
-    {
-      "name": "War Bow",
-      "class": 3,
-      "attributes": [
-        "Attack",
-        "Hitchance",
-        "Weight",
-        "Distance Fighting",
-        "Perfuration"
-      ]
-    },
-    {
-      "name": "Bone Crossbow",
-      "class": 3,
-      "attributes": [
-        "Attack",
-        "Hitchance",
-        "Weight",
-        "Distance Fighting",
-        "Perfuration"
-      ]
-    },
-    {
-      "name": "Frozen Bow",
-      "class": 4,
-      "attributes": [
-        "Attack",
-        "Hitchance",
-        "Weight",
-        "Distance Fighting",
-        "Perfuration",
-        "Critical Hit",
-        "Double Bash"
+        "Attack Interval"
       ]
     },
     {
       "name": "Sapphire Bow",
-      "class": 4,
+      "class": 3,
       "attributes": [
         "Attack",
         "Hitchance",
-        "Weight",
         "Distance Fighting",
-        "Perfuration",
-        "Critical Hit",
-        "Double Bash"
-      ]
-    },
-    {
-      "name": "Crystallized Crossbow",
-      "class": 4,
-      "attributes": [
-        "Attack",
-        "Hitchance",
-        "Weight",
-        "Distance Fighting",
-        "Perfuration",
-        "Critical Hit",
-        "Double Bash"
-      ]
-    },
-    {
-      "name": "Royal Crossbow",
-      "class": 4,
-      "attributes": [
-        "Attack",
-        "Hitchance",
-        "Weight",
-        "Distance Fighting",
-        "Perfuration",
-        "Critical Hit",
-        "Double Bash"
+        "Attack Interval"
       ]
     },
     {
       "name": "Hellforged Bow",
-      "class": 5,
+      "class": 3,
       "attributes": [
         "Attack",
         "Hitchance",
-        "Weight",
         "Distance Fighting",
-        "Perfuration",
-        "Critical Hit",
-        "Double Bash"
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Crossbow",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Hitchance",
+        "Distance Fighting",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Steel Crossbow",
+      "class": 1,
+      "attributes": [
+        "Attack",
+        "Hitchance",
+        "Distance Fighting",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Bone Crossbow",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Hitchance",
+        "Distance Fighting",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Crystallized Crossbow",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Hitchance",
+        "Distance Fighting",
+        "Attack Interval"
+      ]
+    },
+    {
+      "name": "Royal Crossbow",
+      "class": 2,
+      "attributes": [
+        "Attack",
+        "Hitchance",
+        "Distance Fighting",
+        "Attack Interval"
       ]
     },
     {
       "name": "Evil Crossbow",
-      "class": 5,
+      "class": 3,
       "attributes": [
         "Attack",
         "Hitchance",
-        "Weight",
         "Distance Fighting",
-        "Perfuration",
-        "Critical Hit",
-        "Double Bash"
+        "Attack Interval"
       ]
     },
     {
       "name": "Hellforged Crossbow",
-      "class": 5,
+      "class": 3,
       "attributes": [
         "Attack",
         "Hitchance",
-        "Weight",
         "Distance Fighting",
-        "Perfuration",
-        "Critical Hit",
-        "Double Bash"
-      ]
-    },
-    {
-      "name": "Throwing Knife",
-      "class": 5,
-      "attributes": [
-        "Attack",
-        "Hitchance",
-        "Weight",
-        "Distance Fighting",
-        "Perfuration",
-        "Critical Hit",
-        "Double Bash"
+        "Attack Interval"
       ]
     }
   ],
   "Quivers": [
     {
       "name": "Quiver",
-      "class": 2,
+      "class": 1,
       "attributes": [
-        "Attack",
-        "Hitchance",
-        "Weight",
         "Distance Fighting",
-        "Arrow Guard"
+        "Attack Interval"
       ]
     },
     {
       "name": "Iron Quiver",
-      "class": 2,
+      "class": 1,
       "attributes": [
-        "Attack",
-        "Hitchance",
-        "Weight",
+        "Armor",
         "Distance Fighting",
-        "Arrow Guard"
+        "Attack Interval"
       ]
     },
     {
       "name": "Dragon Quiver",
-      "class": 4,
+      "class": 2,
       "attributes": [
+        "Armor",
         "Attack",
         "Hitchance",
-        "Weight",
-        "Distance Fighting",
-        "Arrow Guard"
+        "Critical Hit",
+        "Attack Interval"
       ]
     },
     {
       "name": "Imperial Quiver",
-      "class": 4,
+      "class": 2,
       "attributes": [
+        "Armor",
         "Attack",
         "Hitchance",
-        "Weight",
-        "Distance Fighting",
-        "Arrow Guard"
+        "Critical Hit",
+        "Attack Interval"
       ]
     },
     {
       "name": "Blazing Quiver",
-      "class": 5,
+      "class": 3,
       "attributes": [
+        "Burning",
         "Attack",
         "Hitchance",
-        "Weight",
-        "Distance Fighting",
-        "Arrow Guard"
+        "Critical Hit",
+        "Attack Interval"
       ]
     },
     {
       "name": "Deadly Quiver",
-      "class": 5,
+      "class": 3,
       "attributes": [
         "Attack",
         "Hitchance",
-        "Weight",
-        "Distance Fighting",
-        "Arrow Guard"
+        "Life Leech",
+        "Magic Level",
+        "Critical Hit"
       ]
     },
     {
       "name": "Quiver Of Valor",
-      "class": 5,
+      "class": 3,
       "attributes": [
-        "Attack",
+        "Armor",
         "Hitchance",
-        "Weight",
         "Distance Fighting",
-        "Arrow Guard"
+        "Attack Interval",
+        "Protect Physical"
       ]
     }
   ]
