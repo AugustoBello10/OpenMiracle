@@ -100,16 +100,13 @@ export const CharacterControls: React.FC<CharacterControlsProps> = ({
               key={s}
               onClick={() => onStanceChange(s)}
               className={cn(
-                "py-3 px-4 text-xs font-bold rounded border uppercase transition-all flex items-center justify-between",
+                "py-3 px-4 text-xs font-bold rounded border uppercase transition-all flex items-center justify-center text-center",
                 stance === s 
                   ? "bg-medieval-gold/20 text-medieval-gold border-medieval-gold shadow-inner" 
                   : "bg-black/40 text-medieval-muted/60 border-medieval-gold/10 hover:bg-black/60"
               )}
             >
               <span>{getStanceTranslation(s)}</span>
-              {s === 'Full Attack' && <Swords size={14} />}
-              {s === 'Balanced' && <Target size={14} />}
-              {s === 'Full Defense' && <Shield size={14} />}
             </button>
           ))}
         </div>

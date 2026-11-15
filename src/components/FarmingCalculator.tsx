@@ -107,8 +107,8 @@ export const FarmingCalculator: React.FC<FarmingCalculatorProps> = ({ t, initial
         <div className="lg:col-span-4 space-y-6">
           <div className="medieval-card p-6 space-y-6">
             <div className="flex flex-col gap-2">
-              <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest flex items-center gap-2">
-                <Sprout className="w-4 h-4" /> {t('currentSkill')}
+              <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest">
+                {t('currentSkill')}
               </label>
               <input
                 type="number"
@@ -121,8 +121,8 @@ export const FarmingCalculator: React.FC<FarmingCalculatorProps> = ({ t, initial
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest flex items-center gap-2">
-                <TrendingUp className="w-4 h-4" /> {t('treeQuantity')}
+              <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest">
+                {t('treeQuantity')}
               </label>
               <input
                 type="number"
@@ -134,8 +134,8 @@ export const FarmingCalculator: React.FC<FarmingCalculatorProps> = ({ t, initial
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest flex items-center gap-2">
-                <Coins className="w-4 h-4" /> {t('miracleCoinPrice')}
+              <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest">
+                {t('miracleCoinPrice')}
               </label>
               <input
                 type="number"
@@ -146,8 +146,8 @@ export const FarmingCalculator: React.FC<FarmingCalculatorProps> = ({ t, initial
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest flex items-center gap-2">
-                <TrendingUp className="w-4 h-4" /> {t('fruitPrice')}
+              <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest">
+                {t('fruitPrice')}
               </label>
               <input
                 type="number"
@@ -159,8 +159,8 @@ export const FarmingCalculator: React.FC<FarmingCalculatorProps> = ({ t, initial
             </div>
 
             <div className="p-4 bg-medieval-gold/5 border border-medieval-gold/20 rounded-lg space-y-2">
-              <h4 className="text-[10px] font-black uppercase text-medieval-gold tracking-widest flex items-center gap-2">
-                <Info className="w-3 h-3" /> Info
+              <h4 className="text-[10px] font-black uppercase text-medieval-gold tracking-widest">
+                Info
               </h4>
               <p className="text-[10px] text-medieval-text/60 leading-relaxed italic">
                 {t('organicStatusDesc')}

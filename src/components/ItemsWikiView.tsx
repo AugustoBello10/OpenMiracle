@@ -1,11 +1,13 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, Shield, Sword, Sparkles, Package, ChevronRight, Filter } from 'lucide-react';
+import { Search, Filter } from 'lucide-react';
 import itemsData from '../data/miracle/items.json';
 import { ATTRIBUTE_DATA } from '../data/wikiData';
 
 interface ItemsWikiViewProps {
   language: 'pt' | 'en';
+  initialCategory?: string;
+  onCategoryChange?: (category: string) => void;
 }
 
 interface ItemRecord {
@@ -23,17 +25,11 @@ interface ItemRecord {
   attributes?: Array<{ name: string; value: string }>;
 }
 
-export function ItemsWikiView({ language }: ItemsWikiViewProps) {
-  const [selectedBlock, setSelectedBlock] = useState<'weapons' | 'equipment' | 'accessories' | 'utilities'>('weapons');
-  const [selectedCategory, setSelectedCategory] = useState<string>('swords');
-  const [search, setSearch] = useState('');
-  const [selectedClass, setSelectedClass] = useState<number | 'all'>('all');
-
+export function ItemsWikiView({ language, initialCategory, onCategoryChange }: ItemsWikiViewProps) {
   const BLOCKS = [
     {
       id: 'weapons',
       label: language === 'pt' ? 'Bloco 1: Armas' : 'Block 1: Weapons',
-      icon: <Sword className="w-4 h-4 text-red-400" />,
       categories: [
         { id: 'swords', label: language === 'pt' ? 'Espadas' : 'Swords', icon: '/images/miracle/items/magic_sword_2400.gif' },
         { id: 'axes', label: language === 'pt' ? 'Machados' : 'Axes', icon: '/images/miracle/items/stonecutter_axe_2431.gif' },
@@ -46,7 +42,6 @@ export function ItemsWikiView({ language }: ItemsWikiViewProps) {
     {
       id: 'equipment',
       label: language === 'pt' ? 'Bloco 2: Equipamentos' : 'Block 2: Equipment',
-      icon: <Shield className="w-4 h-4 text-sky-400" />,
       categories: [
         { id: 'helmets', label: language === 'pt' ? 'Capacetes' : 'Helmets', icon: '/images/miracle/items/demon_helmet_2493.gif' },
         { id: 'armors', label: language === 'pt' ? 'Armaduras' : 'Armors', icon: '/images/miracle/items/magic_plate_armor_2472.gif' },
@@ -58,7 +53,6 @@ export function ItemsWikiView({ language }: ItemsWikiViewProps) {
     {
       id: 'accessories',
       label: language === 'pt' ? 'Bloco 3: Acessórios & Treino' : 'Block 3: Accessories & Training',
-      icon: <Sparkles className="w-4 h-4 text-amber-400" />,
       categories: [
         { id: 'amulets', label: language === 'pt' ? 'Amuletos' : 'Amulets', icon: '/images/miracle/items/platinum_amulet_2171.gif' },
         { id: 'rings', label: language === 'pt' ? 'Anéis' : 'Rings', icon: '/images/miracle/items/ring_of_the_sky_2123.gif' },
@@ -69,7 +63,6 @@ export function ItemsWikiView({ language }: ItemsWikiViewProps) {
     {
       id: 'utilities',
       label: language === 'pt' ? 'Bloco 4: Utilitários & Outros' : 'Block 4: Utilities & Others',
-      icon: <Package className="w-4 h-4 text-emerald-400" />,
       categories: [
         { id: 'runes', label: language === 'pt' ? 'Runas' : 'Runes', icon: '/images/miracle/items/sudden_death_rune_2268.gif' },
         { id: 'tools', label: language === 'pt' ? 'Ferramentas' : 'Tools', icon: '/images/miracle/items/rope_2120.gif' },
@@ -79,6 +72,37 @@ export function ItemsWikiView({ language }: ItemsWikiViewProps) {
       ],
     },
   ];
+
+  // Helper para identificar o bloco pertencente a uma categoria
+  const findBlockForCat = (catId?: string) => {
+    if (!catId) return { blockId: 'weapons' as const, catId: 'swords' };
+    for (const b of BLOCKS) {
+      if (b.categories.some(c => c.id === catId)) {
+        return { blockId: b.id as 'weapons' | 'equipment' | 'accessories' | 'utilities', catId };
+      }
+    }
+    return { blockId: 'weapons' as const, catId: 'swords' };
+  };
+
+  const initialResolved = findBlockForCat(initialCategory);
+
+  const [selectedBlock, setSelectedBlock] = useState<'weapons' | 'equipment' | 'accessories' | 'utilities'>(initialResolved.blockId);
+  const [selectedCategory, setSelectedCategory] = useState<string>(initialResolved.catId);
+  const [search, setSearch] = useState('');
+  const [selectedClass, setSelectedClass] = useState<number | 'all'>('all');
+
+  // Sincroniza se o initialCategory mudar via URL / props externas
+  useEffect(() => {
+    if (initialCategory) {
+      for (const b of BLOCKS) {
+        if (b.categories.some(c => c.id === initialCategory)) {
+          setSelectedBlock(b.id as any);
+          setSelectedCategory(initialCategory);
+          break;
+        }
+      }
+    }
+  }, [initialCategory]);
 
   // When block changes, auto-select first category of that block if current not in it
   const currentBlockObj = BLOCKS.find(b => b.id === selectedBlock) || BLOCKS[0];
@@ -149,7 +173,9 @@ export function ItemsWikiView({ language }: ItemsWikiViewProps) {
               key={block.id}
               onClick={() => {
                 setSelectedBlock(block.id as any);
-                setSelectedCategory(block.categories[0].id);
+                const firstCat = block.categories[0].id;
+                setSelectedCategory(firstCat);
+                onCategoryChange?.(firstCat);
               }}
               className={`p-3.5 rounded-xl border flex items-center justify-center transition-all duration-200 cursor-pointer ${
                 isSelected
@@ -174,7 +200,10 @@ export function ItemsWikiView({ language }: ItemsWikiViewProps) {
           return (
             <button
               key={cat.id}
-              onClick={() => setSelectedCategory(cat.id)}
+              onClick={() => {
+                setSelectedCategory(cat.id);
+                onCategoryChange?.(cat.id);
+              }}
               className={`px-3 py-1.5 rounded-lg border text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-all cursor-pointer ${
                 isSelected
                   ? 'bg-medieval-gold/20 border-medieval-gold text-yellow-300 shadow-[0_0_10px_rgba(212,175,55,0.2)]'

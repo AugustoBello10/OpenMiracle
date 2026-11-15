@@ -148,23 +148,23 @@ export default function BestiaryModal({ initialMonster, onClose }: BestiaryModal
                    <div className="flex gap-4">
                       {/* Sub-left: charms, hp, xp */}
                       <div className="flex flex-col gap-1 w-24">
-                         <div className="text-xs text-white flex items-center gap-1" title="HP">❤️ {stats.hp}</div>
-                         <div className="text-xs text-white flex items-center gap-1" title="Experiência">✨ {stats.xp}</div>
-                         <div className="text-xs text-white flex items-center gap-1" title="Armor">🛡️ {stats.armor}</div>
-                         <div className="text-xs text-white flex items-center gap-1" title="Speed">👞 {stats.speed}</div>
-                         <div className="text-xs text-purple-400 font-bold mt-2 flex items-center gap-1" title="Charm Points">✡️ {stats.charmPoints}</div>
+                         <div className="text-xs text-white flex items-center gap-1" title="HP">HP: {stats.hp}</div>
+                         <div className="text-xs text-white flex items-center gap-1" title="Experiência">XP: {stats.xp}</div>
+                         <div className="text-xs text-white flex items-center gap-1" title="Armor">Armor: {stats.armor}</div>
+                         <div className="text-xs text-white flex items-center gap-1" title="Speed">Speed: {stats.speed}</div>
+                         <div className="text-xs text-purple-400 font-bold mt-2 flex items-center gap-1" title="Charm Points">Charms: {stats.charmPoints}</div>
                       </div>
 
                       {/* Sub-right: Resistances */}
                       <div className="flex-1 grid grid-cols-2 gap-x-2 gap-y-1">
-                          <div className="text-[10px] text-[#a0a0a0] flex items-center gap-1"><span>👊</span> Physical: {entry.resistances.physical}%</div>
-                          <div className="text-[10px] text-[#a0a0a0] flex items-center gap-1"><span>🌿</span> Earth: {entry.resistances.earth}%</div>
-                          <div className="text-[10px] text-[#a0a0a0] flex items-center gap-1"><span>🔥</span> Fire: {entry.resistances.fire}%</div>
-                          <div className="text-[10px] text-[#a0a0a0] flex items-center gap-1"><span>💀</span> Death: {entry.resistances.death}%</div>
-                          <div className="text-[10px] text-[#a0a0a0] flex items-center gap-1"><span>⚡</span> Energy: {entry.resistances.energy}%</div>
-                          <div className="text-[10px] text-[#a0a0a0] flex items-center gap-1"><span>✨</span> Holy: {entry.resistances.holy}%</div>
-                          <div className="text-[10px] text-[#a0a0a0] flex items-center gap-1"><span>❄️</span> Ice: {entry.resistances.ice}%</div>
-                          <div className="text-[10px] text-[#a0a0a0] flex items-center gap-1"><span>💖</span> Healing: {entry.resistances.healing}%</div>
+                          <div className="text-[10px] text-[#a0a0a0] flex items-center gap-1">Physical: {entry.resistances.physical}%</div>
+                          <div className="text-[10px] text-[#a0a0a0] flex items-center gap-1">Earth: {entry.resistances.earth}%</div>
+                          <div className="text-[10px] text-[#a0a0a0] flex items-center gap-1">Fire: {entry.resistances.fire}%</div>
+                          <div className="text-[10px] text-[#a0a0a0] flex items-center gap-1">Death: {entry.resistances.death}%</div>
+                          <div className="text-[10px] text-[#a0a0a0] flex items-center gap-1">Energy: {entry.resistances.energy}%</div>
+                          <div className="text-[10px] text-[#a0a0a0] flex items-center gap-1">Holy: {entry.resistances.holy}%</div>
+                          <div className="text-[10px] text-[#a0a0a0] flex items-center gap-1">Ice: {entry.resistances.ice}%</div>
+                          <div className="text-[10px] text-[#a0a0a0] flex items-center gap-1">Healing: {entry.resistances.healing}%</div>
                       </div>
                    </div>
 

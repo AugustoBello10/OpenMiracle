@@ -144,7 +144,7 @@ export const CombatCard: React.FC<CardProps> = ({
       {settings.showMaxMelee && (
         <div className="bg-black/45 p-2 rounded border border-medieval-gold/10 space-y-1">
           <div className="flex justify-between items-center text-[10.5px] tracking-tight text-medieval-muted/90">
-            <span className="font-bold">🗡️ {t('bm_meleeAttackFormula')}</span>
+            <span className="font-bold">{t('bm_meleeAttackFormula')}</span>
             <div className="flex items-center gap-1">
               <span className="text-medieval-gold font-mono font-bold">{stats.maxMelee} HP</span>
               {showCompare && compareStats && (
@@ -185,7 +185,7 @@ export const CombatCard: React.FC<CardProps> = ({
       {settings.showMaxDist && (
         <div className="bg-black/45 p-2 rounded border border-medieval-gold/10 space-y-1">
           <div className="flex justify-between items-center text-[10.5px] tracking-tight text-medieval-muted/90">
-            <span className="font-bold">🏹 {t('bm_distanceAttackFormula')}</span>
+            <span className="font-bold">{t('bm_distanceAttackFormula')}</span>
             <div className="flex items-center gap-1">
               <span className="text-medieval-gold font-mono font-bold">{stats.maxDist} HP</span>
               {showCompare && compareStats && (
@@ -526,7 +526,7 @@ export const SpecialsCard: React.FC<CardProps> = ({
       {settings.showDestruction && stats.destructionChance && stats.destructionChance > 0 ? (
         <div className="bg-black/25 p-2 rounded border border-amber-500/20 space-y-1.5 mt-2 animate-fadeIn font-sans font-normal">
           <div className="text-[10px] font-bold text-amber-500 uppercase tracking-wider flex items-center justify-between">
-            <span className="flex items-center gap-1">⚡ Destruction</span>
+            <span>Destruction</span>
             <span className="text-medieval-gold font-mono font-bold">{stats.destructionChance}%</span>
           </div>
           <div className="text-[10px] text-medieval-muted/80 leading-relaxed font-sans font-medium animate-fadeIn">

@@ -95,8 +95,8 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({
 
             <div className="grid grid-cols-2 gap-2 text-xs">
               <div className="bg-black/40 p-2.5 rounded-lg border border-white/5 flex flex-col justify-between">
-                <span className="text-stone-400 text-[11px] flex items-center gap-1">
-                  <Heart className="w-3 h-3 text-red-500" /> {isPt ? 'Vida (HP):' : 'Health (HP):'}
+                <span className="text-stone-400 text-[11px]">
+                  {isPt ? 'Vida (HP):' : 'Health (HP):'}
                 </span>
                 <div className="flex items-baseline justify-between mt-1">
                   <span className="text-base font-black font-mono text-red-400">{stats.hp}</span>
@@ -105,8 +105,8 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({
               </div>
 
               <div className="bg-black/40 p-2.5 rounded-lg border border-white/5 flex flex-col justify-between">
-                <span className="text-stone-400 text-[11px] flex items-center gap-1">
-                  <Zap className="w-3 h-3 text-blue-400" /> {isPt ? 'Mana (MP):' : 'Mana (MP):'}
+                <span className="text-stone-400 text-[11px]">
+                  {isPt ? 'Mana (MP):' : 'Mana (MP):'}
                 </span>
                 <div className="flex items-baseline justify-between mt-1">
                   <span className="text-base font-black font-mono text-blue-400">{stats.mp}</span>
@@ -115,8 +115,8 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({
               </div>
 
               <div className="bg-black/40 p-2.5 rounded-lg border border-white/5 flex flex-col justify-between">
-                <span className="text-stone-400 text-[11px] flex items-center gap-1">
-                  <Weight className="w-3 h-3 text-stone-300" /> {isPt ? 'Capacidade:' : 'Capacity:'}
+                <span className="text-stone-400 text-[11px]">
+                  {isPt ? 'Capacidade:' : 'Capacity:'}
                 </span>
                 <div className="flex items-baseline justify-between mt-1">
                   <span className="text-base font-black font-mono text-stone-200">{stats.cap} oz</span>
@@ -125,8 +125,8 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({
               </div>
 
               <div className="bg-black/40 p-2.5 rounded-lg border border-white/5 flex flex-col justify-between">
-                <span className="text-stone-400 text-[11px] flex items-center gap-1">
-                  <Move className="w-3 h-3 text-emerald-400" /> {isPt ? 'Velocidade:' : 'Speed:'}
+                <span className="text-stone-400 text-[11px]">
+                  {isPt ? 'Velocidade:' : 'Speed:'}
                 </span>
                 <div className="flex items-baseline justify-between mt-1">
                   <span className="text-base font-black font-mono text-emerald-300">{stats.speed}</span>
@@ -137,8 +137,8 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({
 
             {/* Regen Summary */}
             <div className="flex items-center justify-between bg-black/50 p-2 rounded-lg border border-emerald-500/20 text-xs">
-              <span className="text-[11px] text-stone-300 flex items-center gap-1">
-                <Activity className="w-3 h-3 text-emerald-400" /> {isPt ? 'Regeneração Total:' : 'Total Regen:'}
+              <span className="text-[11px] text-stone-300">
+                {isPt ? 'Regeneração Total:' : 'Total Regen:'}
               </span>
               <div className="flex items-center gap-3 font-mono font-bold text-[11px]">
                 <span className="text-red-400">+{stats.totalHpRegenPerSec.toFixed(2)} HP/s</span>

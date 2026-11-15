@@ -173,8 +173,8 @@ export function MiningCalculator({ t }: MiningCalculatorProps) {
 
               {/* Tipo de Picareta */}
               <div className="flex flex-col gap-2">
-                <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
-                  <Pickaxe className="w-4 h-4" /> {t('pickType')}
+                <label className="text-medieval-gold font-bold uppercase text-[10px] tracking-widest">
+                  {t('pickType')}
                 </label>
                 <select
                   value={selectedPickName}
@@ -206,8 +206,7 @@ export function MiningCalculator({ t }: MiningCalculatorProps) {
 
               {/* Info da Atualização de Mineração */}
               <div className="sm:col-span-2 p-3.5 bg-medieval-gold/5 border border-medieval-gold/15 rounded-md flex flex-col gap-1.5 animate-fade-in">
-                <div className="flex items-center gap-2 text-medieval-gold font-bold uppercase text-[10px] tracking-wider font-sans">
-                  <Info className="w-4 h-4 text-medieval-gold shrink-0" />
+                <div className="text-medieval-gold font-bold uppercase text-[10px] tracking-wider font-sans">
                   <span>Atualização de Mineração (Chance por Tentativa)</span>
                 </div>
                 <p className="text-[10.5px] text-medieval-text/80 leading-relaxed font-mono font-sans">
@@ -352,16 +351,13 @@ export function MiningCalculator({ t }: MiningCalculatorProps) {
 
           {/* Planejador de Metas Interativo */}
           <div className="medieval-card p-6 sm:p-8 space-y-6 animate-fade-in hover:border-medieval-gold/30 transition-all duration-300">
-            <div className="flex items-center gap-3 border-b border-medieval-gold/20 pb-4">
-              <Target className="w-5 h-5 text-medieval-gold animate-bounce" />
-              <div>
-                <h3 className="text-medieval-gold font-bold uppercase text-xs tracking-wider font-sans">
-                  🎯 Simulador de Metas de Caça (Facilitador)
-                </h3>
-                <p className="text-[10px] text-medieval-text/50 font-mono">
-                  Defina o que você quer obter para descobrir quantas picaretas comprar!
-                </p>
-              </div>
+            <div className="border-b border-medieval-gold/20 pb-4">
+              <h3 className="text-medieval-gold font-bold uppercase text-xs tracking-wider font-sans">
+                Simulador de Metas de Mineração
+              </h3>
+              <p className="text-[10px] text-medieval-text/50 font-mono mt-1">
+                Defina o que você quer obter para descobrir quantas picaretas comprar!
+              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -373,9 +369,9 @@ export function MiningCalculator({ t }: MiningCalculatorProps) {
                   </label>
                   <div className="grid grid-cols-3 gap-2">
                     {[
-                      { id: 'soils', label: 'Solos', icon: '🌍' },
-                      { id: 'fragments', label: 'Fragmentos', icon: '⛓️' },
-                      { id: 'gems', label: 'Joias / Gemas', icon: '💎' }
+                      { id: 'soils', label: 'Solos' },
+                      { id: 'fragments', label: 'Fragmentos' },
+                      { id: 'gems', label: 'Joias / Gemas' }
                     ].map(cat => (
                       <button
                         key={cat.id}
@@ -387,8 +383,7 @@ export function MiningCalculator({ t }: MiningCalculatorProps) {
                             : 'bg-black/25 border-medieval-gold/10 text-medieval-text/60 hover:border-medieval-gold/35'
                         }`}
                       >
-                        <span className="text-sm">{cat.icon}</span>
-                        <span className="text-[9.5px] whitespace-nowrap font-sans font-semibold">{cat.label}</span>
+                        <span className="text-xs whitespace-nowrap font-sans font-semibold">{cat.label}</span>
                       </button>
                     ))}
                   </div>
@@ -480,7 +475,7 @@ export function MiningCalculator({ t }: MiningCalculatorProps) {
 
                         <div className="space-y-1 bg-emerald-500/5 p-2 rounded border border-emerald-500/15">
                           <span className="text-[9px] text-emerald-400 font-bold block font-sans uppercase leading-tight">
-                            🛡️ Antiazar (95%):
+                            Antiazar (95%):
                           </span>
                           <div className="text-lg font-black text-emerald-400 font-mono flex items-baseline gap-1">
                             {Math.ceil(targetSimulation.safePicks)}
@@ -514,8 +509,8 @@ export function MiningCalculator({ t }: MiningCalculatorProps) {
 
         <div className="lg:col-span-5 space-y-6">
           <div className=" rounded-lg  p-6 space-y-4">
-            <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest flex items-center gap-2 font-sans">
-              <Info className="w-4 h-4" /> {t('miningInfo')}
+            <h3 className="text-medieval-gold font-black uppercase text-sm tracking-widest font-sans">
+              {t('miningInfo')}
             </h3>
             <div className="space-y-4 text-xs text-medieval-text/70 leading-relaxed font-mono">
               <p>• <span className="text-medieval-gold font-sans font-bold">MBC (Mine Break Chance):</span> Chance da pedra sumir após uma batida. Cap de 100%.</p>

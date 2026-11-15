@@ -49,8 +49,8 @@ export const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({ t, initial
         <div className="lg:col-span-4 space-y-6">
           <div className="medieval-card p-6 space-y-6">
             <div className="flex flex-col gap-2">
-              <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest flex items-center gap-2">
-                <FlaskConical className="w-4 h-4" /> {t('alchemySkill')}
+              <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest">
+                {t('alchemySkill')}
               </label>
               <input
                 type="number"
@@ -73,8 +73,8 @@ export const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({ t, initial
             </div>
 
             <div className="p-4 bg-medieval-gold/5 border border-medieval-gold/20 rounded-lg space-y-2">
-              <h4 className="text-[10px] font-black uppercase text-medieval-gold tracking-widest flex items-center gap-2">
-                <Info className="w-3 h-3" /> Info
+              <h4 className="text-[10px] font-black uppercase text-medieval-gold tracking-widest">
+                Info
               </h4>
               <p className="text-[10px] text-medieval-text/60 leading-relaxed italic">
                 {t('goldConverterDesc')}
@@ -84,12 +84,7 @@ export const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({ t, initial
 
           {/* Gold Conversion Card */}
           <div className="medieval-card p-6 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-medieval-gold/10 rounded">
-                <Coins className="text-medieval-gold w-5 h-5" />
-              </div>
-              <h3 className="text-sm font-black text-medieval-gold uppercase tracking-widest">{t('goldConversion')}</h3>
-            </div>
+            <h3 className="text-sm font-black text-medieval-gold uppercase tracking-widest">{t('goldConversion')}</h3>
             <div className="text-center p-4 bg-black/40 rounded border border-medieval-gold/10">
               <p className="text-medieval-gold/60 uppercase text-[10px] font-bold tracking-widest mb-1">{t('successChance')}</p>
               <div className="text-3xl font-black text-medieval-gold">{goldSuccessChance.toFixed(1)}%</div>
@@ -101,10 +96,7 @@ export const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({ t, initial
         <div className="lg:col-span-8 space-y-8">
           {/* Crystals Section */}
           <section className="space-y-4">
-            <div className="flex items-center gap-3">
-              <Sparkles className="text-medieval-gold w-6 h-6" />
-              <h2 className="text-xl font-black text-medieval-gold uppercase tracking-widest">{t('crystalEnchantment')}</h2>
-            </div>
+            <h2 className="text-xl font-black text-medieval-gold uppercase tracking-widest">{t('crystalEnchantment')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {ALCHEMY_CRYSTALS.map(crystal => (
                 <div key={crystal.key} className="medieval-card p-4 space-y-3">
@@ -124,10 +116,7 @@ export const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({ t, initial
           {/* Runes Section */}
           <section className="space-y-4">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <Zap className="text-medieval-gold w-6 h-6" />
-                <h2 className="text-xl font-black text-medieval-gold uppercase tracking-widest">{t('runeOvercharging')}</h2>
-              </div>
+              <h2 className="text-xl font-black text-medieval-gold uppercase tracking-widest">{t('runeOvercharging')}</h2>
               <div className="flex items-center gap-3 bg-black/40 p-2 rounded border border-medieval-gold/20">
                 <label className="text-[10px] font-bold uppercase text-medieval-gold/60">{t('decayTime')}:</label>
                 <input
@@ -141,8 +130,7 @@ export const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({ t, initial
               </div>
             </div>
 
-            <div className="p-3.5 bg-medieval-gold/5 border border-medieval-gold/20 rounded-lg flex items-start sm:items-center gap-2.5">
-              <Info className="w-4 h-4 text-medieval-gold shrink-0 mt-0.5 sm:mt-0" />
+            <div className="p-3.5 bg-medieval-gold/5 border border-medieval-gold/20 rounded-lg">
               <p className="text-[10.5px] sm:text-xs text-medieval-text/85 leading-relaxed font-mono">
                 {t('alchemyFormulaNote')}
               </p>

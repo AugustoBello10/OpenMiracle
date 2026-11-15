@@ -708,7 +708,7 @@ export const LootOptimizer: React.FC<LootOptimizerProps> = ({ language, rashidCi
                   if (log.type === 'success') {
                     return (
                       <div key={log.id} className="text-[10px] font-mono text-emerald-400/90 flex justify-between gap-1 items-center bg-emerald-950/10 px-1.5 py-0.5 rounded border border-emerald-500/5">
-                        <span className="truncate max-w-[150px]">✔️ {log.processedText}</span>
+                        <span className="truncate max-w-[150px]"><span className="text-emerald-500 font-bold">[OK]</span> {log.processedText}</span>
                         <span className="shrink-0">{log.quantity}x</span>
                       </div>
                     );
@@ -716,7 +716,7 @@ export const LootOptimizer: React.FC<LootOptimizerProps> = ({ language, rashidCi
                   if (log.type === 'corrected') {
                     return (
                       <div key={log.id} className="text-[10px] font-mono text-yellow-400/95 flex justify-between gap-1 items-center bg-yellow-950/10 px-1.5 py-0.5 rounded border border-yellow-500/5">
-                        <span className="truncate max-w-[130px] italic">🪄 "{log.originalText}" → <strong className="font-bold underline">{log.processedText}</strong></span>
+                        <span className="truncate max-w-[130px] italic"><span className="text-amber-500 font-bold">[Auto]</span> "{log.originalText}" → <strong className="font-bold underline">{log.processedText}</strong></span>
                         <span className="shrink-0">({log.confidence}%) {log.quantity}x</span>
                       </div>
                     );
@@ -724,7 +724,7 @@ export const LootOptimizer: React.FC<LootOptimizerProps> = ({ language, rashidCi
                   return (
                     <div key={log.id} className="text-[10px] font-mono text-red-400 flex flex-col bg-red-950/10 px-1.5 py-1 rounded border border-red-500/5">
                       <div className="flex justify-between">
-                        <span className="truncate max-w-[140px]">❌ {log.originalText}</span>
+                        <span className="truncate max-w-[140px]"><span className="text-red-500 font-bold">[?]</span> {log.originalText}</span>
                         <span>{log.quantity}x</span>
                       </div>
                       {log.suggestion && (

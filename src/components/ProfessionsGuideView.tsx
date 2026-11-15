@@ -1883,7 +1883,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 },
                 {
                   label: t('Ferramenta Inicial', 'Starting Tool'),
-                  value: t('Fishing Rod + Worms (comprados em lojas comuns)', 'Fishing Rod + Worms (common shops)'),
+                  value: t('Fishing Rod + Fish Bait', 'Fishing Rod + Fish Bait'),
                 },
               ]}
             />
@@ -1905,7 +1905,6 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                   <ul className="list-disc pl-5 space-y-2 flex-1">
                     <li>{t('Aumento de skill de pesca acelerado.', 'Accelerated fishing skill progression.')}</li>
                     <li>{t('Acesso ao Outfit exclusivo de Pescador.', 'Access to the exclusive Fisherman outfit.')}</li>
-                    <li>{t('Maiores chances de capturar peixes raros e lendários.', 'Higher chances of catching rare and legendary fish.')}</li>
                   </ul>
                   <div className="flex-shrink-0 text-center">
                     <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/fisherman_outfit.gif" alt="Fisherman Outfit" className="w-24 h-auto object-contain mx-auto border border-medieval-gold/20 rounded bg-black/50 p-2" />
@@ -2065,6 +2064,17 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               <span className="block text-medieval-gold text-sm uppercase tracking-widest mb-2">{t('Fórmula de Chance de Sucesso:', 'Success Chance Formula:')}</span>
               <code className="text-white font-bold text-sm sm:text-base">10% + ((Fishing Skill - 10) * 0.597)%</code>
               <p className="text-xs text-stone-400 mt-2">{t('Limitado ao máximo de 50%.', 'Capped at a maximum of 50%.')}</p>
+              <div className="mt-3">
+                <button
+                  onClick={() => {
+                    navigate('/calculadoras/fishing');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="px-4 py-1.5 bg-medieval-gold/20 hover:bg-medieval-gold/30 border border-medieval-gold/50 text-medieval-gold font-bold text-xs rounded transition-all cursor-pointer"
+                >
+                  {t('Abrir Calculadora de Pesca', 'Open Fishing Calculator')}
+                </button>
+              </div>
             </div>
 
             <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="fishing-rods">{t('Varas de Pesca Craftáveis (Craftable Rods)', 'Craftable Fishing Rods')}</h4>
@@ -2166,6 +2176,7 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 <ul className="list-disc pl-5 space-y-2 mt-2 text-sm">
                   <li><strong className="text-medieval-gold">{t('Organização Automática:', 'Automatic Organization:')}</strong> {t('Ao mantê-la em sua backpack (BP), todos os peixes pescados são guardados automaticamente dentro da rede (auto-stack).', 'By keeping it in your backpack (BP), all caught fishes are automatically stored inside the net (auto-stack).')}</li>
                   <li><strong className="text-medieval-gold">{t('Redução de Peso:', 'Weight Reduction:')}</strong> {t('Enquanto os peixes estiverem dentro da rede, o peso (cap) deles é reduzido em 20%!', 'While the fishes are inside the net, their weight (cap) is reduced by 20%!')}</li>
+                  <li><strong className="text-medieval-gold">{t('Onde Adquirir:', 'Where to Acquire:')}</strong> {t('Adquirida na loja do jogo (Store) por 120 Miracle Points = 12 Miracle Coins.', 'Acquired in the in-game Store for 120 Miracle Points = 12 Miracle Coins.')}</li>
                 </ul>
               </div>
             </div>

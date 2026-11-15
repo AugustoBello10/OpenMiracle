@@ -145,8 +145,8 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
                 <div className="space-y-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="flex flex-col gap-2">
-                      <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest flex items-center gap-2">
-                        <Zap className="w-4 h-4" /> {t('currentSkill')}
+                      <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest">
+                        {t('currentSkill')}
                       </label>
                       <input
                         type="number"
@@ -159,8 +159,8 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
                     </div>
 
                     <div className="flex flex-col gap-2">
-                      <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest flex items-center gap-2">
-                        <Hammer className="w-4 h-4" /> {t('quantityToCraft')}
+                      <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest">
+                        {t('quantityToCraft')}
                       </label>
                       <input
                         type="number"
@@ -174,8 +174,8 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="flex flex-col gap-2">
-                      <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest flex items-center gap-2">
-                        <Gem className="w-4 h-4" /> {t('category')}
+                      <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest">
+                        {t('category')}
                       </label>
                       <select
                         value={selectedCategory}
@@ -193,8 +193,8 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
                     </div>
 
                     <div className="flex flex-col gap-2">
-                      <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest flex items-center gap-2">
-                        <Sword className="w-4 h-4" /> {t('item')}
+                      <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest">
+                        {t('item')}
                       </label>
                       <select
                         value={selectedItemName}
@@ -209,10 +209,9 @@ export const CraftingCalculator: React.FC<CraftingCalculatorProps> = ({ t, CRAFT
                   </div>
 
                   {selectedItem?.req && (
-                    <div className="bg-black/40 p-4 rounded border border-medieval-gold/20 flex items-start gap-3">
-                      <Info className="w-5 h-5 text-medieval-gold shrink-0 mt-0.5" />
+                    <div className="bg-black/40 p-4 rounded border border-medieval-gold/20">
                       <div>
-                        <p className="text-xs uppercase text-medieval-gold/60 font-bold tracking-tighter">{t('requirements')}:</p>
+                        <p className="text-xs uppercase text-medieval-gold/60 font-bold tracking-tighter mb-1">{t('requirements')}:</p>
                         <p className="text-sm text-medieval-text italic">{selectedItem.req}</p>
                       </div>
                     </div>

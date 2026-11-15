@@ -137,7 +137,7 @@ export default function CyclopediaView({ language = 'pt' }: { language?: 'pt' | 
               {/* HP indicator */}
               {entry && entry.baseHp > 0 && (
                 <div className="absolute top-2 right-2 flex items-center gap-1 text-[10px] text-gray-500 font-mono">
-                  ❤️ {entry.baseHp}
+                  HP {entry.baseHp}
                 </div>
               )}
             </motion.button>

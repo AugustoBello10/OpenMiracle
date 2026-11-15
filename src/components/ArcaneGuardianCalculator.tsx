@@ -1,17 +1,4 @@
 import React, { useState, useMemo } from 'react';
-import { 
-  Shield, 
-  Clock, 
-  Calendar, 
-  Sparkles, 
-  TrendingUp, 
-  Info, 
-  RefreshCw, 
-  Award, 
-  Plus, 
-  Minus, 
-  Flame
-} from 'lucide-react';
 
 interface ArcaneGuardianCalculatorProps {
   language: 'pt' | 'en';
@@ -36,6 +23,9 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
 
   // Horas de caça com battle ativo por dia (para estimativa do calendário real)
   const [hoursPerDay, setHoursPerDay] = useState<number>(2);
+
+  // Controle de visibilidade da tabela de comparação e fórmulas
+  const [showDetails, setShowDetails] = useState<boolean>(false);
 
   // Resetar tempo para o item novo/completo (7 dias)
   const handleResetToFull = () => {
@@ -168,161 +158,134 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
   }, [nominalMinutes, hoursPerDay, blessCost, attributesCount]);
 
   return (
-    <div className="space-y-8 max-w-6xl mx-auto pb-12 animate-fade-in">
+    <div className="space-y-8 max-w-5xl mx-auto pb-12 animate-fade-in text-left">
       
-      {/* Header Estilizado */}
-      <header className="relative text-center mb-8 p-6 sm:p-8 rounded-2xl bg-gradient-to-b from-amber-950/30 via-black/80 to-black/90 border border-medieval-gold/30 shadow-[0_0_35px_rgba(245,158,11,0.12)]">
-        <div className="inline-flex items-center justify-center p-3.5 rounded-full bg-gradient-to-b from-amber-500/25 via-amber-700/10 to-black border-2 border-medieval-gold/50 shadow-[0_0_25px_rgba(245,158,11,0.35)] mb-4">
+      {/* Header Limpo & Editorial */}
+      <header className="relative text-center mb-6 p-6 rounded-2xl bg-gradient-to-b from-amber-950/20 via-black/80 to-black/90 border border-medieval-gold/30 shadow-[0_0_25px_rgba(245,158,11,0.08)]">
+        <div className="inline-flex items-center justify-center p-3 rounded-full bg-gradient-to-b from-amber-500/20 via-black to-black border border-medieval-gold/40 shadow-[0_0_20px_rgba(245,158,11,0.25)] mb-3">
           <img 
-            src="https://res.cloudinary.com/dc4nkbnkg/image/upload/guardian_gem.gif" 
-            alt="The Arcane Guardian" 
-            className="w-12 h-12 object-contain drop-shadow-[0_0_12px_rgba(245,158,11,0.9)] animate-pulse"
+            src="/images/miracle/items/ceremonial_ankh.gif" 
+            alt="Ceremonial Ankh" 
+            className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(245,158,11,0.8)]"
           />
         </div>
 
-        <h1 className="text-3xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-medieval-gold to-yellow-500 uppercase tracking-tighter mb-3 flex items-center justify-center gap-3">
+        <h1 className="text-2xl sm:text-4xl font-black text-medieval-gold uppercase tracking-tighter mb-2">
           {language === 'pt' ? 'Duração: The Arcane Guardian' : 'Duration: The Arcane Guardian'}
         </h1>
 
-        <p className="text-medieval-gold/90 font-mono text-xs sm:text-sm max-w-3xl mx-auto leading-relaxed">
+        <p className="text-stone-300 font-sans text-xs sm:text-sm max-w-2xl mx-auto leading-relaxed">
           {language === 'pt' 
-            ? 'Calcule o tempo líquido real de caça em batalha (battle ativo) da sua bless protetora de atributos, considerando a taxa de aceleração de 10% por atributo encantado.'
-            : 'Calculate the true net hunt duration (active battle) of your attribute protection bless, considering the 10% acceleration rate per enchanted attribute.'}
+            ? 'Tempo líquido real de caça em batalha (battle ativo) da bless protetora de atributos, considerando a taxa de aceleração de 10% por atributo encantado.'
+            : 'True net battle hunt duration of the attribute protection bless, considering the 10% acceleration rate per enchanted attribute.'}
         </p>
-
-        {/* Badges Rápidas */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-4 pt-4 border-t border-medieval-gold/20 text-[11px] font-mono">
-          <span className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold">
-            {language === 'pt' ? 'Base: 7 Dias (168h nominais)' : 'Base: 7 Days (168h nominal)'}
-          </span>
-          <span className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold">
-            {language === 'pt' ? 'Acelera 10% por Atributo (+10%/attr)' : 'Burns 10% Faster per Attribute'}
-          </span>
-          <span className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold">
-            {language === 'pt' ? 'Consumo Apenas em Battle' : 'Drains Only in Battle'}
-          </span>
-        </div>
       </header>
 
-      {/* Grid de Configurações / Entradas */}
+      {/* Grid Principal: Entradas & Resultados Diretos */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         
-        {/* Painel Esquerdo: Controles Principais */}
-        <div className="lg:col-span-7 space-y-6">
-          <div className="medieval-card p-6 sm:p-7 space-y-6 border-2 border-medieval-gold/30 bg-black/85 shadow-[0_0_25px_rgba(0,0,0,0.8)]">
+        {/* Painel Esquerdo: Controles Diretos */}
+        <div className="lg:col-span-7 space-y-5">
+          <div className="medieval-card p-5 sm:p-6 space-y-5 border border-medieval-gold/30 bg-black/85 shadow-lg">
             
             {/* Seção 1: Quantidade de Atributos com Digitação Direta + Steppers + Slider */}
-            <div className="space-y-4 pb-6 border-b border-medieval-gold/20">
+            <div className="space-y-3 pb-5 border-b border-medieval-gold/20">
               <div className="flex items-center justify-between flex-wrap gap-2">
                 <label className="text-xs font-black uppercase tracking-wider text-medieval-gold">
                   {language === 'pt' ? 'Total de Atributos no Set' : 'Total Set Attributes'}
                 </label>
 
                 {/* Caixa de Digitação Direta com Botões + e - */}
-                <div className="flex items-center gap-1.5 bg-black/80 p-1 rounded-lg border border-amber-500/40 shadow-inner">
+                <div className="flex items-center gap-1.5 bg-black/80 p-1 rounded-lg border border-amber-500/40">
                   <button
                     type="button"
                     onClick={() => handleAttributesChange(attributesCount - 1)}
                     disabled={attributesCount <= 0}
-                    className="w-8 h-8 flex items-center justify-center rounded bg-zinc-800 hover:bg-amber-600 disabled:opacity-30 disabled:hover:bg-zinc-800 text-white font-bold cursor-pointer transition-colors"
-                    title="Diminuir 1 atributo"
+                    className="w-7 h-7 flex items-center justify-center rounded bg-zinc-800 hover:bg-amber-600 disabled:opacity-30 disabled:hover:bg-zinc-800 text-white font-bold cursor-pointer transition-colors"
                   >
                     -
                   </button>
 
-                  <div className="relative flex items-center">
-                    <input
-                      type="number"
-                      min="0"
-                      max="60"
-                      value={attributesCount}
-                      onChange={(e) => handleAttributesChange(parseInt(e.target.value) || 0)}
-                      className="w-16 h-8 bg-zinc-900 border border-amber-500/50 text-amber-400 font-mono font-black text-lg text-center rounded outline-none focus:ring-2 focus:ring-amber-500"
-                    />
-                  </div>
+                  <input
+                    type="number"
+                    min="0"
+                    max="60"
+                    value={attributesCount}
+                    onChange={(e) => handleAttributesChange(parseInt(e.target.value) || 0)}
+                    className="w-14 h-7 bg-zinc-900 border border-amber-500/50 text-amber-400 font-mono font-black text-base text-center rounded outline-none focus:ring-1 focus:ring-amber-500"
+                  />
 
                   <button
                     type="button"
                     onClick={() => handleAttributesChange(attributesCount + 1)}
                     disabled={attributesCount >= 60}
-                    className="w-8 h-8 flex items-center justify-center rounded bg-zinc-800 hover:bg-amber-600 disabled:opacity-30 disabled:hover:bg-zinc-800 text-white font-bold cursor-pointer transition-colors"
-                    title="Aumentar 1 atributo"
+                    className="w-7 h-7 flex items-center justify-center rounded bg-zinc-800 hover:bg-amber-600 disabled:opacity-30 disabled:hover:bg-zinc-800 text-white font-bold cursor-pointer transition-colors"
                   >
                     +
                   </button>
 
-                  <span className="text-[11px] text-zinc-400 font-mono uppercase px-2">
-                    {language === 'pt' ? 'attrs' : 'attrs'}
+                  <span className="text-[11px] text-zinc-400 font-mono uppercase px-1.5">
+                    attrs
                   </span>
                 </div>
               </div>
 
-              {/* Slider de Precisão com visual estilizado */}
-              <div className="space-y-1.5 pt-1">
-                <div className="relative">
-                  <input
-                    type="range"
-                    min="0"
-                    max="40"
-                    step="1"
-                    value={attributesCount}
-                    onChange={(e) => handleAttributesChange(parseInt(e.target.value) || 0)}
-                    className="w-full accent-amber-500 cursor-pointer h-2.5 bg-zinc-900 rounded-lg appearance-none border border-medieval-gold/30 hover:border-amber-400 transition-colors"
-                  />
-                </div>
+              {/* Slider de Precisão */}
+              <div className="space-y-1">
+                <input
+                  type="range"
+                  min="0"
+                  max="40"
+                  step="1"
+                  value={attributesCount}
+                  onChange={(e) => handleAttributesChange(parseInt(e.target.value) || 0)}
+                  className="w-full accent-amber-500 cursor-pointer h-2 bg-zinc-900 rounded-lg appearance-none border border-medieval-gold/30 hover:border-amber-400 transition-colors"
+                />
                 <div className="flex justify-between text-[10px] text-zinc-400 font-mono">
-                  <span>0 (Sem atributos)</span>
-                  <span>10 (Média)</span>
-                  <span>20 (Intermediário)</span>
-                  <span>30 (Avançado)</span>
-                  <span>40+ (Endgame)</span>
+                  <span>0</span>
+                  <span>10</span>
+                  <span>20</span>
+                  <span>30</span>
+                  <span>40+</span>
                 </div>
               </div>
 
               {/* Chips Rápidos de Seleção */}
-              <div className="space-y-1.5 pt-1">
-                <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider block">
-                  {language === 'pt' ? 'Atalhos Rápidos:' : 'Quick Shortcuts:'}
-                </span>
-                <div className="flex flex-wrap gap-1.5">
-                  {[0, 2, 5, 8, 10, 12, 15, 20, 25, 30, 35, 40].map(val => (
-                    <button
-                      key={val}
-                      type="button"
-                      onClick={() => handleAttributesChange(val)}
-                      className={`text-xs font-mono font-bold px-2.5 py-1 rounded-md transition-all cursor-pointer ${
-                        attributesCount === val
-                          ? 'bg-gradient-to-r from-amber-500 to-yellow-500 text-black shadow-[0_0_12px_rgba(245,158,11,0.6)] scale-105 border border-yellow-300'
-                          : 'bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-700/70 hover:border-amber-500/50'
-                      }`}
-                    >
-                      {val}
-                    </button>
-                  ))}
-                </div>
+              <div className="flex flex-wrap gap-1.5 pt-1">
+                {[0, 2, 5, 8, 10, 12, 15, 20, 25, 30, 35, 40].map(val => (
+                  <button
+                    key={val}
+                    type="button"
+                    onClick={() => handleAttributesChange(val)}
+                    className={`text-xs font-mono font-bold px-2 py-0.5 rounded transition-all cursor-pointer ${
+                      attributesCount === val
+                        ? 'bg-amber-500 text-black shadow-sm font-black border border-yellow-300'
+                        : 'bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-700/60'
+                    }`}
+                  >
+                    {val}
+                  </button>
+                ))}
               </div>
 
-              {/* Burn Meter Visual: Intensidade de Queima */}
+              {/* Burn Meter Visual: 100% PURE TEXT */}
               <div className="p-3 bg-zinc-950/80 rounded-xl border border-zinc-800 flex items-center justify-between gap-3">
-                <div className="flex items-center gap-2.5">
-                  <Flame className={`w-5 h-5 ${burnIntensity.color} animate-pulse`} />
-                  <div>
-                    <div className="text-[11px] font-bold text-white uppercase tracking-wider">
-                      {language === 'pt' ? 'Intensidade de Queima' : 'Burn Intensity'}
-                    </div>
-                    <div className="text-[10px] text-zinc-400 font-mono">
-                      {speedMultiplier.toFixed(1)}x {language === 'pt' ? 'velocidade de consumo' : 'consumption speed'} (+{attributesCount * 10}%)
-                    </div>
+                <div>
+                  <div className="text-[11px] font-bold text-white uppercase tracking-wider">
+                    {language === 'pt' ? 'Intensidade de Queima' : 'Burn Intensity'}
+                  </div>
+                  <div className="text-[10px] text-zinc-400 font-mono">
+                    {speedMultiplier.toFixed(1)}x {language === 'pt' ? 'velocidade de consumo' : 'consumption speed'} (+{attributesCount * 10}%)
                   </div>
                 </div>
-                <span className={`text-xs font-black font-mono px-2.5 py-1 rounded border border-current/30 ${burnIntensity.color} bg-black/60 ${burnIntensity.glow}`}>
+                <span className={`text-xs font-black font-mono px-2.5 py-1 rounded border border-current/30 ${burnIntensity.color} bg-black/60`}>
                   {burnIntensity.label}
                 </span>
               </div>
             </div>
 
-            {/* Seção 2: Tempo Mostrado no Jogo (Travado em 7 dias base com ajuste fino) */}
-            <div className="space-y-3 pb-6 border-b border-medieval-gold/20">
+            {/* Seção 2: Tempo Mostrado no Jogo */}
+            <div className="space-y-3 pb-5 border-b border-medieval-gold/20">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-black uppercase tracking-wider text-medieval-gold">
                   {language === 'pt' ? 'Tempo Restante no Item (Mostrado no Jogo)' : 'Time Remaining on Item (Shown in Game)'}
@@ -330,8 +293,7 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
                 <button
                   type="button"
                   onClick={handleResetToFull}
-                  className="text-[11px] font-bold text-amber-400/90 hover:text-amber-300 cursor-pointer bg-amber-950/40 hover:bg-amber-900/50 px-2.5 py-1 rounded-md border border-amber-600/30 transition-all hover:scale-105"
-                  title="Restaurar para 7 dias inteiros"
+                  className="text-[11px] font-bold text-amber-400/90 hover:text-amber-300 cursor-pointer bg-amber-950/40 hover:bg-amber-900/50 px-2.5 py-1 rounded-md border border-amber-600/30 transition-all"
                 >
                   {language === 'pt' ? 'Resetar (7 Dias)' : 'Reset (7 Days)'}
                 </button>
@@ -346,7 +308,7 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
                     max={BASE_DAYS}
                     value={daysRemaining}
                     onChange={(e) => setDaysRemaining(Math.max(0, Math.min(BASE_DAYS, parseInt(e.target.value) || 0)))}
-                    className="bg-black/80 border border-zinc-700 text-white font-mono font-bold text-base rounded-lg px-3 py-2 outline-none focus:border-amber-500 text-center"
+                    className="bg-black/80 border border-zinc-700 text-white font-mono font-bold text-sm rounded-lg px-2 py-1.5 outline-none focus:border-amber-500 text-center"
                   />
                 </div>
                 <div className="flex flex-col gap-1">
@@ -357,7 +319,7 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
                     max="23"
                     value={hoursRemaining}
                     onChange={(e) => setHoursRemaining(Math.max(0, Math.min(23, parseInt(e.target.value) || 0)))}
-                    className="bg-black/80 border border-zinc-700 text-white font-mono font-bold text-base rounded-lg px-3 py-2 outline-none focus:border-amber-500 text-center"
+                    className="bg-black/80 border border-zinc-700 text-white font-mono font-bold text-sm rounded-lg px-2 py-1.5 outline-none focus:border-amber-500 text-center"
                   />
                 </div>
                 <div className="flex flex-col gap-1">
@@ -368,19 +330,19 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
                     max="59"
                     value={minutesRemaining}
                     onChange={(e) => setMinutesRemaining(Math.max(0, Math.min(59, parseInt(e.target.value) || 0)))}
-                    className="bg-black/80 border border-zinc-700 text-white font-mono font-bold text-base rounded-lg px-3 py-2 outline-none focus:border-amber-500 text-center"
+                    className="bg-black/80 border border-zinc-700 text-white font-mono font-bold text-sm rounded-lg px-2 py-1.5 outline-none focus:border-amber-500 text-center"
                   />
                 </div>
               </div>
 
               <div className="text-right text-[11px] font-mono text-zinc-400">
-                {language === 'pt' ? 'Tempo nominal restante:' : 'Nominal time left:'} <span className="text-medieval-gold font-bold">{(nominalMinutes / 60).toFixed(1)} horas</span> ({nominalMinutes.toLocaleString('pt-BR')} min)
+                {language === 'pt' ? 'Tempo nominal restante:' : 'Nominal time left:'} <span className="text-medieval-gold font-bold">{(nominalMinutes / 60).toFixed(1)}h</span> ({nominalMinutes.toLocaleString('pt-BR')} min)
               </div>
             </div>
 
-            {/* Seção 3: Informações do Personagem e Rotina de Jogo */}
+            {/* Seção 3: Informações do Personagem e Rotina */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-1">
                 <label className="text-xs font-bold uppercase tracking-wider text-medieval-gold">
                   {language === 'pt' ? 'Level do Personagem' : 'Character Level'}
                 </label>
@@ -390,15 +352,15 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
                   max="1000"
                   value={characterLevel}
                   onChange={(e) => setCharacterLevel(Math.max(1, parseInt(e.target.value) || 1))}
-                  className="bg-black/80 border border-zinc-700 text-white font-mono font-bold text-sm rounded-lg px-3 py-2 outline-none focus:border-amber-500"
+                  className="bg-black/80 border border-zinc-700 text-white font-mono font-bold text-sm rounded-lg px-3 py-1.5 outline-none focus:border-amber-500"
                   placeholder="Ex: 100"
                 />
                 <span className="text-[10px] text-zinc-500 font-mono">
-                  {language === 'pt' ? 'Fórmula oficial: 200 gp × Level' : 'Official formula: 200 gp × Level'}
+                  {language === 'pt' ? 'Fórmula: 200 gp × Level' : 'Formula: 200 gp × Level'}
                 </span>
               </div>
 
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-1">
                 <label className="text-xs font-bold uppercase tracking-wider text-medieval-gold">
                   {language === 'pt' ? 'Horas de Hunt / Dia' : 'Hunt Hours / Day'}
                 </label>
@@ -410,7 +372,7 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
                     step="0.5"
                     value={hoursPerDay}
                     onChange={(e) => setHoursPerDay(Math.max(0.1, parseFloat(e.target.value) || 1))}
-                    className="bg-black/80 border border-zinc-700 text-white font-mono font-bold text-sm rounded-lg px-3 py-2 outline-none focus:border-amber-500 w-24 text-center"
+                    className="bg-black/80 border border-zinc-700 text-white font-mono font-bold text-sm rounded-lg px-2 py-1.5 outline-none focus:border-amber-500 w-20 text-center"
                   />
                   <div className="flex gap-1">
                     {[1, 2, 3, 4].map(h => (
@@ -418,7 +380,7 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
                         key={h}
                         type="button"
                         onClick={() => setHoursPerDay(h)}
-                        className={`text-[11px] font-mono px-2 py-1.5 rounded transition-all cursor-pointer ${
+                        className={`text-[11px] font-mono px-2 py-1 rounded transition-all cursor-pointer ${
                           hoursPerDay === h ? 'bg-amber-500 text-black font-bold' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'
                         }`}
                       >
@@ -428,7 +390,7 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
                   </div>
                 </div>
                 <span className="text-[10px] text-zinc-500 font-mono">
-                  {language === 'pt' ? 'Tempo ativo com battle aceso' : 'Active time with battle sign'}
+                  {language === 'pt' ? 'Com battle ativo' : 'With active battle'}
                 </span>
               </div>
             </div>
@@ -436,38 +398,35 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
           </div>
         </div>
 
-        {/* Painel Direito: Card Épico de Resultados */}
-        <div className="lg:col-span-5 space-y-6">
+        {/* Painel Direito: Card de Resultados Principal */}
+        <div className="lg:col-span-5 space-y-4">
           
-          {/* Card Principal: Tempo Real */}
-          <div className="medieval-card p-6 sm:p-7 relative overflow-hidden bg-gradient-to-b from-black/95 via-zinc-950 to-black border-2 border-medieval-gold/50 shadow-[0_0_35px_rgba(245,158,11,0.2)]">
-            <div className="absolute top-0 right-0 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-
-            <div className="flex items-center justify-between pb-4 border-b border-medieval-gold/20">
+          <div className="medieval-card p-6 relative overflow-hidden bg-gradient-to-b from-black/95 via-zinc-950 to-black border-2 border-medieval-gold/50 shadow-[0_0_30px_rgba(245,158,11,0.15)]">
+            <div className="flex items-center justify-between pb-3 border-b border-medieval-gold/20">
               <span className="text-xs font-black uppercase tracking-wider text-medieval-gold">
                 {language === 'pt' ? 'Tempo Líquido de Batalha' : 'True Battle Duration'}
               </span>
-              <span className="text-xs font-mono font-bold text-amber-400 bg-amber-950/80 border border-amber-600/50 px-2.5 py-0.5 rounded-full shadow-sm">
+              <span className="text-xs font-mono font-bold text-amber-400 bg-amber-950/80 border border-amber-600/50 px-2 py-0.5 rounded-full">
                 {speedMultiplier.toFixed(1)}x {language === 'pt' ? 'Velocidade' : 'Speed'}
               </span>
             </div>
 
-            {/* Grande Mostrador do Tempo Real */}
-            <div className="my-6 text-center">
-              <div className="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-yellow-500 font-mono tracking-tight drop-shadow-[0_4px_12px_rgba(245,158,11,0.3)]">
+            {/* Mostrador Principal de Tempo */}
+            <div className="my-5 text-center">
+              <div className="text-4xl sm:text-5xl font-black text-medieval-gold font-mono tracking-tight">
                 {realTimeBreakdown.days > 0 && <span>{realTimeBreakdown.days}d </span>}
                 <span>{realTimeBreakdown.hours}h {realTimeBreakdown.minutes}m</span>
               </div>
-              <div className="text-sm font-mono text-zinc-300 mt-2 font-bold flex items-center justify-center gap-2">
-                <span>{realTimeBreakdown.totalHours} {language === 'pt' ? 'horas de caça pura (battle ativo)' : 'hours of pure hunt (battle active)'}</span>
+              <div className="text-sm font-mono text-zinc-300 mt-2 font-bold">
+                {realTimeBreakdown.totalHours} {language === 'pt' ? 'horas de caça pura (battle ativo)' : 'hours of pure hunt (battle active)'}
               </div>
               <div className="text-xs text-zinc-400 font-mono mt-1">
                 {((nominalMinutes > 0 ? (realBattleMinutes / nominalMinutes) * 100 : 0)).toFixed(1)}% {language === 'pt' ? 'do tempo nominal total' : 'of nominal total time'}
               </div>
             </div>
 
-            {/* Duração no Calendário Real */}
-            <div className="p-3.5 bg-black/80 rounded-xl border border-medieval-gold/30 flex items-center justify-between gap-3 shadow-inner">
+            {/* Duração no Calendário */}
+            <div className="p-3 bg-black/80 rounded-xl border border-medieval-gold/30 flex items-center justify-between gap-3 mb-4">
               <div>
                 <div className="text-[11px] font-bold text-white uppercase tracking-wide">
                   {language === 'pt' ? 'Duração no Calendário' : 'Calendar Duration'}
@@ -483,8 +442,8 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
               </div>
             </div>
 
-            {/* Custo da Bless & Custo por Hora de Hunt */}
-            <div className="mt-4 pt-4 border-t border-medieval-gold/20 space-y-2.5">
+            {/* Custo da Bless & Custo por Hora */}
+            <div className="pt-3 border-t border-medieval-gold/20 space-y-2">
               <div className="flex items-center justify-between text-xs">
                 <span className="text-zinc-400">{language === 'pt' ? 'Custo da Bless (Level ' + characterLevel + '):' : 'Bless Cost (Level ' + characterLevel + '):'}</span>
                 <div>{renderCoins(blessCost)}</div>
@@ -499,109 +458,116 @@ export const ArcaneGuardianCalculator: React.FC<ArcaneGuardianCalculatorProps> =
 
           </div>
 
-          {/* Dica Prática de Jogo */}
-          <div className="p-4 bg-amber-950/30 border border-amber-600/40 rounded-xl space-y-1 shadow-md text-xs text-zinc-300 leading-relaxed">
-            <strong className="text-amber-300 block">{language === 'pt' ? 'Dica de Economia:' : 'Saving Tip:'}</strong>
-            <p>
-              {language === 'pt'
-                ? 'Como o tempo da bless só queima enquanto você tiver o símbolo de combate (swords/pzk), desequipar anéis, amuletos e itens com atributos enquanto estiver treinando skills ou em Protection Zone (PZ) evita o desgaste acelerado da sua proteção!'
-                : 'Since the bless timer only drains while combat swords are active, unequipping rings, amulets and gear with attributes while skill training or in PZ prevents burning your protection quickly!'}
-            </p>
-          </div>
+          {/* Botão para Expandir / Recolher Fórmulas e Tabela */}
+          <button
+            type="button"
+            onClick={() => setShowDetails(!showDetails)}
+            className="w-full py-2.5 px-4 rounded-xl border border-medieval-gold/40 bg-black/70 hover:bg-medieval-gold/10 text-medieval-gold font-bold text-xs uppercase tracking-wider transition-all cursor-pointer text-center"
+          >
+            {showDetails
+              ? (language === 'pt' ? 'Ocultar Fórmulas e Tabela Comparativa' : 'Hide Formulas & Comparison Table')
+              : (language === 'pt' ? 'Ver Fórmulas e Tabela Comparativa' : 'View Formulas & Comparison Table')}
+          </button>
 
         </div>
 
       </div>
 
-      {/* Régua / Tabela Comparativa de Atributos */}
-      <div className="medieval-card p-6 sm:p-7 space-y-4 border-2 border-medieval-gold/30 bg-black/85">
-        <div className="flex items-center justify-between flex-wrap gap-2">
-          <h3 className="text-sm font-black uppercase tracking-wider text-medieval-gold">
-            {language === 'pt' ? 'Tabela Comparativa de Consumo por Atributos' : 'Attribute Consumption Comparison Table'}
-          </h3>
-          <span className="text-xs font-mono text-zinc-400">
-            {language === 'pt' ? `Base: ${(nominalMinutes / 60).toFixed(0)}h nominais | ${hoursPerDay}h hunt/dia` : `Base: ${(nominalMinutes / 60).toFixed(0)}h nominal | ${hoursPerDay}h hunt/day`}
-          </span>
-        </div>
+      {/* Seção Expansível: Tabela Comparativa e Regras Oficiais */}
+      {showDetails && (
+        <div className="space-y-6 pt-2 animate-fade-in">
+          {/* Tabela Comparativa */}
+          <div className="medieval-card p-5 sm:p-6 space-y-4 border border-medieval-gold/30 bg-black/85">
+            <div className="flex items-center justify-between flex-wrap gap-2">
+              <h3 className="text-sm font-black uppercase tracking-wider text-medieval-gold">
+                {language === 'pt' ? 'Tabela Comparativa de Consumo por Atributos' : 'Attribute Consumption Comparison Table'}
+              </h3>
+              <span className="text-xs font-mono text-zinc-400">
+                {language === 'pt' ? `Base: ${(nominalMinutes / 60).toFixed(0)}h nominais | ${hoursPerDay}h hunt/dia` : `Base: ${(nominalMinutes / 60).toFixed(0)}h nominal | ${hoursPerDay}h hunt/day`}
+              </span>
+            </div>
 
-        <div className="overflow-x-auto custom-scrollbar">
-          <table className="w-full text-left border-collapse text-xs">
-            <thead>
-              <tr className="border-b border-medieval-gold/30 bg-black/60 text-medieval-gold font-bold uppercase tracking-wider text-[10px]">
-                <th className="py-2.5 px-3">{language === 'pt' ? 'Atributos' : 'Attributes'}</th>
-                <th className="py-2.5 px-3">{language === 'pt' ? 'Velocidade' : 'Speed'}</th>
-                <th className="py-2.5 px-3">{language === 'pt' ? 'Tempo Real (Hunt)' : 'True Time (Hunt)'}</th>
-                <th className="py-2.5 px-3">{language === 'pt' ? '% Duração' : '% Duration'}</th>
-                <th className="py-2.5 px-3">{language === 'pt' ? `Dias no Calendário (${hoursPerDay}h/d)` : `Calendar Days (${hoursPerDay}h/d)`}</th>
-                <th className="py-2.5 px-3 text-right">{language === 'pt' ? 'Custo / Hora' : 'Cost / Hour'}</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-zinc-800/60 font-mono">
-              {comparisonList.map((row) => (
-                <tr
-                  key={row.attrs}
-                  onClick={() => handleAttributesChange(row.attrs)}
-                  className={`transition-colors cursor-pointer ${
-                    row.isSelected 
-                      ? 'bg-amber-500/20 text-white font-bold border-l-4 border-l-amber-500' 
-                      : 'hover:bg-zinc-800/50 text-zinc-300'
-                  }`}
-                >
-                  <td className="py-2 px-3 flex items-center gap-1.5">
-                    {row.isSelected && <span className="text-amber-400">▶</span>}
-                    <span className={row.isSelected ? 'text-amber-300 font-bold' : ''}>{row.attrs} {language === 'pt' ? 'atributos' : 'attrs'}</span>
-                  </td>
-                  <td className="py-2 px-3 text-amber-300 font-bold">
-                    {row.speed} <span className="text-[10px] text-zinc-500">({row.speedPercent})</span>
-                  </td>
-                  <td className="py-2 px-3 font-bold text-white">
-                    {row.realHours}h
-                  </td>
-                  <td className="py-2 px-3 text-zinc-400">
-                    {row.pct}
-                  </td>
-                  <td className="py-2 px-3 text-amber-200">
-                    ~{row.calDays} {language === 'pt' ? 'dias' : 'days'}
-                  </td>
-                  <td className="py-2 px-3 text-right text-zinc-300">
-                    {row.cpHour.toLocaleString('pt-BR')} gp/h
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="text-[10px] text-zinc-500 text-center italic">
-          {language === 'pt' 
-            ? 'Clique em qualquer linha da tabela para selecionar instantaneamente aquela quantidade de atributos.' 
-            : 'Click on any row in the table to instantly select that amount of attributes.'}
-        </p>
-      </div>
-
-      {/* Regras e Informações Oficiais do Jogo */}
-      <div className="p-6 bg-black/70 rounded-xl border border-medieval-gold/20 space-y-3">
-        <h4 className="text-xs font-black uppercase tracking-wider text-medieval-gold">
-          {language === 'pt' ? 'Como Funciona o Arcane Guardian' : 'How The Arcane Guardian Works'}
-        </h4>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-zinc-300 leading-relaxed">
-          <div className="space-y-2">
-            <p>
-              • <strong className="text-amber-300">{language === 'pt' ? 'Proteção Exclusiva de Atributos:' : 'Exclusive Attribute Protection:'}</strong> {language === 'pt' ? 'Diferente das outras 5 blesses tradicionais que protegem experiência e skills, o Arcane Guardian impede que seus itens percam os atributos encantados em caso de morte.' : 'Unlike traditional blesses that protect XP and skills, Arcane Guardian prevents your items from losing enchanted attributes upon death.'}
-            </p>
-            <p>
-              • <strong className="text-amber-300">{language === 'pt' ? 'Contagem Apenas em Batalha:' : 'Countdown in Battle Only:'}</strong> {language === 'pt' ? 'O tempo do item é consumido exclusivamente enquanto você estiver em combate com o símbolo de batalha ativo (swords/pzk). Em Protection Zone (PZ) ou parado sem battle, o tempo fica pausado.' : 'The item timer only decreases while in combat with active battle sign (swords/pzk). Inside PZ or idling without battle, the timer is paused.'}
+            <div className="overflow-x-auto custom-scrollbar">
+              <table className="w-full text-left border-collapse text-xs">
+                <thead>
+                  <tr className="border-b border-medieval-gold/30 bg-black/60 text-medieval-gold font-bold uppercase tracking-wider text-[10px]">
+                    <th className="py-2.5 px-3">{language === 'pt' ? 'Atributos' : 'Attributes'}</th>
+                    <th className="py-2.5 px-3">{language === 'pt' ? 'Velocidade' : 'Speed'}</th>
+                    <th className="py-2.5 px-3">{language === 'pt' ? 'Tempo Real (Hunt)' : 'True Time (Hunt)'}</th>
+                    <th className="py-2.5 px-3">{language === 'pt' ? '% Duração' : '% Duration'}</th>
+                    <th className="py-2.5 px-3">{language === 'pt' ? `Dias no Calendário (${hoursPerDay}h/d)` : `Calendar Days (${hoursPerDay}h/d)`}</th>
+                    <th className="py-2.5 px-3 text-right">{language === 'pt' ? 'Custo / Hora' : 'Cost / Hour'}</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-zinc-800/60 font-mono">
+                  {comparisonList.map((row) => (
+                    <tr
+                      key={row.attrs}
+                      onClick={() => handleAttributesChange(row.attrs)}
+                      className={`transition-colors cursor-pointer ${
+                        row.isSelected 
+                          ? 'bg-amber-500/20 text-white font-bold border-l-4 border-l-amber-500' 
+                          : 'hover:bg-zinc-800/50 text-zinc-300'
+                      }`}
+                    >
+                      <td className="py-2 px-3">
+                        <span className={row.isSelected ? 'text-amber-300 font-bold' : ''}>{row.attrs} {language === 'pt' ? 'atributos' : 'attrs'}</span>
+                      </td>
+                      <td className="py-2 px-3 text-amber-300 font-bold">
+                        {row.speed} <span className="text-[10px] text-zinc-500">({row.speedPercent})</span>
+                      </td>
+                      <td className="py-2 px-3 font-bold text-white">
+                        {row.realHours}h
+                      </td>
+                      <td className="py-2 px-3 text-zinc-400">
+                        {row.pct}
+                      </td>
+                      <td className="py-2 px-3 text-amber-200">
+                        ~{row.calDays} {language === 'pt' ? 'dias' : 'days'}
+                      </td>
+                      <td className="py-2 px-3 text-right text-zinc-300">
+                        {row.cpHour.toLocaleString('pt-BR')} gp/h
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-[10px] text-zinc-500 text-center italic">
+              {language === 'pt' 
+                ? 'Clique em qualquer linha da tabela para selecionar instantaneamente aquela quantidade de atributos.' 
+                : 'Click on any row in the table to instantly select that amount of attributes.'}
             </p>
           </div>
-          <div className="space-y-2">
-            <p>
-              • <strong className="text-amber-300">{language === 'pt' ? 'Regra de 10% por Atributo:' : '10% Faster per Attribute:'}</strong> {language === 'pt' ? 'A cada atributo que você tiver nos equipamentos do inventário, o consumo fica 10% mais rápido (+10% na taxa de queima). 10 atributos dobram a velocidade de consumo (2x).' : 'For each enchanted attribute on your equipped gear, consumption is 10% faster. 10 attributes doubles the burn rate (2x).'}
-            </p>
-            <p>
-              • <strong className="text-amber-300">{language === 'pt' ? 'Onde Comprar:' : 'Where to Buy:'}</strong> {language === 'pt' ? 'Disponível com Humphrey em Carlin ou com Eremo em Edron pelo custo de 200 gp × Level do seu personagem.' : 'Available from Humphrey in Carlin or Eremo in Edron for 200 gp × Character Level.'}
-            </p>
+
+          {/* Regras Oficiais */}
+          <div className="p-5 bg-black/70 rounded-xl border border-medieval-gold/20 space-y-3">
+            <h4 className="text-xs font-black uppercase tracking-wider text-medieval-gold">
+              {language === 'pt' ? 'Regras Oficiais do Arcane Guardian' : 'Official Arcane Guardian Rules'}
+            </h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-stone-300 leading-relaxed">
+              <div className="space-y-2">
+                <p>
+                  • <strong className="text-amber-300">{language === 'pt' ? 'Proteção Exclusiva de Atributos:' : 'Exclusive Attribute Protection:'}</strong> {language === 'pt' ? 'Impede que seus itens percam os atributos encantados em caso de morte.' : 'Prevents your items from losing enchanted attributes upon death.'}
+                </p>
+                <p>
+                  • <strong className="text-amber-300">{language === 'pt' ? 'Contagem Apenas em Batalha:' : 'Countdown in Battle Only:'}</strong> {language === 'pt' ? 'O tempo é consumido exclusivamente enquanto você estiver em combate com o símbolo de batalha ativo (swords/pzk). Em Protection Zone (PZ) ou sem battle, o tempo fica pausado.' : 'The timer decreases only while in combat with active battle sign (swords/pzk). In PZ or without battle, time is paused.'}
+                </p>
+              </div>
+              <div className="space-y-2">
+                <p>
+                  • <strong className="text-amber-300">{language === 'pt' ? 'Regra de 10% por Atributo:' : '10% Faster per Attribute:'}</strong> {language === 'pt' ? 'A cada atributo nos equipamentos equipados, o consumo fica 10% mais rápido. 10 atributos dobram a velocidade (2x).' : 'For each attribute on equipped gear, consumption is 10% faster. 10 attributes doubles burn speed (2x).'}
+                </p>
+                <p>
+                  • <strong className="text-amber-300">{language === 'pt' ? 'Onde Comprar:' : 'Where to Buy:'}</strong> {language === 'pt' ? 'Disponível com Humphrey em Carlin ou com Eremo em Edron pelo custo de 200 gp × Level do personagem.' : 'Available from Humphrey in Carlin or Eremo in Edron for 200 gp × Character Level.'}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      )}
+
     </div>
   );
 };
+

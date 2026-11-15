@@ -324,7 +324,7 @@ export const AttributeEncoder: React.FC<AttributeEncoderProps> = ({ item, curren
                     <option value="">{t('bm_noAttributeSelected')}</option>
                     {filteredOptions.map(attr => (
                       <option key={attr.id} value={attr.id}>
-                        {attr.name} {isSkillOrMagicObj(attr.id) ? '🛡️' : ''}
+                        {attr.name}
                       </option>
                     ))}
                   </select>

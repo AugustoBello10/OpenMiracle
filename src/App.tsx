@@ -20,7 +20,8 @@ import { PROJECT_PATCH_NOTES, SERVER_PATCH_NOTES } from './data/patchNotes';
 import { LIBRARY_DATA, LibraryEntry } from './data/library';
 import { HELMETS_DATA, EquipmentItem } from './data/items';
 import { ItemImage } from './components/ItemImage';
-import { ALL_BUILD_ITEMS } from './data/buildItems';
+import { ALL_BUILD_ITEMS, ALL_ITEM_IMAGES } from './data/buildItems';
+import { LOCAL_ITEM_IMAGES } from './data/localItemImages';
 import { ALCHEMY_RUNES } from './data/alchemy';
 import { FARMING_TREES } from './data/farming';
 import SkillCalculator from "./components/SkillCalculator";
@@ -30,6 +31,7 @@ import { CraftingCalculator } from './components/CraftingCalculator';
 import { MiningCalculator } from './components/MiningCalculator';
 import { RuneMakingCalculator } from './components/RuneMakingCalculator';
 import { ArcaneGuardianCalculator } from './components/ArcaneGuardianCalculator';
+import { FishingCalculator } from './components/FishingCalculator';
 import { MapModal } from './components/MapModal';
 const MapViewer = lazy(() => import('./components/MapViewer'));
 import { LootOptimizer } from './components/LootOptimizer';
@@ -143,11 +145,19 @@ export default function App() {
     return 'home';
   };
 
+  const VALID_ITEM_CATEGORIES = [
+    'swords', 'axes', 'clubs', 'distance', 'quivers', 'ammunition',
+    'helmets', 'armors', 'legs', 'boots', 'shields',
+    'amulets', 'rings', 'relics', 'training',
+    'runes', 'tools', 'foods', 'containers', 'valuables'
+  ];
+
   const getInitialCalcSubTab = () => {
     const path = typeof window !== 'undefined' ? window.location.pathname : '/';
     if (path.includes('/runas')) return 'runemaking';
     if (path.includes('/bless')) return 'bless';
     if (path.includes('/arcane-guardian')) return 'arcane-guardian';
+    if (path.includes('/fishing')) return 'fishing';
     if (path.includes('/atributos')) return 'atributos';
     if (path.includes('/profissoes')) return 'professions';
     return 'skills';
@@ -194,20 +204,20 @@ export default function App() {
     if (path.includes('/itens/')) {
       const parts = path.split('/');
       const last = parts[parts.length - 1];
-      if (['helmets', 'armors', 'legs', 'boots', 'shields', 'swords', 'clubs', 'axes', 'distance', 'ammo', 'rings', 'amulets', 'reliquias'].includes(last)) {
+      if (VALID_ITEM_CATEGORIES.includes(last)) {
          return last as any;
       }
     }
-    return 'helmets';
+    return 'swords';
   };
 
   const [activeTab, setActiveTab] = useState<Tab>(getInitialTab);
-  const [calcSubTab, setCalcSubTab] = useState<'skills' | 'bless' | 'arcane-guardian' | 'atributos' | 'professions' | 'runemaking'>(getInitialCalcSubTab);
+  const [calcSubTab, setCalcSubTab] = useState<'skills' | 'bless' | 'arcane-guardian' | 'atributos' | 'professions' | 'runemaking' | 'fishing'>(getInitialCalcSubTab);
   const [profSubTab, setProfSubTab] = useState<'crafting' | 'alchemy' | 'farming' | 'mining'>(getInitialProfSubTab);
   const [profGuideSubTab, setProfGuideSubTab] = useState<string | null>(getInitialProfGuideSubTab);
   const [wikiSubTab, setWikiSubTab] = useState<'server' | 'project'>(getInitialWikiSubTab);
   const [wikiMainTab, setWikiMainTab] = useState<'home' | 'updates' | 'library' | 'items' | 'profissoes' | 'cyclopedia' | 'custom_systems'>(getInitialWikiMainTab);
-  const [itemsSubTab, setItemsSubTab] = useState<'helmets' | 'armors' | 'legs' | 'boots' | 'shields' | 'swords' | 'clubs' | 'axes' | 'distance' | 'ammo' | 'rings' | 'amulets' | 'reliquias'>(getInitialItemsSubTab);
+  const [itemsSubTab, setItemsSubTab] = useState<string>(getInitialItemsSubTab);
   const [isLetterModalOpen, setIsLetterModalOpen] = useState(false);
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
 
@@ -289,6 +299,7 @@ export default function App() {
       else if (path.includes('/skills')) setCalcSubTab('skills');
       else if (path.includes('/bless')) setCalcSubTab('bless');
       else if (path.includes('/arcane-guardian')) setCalcSubTab('arcane-guardian');
+      else if (path.includes('/fishing')) setCalcSubTab('fishing');
       else if (path.includes('/atributos')) setCalcSubTab('atributos');
       else if (path.includes('/profissoes')) {
         setCalcSubTab('professions');
@@ -324,8 +335,8 @@ export default function App() {
         setWikiMainTab('items');
         const parts = path.split('/');
         const last = parts[parts.length - 1];
-        if (['helmets', 'armors', 'legs', 'boots', 'shields', 'swords', 'clubs', 'axes', 'distance', 'ammo', 'rings', 'amulets', 'reliquias'].includes(last)) {
-           setItemsSubTab(last as any);
+        if (VALID_ITEM_CATEGORIES.includes(last)) {
+           setItemsSubTab(last);
         }
       }
       else if (path.includes('/sistemas')) setWikiMainTab('custom_systems');
@@ -348,6 +359,7 @@ export default function App() {
       else if (calcSubTab === 'skills') newPath = '/calculadoras/skills';
       else if (calcSubTab === 'bless') newPath = '/calculadoras/bless';
       else if (calcSubTab === 'arcane-guardian') newPath = '/calculadoras/arcane-guardian';
+      else if (calcSubTab === 'fishing') newPath = '/calculadoras/fishing';
       else if (calcSubTab === 'atributos') newPath = '/calculadoras/atributos';
       else if (calcSubTab === 'professions') {
          if (profSubTab === 'crafting') newPath = '/calculadoras/profissoes/crafting';
@@ -1346,7 +1358,7 @@ export default function App() {
                       onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('arcane-guardian'); if(isMobile) setIsMenuOpen(false); }}
                       className={(activeTab === 'calculadoras' && calcSubTab === 'arcane-guardian') ? activeSubmenuClass : inactiveSubmenuClass}
                     >
-                      <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/guardian_gem.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Arcane Guardian" />
+                      <img src="/images/miracle/items/ceremonial_ankh.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Arcane Guardian" />
                       {language === 'pt' ? 'Duração Arcane Guardian' : 'Arcane Guardian Duration'}
                     </button>
                     <button 
@@ -1362,6 +1374,13 @@ export default function App() {
                     >
                       <img src="https://res.cloudinary.com/dc4nkbnkg/image/upload/v1783849035/runemaking.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Runas" />
                       {language === 'pt' ? 'Runemaking' : 'Runemaking'}
+                    </button>
+                    <button 
+                      onClick={() => { setActiveTab('calculadoras'); setCalcSubTab('fishing'); if(isMobile) setIsMenuOpen(false); }}
+                      className={(activeTab === 'calculadoras' && calcSubTab === 'fishing') ? activeSubmenuClass : inactiveSubmenuClass}
+                    >
+                      <img src="/images/miracle/items/mechanical_fishing_rod_7515.gif" className="w-7 h-7 object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" alt="Fishing" />
+                      {language === 'pt' ? 'Pesca (Fishing)' : 'Fishing'}
                     </button>
                   </motion.div>
                 )}
@@ -1888,6 +1907,19 @@ export default function App() {
                     </div>
                   </button>
                   <button
+                    onClick={() => setCalcSubTab('fishing')}
+                    className={`relative overflow-hidden px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs transition-all duration-300 group ${
+                      calcSubTab === 'fishing'
+                        ? 'bg-gradient-to-r from-medieval-gold to-yellow-600 text-black shadow-[0_0_20px_rgba(197,160,89,0.4)] scale-105'
+                        : 'bg-black/60 text-medieval-gold/60 border border-medieval-gold/20 hover:border-medieval-gold/50 hover:bg-medieval-gold/10 hover:text-medieval-gold'
+                    }`}
+                  >
+                    <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="flex items-center gap-2 relative z-10">
+                      {language === 'pt' ? 'Pesca (Fishing)' : 'Fishing'}
+                    </div>
+                  </button>
+                  <button
                     onClick={() => setCalcSubTab('professions')}
                     className={`relative overflow-hidden px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs transition-all duration-300 group ${
                       calcSubTab === 'professions'
@@ -2019,6 +2051,8 @@ export default function App() {
                   <ArcaneGuardianCalculator language={language} t={t} />
                 ) : calcSubTab === 'runemaking' ? (
                   <RuneMakingCalculator t={t} language={language} />
+                ) : calcSubTab === 'fishing' ? (
+                  <FishingCalculator language={language} />
                 ) : (
                   <div className="space-y-8">
                     <header className="text-center mb-12">
@@ -2063,16 +2097,14 @@ export default function App() {
                                </label>
                                <div className="flex gap-4">
                                  <div className="w-16 h-16 bg-black/60 rounded border border-medieval-gold/30 flex items-center justify-center shrink-0 shadow-inner">
-                                   {attrCategory === 'Helmets' ? (
-                                     <img
-                                        src={HELMETS_DATA.find(h => h.name === attrItemName)?.image}
-                                        alt={attrItemName}
-                                       className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]"
-                                       referrerPolicy="no-referrer"
-                                     />
-                                   ) : (
-                                     <Sword className="w-8 h-8 text-medieval-gold/20" />
-                                   )}
+                                    <img
+                                      src={LOCAL_ITEM_IMAGES[attrItemName.toLowerCase().trim()] || ALL_ITEM_IMAGES[attrItemName.toLowerCase().trim()] || HELMETS_DATA.find(h => h.name.toLowerCase() === attrItemName.toLowerCase().trim())?.image || "/images/miracle/items/ceremonial_ankh.gif"}
+                                      alt={attrItemName}
+                                      className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]"
+                                      onError={(e) => {
+                                        (e.currentTarget as HTMLImageElement).src = "/images/miracle/items/ceremonial_ankh.gif";
+                                      }}
+                                    />
                                  </div>
                                  <select
                                    value={attrItemName}
@@ -2628,7 +2660,11 @@ export default function App() {
                       exit={{ opacity: 0, y: -20 }}
                       className="w-full"
                     >
-                      <ItemsWikiView language={language} />
+                      <ItemsWikiView
+                        language={language}
+                        initialCategory={itemsSubTab}
+                        onCategoryChange={(cat) => setItemsSubTab(cat)}
+                      />
                     </motion.div>
                   )}
 
