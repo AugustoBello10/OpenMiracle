@@ -110,14 +110,6 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                   value: t('20.000 gold coins (20k)', '20,000 gold coins (20k)'),
                 },
                 {
-                  label: t('Mestre da Profissão', 'Profession Master'),
-                  value: (
-                    <MapLink poiId="sweaty-cyclops">
-                      A Sweaty Cyclops (Ab'Dendriel)
-                    </MapLink>
-                  ),
-                },
-                {
                   label: t('Ferramenta Obrigatória', 'Required Tool'),
                   value: (
                     <MapLink poiId="iron-hammer-quest">
@@ -125,16 +117,6 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                     </MapLink>
                   ),
                 },
-              ]}
-            />
-
-            <NpcDialog
-              npcName="A Sweaty Cyclops"
-              npcLocation="Ab'Dendriel"
-              lines={[
-                { speaker: 'player', text: 'hi', keyword: 'hi' },
-                { speaker: 'player', text: 'profession', keyword: 'profession' },
-                { speaker: 'player', text: 'yes', keyword: 'yes' },
               ]}
             />
 
@@ -393,27 +375,9 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                   value: t('20.000 gold coins (20k)', '20,000 gold coins (20k)'),
                 },
                 {
-                  label: t('Mestre da Profissão', 'Profession Master'),
-                  value: (
-                    <MapLink poiId="alexander">
-                      Alexander (Edron)
-                    </MapLink>
-                  ),
-                },
-                {
                   label: t('Ferramenta Inicial', 'Starting Tool'),
                   value: t('Gold Converter (500 gps com Alexander)', 'Gold Converter (500 gps with Alexander)'),
                 },
-              ]}
-            />
-
-            <NpcDialog
-              npcName="Alexander"
-              npcLocation="Edron"
-              lines={[
-                { speaker: 'player', text: 'hi', keyword: 'hi' },
-                { speaker: 'player', text: 'profession', keyword: 'profession' },
-                { speaker: 'player', text: 'yes', keyword: 'yes' },
               ]}
             />
 
@@ -599,27 +563,9 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                   value: t('Skill 10 em Mineração (minerando lava holes e pedras básicas)', 'Skill 10 in Mining (mining basic rocks/lava holes)'),
                 },
                 {
-                  label: t('Mestre da Profissão', 'Profession Master'),
-                  value: (
-                    <MapLink poiId="budrik">
-                      Budrik (Dwarf Mines - Kazordoon)
-                    </MapLink>
-                  ),
-                },
-                {
                   label: t('Ferramenta Inicial', 'Starting Tool'),
                   value: t('Pick básica (vendida em qualquer loja de ferramentas)', 'Basic Pick (bought in any tool shop)'),
                 },
-              ]}
-            />
-
-            <NpcDialog
-              npcName="Budrik"
-              npcLocation="Dwarf Mines"
-              lines={[
-                { speaker: 'player', text: 'hi', keyword: 'hi' },
-                { speaker: 'player', text: 'profession', keyword: 'profession' },
-                { speaker: 'player', text: 'yes', keyword: 'yes' },
               ]}
             />
 
@@ -885,16 +831,6 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                   label: t('Ferramentas Básicas', 'Basic Tools'),
                   value: t('Hammer (Martelo), Square (Esquadro) e Counter (Bancada)', 'Hammer, Square, and Counter'),
                 },
-              ]}
-            />
-
-            <NpcDialog
-              npcName="Aldren"
-              npcLocation="Nivandria Lands"
-              lines={[
-                { speaker: 'player', text: 'hi', keyword: 'hi' },
-                { speaker: 'player', text: 'profession', keyword: 'profession' },
-                { speaker: 'player', text: 'yes', keyword: 'yes' },
               ]}
             />
 
@@ -1329,18 +1265,8 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 },
                 {
                   label: t('Item de Consulta', 'Recipe Reference'),
-                  value: t('Cookbook (vendido por Bjorn para checar receitas aprendidas)', 'Cookbook (sold by Bjorn to view known recipes)'),
+                  value: t('Cookbook (livro para checar receitas aprendidas)', 'Cookbook (book to view known recipes)'),
                 },
-              ]}
-            />
-
-            <NpcDialog
-              npcName="Bjorn"
-              npcLocation="Castelo de Thais"
-              lines={[
-                { speaker: 'player', text: 'hi', keyword: 'hi' },
-                { speaker: 'player', text: 'profession', keyword: 'profession' },
-                { speaker: 'player', text: 'yes', keyword: 'yes' },
               ]}
             />
 
@@ -1564,123 +1490,29 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
               <h4 className="text-medieval-gold font-bold mb-2 uppercase text-sm tracking-wider">{t('Índice', 'Table of Contents')}</h4>
               <ul className="flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-4 text-sm">
                 <li><button onClick={() => document.getElementById('farming-intro')?.scrollIntoView({ behavior: 'smooth' })} className="text-medieval-gold/70 hover:text-medieval-gold hover:underline">1. {t('Apresentação', 'Introduction')}</button></li>
-                <li><button onClick={() => document.getElementById('farming-mentors')?.scrollIntoView({ behavior: 'smooth' })} className="text-medieval-gold/70 hover:text-medieval-gold hover:underline">2. {t('Mestres da Fazenda', 'Farm Mentors')}</button></li>
-                <li><button onClick={() => document.getElementById('farming-stages')?.scrollIntoView({ behavior: 'smooth' })} className="text-medieval-gold/70 hover:text-medieval-gold hover:underline">3. {t('Estágios e Cultivo', 'Stages and Cultivation')}</button></li>
-                <li><button onClick={() => document.getElementById('farming-calc-link')?.scrollIntoView({ behavior: 'smooth' })} className="text-medieval-gold/70 hover:text-medieval-gold hover:underline">4. {t('Calculadora de Farming', 'Farming Calculator')}</button></li>
+                <li><button onClick={() => document.getElementById('farming-stages')?.scrollIntoView({ behavior: 'smooth' })} className="text-medieval-gold/70 hover:text-medieval-gold hover:underline">2. {t('Estágios das Plantações', 'Crop Stages')}</button></li>
+                <li><button onClick={() => document.getElementById('farming-calc-link')?.scrollIntoView({ behavior: 'smooth' })} className="text-medieval-gold/70 hover:text-medieval-gold hover:underline">3. {t('Calculadora de Farming', 'Farming Calculator')}</button></li>
               </ul>
             </div>
 
             <p>
               {t(
-                'A profissão de Fazendeiro (Farming) envolve o plantio, irrigação, cultivo e colheita de sementes nos solos agrícolas de Miracle 7.4. Produz grãos essenciais (trigo, cevada, cana-de-açúcar) para a Culinária e ervas mágicas raras para a Alquimia.',
-                'The Farming profession involves planting, watering, cultivating, and harvesting seeds across Miracle 7.4 agricultural soils. It produces vital grains (wheat, barley, sugar cane) for Cooking and rare magical herbs for Alchemy.'
+                'A profissão de Fazendeiro (Farming) envolve o plantio, cultivo e colheita de sementes e mudas para gerar ervas mágicas, grãos e ingredientes em Miracle 7.4.',
+                'The Farming profession involves planting, growing, and harvesting seeds and crops to produce magical herbs, grains, and vital ingredients in Miracle 7.4.'
               )}
             </p>
 
-            <PrerequisitesCard
-              language={language}
-              items={[
-                {
-                  label: t('Requisito Inicial', 'Starting Requirement'),
-                  value: t('Pás e Regador (Watering Can)', 'Shovels and Watering Can'),
-                },
-                {
-                  label: t('Mestres Agricultores', 'Farming Mentors'),
-                  value: (
-                    <span>
-                      <MapLink poiId="donald-mcronald" x={32344} y={32225} z={7}>Donald McRonald</MapLink> &{' '}
-                      <MapLink poiId="sherry-mcronald" x={32344} y={32228} z={7}>Sherry McRonald</MapLink> (Thais Farm)
-                    </span>
-                  ),
-                },
-                {
-                  label: t('Principais Solos', 'Main Soils'),
-                  value: t('Fazenda de Thais, Greenshore e Terrenos Próprios (Lands)', 'Thais Farm, Greenshore, and Player Lands'),
-                },
-              ]}
-            />
+            <NoticeCard type="info" title={t('Informações Oficiais em Catalogação', 'Official Details Under Cataloging')}>
+              {t(
+                'O NPC instrutor desta profissão, taxa oficial e requisitos exatos estão em fase de verificação e serão adicionados assim que confirmados pela administração.',
+                'The instructor NPC, enrollment fee, and exact requirements are currently being verified and will be published upon official confirmation.'
+              )}
+            </NoticeCard>
 
-            {/* NPC Mentors: Donald & Sherry McRonald */}
-            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="farming-mentors">
-              {t('Mestres Agricultores de Thais', 'Agricultural Mentors in Thais')}
-            </h4>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
-              {/* Donald McRonald */}
-              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 bg-black/40 border border-medieval-gold/30 rounded-xl p-4">
-                <img 
-                  src="/images/miracle/npcs/donald_mcronald.png" 
-                  alt="Donald McRonald" 
-                  className="w-16 h-16 object-contain rounded border border-medieval-gold/20 bg-black/50 p-1 shrink-0"
-                  onError={(e) => {
-                    e.currentTarget.onerror = null;
-                    e.currentTarget.src = "/images/miracle/npcs/donald_mcronald.gif";
-                  }}
-                />
-                <div className="text-center sm:text-left flex-1">
-                  <h5 className="font-bold text-medieval-gold text-base">Donald McRonald</h5>
-                  <p className="text-xs text-stone-300 mt-0.5">
-                    {t('Localização:', 'Location:')} <MapLink poiId="donald-mcronald" x={32344} y={32225} z={7}>Thais Farm (32344, 32225, 7)</MapLink>
-                  </p>
-                  <p className="text-xs text-stone-400 mt-1 leading-relaxed">
-                    {t(
-                      'Fazendeiro veterano responsável pelos campos de trigo e cevada de Thais. Comercializa sementes básicas e ensina as técnicas essenciais de arar e regar o solo.',
-                      'Veteran farmer tending the wheat and barley fields of Thais. Trades basic seeds and instructs on essential soil tilling and watering methods.'
-                    )}
-                  </p>
-                </div>
-              </div>
-
-              {/* Sherry McRonald */}
-              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 bg-black/40 border border-medieval-gold/30 rounded-xl p-4">
-                <img 
-                  src="/images/miracle/npcs/sherry_mcronald.png" 
-                  alt="Sherry McRonald" 
-                  className="w-16 h-16 object-contain rounded border border-medieval-gold/20 bg-black/50 p-1 shrink-0"
-                  onError={(e) => {
-                    e.currentTarget.onerror = null;
-                    e.currentTarget.src = "/images/miracle/npcs/sherry_mcronald.gif";
-                  }}
-                />
-                <div className="text-center sm:text-left flex-1">
-                  <h5 className="font-bold text-medieval-gold text-base">Sherry McRonald</h5>
-                  <p className="text-xs text-stone-300 mt-0.5">
-                    {t('Localização:', 'Location:')} <MapLink poiId="sherry-mcronald" x={32344} y={32228} z={7}>Thais Farm (32344, 32228, 7)</MapLink>
-                  </p>
-                  <p className="text-xs text-stone-400 mt-1 leading-relaxed">
-                    {t(
-                      'Padeira e agricultora de Thais. Compra a colheita dos fazendeiros e orienta sobre o processamento de grãos em farinha e pães artesanais.',
-                      'Baker and cultivator in Thais. Purchases fresh harvests and guides adventurers on processing raw grains into flour and artisan loaves.'
-                    )}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <NpcDialog
-              npcName="Donald McRonald"
-              npcLocation="Thais Farm"
-              lines={[
-                { speaker: 'player', text: 'hi', keyword: 'hi' },
-                { speaker: 'player', text: 'profession', keyword: 'profession' },
-                { speaker: 'player', text: 'yes', keyword: 'yes' },
-              ]}
-            />
-
-            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="farming-stages">{t('Estágios e Cultivo', 'Stages and Cultivation')}</h4>
-            <ul className="list-disc pl-5 space-y-3">
-              <li>
-                <strong className="text-medieval-gold">{t('Ciclo de Crescimento:', 'Growth Cycle:')}</strong>{' '}
-                {t('As plantações passam por estágios sequenciais (Semente → Broto → Planta Madura → Colheita). O tempo varia dependendo da raridade da planta.', 'Crops progress through sequential stages (Seed → Sprout → Mature Plant → Ready for Harvest). Growth times scale with plant rarity.')}
-              </li>
-              <li>
-                <strong className="text-medieval-gold">{t('Irrigação Contínua:', 'Regular Irrigation:')}</strong>{' '}
-                {t('Manter o solo devidamente regado previne a perda da lavoura e garante o rendimento máximo de sementes e produtos na colheita.', 'Keeping the soil properly watered prevents crop withering and guarantees maximum yield upon harvesting.')}
-              </li>
-              <li>
-                <strong className="text-medieval-gold">{t('Avanço de Skill:', 'Skill Advancement:')}</strong>{' '}
-                {t('Cada colheita bem-sucedida avança sua habilidade em Farming, aumentando a probabilidade de obter sementes raras e multiplicar os itens colhidos.', 'Every successful harvest advances your Farming skill, improving your chance of recovering rare seeds and bonus yield.')}
-              </li>
+            <h4 className="text-xl font-bold text-medieval-gold mt-8 mb-4" id="farming-stages">{t('Estágios das Plantações', 'Crop Stages')}</h4>
+            <ul className="list-disc pl-5 space-y-2">
+              <li>{t('Cada tipo de semente ou muda possui um tempo específico de crescimento.', 'Each seed or crop type has a specific growth duration.')}</li>
+              <li>{t('A skill de Farming influencia as chances e o rendimento da colheita.', 'Farming skill influences harvest yields and chances.')}</li>
             </ul>
 
             <div id="farming-calc-link" className="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 bg-emerald-950/20 border border-emerald-500/30 rounded-xl my-6">
@@ -1737,22 +1569,12 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
                 },
                 {
                   label: t('Ferramenta Inicial', 'Starting Tool'),
-                  value: t("Hunter's Knife (Naginata Quest ou NPC Kael)", "Hunter's Knife (Naginata Quest or NPC Kael)"),
+                  value: t("Hunter's Knife", "Hunter's Knife"),
                 },
                 {
                   label: t('Ferramenta Avançada', 'Advanced Tool'),
                   value: t('Diamond Knife (Forjada via Blacksmith/Crafting)', 'Diamond Knife (Crafted via Blacksmith)'),
                 },
-              ]}
-            />
-
-            <NpcDialog
-              npcName="Kael"
-              npcLocation="Norte de Thais"
-              lines={[
-                { speaker: 'player', text: 'hi', keyword: 'hi' },
-                { speaker: 'player', text: 'profession', keyword: 'profession' },
-                { speaker: 'player', text: 'yes', keyword: 'yes' },
               ]}
             />
 
@@ -2197,14 +2019,14 @@ export function ProfessionsGuideView({ language, onNavigateToCalculator, selecte
             </h3>
             <p>
               {t(
-                'A profissão de Lenhador (Woodcutting) é uma profissão de coleta primária projetada para a extração de madeiras e troncos específicos de árvores no mapa de Miracle 7.4.',
-                'The Woodcutting profession is a primary gathering trade designed for harvesting specialized lumber and timber from trees across the Miracle 7.4 map.'
+                'A profissão de Lenhador (Woodcutting) é uma profissão de coleta primária projetada para a extração de madeiras e troncos específicos no mapa de Miracle 7.4.',
+                'The Woodcutting profession is a primary gathering trade designed for harvesting specialized lumber and timber across the Miracle 7.4 map.'
               )}
             </p>
-            <NoticeCard type="info" title={t('Integração com Carpintaria & Status Oficial', 'Carpentry Integration & Server Status')}>
+            <NoticeCard type="info" title={t('Profissão em Balanceamento', 'Profession Under Balancing')}>
               {t(
-                'Os recursos obtidos por Lenhadores são utilizados na fabricação de camas, construções de terras (Lands) e mobílias na Carpintaria. Esta profissão está em fase de balanceamento e ativação de machados no servidor. Todas as fórmulas, tipos de madeira e locais exatos serão documentados integralmente nesta página.',
-                'Resources gathered by Woodcutters supply the crafting of beds, land constructions, and furniture in Carpentry. This profession is currently undergoing balancing and axe deployment on the server. All formulas, wood tiers, and tree spawn spots will be thoroughly documented here.'
+                'Esta profissão está em fase de balanceamento e ativação no servidor. Todas as fórmulas oficiais, machados, tipos de madeira e locais exatos serão documentados integralmente assim que validados pela administração.',
+                'This profession is currently undergoing balancing and deployment on the server. Official formulas, axes, wood tiers, and spawn spots will be fully documented here upon verification.'
               )}
             </NoticeCard>
           </div>
