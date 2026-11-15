@@ -617,9 +617,12 @@ export const ATTRIBUTE_DATA: Record<string, AttributeItem[]> = {
         "Armor",
         "Weight",
         "Axe Fighting",
+        "Max Health",
         "Club Fighting",
         "Distance Fighting",
+        "Sword Fighting",
         "Health Regen",
+        "Shielding",
         "Protect Fire",
         "Protect Physical"
       ]

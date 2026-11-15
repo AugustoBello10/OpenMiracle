@@ -651,11 +651,14 @@
       "Axe Fighting",
       "Club Fighting",
       "Distance Fighting",
+      "Sword Fighting",
+      "Max Health",
       "Health Regen",
+      "Shielding",
       "Protect Fire",
       "Protect Physical"
     ],
-    "armor": 11
+    "armor": 8
   },
   {
     "id": 2343,
@@ -674,11 +677,14 @@
       "Axe Fighting",
       "Club Fighting",
       "Distance Fighting",
+      "Sword Fighting",
+      "Max Health",
       "Health Regen",
+      "Shielding",
       "Protect Fire",
       "Protect Physical"
     ],
-    "armor": 11
+    "armor": 12
   },
   {
     "id": 10012,
