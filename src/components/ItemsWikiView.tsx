@@ -238,19 +238,42 @@ export function ItemsWikiView({ language, initialCategory, onCategoryChange }: I
           <span className="text-[10px] font-mono uppercase text-stone-400 mr-1 flex items-center gap-1">
             <Filter className="w-3 h-3" /> {language === 'pt' ? 'Classe:' : 'Class:'}
           </span>
-          {(['all', 1, 2, 3, 4, 5] as const).map((cls) => (
-            <button
-              key={cls}
-              onClick={() => setSelectedClass(cls)}
-              className={`px-2 py-1 rounded text-[10px] font-mono font-bold uppercase cursor-pointer border transition-colors ${
-                selectedClass === cls
-                  ? 'bg-medieval-gold text-black border-medieval-gold'
-                  : 'bg-black/40 text-stone-400 border-white/10 hover:border-white/30'
-              }`}
-            >
-              {cls === 'all' ? (language === 'pt' ? 'Todas' : 'All') : `Cl. ${cls}`}
-            </button>
-          ))}
+          {(['all', 1, 2, 3, 4, 5] as const).map((cls) => {
+            const isSel = selectedClass === cls;
+            return (
+              <button
+                key={cls}
+                onClick={() => setSelectedClass(cls)}
+                className={`px-2 py-1 rounded text-[10px] font-mono font-bold uppercase cursor-pointer border transition-all ${
+                  isSel
+                    ? cls === 'all'
+                      ? 'bg-medieval-gold text-black border-medieval-gold font-black'
+                      : cls === 1
+                      ? 'bg-white text-black border-white font-black shadow-[0_0_8px_rgba(255,255,255,0.4)]'
+                      : cls === 2
+                      ? 'bg-emerald-500 text-black border-emerald-400 font-black shadow-[0_0_8px_rgba(16,185,129,0.4)]'
+                      : cls === 3
+                      ? 'bg-sky-500 text-black border-sky-400 font-black shadow-[0_0_8px_rgba(14,165,233,0.4)]'
+                      : cls === 4
+                      ? 'bg-purple-600 text-white border-purple-400 font-black shadow-[0_0_8px_rgba(168,85,247,0.4)]'
+                      : 'bg-amber-400 text-black border-amber-300 font-black shadow-[0_0_10px_rgba(251,191,36,0.5)]'
+                    : cls === 1
+                    ? 'bg-black/40 text-stone-200 border-white/20 hover:border-white/50'
+                    : cls === 2
+                    ? 'bg-black/40 text-emerald-400/80 border-emerald-500/20 hover:border-emerald-500/50'
+                    : cls === 3
+                    ? 'bg-black/40 text-sky-400/80 border-sky-500/20 hover:border-sky-500/50'
+                    : cls === 4
+                    ? 'bg-black/40 text-purple-400/80 border-purple-500/20 hover:border-purple-500/50'
+                    : cls === 5
+                    ? 'bg-black/40 text-amber-300/80 border-amber-400/20 hover:border-amber-400/50'
+                    : 'bg-black/40 text-stone-400 border-white/10 hover:border-white/30'
+                }`}
+              >
+                {cls === 'all' ? (language === 'pt' ? 'Todas' : 'All') : `Cl. ${cls}`}
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -278,7 +301,14 @@ export function ItemsWikiView({ language, initialCategory, onCategoryChange }: I
                     {/* ICON + NAME */}
                     <td className="p-3.5">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded bg-black/80 border border-medieval-gold/20 flex items-center justify-center p-1 group-hover:border-medieval-gold/50 transition-colors shadow-inner shrink-0">
+                        <div className={`w-10 h-10 rounded bg-black/80 flex items-center justify-center p-1 transition-all shadow-inner shrink-0 ${
+                          itemClass === 1 ? 'border border-white/40' :
+                          itemClass === 2 ? 'border border-emerald-500/50' :
+                          itemClass === 3 ? 'border border-sky-500/50' :
+                          itemClass === 4 ? 'border border-purple-500/50' :
+                          itemClass === 5 ? 'border border-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.3)]' :
+                          'border border-medieval-gold/20 group-hover:border-medieval-gold/50'
+                        }`}>
                           <img
                             src={item.image}
                             alt={item.name}
@@ -335,11 +365,11 @@ export function ItemsWikiView({ language, initialCategory, onCategoryChange }: I
                     <td className="p-3.5 text-center whitespace-nowrap min-w-[105px]">
                       {itemClass !== null && itemClass >= 1 ? (
                         <span className={`inline-block px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-wider whitespace-nowrap ${
-                          itemClass === 1 ? 'bg-green-950/60 text-green-400 border border-green-500/30' :
-                          itemClass === 2 ? 'bg-blue-950/60 text-blue-400 border border-blue-500/30' :
-                          itemClass === 3 ? 'bg-purple-950/60 text-purple-400 border border-purple-500/30' :
-                          itemClass === 4 ? 'bg-amber-950/60 text-amber-400 border border-amber-500/30' :
-                          'bg-amber-500/20 text-yellow-300 border border-amber-400 shadow-[0_0_8px_rgba(245,158,11,0.3)]'
+                          itemClass === 1 ? 'bg-white/10 text-white border border-white/50 shadow-[0_0_6px_rgba(255,255,255,0.2)]' :
+                          itemClass === 2 ? 'bg-emerald-950/60 text-emerald-400 border border-emerald-500/50 shadow-[0_0_6px_rgba(16,185,129,0.2)]' :
+                          itemClass === 3 ? 'bg-sky-950/60 text-sky-400 border border-sky-500/50 shadow-[0_0_6px_rgba(14,165,233,0.2)]' :
+                          itemClass === 4 ? 'bg-purple-950/60 text-purple-400 border border-purple-500/50 shadow-[0_0_6px_rgba(168,85,247,0.2)]' :
+                          'bg-amber-500/20 text-amber-300 border border-amber-400/80 shadow-[0_0_10px_rgba(251,191,36,0.35)]'
                         }`}>
                           {language === 'pt' ? 'Classe' : 'Class'} {itemClass}
                         </span>

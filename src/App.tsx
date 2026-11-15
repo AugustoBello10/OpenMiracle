@@ -2103,20 +2103,49 @@ export default function App() {
 
                              {/* Seleção de Item */}
                              <div className="flex flex-col gap-2">
-                               <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest">
-                                 {t('equipment')}
-                               </label>
+                               <div className="flex items-center justify-between">
+                                 <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest">
+                                   {t('equipment')}
+                                 </label>
+                                 {(() => {
+                                   const curItem = ATTRIBUTE_DATA[attrCategory]?.find(i => i.name === attrItemName);
+                                   if (!curItem) return null;
+                                   return (
+                                     <span className={`inline-block px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-wider whitespace-nowrap ${
+                                       curItem.class === 1 ? 'bg-white/10 text-white border border-white/50 shadow-[0_0_6px_rgba(255,255,255,0.2)]' :
+                                       curItem.class === 2 ? 'bg-emerald-950/60 text-emerald-400 border border-emerald-500/50 shadow-[0_0_6px_rgba(16,185,129,0.2)]' :
+                                       curItem.class === 3 ? 'bg-sky-950/60 text-sky-400 border border-sky-500/50 shadow-[0_0_6px_rgba(14,165,233,0.2)]' :
+                                       curItem.class === 4 ? 'bg-purple-950/60 text-purple-400 border border-purple-500/50 shadow-[0_0_6px_rgba(168,85,247,0.2)]' :
+                                       'bg-amber-500/20 text-amber-300 border border-amber-400/80 shadow-[0_0_10px_rgba(251,191,36,0.35)]'
+                                     }`}>
+                                       {language === 'pt' ? 'Classe' : 'Class'} {curItem.class}
+                                     </span>
+                                   );
+                                 })()}
+                               </div>
                                <div className="flex gap-4">
-                                 <div className="w-16 h-16 bg-black/60 rounded border border-medieval-gold/30 flex items-center justify-center shrink-0 shadow-inner">
-                                    <img
-                                      src={LOCAL_ITEM_IMAGES[attrItemName.toLowerCase().trim()] || ALL_ITEM_IMAGES[attrItemName.toLowerCase().trim()] || HELMETS_DATA.find(h => h.name.toLowerCase() === attrItemName.toLowerCase().trim())?.image || "/images/miracle/items/ceremonial_ankh.gif"}
-                                      alt={attrItemName}
-                                      className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]"
-                                      onError={(e) => {
-                                        (e.currentTarget as HTMLImageElement).src = "/images/miracle/items/ceremonial_ankh.gif";
-                                      }}
-                                    />
-                                 </div>
+                                 {(() => {
+                                   const curItem = ATTRIBUTE_DATA[attrCategory]?.find(i => i.name === attrItemName);
+                                   const borderClass =
+                                     curItem?.class === 1 ? 'border-white/50 shadow-[0_0_8px_rgba(255,255,255,0.2)]' :
+                                     curItem?.class === 2 ? 'border-emerald-500/50 shadow-[0_0_8px_rgba(16,185,129,0.2)]' :
+                                     curItem?.class === 3 ? 'border-sky-500/50 shadow-[0_0_8px_rgba(14,165,233,0.2)]' :
+                                     curItem?.class === 4 ? 'border-purple-500/50 shadow-[0_0_8px_rgba(168,85,247,0.2)]' :
+                                     curItem?.class === 5 ? 'border-amber-400 shadow-[0_0_10px_rgba(251,191,36,0.3)]' :
+                                     'border-medieval-gold/30';
+                                   return (
+                                     <div className={`w-16 h-16 bg-black/60 rounded border ${borderClass} flex items-center justify-center shrink-0 shadow-inner transition-all`}>
+                                       <img
+                                         src={LOCAL_ITEM_IMAGES[attrItemName.toLowerCase().trim()] || ALL_ITEM_IMAGES[attrItemName.toLowerCase().trim()] || HELMETS_DATA.find(h => h.name.toLowerCase() === attrItemName.toLowerCase().trim())?.image || "/images/miracle/items/ceremonial_ankh.gif"}
+                                         alt={attrItemName}
+                                         className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]"
+                                         onError={(e) => {
+                                           (e.currentTarget as HTMLImageElement).src = "/images/miracle/items/ceremonial_ankh.gif";
+                                         }}
+                                       />
+                                     </div>
+                                   );
+                                 })()}
                                  <select
                                    value={attrItemName}
                                    onChange={(e) => setAttrItemName(e.target.value)}
