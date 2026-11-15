@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect, useMemo, ReactNode, lazy, Suspense } from 'react';
+import { useState, useEffect, useMemo, useRef, ReactNode, lazy, Suspense } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
@@ -1011,6 +1011,18 @@ export default function App() {
   // Estados para Calculadora de Atributos
   const [attrCategory, setAttrCategory] = useState<string>("Helmets");
   const [attrItemName, setAttrItemName] = useState<string>(ATTRIBUTE_DATA["Helmets"][0].name);
+  const [isAttrDropdownOpen, setIsAttrDropdownOpen] = useState(false);
+  const attrDropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (attrDropdownRef.current && !attrDropdownRef.current.contains(e.target as Node)) {
+        setIsAttrDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // Lógica de Cálculo de Atributos
   const attrResult = useMemo(() => {
@@ -2081,6 +2093,7 @@ export default function App() {
                                     onClick={() => {
                                       setAttrCategory(cat);
                                       setAttrItemName(ATTRIBUTE_DATA[cat][0].name);
+                                      setIsAttrDropdownOpen(false);
                                     }}
                                     className={`py-3 px-4 rounded-lg font-bold text-[10px] sm:text-xs uppercase tracking-wider transition-all border ${attrCategory === cat ? 'bg-medieval-gold/20 border-medieval-gold text-medieval-gold shadow-[0_0_15px_rgba(212,175,55,0.2)]' : 'bg-black/40 border-medieval-gold/20 text-medieval-gold/60 hover:bg-medieval-gold/10 hover:border-medieval-gold/40'}`}
                                   >
@@ -2101,8 +2114,8 @@ export default function App() {
                               </div>
                             </div>
 
-                             {/* Seleção de Item */}
-                             <div className="flex flex-col gap-2">
+                             {/* Seleção de Item com Custom Dropdown Medieval */}
+                             <div className="flex flex-col gap-2 relative" ref={attrDropdownRef}>
                                <div className="flex items-center justify-between">
                                  <label className="text-medieval-gold font-bold uppercase text-xs tracking-widest">
                                    {t('equipment')}
@@ -2146,17 +2159,71 @@ export default function App() {
                                      </div>
                                    );
                                  })()}
-                                 <select
-                                   value={attrItemName}
-                                   onChange={(e) => setAttrItemName(e.target.value)}
-                                   className="medieval-input cursor-pointer appearance-none flex-1"
-                                 >
-                                   {ATTRIBUTE_DATA[attrCategory]?.map(item => (
-                                     <option key={item.name} value={item.name}>
-                                       {item.name} ({language === 'pt' ? 'Classe' : 'Class'} {item.class})
-                                     </option>
-                                   ))}
-                                 </select>
+                                 {/* Custom Dropdown Trigger */}
+                                 <div className="relative flex-1">
+                                   <button
+                                     type="button"
+                                     onClick={() => setIsAttrDropdownOpen(!isAttrDropdownOpen)}
+                                     className="w-full bg-black/60 border border-medieval-gold/30 rounded-xl px-4 py-3 text-medieval-gold flex items-center justify-between hover:border-medieval-gold/60 focus:border-medieval-gold transition-all cursor-pointer shadow-inner text-left"
+                                   >
+                                     <span className="font-bold text-sm truncate">
+                                       {attrItemName} ({language === 'pt' ? 'Classe' : 'Class'} {ATTRIBUTE_DATA[attrCategory]?.find(i => i.name === attrItemName)?.class})
+                                     </span>
+                                     <ChevronDown className={`w-4 h-4 text-medieval-gold shrink-0 transition-transform duration-200 ${isAttrDropdownOpen ? 'rotate-180' : ''}`} />
+                                   </button>
+
+                                   {/* Custom Dropdown Menu */}
+                                   <AnimatePresence>
+                                     {isAttrDropdownOpen && (
+                                       <motion.div
+                                         initial={{ opacity: 0, y: -6 }}
+                                         animate={{ opacity: 1, y: 0 }}
+                                         exit={{ opacity: 0, y: -6 }}
+                                         transition={{ duration: 0.15 }}
+                                         className="absolute left-0 right-0 top-full mt-2 bg-[#0c0c0c] border border-medieval-gold/40 rounded-xl shadow-[0_15px_50px_rgba(0,0,0,0.95)] z-50 overflow-hidden"
+                                       >
+                                         <div className="max-h-72 overflow-y-auto divide-y divide-white/5 scrollbar-medieval p-1.5">
+                                           {ATTRIBUTE_DATA[attrCategory]?.map(item => {
+                                             const isSelected = item.name === attrItemName;
+                                             const classBadge =
+                                               item.class === 1 ? 'bg-white/10 text-white border-white/50' :
+                                               item.class === 2 ? 'bg-emerald-950/60 text-emerald-400 border-emerald-500/50' :
+                                               item.class === 3 ? 'bg-sky-950/60 text-sky-400 border-sky-500/50' :
+                                               item.class === 4 ? 'bg-purple-950/60 text-purple-400 border-purple-500/50' :
+                                               'bg-amber-500/20 text-amber-300 border-amber-400/80';
+                                             const itemImg = LOCAL_ITEM_IMAGES[item.name.toLowerCase().trim()] || ALL_ITEM_IMAGES[item.name.toLowerCase().trim()] || "/images/miracle/items/ceremonial_ankh.gif";
+
+                                             return (
+                                               <button
+                                                 key={item.name}
+                                                 type="button"
+                                                 onClick={() => {
+                                                   setAttrItemName(item.name);
+                                                   setIsAttrDropdownOpen(false);
+                                                 }}
+                                                 className={`w-full px-3 py-2 rounded-lg flex items-center justify-between gap-3 text-left transition-colors cursor-pointer ${
+                                                   isSelected
+                                                     ? 'bg-medieval-gold/20 text-medieval-gold border border-medieval-gold/30'
+                                                     : 'text-stone-300 hover:bg-white/5 hover:text-white'
+                                                 }`}
+                                               >
+                                                 <div className="flex items-center gap-2.5 min-w-0">
+                                                   <div className="w-7 h-7 bg-black/60 rounded border border-white/10 flex items-center justify-center p-0.5 shrink-0">
+                                                     <img src={itemImg} alt={item.name} className="max-w-full max-h-full object-contain" />
+                                                   </div>
+                                                   <span className="text-xs font-bold truncate">{item.name}</span>
+                                                 </div>
+                                                 <span className={`px-2 py-0.5 rounded text-[9px] font-mono font-bold uppercase border shrink-0 ${classBadge}`}>
+                                                   {language === 'pt' ? 'Classe' : 'Class'} {item.class}
+                                                 </span>
+                                               </button>
+                                             );
+                                           })}
+                                         </div>
+                                       </motion.div>
+                                     )}
+                                   </AnimatePresence>
+                                 </div>
                                </div>
                              </div>
 
